@@ -1,0 +1,20 @@
+name: "HA Views"
+version: "0.3.0-beta.1"
+slug: "basen_pv_app"
+description: "Wizualne widoki encji Home Assistant"
+url: "https://github.com/VoyteckPL/ha-views"
+stage: experimental
+arch:
+  - amd64
+  - aarch64
+  - armv7
+startup: application
+boot: auto
+init: false
+ingress: true
+ingress_port: 8099
+panel_icon: "mdi:view-dashboard-outline"
+panel_title: "HA Views"
+homeassistant_api: true
+map:
+  - config:rw
