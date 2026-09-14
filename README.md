@@ -1,6 +1,8 @@
 # HA Views
 
-> **Beta `0.3.0-beta.1`** — wizualny edytor widoków dla Home Assistanta / visual view editor for Home Assistant.
+![HA Views](ha_views/logo.png)
+
+> **Beta `0.3.0-beta.2`** — wizualny edytor widoków dla Home Assistanta / visual view editor for Home Assistant.
 
 HA Views pozwala umieszczać encje Home Assistanta na dowolnym obrazie tła. Markery mogą działać jako kompaktowe **Badge** lub **Gauge**, są aktualizowane na żywo i zachowują ten sam układ na komputerze oraz telefonie.
 
