@@ -4,7 +4,6 @@
 
 HA Views pozwala umieszczać encje Home Assistanta na dowolnym obrazie tła. Markery mogą działać jako kompaktowe **Badge** lub **Gauge**, są aktualizowane na żywo i zachowują ten sam układ na komputerze oraz telefonie.
 
-![HA Views — widok ogólny](docs/images/overview.png)
 
 ## Najważniejsze funkcje
 
@@ -18,7 +17,6 @@ HA Views pozwala umieszczać encje Home Assistanta na dowolnym obrazie tła. Mar
 - responsywne skalowanie oraz zoom gestem na telefonie;
 - lista integracji i encji dostępnych w Home Assistant.
 
-![HA Views — przykład markera](docs/images/marker.png)
 
 ## Wymagania
 
