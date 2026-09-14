@@ -18,7 +18,7 @@ HA Views pozwala umieszczać encje Home Assistanta na dowolnym obrazie tła. Mar
 - responsywne skalowanie oraz zoom gestem na telefonie;
 - lista integracji i encji dostępnych w Home Assistant.
 
-![HA Views — integracje](docs/images/integrations.png)
+![HA Views — przykład markera](docs/images/marker.png)
 
 ## Wymagania
 
