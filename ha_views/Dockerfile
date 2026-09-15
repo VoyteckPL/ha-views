@@ -11,5 +11,3 @@ RUN chmod +x /run.sh
 WORKDIR /app
 
 CMD ["/run.sh"]
-
-[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
