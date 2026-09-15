@@ -21,9 +21,9 @@ HA Views lets you place Home Assistant entities as fully configurable **Badge** 
 - responsive layouts, desktop mouse-wheel zoom and mobile pinch/pan;
 - automatic local persistence of layouts and styling.
 
-![Integrations](docs/screenshots/integrations.webp)
+![Integrations](docs/screenshots/integrations.png)
 
-![Marker editor](docs/screenshots/editor.webp)
+![Marker editor](docs/screenshots/editor.png)
 
 ## Status
 
