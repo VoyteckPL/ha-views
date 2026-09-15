@@ -13,11 +13,10 @@ from aiohttp import web
 
 HA_API = "http://supervisor/core/api"
 
-
+# HA Views starts without any preconfigured entities. Each dashboard stores
+# and requests only the entity IDs selected by its own Home Assistant user.
 ENTITIES = []
-
 HISTORY_ENTITIES = []
-
 
 def token():
     return os.environ.get("SUPERVISOR_TOKEN", "")
@@ -108,105 +107,40 @@ async def api_selected_states(request):
 
 
 
-# ==========================================================
-# HA VIEWS APP CONTROL
-# ==========================================================
-
-CONTROL_SWITCHES = set()
-
-CONTROL_NUMBERS = set()
-
-
+# Generic optional control endpoint. It never contains user-specific entity IDs.
 async def api_control(request):
     try:
         body = await request.json()
     except Exception:
-        return web.json_response(
-            {"ok": False, "error": "Nieprawidłowy JSON"},
-            status=400,
-        )
+        return web.json_response({"ok": False, "error": "Invalid JSON"}, status=400)
 
-    entity_id = body.get("entity_id")
-    action = body.get("action")
+    entity_id = str(body.get("entity_id", "")).strip()
+    action = str(body.get("action", "")).strip()
+    if not re.fullmatch(r"[a-z_]+\.[a-zA-Z0-9_]+", entity_id):
+        return web.json_response({"ok": False, "error": "Invalid entity ID"}, status=400)
 
-    if entity_id in CONTROL_SWITCHES:
-
-        if action not in ("turn_on", "turn_off"):
-            return web.json_response(
-                {"ok": False, "error": "Nieprawidłowa akcja switch"},
-                status=400,
-            )
-
-        service_url = f"{HA_API}/services/switch/{action}"
-
-        payload = {
-            "entity_id": entity_id,
-        }
-
-    elif entity_id in CONTROL_NUMBERS:
-
-        if action != "set_value":
-            return web.json_response(
-                {"ok": False, "error": "Nieprawidłowa akcja number"},
-                status=400,
-            )
-
+    domain = entity_id.split(".", 1)[0]
+    payload = {"entity_id": entity_id}
+    if action in ("turn_on", "turn_off") and domain in {"switch", "light", "fan", "input_boolean"}:
+        service_url = f"{HA_API}/services/{domain}/{action}"
+    elif action == "set_value" and domain in {"number", "input_number"}:
         try:
-            value = float(body.get("value"))
+            payload["value"] = float(body.get("value"))
         except (TypeError, ValueError):
-            return web.json_response(
-                {"ok": False, "error": "Nieprawidłowa wartość"},
-                status=400,
-            )
-
-        service_url = f"{HA_API}/services/number/set_value"
-
-        payload = {
-            "entity_id": entity_id,
-            "value": value,
-        }
-
+            return web.json_response({"ok": False, "error": "Invalid value"}, status=400)
+        service_url = f"{HA_API}/services/{domain}/set_value"
     else:
-        return web.json_response(
-            {"ok": False, "error": "Encja niedozwolona"},
-            status=403,
-        )
+        return web.json_response({"ok": False, "error": "Unsupported action"}, status=400)
 
     try:
         async with aiohttp.ClientSession() as session:
-            async with session.post(
-                service_url,
-                headers=headers(),
-                json=payload,
-            ) as resp:
-
-                text = await resp.text()
-
+            async with session.post(service_url, headers=headers(), json=payload) as resp:
                 if resp.status not in (200, 201):
-                    return web.json_response(
-                        {
-                            "ok": False,
-                            "error": f"HA HTTP {resp.status}",
-                            "body": text,
-                        },
-                        status=resp.status,
-                    )
-
+                    return web.json_response({"ok": False, "error": f"HA HTTP {resp.status}"}, status=resp.status)
     except Exception as err:
-        return web.json_response(
-            {
-                "ok": False,
-                "error": str(err),
-            },
-            status=500,
-        )
+        return web.json_response({"ok": False, "error": str(err)}, status=500)
 
-    return web.json_response({
-        "ok": True,
-        "entity_id": entity_id,
-        "action": action,
-    })
-
+    return web.json_response({"ok": True, "entity_id": entity_id, "action": action})
 
 
 async def api_history(request):
@@ -235,6 +169,8 @@ async def api_history(request):
     try:
         async with aiohttp.ClientSession() as session:
             async with session.get(
+
+[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
                 url,
                 headers=headers(),
             ) as resp:
@@ -300,12 +236,45 @@ async def api_history(request):
 
 
 
-# ===== HA VIEWS LAYOUT API V10 =====
+async def api_entity_history(request):
+    entity_id = str(request.query.get("entity_id", "")).strip()
+    if not re.fullmatch(r"[a-z_]+\.[a-zA-Z0-9_]+", entity_id):
+        return web.json_response({"ok": False, "error": "Nieprawidlowa encja"}, status=400)
+    try:
+        hours = max(1, min(int(request.query.get("hours", "24")), 168))
+    except ValueError:
+        hours = 24
+    end = datetime.now(timezone.utc)
+    start = end - timedelta(hours=hours)
+    start_iso, end_iso = start.isoformat(), end.isoformat()
+    url = (
+        f"{HA_API}/history/period/{quote(start_iso, safe=':+')}"
+        f"?filter_entity_id={quote(entity_id, safe='._')}"
+        f"&end_time={quote(end_iso, safe=':+')}&no_attributes"
+    )
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url, headers=headers()) as resp:
+                text = await resp.text()
+                if resp.status != 200:
+                    return web.json_response({"ok": False, "error": f"HA HTTP {resp.status}"}, status=resp.status)
+                raw = json.loads(text)
+    except Exception as err:
+        return web.json_response({"ok": False, "error": str(err)}, status=500)
+    series = raw[0] if isinstance(raw, list) and raw else []
+    points = [{
+        "state": item.get("state"),
+        "t": item.get("last_changed") or item.get("last_updated"),
+    } for item in series[-2000:] if item.get("last_changed") or item.get("last_updated")]
+    return web.json_response({"ok": True, "entity_id": entity_id, "hours": hours, "points": points})
+
+
+# ===== HA Views LAYOUT API V10 =====
 
 LAYOUT_DIR = "/data/layouts"
 
 # Na razie świadomie jeden profil desktopowy.
-LAYOUT_PROFILE = "default"
+LAYOUT_PROFILE = "pc_wojtek"
 
 LAYOUT_FILE = os.path.join(
     LAYOUT_DIR,
@@ -436,12 +405,12 @@ async def api_layout_save(request):
         "profile": LAYOUT_PROFILE,
     })
 
-# ===== END HA VIEWS LAYOUT API V10 =====
+# ===== END HA Views LAYOUT API V10 =====
 
 
 
 # ============================================================
-# HA VIEWS INTEGRATIONS API V1
+# HA Views INTEGRATIONS API V1
 # ============================================================
 
 HA_WS = "ws://supervisor/core/websocket"
@@ -502,6 +471,8 @@ async def ha_ws_command(command):
 
                 if msg.get("id") != request_id:
                     continue
+
+[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
 
                 if msg.get("type") != "result":
                     continue
@@ -674,7 +645,7 @@ async def api_integration_entities(request):
             "type": "config/entity_registry/list",
         })
 
-        # HA VIEWS ENABLED ENTITY SOURCE OF TRUTH V3
+        # HA Views ENABLED ENTITY SOURCE OF TRUTH V3
         #
         # Home Assistant zwraca tutaj WYŁĄCZNIE encje aktywne.
         # Nie opieramy więc klasyfikacji tylko na disabled_by.
@@ -711,7 +682,7 @@ async def api_integration_entities(request):
 
 
     # ========================================================
-    # HA VIEWS ENABLED ENTITY SOURCE OF TRUTH V3
+    # HA Views ENABLED ENTITY SOURCE OF TRUTH V3
     # ========================================================
 
     enabled_entity_ids = set()
@@ -802,6 +773,8 @@ async def api_integration_entities(request):
 
 
         if entry_id in device_entry_ids:
+
+[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
 
             if device_id:
                 matching_devices.add(
@@ -930,14 +903,14 @@ async def api_integration_entities(request):
     })
 
 
-# ===== END HA VIEWS INTEGRATIONS API V1 =====
+# ===== END HA Views INTEGRATIONS API V1 =====
 
 
 
 
 
 # ============================================================
-# HA VIEWS ENABLE ENTITY API V2
+# HA Views ENABLE ENTITY API V2
 # ============================================================
 
 async def api_enable_entity(request):
@@ -1010,11 +983,11 @@ async def api_enable_entity(request):
     })
 
 
-# ===== END HA VIEWS ENABLE ENTITY API V2 =====
+# ===== END HA Views ENABLE ENTITY API V2 =====
 
 
 # ============================================================
-# HA VIEWS DISABLE ENTITY API V5
+# HA Views DISABLE ENTITY API V5
 # ============================================================
 
 async def api_disable_entity(request):
@@ -1088,20 +1061,22 @@ async def api_disable_entity(request):
     })
 
 
-# ===== END HA VIEWS DISABLE ENTITY API V5 =====
+# ===== END HA Views DISABLE ENTITY API V5 =====
 
 
 
 
 
 
-# HA VIEWS ENTITY HISTORY API V6 REMOVED BY V7
+# HA Views ENTITY HISTORY API V6 REMOVED BY V7
 
 
-# ===== HA VIEWS NO CACHE V1 =====
+# ===== HA Views NO CACHE V1 =====
 
-# HA VIEWS LIVE ENTITY EVENTS V1
+# HA Views LIVE ENTITY EVENTS V1
 async def api_entity_events(request):
+
+[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
 
     response = web.StreamResponse(
         status=200,
@@ -1204,10 +1179,10 @@ async def api_entity_events(request):
     return response
 
 
-# ===== HA VIEWS BACKGROUNDS + MARKER STYLES V16 =====
-BACKGROUND_DIR = "/config/basen_pv/backgrounds"
-BACKGROUND_META = "/config/basen_pv/background.json"
-MARKER_STYLE_FILE = "/config/basen_pv/marker_styles.json"
+# ===== HA Views BACKGROUNDS + MARKER STYLES V16 =====
+BACKGROUND_DIR = "/config/ha_views/backgrounds"
+BACKGROUND_META = "/config/ha_views/background.json"
+MARKER_STYLE_FILE = "/config/ha_views/marker_styles.json"
 ALLOWED_BACKGROUND_EXT = {".png", ".jpg", ".jpeg", ".webp"}
 MAX_BACKGROUND_BYTES = 12 * 1024 * 1024
 
@@ -1234,12 +1209,12 @@ def ensure_background_store():
     current = meta.get("current")
     if current and os.path.isfile(os.path.join(BACKGROUND_DIR, current)):
         return
-    legacy = "/app/basen_pv_scene.png"
-    target = os.path.join(BACKGROUND_DIR, "basen_pv_scene.png")
+    legacy = "/app/ha_views_scene.png"
+    target = os.path.join(BACKGROUND_DIR, "ha_views_scene.png")
     if os.path.isfile(legacy):
         if not os.path.isfile(target):
             shutil.copy2(legacy, target)
-        _atomic_json(BACKGROUND_META, {"current": "basen_pv_scene.png"})
+        _atomic_json(BACKGROUND_META, {"current": "ha_views_scene.png"})
     else:
         _atomic_json(BACKGROUND_META, {"current": None})
 
@@ -1262,6 +1237,16 @@ async def api_backgrounds_list(request):
 async def api_background_current(request):
     ensure_background_store()
     name = _read_json(BACKGROUND_META, {}).get("current")
+    path = os.path.join(BACKGROUND_DIR, name) if name else ""
+    if not name or not os.path.isfile(path):
+        raise web.HTTPNotFound()
+    response = web.FileResponse(path)
+    response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+    return response
+
+async def api_background_file(request):
+    ensure_background_store()
+    name = _background_name(request.query.get("name"))
     path = os.path.join(BACKGROUND_DIR, name) if name else ""
     if not name or not os.path.isfile(path):
         raise web.HTTPNotFound()
@@ -1339,11 +1324,11 @@ async def api_marker_styles_save(request):
     _atomic_json(MARKER_STYLE_FILE, data)
     return web.json_response({"ok": True})
 
-# ===== END HA VIEWS BACKGROUNDS + MARKER STYLES V16 =====
+# ===== END HA Views BACKGROUNDS + MARKER STYLES V16 =====
 
 
-# ===== HA VIEWS CLEAN REWRITE STATE =====
-REWRITE_STATE_FILE = "/config/basen_pv/rewrite_state.json"
+# ===== HA Views CLEAN REWRITE STATE =====
+REWRITE_STATE_FILE = "/config/ha_views/rewrite_state.json"
 
 async def api_rewrite_state_get(request):
     data = _read_json(REWRITE_STATE_FILE, None)
@@ -1392,6 +1377,8 @@ async def api_integration_icon(request):
         icon_path = os.path.join(component_dir, *relative_path.split("/"))
         if os.path.isfile(icon_path):
             response = web.FileResponse(icon_path)
+
+[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
             response.headers["Cache-Control"] = "public, max-age=3600"
             return response
     raise web.HTTPNotFound(text="Local integration icon not found")
@@ -1401,7 +1388,7 @@ async def rewrite_index(request):
     response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
     return response
 
-# ===== END HA VIEWS CLEAN REWRITE STATE =====
+# ===== END HA Views CLEAN REWRITE STATE =====
 
 
 async def index(request):
@@ -1436,23 +1423,24 @@ app.router.add_get("/api/states", api_states)
 app.router.add_post("/api/selected_states", api_selected_states)
 app.router.add_get("/api/entity_events", api_entity_events)
 
-# HA VIEWS INTEGRATIONS API V1
+# HA Views INTEGRATIONS API V1
 app.router.add_get("/api/integrations", api_integrations)
 app.router.add_get("/api/integration_entities", api_integration_entities)
 
-# HA VIEWS ENABLE ENTITY API V2
+# HA Views ENABLE ENTITY API V2
 app.router.add_post("/api/enable_entity", api_enable_entity)
 app.router.add_post("/api/disable_entity", api_disable_entity)
 
 app.router.add_post("/api/control", api_control)
 app.router.add_get("/api/history", api_history)
-# entity_history route removed by V7
+app.router.add_get("/api/entity_history", api_entity_history)
 app.router.add_get("/api/layout", api_layout_get)
 app.router.add_post("/api/layout", api_layout_save)
 
-# HA VIEWS BACKGROUNDS + MARKER STYLES V16
+# HA Views BACKGROUNDS + MARKER STYLES V16
 app.router.add_get("/api/backgrounds", api_backgrounds_list)
 app.router.add_get("/api/background/current", api_background_current)
+app.router.add_get("/api/background/file", api_background_file)
 app.router.add_post("/api/background/upload", api_background_upload)
 app.router.add_post("/api/background/select", api_background_select)
 app.router.add_post("/api/background/delete", api_background_delete)
@@ -1467,10 +1455,12 @@ web.run_app(
 
 
 # ============================================================
-# HA VIEWS ENABLED ENTITY SOURCE OF TRUTH V3
+# HA Views ENABLED ENTITY SOURCE OF TRUTH V3
 # ============================================================
 
 
 # ============================================================
-# HA VIEWS ENTITY ACTIONS HISTORY V6
+# HA Views ENTITY ACTIONS HISTORY V6
 # ============================================================
+
+[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]

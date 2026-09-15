@@ -5,29 +5,26 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>HA Views</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260914-11">
+  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260914-35">
 </head>
 <body>
   <header class="topbar">
-    <nav class="tabs" aria-label="Widoki">
-      <button class="tab active" data-view="overview">Widok ogólny</button>
-      <button class="tab" data-view="integrations">Integracje</button>
-    </nav>
+    <nav id="scene-tabs" class="tabs scene-tabs" aria-label="Widoki"></nav>
     <div class="top-actions">
+      <button id="integrations-button" class="icon-action" title="Integracje" aria-label="Integracje"><i class="mdi mdi-puzzle-outline"></i></button>
+      <button id="view-manage" class="icon-action edit-only" title="Zarządzaj widokami" aria-label="Zarządzaj widokami"><i class="mdi mdi-view-dashboard-edit-outline"></i></button>
+      <div id="view-switcher" class="view-switcher view-management">
+        <button id="view-add" class="view-action edit-only" title="Nowy widok" aria-label="Nowy widok"><i class="mdi mdi-plus"></i></button>
+        <button id="view-rename" class="view-action edit-only" title="Zmień nazwę widoku" aria-label="Zmień nazwę widoku"><i class="mdi mdi-pencil-outline"></i></button>
+        <button id="view-duplicate" class="view-action edit-only" title="Duplikuj widok" aria-label="Duplikuj widok"><i class="mdi mdi-content-duplicate"></i></button>
+        <button id="view-delete" class="view-action edit-only danger" title="Usuń widok" aria-label="Usuń widok"><i class="mdi mdi-delete-outline"></i></button>
+      </div>
       <span id="connection" class="connection">Łączenie…</span>
       <button id="snap-toggle" class="icon-action edit-only active" title="Siatka włączona" aria-label="Siatka włączona"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 10h16M4 16h16M10 4v16M16 4v16"/></svg></button>
       <div id="background-bar" class="background-bar">
         <select id="background-select" aria-label="Wybierz tło"></select>
         <button id="background-upload" class="background-icon" title="Wgraj obraz" aria-label="Wgraj obraz"><svg viewBox="0 0 24 24"><path d="M12 16V4m0 0L7 9m5-5 5 5M5 14v5h14v-5"/></svg></button>
         <button id="background-delete" class="background-icon danger" title="Usuń tło" aria-label="Usuń tło"><svg viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3m-9 0 1 13h10l1-13M10 11v5m4-5v5"/></svg></button>
-        <button id="background-transform-toggle" class="background-icon" title="Dopasuj tło" aria-label="Dopasuj tło"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/><path d="M8 12h8M12 8v8"/></svg></button>
-        <div id="background-transform-panel" class="background-transform-panel">
-          <label>Tryb<select id="background-mode"><option value="contain">Dopasuj</option><option value="cover">Wypełnij</option></select></label>
-          <label>Skala<input id="background-scale" type="range" min=".5" max="3" step=".01"><output id="background-scale-value">100%</output></label>
-          <label>Pozycja X<input id="background-x" type="range" min="-50" max="50" step="1"><output id="background-x-value">0%</output></label>
-          <label>Pozycja Y<input id="background-y" type="range" min="-50" max="50" step="1"><output id="background-y-value">0%</output></label>
-          <button id="background-transform-reset" type="button">Resetuj dopasowanie</button>
-        </div>
         <input id="background-file" type="file" accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp" hidden>
         <span id="background-status"></span>
       </div>
@@ -41,7 +38,7 @@
       <div class="scene-card">
         <div id="scene-viewport" class="scene-viewport">
           <div id="scene" class="scene">
-            <img id="scene-image" alt="Tło widoku HA Views">
+            <img id="scene-image" alt="Tło widoku HA Views" draggable="false">
             <div id="scene-empty" class="scene-empty">
               <button id="empty-upload" class="primary">Wgraj tło widoku</button>
             </div>
@@ -49,12 +46,7 @@
             <div id="selection" class="selection"><i data-handle="nw"></i><i data-handle="ne"></i><i data-handle="sw"></i><i data-handle="se"></i></div>
           </div>
         </div>
-        <div class="mobile-zoom" aria-label="Powiększenie sceny">
-          <button id="zoom-out" aria-label="Pomniejsz">−</button>
-          <button id="zoom-reset" aria-label="Dopasuj scenę"><span id="zoom-value">100%</span></button>
-          <button id="zoom-in" aria-label="Powiększ">+</button>
-        </div>
-
+        <div id="panorama-indicator" class="panorama-indicator" aria-hidden="true"><i></i></div>
       </div>
     </section>
 
@@ -86,6 +78,7 @@
         <button id="paste-style" class="editor-icon-button" title="Wklej styl" aria-label="Wklej styl"><i class="mdi mdi-content-paste"></i></button>
         <button id="remove-marker" class="editor-icon-button danger" title="Usuń z widoku" aria-label="Usuń z widoku"><i class="mdi mdi-delete-outline"></i></button>
         <button id="editor-close" class="editor-icon-button" title="Zamknij" aria-label="Zamknij"><i class="mdi mdi-close"></i></button>
+        <span class="editor-version" title="Wersja aplikacji HA Views">v0.3.0-b25</span>
       </div>
     </div>
     <div class="editor-tabs">
@@ -95,11 +88,29 @@
     <div id="editor-content" class="editor-content"></div>
   </aside>
 
+  <div id="more-info-backdrop" class="more-info-backdrop" aria-hidden="true"></div>
+  <aside id="more-info" class="more-info" aria-hidden="true">
+    <div class="more-info-head">
+      <div id="more-info-icon" class="more-info-icon"><i class="mdi mdi-cube-outline"></i></div>
+      <div><h2 id="more-info-title">Encja</h2><code id="more-info-entity"></code></div>
+      <button id="more-info-close" aria-label="Zamknij"><i class="mdi mdi-close"></i></button>
+    </div>
+    <div class="more-info-body">
+      <section class="more-info-state"><span>Aktualny stan</span><strong id="more-info-state">—</strong><small id="more-info-updated"></small></section>
+      <section class="more-info-history">
+        <div class="more-info-section-head"><h3>Historia</h3><div class="history-ranges"><button data-history-hours="6">6 h</button><button data-history-hours="24" class="active">24 h</button><button data-history-hours="168">7 dni</button></div></div>
+        <div id="more-info-chart" class="more-info-chart"><span>Wczytywanie…</span></div>
+      </section>
+      <section class="more-info-attributes"><h3>Atrybuty</h3><div id="more-info-attributes"></div></section>
+    </div>
+  </aside>
+
   <div id="app-confirm" class="app-confirm" aria-hidden="true">
     <div class="app-confirm-card" role="dialog" aria-modal="true" aria-labelledby="app-confirm-title">
       <div class="app-confirm-icon"><i class="mdi mdi-alert-outline"></i></div>
       <h3 id="app-confirm-title">Potwierdzenie</h3>
       <p id="app-confirm-message"></p>
+      <input id="app-confirm-input" class="app-confirm-input" type="text" maxlength="60" autocomplete="off" hidden>
       <div class="app-confirm-actions">
         <button id="app-confirm-cancel" type="button">Anuluj</button>
         <button id="app-confirm-ok" type="button">Potwierdź</button>
@@ -108,6 +119,8 @@
   </div>
 
   <div id="toast" class="toast"></div>
-  <script type="module" src="rewrite-assets/app.js?v=20260914-11"></script>
+  <script type="module" src="rewrite-assets/app.js?v=20260914-35"></script>
 </body>
 </html>
+
+[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]

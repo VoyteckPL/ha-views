@@ -1,7 +1,7 @@
 name: "HA Views"
-version: "0.3.0-beta.2"
+version: "0.3.0-beta.25"
 slug: "basen_pv_app"
-description: "Create visual dashboards by placing Home Assistant entities on any background."
+description: "Visual Home Assistant dashboards on any background. / Wizualne pulpity Home Assistant na dowolnym tle."
 url: "https://github.com/VoyteckPL/ha-views"
 stage: experimental
 arch:
@@ -18,3 +18,5 @@ panel_title: "HA Views"
 homeassistant_api: true
 map:
   - config:rw
+
+[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]

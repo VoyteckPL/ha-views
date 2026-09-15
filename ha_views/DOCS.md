@@ -1,51 +1,71 @@
-# HA Views — dokumentacja
+# HA Views — Documentation
 
-## Pierwsze uruchomienie
+## Installation
 
-1. Uruchom dodatek i otwórz interfejs WWW.
-2. Kliknij ikonę ołówka, aby włączyć edycję.
-3. Otwórz zarządzanie tłem i wgraj obraz PNG, JPG lub WebP.
-4. Przejdź do zakładki **Integracje**.
-5. Rozwiń integrację i dodaj wybrane encje.
-6. Wróć do **Widoku ogólnego** i rozmieść markery.
+1. Add `https://github.com/VoyteckPL/ha-views` to **Settings → Add-ons → Add-on store → ⋮ → Repositories**.
+2. Find **HA Views** in the add-on store and install it.
+3. Start the add-on and open its web interface.
+4. Select the pencil icon to enter edit mode.
+5. Open background management and upload a PNG, JPG or WebP image.
+6. Open **Integrations**, expand an integration and add the entities you need.
+7. Return to a scene tab and arrange the markers.
 
-## Edycja markerów
+## Backgrounds and layout
 
-Kliknij marker w trybie edycji. Możesz zmieniać typ Badge/Gauge, nazwę, jednostkę, zaokrąglenie, rozmiar, kolory, ramkę, tło i ikonę.
+Each view has its own background and marker layout. Background files and saved configuration are stored locally in Home Assistant under `/config/basen_pv` for backward compatibility.
 
-**Kopiuj styl** zapisuje kompletny wygląd razem z typem markera. **Wklej styl** odtwarza go 1:1. **Przywróć domyślne** wymaga potwierdzenia.
+The layout is shared across devices. Wide backgrounds become a horizontally pannable panorama on portrait phones. Portrait backgrounds fit automatically and can be enlarged with pinch zoom. On desktop, use the mouse wheel over the scene to zoom and drag the enlarged scene to pan.
 
-## Widok mobilny
+## Editing markers
 
-Układ jest wspólny dla wszystkich urządzeń. Na telefonie scena skaluje się proporcjonalnie. Gest dwóch palców powiększa i przesuwa widok bez zmiany zapisanych pozycji markerów.
+Click a marker in edit mode. You can switch between **Badge** and **Gauge**, change names, units, rounding, icons, dimensions, colours, background, border and text placement.
 
-## Dane i backup
+Gauge markers also support ranges, thickness, geometry, start/end angles, gradients, ticks and scale labels.
 
-Tła oraz układ są przechowywane w katalogu `/config/basen_pv`. Nazwa katalogu została zachowana dla zgodności. Backup Home Assistanta obejmujący `/config` chroni dane HA Views.
+**Copy style** saves the complete visual style and marker type. **Paste style** restores it one-to-one. **Restore defaults** and removal require confirmation.
+
+## Viewing
+
+Outside edit mode, click a marker to open the native Home Assistant More Info dialog, including history and entity controls.
+
+## Backup and feedback
+
+This is beta software. Create a Home Assistant backup before updating. Please report reproducible issues with a short description, Home Assistant version and a screenshot.
 
 ---
 
-# HA Views — documentation
+# HA Views — Dokumentacja
 
-## First start
+## Instalacja
 
-1. Start the add-on and open its web interface.
-2. Select the pencil icon to enable edit mode.
-3. Open background management and upload a PNG, JPG or WebP image.
-4. Open **Integrations**.
-5. Expand an integration and add the required entities.
-6. Return to **Overview** and arrange the markers.
+1. Dodaj `https://github.com/VoyteckPL/ha-views` w **Ustawienia → Dodatki → Sklep z dodatkami → ⋮ → Repozytoria**.
+2. Znajdź **HA Views** w sklepie z dodatkami i zainstaluj.
+3. Uruchom dodatek i otwórz jego interfejs WWW.
+4. Kliknij ikonę ołówka, aby włączyć edycję.
+5. Otwórz zarządzanie tłem i wgraj PNG, JPG lub WebP.
+6. Przejdź do **Integracje**, rozwiń integrację i dodaj potrzebne encje.
+7. Wróć do zakładki widoku i rozmieść markery.
 
-## Marker editing
+## Tła i układ
 
-Select a marker in edit mode. You can change Badge/Gauge type, name, unit, rounding, dimensions, colors, border, background and icon.
+Każdy widok ma własne tło oraz układ markerów. Pliki teł i konfiguracja są zapisywane lokalnie w Home Assistant w `/config/basen_pv` — nazwa katalogu została zachowana dla zgodności.
 
-**Copy style** stores the complete appearance and marker type. **Paste style** applies it 1:1. **Restore defaults** requires confirmation.
+Układ jest wspólny dla wszystkich urządzeń. Szerokie tła na telefonie w pionie działają jako panorama przesuwana w poziomie. Pionowe tła dopasowują się automatycznie i można je przybliżać gestem dwoma palcami. Na komputerze użyj rolki myszy nad sceną do zoomu, a następnie przeciągnij powiększoną scenę.
 
-## Mobile view
+## Edycja markerów
 
-One layout is shared by all devices. The scene scales proportionally on mobile. Pinch gestures zoom and pan without changing saved marker positions.
+Kliknij marker w trybie edycji. Możesz zmieniać typ **Badge** / **Gauge**, nazwę, jednostkę, zaokrąglenie, ikonę, wymiary, kolory, tło, ramkę i pozycje tekstu.
 
-## Data and backups
+Gauge obsługuje również zakresy, grubość, geometrię, kąty początku/końca, gradienty, podziałki i liczby skali.
 
-Backgrounds and layout data are stored in `/config/basen_pv` for backward compatibility. A Home Assistant backup containing `/config` protects HA Views data.
+**Kopiuj styl** zapisuje kompletny styl oraz typ markera. **Wklej styl** odtwarza go 1:1. Przywrócenie domyślnych ustawień i usunięcie wymagają potwierdzenia.
+
+## Oglądanie
+
+Poza trybem edycji kliknij marker, aby otworzyć natywne okno Home Assistant More Info — z historią i sterowaniem encją.
+
+## Backup i feedback
+
+To oprogramowanie beta. Przed aktualizacją wykonaj backup Home Assistanta. Zgłaszając błąd, podaj krótki opis, wersję Home Assistant i screen.
+
+[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]

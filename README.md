@@ -2,114 +2,60 @@
 
 ![HA Views](ha_views/logo.png)
 
-> **Beta `0.3.0-beta.2`** — wizualny edytor widoków dla Home Assistanta / visual view editor for Home Assistant.
+Create polished, interactive visual dashboards for Home Assistant on any background image.
 
-HA Views pozwala umieszczać encje Home Assistanta na dowolnym obrazie tła. Markery mogą działać jako kompaktowe **Badge** lub **Gauge**, są aktualizowane na żywo i zachowują ten sam układ na komputerze oraz telefonie.
+HA Views lets you place Home Assistant entities as fully configurable **Badge** and **Gauge** markers. A single saved layout remains responsive across desktop, laptop and mobile devices.
 
+![Overview](docs/screenshots/overview.webp)
 
-## Najważniejsze funkcje
+## Highlights
 
-- dowolne tła PNG, JPG i WebP z trwałym zapisem;
-- markery Badge i Gauge;
-- przeciąganie, skalowanie, siatka i snap-to-grid;
-- kolory, ramki, przezroczystość, zaokrąglenie i pozycjonowanie tekstu;
-- ikony automatyczne z encji lub dowolne ikony MDI;
-- kopiowanie i wklejanie pełnego stylu 1:1;
-- aktualizacja stanów przez SSE bez przeładowania strony;
-- responsywne skalowanie oraz zoom gestem na telefonie;
-- lista integracji i encji dostępnych w Home Assistant.
+- multiple independent views with their own backgrounds and markers;
+- PNG, JPG and WebP background uploads stored persistently in Home Assistant;
+- Badge and Gauge markers with rich visual customisation;
+- gauge ranges, gradients, angles, ticks and tick labels;
+- Home Assistant and custom MDI icons;
+- drag, resize, snap-to-grid and one-to-one style copy/paste;
+- direct Home Assistant More Info on marker click outside edit mode;
+- integration browser with brand icons and usage counts;
+- responsive layouts, desktop mouse-wheel zoom and mobile pinch/pan;
+- automatic local persistence of layouts and styling.
 
+![Integrations](docs/screenshots/integrations.webp)
 
-## Wymagania
+![Marker editor](docs/screenshots/editor.webp)
 
-- Home Assistant OS albo Home Assistant Supervised;
-- dostęp do Sklepu dodatków;
-- encje skonfigurowane w Home Assistant.
+## Status
 
-## Instalacja
+This is an experimental public beta. Make a Home Assistant backup before updating.
 
-1. Otwórz **Ustawienia → Dodatki → Sklep dodatków**.
-2. Otwórz menu **⋮ → Repozytoria**.
-3. Dodaj adres:
-   ```
-   https://github.com/VoyteckPL/ha-views
-   ```
-4. Odszukaj **HA Views** i wybierz **Zainstaluj**.
-5. Uruchom dodatek i otwórz interfejs.
-6. Opcjonalnie włącz automatyczne uruchamianie i widoczność w panelu bocznym.
-
-## Pierwsze uruchomienie
-
-1. Włącz tryb edycji ikoną ołówka.
-2. Wgraj obraz tła.
-3. Przejdź do zakładki **Integracje**.
-4. Rozwiń integrację i dodaj wybrane encje.
-5. Wróć do **Widoku ogólnego**, rozmieść markery i dopasuj ich wygląd.
-
-Dane aplikacji są zapisywane w `/config/basen_pv` — nazwa katalogu została zachowana dla zgodności ze starszymi instalacjami HA Views.
-
-## Aktualizacja
-
-Po opublikowaniu nowej wersji Home Assistant pokaże przy dodatku przycisk **Aktualizuj**. Przed aktualizacją wersji beta zalecany jest backup Home Assistanta.
-
-## Status projektu
-
-To wydanie testowe. Mogą występować błędy i zmiany formatu danych. Zgłoszenia proszę dodawać w zakładce **Issues**.
+See [Documentation](ha_views/DOCS.md) and [Changelog](ha_views/CHANGELOG.md).
 
 ---
 
-# English
+# Polski
 
-HA Views places Home Assistant entities on any background image. Markers can be displayed as compact **Badges** or **Gauges**, update live, and retain proportional positioning across desktop and mobile screens.
+Twórz dopracowane, interaktywne wizualne pulpity Home Assistanta na dowolnym obrazie tła.
 
-## Features
+HA Views pozwala umieszczać encje Home Assistanta jako w pełni konfigurowalne markery **Badge** i **Gauge**. Jeden zapisany układ działa responsywnie na komputerze, laptopie i telefonie.
 
-- persistent PNG, JPG and WebP backgrounds;
-- Badge and Gauge markers;
-- drag, resize, grid and snap-to-grid;
-- configurable colors, borders, opacity, radius and text positioning;
-- automatic entity icons or any MDI icon;
-- complete 1:1 style copy and paste;
-- live entity updates over SSE;
-- responsive scaling and mobile pinch zoom;
-- integration and entity browser.
+## Najważniejsze funkcje
 
-## Requirements
+- wiele niezależnych widoków — każdy z własnym tłem i markerami;
+- wgrywanie teł PNG, JPG i WebP, trwale zapisywanych w Home Assistant;
+- markery Badge i Gauge z rozbudowaną personalizacją;
+- zakresy, gradienty, kąty, podziałki i liczby skali Gauge;
+- ikony Home Assistant i własne ikony MDI;
+- przesuwanie, skalowanie, snap-to-grid oraz kopiowanie stylu 1:1;
+- natywne Home Assistant More Info po kliknięciu markera poza edycją;
+- przeglądarka integracji z ikonami marek i liczbą użytych encji;
+- responsywny układ, zoom rolką na komputerze oraz pinch/pan na telefonie;
+- automatyczny lokalny zapis układu i stylów.
 
-- Home Assistant OS or Home Assistant Supervised;
-- access to the Add-on Store;
-- entities configured in Home Assistant.
+## Status
 
-## Installation
+To eksperymentalna publiczna beta. Przed aktualizacją wykonaj backup Home Assistanta.
 
-1. Open **Settings → Add-ons → Add-on Store**.
-2. Open **⋮ → Repositories**.
-3. Add:
-   ```
-   https://github.com/VoyteckPL/ha-views
-   ```
-4. Find **HA Views** and select **Install**.
-5. Start the add-on and open its web interface.
-6. Optionally enable automatic startup and the sidebar shortcut.
+Pełna [dokumentacja](ha_views/DOCS.md) i [changelog](ha_views/CHANGELOG.md).
 
-## Getting started
-
-1. Enter edit mode using the pencil icon.
-2. Upload a background image.
-3. Open **Integrations**.
-4. Expand an integration and add entities.
-5. Return to **Overview**, position the markers and customize their appearance.
-
-Application data is stored in `/config/basen_pv`; this directory name is retained for compatibility with earlier HA Views installations.
-
-## Updating
-
-When a new version is published, Home Assistant will show an **Update** button for the add-on. Create a Home Assistant backup before updating beta releases.
-
-## Beta notice
-
-This is test software. Bugs and data-format changes are possible. Please report problems through GitHub **Issues**.
-
-## License
-
-MIT
+[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
