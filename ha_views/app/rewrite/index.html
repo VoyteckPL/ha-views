@@ -5,12 +5,16 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>HA Views</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260914-35">
+  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260915-36">
 </head>
 <body>
   <header class="topbar">
     <nav id="scene-tabs" class="tabs scene-tabs" aria-label="Widoki"></nav>
     <div class="top-actions">
+      <select id="language-select" class="language-select" title="Language / Język" aria-label="Language / Język">
+        <option value="en">EN</option>
+        <option value="pl">PL</option>
+      </select>
       <button id="integrations-button" class="icon-action" title="Integracje" aria-label="Integracje"><i class="mdi mdi-puzzle-outline"></i></button>
       <button id="view-manage" class="icon-action edit-only" title="Zarządzaj widokami" aria-label="Zarządzaj widokami"><i class="mdi mdi-view-dashboard-edit-outline"></i></button>
       <div id="view-switcher" class="view-switcher view-management">
@@ -119,7 +123,7 @@
   </div>
 
   <div id="toast" class="toast"></div>
-  <script type="module" src="rewrite-assets/app.js?v=20260914-35"></script>
+  <script type="module" src="rewrite-assets/app.js?v=20260915-36"></script>
 </body>
 </html>
 
