@@ -16,7 +16,8 @@ const TRANSLATIONS = {
     'Automatyczna':'Automatic','Brak wody':'No water','Energia domu':'Home energy','Pompa ciepła':'Heat pump','Drzwi otwarte':'Door open','Drzwi zamknięte':'Door closed','Okno otwarte':'Window open','Okno zamknięte':'Window closed',
     'Dodaj':'Add','Pokaż':'Show','Usuń':'Remove','Pozostałe integracje':'Other integrations','używane':'used','Zapisano':'Saved','Brak danych':'No data','Niedostępne':'Unavailable','Nieznany':'Unknown',
     'Przyciąganie do siatki włączone':'Snap to grid enabled','Przyciąganie do siatki wyłączone':'Snap to grid disabled','Dodano nowy widok':'New view added','Zmieniono nazwę widoku':'View renamed','Utworzono kopię widoku':'View duplicated','Usunięto widok':'View deleted','Przywrócono domyślne dopasowanie tła':'Default background fit restored','Przywrócono styl domyślny':'Default style restored','Wklejono kompletny styl 1:1':'Full style pasted 1:1',
-    'Dodano do widoku':'Added to view','Usunięto z widoku':'Removed from view','Usunięto tło':'Background deleted','Skopiowano styl':'Style copied','Nie udało się wczytać układu:':'Could not load layout:'
+    'Dodano do widoku':'Added to view','Usunięto z widoku':'Removed from view','Usunięto tło':'Background deleted','Skopiowano styl':'Style copied','Nie udało się wczytać układu:':'Could not load layout:',
+    'Jednostka':'Unit','Zaokrąglenie':'Rounding','Tekst ON':'ON text','Tekst OFF':'OFF text','Pokaż':'Show','Kolor':'Colour','Przezrocz.':'Opacity','Szerokość':'Width','Wysokość':'Height','Grubość':'Thickness','Źródło':'Source','Z encji Home Assistant':'From Home Assistant entity','Logo integracji':'Integration logo','Własna ikona MDI':'Custom MDI icon','Brak danych':'No data','Zakres i wartość':'Range and value','Minimum':'Minimum','Maksimum':'Maximum','Tor':'Track','Wartość':'Value','Geometria wskaźnika':'Gauge geometry','Skala':'Scale','Pozycja':'Position','Kąt start':'Start angle','Kąt koniec':'End angle','Podziałka':'Ticks','Pokaż ticki':'Show ticks','Co ile':'Interval','Offset':'Offset','Długość':'Length','Liczby skali':'Scale labels','Czcionka':'Font','Odsunięcie':'Offset','Włącz':'Enable','Start':'Start','Koniec':'End','Procent':'Percent','Własny kolor RGB…':'Custom RGB colour…','Brak dodatkowych atrybutów.':'No additional attributes.','Nie dodano jeszcze żadnych encji.':'No entities have been added yet.','Kliknij, aby wczytać encje.':'Click to load entities.','Dodaj do widoku':'Add to view','Encja jest wyłączona':'Entity is disabled','Dodano świeży Badge z ustawieniami domyślnymi':'Added a new Badge with default settings','Usunięto marker i wszystkie jego ustawienia':'Removed marker and all its settings','Połączono':'Connected','Błąd danych':'Data error','Na żywo':'Live','Ponowne łączenie…':'Reconnecting…','Bez tła':'No background','Błąd zapisu':'Save error','Błąd':'Error'
   }
 };
 function translateValue(value) {
@@ -298,8 +299,6 @@ function updatePanoramaIndicator() {
 }
 function applyViewTransform() {
   const expandedPortrait = portraitZoomExpansion();
-
-[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
   els.viewport.classList.toggle('portrait-zoom-expanded', expandedPortrait);
   els.sceneCard?.classList.toggle('portrait-zoom-expanded', expandedPortrait);
   if (!sceneCameraActive()) { els.scene.style.transform = ''; updatePanoramaIndicator(); return; }
@@ -600,8 +599,6 @@ function refreshMoreInfoState() {
   const attributes = Object.entries(state.attributes || {}).filter(([key]) => !ignored.has(key)).slice(0,40);
   els.moreInfoAttributes.innerHTML = attributes.length ? attributes.map(([key,value]) => `<div><span>${escapeHtml(key.replaceAll('_',' '))}</span><strong>${escapeHtml(readableAttribute(value))}</strong></div>`).join('') : '<p>Brak dodatkowych atrybutów.</p>';
 }
-
-[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
 function historyChartMarkup(points) {
   if (!points.length) return '<span>Brak historii w wybranym okresie.</span>';
   const numeric = points.map(point => ({ t:new Date(point.t).getTime(), v:Number(point.state) })).filter(point => Number.isFinite(point.t) && Number.isFinite(point.v));
@@ -902,8 +899,6 @@ function renderIntegrations() {
   if (!groups.length) { els.integrationList.innerHTML = '<div class="empty-row">Brak aktywnych integracji.</div>'; return; }
   const used = groups.filter(group => group.used), unused = groups.filter(group => !group.used);
   const usedHtml = used.map(integrationMarkup).join('');
-
-[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
   const unusedHtml = unused.length ? `<details class="unused-integrations" ${unusedIntegrationsOpen ? 'open' : ''}><summary><span>Pozostałe integracje</span><b>${unused.length}</b></summary><div class="unused-integrations-body">${unused.map(integrationMarkup).join('')}</div></details>` : '';
   els.integrationList.innerHTML = usedHtml + unusedHtml;
 }
