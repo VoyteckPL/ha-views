@@ -5,11 +5,66 @@ const clamp = (value, min, max) => Math.min(max, Math.max(min, Number(value) || 
 const uid = () => `m_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
 const DESIGN_WIDTH = 1600;
 
+let uiLanguage = 'en';
+const TRANSLATIONS = {
+  en: {
+    'Widoki':'Views','Integracje':'Integrations','Zarządzaj widokami':'Manage views','Nowy widok':'New view','Zmień nazwę widoku':'Rename view','Duplikuj widok':'Duplicate view','Usuń widok':'Delete view',
+    'Łączenie…':'Connecting…','Siatka włączona':'Grid enabled','Siatka wyłączona':'Grid disabled','Wybierz tło':'Select background','Wgraj obraz':'Upload image','Usuń tło':'Delete background','Zarządzaj tłem':'Manage background','Edytuj widok':'Edit view','Zakończ edycję':'Finish editing',
+    'Tło widoku HA Views':'HA Views view background','Wgraj tło widoku':'Upload view background','Dodane do widoku':'Added to view','Encje widoczne na scenie':'Entities visible on the scene','Integracje Home Assistant':'Home Assistant integrations','Tylko aktywne integracje widoczne w HA':'Only active integrations visible in HA','Odśwież':'Refresh',
+    'Marker':'Marker','Ustaw domyślny':'Restore defaults','Kopiuj styl':'Copy style','Wklej styl':'Paste style','Usuń z widoku':'Remove from view','Zamknij':'Close','Wersja aplikacji HA Views':'HA Views app version',
+    'Encja':'Entity','Rozmiar':'Size','Stan':'State','Nazwa':'Name','Ikona':'Icon','Tło':'Background','Ramka':'Border','Aktualny stan':'Current state','Historia':'History','Atrybuty':'Attributes','Wczytywanie…':'Loading…','Potwierdzenie':'Confirmation','Anuluj':'Cancel','Potwierdź':'Confirm',
+    'Automatyczna':'Automatic','Brak wody':'No water','Energia domu':'Home energy','Pompa ciepła':'Heat pump','Drzwi otwarte':'Door open','Drzwi zamknięte':'Door closed','Okno otwarte':'Window open','Okno zamknięte':'Window closed',
+    'Dodaj':'Add','Pokaż':'Show','Usuń':'Remove','Pozostałe integracje':'Other integrations','używane':'used','Zapisano':'Saved','Brak danych':'No data','Niedostępne':'Unavailable','Nieznany':'Unknown',
+    'Przyciąganie do siatki włączone':'Snap to grid enabled','Przyciąganie do siatki wyłączone':'Snap to grid disabled','Dodano nowy widok':'New view added','Zmieniono nazwę widoku':'View renamed','Utworzono kopię widoku':'View duplicated','Usunięto widok':'View deleted','Przywrócono domyślne dopasowanie tła':'Default background fit restored','Przywrócono styl domyślny':'Default style restored','Wklejono kompletny styl 1:1':'Full style pasted 1:1',
+    'Dodano do widoku':'Added to view','Usunięto z widoku':'Removed from view','Usunięto tło':'Background deleted','Skopiowano styl':'Style copied','Nie udało się wczytać układu:':'Could not load layout:'
+  }
+};
+function translateValue(value) {
+  const text = String(value ?? '');
+  if (uiLanguage === 'pl') {
+    const reverse = Object.fromEntries(Object.entries(TRANSLATIONS.en).map(([pl,en]) => [en,pl]));
+    return reverse[text] || text;
+  }
+  const direct = TRANSLATIONS.en[text];
+  if (direct) return direct;
+  for (const [pl,en] of Object.entries(TRANSLATIONS.en)) if (text.startsWith(pl + ':')) return en + text.slice(pl.length);
+  return text;
+}
+function translateNode(node) {
+  if (node.nodeType === Node.TEXT_NODE) {
+    const translated = translateValue(node.nodeValue);
+    if (translated !== node.nodeValue) node.nodeValue = translated;
+  } else if (node.nodeType === Node.ELEMENT_NODE && !node.closest('#markers')) {
+    [...node.childNodes].forEach(translateNode);
+  }
+}
+function applyLanguage() {
+  document.documentElement.lang = uiLanguage;
+  const select = document.querySelector('#language-select');
+  if (select) select.value = uiLanguage;
+  const titles = {
+    'integrations-button':'Integracje','view-manage':'Zarządzaj widokami','view-add':'Nowy widok','view-rename':'Zmień nazwę widoku','view-duplicate':'Duplikuj widok','view-delete':'Usuń widok',
+    'background-manage':'Zarządzaj tłem','background-upload':'Wgraj obraz','background-delete':'Usuń tło','default-style':'Ustaw domyślny','copy-style':'Kopiuj styl','paste-style':'Wklej styl','remove-marker':'Usuń z widoku','editor-close':'Zamknij','more-info-close':'Zamknij'
+  };
+  Object.entries(titles).forEach(([id,label]) => { const el = document.getElementById(id); if (el) { const value = translateValue(label); el.title = value; el.setAttribute('aria-label', value); } });
+  document.querySelectorAll('[data-i18n-title]').forEach(el => {
+    const value = translateValue(el.dataset.i18nTitle);
+    el.title = value; el.setAttribute('aria-label', value);
+  });
+  translateNode(document.body);
+}
+function bindLanguageObserver() {
+  new MutationObserver(records => records.forEach(record => {
+    if (record.type === 'characterData') translateNode(record.target);
+    record.addedNodes.forEach(translateNode);
+  })).observe(document.body, { subtree:true, childList:true, characterData:true });
+}
+
 const els = {
   body: document.body, viewport: $('#scene-viewport'), sceneCard: $('.scene-card'), scene: $('#scene'), image: $('#scene-image'), empty: $('#scene-empty'), markers: $('#markers'), panoramaIndicator: $('#panorama-indicator'), mobilePanStart: $('#mobile-pan-start'),
   selection: $('#selection'), editor: $('#editor'), editorTitle: $('#editor-title'), editorEntity: $('#editor-entity'), editorIntegration: $('#editor-integration'), editorIntegrationIcon: $('#editor-integration-icon'),
   editorContent: $('#editor-content'), editorStatus: $('#editor-status'), toast: $('#toast'), connection: $('#connection'),
-  confirmBox: $('#app-confirm'), confirmTitle: $('#app-confirm-title'), confirmMessage: $('#app-confirm-message'), confirmInput: $('#app-confirm-input'), confirmCancel: $('#app-confirm-cancel'), confirmOk: $('#app-confirm-ok'),
+  confirmBox: $('#app-confirm'), confirmTitle: $('#app-confirm-title'), confirmMessage: $('#app-confirm-message'), confirmInput: $('#app-confirm-input'), confirmCancel: $('#app-confirm-cancel'), confirmOk: $('#app-confirm-ok'), language: $('#language-select'),
   editToggle: $('#edit-toggle'), bgSelect: $('#background-select'), bgDelete: $('#background-delete'),
   bgFile: $('#background-file'), bgStatus: $('#background-status'), bgManage: $('#background-manage'), backgroundBar: $('#background-bar'), addedList: $('#added-list'),
   bgTransformToggle: $('#background-transform-toggle'), bgTransformPanel: $('#background-transform-panel'), bgMode: $('#background-mode'), bgScale: $('#background-scale'), bgX: $('#background-x'), bgY: $('#background-y'), bgScaleValue: $('#background-scale-value'), bgXValue: $('#background-x-value'), bgYValue: $('#background-y-value'),
@@ -178,7 +233,7 @@ function scheduleSave(immediate = false) {
 function applySnapUi() {
   const enabled = model.settings?.snapEnabled !== false;
   els.body.classList.toggle('snap-enabled', enabled);
-  if (els.snapToggle) { els.snapToggle.classList.toggle('active', enabled); els.snapToggle.title = enabled ? 'Siatka włączona' : 'Siatka wyłączona'; els.snapToggle.setAttribute('aria-label', els.snapToggle.title); }
+  if (els.snapToggle) { els.snapToggle.classList.toggle('active', enabled); els.snapToggle.title = translateValue(enabled ? 'Siatka włączona' : 'Siatka wyłączona'); els.snapToggle.setAttribute('aria-label', els.snapToggle.title); }
 }
 function snapPercent(value) {
   if (model.settings?.snapEnabled === false) return clamp(value, 0, 100);
@@ -243,6 +298,8 @@ function updatePanoramaIndicator() {
 }
 function applyViewTransform() {
   const expandedPortrait = portraitZoomExpansion();
+
+[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
   els.viewport.classList.toggle('portrait-zoom-expanded', expandedPortrait);
   els.sceneCard?.classList.toggle('portrait-zoom-expanded', expandedPortrait);
   if (!sceneCameraActive()) { els.scene.style.transform = ''; updatePanoramaIndicator(); return; }
@@ -298,8 +355,6 @@ function applyBackgroundTransform() {
     card.style.width = `${(fittedWidth / parentWidth) * 100}%`;
     card.style.marginLeft = 'auto'; card.style.marginRight = 'auto';
   }
-
-[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
   els.image.style.objectFit = 'fill'; els.image.style.transform = '';
   requestAnimationFrame(updateSceneGeometry);
 }
@@ -545,6 +600,8 @@ function refreshMoreInfoState() {
   const attributes = Object.entries(state.attributes || {}).filter(([key]) => !ignored.has(key)).slice(0,40);
   els.moreInfoAttributes.innerHTML = attributes.length ? attributes.map(([key,value]) => `<div><span>${escapeHtml(key.replaceAll('_',' '))}</span><strong>${escapeHtml(readableAttribute(value))}</strong></div>`).join('') : '<p>Brak dodatkowych atrybutów.</p>';
 }
+
+[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
 function historyChartMarkup(points) {
   if (!points.length) return '<span>Brak historii w wybranym okresie.</span>';
   const numeric = points.map(point => ({ t:new Date(point.t).getTime(), v:Number(point.state) })).filter(point => Number.isFinite(point.t) && Number.isFinite(point.v));
@@ -600,8 +657,6 @@ function applyNativeThemeTree(root, parentDocument) {
     style.textContent = `
       :host{color-scheme:dark}
       .mdc-dialog__surface,.mdc-menu-surface,[role="dialog"],[role="menu"],ha-card{
-
-[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
         background:#071923!important;color:#e8f4fa!important;border-color:rgba(139,190,216,.18)!important
       }
       .mdc-list-item,.mdc-deprecated-list-item,[role="menuitem"]{color:#e8f4fa!important}
@@ -847,6 +902,8 @@ function renderIntegrations() {
   if (!groups.length) { els.integrationList.innerHTML = '<div class="empty-row">Brak aktywnych integracji.</div>'; return; }
   const used = groups.filter(group => group.used), unused = groups.filter(group => !group.used);
   const usedHtml = used.map(integrationMarkup).join('');
+
+[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
   const unusedHtml = unused.length ? `<details class="unused-integrations" ${unusedIntegrationsOpen ? 'open' : ''}><summary><span>Pozostałe integracje</span><b>${unused.length}</b></summary><div class="unused-integrations-body">${unused.map(integrationMarkup).join('')}</div></details>` : '';
   els.integrationList.innerHTML = usedHtml + unusedHtml;
 }
@@ -902,8 +959,6 @@ function connectEvents() {
 function resumeLiveConnection() {
   if (document.hidden) return;
   clearTimeout(resumeTimer); resumeTimer = setTimeout(() => {
-
-[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
     refreshStates();
     if (!entityEvents || entityEvents.readyState === EventSource.CLOSED) connectEvents();
   }, 120);
@@ -1004,13 +1059,18 @@ function startDesktopPan(event) {
 
 function bindEvents() {
   document.addEventListener('error', integrationIconError, true);
+  els.language?.addEventListener('change', () => {
+    uiLanguage = els.language.value === 'pl' ? 'pl' : 'en';
+    model.settings ||= {}; model.settings.language = uiLanguage;
+    applyLanguage(); scheduleSave(true);
+  });
   els.sceneTabs?.addEventListener('click', event => { const tab=event.target.closest('[data-scene-view]'); if(!tab)return; showMainView('overview'); switchSceneView(tab.dataset.sceneView); });
   els.integrationsButton?.addEventListener('click', () => { closeEditor(); closeMoreInfo(); openIntegrations.clear(); unusedIntegrationsOpen = false; els.viewSwitcher?.classList.remove('open'); els.viewManage?.classList.remove('active'); showMainView('integrations'); });
   els.viewManage?.addEventListener('click', () => { const open = !els.viewSwitcher.classList.contains('open'); els.viewSwitcher.classList.toggle('open', open); els.viewManage.classList.toggle('active', open); els.backgroundBar.classList.remove('open'); els.bgManage.classList.remove('active'); });
   els.viewAdd?.addEventListener('click', addSceneView); els.viewRename?.addEventListener('click', renameSceneView);
   els.viewDuplicate?.addEventListener('click', duplicateSceneView); els.viewDelete?.addEventListener('click', deleteSceneView);
   els.confirmInput?.addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); closeAppConfirm(true); } });
-  els.editToggle.addEventListener('click', () => { closeMoreInfo(); editMode = !editMode; els.body.classList.toggle('editing', editMode); els.editToggle.innerHTML = editMode ? '&#10003;' : '&#9998;'; els.editToggle.title = editMode ? 'Zakończ edycję' : 'Edytuj widok'; els.editToggle.setAttribute('aria-label', els.editToggle.title); if (!editMode) { closeEditor(); els.backgroundBar.classList.remove('open'); els.bgManage.classList.remove('active'); els.bgTransformPanel?.classList.remove('open'); els.bgTransformToggle?.classList.remove('active'); els.viewSwitcher?.classList.remove('open'); els.viewManage?.classList.remove('active'); } requestAnimationFrame(() => { applyBackgroundTransform(); updateSceneGeometry(); resetViewZoom(); }); });
+  els.editToggle.addEventListener('click', () => { closeMoreInfo(); editMode = !editMode; els.body.classList.toggle('editing', editMode); els.editToggle.innerHTML = editMode ? '&#10003;' : '&#9998;'; els.editToggle.title = translateValue(editMode ? 'Zakończ edycję' : 'Edytuj widok'); els.editToggle.setAttribute('aria-label', els.editToggle.title); if (!editMode) { closeEditor(); els.backgroundBar.classList.remove('open'); els.bgManage.classList.remove('active'); els.bgTransformPanel?.classList.remove('open'); els.bgTransformToggle?.classList.remove('active'); els.viewSwitcher?.classList.remove('open'); els.viewManage?.classList.remove('active'); } requestAnimationFrame(() => { applyBackgroundTransform(); updateSceneGeometry(); resetViewZoom(); }); });
   els.snapToggle.addEventListener('click', () => { model.settings.snapEnabled = !model.settings.snapEnabled; applySnapUi(); scheduleSave(true); notify(model.settings.snapEnabled ? 'Przyciąganie do siatki włączone' : 'Przyciąganie do siatki wyłączone'); });
   els.bgManage.addEventListener('click', () => { els.backgroundBar.classList.toggle('open'); els.bgManage.classList.toggle('active', els.backgroundBar.classList.contains('open')); els.viewSwitcher?.classList.remove('open'); els.viewManage?.classList.remove('active'); if (!els.backgroundBar.classList.contains('open')) { els.bgTransformPanel?.classList.remove('open'); els.bgTransformToggle?.classList.remove('active'); } });
   els.bgTransformToggle?.addEventListener('click', () => { els.bgTransformPanel.classList.toggle('open'); els.bgTransformToggle.classList.toggle('active', els.bgTransformPanel.classList.contains('open')); syncBackgroundTransformControls(); });
@@ -1084,7 +1144,9 @@ async function boot() {
   bindEvents(); let legacyMigrated = false;
   try { const saved = await api('rewrite_state'); if (saved.exists && (saved.data?.entities || saved.data?.views)) model = saved.data; else legacyMigrated = await migrateLegacy(); }
   catch (error) { notify(`Nie udało się wczytać układu: ${error.message}`, true); }
-  model.settings = { snapEnabled: true, snapStep: 1, designWidth: DESIGN_WIDTH, ...(model.settings || {}) };
+  model.settings = { snapEnabled: true, snapStep: 1, designWidth: DESIGN_WIDTH, language: 'en', ...(model.settings || {}) };
+  uiLanguage = model.settings.language === 'pl' ? 'pl' : 'en';
+  bindLanguageObserver(); applyLanguage();
   const multiMigrated = ensureMultiViewModel(); applySnapUi(); renderViewSelector();
   Object.values(model.views).flatMap(view => Object.values(view.entities || {})).forEach(m => {
     m.type = m.type === 'gauge' ? 'gauge' : 'badge'; m.style = normalizedStyle(m.type, m.style);
