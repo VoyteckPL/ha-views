@@ -57,5 +57,3 @@ HA Views pozwala umieszczać encje Home Assistanta jako w pełni konfigurowalne 
 To eksperymentalna publiczna beta. Przed aktualizacją wykonaj backup Home Assistanta.
 
 Pełna [dokumentacja](ha_views/DOCS.md) i [changelog](ha_views/CHANGELOG.md).
-
-[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
