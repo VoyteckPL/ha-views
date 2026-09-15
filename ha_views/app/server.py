@@ -169,8 +169,6 @@ async def api_history(request):
     try:
         async with aiohttp.ClientSession() as session:
             async with session.get(
-
-[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
                 url,
                 headers=headers(),
             ) as resp:
@@ -471,9 +469,6 @@ async def ha_ws_command(command):
 
                 if msg.get("id") != request_id:
                     continue
-
-[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
-
                 if msg.get("type") != "result":
                     continue
 
@@ -773,9 +768,6 @@ async def api_integration_entities(request):
 
 
         if entry_id in device_entry_ids:
-
-[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
-
             if device_id:
                 matching_devices.add(
                     device_id
@@ -1075,9 +1067,6 @@ async def api_disable_entity(request):
 
 # HA Views LIVE ENTITY EVENTS V1
 async def api_entity_events(request):
-
-[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
-
     response = web.StreamResponse(
         status=200,
         headers={
@@ -1377,8 +1366,6 @@ async def api_integration_icon(request):
         icon_path = os.path.join(component_dir, *relative_path.split("/"))
         if os.path.isfile(icon_path):
             response = web.FileResponse(icon_path)
-
-[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
             response.headers["Cache-Control"] = "public, max-age=3600"
             return response
     raise web.HTTPNotFound(text="Local integration icon not found")
@@ -1462,5 +1449,3 @@ web.run_app(
 # ============================================================
 # HA Views ENTITY ACTIONS HISTORY V6
 # ============================================================
-
-[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
