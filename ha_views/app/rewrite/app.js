@@ -4,13 +4,14 @@ const clone = value => JSON.parse(JSON.stringify(value));
 const clamp = (value, min, max) => Math.min(max, Math.max(min, Number(value) || 0));
 const uid = () => `m_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
 const DESIGN_WIDTH = 1600;
+const ACTIVE_VIEW_CACHE_KEY = 'ha-views:last-active-view';
 
 let uiLanguage = 'en';
 const TRANSLATIONS = {
   en: {
-    'Widoki':'Views','Integracje':'Integrations','Zarządzaj widokami':'Manage views','Nowy widok':'New view','Zmień nazwę widoku':'Rename view','Duplikuj widok':'Duplicate view','Usuń widok':'Delete view',
+    'Widoki':'Views','Integracje':'Integrations','Zacznij tworzyć pierwszy widok':'Start your first view','Stwórz wizualny pulpit w trzech prostych krokach.':'Create a visual dashboard in three quick steps.','Wybierz obraz albo kolor tła.':'Choose an image or a background colour.','Otwórz Integracje i dodaj encję.':'Open Integrations and add an entity.','Użyj Edytuj, aby ustawić i ostylować marker.':'Use Edit to position and style the marker.','Wgraj obraz':'Upload image','Kolor tła':'Background colour','Zacznij z kolorem':'Start with colour','Nowy widok':'New view','Podaj krótką nazwę nowego widoku.':'Enter a short name for the new view.','Wpisz nową nazwę.':'Enter a new name.','Zapisz':'Save','Usunąć widok?':'Delete view?','Usuń widok':'Delete view','Kopia zachowa tło, markery i wszystkie ich ustawienia.':'The copy will keep the background, markers and all their settings.','Duplikuj':'Duplicate','Przywrócić styl domyślny?':'Restore default style?','Obecne ustawienia wyglądu markera zostaną zastąpione.':'The current marker appearance settings will be replaced.','Przywróć':'Restore','Usunąć marker?':'Remove marker?','Usuń':'Remove','Anuluj':'Cancel','Skopiowano styl':'Style copied','Dodaj pierwszą encję':'Add your first entity','Otwórz menu Integracje u góry i wybierz encję, którą chcesz umieścić na tym widoku.':'Open the Integrations menu above and choose an entity to place on this view.','Ustawienia':'Settings','Język':'Language','Edytuj widok':'Edit view','Siatka':'Grid','Wielkość siatki':'Grid size','Zarządzaj tłem':'Manage background','Tło':'Background','Format koloru':'Colour canvas format','Dodaj widok':'Add view','Zmień nazwę':'Rename','Duplikuj widok':'Duplicate view','Usuń widok':'Delete view','Wgraj obraz':'Upload image','Usuń tło':'Delete background','Własny kolor RGB…':'Custom RGB colour…','Wgrywanie tła…':'Uploading background…','Mała':'Small','Średnia':'Medium','Duża':'Large','Bardzo duża':'Very large','Zarządzaj widokami':'Manage views','Nowy widok':'New view','Zmień nazwę widoku':'Rename view','Duplikuj widok':'Duplicate view','Usuń widok':'Delete view',
     'Łączenie…':'Connecting…','Siatka włączona':'Grid enabled','Siatka wyłączona':'Grid disabled','Wybierz tło':'Select background','Wgraj obraz':'Upload image','Usuń tło':'Delete background','Zarządzaj tłem':'Manage background','Edytuj widok':'Edit view','Zakończ edycję':'Finish editing',
-    'Tło widoku HA Views':'HA Views view background','Wgraj tło widoku':'Upload view background','Dodane do widoku':'Added to view','Encje widoczne na scenie':'Entities visible on the scene','Integracje Home Assistant':'Home Assistant integrations','Tylko aktywne integracje widoczne w HA':'Only active integrations visible in HA','Odśwież':'Refresh',
+    'Tło widoku HA Views':'HA Views view background','Wgraj tło widoku':'Upload view background','Tło':'Background','Kolor':'Colour','Obraz':'Image','Dodaj pierwszą encję':'Add your first entity','Otwórz integracje':'Open integrations','Otwórz menu':'Open the','u góry i wybierz encję, którą chcesz umieścić na tym widoku.':'menu above and choose an entity to place on this view.','Wybierz obraz albo kolor tła, aby zacząć.':'Choose an image or a background colour to begin.','Zacznij tworzyć pierwszy widok':'Start your first view','Stwórz wizualny pulpit w trzech prostych krokach.':'Create a visual dashboard in three quick steps.','Wybierz obraz albo kolor tła.':'Choose an image or a background colour.','Otwórz':'Open','i dodaj encję.':'and add an entity.','Użyj':'Use','aby ustawić i ostylować marker.':'to position and style its marker.','Wgraj obraz':'Upload image','Kolor tła':'Background colour','Zacznij z kolorem':'Start with colour','Dodane do widoku':'Added to view','Encje widoczne na scenie':'Entities visible on the scene','Integracje Home Assistant':'Home Assistant integrations','Tylko aktywne integracje widoczne w HA':'Only active integrations visible in HA','Odśwież':'Refresh',
     'Marker':'Marker','Ustaw domyślny':'Restore defaults','Kopiuj styl':'Copy style','Wklej styl':'Paste style','Usuń z widoku':'Remove from view','Zamknij':'Close','Wersja aplikacji HA Views':'HA Views app version',
     'Encja':'Entity','Rozmiar':'Size','Stan':'State','Nazwa':'Name','Ikona':'Icon','Tło':'Background','Ramka':'Border','Aktualny stan':'Current state','Historia':'History','Atrybuty':'Attributes','Wczytywanie…':'Loading…','Potwierdzenie':'Confirmation','Anuluj':'Cancel','Potwierdź':'Confirm',
     'Automatyczna':'Automatic','Brak wody':'No water','Energia domu':'Home energy','Pompa ciepła':'Heat pump','Drzwi otwarte':'Door open','Drzwi zamknięte':'Door closed','Okno otwarte':'Window open','Okno zamknięte':'Window closed',
@@ -28,6 +29,11 @@ function translateValue(value) {
   }
   const direct = TRANSLATIONS.en[text];
   if (direct) return direct;
+  const deleteViewMatch = text.match(/^„(.+)” oraz wszystkie markery tego widoku zostaną usunięte\.$/);
+  if (deleteViewMatch) return `“${deleteViewMatch[1]}” and all markers in this view will be deleted.`;
+  const deleteMarkerMatch = text.match(/^„(.+)” zniknie z tego widoku razem ze swoimi ustawieniami\.$/);
+  if (deleteMarkerMatch) return `“${deleteMarkerMatch[1]}” will be removed from this view together with its settings.`;
+  if (text.startsWith('Skopiowano styl ')) return `Style copied: ${text.slice('Skopiowano styl '.length)}`;
   for (const [pl,en] of Object.entries(TRANSLATIONS.en)) if (text.startsWith(pl + ':')) return en + text.slice(pl.length);
   return text;
 }
@@ -44,15 +50,26 @@ function applyLanguage() {
   const select = document.querySelector('#language-select');
   if (select) select.value = uiLanguage;
   const titles = {
-    'integrations-button':'Integracje','view-manage':'Zarządzaj widokami','view-add':'Nowy widok','view-rename':'Zmień nazwę widoku','view-duplicate':'Duplikuj widok','view-delete':'Usuń widok',
-    'background-manage':'Zarządzaj tłem','background-upload':'Wgraj obraz','background-delete':'Usuń tło','default-style':'Ustaw domyślny','copy-style':'Kopiuj styl','paste-style':'Wklej styl','remove-marker':'Usuń z widoku','editor-close':'Zamknij','more-info-close':'Zamknij'
+    'settings-toggle':'Ustawienia','integrations-button':'Integracje','edit-toggle':'Edytuj widok','view-manage':'Zarządzaj widokami','view-add':'Dodaj widok','view-rename':'Zmień nazwę widoku','view-duplicate':'Duplikuj widok','view-delete':'Usuń widok',
+    'background-manage':'Zarządzaj tłem','background-upload':'Wgraj obraz','background-delete':'Usuń tło','snap-toggle':'Siatka włączona','default-style':'Ustaw domyślny','copy-style':'Kopiuj styl','paste-style':'Wklej styl','remove-marker':'Usuń z widoku','editor-close':'Zamknij','more-info-close':'Zamknij'
   };
   Object.entries(titles).forEach(([id,label]) => { const el = document.getElementById(id); if (el) { const value = translateValue(label); el.title = value; el.setAttribute('aria-label', value); } });
   document.querySelectorAll('[data-i18n-title]').forEach(el => {
     const value = translateValue(el.dataset.i18nTitle);
     el.title = value; el.setAttribute('aria-label', value);
   });
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const value = translateValue(el.dataset.i18n || '');
+    const icon = el.querySelector(':scope > i');
+    if (icon) {
+      const iconMarkup = icon.outerHTML;
+      el.innerHTML = `${iconMarkup} ${value}`;
+    } else {
+      el.textContent = value;
+    }
+  });
   translateNode(document.body);
+  document.querySelectorAll('[title]').forEach(el => { const original = el.dataset.i18nTitle || el.getAttribute('title') || ''; el.dataset.i18nTitle = original; const value = translateValue(original); el.title = value; el.setAttribute('aria-label', value); });
 }
 function bindLanguageObserver() {
   new MutationObserver(records => records.forEach(record => {
@@ -66,8 +83,8 @@ const els = {
   selection: $('#selection'), editor: $('#editor'), editorTitle: $('#editor-title'), editorEntity: $('#editor-entity'), editorIntegration: $('#editor-integration'), editorIntegrationIcon: $('#editor-integration-icon'),
   editorContent: $('#editor-content'), editorStatus: $('#editor-status'), toast: $('#toast'), connection: $('#connection'),
   confirmBox: $('#app-confirm'), confirmTitle: $('#app-confirm-title'), confirmMessage: $('#app-confirm-message'), confirmInput: $('#app-confirm-input'), confirmCancel: $('#app-confirm-cancel'), confirmOk: $('#app-confirm-ok'), language: $('#language-select'),
-  editToggle: $('#edit-toggle'), bgSelect: $('#background-select'), bgDelete: $('#background-delete'),
-  bgFile: $('#background-file'), bgStatus: $('#background-status'), bgManage: $('#background-manage'), backgroundBar: $('#background-bar'), addedList: $('#added-list'),
+  editToggle: $('#edit-toggle'), editMenu: $('#edit-menu'), settingsToggle: $('#settings-toggle'), settingsMenu: $('#settings-menu'), gridStatus: $('#grid-status'), gridSize: $('#grid-size'), gridSizeValue: $('#grid-size-value'), bgUploadProgress: $('#background-upload-progress'), solidCanvasRatio: $('#solid-canvas-ratio'), bgColorToggle: $('#background-color-toggle'), bgRgbOpen: $('#background-rgb-open'), bgSelect: $('#background-select'), bgColor: $('#background-color'), bgDelete: $('#background-delete'),
+  bgFile: $('#background-file'), bgStatus: $('#background-status'), bgManage: $('#background-manage'), backgroundBar: $('#background-bar'), emptyColor: $('#empty-background-color'), emptyColorStart: $('#empty-color-start'), emptyOpenIntegrations: $('#empty-open-integrations'), addedList: $('#added-list'),
   bgTransformToggle: $('#background-transform-toggle'), bgTransformPanel: $('#background-transform-panel'), bgMode: $('#background-mode'), bgScale: $('#background-scale'), bgX: $('#background-x'), bgY: $('#background-y'), bgScaleValue: $('#background-scale-value'), bgXValue: $('#background-x-value'), bgYValue: $('#background-y-value'),
   addedCount: $('#added-count'), integrationList: $('#integration-list'), snapToggle: $('#snap-toggle'),
   zoomOut: $('#zoom-out'), zoomIn: $('#zoom-in'), zoomReset: $('#zoom-reset'), zoomValue: $('#zoom-value'),
@@ -114,6 +131,7 @@ let saveRunning = false, savePending = false, integrations = [], integrationEnti
 let unusedIntegrationsOpen = false, entityEvents = null, resumeTimer = null;
 let editorDragged = false;
 let sceneScale = 1;
+const mobileLayoutY = new Map();
 let viewZoom = 1, viewPanX = 0, viewPanY = 0, mobileOrientation = '';
 const viewPointers = new Map();
 let panGesture = null, pinchGesture = null, desktopPanGesture = null;
@@ -145,18 +163,58 @@ function closeAppConfirm(result = false) {
 function appConfirm({ title = 'Potwierdzenie', message = '', confirmText = 'Potwierdź', danger = false }) {
   if (confirmResolver) closeAppConfirm(false);
   confirmInputMode = false; els.confirmInput.hidden = true;
-  els.confirmTitle.textContent = title; els.confirmMessage.textContent = message; els.confirmOk.textContent = confirmText;
+  els.confirmTitle.textContent = translateValue(title); els.confirmMessage.textContent = translateValue(message); els.confirmOk.textContent = translateValue(confirmText); els.confirmCancel.textContent = translateValue('Anuluj');
   els.confirmOk.classList.toggle('danger-confirm', danger); els.confirmBox.classList.add('visible'); els.confirmBox.setAttribute('aria-hidden', 'false');
   return new Promise(resolve => { confirmResolver = resolve; requestAnimationFrame(() => els.confirmCancel.focus()); });
 }
 function appPrompt({ title, message = '', value = '', confirmText = 'Zapisz' }) {
   if (confirmResolver) closeAppConfirm(false);
-  confirmInputMode = true; els.confirmTitle.textContent = title; els.confirmMessage.textContent = message; els.confirmOk.textContent = confirmText;
+  confirmInputMode = true; els.confirmTitle.textContent = translateValue(title); els.confirmMessage.textContent = translateValue(message); els.confirmOk.textContent = translateValue(confirmText);
   els.confirmOk.classList.remove('danger-confirm'); els.confirmInput.hidden = false; els.confirmInput.value = value;
   els.confirmBox.classList.add('visible'); els.confirmBox.setAttribute('aria-hidden', 'false');
   return new Promise(resolve => { confirmResolver = resolve; requestAnimationFrame(() => { els.confirmInput.focus(); els.confirmInput.select(); }); });
 }
 function activeSceneView() { return model.views?.[model.activeViewId] || null; }
+function updateEmptyState() {
+  const view = activeSceneView(), hasMarkers = Object.keys(model.entities || {}).length > 0;
+  const showWelcome = !currentBackground && !view?.onboardingDone && !hasMarkers;
+  const showEntitiesHint = !currentBackground && !!view?.onboardingDone && !hasMarkers;
+  els.empty.classList.toggle('visible', showWelcome || showEntitiesHint);
+  els.empty.classList.toggle('show-entities-hint', showEntitiesHint);
+  const solid = String(view?.backgroundColor || '');
+  els.empty.classList.toggle('solid-background', Boolean(solid));
+  els.empty.style.setProperty('--solid-background', solid || 'transparent');
+}
+function openBackgroundMenu(hint = '') {
+  els.backgroundBar.classList.add('open');
+  els.bgManage.classList.add('active');
+  els.backgroundBar.classList.toggle('onboarding', Boolean(hint));
+  els.bgStatus.textContent = hint;
+}
+function applyBackgroundColour() {
+  const colour = activeSceneView()?.backgroundColor || '';
+  els.scene.style.background = colour || 'linear-gradient(145deg,#0d2838,#0a1c27)';
+  if (els.bgColor) els.bgColor.value = colour || '#0d2838';
+  if (els.bgColorToggle) els.bgColorToggle.style.background = colour || '#0d2838';
+  if (els.emptyColor) els.emptyColor.value = colour || '#0d2838';
+}
+function setBackgroundColour(colour) {
+  const view = activeSceneView(); if (!view || !/^#[0-9a-f]{6}$/i.test(colour || '')) return;
+  const imageRatio = !els.image.hidden && els.image.naturalWidth > 0 && els.image.naturalHeight > 0 ? els.image.naturalWidth / els.image.naturalHeight : 0;
+  if (imageRatio) view.solidCanvasRatio = imageRatio;
+  view.solidCanvasRatio ||= 16 / 9;
+  view.background = ''; currentBackground = '';
+  view.backgroundColor = colour.toUpperCase(); view.onboardingDone = true;
+  els.image.hidden = true; els.image.removeAttribute('src'); delete els.image.dataset.backgroundName;
+  els.scene.style.setProperty('background', view.backgroundColor, 'important');
+  els.empty.style.setProperty('--solid-background', view.backgroundColor);
+  els.empty.classList.add('solid-background');
+  els.scene.style.backgroundImage = 'none'; els.scene.style.backgroundColor = view.backgroundColor;
+  els.bgSelect.value = ''; els.bgDelete.disabled = true;
+  if (els.bgColor) els.bgColor.value = view.backgroundColor;
+  if (els.bgColorToggle) els.bgColorToggle.style.background = view.backgroundColor;
+  applyBackgroundColour(); updateEmptyState(); renderMarkers(); updateSceneGeometry(); scheduleSave(true);
+}
 function attachActiveEntities() {
   const view = activeSceneView();
   model.entities = view?.entities || {};
@@ -172,35 +230,43 @@ function ensureMultiViewModel() {
   }
   model.viewOrder = (model.viewOrder || []).filter(id => model.views[id]);
   Object.keys(model.views).forEach(id => { if (!model.viewOrder.includes(id)) model.viewOrder.push(id); });
+  try {
+    const rememberedView = localStorage.getItem(ACTIVE_VIEW_CACHE_KEY);
+    if (rememberedView && model.views[rememberedView]) model.activeViewId = rememberedView;
+  } catch {}
   if (!model.views[model.activeViewId]) model.activeViewId = model.viewOrder[0];
   Object.values(model.views).forEach((view, index) => {
     view.id ||= model.viewOrder[index]; view.name ||= `Widok ${index + 1}`; view.entities ||= {}; view.backgroundTransforms ||= {};
+    view.backgroundColor ??= ''; view.onboardingDone ??= false;
   });
   model.version = 2; attachActiveEntities(); return migrated;
 }
 function showMainView(name) {
   $$('.view').forEach(view => view.classList.toggle('active', view.id === `view-${name}`));
-  els.integrationsButton?.classList.toggle('active', name === 'integrations');
-  renderViewSelector(); if (name === 'integrations') loadIntegrations();
+  const integrationsOpen = name === 'integrations';
+  els.integrationsButton?.classList.toggle('active', integrationsOpen);
+  els.viewManage.disabled = integrationsOpen; els.editToggle.disabled = integrationsOpen;
+  if (integrationsOpen) { closeCompactMenus(); closeEditor(); closeMoreInfo(); }
+  renderViewSelector(); if (integrationsOpen) loadIntegrations();
 }
 function renderViewSelector() {
   if (!els.sceneTabs) return;
-  const overviewActive = $('#view-overview')?.classList.contains('active');
-  els.sceneTabs.innerHTML = model.viewOrder.map(id => `<button class="tab scene-view-tab ${overviewActive && id === model.activeViewId ? 'active' : ''}" data-scene-view="${escapeHtml(id)}">${escapeHtml(model.views[id].name)}</button>`).join('');
+  els.sceneTabs.innerHTML = model.viewOrder.map(id => `<button class="tab scene-view-tab ${id === model.activeViewId ? 'active' : ''}" data-scene-view="${escapeHtml(id)}">${escapeHtml(model.views[id].name)}</button>`).join('');
   els.viewDelete.disabled = model.viewOrder.length <= 1;
 }
 async function switchSceneView(id, persist = true) {
   if (!model.views[id] || id === model.activeViewId && persist) return;
-  closeEditor(); closeMoreInfo(); model.activeViewId = id; attachActiveEntities(); currentBackground = '';
+  closeCompactMenus(); closeEditor(); closeMoreInfo(); model.activeViewId = id; try { localStorage.setItem(ACTIVE_VIEW_CACHE_KEY, id); } catch {} attachActiveEntities(); currentBackground = '';
   renderViewSelector(); els.markers.classList.add('background-pending'); renderIntegrations();
   await loadBackgrounds(true); resetViewZoom(); renderMarkers(); els.markers.classList.remove('background-pending'); await refreshStates();
   if (persist) scheduleSave(true);
 }
 async function addSceneView() {
+  closeCompactMenus();
   const name = await appPrompt({ title: 'Nowy widok', message: 'Podaj krótką nazwę nowego widoku.', value: `Widok ${model.viewOrder.length + 1}`, confirmText: 'Dodaj' });
   if (!name) return;
   const id = `view_${Date.now().toString(36)}_${Math.random().toString(36).slice(2,6)}`;
-  model.views[id] = { id, name, background: '', backgroundTransforms: {}, entities: {} }; model.viewOrder.push(id);
+  model.views[id] = { id, name, background: '', backgroundColor: '', onboardingDone: false, backgroundTransforms: {}, entities: {} }; model.viewOrder.push(id);
   await switchSceneView(id, false); scheduleSave(true); notify('Dodano nowy widok');
 }
 async function renameSceneView() {
@@ -235,6 +301,17 @@ function applySnapUi() {
   const enabled = model.settings?.snapEnabled !== false;
   els.body.classList.toggle('snap-enabled', enabled);
   if (els.snapToggle) { els.snapToggle.classList.toggle('active', enabled); els.snapToggle.title = translateValue(enabled ? 'Siatka włączona' : 'Siatka wyłączona'); els.snapToggle.setAttribute('aria-label', els.snapToggle.title); }
+  if (els.gridStatus) els.gridStatus.textContent = enabled ? 'ON' : 'OFF';
+  const step = clamp(model.settings?.snapStep || 1, 1, 10);
+  els.scene?.style.setProperty('--grid-minor', `${step}%`);
+  els.scene?.style.setProperty('--grid-major', `${step * 5}%`);
+  if (els.gridSize) els.gridSize.value = String(step);
+  if (els.gridSizeValue) els.gridSizeValue.textContent = String(step);
+}
+function closeCompactMenus() {
+  els.settingsMenu?.classList.remove('open'); els.settingsToggle?.classList.remove('active');
+  els.editMenu?.classList.remove('open'); els.viewSwitcher?.classList.remove('open'); els.viewManage?.classList.remove('active');
+  els.backgroundBar?.classList.remove('open','onboarding'); els.bgManage?.classList.remove('active');
 }
 function snapPercent(value) {
   if (model.settings?.snapEnabled === false) return clamp(value, 0, 100);
@@ -246,9 +323,40 @@ function sceneCameraActive() { return mobileView() || editMode || viewZoom > 1.0
 function mobileWidePanorama() {
   return mobileView() && innerHeight > innerWidth && els.image.naturalWidth > els.image.naturalHeight;
 }
+// Mobile keeps the readable marker scale. Only markers which truly collide
+// are moved apart temporarily on the Y axis; saved desktop positions stay intact.
+function updateMobileMarkerLayout(renderedWidth, renderedHeight) {
+  mobileLayoutY.clear();
+  if (!mobileView() || editMode || !renderedWidth || !renderedHeight) return;
+  const placed = [];
+  const markers = Object.values(model.entities || {}).map(marker => {
+    const style = marker.style || {};
+    return {
+      marker,
+      x: Number(marker.xPercent || 0) * renderedWidth / 100,
+      y: Number(marker.yPercent || 0) * renderedHeight / 100,
+      width: Number(style.width || 112) * sceneScale,
+      height: Number(style.height || 62) * sceneScale
+    };
+  }).sort((a, b) => a.y - b.y);
+
+  for (const item of markers) {
+    let y = item.y;
+    for (const previous of placed) {
+      const overlapsHorizontally = Math.abs(item.x - previous.x) < (item.width + previous.width) / 2;
+      if (!overlapsHorizontally) continue;
+      const minimumY = previous.y + previous.height / 2 + item.height / 2 + 5;
+      if (y < minimumY) y = minimumY;
+    }
+    y = Math.min(y, renderedHeight - item.height / 2 - 4);
+    mobileLayoutY.set(item.marker.entityId, y * 100 / renderedHeight);
+    placed.push({ ...item, y });
+  }
+}
 function updateSceneGeometry() {
   const hasImage = !els.image.hidden && els.image.naturalWidth > 0 && els.image.naturalHeight > 0;
-  const width = hasImage ? els.image.naturalWidth : 16, height = hasImage ? els.image.naturalHeight : 9, ratio = width / height;
+  const solidRatio = clamp(activeSceneView()?.solidCanvasRatio || 16 / 9, .25, 4);
+  const width = hasImage ? els.image.naturalWidth : solidRatio * 100, height = hasImage ? els.image.naturalHeight : 100, ratio = width / height;
   const panorama = mobileWidePanorama();
   let renderedWidth;
   if (panorama) {
@@ -268,11 +376,17 @@ function updateSceneGeometry() {
   els.scene.style.minHeight = '0px'; els.scene.style.maxHeight = 'none';
   els.viewport.classList.toggle('panorama-mode', panorama);
   const physicalScale = renderedWidth / (Number(model.settings?.designWidth) || DESIGN_WIDTH);
-  // Markers follow the scene but never become unreadably tiny on a narrow portrait canvas.
   sceneScale = Math.max(.01, physicalScale, mobileView() ? .50 : .58);
+  updateMobileMarkerLayout(renderedWidth, els.scene.clientHeight);
   els.scene.style.setProperty('--scene-scale', sceneScale);
   applyViewTransform();
-  requestAnimationFrame(() => { syncSelection(); positionEditor(); });
+  requestAnimationFrame(() => {
+    $$('.marker', els.markers).forEach(node => {
+      const marker = model.entities[node.dataset.entityId];
+      if (marker) applyMarkerStyle(node, marker);
+    });
+    syncSelection(); positionEditor();
+  });
 }
 function portraitZoomExpansion() {
   return !mobileWidePanorama() && els.image.naturalHeight > els.image.naturalWidth && viewZoom > 1.01;
@@ -287,7 +401,10 @@ function clampViewPan() {
   if (viewZoom <= minViewZoom() && !panorama) { viewPanX = 0; viewPanY = 0; return; }
   const maxX = Math.max(0, els.scene.offsetWidth * viewZoom - els.viewport.clientWidth);
   const maxY = Math.max(0, els.scene.offsetHeight * viewZoom - els.viewport.clientHeight);
-  viewPanX = clamp(viewPanX, -maxX, 0); viewPanY = clamp(viewPanY, -maxY, 0);
+  // While editing on a phone, allow the camera beyond the lower scene edge.
+  // This keeps a marker near the bottom visible above the bottom editor.
+  const editBottomAllowance = mobileView() && editMode ? els.viewport.clientHeight * .78 : 0;
+  viewPanX = clamp(viewPanX, -maxX, 0); viewPanY = clamp(viewPanY, -(maxY + editBottomAllowance), 0);
 }
 function updatePanoramaIndicator() {
   const indicator = els.panoramaIndicator; if (!indicator) return;
@@ -338,6 +455,13 @@ function currentBackgroundTransform() {
 }
 function applyBackgroundTransform() {
   const card = els.sceneCard; if (!card) return;
+  const hasImage = !els.image.hidden && els.image.naturalWidth > 0 && els.image.naturalHeight > 0;
+  if (!hasImage) {
+    card.style.width = '100%'; card.style.marginLeft = '0'; card.style.marginRight = '0';
+    els.image.style.objectFit = 'fill'; els.image.style.transform = '';
+    requestAnimationFrame(updateSceneGeometry);
+    return;
+  }
   const ratio = els.image.naturalWidth / Math.max(1, els.image.naturalHeight);
   const panorama = mobileWidePanorama();
 
@@ -546,8 +670,9 @@ function enabledIcon(enabled) {
 }
 function applyMarkerStyle(node, marker) {
   const s = marker.style;
+  const displayY = mobileLayoutY.get(marker.entityId) ?? marker.yPercent;
   Object.assign(node.style, {
-    left: `${marker.xPercent}%`, top: `${marker.yPercent}%`, width: `${s.width}px`, height: `${s.height}px`,
+    left: `${marker.xPercent}%`, top: `${displayY}%`, width: `${s.width}px`, height: `${s.height}px`,
     background: s.showBackground ? rgba(s.backgroundColor, s.backgroundOpacity) : 'transparent',
     border: s.showBorder ? `${s.borderWidth}px solid ${rgba(s.borderColor, s.borderOpacity)}` : '0 solid transparent',
     borderRadius: `${s.radius}px`
@@ -566,9 +691,11 @@ function applyMarkerStyle(node, marker) {
     if (icon.classList.contains('marker-brand-icon')) Object.assign(icon.style, { width:`${s.iconSize}px`, height:`${s.iconSize}px`, objectFit:'contain' });
   }
   if (marker.type === 'gauge') {
-    if (label) Object.assign(label.style, { top: `calc(12% + 78px + ${s.labelY}px)` });
-    if (value) Object.assign(value.style, { top: `calc(48% + 12px + ${s.valueY}px)` });
-    const percent = $('.percent', node); if (percent) Object.assign(percent.style, { top: `calc(76% - 46px + ${s.percentY}px)`, color: rgba(s.percentColor, s.percentOpacity), fontSize: `${11 * s.percentScale}px` });
+    // Anchor labels to the marker centre: resizing the Gauge changes neither their
+    // horizontal nor vertical screen position. The Position sliders stay additive.
+    if (label) Object.assign(label.style, { left: '50%', top: `calc(50% + 37px + ${s.labelY}px)` });
+    if (value) Object.assign(value.style, { left: '50%', top: `calc(50% + 10px + ${s.valueY}px)` });
+    const percent = $('.percent', node); if (percent) Object.assign(percent.style, { left: '50%', top: `calc(50% - 18px + ${s.percentY}px)`, color: rgba(s.percentColor, s.percentOpacity), fontSize: `${11 * s.percentScale}px` });
     const track = $('.gauge-track', node), progress = $('.gauge-value', node), n = Number(stateCache[marker.entityId]?.state), span = Number(s.max) - Number(s.min) || 1;
     const pct = Number.isFinite(n) ? clamp(((n - Number(s.min)) / span) * 100, 0, 100) : 0;
     const gradientId = `gauge-gradient-${String(marker.id).replace(/[^a-z0-9_-]/gi, '')}`;
@@ -739,7 +866,7 @@ function renderMarkers() {
     node.addEventListener('pointerdown', startDrag); node.addEventListener('click', onMarkerClick); els.markers.append(node);
   });
   if (previous && model.entities[previous]) syncSelection(); else hideSelection();
-  renderAdded();
+  updateEmptyState(); renderAdded();
 }
 function onMarkerClick(event) {
   if (event.currentTarget.dataset.dragged === '1') { event.currentTarget.dataset.dragged = '0'; return; }
@@ -747,7 +874,24 @@ function onMarkerClick(event) {
   if (!editMode) return openMoreInfo(event.currentTarget.dataset.entityId);
   selectMarker(event.currentTarget.dataset.entityId);
 }
-function selectMarker(entityId) { selectedId = entityId; renderMarkers(); openEditor(); }
+function focusSelectedMarkerOnMobile() {
+  if (!mobileView() || !editMode || !selectedId) return;
+  const marker = model.entities[selectedId]; if (!marker) return;
+  // Deliberately closer than beta.52: selected markers remain clear of the
+  // bottom editor even on the lowest part of a portrait background.
+  const nextZoom = clamp(Math.max(viewZoom, 2.1), minViewZoom(), 2.35);
+  const sceneWidth = els.scene.offsetWidth || 1, sceneHeight = els.scene.offsetHeight || 1;
+  const markerX = Number(marker.xPercent || 50) / 100 * sceneWidth;
+  const markerY = Number(marker.yPercent || 50) / 100 * sceneHeight;
+  const targetX = els.viewport.clientWidth / 2;
+  const targetY = Math.max(74, els.viewport.clientHeight * .27);
+  viewZoom = nextZoom; viewPanX = targetX - markerX * nextZoom; viewPanY = targetY - markerY * nextZoom;
+  applyViewTransform();
+}
+function selectMarker(entityId) {
+  selectedId = entityId; renderMarkers(); openEditor();
+  requestAnimationFrame(() => requestAnimationFrame(focusSelectedMarkerOnMobile));
+}
 function hideSelection() { els.selection.classList.remove('visible'); }
 function syncSelection() {
   const node = $(`.marker[data-entity-id="${CSS.escape(selectedId)}"]`); if (!node) return hideSelection();
@@ -783,19 +927,22 @@ function startDrag(event) {
     marker.xPercent = snapPercent(start.px + dx / r.width * 100); marker.yPercent = snapPercent(start.py + dy / r.height * 100);
     node.style.left = `${marker.xPercent}%`; node.style.top = `${marker.yPercent}%`; if (selectedId === entityId) syncSelection();
   };
-  const up = () => { node.removeEventListener('pointermove', move); node.removeEventListener('pointerup', up); node.removeEventListener('pointercancel', up); els.editor.classList.remove('marker-moving'); node.dataset.dragged = moved ? '1' : '0'; if (moved) { marker.updatedAt = new Date().toISOString(); scheduleSave(true); positionEditor(); } };
+  const up = () => { node.removeEventListener('pointermove', move); node.removeEventListener('pointerup', up); node.removeEventListener('pointercancel', up); try { if (node.hasPointerCapture?.(event.pointerId)) node.releasePointerCapture(event.pointerId); } catch {} els.editor.classList.remove('marker-moving'); node.dataset.dragged = moved ? '1' : '0'; if (moved) { marker.updatedAt = new Date().toISOString(); scheduleSave(true); positionEditor(); } };
   node.addEventListener('pointermove', move); node.addEventListener('pointerup', up, { once: true }); node.addEventListener('pointercancel', up, { once: true });
 }
 
 function control(label, path, type, value, options = {}) {
+  const rounded = Boolean(options.integer);
+  const displayValue = rounded ? Math.round(Number(value) || 0) : value;
   const attrs = [`data-path="${path}"`, `data-value-type="${options.valueType || type}"`];
+  if (rounded) attrs.push('data-integer="true"');
   if (options.min !== undefined) attrs.push(`min="${options.min}"`); if (options.max !== undefined) attrs.push(`max="${options.max}"`); if (options.step !== undefined) attrs.push(`step="${options.step}"`);
   let input;
   if (type === 'checkbox') input = `<input type="checkbox" ${attrs.join(' ')} ${value ? 'checked' : ''}>`;
   else if (type === 'select') input = `<select ${attrs.join(' ')}>${options.items.map(([v,t]) => `<option value="${v}" ${String(v) === String(value) ? 'selected' : ''}>${t}</option>`).join('')}</select>`;
   else if (type === 'color') input = `<div class="color-picker"><button type="button" class="color-current" data-color-toggle style="background:${escapeHtml(value)}" aria-label="Wybierz kolor"></button><input class="color-native" type="color" value="${escapeHtml(value)}" ${attrs.join(' ')}><div class="color-menu"><div class="color-palette">${COLOR_PALETTE.map(color => `<button type="button" data-palette-color="${color}" style="background:${color}" aria-label="${color}"></button>`).join('')}</div><button type="button" class="rgb-button" data-rgb-color>Własny kolor RGB…</button></div></div>`;
   else input = `<input type="${type}" value="${escapeHtml(value)}" ${attrs.join(' ')}>`;
-  const output = type === 'range' ? `<output data-suffix="${escapeHtml(options.suffix || '')}">${value}${options.suffix || ''}</output>` : '<span></span>';
+  const output = type === 'range' ? `<output data-suffix="${escapeHtml(options.suffix || '')}">${displayValue}${options.suffix || ''}</output>` : '<span></span>';
   return `<div class="control ${type === 'checkbox' ? 'checkbox' : ''}"><label>${label}</label>${input}${output}</div>`;
 }
 function mdiControl(label, path, value) {
@@ -808,7 +955,8 @@ function editorMarkup(marker) {
   const entity = section('Encja', control('Nazwa','displayName','text',marker.displayName) + control('Jednostka','unitOverride','text',marker.unitOverride) + control('Zaokrąglenie','decimals','select',marker.decimals,{items:[['auto','Auto'],[0,'0'],[1,'1'],[2,'2'],[3,'3']]}) + control('Tekst ON','stateOnLabel','text',marker.stateOnLabel) + control('Tekst OFF','stateOffLabel','text',marker.stateOffLabel));
   const label = section('Nazwa', control('Pokaż','style.showLabel','checkbox',s.showLabel) + control('Kolor','style.labelColor','color',s.labelColor) + control('Przezrocz.','style.labelOpacity','range',s.labelOpacity,{min:0,max:1,step:.01}) + control('Rozmiar','style.labelScale','range',s.labelScale,{min:.5,max:3,step:.05}) + control('Pozycja','style.labelY','range',s.labelY,{min:-100,max:100,step:1,suffix:'px'}));
   const value = section('Stan', control('Pokaż','style.showValue','checkbox',s.showValue) + control('Kolor','style.valueColor','color',s.valueColor) + control('Przezrocz.','style.valueOpacity','range',s.valueOpacity,{min:0,max:1,step:.01}) + control('Rozmiar','style.valueScale','range',s.valueScale,{min:.5,max:3,step:.05}) + control('Pozycja','style.valueY','range',s.valueY,{min:-100,max:100,step:1,suffix:'px'}));
-  const size = section('Rozmiar', control('Szerokość','style.width','range',s.width,{min:54,max:500,step:1,suffix:'px'}) + control('Wysokość','style.height','range',s.height,{min:34,max:350,step:1,suffix:'px'}));
+  const minimumSize = marker.type === 'gauge' ? { width: 44, height: 28 } : { width: 36, height: 24 };
+  const size = section('Rozmiar', control('Szerokość','style.width','range',s.width,{min:minimumSize.width,max:500,step:1,suffix:'px',integer:true}) + control('Wysokość','style.height','range',s.height,{min:minimumSize.height,max:350,step:1,suffix:'px',integer:true}));
   const background = section('Tło', control('Pokaż','style.showBackground','checkbox',s.showBackground) + control('Kolor','style.backgroundColor','color',s.backgroundColor) + control('Przezrocz.','style.backgroundOpacity','range',s.backgroundOpacity,{min:0,max:1,step:.01}));
   const border = section('Ramka', control('Pokaż','style.showBorder','checkbox',s.showBorder) + control('Kolor','style.borderColor','color',s.borderColor) + control('Przezrocz.','style.borderOpacity','range',s.borderOpacity,{min:0,max:1,step:.01}) + control('Grubość','style.borderWidth','range',s.borderWidth,{min:0,max:12,step:1,suffix:'px'}) + control('Zaokrąglenie','style.radius','range',s.radius,{min:0,max:100,step:1,suffix:'px'}));
   const mdiList = `<datalist id="mdi-icon-list">${ICON_CHOICES.slice(1).map(([name,label]) => `<option value="${name}">${label}</option>`).join('')}</datalist>`;
@@ -868,7 +1016,7 @@ function setPath(object, path, value) { const parts = path.split('.'); let targe
 function onEditorInput(event) {
   const marker = model.entities[selectedId], input = event.target; if (!marker || !input.dataset.path) return;
   let value = input.type === 'checkbox' ? input.checked : input.value;
-  if (input.dataset.valueType === 'range' || input.dataset.valueType === 'number') value = Number(value);
+  if (input.dataset.valueType === 'range' || input.dataset.valueType === 'number') value = Number(value); if (input.dataset.integer === 'true') value = Math.round(value);
   setPath(marker, input.dataset.path, value); marker.updatedAt = new Date().toISOString();
   if (input.dataset.path === 'iconMode') { const manual = $('[data-manual-icons]', els.editorContent); if (manual) manual.hidden = value !== 'manual'; }
   if (input.type === 'color') { const preview = input.closest('.color-picker')?.querySelector('.color-current'); if (preview) preview.style.background = value; }
@@ -967,7 +1115,9 @@ async function loadBackgrounds(waitForImage = false, bustCache = false) {
     // Each view loads its own named file; no global background selection is needed.
     els.bgSelect.innerHTML = '<option value="">Bez tła</option>' + items.map(x => `<option value="${escapeHtml(x.name)}" ${x.name === currentBackground ? 'selected' : ''}>${escapeHtml(x.name)}</option>`).join('');
     els.bgSelect.value = currentBackground; els.bgSelect.disabled = false; els.bgDelete.disabled = !currentBackground;
-    els.empty.classList.toggle('visible', !currentBackground); els.image.hidden = !currentBackground; syncBackgroundTransformControls();
+    view.solidCanvasRatio ||= 16 / 9;
+    if (els.solidCanvasRatio) els.solidCanvasRatio.value = String([1.7777777778,1.3333333333,1,.5625].reduce((best, ratio) => Math.abs(ratio - view.solidCanvasRatio) < Math.abs(best - view.solidCanvasRatio) ? ratio : best, 1.7777777778));
+    applyBackgroundColour(); updateEmptyState(); els.image.hidden = !currentBackground; syncBackgroundTransformControls();
     if (currentBackground) {
       applyBackgroundTransform();
       const cacheKey = bustCache ? `&v=${Date.now()}` : '', src = `api/background/file?name=${encodeURIComponent(currentBackground)}${cacheKey}`;
@@ -984,9 +1134,9 @@ async function loadBackgrounds(waitForImage = false, bustCache = false) {
   } catch (error) { els.bgStatus.textContent = `Błąd: ${error.message}`; }
 }
 async function uploadBackground(file) {
-  if (!file) return; els.bgStatus.textContent = 'Wgrywanie…'; const form = new FormData(); form.append('file', file);
-  try { const result = await api('background/upload', { method: 'POST', body: form }); activeSceneView().background = result.name || null; els.bgStatus.textContent = 'Wgrano'; await loadBackgrounds(true, true); scheduleSave(true); }
-  catch (error) { els.bgStatus.textContent = `Błąd: ${error.message}`; } finally { els.bgFile.value = ''; }
+  if (!file) return; els.bgStatus.textContent = 'Wgrywanie…'; els.bgUploadProgress?.classList.add('visible'); const form = new FormData(); form.append('file', file);
+  try { const result = await api('background/upload', { method: 'POST', body: form }); const view = activeSceneView(); view.background = result.name || null; view.backgroundColor = ''; view.onboardingDone = true; els.bgStatus.textContent = 'Wgrano'; await loadBackgrounds(true, true); scheduleSave(true); }
+  catch (error) { els.bgStatus.textContent = `Błąd: ${error.message}`; } finally { els.bgFile.value = ''; els.bgUploadProgress?.classList.remove('visible'); }
 }
 
 function viewportPointerDown(event) {
@@ -1060,14 +1210,17 @@ function bindEvents() {
     applyLanguage(); scheduleSave(true);
   });
   els.sceneTabs?.addEventListener('click', event => { const tab=event.target.closest('[data-scene-view]'); if(!tab)return; showMainView('overview'); switchSceneView(tab.dataset.sceneView); });
-  els.integrationsButton?.addEventListener('click', () => { closeEditor(); closeMoreInfo(); openIntegrations.clear(); unusedIntegrationsOpen = false; els.viewSwitcher?.classList.remove('open'); els.viewManage?.classList.remove('active'); showMainView('integrations'); });
-  els.viewManage?.addEventListener('click', () => { const open = !els.viewSwitcher.classList.contains('open'); els.viewSwitcher.classList.toggle('open', open); els.viewManage.classList.toggle('active', open); els.backgroundBar.classList.remove('open'); els.bgManage.classList.remove('active'); });
+  els.settingsToggle?.addEventListener('click', () => { const open = !els.settingsMenu?.classList.contains('open'); closeCompactMenus(); els.settingsMenu?.classList.toggle('open', open); els.settingsToggle?.classList.toggle('active', open); });
+  els.integrationsButton?.addEventListener('click', () => { closeEditor(); closeMoreInfo(); openIntegrations.clear(); unusedIntegrationsOpen = false; closeCompactMenus(); showMainView('integrations'); });
+  els.viewManage?.addEventListener('click', () => { const open = !els.viewSwitcher.classList.contains('open'); closeCompactMenus(); els.viewSwitcher.classList.toggle('open', open); els.viewManage.classList.toggle('active', open); });
   els.viewAdd?.addEventListener('click', addSceneView); els.viewRename?.addEventListener('click', renameSceneView);
   els.viewDuplicate?.addEventListener('click', duplicateSceneView); els.viewDelete?.addEventListener('click', deleteSceneView);
   els.confirmInput?.addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); closeAppConfirm(true); } });
-  els.editToggle.addEventListener('click', () => { closeMoreInfo(); editMode = !editMode; els.body.classList.toggle('editing', editMode); els.editToggle.innerHTML = editMode ? '&#10003;' : '&#9998;'; els.editToggle.title = translateValue(editMode ? 'Zakończ edycję' : 'Edytuj widok'); els.editToggle.setAttribute('aria-label', els.editToggle.title); if (!editMode) { closeEditor(); els.backgroundBar.classList.remove('open'); els.bgManage.classList.remove('active'); els.bgTransformPanel?.classList.remove('open'); els.bgTransformToggle?.classList.remove('active'); els.viewSwitcher?.classList.remove('open'); els.viewManage?.classList.remove('active'); } requestAnimationFrame(() => { applyBackgroundTransform(); updateSceneGeometry(); resetViewZoom(); }); });
+  els.editToggle.addEventListener('click', () => { closeMoreInfo(); editMode = !editMode; els.body.classList.toggle('editing', editMode); els.editToggle.classList.toggle('active', editMode); els.editToggle.setAttribute('aria-pressed', String(editMode)); els.editToggle.title = translateValue('Edytuj widok'); els.editToggle.setAttribute('aria-label', els.editToggle.title); if (editMode) { closeCompactMenus(); els.editMenu?.classList.add('open'); } else { closeEditor(); closeCompactMenus(); els.bgTransformPanel?.classList.remove('open'); els.bgTransformToggle?.classList.remove('active'); } requestAnimationFrame(() => { applyBackgroundTransform(); updateSceneGeometry(); }); });
   els.snapToggle.addEventListener('click', () => { model.settings.snapEnabled = !model.settings.snapEnabled; applySnapUi(); scheduleSave(true); notify(model.settings.snapEnabled ? 'Przyciąganie do siatki włączone' : 'Przyciąganie do siatki wyłączone'); });
-  els.bgManage.addEventListener('click', () => { els.backgroundBar.classList.toggle('open'); els.bgManage.classList.toggle('active', els.backgroundBar.classList.contains('open')); els.viewSwitcher?.classList.remove('open'); els.viewManage?.classList.remove('active'); if (!els.backgroundBar.classList.contains('open')) { els.bgTransformPanel?.classList.remove('open'); els.bgTransformToggle?.classList.remove('active'); } });
+  els.gridSize?.addEventListener('input', () => { model.settings.snapStep = clamp(els.gridSize.value, 1, 20); applySnapUi(); scheduleSave(true); });
+  els.solidCanvasRatio?.addEventListener('change', () => { const view = activeSceneView(); if (!view) return; view.solidCanvasRatio = clamp(els.solidCanvasRatio.value, .25, 4); updateSceneGeometry(); scheduleSave(true); });
+  els.bgManage.addEventListener('click', () => { const open = !els.backgroundBar.classList.contains('open'); if (open) { closeEditor(); closeMoreInfo(); } els.backgroundBar.classList.toggle('open', open); els.bgManage.classList.toggle('active', open); if (open) openBackgroundMenu(); else { els.backgroundBar.classList.remove('onboarding'); els.bgStatus.textContent = ''; } });
   els.bgTransformToggle?.addEventListener('click', () => { els.bgTransformPanel.classList.toggle('open'); els.bgTransformToggle.classList.toggle('active', els.bgTransformPanel.classList.contains('open')); syncBackgroundTransformControls(); });
   [els.bgScale].forEach(control => { control?.addEventListener('input', updateBackgroundTransform); control?.addEventListener('change', updateBackgroundTransform); });
   els.mobilePanStart?.addEventListener('change', updateMobilePanStart);
@@ -1087,7 +1240,14 @@ function bindEvents() {
   $('#paste-style').addEventListener('click', () => { const m = model.entities[selectedId]; if (!m || !styleClipboard) return; m.type = styleClipboard.type; m.style = clone(styleClipboard.style); m.updatedAt = new Date().toISOString(); renderMarkers(); openEditor(); scheduleSave(true); notify('Wklejono kompletny styl 1:1'); });
   $('#remove-marker').addEventListener('click', async () => { const m = model.entities[selectedId]; if (!m || !await appConfirm({ title: 'Usunąć marker?', message: `„${m.displayName}” zniknie z tego widoku razem ze swoimi ustawieniami.`, confirmText: 'Usuń', danger: true })) return; removeEntity(m.entityId); });
   $('#background-upload').addEventListener('click', () => els.bgFile.click()); $('#empty-upload').addEventListener('click', () => els.bgFile.click()); els.bgFile.addEventListener('change', () => uploadBackground(els.bgFile.files[0]));
-  els.bgSelect.addEventListener('change', async () => { try { const view = activeSceneView(); view.background = els.bgSelect.value; await loadBackgrounds(); scheduleSave(true); } catch (error) { notify(error.message, true); } });
+  const setBackgroundMenuColour = colour => { if (!/^#[0-9a-f]{6}$/i.test(colour || '')) return; els.backgroundBar.classList.remove('onboarding'); els.bgStatus.textContent = ''; setBackgroundColour(colour); };
+  els.bgColor?.addEventListener('input', () => setBackgroundMenuColour(els.bgColor.value));
+  els.bgColorToggle?.addEventListener('click', () => els.backgroundBar.querySelector('.color-menu')?.classList.toggle('visible'));
+  els.bgRgbOpen?.addEventListener('click', async () => { const value = await appPrompt({ title:'Własny kolor RGB', message:'Podaj kolor w formacie #RRGGBB.', value:activeSceneView()?.backgroundColor || '#0D2838', confirmText:'Ustaw' }); if (value) setBackgroundMenuColour(value.trim()); });
+  els.backgroundBar?.addEventListener('click', event => { const swatch = event.target.closest('[data-bg-colour]'); if (swatch) { setBackgroundMenuColour(swatch.dataset.bgColour); els.backgroundBar.querySelector('.color-menu')?.classList.remove('visible'); } });
+  els.emptyColorStart?.addEventListener('click', () => setBackgroundColour(els.emptyColor.value));
+  els.emptyOpenIntegrations?.addEventListener('click', () => els.integrationsButton.click());
+  els.bgSelect.addEventListener('change', async () => { try { const view = activeSceneView(); view.background = els.bgSelect.value; if (view.background) view.onboardingDone = true; await loadBackgrounds(); scheduleSave(true); } catch (error) { notify(error.message, true); } });
   els.bgDelete.addEventListener('click', async () => { const name = els.bgSelect.value; if (!name || !await appConfirm({ title: 'Usunąć tło?', message: `Tło „${name}” zostanie trwale usunięte ze wszystkich widoków.`, confirmText: 'Usuń', danger: true })) return; try { await api('background/delete', jsonOptions({ name })); Object.values(model.views).forEach(view => { if (view.background === name) view.background = ''; if (view.backgroundTransforms) delete view.backgroundTransforms[name]; }); currentBackground = ''; scheduleSave(true); await loadBackgrounds(); notify('Usunięto tło'); } catch (error) { notify(error.message, true); } });
   $('#reload-integrations').addEventListener('click', () => { integrations = []; integrationEntities.clear(); openIntegrations.clear(); loadIntegrations(true); });
   els.integrationList.addEventListener('click', event => {
@@ -1110,10 +1270,17 @@ function bindEvents() {
     setViewZoom(viewZoom * Math.exp(-event.deltaY * .0015), event.clientX, event.clientY);
   }, { passive: false });
   // Touch gestures and desktop mouse dragging are deliberately separate.
+  els.editorContent?.addEventListener('focusin', () => {
+    viewPointers.clear(); panGesture = null; pinchGesture = null;
+  });
   els.scene?.addEventListener('mousedown', startDesktopPan);
   els.scene?.addEventListener('pointerdown', viewportPointerDown); els.scene?.addEventListener('pointermove', viewportPointerMove);
   els.scene?.addEventListener('pointerup', viewportPointerUp); els.scene?.addEventListener('pointercancel', viewportPointerUp);
   window.addEventListener('pointermove', viewportPointerMove); window.addEventListener('pointerup', viewportPointerUp); window.addEventListener('pointercancel', viewportPointerUp);
+  document.addEventListener('pointerdown', event => {
+    if (event.target.closest('.compact-menu,.view-management,#settings-toggle,#edit-toggle,#view-manage,.editor,.app-confirm-card')) return;
+    closeCompactMenus();
+  });
   document.addEventListener('visibilitychange', resumeLiveConnection);
   window.addEventListener('pageshow', resumeLiveConnection); window.addEventListener('focus', resumeLiveConnection);
 }
@@ -1125,7 +1292,14 @@ function startResize(event) {
   const move = e => {
     if ((e.buttons & 1) !== 1) return finish();
     const sx = handle.includes('w') ? -1 : 1, sy = handle.includes('n') ? -1 : 1; changed = true;
-    marker.style.width = clamp(start.w + (e.clientX-start.x)*sx*2/scale,54,500); marker.style.height = clamp(start.h + (e.clientY-start.y)*sy*2/scale,34,350);
+    const snapSize = value => {
+      const limited = clamp(value, 1, 500);
+      if (model.settings?.snapEnabled === false) return limited;
+      const gridPx = Math.max(1, (Number(model.settings?.designWidth) || DESIGN_WIDTH) * (Number(model.settings?.snapStep) || 1) / 100);
+      return Math.round(limited / gridPx) * gridPx;
+    };
+    const minWidth = marker.type === 'gauge' ? 44 : 36, minHeight = marker.type === 'gauge' ? 28 : 24;
+    marker.style.width = clamp(snapSize(start.w + (e.clientX-start.x)*sx*2/scale),minWidth,500); marker.style.height = clamp(snapSize(start.h + (e.clientY-start.y)*sy*2/scale),minHeight,350);
     const node = $(`.marker[data-entity-id="${CSS.escape(marker.entityId)}"]`); if (node) applyMarkerStyle(node, marker); syncSelection();
   };
   const finish = () => {
@@ -1149,7 +1323,15 @@ async function boot() {
   });
   const gaugeMigrated = migrateGaugeZeroOffsets();
   if (legacyMigrated || multiMigrated || gaugeMigrated) scheduleSave(true);
-  updateSceneGeometry(); els.markers.classList.add('background-pending'); await loadBackgrounds(true); resetViewZoom(); mobileOrientation = mobileView() ? (innerHeight > innerWidth ? 'portrait' : 'landscape') : 'desktop'; await refreshStates(); els.markers.classList.remove('background-pending'); updateSceneGeometry(); connectEvents();
+  // Markers are independent from the background image and from live-state
+  // retrieval. Render them immediately: the first `selected_states` request
+  // may be slow, but it must never keep the restored view blank.
+  attachActiveEntities(); updateSceneGeometry(); renderMarkers(); resetViewZoom();
+  mobileOrientation = mobileView() ? (innerHeight > innerWidth ? 'portrait' : 'landscape') : 'desktop';
+  await loadBackgrounds(true);
+  attachActiveEntities(); updateSceneGeometry(); renderMarkers();
+  connectEvents();
+  refreshStates();
 }
 
 boot();
