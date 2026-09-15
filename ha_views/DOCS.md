@@ -2,7 +2,7 @@
 
 ## Language
 
-HA Views currently uses a Polish interface. It works with Home Assistant in every language; entity names, states, units and Home Assistant's native **More Info** dialog come directly from the user's own Home Assistant installation. English interface localisation is planned for a future release.
+HA Views includes an **English / Polski** language selector in the top toolbar. English is the default for new installations; the selected language is saved with the dashboard. Entity names, states, units and Home Assistant's native **More Info** dialog still come directly from the user's own Home Assistant installation.
 
 ## Installation
 
@@ -78,7 +78,7 @@ HA Views is beta software. Create a Home Assistant backup before updating. When 
 
 ## Język
 
-Interfejs HA Views jest obecnie po polsku. Dodatek działa z Home Assistantem w każdym języku: nazwy encji, stany, jednostki i natywne okno **More Info** pochodzą bezpośrednio z Home Assistanta użytkownika. Angielska wersja interfejsu jest planowana w kolejnych wydaniach.
+HA Views ma przełącznik języka **English / Polski** w górnym pasku. Domyślnie przy nowej instalacji wybrany jest angielski, a wybór języka zapisuje się razem z pulpitem. Nazwy encji, stany, jednostki i natywne okno **More Info** nadal pochodzą bezpośrednio z Home Assistanta użytkownika.
 
 ## Instalacja
 
