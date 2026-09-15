@@ -5,35 +5,46 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>HA Views</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260915-36">
+  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260915-65">
 </head>
 <body>
   <header class="topbar">
-    <nav id="scene-tabs" class="tabs scene-tabs" aria-label="Widoki"></nav>
-    <div class="top-actions">
-      <select id="language-select" class="language-select" title="Language / Język" aria-label="Language / Język">
-        <option value="en">EN</option>
-        <option value="pl">PL</option>
-      </select>
-      <button id="integrations-button" class="icon-action" title="Integracje" aria-label="Integracje"><i class="mdi mdi-puzzle-outline"></i></button>
-      <button id="view-manage" class="icon-action edit-only" title="Zarządzaj widokami" aria-label="Zarządzaj widokami"><i class="mdi mdi-view-dashboard-edit-outline"></i></button>
+    <div class="view-tabs-group">
+      <nav id="scene-tabs" class="tabs scene-tabs" aria-label="Widoki"></nav>
+      <div class="view-manage-anchor"><button id="view-manage" class="icon-action" title="Zarządzaj widokami" aria-label="Zarządzaj widokami"><i class="mdi mdi-view-dashboard-edit-outline"></i></button>
       <div id="view-switcher" class="view-switcher view-management">
-        <button id="view-add" class="view-action edit-only" title="Nowy widok" aria-label="Nowy widok"><i class="mdi mdi-plus"></i></button>
-        <button id="view-rename" class="view-action edit-only" title="Zmień nazwę widoku" aria-label="Zmień nazwę widoku"><i class="mdi mdi-pencil-outline"></i></button>
-        <button id="view-duplicate" class="view-action edit-only" title="Duplikuj widok" aria-label="Duplikuj widok"><i class="mdi mdi-content-duplicate"></i></button>
-        <button id="view-delete" class="view-action edit-only danger" title="Usuń widok" aria-label="Usuń widok"><i class="mdi mdi-delete-outline"></i></button>
+        <button id="view-add" class="view-action" title="Dodaj widok" aria-label="Dodaj widok"><i class="mdi mdi-plus"></i><span>Dodaj widok</span></button>
+        <button id="view-rename" class="view-action" title="Zmień nazwę widoku" aria-label="Zmień nazwę widoku"><i class="mdi mdi-pencil-outline"></i><span>Zmień nazwę</span></button>
+        <button id="view-duplicate" class="view-action" title="Duplikuj widok" aria-label="Duplikuj widok"><i class="mdi mdi-content-duplicate"></i><span>Duplikuj widok</span></button>
+        <button id="view-delete" class="view-action danger" title="Usuń widok" aria-label="Usuń widok"><i class="mdi mdi-delete-outline"></i><span>Usuń widok</span></button>
+        <button id="background-manage" class="view-action background-entry" title="Zarządzaj tłem" aria-label="Zarządzaj tłem"><i class="mdi mdi-image-outline"></i><span>Tło</span></button>
+        <div id="background-bar" class="background-bar">
+          <select id="background-select" aria-label="Wybierz tło"></select>
+          <div class="solid-canvas-row"><i class="mdi mdi-aspect-ratio"></i><span>Format koloru</span><select id="solid-canvas-ratio" aria-label="Format kolorowego tła"><option value="1.7777777778">16:9</option><option value="1.3333333333">4:3</option><option value="1">1:1</option><option value="0.5625">9:16</option></select></div>
+          <div class="background-colour-picker color-picker">
+            <button id="background-color-toggle" type="button" class="color-current" data-bg-color-toggle style="background:#0d2838" aria-label="Wybierz kolor tła"></button>
+            <input id="background-color" class="color-native" type="color" value="#0d2838" aria-label="Własny kolor">
+            <div class="color-menu"><div class="color-palette">
+              <button type="button" data-bg-colour="#FFFFFF" style="background:#FFFFFF"></button><button type="button" data-bg-colour="#DCE8EF" style="background:#DCE8EF"></button><button type="button" data-bg-colour="#9BC1D8" style="background:#9BC1D8"></button><button type="button" data-bg-colour="#607D8B" style="background:#607D8B"></button><button type="button" data-bg-colour="#03101A" style="background:#03101A"></button><button type="button" data-bg-colour="#102A3A" style="background:#102A3A"></button>
+              <button type="button" data-bg-colour="#20B9E7" style="background:#20B9E7"></button><button type="button" data-bg-colour="#147EA5" style="background:#147EA5"></button><button type="button" data-bg-colour="#22D69B" style="background:#22D69B"></button><button type="button" data-bg-colour="#39B86C" style="background:#39B86C"></button><button type="button" data-bg-colour="#FFD166" style="background:#FFD166"></button><button type="button" data-bg-colour="#F59E0B" style="background:#F59E0B"></button>
+              <button type="button" data-bg-colour="#FF6374" style="background:#FF6374"></button><button type="button" data-bg-colour="#E63946" style="background:#E63946"></button><button type="button" data-bg-colour="#B66DFF" style="background:#B66DFF"></button><button type="button" data-bg-colour="#7C4DFF" style="background:#7C4DFF"></button><button type="button" data-bg-colour="#EC4899" style="background:#EC4899"></button><button type="button" data-bg-colour="#8B5E3C" style="background:#8B5E3C"></button>
+            </div><button id="background-rgb-open" type="button" class="rgb-button">Własny kolor RGB…</button></div>
+          </div>
+          <div class="background-tools"><button id="background-upload" class="background-icon" title="Wgraj obraz" aria-label="Wgraj obraz"><i class="mdi mdi-image-plus-outline"></i></button><button id="background-delete" class="background-icon danger" title="Usuń tło" aria-label="Usuń tło"><i class="mdi mdi-delete-outline"></i></button></div>
+          <input id="background-file" type="file" accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp" hidden>
+          <span id="background-status"></span>
+        </div>
+      </div></div>
+    </div>
+    <div class="top-actions">
+      <div id="settings-menu" class="compact-menu">
+        <button id="integrations-button" class="menu-action" title="Integracje" aria-label="Integracje"><i class="mdi mdi-puzzle-outline"></i><span>Integracje</span></button>
+        <div class="menu-divider"></div>
+        <div class="language-row"><i class="mdi mdi-translate"></i><span>Język</span><select id="language-select" title="Language / Język" aria-label="Language / Język"><option value="en">EN</option><option value="pl">PL</option></select></div>
       </div>
-      <span id="connection" class="connection">Łączenie…</span>
-      <button id="snap-toggle" class="icon-action edit-only active" title="Siatka włączona" aria-label="Siatka włączona"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 10h16M4 16h16M10 4v16M16 4v16"/></svg></button>
-      <div id="background-bar" class="background-bar">
-        <select id="background-select" aria-label="Wybierz tło"></select>
-        <button id="background-upload" class="background-icon" title="Wgraj obraz" aria-label="Wgraj obraz"><svg viewBox="0 0 24 24"><path d="M12 16V4m0 0L7 9m5-5 5 5M5 14v5h14v-5"/></svg></button>
-        <button id="background-delete" class="background-icon danger" title="Usuń tło" aria-label="Usuń tło"><svg viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3m-9 0 1 13h10l1-13M10 11v5m4-5v5"/></svg></button>
-        <input id="background-file" type="file" accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp" hidden>
-        <span id="background-status"></span>
-      </div>
-      <button id="background-manage" class="icon-action edit-only" title="Zarządzaj tłem" aria-label="Zarządzaj tłem"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="9" r="1.5"/><path d="m4 17 5-5 4 4 2-2 5 5"/></svg></button>
-      <button id="edit-toggle" class="icon-action primary" title="Edytuj widok" aria-label="Edytuj widok">&#9998;</button>
+      <button id="settings-toggle" class="icon-action" title="Ustawienia" aria-label="Ustawienia"><i class="mdi mdi-cog-outline"></i></button>
+      <div id="edit-menu" class="compact-menu edit-menu"><button id="snap-toggle" class="menu-action" title="Siatka włączona" aria-label="Siatka włączona"><i class="mdi mdi-grid"></i><span>Siatka</span><b id="grid-status">ON</b></button><div class="grid-size-row"><i class="mdi mdi-grid-large"></i><span>Wielkość siatki</span><input id="grid-size" type="range" min="1" max="20" step="1" value="1" aria-label="Wielkość siatki"><output id="grid-size-value">1</output></div></div>
+      <button id="edit-toggle" class="icon-action primary" title="Edytuj widok" aria-label="Edytuj widok"><i class="mdi mdi-pencil-outline"></i></button>
     </div>
   </header>
 
@@ -43,8 +54,28 @@
         <div id="scene-viewport" class="scene-viewport">
           <div id="scene" class="scene">
             <img id="scene-image" alt="Tło widoku HA Views" draggable="false">
-            <div id="scene-empty" class="scene-empty">
-              <button id="empty-upload" class="primary">Wgraj tło widoku</button>
+            <div id="scene-empty" class="scene-empty"><div id="background-upload-progress" class="background-upload-progress" aria-live="polite"><i class="mdi mdi-loading"></i><span>Wgrywanie tła…</span></div>
+              <div class="welcome-card">
+                <div class="welcome-icon"><i class="mdi mdi-view-dashboard-plus-outline"></i></div>
+                <h2 data-i18n="Zacznij tworzyć pierwszy widok">Zacznij tworzyć pierwszy widok</h2>
+                <p data-i18n="Stwórz wizualny pulpit w trzech prostych krokach.">Stwórz wizualny pulpit w trzech prostych krokach.</p>
+                <ol>
+                  <li data-i18n="Wybierz obraz albo kolor tła.">Wybierz obraz albo kolor tła.</li>
+                  <li data-i18n="Otwórz Integracje i dodaj encję.">Otwórz Integracje i dodaj encję.</li>
+                  <li data-i18n="Użyj Edytuj, aby ustawić i ostylować marker.">Użyj Edytuj, aby ustawić i ostylować marker.</li>
+                </ol>
+                <div class="welcome-actions">
+                  <button id="empty-upload" class="primary" data-i18n="Wgraj obraz"><i class="mdi mdi-image-plus-outline"></i> Wgraj obraz</button>
+                  <label class="welcome-color"><span data-i18n="Kolor tła">Kolor tła</span><input id="empty-background-color" type="color" value="#0d2838" aria-label="Kolor tła"></label>
+                  <button id="empty-color-start" data-i18n="Zacznij z kolorem"><i class="mdi mdi-palette-outline"></i> Zacznij z kolorem</button>
+                </div>
+              </div>
+              <div class="empty-entities-message">
+                <div class="welcome-icon"><i class="mdi mdi-puzzle-plus-outline"></i></div>
+                <h2 data-i18n="Dodaj pierwszą encję">Dodaj pierwszą encję</h2>
+                <p data-i18n="Otwórz menu Integracje u góry i wybierz encję, którą chcesz umieścić na tym widoku.">Otwórz menu Integracje u góry i wybierz encję, którą chcesz umieścić na tym widoku.</p>
+                <button id="empty-open-integrations" class="primary" data-i18n="Otwórz integracje"><i class="mdi mdi-puzzle-outline"></i> Otwórz integracje</button>
+              </div>
             </div>
             <div id="markers" class="markers"></div>
             <div id="selection" class="selection"><i data-handle="nw"></i><i data-handle="ne"></i><i data-handle="sw"></i><i data-handle="se"></i></div>
@@ -82,7 +113,7 @@
         <button id="paste-style" class="editor-icon-button" title="Wklej styl" aria-label="Wklej styl"><i class="mdi mdi-content-paste"></i></button>
         <button id="remove-marker" class="editor-icon-button danger" title="Usuń z widoku" aria-label="Usuń z widoku"><i class="mdi mdi-delete-outline"></i></button>
         <button id="editor-close" class="editor-icon-button" title="Zamknij" aria-label="Zamknij"><i class="mdi mdi-close"></i></button>
-        <span class="editor-version" title="Wersja aplikacji HA Views">v0.3.0-b26</span>
+        <span class="editor-version" title="HA Views app version">v0.3.0-b55</span>
       </div>
     </div>
     <div class="editor-tabs">
@@ -123,6 +154,6 @@
   </div>
 
   <div id="toast" class="toast"></div>
-  <script type="module" src="rewrite-assets/app.js?v=20260915-36"></script>
+  <script type="module" src="rewrite-assets/app.js?v=20260915-65"></script>
 </body>
 </html>
