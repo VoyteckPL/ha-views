@@ -6,7 +6,7 @@ Create polished, interactive visual dashboards for Home Assistant on any backgro
 
 HA Views lets you place Home Assistant entities as fully configurable **Badge** and **Gauge** markers. A single saved layout remains responsive across desktop, laptop and mobile devices.
 
-![Overview](docs/screenshots/overview.webp)
+![Overview](docs/screenshots/overview.png)
 
 ## Highlights
 
