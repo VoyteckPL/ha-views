@@ -2,5 +2,3 @@ build_from:
   aarch64: "ghcr.io/home-assistant/aarch64-base:3.22"
   amd64: "ghcr.io/home-assistant/amd64-base:3.22"
   armv7: "ghcr.io/home-assistant/armv7-base:3.22"
-
-[executed on device: C-PF5FZ66N (cc3bcbfb-8939-4cbf-862b-09938aa4fa40)]
