@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.3.0-beta.26 — English interface
+
+### English
+
+- Added an English / Polski selector in the top toolbar.
+- English is the default for new installations; the selection is saved with the dashboard.
+
+### Polski
+
+- Dodano przełącznik English / Polski w górnym pasku.
+- Angielski jest domyślny przy nowej instalacji, a wybór jest zapisywany z pulpitem.
+
 ## 0.3.0-beta.25 — Public test release
 
 ### English
