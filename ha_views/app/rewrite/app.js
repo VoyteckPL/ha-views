@@ -83,7 +83,7 @@ const els = {
   selection: $('#selection'), editor: $('#editor'), editorTitle: $('#editor-title'), editorEntity: $('#editor-entity'), editorIntegration: $('#editor-integration'), editorIntegrationIcon: $('#editor-integration-icon'),
   editorContent: $('#editor-content'), editorStatus: $('#editor-status'), toast: $('#toast'), connection: $('#connection'),
   confirmBox: $('#app-confirm'), confirmTitle: $('#app-confirm-title'), confirmMessage: $('#app-confirm-message'), confirmInput: $('#app-confirm-input'), confirmCancel: $('#app-confirm-cancel'), confirmOk: $('#app-confirm-ok'), language: $('#language-select'),
-  editToggle: $('#edit-toggle'), editMenu: $('#edit-menu'), settingsToggle: $('#settings-toggle'), settingsMenu: $('#settings-menu'), gridStatus: $('#grid-status'), gridSize: $('#grid-size'), gridSizeValue: $('#grid-size-value'), bgUploadProgress: $('#background-upload-progress'), solidCanvasRatio: $('#solid-canvas-ratio'), bgColorToggle: $('#background-color-toggle'), bgRgbOpen: $('#background-rgb-open'), bgSelect: $('#background-select'), bgColor: $('#background-color'), bgDelete: $('#background-delete'),
+  editToggle: $('#edit-toggle'), editMenu: $('#edit-menu'), settingsToggle: $('#settings-toggle'), settingsMenu: $('#settings-menu'), gridStatus: $('#grid-status'), gridSizeButtons: $('[data-grid-size]'), bgUploadProgress: $('#background-upload-progress'), solidCanvasRatio: $('#solid-canvas-ratio'), bgColorToggle: $('#background-color-toggle'), bgRgbOpen: $('#background-rgb-open'), bgSelect: $('#background-select'), bgColor: $('#background-color'), bgDelete: $('#background-delete'),
   bgFile: $('#background-file'), bgStatus: $('#background-status'), bgManage: $('#background-manage'), backgroundBar: $('#background-bar'), emptyColor: $('#empty-background-color'), emptyColorStart: $('#empty-color-start'), emptyOpenIntegrations: $('#empty-open-integrations'), addedList: $('#added-list'),
   bgTransformToggle: $('#background-transform-toggle'), bgTransformPanel: $('#background-transform-panel'), bgMode: $('#background-mode'), bgScale: $('#background-scale'), bgX: $('#background-x'), bgY: $('#background-y'), bgScaleValue: $('#background-scale-value'), bgXValue: $('#background-x-value'), bgYValue: $('#background-y-value'),
   addedCount: $('#added-count'), integrationList: $('#integration-list'), snapToggle: $('#snap-toggle'),
@@ -94,7 +94,7 @@ const els = {
 };
 
 const badgeDefaults = () => ({
-  width: 112, height: 62, showLabel: true, showValue: true, showBackground: true, showBorder: true,
+  width: 112, height: 62, markerScale: 1, showLabel: true, showValue: true, showBackground: true, showBorder: true,
   labelColor: '#9BC1D8', labelOpacity: 1, labelScale: 1, labelY: 0,
   valueColor: '#FFFFFF', valueOpacity: 1, valueScale: 1, valueY: 0,
   backgroundColor: '#03101A', backgroundOpacity: .76,
@@ -103,7 +103,7 @@ const badgeDefaults = () => ({
   iconColor: '#9BC1D8', iconOnColor: '#20B9E7', iconOffColor: '#8AA2AF', iconUnavailableColor: '#FF6374'
 });
 const gaugeDefaults = () => ({
-  width: 185, height: 108, min: 0, max: 4000, thickness: 10,
+  width: 185, height: 108, markerScale: 1, min: 0, max: 4000, thickness: 10,
   trackColor: '#294657', progressColor: '#21BCEB', gaugeScale: 1, gaugeY: 0, startAngle: -180, endAngle: 0,
   showTicks: false, tickStep: 500, tickOffset: 4, tickLength: 7, tickWidth: 1, tickColor: '#8FDFFF', tickOpacity: .8,
   showTickLabels: false, tickLabelStep: 1000, tickFontSize: 8, tickFontFamily: 'Inter', tickLabelColor: '#9BC1D8', tickLabelOffset: 12,
@@ -305,8 +305,10 @@ function applySnapUi() {
   const step = clamp(model.settings?.snapStep || 1, 1, 10);
   els.scene?.style.setProperty('--grid-minor', `${step}%`);
   els.scene?.style.setProperty('--grid-major', `${step * 5}%`);
-  if (els.gridSize) els.gridSize.value = String(step);
-  if (els.gridSizeValue) els.gridSizeValue.textContent = String(step);
+  els.gridSizeButtons?.forEach(button => {
+    const active = Number(button.dataset.gridSize) === step;
+    button.classList.toggle('active', active); button.setAttribute('aria-pressed', String(active));
+  });
 }
 function closeCompactMenus() {
   els.settingsMenu?.classList.remove('open'); els.settingsToggle?.classList.remove('active');
@@ -325,33 +327,10 @@ function mobileWidePanorama() {
 }
 // Mobile keeps the readable marker scale. Only markers which truly collide
 // are moved apart temporarily on the Y axis; saved desktop positions stay intact.
-function updateMobileMarkerLayout(renderedWidth, renderedHeight) {
+function updateMobileMarkerLayout() {
+  // Never alter saved marker coordinates for the mobile layout.
+  // It keeps desktop, View and Edit positions identical.
   mobileLayoutY.clear();
-  if (!mobileView() || editMode || !renderedWidth || !renderedHeight) return;
-  const placed = [];
-  const markers = Object.values(model.entities || {}).map(marker => {
-    const style = marker.style || {};
-    return {
-      marker,
-      x: Number(marker.xPercent || 0) * renderedWidth / 100,
-      y: Number(marker.yPercent || 0) * renderedHeight / 100,
-      width: Number(style.width || 112) * sceneScale,
-      height: Number(style.height || 62) * sceneScale
-    };
-  }).sort((a, b) => a.y - b.y);
-
-  for (const item of markers) {
-    let y = item.y;
-    for (const previous of placed) {
-      const overlapsHorizontally = Math.abs(item.x - previous.x) < (item.width + previous.width) / 2;
-      if (!overlapsHorizontally) continue;
-      const minimumY = previous.y + previous.height / 2 + item.height / 2 + 5;
-      if (y < minimumY) y = minimumY;
-    }
-    y = Math.min(y, renderedHeight - item.height / 2 - 4);
-    mobileLayoutY.set(item.marker.entityId, y * 100 / renderedHeight);
-    placed.push({ ...item, y });
-  }
 }
 function updateSceneGeometry() {
   const hasImage = !els.image.hidden && els.image.naturalWidth > 0 && els.image.naturalHeight > 0;
@@ -518,7 +497,7 @@ function normalizedStyle(type, raw = {}) {
     nameScale: 'labelScale', stateScale: 'valueScale', gaugeMin: 'min', gaugeMax: 'max'
   };
   Object.entries(raw || {}).forEach(([key, value]) => { const target = aliases[key] || key; if (target in base && value !== undefined && value !== null) base[target] = value; });
-  ['width','height','borderWidth','radius','labelScale','valueScale','labelY','valueY','iconSize','iconX','iconY','iconOpacity'].forEach(k => base[k] = numberOr(base[k], type === 'gauge' ? gaugeDefaults()[k] : badgeDefaults()[k]));
+  ['width','height','markerScale','borderWidth','radius','labelScale','valueScale','labelY','valueY','iconSize','iconX','iconY','iconOpacity'].forEach(k => base[k] = numberOr(base[k], type === 'gauge' ? gaugeDefaults()[k] : badgeDefaults()[k]));
   if (type === 'gauge') ['min','max','thickness','percentScale','percentY'].forEach(k => base[k] = numberOr(base[k], gaugeDefaults()[k]));
   return base;
 }
@@ -673,6 +652,7 @@ function applyMarkerStyle(node, marker) {
   const displayY = mobileLayoutY.get(marker.entityId) ?? marker.yPercent;
   Object.assign(node.style, {
     left: `${marker.xPercent}%`, top: `${displayY}%`, width: `${s.width}px`, height: `${s.height}px`,
+    transform: `translate(-50%,-50%) scale(${sceneScale * clamp(s.markerScale, .4, 2.5)})`,
     background: s.showBackground ? rgba(s.backgroundColor, s.backgroundOpacity) : 'transparent',
     border: s.showBorder ? `${s.borderWidth}px solid ${rgba(s.borderColor, s.borderOpacity)}` : '0 solid transparent',
     borderRadius: `${s.radius}px`
@@ -956,7 +936,10 @@ function editorMarkup(marker) {
   const label = section('Nazwa', control('Pokaż','style.showLabel','checkbox',s.showLabel) + control('Kolor','style.labelColor','color',s.labelColor) + control('Przezrocz.','style.labelOpacity','range',s.labelOpacity,{min:0,max:1,step:.01}) + control('Rozmiar','style.labelScale','range',s.labelScale,{min:.5,max:3,step:.05}) + control('Pozycja','style.labelY','range',s.labelY,{min:-100,max:100,step:1,suffix:'px'}));
   const value = section('Stan', control('Pokaż','style.showValue','checkbox',s.showValue) + control('Kolor','style.valueColor','color',s.valueColor) + control('Przezrocz.','style.valueOpacity','range',s.valueOpacity,{min:0,max:1,step:.01}) + control('Rozmiar','style.valueScale','range',s.valueScale,{min:.5,max:3,step:.05}) + control('Pozycja','style.valueY','range',s.valueY,{min:-100,max:100,step:1,suffix:'px'}));
   const minimumSize = marker.type === 'gauge' ? { width: 44, height: 28 } : { width: 36, height: 24 };
-  const size = section('Rozmiar', control('Szerokość','style.width','range',s.width,{min:minimumSize.width,max:500,step:1,suffix:'px',integer:true}) + control('Wysokość','style.height','range',s.height,{min:minimumSize.height,max:350,step:1,suffix:'px',integer:true}));
+  const size = section('Rozmiar',
+    control('Skala','style.markerScale','range',s.markerScale,{min:.4,max:2.5,step:.05,suffix:'×'}) +
+    control('Szerokość','style.width','range',s.width,{min:minimumSize.width,max:500,step:1,suffix:'px',integer:true}) +
+    control('Wysokość','style.height','range',s.height,{min:minimumSize.height,max:350,step:1,suffix:'px',integer:true}));
   const background = section('Tło', control('Pokaż','style.showBackground','checkbox',s.showBackground) + control('Kolor','style.backgroundColor','color',s.backgroundColor) + control('Przezrocz.','style.backgroundOpacity','range',s.backgroundOpacity,{min:0,max:1,step:.01}));
   const border = section('Ramka', control('Pokaż','style.showBorder','checkbox',s.showBorder) + control('Kolor','style.borderColor','color',s.borderColor) + control('Przezrocz.','style.borderOpacity','range',s.borderOpacity,{min:0,max:1,step:.01}) + control('Grubość','style.borderWidth','range',s.borderWidth,{min:0,max:12,step:1,suffix:'px'}) + control('Zaokrąglenie','style.radius','range',s.radius,{min:0,max:100,step:1,suffix:'px'}));
   const mdiList = `<datalist id="mdi-icon-list">${ICON_CHOICES.slice(1).map(([name,label]) => `<option value="${name}">${label}</option>`).join('')}</datalist>`;
@@ -1218,7 +1201,9 @@ function bindEvents() {
   els.confirmInput?.addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); closeAppConfirm(true); } });
   els.editToggle.addEventListener('click', () => { closeMoreInfo(); editMode = !editMode; els.body.classList.toggle('editing', editMode); els.editToggle.classList.toggle('active', editMode); els.editToggle.setAttribute('aria-pressed', String(editMode)); els.editToggle.title = translateValue('Edytuj widok'); els.editToggle.setAttribute('aria-label', els.editToggle.title); if (editMode) { closeCompactMenus(); els.editMenu?.classList.add('open'); } else { closeEditor(); closeCompactMenus(); els.bgTransformPanel?.classList.remove('open'); els.bgTransformToggle?.classList.remove('active'); } requestAnimationFrame(() => { applyBackgroundTransform(); updateSceneGeometry(); }); });
   els.snapToggle.addEventListener('click', () => { model.settings.snapEnabled = !model.settings.snapEnabled; applySnapUi(); scheduleSave(true); notify(model.settings.snapEnabled ? 'Przyciąganie do siatki włączone' : 'Przyciąganie do siatki wyłączone'); });
-  els.gridSize?.addEventListener('input', () => { model.settings.snapStep = clamp(els.gridSize.value, 1, 20); applySnapUi(); scheduleSave(true); });
+  els.gridSizeButtons?.forEach(button => button.addEventListener('click', () => {
+    model.settings.snapStep = Number(button.dataset.gridSize) || 1; applySnapUi(); scheduleSave(true);
+  }));
   els.solidCanvasRatio?.addEventListener('change', () => { const view = activeSceneView(); if (!view) return; view.solidCanvasRatio = clamp(els.solidCanvasRatio.value, .25, 4); updateSceneGeometry(); scheduleSave(true); });
   els.bgManage.addEventListener('click', () => { const open = !els.backgroundBar.classList.contains('open'); if (open) { closeEditor(); closeMoreInfo(); } els.backgroundBar.classList.toggle('open', open); els.bgManage.classList.toggle('active', open); if (open) openBackgroundMenu(); else { els.backgroundBar.classList.remove('onboarding'); els.bgStatus.textContent = ''; } });
   els.bgTransformToggle?.addEventListener('click', () => { els.bgTransformPanel.classList.toggle('open'); els.bgTransformToggle.classList.toggle('active', els.bgTransformPanel.classList.contains('open')); syncBackgroundTransformControls(); });
