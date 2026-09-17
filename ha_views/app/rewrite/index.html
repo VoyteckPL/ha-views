@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>HA Views</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260915-65">
+  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260917-300">
 </head>
 <body>
   <header class="topbar">
@@ -43,7 +43,7 @@
         <div class="language-row"><i class="mdi mdi-translate"></i><span>Język</span><select id="language-select" title="Language / Język" aria-label="Language / Język"><option value="en">EN</option><option value="pl">PL</option></select></div>
       </div>
       <button id="settings-toggle" class="icon-action" title="Ustawienia" aria-label="Ustawienia"><i class="mdi mdi-cog-outline"></i></button>
-      <div id="edit-menu" class="compact-menu edit-menu"><button id="snap-toggle" class="menu-action" title="Siatka włączona" aria-label="Siatka włączona"><i class="mdi mdi-grid"></i><span>Siatka</span><b id="grid-status">ON</b></button><div class="grid-size-row"><i class="mdi mdi-grid-large"></i><span>Wielkość siatki</span><input id="grid-size" type="range" min="1" max="20" step="1" value="1" aria-label="Wielkość siatki"><output id="grid-size-value">1</output></div></div>
+      <div id="edit-menu" class="compact-menu edit-menu"><button id="snap-toggle" class="menu-action" title="Siatka włączona" aria-label="Siatka włączona"><i class="mdi mdi-grid"></i><span>Siatka</span><b id="grid-status">ON</b></button><div class="grid-size-row"><i class="mdi mdi-grid-large" title="Wielkość siatki" aria-label="Wielkość siatki"></i><div class="grid-presets" role="group" aria-label="Wielkość siatki"><button type="button" class="grid-preset active" data-grid-step="1">S</button><button type="button" class="grid-preset" data-grid-step="5">M</button><button type="button" class="grid-preset" data-grid-step="10">L</button></div></div></div>
       <button id="edit-toggle" class="icon-action primary" title="Edytuj widok" aria-label="Edytuj widok"><i class="mdi mdi-pencil-outline"></i></button>
     </div>
   </header>
@@ -93,6 +93,7 @@
         </article>
         <article class="panel">
           <div class="panel-head"><div><h2>Integracje Home Assistant</h2><p>Tylko aktywne integracje widoczne w HA</p></div><button id="reload-integrations">Odśwież</button></div>
+          <label class="integration-search" for="integration-search"><i class="mdi mdi-magnify"></i><input id="integration-search" type="search" autocomplete="off" placeholder="Szukaj nazwy lub entity_id" aria-label="Szukaj encji po nazwie lub entity_id"></label>
           <div id="integration-list" class="integration-list"></div>
         </article>
       </div>
@@ -154,6 +155,6 @@
   </div>
 
   <div id="toast" class="toast"></div>
-  <script type="module" src="rewrite-assets/app.js?v=20260915-65"></script>
+  <script type="module" src="rewrite-assets/app.js?v=20260917-300"></script>
 </body>
 </html>
