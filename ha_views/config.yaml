@@ -3,7 +3,7 @@ version: "0.3.0"
 slug: "ha_views"
 description: "Visual Home Assistant dashboards on any background. / Wizualne pulpity Home Assistant na dowolnym tle."
 url: "https://github.com/VoyteckPL/ha-views-beta"
-stage: stable
+stage: experimental
 arch:
   - amd64
   - aarch64
