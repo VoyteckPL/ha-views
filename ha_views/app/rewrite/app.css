@@ -411,3 +411,23 @@ main{width:min(1600px,calc(100% - 32px));margin:20px auto 40px}.view{display:non
 
 /* beta.46 — unambiguous Edit mode state */
 #edit-toggle{transition:background .16s ease,border-color .16s ease,color .16s ease,box-shadow .16s ease}#edit-toggle[aria-pressed="true"]{background:linear-gradient(135deg,#0ba5d0,#08779f)!important;border-color:#79e8ff!important;color:#fff!important;box-shadow:0 0 0 2px rgba(93,224,255,.28),0 8px 22px rgba(15,181,229,.28)!important}#edit-toggle[aria-pressed="false"]{background:#102b3b;color:#b6d1dd}
+
+
+/* beta.63 — suppress transient editor save status */
+#editor-status{display:none!important}
+
+
+/* beta.64 — discrete grid-size buttons */
+.grid-size-row{grid-template-columns:22px auto!important;justify-content:start}
+.grid-presets{display:grid;grid-template-columns:repeat(3,25px);gap:4px}
+.grid-preset{display:grid;place-items:center;width:25px;height:25px;padding:0;border-radius:6px;font-size:9px;font-weight:850}
+.grid-preset.active{border-color:#45d5ff;background:#087da5;color:#fff;box-shadow:0 0 0 1px rgba(69,213,255,.2)}
+
+
+/* beta.72 — minimal entity search */
+.integration-search{display:grid;grid-template-columns:22px minmax(0,1fr);align-items:center;gap:7px;margin:8px 12px 0;padding:0 9px;height:34px;border:1px solid var(--line);border-radius:9px;background:#0d2635}
+.integration-search i{color:#72d9f8;font-size:16px;text-align:center}
+.integration-search input{min-width:0;width:100%;height:30px;padding:0;border:0;background:transparent;color:#e4f7ff;font:inherit;font-size:11px;outline:0}
+.integration-search input::placeholder{color:#7696a5}
+.search-status{padding:8px 2px;color:#86b7c9;font-size:10px}
+.search-result{margin-bottom:6px}
