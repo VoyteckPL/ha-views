@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.3.0 — Stable release
+
+### English
+
+- Stable release of HA Views with responsive desktop and mobile dashboards.
+- Improved mobile editor: full-height scene creation, compact S/M/L grid selection and stable marker placement between Edit and View.
+- Per-marker content scaling for Badge and Gauge, with a centred Gauge indicator.
+- Optional “Tap in View: Toggle ON/OFF” action for supported switch, light, fan and input_boolean entities; More Info remains the default.
+- Compact integration entity search by entity ID or entity name.
+- Safer updates: frontend files refresh after an add-on update, while view backgrounds stay cached in full resolution for fast switching.
+
+### Polski
+
+- Stabilne wydanie HA Views z responsywnymi pulpitami na komputerze i telefonie.
+- Ulepszony edytor mobilny: pełnoekranowe tworzenie widoku, wybór siatki S/M/L i stałe położenie markerów między trybami Edycja i Widok.
+- Skalowanie zawartości pojedynczego Badge lub Gauge oraz wyśrodkowany wskaźnik Gauge.
+- Opcjonalne działanie „Tap in View: Toggle ON/OFF” dla encji switch, light, fan i input_boolean; domyślnie nadal otwiera się More Info.
+- Kompaktowe wyszukiwanie encji w Integracjach po nazwie lub entity_id.
+- Bezpieczniejsze aktualizacje: pliki aplikacji odświeżają się po aktualizacji dodatku, a tła widoków pozostają w cache w pełnej rozdzielczości dla szybkiego przełączania.
+
 ## 0.3.0-beta.26 — English interface
 
 ### English
