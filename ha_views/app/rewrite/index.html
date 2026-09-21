@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>HA Views</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260921-301">
+  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260921-88">
 </head>
 <body>
   <header class="topbar">
@@ -118,8 +118,10 @@
       </div>
     </div>
     <div class="editor-tabs">
-      <button data-editor-tab="badge" class="active"><i class="mdi mdi-card-text-outline"></i><span>Badge</span></button>
-      <button data-editor-tab="gauge"><i class="mdi mdi-gauge"></i><span>Gauge</span></button>
+      <button data-editor-tab="badge" class="active" title="Badge" aria-label="Badge"><i class="mdi mdi-card-text-outline"></i></button>
+      <button data-editor-tab="gauge" title="Gauge" aria-label="Gauge"><i class="mdi mdi-gauge"></i></button>
+      <button data-editor-tab="icon" title="Ikona" aria-label="Ikona"><i class="mdi mdi-shape-outline"></i></button>
+      <button data-editor-tab="horseshoe" title="Podkowa" aria-label="Podkowa"><i class="mdi mdi-horseshoe"></i></button>
     </div>
     <div id="editor-content" class="editor-content"></div>
   </aside>
@@ -155,6 +157,6 @@
   </div>
 
   <div id="toast" class="toast"></div>
-  <script type="module" src="rewrite-assets/app.js?v=20260921-301"></script>
+  <script type="module" src="rewrite-assets/app.js?v=20260921-88"></script>
 </body>
 </html>
