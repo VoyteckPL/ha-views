@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.3.2
+
+### English
+
+- Added Icon and Horseshoe marker types; the marker-type selector now uses four icons in one row.
+- Refined Horseshoe defaults: clean arc without ticks, approved text layout and independent arc size.
+- Fixed smooth mobile marker sliders, label controls and icon centring.
+- Icon X/Y offsets now work correctly.
+
+### Polski
+
+- Dodano typy markerów Ikona i Podkowa; wybór typu ma cztery ikony w jednym rzędzie.
+- Dopracowano domyślne ustawienia Podkowy: łuk bez podziałki, zatwierdzony układ tekstów oraz niezależny rozmiar łuku.
+- Naprawiono płynne suwaki markerów na telefonie, regulację nazwy i centrowanie ikony.
+- Przesunięcia ikony X/Y działają poprawnie.
+
 ## 0.3.1
 
 ### English
