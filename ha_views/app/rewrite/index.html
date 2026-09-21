@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>HA Views</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260917-300">
+  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260921-301">
 </head>
 <body>
   <header class="topbar">
@@ -30,7 +30,7 @@
               <button type="button" data-bg-colour="#FF6374" style="background:#FF6374"></button><button type="button" data-bg-colour="#E63946" style="background:#E63946"></button><button type="button" data-bg-colour="#B66DFF" style="background:#B66DFF"></button><button type="button" data-bg-colour="#7C4DFF" style="background:#7C4DFF"></button><button type="button" data-bg-colour="#EC4899" style="background:#EC4899"></button><button type="button" data-bg-colour="#8B5E3C" style="background:#8B5E3C"></button>
             </div><button id="background-rgb-open" type="button" class="rgb-button">Własny kolor RGB…</button></div>
           </div>
-          <div class="background-tools"><button id="background-upload" class="background-icon" title="Wgraj obraz" aria-label="Wgraj obraz"><i class="mdi mdi-image-plus-outline"></i></button><button id="background-delete" class="background-icon danger" title="Usuń tło" aria-label="Usuń tło"><i class="mdi mdi-delete-outline"></i></button></div>
+          <div class="background-tools"><button id="background-upload" class="background-icon" title="Wgraj obraz" aria-label="Wgraj obraz"><i class="mdi mdi-image-plus-outline"></i></button><button id="background-download" class="background-icon" title="Pobierz tło" aria-label="Pobierz tło"><i class="mdi mdi-download-outline"></i></button><button id="background-delete" class="background-icon danger" title="Usuń tło" aria-label="Usuń tło"><i class="mdi mdi-delete-outline"></i></button></div>
           <input id="background-file" type="file" accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp" hidden>
           <span id="background-status"></span>
         </div>
@@ -66,7 +66,7 @@
                 </ol>
                 <div class="welcome-actions">
                   <button id="empty-upload" class="primary" data-i18n="Wgraj obraz"><i class="mdi mdi-image-plus-outline"></i> Wgraj obraz</button>
-                  <label class="welcome-color"><span data-i18n="Kolor tła">Kolor tła</span><input id="empty-background-color" type="color" value="#0d2838" aria-label="Kolor tła"></label>
+                  <div class="welcome-color color-picker"><span data-i18n="Kolor tła">Kolor tła</span><button id="empty-color-toggle" type="button" class="color-current" style="background:#0d2838" aria-label="Wybierz kolor"></button><input id="empty-background-color" class="color-native" type="color" value="#0d2838" aria-label="Kolor tła"><div id="empty-color-menu" class="color-menu"><div class="color-palette"><button type="button" data-empty-palette-color="#FFFFFF" style="background:#FFFFFF" aria-label="#FFFFFF"></button><button type="button" data-empty-palette-color="#DCE8EF" style="background:#DCE8EF" aria-label="#DCE8EF"></button><button type="button" data-empty-palette-color="#9BC1D8" style="background:#9BC1D8" aria-label="#9BC1D8"></button><button type="button" data-empty-palette-color="#607D8B" style="background:#607D8B" aria-label="#607D8B"></button><button type="button" data-empty-palette-color="#03101A" style="background:#03101A" aria-label="#03101A"></button><button type="button" data-empty-palette-color="#102A3A" style="background:#102A3A" aria-label="#102A3A"></button><button type="button" data-empty-palette-color="#20B9E7" style="background:#20B9E7" aria-label="#20B9E7"></button><button type="button" data-empty-palette-color="#147EA5" style="background:#147EA5" aria-label="#147EA5"></button><button type="button" data-empty-palette-color="#22D69B" style="background:#22D69B" aria-label="#22D69B"></button><button type="button" data-empty-palette-color="#39B86C" style="background:#39B86C" aria-label="#39B86C"></button><button type="button" data-empty-palette-color="#FFD166" style="background:#FFD166" aria-label="#FFD166"></button><button type="button" data-empty-palette-color="#F59E0B" style="background:#F59E0B" aria-label="#F59E0B"></button><button type="button" data-empty-palette-color="#FF6374" style="background:#FF6374" aria-label="#FF6374"></button><button type="button" data-empty-palette-color="#E63946" style="background:#E63946" aria-label="#E63946"></button><button type="button" data-empty-palette-color="#B66DFF" style="background:#B66DFF" aria-label="#B66DFF"></button><button type="button" data-empty-palette-color="#7C4DFF" style="background:#7C4DFF" aria-label="#7C4DFF"></button><button type="button" data-empty-palette-color="#EC4899" style="background:#EC4899" aria-label="#EC4899"></button><button type="button" data-empty-palette-color="#8B5E3C" style="background:#8B5E3C" aria-label="#8B5E3C"></button></div><button id="empty-rgb" type="button" class="rgb-button" data-i18n="Własny kolor RGB…">Własny kolor RGB…</button></div></div>
                   <button id="empty-color-start" data-i18n="Zacznij z kolorem"><i class="mdi mdi-palette-outline"></i> Zacznij z kolorem</button>
                 </div>
               </div>
@@ -155,6 +155,6 @@
   </div>
 
   <div id="toast" class="toast"></div>
-  <script type="module" src="rewrite-assets/app.js?v=20260917-300"></script>
+  <script type="module" src="rewrite-assets/app.js?v=20260921-301"></script>
 </body>
 </html>
