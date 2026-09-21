@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.3.1
+
+### English
+
+- Added a background download action in HA Views.
+- New mobile views start with a portrait 9:16 canvas; the first-view colour picker now matches the marker editor palette.
+- Improved touch recovery after an interrupted gesture or WebView resume, without resetting the zoom.
+- Integration search now loads all integrations, updates results while loading and excludes entities already on the active view.
+
+### Polski
+
+- Dodano pobieranie tła bezpośrednio z HA Views.
+- Nowy widok na telefonie startuje w formacie 9:16; wybór koloru w kreatorze jest taki sam jak w edytorze markera.
+- Poprawiono odzyskiwanie obsługi dotyku po przerwanym geście lub powrocie WebView, bez resetu zoomu.
+- Wyszukiwarka Integracji przeszukuje wszystkie integracje, pokazuje wyniki podczas ładowania i pomija encje już dodane do aktywnego widoku.
+
 ## 0.3.0 — Stable release
 
 ### English
