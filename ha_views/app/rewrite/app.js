@@ -116,6 +116,18 @@ const gaugeDefaults = () => ({
   showIcon: false, iconSize: 26, iconX: 0, iconY: 0, iconOpacity: 1,
   iconColor: '#9BC1D8', iconOnColor: '#20B9E7', iconOffColor: '#8AA2AF', iconUnavailableColor: '#FF6374'
 });
+
+const iconDefaults = () => ({ ...badgeDefaults(), width: 56, height: 56, showLabel: false, showValue: false, showBackground: true, backgroundOpacity: .76, showBorder: true, radius: 16, showIcon: true, iconSize: 32, iconX: 0, iconY: 0 });
+const horseshoeDefaults = () => ({ ...gaugeDefaults(), width: 150, height: 132, showLabel: true, showValue: true, showPercent: true, showTicks: false, startAngle: 135, endAngle: 405, gaugeScale: 1, gaugeY: 0, valueScale: .65, valueY: -19, percentScale: .8, percentY: -8 });
+const isGaugeType = type => type === 'gauge' || type === 'horseshoe';
+const markerStyleDefaults = type => type === 'icon' ? iconDefaults() : type === 'horseshoe' ? horseshoeDefaults() : type === 'gauge' ? gaugeDefaults() : badgeDefaults();
+const markerTypeLabel = type => ({ badge:'Badge', gauge:'Gauge', icon:'Ikona', horseshoe:'Podkowa' }[type] || 'Badge');
+const gaugeVisualTransform = (marker, style) => {
+  const horseshoe = marker.type === 'horseshoe';
+  const y = (horseshoe ? -35 : 0) + (Number(style.gaugeY) || 0);
+  const scale = (horseshoe ? .92 : 1) * (Number(style.gaugeScale) || 1);
+  return `translateY(${y}px) scale(${scale})`;
+};
 const COLOR_PALETTE = ['#FFFFFF','#DCE8EF','#9BC1D8','#607D8B','#03101A','#102A3A','#20B9E7','#147EA5','#22D69B','#39B86C','#FFD166','#F59E0B','#FF6374','#E63946','#B66DFF','#7C4DFF','#EC4899','#8B5E3C'];
 const ICON_CHOICES = [['','Automatyczna'],['mdi:weather-rainy','Deszcz'],['mdi:weather-pouring','Ulewa'],['mdi:weather-sunny','Słońce'],['mdi:water','Woda'],['mdi:water-off','Brak wody'],['mdi:water-percent','Wilgotność'],['mdi:pool','Basen'],['mdi:heat-pump','Pompa ciepła'],['mdi:pump','Pompa'],['mdi:solar-power','Fotowoltaika'],['mdi:flash','Energia'],['mdi:home-lightning-bolt','Energia domu'],['mdi:thermometer','Temperatura'],['mdi:fan','Wentylator'],['mdi:power','Zasilanie'],['mdi:toggle-switch','Włączone'],['mdi:toggle-switch-off','Wyłączone'],['mdi:door-open','Drzwi otwarte'],['mdi:door-closed','Drzwi zamknięte'],['mdi:window-open','Okno otwarte'],['mdi:window-closed','Okno zamknięte'],['mdi:motion-sensor','Ruch'],['mdi:smoke-detector','Dym'],['mdi:alert-circle','Alarm'],['mdi:check-circle','OK'],['mdi:close-circle','Wyłączone'],['mdi:gauge','Wskaźnik'],['mdi:lightbulb','Światło'],['mdi:wifi','Sieć']];
 const freshMarker = (entity, integration) => ({
@@ -515,16 +527,28 @@ async function queueSave() {
 function hexKey(entityId) { return `dyn_${[...entityId].map(c => c.charCodeAt(0).toString(16).padStart(2, '0')).join('')}`; }
 function numberOr(value, fallback) { const n = Number(value); return Number.isFinite(n) ? n : fallback; }
 function normalizedStyle(type, raw = {}) {
-  const base = type === 'gauge' ? gaugeDefaults() : badgeDefaults();
+  const base = markerStyleDefaults(type);
   const aliases = {
     borderEnabled: 'showBorder', backgroundEnabled: 'showBackground', radiusPx: 'radius', borderWidthPx: 'borderWidth',
     bgColor: 'backgroundColor', bgOpacity: 'backgroundOpacity', nameColor: 'labelColor', stateColor: 'valueColor',
     nameScale: 'labelScale', stateScale: 'valueScale', gaugeMin: 'min', gaugeMax: 'max'
   };
   Object.entries(raw || {}).forEach(([key, value]) => { const target = aliases[key] || key; if (target in base && value !== undefined && value !== null) base[target] = value; });
-  ['width','height','contentScale','borderWidth','radius','labelScale','valueScale','labelY','valueY','iconSize','iconX','iconY','iconOpacity'].forEach(k => base[k] = numberOr(base[k], type === 'gauge' ? gaugeDefaults()[k] : badgeDefaults()[k]));
-  if (type === 'gauge') ['min','max','thickness','percentScale','percentY'].forEach(k => base[k] = numberOr(base[k], gaugeDefaults()[k]));
+  ['width','height','contentScale','borderWidth','radius','labelScale','valueScale','labelY','valueY','iconSize','iconX','iconY','iconOpacity'].forEach(k => base[k] = numberOr(base[k], markerStyleDefaults(type)[k]));
+  if (isGaugeType(type)) ['min','max','thickness','percentScale','percentY'].forEach(k => base[k] = numberOr(base[k], gaugeDefaults()[k]));
   return base;
+}
+function migrateHorseshoeBaseline() {
+  if (model.settings?.horseshoeBaselineV1) return false;
+  let changed = false;
+  Object.values(model.views || {}).flatMap(view => Object.values(view.entities || {})).forEach(marker => {
+    if (marker.type !== 'horseshoe') return;
+    marker.style.gaugeY = numberOr(marker.style.gaugeY, 0) + 35;
+    marker.style.gaugeScale = numberOr(marker.style.gaugeScale, 1) / .92;
+    changed = true;
+  });
+  model.settings.horseshoeBaselineV1 = true;
+  return changed;
 }
 function migrateGaugeZeroOffsets() {
   if (model.settings?.gaugeZeroOffsetsV2) return false;
@@ -642,14 +666,14 @@ function gaugeScaleMarkup(marker, s, cx, cy, radius, startAngle, sweep) {
 }
 function markerHtml(marker) {
   const s = marker.style, formatted = formatState(marker), fullValue = `${formatted.value}${formatted.unit ? ` ${formatted.unit}` : ''}`, icon = iconMarkup(marker);
-  if (marker.type === 'gauge') {
+  if (isGaugeType(marker.type)) {
     const n = Number(stateCache[marker.entityId]?.state), span = Number(s.max) - Number(s.min) || 1;
     const percent = Number.isFinite(n) ? clamp(((n - Number(s.min)) / span) * 100, 0, 100) : 0;
     const cx = 100, cy = 90, radius = 70, start = Number(s.startAngle), rawSweep = Number(s.endAngle) - start;
     let sweep = rawSweep; while (sweep <= 0) sweep += 360; sweep = Math.min(sweep, 359.9);
     const path = gaugeArcPath(cx, cy, radius, start, start + sweep), gradientId = `gauge-gradient-${String(marker.id).replace(/[^a-z0-9_-]/gi, '')}`;
     const stroke = s.useGradient ? `url(#${gradientId})` : s.progressColor;
-    return `<svg class="gauge-svg" viewBox="0 0 200 110" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="${gradientId}" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="${escapeHtml(s.gradientStart)}"/><stop offset="100%" stop-color="${escapeHtml(s.gradientEnd)}"/></linearGradient></defs><g class="gauge-visual" style="transform:translateY(${Number(s.gaugeY)}px) scale(${Number(s.gaugeScale)});transform-origin:${cx}px ${cy}px"><path class="gauge-track" pathLength="100" d="${path}"/><path class="gauge-value" pathLength="100" d="${path}" style="stroke:${escapeHtml(stroke)};stroke-dasharray:${percent} 100"/>${gaugeScaleMarkup(marker,s,cx,cy,radius,start,sweep)}</g></svg>${icon}${s.showLabel ? `<span class="label">${escapeHtml(marker.displayName)}</span>` : ''}${s.showValue ? `<span class="value">${escapeHtml(fullValue)}</span>` : ''}${s.showPercent ? `<span class="percent">${Math.round(percent)}%</span>` : ''}`;
+    return `<svg class="gauge-svg" viewBox="0 0 200 110" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="${gradientId}" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="${escapeHtml(s.gradientStart)}"/><stop offset="100%" stop-color="${escapeHtml(s.gradientEnd)}"/></linearGradient></defs><g class="gauge-visual" style="transform:${gaugeVisualTransform(marker, s)};transform-origin:${cx}px ${cy}px"><path class="gauge-track" pathLength="100" d="${path}"/><path class="gauge-value" pathLength="100" d="${path}" style="stroke:${escapeHtml(stroke)};stroke-dasharray:${percent} 100"/>${gaugeScaleMarkup(marker,s,cx,cy,radius,start,sweep)}</g></svg>${icon}${s.showLabel ? `<span class="label">${escapeHtml(marker.displayName)}</span>` : ''}${s.showValue ? `<span class="value">${escapeHtml(fullValue)}</span>` : ''}${s.showPercent ? `<span class="percent">${Math.round(percent)}%</span>` : ''}`;
   }
   return `${icon}${s.showLabel ? `<span class="label">${escapeHtml(marker.displayName)}</span>` : ''}${s.showValue ? `<span class="value">${escapeHtml(fullValue)}</span>` : ''}`;
 }
@@ -682,25 +706,26 @@ function applyMarkerStyle(node, marker) {
     borderRadius: `${s.radius}px`
   });
   const label = $('.label', node), value = $('.value', node);
-  if (label) Object.assign(label.style, { color: rgba(s.labelColor, s.labelOpacity), fontSize: `${12 * s.labelScale * contentScale}px` });
-  if (value) Object.assign(value.style, { color: rgba(s.valueColor, s.valueOpacity), fontSize: `${22 * s.valueScale * contentScale}px` });
-  if (marker.type === 'badge') {
+  if (label) Object.assign(label.style, { color: s.labelColor, opacity: clamp(s.labelOpacity, 0, 1), fontSize: `${12 * s.labelScale * contentScale}px` });
+  if (value) Object.assign(value.style, { color: s.valueColor, opacity: clamp(s.valueOpacity, 0, 1), fontSize: `${22 * s.valueScale * contentScale}px` });
+  if (marker.type === 'badge' || marker.type === 'icon') {
     if (label) label.style.transform = `translateY(${s.labelY * contentScale}px)`;
     if (value) value.style.transform = `translateY(${s.valueY * contentScale}px)`;
   }
   const icon = $('.marker-icon', node);
   if (icon) {
     const kind = stateKind(marker), color = kind === 'on' ? s.iconOnColor : kind === 'off' ? s.iconOffColor : kind === 'unavailable' ? s.iconUnavailableColor : s.iconColor;
-    Object.assign(icon.style, { color, opacity: clamp(s.iconOpacity, 0, 1), fontSize: `${s.iconSize * contentScale}px`, left: '50%', top: '50%', transform: `translate(-50%, calc(-50% + ${s.iconY * contentScale}px))` });
+    Object.assign(icon.style, { color, opacity: clamp(s.iconOpacity, 0, 1), fontSize: `${s.iconSize * contentScale}px`, left: `calc(50% + ${s.iconX * contentScale}px)`, top: `calc(50% + ${s.iconY * contentScale}px)`, transform: 'translate(-50%, -50%)' });
     if (icon.classList.contains('marker-brand-icon')) Object.assign(icon.style, { width:`${s.iconSize * contentScale}px`, height:`${s.iconSize * contentScale}px`, objectFit:'contain' });
   }
-  if (marker.type === 'gauge') {
+  if (isGaugeType(marker.type)) {
     // Anchor labels to the marker centre: resizing the Gauge changes neither their
     // horizontal nor vertical screen position. The Position sliders stay additive.
     if (label) Object.assign(label.style, { left: '50%', top: `calc(50% + ${(37 + Number(s.labelY || 0)) * contentScale}px)` });
     if (value) Object.assign(value.style, { left: '50%', top: `calc(50% + ${(10 + Number(s.valueY || 0)) * contentScale}px)` });
     const percent = $('.percent', node); if (percent) Object.assign(percent.style, { left: '50%', top: `calc(50% + ${(-18 + Number(s.percentY || 0)) * contentScale}px)`, color: rgba(s.percentColor, s.percentOpacity), fontSize: `${11 * s.percentScale * contentScale}px` });
-    const svg = $('.gauge-svg', node); if (svg) Object.assign(svg.style, { inset: 'auto', left: '50%', top: '50%', transform: `translate(-50%, -50%) scale(${contentScale})`, transformOrigin: '50% 50%' });
+    const svg = $('.gauge-svg', node); if (svg) Object.assign(svg.style, { inset: 'auto', left: '50%', top: '50%', width: marker.type === 'horseshoe' ? '136px' : '', height: marker.type === 'horseshoe' ? '118px' : '', transform: `translate(-50%, -50%) scale(${contentScale})`, transformOrigin: '50% 50%' });
+    const visual = $('.gauge-visual', node); if (visual) Object.assign(visual.style, { transform: gaugeVisualTransform(marker, s), transformOrigin: '100px 90px' });
     const track = $('.gauge-track', node), progress = $('.gauge-value', node), n = Number(stateCache[marker.entityId]?.state), span = Number(s.max) - Number(s.min) || 1;
     const pct = Number.isFinite(n) ? clamp(((n - Number(s.min)) / span) * 100, 0, 100) : 0;
     const gradientId = `gauge-gradient-${String(marker.id).replace(/[^a-z0-9_-]/gi, '')}`;
@@ -977,7 +1002,7 @@ function editorMarkup(marker) {
   const entity = section('Encja', control('Nazwa','displayName','text',marker.displayName) + control('Jednostka','unitOverride','text',marker.unitOverride) + control('Zaokrąglenie','decimals','select',marker.decimals,{items:[['auto','Auto'],[0,'0'],[1,'1'],[2,'2'],[3,'3']]}) + control('Tekst ON','stateOnLabel','text',marker.stateOnLabel) + control('Tekst OFF','stateOffLabel','text',marker.stateOffLabel) + tapAction);
   const label = section('Nazwa', control('Pokaż','style.showLabel','checkbox',s.showLabel) + control('Kolor','style.labelColor','color',s.labelColor) + control('Przezrocz.','style.labelOpacity','range',s.labelOpacity,{min:0,max:1,step:.01}) + control('Rozmiar','style.labelScale','range',s.labelScale,{min:.5,max:3,step:.05}) + control('Pozycja','style.labelY','range',s.labelY,{min:-100,max:100,step:1,suffix:'px'}));
   const value = section('Stan', control('Pokaż','style.showValue','checkbox',s.showValue) + control('Kolor','style.valueColor','color',s.valueColor) + control('Przezrocz.','style.valueOpacity','range',s.valueOpacity,{min:0,max:1,step:.01}) + control('Rozmiar','style.valueScale','range',s.valueScale,{min:.5,max:3,step:.05}) + control('Pozycja','style.valueY','range',s.valueY,{min:-100,max:100,step:1,suffix:'px'}));
-  const minimumSize = marker.type === 'gauge' ? { width: 44, height: 28 } : { width: 36, height: 24 };
+  const minimumSize = isGaugeType(marker.type) ? { width: 44, height: 28 } : marker.type === 'icon' ? { width: 24, height: 24 } : { width: 36, height: 24 };
   const size = section('Rozmiar', control('Szerokość','style.width','range',s.width,{min:minimumSize.width,max:500,step:1,suffix:'px',integer:true}) + control('Wysokość','style.height','range',s.height,{min:minimumSize.height,max:350,step:1,suffix:'px',integer:true}) + control('Skala elementów','style.contentScale','range',s.contentScale,{min:.4,max:2.5,step:.05,suffix:'×'}));
   const background = section('Tło', control('Pokaż','style.showBackground','checkbox',s.showBackground) + control('Kolor','style.backgroundColor','color',s.backgroundColor) + control('Przezrocz.','style.backgroundOpacity','range',s.backgroundOpacity,{min:0,max:1,step:.01}));
   const border = section('Ramka', control('Pokaż','style.showBorder','checkbox',s.showBorder) + control('Kolor','style.borderColor','color',s.borderColor) + control('Przezrocz.','style.borderOpacity','range',s.borderOpacity,{min:0,max:1,step:.01}) + control('Grubość','style.borderWidth','range',s.borderWidth,{min:0,max:12,step:1,suffix:'px'}) + control('Zaokrąglenie','style.radius','range',s.radius,{min:0,max:100,step:1,suffix:'px'}));
@@ -985,14 +1010,14 @@ function editorMarkup(marker) {
   const manualIcons = `<div data-manual-icons ${marker.iconMode === 'manual' ? '' : 'hidden'}>${mdiControl('Podstawowa','iconName',marker.iconName)}${mdiControl('Dla ON','iconOn',marker.iconOn)}${mdiControl('Dla OFF','iconOff',marker.iconOff)}</div>`;
   const icon = section('Ikona', control('Pokaż','style.showIcon','checkbox',s.showIcon) + control('Źródło','iconMode','select',marker.iconMode,{items:[['auto','Z encji Home Assistant'],['integration','Logo integracji'],['manual','Własna ikona MDI']]}) + manualIcons + mdiList + control('Kolor','style.iconColor','color',s.iconColor) + control('Kolor ON','style.iconOnColor','color',s.iconOnColor) + control('Kolor OFF','style.iconOffColor','color',s.iconOffColor) + control('Brak danych','style.iconUnavailableColor','color',s.iconUnavailableColor) + control('Przezrocz.','style.iconOpacity','range',s.iconOpacity,{min:0,max:1,step:.01}) + control('Rozmiar','style.iconSize','range',s.iconSize,{min:8,max:100,step:1,suffix:'px'}) + control('Pozycja','style.iconY','range',s.iconY,{min:-100,max:100,step:1,suffix:'px'}));
   let gauge = '';
-  if (marker.type === 'gauge') {
+  if (isGaugeType(marker.type)) {
     const range = gaugeSubsection('Zakres i wartość', control('Minimum','style.min','number',s.min,{valueType:'number'}) + control('Maksimum','style.max','number',s.max,{valueType:'number'}) + control('Grubość','style.thickness','range',s.thickness,{min:2,max:30,step:1,suffix:'px'}) + control('Tor','style.trackColor','color',s.trackColor) + control('Wartość','style.progressColor','color',s.progressColor));
     const geometry = gaugeSubsection('Geometria wskaźnika', control('Skala','style.gaugeScale','range',s.gaugeScale,{min:.35,max:1.8,step:.01}) + control('Pozycja','style.gaugeY','range',s.gaugeY,{min:-80,max:80,step:1,suffix:'px'}) + control('Kąt start','style.startAngle','range',s.startAngle,{min:-270,max:270,step:1,suffix:'°'}) + control('Kąt koniec','style.endAngle','range',s.endAngle,{min:-270,max:450,step:1,suffix:'°'}));
     const ticks = gaugeSubsection('Podziałka', control('Pokaż ticki','style.showTicks','checkbox',s.showTicks) + control('Co ile','style.tickStep','number',s.tickStep,{valueType:'number',min:0}) + control('Offset','style.tickOffset','range',s.tickOffset,{min:0,max:40,step:1,suffix:'px'}) + control('Długość','style.tickLength','range',s.tickLength,{min:2,max:24,step:1,suffix:'px'}) + control('Grubość','style.tickWidth','range',s.tickWidth,{min:.5,max:6,step:.5,suffix:'px'}) + control('Kolor','style.tickColor','color',s.tickColor) + control('Przezrocz.','style.tickOpacity','range',s.tickOpacity,{min:0,max:1,step:.01}));
     const tickLabels = gaugeSubsection('Liczby skali', control('Pokaż','style.showTickLabels','checkbox',s.showTickLabels) + control('Co ile','style.tickLabelStep','number',s.tickLabelStep,{valueType:'number',min:0}) + control('Rozmiar','style.tickFontSize','range',s.tickFontSize,{min:5,max:24,step:1,suffix:'px'}) + control('Czcionka','style.tickFontFamily','select',s.tickFontFamily,{items:[['Inter','Inter'],['Segoe UI','Segoe UI'],['Arial','Arial'],['monospace','Monospace']]}) + control('Kolor','style.tickLabelColor','color',s.tickLabelColor) + control('Odsunięcie','style.tickLabelOffset','range',s.tickLabelOffset,{min:-8,max:36,step:1,suffix:'px'}));
     const gradient = gaugeSubsection('Gradient', control('Włącz','style.useGradient','checkbox',s.useGradient) + control('Start','style.gradientStart','color',s.gradientStart) + control('Koniec','style.gradientEnd','color',s.gradientEnd));
     const percent = gaugeSubsection('Procent', control('Pokaż','style.showPercent','checkbox',s.showPercent) + control('Kolor','style.percentColor','color',s.percentColor) + control('Przezrocz.','style.percentOpacity','range',s.percentOpacity,{min:0,max:1,step:.01}) + control('Rozmiar','style.percentScale','range',s.percentScale,{min:.5,max:3,step:.05}) + control('Pozycja','style.percentY','range',s.percentY,{min:-100,max:100,step:1,suffix:'px'}));
-    gauge = section('Gauge', range + geometry + ticks + tickLabels + gradient + percent);
+    gauge = section(marker.type === 'horseshoe' ? 'Podkowa' : 'Gauge', range + geometry + ticks + tickLabels + gradient + percent);
   }
   return entity + size + value + label + icon + gauge + background + border;
 }
@@ -1045,18 +1070,21 @@ function onEditorInput(event) {
   const output = input.parentElement.querySelector('output'); if (output) output.textContent = `${value}${output.dataset.suffix || ''}`;
   const node = $(`.marker[data-entity-id="${CSS.escape(marker.entityId)}"]`);
   if (input.dataset.path === 'displayName') { els.editorTitle.textContent = value; if (node) node.innerHTML = markerHtml(marker); }
-  if (input.dataset.path === 'unitOverride' || input.dataset.path === 'decimals' || input.dataset.path === 'stateOnLabel' || input.dataset.path === 'stateOffLabel' || input.dataset.path.startsWith('icon') || input.dataset.path.startsWith('style.show') || marker.type === 'gauge' && input.dataset.path.startsWith('style.')) { if (node) node.innerHTML = markerHtml(marker); }
+  const needsMarkup = input.dataset.path === 'unitOverride' || input.dataset.path === 'decimals' || input.dataset.path === 'stateOnLabel' || input.dataset.path === 'stateOffLabel' || input.dataset.path.startsWith('icon') || input.dataset.path.startsWith('style.show') || isGaugeType(marker.type) && input.dataset.path.startsWith('style.');
+  // A range input keeps pointer capture only while its DOM node remains intact.
+  // Rebuild Gauge/Horseshoe SVG after the finger is released, never while dragging.
+  if (needsMarkup && (input.type !== 'range' || event.type === 'change')) { if (node) node.innerHTML = markerHtml(marker); }
   if (node) applyMarkerStyle(node, marker); syncSelection(); renderAdded(); scheduleSave();
 }
 function changeType(type) {
   const marker = model.entities[selectedId]; if (!marker || marker.type === type) return;
-  marker.type = type; marker.style = type === 'gauge' ? gaugeDefaults() : badgeDefaults(); marker.updatedAt = new Date().toISOString();
-  renderMarkers(); openEditor(); scheduleSave(true); notify(`Zmieniono na ${type === 'gauge' ? 'Gauge' : 'Badge'}`);
+  marker.type = type; marker.style = markerStyleDefaults(type); marker.updatedAt = new Date().toISOString();
+  renderMarkers(); openEditor(); scheduleSave(true); notify(`Zmieniono na ${markerTypeLabel(type)}`);
 }
 
 function renderAdded() {
   const items = Object.values(model.entities); els.addedCount.textContent = items.length;
-  els.addedList.innerHTML = items.length ? items.map(m => `<div class="entity-row added-row"><div class="added-identity">${integrationIconMarkupFor(m.sourceDomain || m.entityId.split('.')[0], m.integrationName || m.sourceDomain, 'added-icon')}<div><strong>${escapeHtml(m.displayName)}</strong><small>${escapeHtml(m.entityId)} · ${escapeHtml(m.integrationName || 'Home Assistant')} · ${m.type === 'gauge' ? 'Gauge' : 'Badge'}</small></div></div><div class="entity-actions"><button data-focus="${escapeHtml(m.entityId)}">Pokaż</button><button class="danger" data-remove="${escapeHtml(m.entityId)}">Usuń z widoku</button></div></div>`).join('') : '<div class="empty-row">Nie dodano jeszcze żadnych encji.</div>';
+  els.addedList.innerHTML = items.length ? items.map(m => `<div class="entity-row added-row"><div class="added-identity">${integrationIconMarkupFor(m.sourceDomain || m.entityId.split('.')[0], m.integrationName || m.sourceDomain, 'added-icon')}<div><strong>${escapeHtml(m.displayName)}</strong><small>${escapeHtml(m.entityId)} · ${escapeHtml(m.integrationName || 'Home Assistant')} · ${markerTypeLabel(m.type)}</small></div></div><div class="entity-actions"><button data-focus="${escapeHtml(m.entityId)}">Pokaż</button><button class="danger" data-remove="${escapeHtml(m.entityId)}">Usuń z widoku</button></div></div>`).join('') : '<div class="empty-row">Nie dodano jeszcze żadnych encji.</div>';
 }
 async function loadIntegrations(force = false) {
   if (integrations.length && !force) return renderIntegrations();
@@ -1314,8 +1342,8 @@ function bindEvents() {
   $('.editor-head').addEventListener('pointerdown', startEditorDrag);
   els.editorContent.addEventListener('click', onColorPickerClick);
   $$('[data-editor-tab]').forEach(button => button.addEventListener('click', () => changeType(button.dataset.editorTab)));
-  $('#default-style').addEventListener('click', async () => { const m = model.entities[selectedId]; if (!m || !await appConfirm({ title: 'Przywrócić styl domyślny?', message: 'Obecne ustawienia wyglądu markera zostaną zastąpione.', confirmText: 'Przywróć', danger: true })) return; m.style = m.type === 'gauge' ? gaugeDefaults() : badgeDefaults(); renderMarkers(); openEditor(); scheduleSave(true); notify('Przywrócono styl domyślny'); });
-  $('#copy-style').addEventListener('click', () => { const m = model.entities[selectedId]; if (!m) return; styleClipboard = { type: m.type, style: clone(m.style) }; $('#paste-style').disabled = false; notify(`Skopiowano styl ${m.type === 'gauge' ? 'Gauge' : 'Badge'}`); });
+  $('#default-style').addEventListener('click', async () => { const m = model.entities[selectedId]; if (!m || !await appConfirm({ title: 'Przywrócić styl domyślny?', message: 'Obecne ustawienia wyglądu markera zostaną zastąpione.', confirmText: 'Przywróć', danger: true })) return; m.style = markerStyleDefaults(m.type); renderMarkers(); openEditor(); scheduleSave(true); notify('Przywrócono styl domyślny'); });
+  $('#copy-style').addEventListener('click', () => { const m = model.entities[selectedId]; if (!m) return; styleClipboard = { type: m.type, style: clone(m.style) }; $('#paste-style').disabled = false; notify(`Skopiowano styl ${markerTypeLabel(m.type)}`); });
   $('#paste-style').addEventListener('click', () => { const m = model.entities[selectedId]; if (!m || !styleClipboard) return; m.type = styleClipboard.type; m.style = clone(styleClipboard.style); m.updatedAt = new Date().toISOString(); renderMarkers(); openEditor(); scheduleSave(true); notify('Wklejono kompletny styl 1:1'); });
   $('#remove-marker').addEventListener('click', async () => { const m = model.entities[selectedId]; if (!m || !await appConfirm({ title: 'Usunąć marker?', message: `„${m.displayName}” zniknie z tego widoku razem ze swoimi ustawieniami.`, confirmText: 'Usuń', danger: true })) return; removeEntity(m.entityId); });
   $('#background-upload').addEventListener('click', () => els.bgFile.click()); $('#empty-upload').addEventListener('click', () => els.bgFile.click()); els.bgFile.addEventListener('change', () => uploadBackground(els.bgFile.files[0]));
@@ -1398,7 +1426,7 @@ function startResize(event) {
       const gridPx = Math.max(1, (Number(model.settings?.designWidth) || DESIGN_WIDTH) * (Number(model.settings?.snapStep) || 1) / 100);
       return Math.round(limited / gridPx) * gridPx;
     };
-    const minWidth = marker.type === 'gauge' ? 44 : 36, minHeight = marker.type === 'gauge' ? 28 : 24;
+    const minWidth = isGaugeType(marker.type) ? 44 : marker.type === 'icon' ? 24 : 36, minHeight = isGaugeType(marker.type) ? 28 : marker.type === 'icon' ? 24 : 24;
     marker.style.width = clamp(snapSize(start.w + (e.clientX-start.x)*sx*2/scale),minWidth,500); marker.style.height = clamp(snapSize(start.h + (e.clientY-start.y)*sy*2/scale),minHeight,350);
     const node = $(`.marker[data-entity-id="${CSS.escape(marker.entityId)}"]`); if (node) applyMarkerStyle(node, marker); syncSelection();
   };
@@ -1418,11 +1446,12 @@ async function boot() {
   bindLanguageObserver(); applyLanguage();
   const multiMigrated = ensureMultiViewModel(); applySnapUi(); renderViewSelector();
   Object.values(model.views).flatMap(view => Object.values(view.entities || {})).forEach(m => {
-    m.type = m.type === 'gauge' ? 'gauge' : 'badge'; m.style = normalizedStyle(m.type, m.style);
+    m.type = ['badge','gauge','icon','horseshoe'].includes(m.type) ? m.type : 'badge'; m.style = normalizedStyle(m.type, m.style);
     m.stateOnLabel ??= ''; m.stateOffLabel ??= ''; m.iconMode ||= 'auto'; m.iconName ??= ''; m.iconOn ??= ''; m.iconOff ??= '';
   });
   const gaugeMigrated = migrateGaugeZeroOffsets();
-  if (legacyMigrated || multiMigrated || gaugeMigrated) scheduleSave(true);
+  const horseshoeMigrated = migrateHorseshoeBaseline();
+  if (legacyMigrated || multiMigrated || gaugeMigrated || horseshoeMigrated) scheduleSave(true);
   // Markers are independent from the background image and from live-state
   // retrieval. Render them immediately: the first `selected_states` request
   // may be slow, but it must never keep the restored view blank.
