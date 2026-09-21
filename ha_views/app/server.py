@@ -1243,6 +1243,16 @@ async def api_background_file(request):
     response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
     return response
 
+async def api_background_download(request):
+    ensure_background_store()
+    name = _background_name(request.query.get("name"))
+    path = os.path.join(BACKGROUND_DIR, name) if name else ""
+    if not name or not os.path.isfile(path):
+        raise web.HTTPNotFound()
+    response = web.FileResponse(path)
+    response.headers["Content-Disposition"] = "attachment; filename*=UTF-8''" + quote(name, safe="")
+    return response
+
 async def api_background_upload(request):
     ensure_background_store()
     reader = await request.multipart()
@@ -1438,6 +1448,7 @@ app.router.add_post("/api/layout", api_layout_save)
 app.router.add_get("/api/backgrounds", api_backgrounds_list)
 app.router.add_get("/api/background/current", api_background_current)
 app.router.add_get("/api/background/file", api_background_file)
+app.router.add_get("/api/background/download", api_background_download)
 app.router.add_post("/api/background/upload", api_background_upload)
 app.router.add_post("/api/background/select", api_background_select)
 app.router.add_post("/api/background/delete", api_background_delete)
