@@ -1,3 +1,15 @@
+## 0.3.3
+
+### English
+
+- Released the latest marker editor improvements: Icon and Horseshoe types, reliable marker sizing and resizing, element scale up to 5×, improved mobile editing, entity search and ON/OFF toggle support.
+- Refined editing handles and selection frame; stable add-on is now named **HA Views**.
+
+### Polski
+
+- Wydano aktualne usprawnienia edytora markerów: typy Ikona i Podkowa, większy oraz pewniejszy rozmiar markerów, skala elementów do 5×, ulepszenia edycji mobilnej, wyszukiwanie encji i obsługa przełączania ON/OFF.
+- Dopracowano uchwyty i ramkę zaznaczenia; stabilny dodatek nosi teraz nazwę **HA Views**.
+
 # Changelog
 
 ## 0.3.2
