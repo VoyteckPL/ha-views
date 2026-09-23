@@ -94,7 +94,7 @@ const els = {
 };
 
 const badgeDefaults = () => ({
-  width: 112, height: 62, contentScale: 1, showLabel: true, showValue: true, showBackground: true, showBorder: true,
+  width: 247, height: 137, contentScale: 1, baseContentScale: 2.2, showLabel: true, showValue: true, showBackground: true, showBorder: true,
   labelColor: '#9BC1D8', labelOpacity: 1, labelScale: 1, labelY: 0,
   valueColor: '#FFFFFF', valueOpacity: 1, valueScale: 1, valueY: 0,
   backgroundColor: '#03101A', backgroundOpacity: .76,
@@ -103,7 +103,7 @@ const badgeDefaults = () => ({
   iconColor: '#9BC1D8', iconOnColor: '#20B9E7', iconOffColor: '#8AA2AF', iconUnavailableColor: '#FF6374'
 });
 const gaugeDefaults = () => ({
-  width: 185, height: 108, contentScale: 1, min: 0, max: 4000, thickness: 10,
+  width: 407, height: 237, contentScale: 1, baseContentScale: 2.2, min: 0, max: 4000, thickness: 10,
   trackColor: '#294657', progressColor: '#21BCEB', gaugeScale: 1, gaugeY: 0, startAngle: -180, endAngle: 0,
   showTicks: false, tickStep: 500, tickOffset: 4, tickLength: 7, tickWidth: 1, tickColor: '#8FDFFF', tickOpacity: .8,
   showTickLabels: false, tickLabelStep: 1000, tickFontSize: 8, tickFontFamily: 'Inter', tickLabelColor: '#9BC1D8', tickLabelOffset: 12,
@@ -117,8 +117,8 @@ const gaugeDefaults = () => ({
   iconColor: '#9BC1D8', iconOnColor: '#20B9E7', iconOffColor: '#8AA2AF', iconUnavailableColor: '#FF6374'
 });
 
-const iconDefaults = () => ({ ...badgeDefaults(), width: 56, height: 56, showLabel: false, showValue: false, showBackground: true, backgroundOpacity: .76, showBorder: true, radius: 16, showIcon: true, iconSize: 32, iconX: 0, iconY: 0 });
-const horseshoeDefaults = () => ({ ...gaugeDefaults(), width: 150, height: 132, showLabel: true, showValue: true, showPercent: true, showTicks: false, startAngle: 135, endAngle: 405, gaugeScale: 1, gaugeY: 0, valueScale: .65, valueY: -19, percentScale: .8, percentY: -8 });
+const iconDefaults = () => ({ ...badgeDefaults(), width: 124, height: 124, showLabel: false, showValue: false, showBackground: true, backgroundOpacity: .76, showBorder: true, radius: 16, showIcon: true, iconSize: 32, iconX: 0, iconY: 0 });
+const horseshoeDefaults = () => ({ ...gaugeDefaults(), width: 330, height: 291, showLabel: true, showValue: true, showPercent: true, showTicks: false, startAngle: 135, endAngle: 405, gaugeScale: 1, gaugeY: 0, valueScale: .65, valueY: -19, percentScale: .8, percentY: -8 });
 const isGaugeType = type => type === 'gauge' || type === 'horseshoe';
 const markerStyleDefaults = type => type === 'icon' ? iconDefaults() : type === 'horseshoe' ? horseshoeDefaults() : type === 'gauge' ? gaugeDefaults() : badgeDefaults();
 const markerTypeLabel = type => ({ badge:'Badge', gauge:'Gauge', icon:'Ikona', horseshoe:'Podkowa' }[type] || 'Badge');
@@ -137,7 +137,7 @@ const freshMarker = (entity, integration) => ({
   createdAt: new Date().toISOString(), updatedAt: new Date().toISOString()
 });
 
-let model = { version: 2, revision: 0, settings: { snapEnabled: true, snapStep: 1 }, activeViewId: '', viewOrder: [], views: {}, entities: {} };
+let model = { version: 2, revision: 0, settings: { snapEnabled: true, snapStep: .25 }, activeViewId: '', viewOrder: [], views: {}, entities: {} };
 let stateCache = {}, editMode = false, selectedId = null, styleClipboard = null, saveTimer = null;
 let saveRunning = false, savePending = false, integrations = [], integrationEntities = new Map(), openIntegrations = new Set();
 let unusedIntegrationsOpen = false, entityEvents = null, resumeTimer = null;
@@ -154,6 +154,7 @@ let confirmInputMode = false;
 let moreInfoEntityId = '';
 let moreInfoRequest = 0;
 const markerTogglesInFlight = new Set();
+const pendingToggleStates = new Map();
 
 async function api(path, options = {}) {
   const response = await fetch(`api/${path}`, { cache: 'no-store', ...options });
@@ -313,15 +314,24 @@ function scheduleSave(immediate = false) {
   if (immediate) return queueSave();
   saveTimer = setTimeout(queueSave, 200);
 }
+function migrateGridPresetSteps() {
+  if (model.settings?.gridPresetV2) return false;
+  const legacy = Number(model.settings?.snapStep);
+  if (legacy === 1) model.settings.snapStep = .25;
+  else if (legacy === 5) model.settings.snapStep = 1;
+  else if (legacy === 10) model.settings.snapStep = 4;
+  model.settings.gridPresetV2 = true;
+  return true;
+}
 function applySnapUi() {
   const enabled = model.settings?.snapEnabled !== false;
   els.body.classList.toggle('snap-enabled', enabled);
   if (els.snapToggle) { els.snapToggle.classList.toggle('active', enabled); els.snapToggle.title = translateValue(enabled ? 'Siatka włączona' : 'Siatka wyłączona'); els.snapToggle.setAttribute('aria-label', els.snapToggle.title); }
   if (els.gridStatus) els.gridStatus.textContent = enabled ? 'ON' : 'OFF';
-  const step = clamp(model.settings?.snapStep || 1, 1, 10);
+  const step = clamp(model.settings?.snapStep || .25, .25, 4);
   els.scene?.style.setProperty('--grid-minor', `${step}%`);
   els.scene?.style.setProperty('--grid-major', `${step * 5}%`);
-  const activePreset = [1, 5, 10].reduce((best, value) => Math.abs(value - step) < Math.abs(best - step) ? value : best, 1);
+  const activePreset = [.25, 1, 4].reduce((best, value) => Math.abs(value - step) < Math.abs(best - step) ? value : best, .25);
   els.gridPresets.forEach(button => button.classList.toggle('active', Number(button.dataset.gridStep) === activePreset));
 }
 function closeCompactMenus() {
@@ -331,7 +341,7 @@ function closeCompactMenus() {
 }
 function snapPercent(value) {
   if (model.settings?.snapEnabled === false) return clamp(value, 0, 100);
-  const step = Number(model.settings?.snapStep) || 1;
+  const step = Number(model.settings?.snapStep) || .25;
   return clamp(Math.round(value / step) * step, 0, 100);
 }
 function mobileView() { return matchMedia('(max-width: 900px) and (pointer: coarse), (max-width: 768px)').matches; }
@@ -392,7 +402,7 @@ function updateSceneGeometry() {
   els.scene.style.minHeight = '0px'; els.scene.style.maxHeight = 'none';
   els.viewport.classList.toggle('panorama-mode', panorama);
   const physicalScale = renderedWidth / (Number(model.settings?.designWidth) || DESIGN_WIDTH);
-  sceneScale = Math.max(.01, physicalScale, mobileView() ? .50 : .58);
+  sceneScale = Math.max(.01, physicalScale);
   updateMobileMarkerLayout(renderedWidth, els.scene.clientHeight);
   els.scene.style.setProperty('--scene-scale', sceneScale);
   applyViewTransform();
@@ -534,7 +544,15 @@ function normalizedStyle(type, raw = {}) {
     nameScale: 'labelScale', stateScale: 'valueScale', gaugeMin: 'min', gaugeMax: 'max'
   };
   Object.entries(raw || {}).forEach(([key, value]) => { const target = aliases[key] || key; if (target in base && value !== undefined && value !== null) base[target] = value; });
-  ['width','height','contentScale','borderWidth','radius','labelScale','valueScale','labelY','valueY','iconSize','iconX','iconY','iconOpacity'].forEach(k => base[k] = numberOr(base[k], markerStyleDefaults(type)[k]));
+  const legacyContentScale = Number(raw?.contentScale);
+  if (!Object.prototype.hasOwnProperty.call(raw || {}, 'baseContentScale')) {
+    base.baseContentScale = 1;
+    if ([1.3, 1.69, 2.2].some(value => Math.abs(legacyContentScale - value) < .001)) {
+      base.baseContentScale = legacyContentScale;
+      base.contentScale = 1;
+    }
+  }
+  ['width','height','contentScale','baseContentScale','borderWidth','radius','labelScale','valueScale','labelY','valueY','iconSize','iconX','iconY','iconOpacity'].forEach(k => base[k] = numberOr(base[k], markerStyleDefaults(type)[k]));
   if (isGaugeType(type)) ['min','max','thickness','percentScale','percentY'].forEach(k => base[k] = numberOr(base[k], gaugeDefaults()[k]));
   return base;
 }
@@ -697,7 +715,7 @@ function enabledIcon(enabled) {
     : '<span class="entity-enabled off" title="Encja wyłączona" aria-label="Encja wyłączona"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 8.5l7 7m0-7-7 7"/></svg></span>';
 }
 function applyMarkerStyle(node, marker) {
-  const s = marker.style, contentScale = clamp(Number(s.contentScale) || 1, .4, 2.5);
+  const s = marker.style, baseContentScale = Number(s.baseContentScale) || 1, contentScale = clamp(baseContentScale * (Number(s.contentScale) || 1), .4, Math.max(5.5, baseContentScale * 5));
   const displayY = marker.yPercent;
   Object.assign(node.style, {
     left: `${marker.xPercent}%`, top: `${displayY}%`, width: `${s.width}px`, height: `${s.height}px`,
@@ -901,16 +919,45 @@ function renderMarkers() {
 function isToggleableMarker(marker) {
   return ['switch', 'light', 'fan', 'input_boolean'].includes(String(marker?.entityId || '').split('.', 1)[0]);
 }
+const delay = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
+function renderMarkerState(entityId, nextState) {
+  if (!nextState) return;
+  stateCache[entityId] = { ...stateCache[entityId], ...nextState };
+  const marker = model.entities[entityId], node = marker && $(`.marker[data-entity-id="${CSS.escape(entityId)}"]`);
+  if (marker && node) { node.innerHTML = markerHtml(marker); applyMarkerStyle(node, marker); }
+  if (moreInfoEntityId === entityId) refreshMoreInfoState();
+}
+async function confirmToggleState(marker, expectedState) {
+  for (const wait of [0, 180, 420, 800]) {
+    if (wait) await delay(wait);
+    const data = await api('selected_states', jsonOptions({ entity_ids: [marker.entityId] }));
+    const current = data.states?.[marker.entityId];
+    const state = String(current?.state || '').toLowerCase();
+    if (state !== expectedState) continue;
+    pendingToggleStates.delete(marker.entityId);
+    renderMarkerState(marker.entityId, current);
+    return true;
+  }
+  return false;
+}
 async function toggleMarker(marker) {
   if (!isToggleableMarker(marker) || markerTogglesInFlight.has(marker.entityId)) return;
   const state = String(stateCache[marker.entityId]?.state || '').toLowerCase();
   if (!['on', 'off'].includes(state)) return notify('Nie można przełączyć encji w tym stanie.', true);
+  const expectedState = state === 'on' ? 'off' : 'on';
   markerTogglesInFlight.add(marker.entityId);
+  pendingToggleStates.set(marker.entityId, expectedState);
   try {
-    await api('control', jsonOptions({ entity_id: marker.entityId, action: state === 'on' ? 'turn_off' : 'turn_on' }));
-    await refreshStates();
-  } catch (error) { notify(`Błąd przełączania: ${error.message}`, true); }
-  finally { markerTogglesInFlight.delete(marker.entityId); }
+    await api('control', jsonOptions({ entity_id: marker.entityId, action: expectedState === 'on' ? 'turn_on' : 'turn_off' }));
+    if (!await confirmToggleState(marker, expectedState)) {
+      pendingToggleStates.delete(marker.entityId);
+      await refreshStates();
+      notify('Stan encji nie został jeszcze potwierdzony.', true);
+    }
+  } catch (error) {
+    pendingToggleStates.delete(marker.entityId);
+    notify(`Błąd przełączania: ${error.message}`, true);
+  } finally { markerTogglesInFlight.delete(marker.entityId); }
 }
 function onMarkerClick(event) {
   if (event.currentTarget.dataset.dragged === '1') { event.currentTarget.dataset.dragged = '0'; return; }
@@ -1003,7 +1050,8 @@ function editorMarkup(marker) {
   const label = section('Nazwa', control('Pokaż','style.showLabel','checkbox',s.showLabel) + control('Kolor','style.labelColor','color',s.labelColor) + control('Przezrocz.','style.labelOpacity','range',s.labelOpacity,{min:0,max:1,step:.01}) + control('Rozmiar','style.labelScale','range',s.labelScale,{min:.5,max:3,step:.05}) + control('Pozycja','style.labelY','range',s.labelY,{min:-100,max:100,step:1,suffix:'px'}));
   const value = section('Stan', control('Pokaż','style.showValue','checkbox',s.showValue) + control('Kolor','style.valueColor','color',s.valueColor) + control('Przezrocz.','style.valueOpacity','range',s.valueOpacity,{min:0,max:1,step:.01}) + control('Rozmiar','style.valueScale','range',s.valueScale,{min:.5,max:3,step:.05}) + control('Pozycja','style.valueY','range',s.valueY,{min:-100,max:100,step:1,suffix:'px'}));
   const minimumSize = isGaugeType(marker.type) ? { width: 44, height: 28 } : marker.type === 'icon' ? { width: 24, height: 24 } : { width: 36, height: 24 };
-  const size = section('Rozmiar', control('Szerokość','style.width','range',s.width,{min:minimumSize.width,max:500,step:1,suffix:'px',integer:true}) + control('Wysokość','style.height','range',s.height,{min:minimumSize.height,max:350,step:1,suffix:'px',integer:true}) + control('Skala elementów','style.contentScale','range',s.contentScale,{min:.4,max:2.5,step:.05,suffix:'×'}));
+  const maximumSize = { width: 1200, height: 900 };
+  const size = section('Rozmiar', control('Szerokość','style.width','range',s.width,{min:minimumSize.width,max:maximumSize.width,step:1,suffix:'px',integer:true}) + control('Wysokość','style.height','range',s.height,{min:minimumSize.height,max:maximumSize.height,step:1,suffix:'px',integer:true}) + control('Skala elementów','style.contentScale','range',s.contentScale,{min:.4,max:5,step:.05,suffix:'×'}));
   const background = section('Tło', control('Pokaż','style.showBackground','checkbox',s.showBackground) + control('Kolor','style.backgroundColor','color',s.backgroundColor) + control('Przezrocz.','style.backgroundOpacity','range',s.backgroundOpacity,{min:0,max:1,step:.01}));
   const border = section('Ramka', control('Pokaż','style.showBorder','checkbox',s.showBorder) + control('Kolor','style.borderColor','color',s.borderColor) + control('Przezrocz.','style.borderOpacity','range',s.borderOpacity,{min:0,max:1,step:.01}) + control('Grubość','style.borderWidth','range',s.borderWidth,{min:0,max:12,step:1,suffix:'px'}) + control('Zaokrąglenie','style.radius','range',s.radius,{min:0,max:100,step:1,suffix:'px'}));
   const mdiList = `<datalist id="mdi-icon-list">${ICON_CHOICES.slice(1).map(([name,label]) => `<option value="${name}">${label}</option>`).join('')}</datalist>`;
@@ -1076,10 +1124,17 @@ function onEditorInput(event) {
   if (needsMarkup && (input.type !== 'range' || event.type === 'change')) { if (node) node.innerHTML = markerHtml(marker); }
   if (node) applyMarkerStyle(node, marker); syncSelection(); renderAdded(); scheduleSave();
 }
-function changeType(type) {
+async function changeType(type) {
   const marker = model.entities[selectedId]; if (!marker || marker.type === type) return;
+  const targetLabel = markerTypeLabel(type);
+  const confirmed = await appConfirm({
+    title: `Zmienić na ${targetLabel}?`,
+    message: 'Typ markera i jego ustawienia wyglądu zostaną zastąpione domyślnymi.',
+    confirmText: 'Zmień'
+  });
+  if (!confirmed) return;
   marker.type = type; marker.style = markerStyleDefaults(type); marker.updatedAt = new Date().toISOString();
-  renderMarkers(); openEditor(); scheduleSave(true); notify(`Zmieniono na ${markerTypeLabel(type)}`);
+  renderMarkers(); openEditor(); scheduleSave(true); notify(`Zmieniono na ${targetLabel}`);
 }
 
 function renderAdded() {
@@ -1109,19 +1164,20 @@ function renderIntegrationSearch() {
 async function loadEntitiesForSearch(request) {
   const missing = integrations.filter(item => !integrationEntities.has(item.entry_id));
   if (!missing.length) return;
-  const queue = [...missing];
-  const worker = async () => {
-    while (queue.length && request === integrationSearchRequest) {
-      const item = queue.shift();
-      try {
-        const data = await api(`integration_entities?entry_id=${encodeURIComponent(item.entry_id)}`);
-        integrationEntities.set(item.entry_id, data.entities || []);
-        updateIntegrationMetadata(item.entry_id);
-        if (request === integrationSearchRequest) renderIntegrations();
-      } catch {}
-    }
-  };
-  await Promise.all(Array.from({ length: Math.min(4, missing.length) }, worker));
+  try {
+    // One server request reads HA registries once, instead of once per integration.
+    const data = await api('integration_entities_all');
+    if (request !== integrationSearchRequest) return;
+    const byEntry = data.entities_by_entry || {};
+    missing.forEach(item => {
+      integrationEntities.set(item.entry_id, Array.isArray(byEntry[item.entry_id]) ? byEntry[item.entry_id] : []);
+      updateIntegrationMetadata(item.entry_id);
+    });
+  } catch {
+    if (request !== integrationSearchRequest) return;
+    missing.forEach(item => integrationEntities.set(item.entry_id, []));
+  }
+  if (request === integrationSearchRequest) renderIntegrations();
 }
 async function runIntegrationSearch() {
   const query = searchText(integrationSearchText);
@@ -1182,14 +1238,24 @@ async function removeEntity(entityId) {
 }
 async function refreshStates() {
   const ids = Object.keys(model.entities); if (!ids.length) return renderMarkers();
-  try { const data = await api('selected_states', jsonOptions({ entity_ids: ids })); stateCache = { ...stateCache, ...(data.states || {}) }; renderMarkers(); if (els.connection) { els.connection.textContent = 'Połączono'; els.connection.className = 'connection live'; } }
-  catch (error) { if (els.connection) { els.connection.textContent = 'Błąd danych'; els.connection.className = 'connection error'; } }
+  try {
+    const data = await api('selected_states', jsonOptions({ entity_ids: ids }));
+    Object.entries(data.states || {}).forEach(([entityId, nextState]) => {
+      const expected = pendingToggleStates.get(entityId);
+      const received = String(nextState?.state || '').toLowerCase();
+      if (expected && received !== expected) return;
+      if (expected) pendingToggleStates.delete(entityId);
+      stateCache[entityId] = { ...stateCache[entityId], ...nextState };
+    });
+    renderMarkers();
+    if (els.connection) { els.connection.textContent = 'Połączono'; els.connection.className = 'connection live'; }
+  } catch (error) { if (els.connection) { els.connection.textContent = 'Błąd danych'; els.connection.className = 'connection error'; } }
 }
 function connectEvents() {
   entityEvents?.close();
   entityEvents = new EventSource('api/entity_events');
   entityEvents.onopen = () => { if (els.connection) { els.connection.textContent = 'Na żywo'; els.connection.className = 'connection live'; } };
-  entityEvents.onmessage = event => { try { const data = JSON.parse(event.data), marker = model.entities[data.entity_id]; if (!marker) return; stateCache[data.entity_id] = { ...stateCache[data.entity_id], entity_id: data.entity_id, state: data.state, attributes: data.attributes || {}, last_changed: data.last_changed || new Date().toISOString() }; const node = $(`.marker[data-entity-id="${CSS.escape(data.entity_id)}"]`); if (node) { node.innerHTML = markerHtml(marker); applyMarkerStyle(node, marker); } if (moreInfoEntityId === data.entity_id) refreshMoreInfoState(); } catch {} };
+  entityEvents.onmessage = event => { try { const data = JSON.parse(event.data), marker = model.entities[data.entity_id]; if (!marker) return; const expected = pendingToggleStates.get(data.entity_id), received = String(data.state || '').toLowerCase(); if (expected && received !== expected) return; if (expected) pendingToggleStates.delete(data.entity_id); renderMarkerState(data.entity_id, { entity_id: data.entity_id, state: data.state, attributes: data.attributes || {}, last_changed: data.last_changed || new Date().toISOString() }); } catch {} };
   entityEvents.onerror = () => { if (els.connection) { els.connection.textContent = 'Ponowne łączenie…'; els.connection.className = 'connection error'; } };
   entityEvents.addEventListener('open', refreshStates);
 }
@@ -1420,14 +1486,14 @@ function startResize(event) {
   const move = e => {
     if ((e.buttons & 1) !== 1) return finish();
     const sx = handle.includes('w') ? -1 : 1, sy = handle.includes('n') ? -1 : 1; changed = true;
-    const snapSize = value => {
-      const limited = clamp(value, 1, 500);
+    const snapSize = (value, maximum) => {
+      const limited = clamp(value, 1, maximum);
       if (model.settings?.snapEnabled === false) return limited;
       const gridPx = Math.max(1, (Number(model.settings?.designWidth) || DESIGN_WIDTH) * (Number(model.settings?.snapStep) || 1) / 100);
       return Math.round(limited / gridPx) * gridPx;
     };
     const minWidth = isGaugeType(marker.type) ? 44 : marker.type === 'icon' ? 24 : 36, minHeight = isGaugeType(marker.type) ? 28 : marker.type === 'icon' ? 24 : 24;
-    marker.style.width = clamp(snapSize(start.w + (e.clientX-start.x)*sx*2/scale),minWidth,500); marker.style.height = clamp(snapSize(start.h + (e.clientY-start.y)*sy*2/scale),minHeight,350);
+    marker.style.width = clamp(snapSize(start.w + (e.clientX-start.x)*sx*2/scale, 1200),minWidth,1200); marker.style.height = clamp(snapSize(start.h + (e.clientY-start.y)*sy*2/scale, 900),minHeight,900);
     const node = $(`.marker[data-entity-id="${CSS.escape(marker.entityId)}"]`); if (node) applyMarkerStyle(node, marker); syncSelection();
   };
   const finish = () => {
@@ -1441,17 +1507,17 @@ async function boot() {
   bindEvents(); let legacyMigrated = false;
   try { const saved = await api('rewrite_state'); if (saved.exists && (saved.data?.entities || saved.data?.views)) model = saved.data; else legacyMigrated = await migrateLegacy(); }
   catch (error) { notify(`Nie udało się wczytać układu: ${error.message}`, true); }
-  model.settings = { snapEnabled: true, snapStep: 1, designWidth: DESIGN_WIDTH, language: 'en', ...(model.settings || {}) };
+  model.settings = { snapEnabled: true, snapStep: .25, designWidth: DESIGN_WIDTH, language: 'en', ...(model.settings || {}) };
   uiLanguage = model.settings.language === 'pl' ? 'pl' : 'en';
   bindLanguageObserver(); applyLanguage();
-  const multiMigrated = ensureMultiViewModel(); applySnapUi(); renderViewSelector();
+  const multiMigrated = ensureMultiViewModel(); const gridPresetMigrated = migrateGridPresetSteps(); applySnapUi(); renderViewSelector();
   Object.values(model.views).flatMap(view => Object.values(view.entities || {})).forEach(m => {
     m.type = ['badge','gauge','icon','horseshoe'].includes(m.type) ? m.type : 'badge'; m.style = normalizedStyle(m.type, m.style);
     m.stateOnLabel ??= ''; m.stateOffLabel ??= ''; m.iconMode ||= 'auto'; m.iconName ??= ''; m.iconOn ??= ''; m.iconOff ??= '';
   });
   const gaugeMigrated = migrateGaugeZeroOffsets();
   const horseshoeMigrated = migrateHorseshoeBaseline();
-  if (legacyMigrated || multiMigrated || gaugeMigrated || horseshoeMigrated) scheduleSave(true);
+  if (legacyMigrated || multiMigrated || gridPresetMigrated || gaugeMigrated || horseshoeMigrated) scheduleSave(true);
   // Markers are independent from the background image and from live-state
   // retrieval. Render them immediately: the first `selected_states` request
   // may be slow, but it must never keep the restored view blank.
