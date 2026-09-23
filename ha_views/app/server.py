@@ -895,6 +895,87 @@ async def api_integration_entities(request):
     })
 
 
+async def api_all_integration_entities(request):
+    """All enabled entities grouped by config entry; HA registries are read once."""
+
+    try:
+        entity_registry = await ha_ws_command({"type": "config/entity_registry/list"})
+        display_registry = await ha_ws_command({"type": "config/entity_registry/list_for_display"})
+        device_registry = await ha_ws_command({"type": "config/device_registry/list"})
+        states = await ha_all_states()
+    except Exception as err:
+        return web.json_response(
+            {"ok": False, "error": str(err), "entities_by_entry": {}},
+            status=500,
+        )
+
+    entity_registry = entity_registry if isinstance(entity_registry, list) else []
+    device_registry = device_registry if isinstance(device_registry, list) else []
+    states = states if isinstance(states, list) else []
+    display_items = display_registry.get("entities") if isinstance(display_registry, dict) else []
+    enabled_ids = {
+        item.get("ei") or item.get("entity_id")
+        for item in display_items
+        if isinstance(item, dict) and (item.get("ei") or item.get("entity_id"))
+    }
+    state_map = {
+        item.get("entity_id"): item
+        for item in states
+        if isinstance(item, dict) and item.get("entity_id")
+    }
+    device_entries = {}
+    device_names = {}
+    for device in device_registry:
+        if not isinstance(device, dict) or not device.get("id"):
+            continue
+        device_id = device["id"]
+        device_names[device_id] = device.get("name_by_user") or device.get("name") or ""
+        entries = device.get("config_entries") or []
+        if isinstance(entries, str):
+            entries = [entries]
+        entries = set(entries)
+        if device.get("config_entry_id"):
+            entries.add(device["config_entry_id"])
+        device_entries[device_id] = entries
+
+    grouped = {}
+    for item in entity_registry:
+        if not isinstance(item, dict) or not item.get("entity_id"):
+            continue
+        entity_id = item["entity_id"]
+        entry_ids = set()
+        if item.get("config_entry_id"):
+            entry_ids.add(item["config_entry_id"])
+        direct_entries = item.get("config_entry_ids") or []
+        if isinstance(direct_entries, str):
+            direct_entries = [direct_entries]
+        entry_ids.update(direct_entries)
+        device_id = item.get("device_id")
+        entry_ids.update(device_entries.get(device_id, set()))
+        if not entry_ids:
+            continue
+        state_obj = state_map.get(entity_id) or {}
+        attributes = state_obj.get("attributes") or {}
+        entity = {
+            "entity_id": entity_id,
+            "name": attributes.get("friendly_name") or item.get("name") or item.get("original_name") or entity_id,
+            "state": state_obj.get("state"),
+            "unit": attributes.get("unit_of_measurement"),
+            "platform": item.get("platform") or "",
+            "disabled_by": item.get("disabled_by"),
+            "enabled": entity_id in enabled_ids,
+            "device_id": device_id,
+            "device_name": device_names.get(device_id, ""),
+        }
+        for entry_id in entry_ids:
+            grouped.setdefault(entry_id, []).append(entity)
+
+    for entities in grouped.values():
+        entities.sort(key=lambda value: (str(value.get("name", "")).lower(), value.get("entity_id", "")))
+
+    return web.json_response({"ok": True, "entities_by_entry": grouped})
+
+
 # ===== END HA Views INTEGRATIONS API V1 =====
 
 
@@ -1433,6 +1514,7 @@ app.router.add_get("/api/entity_events", api_entity_events)
 # HA Views INTEGRATIONS API V1
 app.router.add_get("/api/integrations", api_integrations)
 app.router.add_get("/api/integration_entities", api_integration_entities)
+app.router.add_get("/api/integration_entities_all", api_all_integration_entities)
 
 # HA Views ENABLE ENTITY API V2
 app.router.add_post("/api/enable_entity", api_enable_entity)
