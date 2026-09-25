@@ -1,5 +1,5 @@
 name: "HA Views"
-version: "0.3.3"
+version: "0.4.0"
 slug: "ha_views"
 description: "Visual Home Assistant dashboards on any background. / Wizualne pulpity Home Assistant na dowolnym tle."
 url: "https://github.com/VoyteckPL/ha-views"
