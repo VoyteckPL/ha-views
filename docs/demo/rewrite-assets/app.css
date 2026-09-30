@@ -805,3 +805,4 @@ svg.flow-chevron{overflow:visible}
 .scene>img{transition:filter .15s linear}.scene>img.scene-night{transition:opacity 1.2s ease,filter .15s linear}
 /* Tabs take the width they need; the group's own max-width (relative to the top bar) limits them, then they scroll. */
 .view-tabs-group .scene-tabs{max-width:none!important;flex:0 1 auto;min-width:0}
+.scene>img.scene-night.instant{transition:none!important}
