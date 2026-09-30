@@ -806,3 +806,8 @@ svg.flow-chevron{overflow:visible}
 /* Tabs take the width they need; the group's own max-width (relative to the top bar) limits them, then they scroll. */
 .view-tabs-group .scene-tabs{max-width:none!important;flex:0 1 auto;min-width:0}
 .scene>img.scene-night.instant{transition:none!important}
+/* Room handles: constant on-screen size at any zoom (the scene is scaled by --view-zoom on phones); a larger invisible touch area */
+.room-handle{width:calc(16px / var(--view-zoom,1))!important;height:calc(16px / var(--view-zoom,1))!important;margin:calc(-8px / var(--view-zoom,1)) 0 0 calc(-8px / var(--view-zoom,1))!important;border-width:calc(2px / var(--view-zoom,1))!important;box-shadow:0 0 calc(4px / var(--view-zoom,1)) rgba(0,0,0,.5)!important}
+.room-handle.mid{width:calc(11px / var(--view-zoom,1))!important;height:calc(11px / var(--view-zoom,1))!important;margin:calc(-5.5px / var(--view-zoom,1)) 0 0 calc(-5.5px / var(--view-zoom,1))!important}
+.room-handle.draft.closable{width:calc(18px / var(--view-zoom,1))!important;height:calc(18px / var(--view-zoom,1))!important;margin:calc(-9px / var(--view-zoom,1)) 0 0 calc(-9px / var(--view-zoom,1))!important}
+.room-handle::before{inset:calc(-12px / var(--view-zoom,1))!important}

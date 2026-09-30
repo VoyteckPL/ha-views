@@ -703,19 +703,29 @@ function startRoomHandleDrag(event) {
   event.preventDefault(); event.stopPropagation();
   // The handle is redrawn on every move; the finger is captured by the scene, which stays, so the drag never stalls.
   try { els.scene.setPointerCapture(event.pointerId); } catch {}
+  // The click that follows the tap must not reach the scene (the handle may already be redrawn or removed, and a
+  // click on the plan there would deselect the room).
+  const swallowClick = e => { e.stopPropagation(); e.preventDefault(); };
+  window.addEventListener('click', swallowClick, { capture:true, once:true }); setTimeout(() => window.removeEventListener('click', swallowClick, true), 700);
   let index = Number(handle.dataset.roomPoint);
   if (handle.dataset.roomMid !== undefined) { const at = Number(handle.dataset.roomMid), [x, y] = room.points[at], [nx, ny] = room.points[(at + 1) % room.points.length]; room.points.splice(at + 1, 0, [(x + nx) / 2, (y + ny) / 2]); index = at + 1; renderRoomEditLayer(); }
   let moved = false;
   const move = e => { if (e.pointerId !== event.pointerId) return; moved = true; room.points[index] = snapRoomPoint(scenePercentAt(e), { roomId: room.id, index }, e); renderRooms(); };
-  const up = e => { if (e.pointerId !== event.pointerId) return; window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up); showAlignGuides([], []); if (!moved && handle.dataset.roomMid === undefined) return; room.points = room.points.map(p => p.map(v => Math.round(v * 1000) / 1000)); room.updatedAt = new Date().toISOString(); scheduleSave(true); renderRooms(); };
+  const up = e => { if (e.pointerId !== event.pointerId) return; window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up); showAlignGuides([], []);
+    if (!moved && handle.dataset.roomMid === undefined) {
+      const t = performance.now(); if (lastCornerTap && lastCornerTap.roomId === room.id && lastCornerTap.index === index && t - lastCornerTap.t < 450) { lastCornerTap = null; removeRoomCorner(index); } else lastCornerTap = { roomId: room.id, index, t };
+      return;
+    } room.points = room.points.map(p => p.map(v => Math.round(v * 1000) / 1000)); room.updatedAt = new Date().toISOString(); scheduleSave(true); renderRooms(); };
   window.addEventListener('pointermove', move); window.addEventListener('pointerup', up); window.addEventListener('pointercancel', up);
 }
-function removeRoomPoint(event) {
-  const handle = event.target.closest('.room-handle[data-room-point]'), room = selectedRoomId && roomsOf()[selectedRoomId]; if (!handle || !room || !editMode) return;
-  event.preventDefault(); event.stopPropagation();
+function removeRoomCorner(index) {
+  const room = selectedRoomId && roomsOf()[selectedRoomId]; if (!room || !editMode || !Number.isInteger(index)) return;
   if (room.points.length <= 3) return notify('Pomieszczenie musi mieć co najmniej 3 narożniki');
-  room.points.splice(Number(handle.dataset.roomPoint), 1); room.updatedAt = new Date().toISOString(); renderRooms(); scheduleSave(true);
+  room.points.splice(index, 1); room.updatedAt = new Date().toISOString(); renderRooms(); scheduleSave(true);
 }
+// A handle holds the pointer through the scene (smooth dragging), so the browser's dblclick never reaches it:
+// two quick taps / clicks on the same corner remove it (mouse and touch).
+let lastCornerTap = null;
 function startRoomMove(event) {
   if (!editMode || roomDraft || event.button > 0 || !selectedRoomId || (event.target !== els.markers && event.target !== els.scene && event.target !== els.image)) return false;
   const room = roomsOf()[selectedRoomId], start = scenePercentAt(event); if (!room || room.geometryLocked || !pointInPolygon(start, room.points)) return false;
@@ -1271,6 +1281,7 @@ function applyViewTransform() {
   clampViewPan();
   els.scene.style.transformOrigin = '0 0';
   els.scene.style.transform = `translate(${viewPanX}px,${viewPanY}px) scale(${viewZoom})`;
+  els.scene.style.setProperty('--view-zoom', viewZoom); // room handles keep their on-screen size when zoomed
   if (els.zoomValue) els.zoomValue.textContent = `${Math.round(viewZoom * 100)}%`;
   if (els.zoomOut) els.zoomOut.disabled = viewZoom <= minViewZoom() + .001;
   if (els.zoomIn) els.zoomIn.disabled = viewZoom >= 4;
@@ -3512,7 +3523,6 @@ function bindEvents() {
     if (room) openRoomEditor(room.id); else closeRoomEditor();
   });
   $('#room-edit-layer')?.addEventListener('pointerdown', startRoomHandleDrag);
-  $('#room-edit-layer')?.addEventListener('dblclick', removeRoomPoint);
   $('#room-add')?.addEventListener('click', startRoomDrawing);
   $('#room-draw-done')?.addEventListener('click', finishRoomDrawing);
   $('#room-draw-undo')?.addEventListener('click', () => { if (!roomDraft) return; roomDraft.points.pop(); roomDraft.cursor = null; updateRoomDrawBar(); renderRoomEditLayer(); });
