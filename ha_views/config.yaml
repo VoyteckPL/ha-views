@@ -1,5 +1,5 @@
 name: "HA Views"
-version: "0.4.0"
+version: "0.5.0"
 slug: "ha_views"
 description: "Visual Home Assistant dashboards on any background. / Wizualne pulpity Home Assistant na dowolnym tle."
 url: "https://github.com/VoyteckPL/ha-views"
@@ -14,6 +14,7 @@ ingress: true
 ingress_port: 8099
 panel_icon: "mdi:view-dashboard-outline"
 panel_title: "HA Views"
+panel_admin: false
 homeassistant_api: true
 map:
   - config:rw

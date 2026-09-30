@@ -1,149 +1,211 @@
 # HA Views — User Manual
 
-## Language
-
-HA Views includes an **English / Polski** language selector in the top toolbar. English is the default for new installations; the selected language is saved with the dashboard. Entity names, states, units and Home Assistant's native **More Info** dialog still come directly from the user's own Home Assistant installation.
-
 ## Installation
 
 1. In Home Assistant, open **Settings → Add-ons → Add-on store**.
 2. Open the top-right **⋮** menu and select **Repositories**.
 3. Add `https://github.com/VoyteckPL/ha-views`.
-4. Find **HA Views**, install it, then start the add-on.
-5. Open its web interface.
+4. Find **HA Views**, install it and start it.
+5. Open it from the Home Assistant sidebar.
+
+The interface language (English / Polski) is chosen in the **Edit menu** (pencil icon). Entity names, states, units and Home Assistant's **More Info** dialog come from your own Home Assistant.
+
+## Toolbar
+
+- **View tabs**: click a tab to switch views. Drag a tab to reorder it (on touch: long-press, then drag). The start view has a home icon.
+- **View menu** (icon next to the tabs): a bottom sheet on phones, a dropdown on desktop.
+- **Snap & grid** (magnet icon): visible in edit mode.
+- **Integrations** (puzzle icon): add entities and see what is on the view.
+- **Edit** (pencil icon): turns edit mode on and off and opens the Edit menu (Room, Flow, language).
 
 ## First dashboard
 
-1. At the top, click the pencil icon to enter **edit mode**.
-2. Open background management (image icon) and upload a PNG, JPG or WebP.
-3. Open the integrations button, then expand an integration.
-4. Select an entity to add it to the active view. It is added as a **Badge** in the centre of the scene.
-5. Return to the scene tab. Drag the marker to its position. Use the grid icon for precise alignment.
-6. Click the marker to open its editor and customise it.
+1. Open the **view menu → Background** and upload a floor plan or any image (PNG, JPG, WebP). You can also pick a colour.
+2. Open **Integrations**, expand an integration or search, and add an entity. It appears as a **Badge** in the centre of the view.
+3. Turn on **edit mode** (pencil). Drag the marker into place and click it to open its editor.
+4. Add **rooms** and **Flows** from the Edit menu.
 
-Each scene tab is an independent view: it has its own background, markers and saved layout. Use the view menu to add, rename or remove views.
+Each tab is an independent view with its own background, markers, Flows and rooms.
 
-## Marker types
+## View menu
 
-- **Badge** — compact name, state and optional icon; ideal for temperatures, switches and short statuses.
-- **Gauge** — visual meter; ideal for power, energy, percentage or numeric readings.
+- Main page: **Add view**, **Rename**, **Duplicate**, **Set as start view**, then **Background** and **Options**.
+- **Options**: **Swipe between views** (off, Slide, Cube), **Default Home Assistant panel** (HA Views for my account or this device only), **Delete view** (with **Undo**).
 
-Inside the marker editor, select **Badge** or **Gauge** at the top. Switching type keeps shared style settings where possible.
+### Background
 
-## Editing a marker
+- **Image**: pick a background, then **Upload**, **Download**, **Rename file** or **Background files**. The **brightness** slider (30–200 %) changes only the image.
+- **Night background**: a second image of the same size that crossfades over the day image.
+  - Mode **Auto** switches with an entity: `sun.sun` by default, where `below_horizon` = night. With another entity, the states `on`, `true`, `night` and `below_horizon` mean night. Examples: an `input_boolean` switched by an automation, or a dusk sensor.
+  - **Always day** and **Always night** ignore the entity.
+  - The night image has its own brightness.
+- **Colour**: a palette colour instead of an image, with formats 16:9 / 4:3 / 1:1 / 3:4 / 9:16 / 21:9 or a custom width × height. The resize icon lets you drag the size on screen; press **Done** to return.
+- **Background files**: every uploaded image with a thumbnail, size and where it is used.
+  - Set a file as this view's day or night background, rename, download or delete it.
+  - **Remove unused** cleans everything that no view uses.
+  - Files used by HA Views Beta are marked and need confirmation.
 
-In edit mode, click a marker. Only one editor section is expanded at a time.
+Uploaded files keep their original name. Only a name that is already taken gets " (2)".
 
-- **Entity**: name, unit, rounding, display text for on/off states.
-- **Size**: width and height.
-- **State** and **Name**: visibility, position, font size and colour.
-- **Icon**: entity icon or a custom MDI icon, on/off colours and vertical placement.
-- **Gauge**: range, value geometry, start/end angle, thickness, ticks, scale labels and gradient.
-- **Background** and **Border**: colours, opacity, rounding and border thickness.
+## Markers
 
-The action icons in the editor header are: restore defaults, copy style, paste style, delete marker and close. Deleting or restoring defaults requires confirmation.
+Four types: **Badge**, **Gauge**, **Icon** and **Horseshoe**. Click a marker in edit mode to open its editor.
 
-## Moving, resizing and zooming
+- **Entity**: name, unit, rounding, ON/OFF texts and **Tap in view** (More info, Toggle ON/OFF, No action).
+- **Size**: width, height, element scale and **rotation**.
+- **Name** / **State**: visibility, colour, opacity, size, left / right and up / down.
+- **Icon**: from Home Assistant, the integration logo or a custom MDI icon, ON/OFF icons, fill, outline and colours.
+- **Background** / **Border**: colour, gradients, opacity, shape, thickness and ON/OFF variants.
+- **Gauge** / **Horseshoe**: range, arc, thickness, ticks, labels and gradient.
+- **Value colours**: two thresholds, three colours and optional per-range icons.
 
-- Drag a marker only in edit mode.
-- Drag the bottom-right resize handle to resize it.
-- On desktop, use the mouse wheel over the scene to zoom. Drag an enlarged scene to pan.
-- On mobile, use two fingers to pinch-zoom. Wide images become a horizontal panorama in portrait mode; swipe sideways to see the rest.
-- In viewing mode, tap/click a marker to open Home Assistant **More Info**. Dragging the background does not open it.
+Header buttons: restore defaults, geometry lock, copy style, paste style (it also copies the icon choice and tap action), remove and close. The **ON / OFF** buttons preview a state without controlling the entity.
 
-## Backgrounds
+## Flow
 
-Every view has its own background. HA Views automatically fits portrait and landscape backgrounds for desktop and mobile. You do not need to create separate desktop/mobile layouts.
+**Edit menu → Flow** adds animated arrows. In the Flow editor:
 
-For the best result, use a sharp image with empty space around equipment or rooms where markers will appear. You can replace or delete a background at any time; the marker layout remains saved for that view.
+- **Entity and direction**: search for the entity, choose a fixed direction or one that depends on the sign, set the activity threshold and whether to hide the Flow below it.
+- **Frame and position**: frame length and width, rotation. The corner handles resize the frame.
+- **Arrows**: shape, sharpness, thickness, arrow length, spacing (it can be negative) and count.
+- **Colours and appearance**: colour for + / −, outline, glow and opacity.
+- **Animation**: Pulse or Flow, speed, speed that follows the value, and "apply to the other Flows of this entity".
 
-## Integrations and entities
+## Rooms
 
-The integrations page shows active Home Assistant integrations. Integrations already used on the current view appear first and show a counter. The remaining integrations are collapsed by default.
+**Edit menu → Room**, click the corners, then **Done**. In the room editor:
 
-The add-on does not contain or publish any entities from the developer's Home Assistant. After installation it reads only the integrations and entities available in the installer's own Home Assistant.
+- **Room**: name, state, **Tap in view** and the entities that light the room (search).
+- **Appearance**: ON / OFF preview, colour, intensity and edge softness. **Colour depends on ON/OFF** adds a separate OFF colour and intensity.
 
-## Backup and beta feedback
+To edit the shape, drag the corners, use an edge's middle handle to add a corner, double-click a corner to remove it, or drag inside to move the room.
 
-HA Views is beta software. Create a Home Assistant backup before updating. When reporting an issue, include:
+## Snap & grid, alignment, rotation
 
-- Home Assistant version;
-- HA Views version;
-- short reproduction steps;
-- screenshot or screen recording without private data where possible.
+- Grid S / M / L, **Background bounds** (elements stay inside the image), and alignment guides.
+- Snap targets: markers, Flows, rooms, background. Snap points: centres and edges. Blue guides are elements, amber guides are rooms, green guides are the background. On desktop, hold **Alt** to move freely.
+- **Align selected** to the background edges or centre, and **Rotate selected** in steps of 15° / 90° or smoothly.
+
+## Viewing and gestures
+
+- Tap a marker or room to run its **Tap in view** action.
+- Desktop: the mouse wheel zooms and dragging pans.
+- Phone: pinch to zoom. Wide images become a panorama. Swipe sideways to change views (Slide / Cube).
+
+## Users, sync and data
+
+- Administrators can edit. Other Home Assistant users get a read-only **Viewer mode**, which is also enforced on the server.
+- The layout is saved in Home Assistant (`/config/ha_views/rewrite_state.json`) and synchronised between devices. Changes made at the same time on two devices are merged.
+- Backgrounds are stored in `/config/ha_views/backgrounds`.
+- HA Views does not publish your entities, integrations or backgrounds.
+
+## Backup and feedback
+
+Create a Home Assistant backup before updating. When reporting an issue, include the Home Assistant version, the HA Views version, short steps to reproduce it and, where possible, a screenshot without private data.
 
 ---
 
 # HA Views — Instrukcja obsługi
-
-## Język
-
-HA Views ma przełącznik języka **English / Polski** w górnym pasku. Domyślnie przy nowej instalacji wybrany jest angielski, a wybór języka zapisuje się razem z pulpitem. Nazwy encji, stany, jednostki i natywne okno **More Info** nadal pochodzą bezpośrednio z Home Assistanta użytkownika.
 
 ## Instalacja
 
 1. W Home Assistant otwórz **Ustawienia → Dodatki → Sklep z dodatkami**.
 2. Otwórz menu **⋮** w prawym górnym rogu i wybierz **Repozytoria**.
 3. Dodaj `https://github.com/VoyteckPL/ha-views`.
-4. Znajdź **HA Views**, zainstaluj go, a następnie uruchom dodatek.
-5. Otwórz interfejs WWW dodatku.
+4. Znajdź **HA Views**, zainstaluj go i uruchom.
+5. Otwórz go z bocznego menu Home Assistant.
+
+Język interfejsu (English / Polski) wybierasz w **menu edycji** (ikona ołówka). Nazwy encji, stany, jednostki i okno **Więcej informacji** pochodzą z Twojego Home Assistant.
+
+## Górny pasek
+
+- **Zakładki widoków**: kliknięcie przełącza widok. Przeciągnięcie zmienia kolejność (na dotyku: przytrzymaj i przeciągnij). Widok startowy ma ikonę domku.
+- **Menu widoku** (ikona obok zakładek): na telefonie dolny panel, na komputerze rozwijane okno.
+- **Przyciąganie i siatka** (ikona magnesu): widoczne w trybie edycji.
+- **Integracje** (ikona puzzla): dodawanie encji i lista elementów widoku.
+- **Edycja** (ołówek): włącza i wyłącza tryb edycji oraz otwiera menu edycji (Pomieszczenie, Flow, język).
 
 ## Pierwszy widok
 
-1. U góry kliknij ikonę ołówka, aby wejść w **tryb edycji**.
-2. Otwórz zarządzanie tłem (ikona obrazka) i wgraj PNG, JPG albo WebP.
-3. Otwórz przycisk integracji, a następnie rozwiń wybraną integrację.
-4. Wybierz encję, którą chcesz dodać do aktywnego widoku. Pojawi się jako **Badge** na środku sceny.
-5. Wróć do zakładki widoku. Przeciągnij marker w wybrane miejsce. Użyj ikony siatki, aby ustawić go precyzyjnie.
-6. Kliknij marker, aby otworzyć edytor i go spersonalizować.
+1. Otwórz **menu widoku → Tło** i wgraj rzut mieszkania albo dowolny obraz (PNG, JPG, WebP). Możesz też wybrać kolor.
+2. Otwórz **Integracje**, rozwiń integrację albo użyj wyszukiwarki i dodaj encję. Pojawi się jako **Badge** na środku widoku.
+3. Włącz **tryb edycji** (ołówek). Przeciągnij marker na miejsce i kliknij go, żeby otworzyć edytor.
+4. **Pomieszczenia** i **Flow** dodajesz z menu edycji.
 
-Każda zakładka sceny to osobny widok — ma własne tło, markery i zapisany układ. Z menu widoków możesz dodawać, zmieniać nazwy oraz usuwać widoki.
+Każda zakładka to niezależny widok z własnym tłem, markerami, Flow i pomieszczeniami.
 
-## Typy markerów
+## Menu widoku
 
-- **Badge** — kompaktowa nazwa, stan i opcjonalna ikona; dobry do temperatur, przełączników i krótkich statusów.
-- **Gauge** — wskaźnik wartości; dobry do mocy, energii, procentów i odczytów liczbowych.
+- Strona główna: **Dodaj widok**, **Zmień nazwę**, **Duplikuj**, **Ustaw jako startowy**, a pod nimi **Tło** i **Opcje**.
+- **Opcje**: **Przełączanie palcem** (wyłączone, Przesunięcie, Kostka), **Domyślny panel Home Assistant** (HA Views dla mojego konta albo tylko to urządzenie) oraz **Usuń widok** (z **Cofnij**).
 
-W edytorze markera wybierz u góry **Badge** albo **Gauge**. Zmiana typu zachowuje wspólne ustawienia stylu, gdy jest to możliwe.
+### Tło
 
-## Edycja markera
+- **Obraz**: wybór tła oraz **Wgraj**, **Pobierz**, **Zmień nazwę pliku** i **Pliki tła**. Suwak **jasności** (30–200 %) zmienia tylko obraz.
+- **Tło nocne**: drugi obraz tego samego rozmiaru, który płynnie przenika się z dziennym.
+  - Tryb **Auto** przełącza encja: domyślnie `sun.sun`, gdzie `below_horizon` = noc. Przy innej encji noc oznaczają stany `on`, `true`, `night` i `below_horizon`. Przykłady: `input_boolean` przełączany automatyzacją albo czujnik zmierzchu.
+  - **Zawsze dzień** i **Zawsze noc** ignorują encję.
+  - Obraz nocny ma własną jasność.
+- **Kolor**: kolor z palety zamiast obrazu, z formatami 16:9 / 4:3 / 1:1 / 3:4 / 9:16 / 21:9 albo własną szerokością × wysokością. Ikona zmiany rozmiaru pozwala ustawić rozmiar uchwytami na ekranie; **Gotowe** wraca do menu.
+- **Pliki tła**: wszystkie wgrane obrazy z miniaturą, rozmiarem i miejscem użycia.
+  - Plik możesz ustawić jako tło dzienne lub nocne tego widoku, zmienić mu nazwę, pobrać go albo usunąć.
+  - **Usuń nieużywane** czyści wszystko, czego nie używa żaden widok.
+  - Pliki używane przez HA Views Beta są oznaczone i wymagają potwierdzenia.
 
-W trybie edycji kliknij marker. Jednocześnie rozwinięta jest tylko jedna sekcja edytora.
+Wgrane pliki zachowują oryginalną nazwę. Tylko nazwa, która jest już zajęta, dostaje „(2)”.
 
-- **Encja**: nazwa, jednostka, zaokrąglenie, tekst dla stanu włączony/wyłączony.
-- **Rozmiar**: szerokość i wysokość.
-- **Stan** i **Nazwa**: widoczność, pozycja, rozmiar czcionki i kolor.
-- **Ikona**: ikona encji lub własna ikona MDI, kolory dla on/off i pozycja w pionie.
-- **Gauge**: zakres, geometria wskaźnika, kąty początku/końca, grubość, podziałki, liczby skali i gradient.
-- **Tło** i **Ramka**: kolory, przezroczystość, zaokrąglenie i grubość obramowania.
+## Markery
 
-Ikony akcji w nagłówku edytora to: przywrócenie domyślnych, kopiowanie stylu, wklejenie stylu, usunięcie markera i zamknięcie. Usunięcie oraz przywrócenie domyślnych ustawień wymagają potwierdzenia.
+Cztery typy: **Badge**, **Gauge**, **Ikona** i **Podkowa**. Kliknij marker w trybie edycji, żeby otworzyć edytor.
 
-## Przesuwanie, skalowanie i zoom
+- **Encja**: nazwa, jednostka, zaokrąglenie, teksty ON/OFF i **Dotknięcie w widoku** (Więcej informacji, Przełącz ON/OFF, Brak akcji).
+- **Rozmiar**: szerokość, wysokość, skala elementów i **obrót**.
+- **Nazwa** / **Stan**: widoczność, kolor, przezroczystość, rozmiar, lewo / prawo i góra / dół.
+- **Ikona**: z Home Assistant, logo integracji albo własna ikona MDI, ikony ON/OFF, wypełnienie, obrys i kolory.
+- **Tło** / **Ramka**: kolor, gradienty, przezroczystość, kształt, grubość i warianty ON/OFF.
+- **Gauge** / **Podkowa**: zakres, łuk, grubość, podziałki, opisy i gradient.
+- **Kolory wg wartości**: dwa progi, trzy kolory i opcjonalne ikony dla zakresów.
 
-- Marker przeciągasz tylko w trybie edycji.
-- Przeciągnij uchwyt w prawym dolnym rogu, aby zmienić jego rozmiar.
-- Na komputerze użyj rolki myszy nad sceną, aby przybliżyć lub oddalić widok. Powiększoną scenę przeciągnij, aby ją przesunąć.
-- Na telefonie użyj dwóch palców do zoomu. Szerokie obrazy w pionie działają jako panorama — przesuwaj je w bok.
-- W trybie oglądania kliknięcie markera otwiera Home Assistant **More Info**. Przeciąganie tła nie otwiera okna.
+Przyciski w nagłówku: przywróć domyślne, blokada geometrii, kopiuj styl, wklej styl (przenosi też wybór ikony i dotknięcie w widoku), usuń i zamknij. Przyciski **ON / OFF** pokazują podgląd stanu bez sterowania encją.
 
-## Tła
+## Flow
 
-Każdy widok ma własne tło. HA Views automatycznie dopasowuje tła pionowe i poziome do komputera oraz telefonu — nie musisz tworzyć osobnych układów na desktop i mobile.
+**Menu edycji → Flow** dodaje animowane strzałki. W edytorze Flow:
 
-Najlepiej użyć ostrego obrazu z wolną przestrzenią obok urządzeń lub pomieszczeń, gdzie będą widoczne markery. Tło można w każdej chwili podmienić albo usunąć; układ markerów danego widoku pozostaje zapisany.
+- **Encja i kierunek**: wyszukanie encji, kierunek stały albo zależny od znaku, próg aktywności i ukrywanie poniżej progu.
+- **Ramka i pozycja**: długość i szerokość ramki oraz obrót. Narożne uchwyty zmieniają rozmiar ramki.
+- **Strzałki**: kształt, ostrość, grubość, długość strzałki, odstęp (może być ujemny) i liczba.
+- **Kolory i wygląd**: kolor dla + / −, obrys, poświata i krycie.
+- **Animacja**: Pulsowanie albo Przepływ, tempo, tempo od wartości oraz „ustaw w pozostałych Flow tej encji”.
 
-## Integracje i encje
+## Pomieszczenia
 
-Zakładka integracji pokazuje aktywne integracje Home Assistant. Integracje używane w bieżącym widoku są na górze i mają licznik. Pozostałe integracje są domyślnie zwinięte.
+**Menu edycji → Pomieszczenie**, kliknij kolejne narożniki, a potem **Gotowe**. W edytorze pomieszczenia:
 
-Dodatek nie zawiera ani nie publikuje encji z Home Assistanta autora. Po instalacji odczytuje wyłącznie integracje i encje dostępne w Home Assistant osoby, która go instaluje.
+- **Pomieszczenie**: nazwa, stan, **Dotknięcie w widoku** i encje, które je zapalają (wyszukiwarka).
+- **Wygląd**: podgląd ON / OFF, kolor, intensywność i miękkość krawędzi. **Kolor zależny ON/OFF** dodaje osobny kolor i intensywność dla OFF.
 
-## Backup i feedback beta
+Kształt edytujesz tak: przeciągasz narożniki, środkowym uchwytem krawędzi dodajesz narożnik, dwuklikiem na narożniku go usuwasz, a przeciągnięciem wnętrza przesuwasz całe pomieszczenie.
 
-HA Views jest oprogramowaniem beta. Przed aktualizacją wykonaj backup Home Assistanta. Zgłaszając błąd, dołącz:
+## Przyciąganie, wyrównanie, obrót
 
-- wersję Home Assistanta;
-- wersję HA Views;
-- krótkie kroki do odtworzenia problemu;
-- screen lub nagranie ekranu — bez prywatnych danych, jeśli to możliwe.
+- Siatka S / M / L, **Granice tła** (elementy zostają na obrazie) i linie pomocnicze.
+- Cele przyciągania: markery, Flow, pomieszczenia i tło. Punkty przyciągania: środki i krawędzie. Niebieskie linie to elementy, bursztynowe to pomieszczenia, zielone to tło. Na komputerze **Alt** pozwala przesuwać swobodnie.
+- **Wyrównaj zaznaczony** do krawędzi lub środka tła oraz **Obróć zaznaczony** o 15° / 90° albo płynnie.
+
+## Oglądanie i gesty
+
+- Dotknięcie markera lub pomieszczenia wykonuje jego akcję **Dotknięcie w widoku**.
+- Komputer: rolka myszy przybliża, a przeciąganie przesuwa widok.
+- Telefon: dwa palce przybliżają. Szerokie obrazy stają się panoramą. Przesunięcie w bok zmienia widok (Przesunięcie / Kostka).
+
+## Użytkownicy, synchronizacja i dane
+
+- Administratorzy mogą edytować. Pozostali użytkownicy Home Assistant widzą **tryb podglądu** tylko do odczytu, pilnowany także przez serwer.
+- Układ jest zapisywany w Home Assistant (`/config/ha_views/rewrite_state.json`) i synchronizowany między urządzeniami. Równoczesne zmiany z dwóch urządzeń są łączone.
+- Tła są w `/config/ha_views/backgrounds`.
+- HA Views nie publikuje Twoich encji, integracji ani teł.
+
+## Backup i zgłaszanie błędów
+
+Przed aktualizacją zrób backup Home Assistant. Zgłaszając problem, podaj wersję Home Assistant, wersję HA Views, krótkie kroki odtworzenia i, jeśli możesz, zrzut ekranu bez prywatnych danych.

@@ -5,7 +5,7 @@ import re
 import shutil
 import time
 from datetime import datetime, timedelta, timezone
-from urllib.parse import quote
+from urllib.parse import quote, unquote
 
 import aiohttp
 from aiohttp import web
@@ -109,6 +109,9 @@ async def api_selected_states(request):
 
 # Generic optional control endpoint. It never contains user-specific entity IDs.
 async def api_control(request):
+    denial = await editor_denial(request)
+    if denial:
+        return denial
     try:
         body = await request.json()
     except Exception:
@@ -324,6 +327,9 @@ async def api_layout_get(request):
 
 
 async def api_layout_save(request):
+    denial = await editor_denial(request)
+    if denial:
+        return denial
     try:
         body = await request.json()
     except Exception:
@@ -412,6 +418,9 @@ async def api_layout_save(request):
 # ============================================================
 
 HA_WS = "ws://supervisor/core/websocket"
+# Registry lists (entities, devices) of large installations exceed aiohttp's default 4 MB WebSocket message
+# limit ("Message size … exceeds limit 4194304"). Allow up to 128 MB.
+HA_WS_MAX_MSG_SIZE = 128 * 1024 * 1024
 
 
 async def ha_ws_command(command):
@@ -426,6 +435,7 @@ async def ha_ws_command(command):
             HA_WS,
             headers=headers(),
             heartbeat=30,
+            max_msg_size=HA_WS_MAX_MSG_SIZE,
         ) as ws:
 
             first = await ws.receive_json()
@@ -483,6 +493,50 @@ async def ha_ws_command(command):
                     )
 
                 return msg.get("result")
+
+
+USER_ACCESS_CACHE = {}
+USER_ACCESS_CACHE_SECONDS = 60
+
+async def request_is_admin(request):
+    user_id = str(request.headers.get("X-Remote-User-Id", "")).strip()
+    if not user_id:
+        return False
+    cached = USER_ACCESS_CACHE.get(user_id)
+    if cached and time.monotonic() - cached["checked"] < USER_ACCESS_CACHE_SECONDS:
+        return cached["is_admin"]
+    try:
+        users = await ha_ws_command({"type": "config/auth/list"})
+        user = next((item for item in users if str(item.get("id", "")) == user_id), None)
+        groups = (user or {}).get("groups") or (user or {}).get("group_ids") or []
+        group_ids = {
+            str(group.get("id", "")) if isinstance(group, dict) else str(group)
+            for group in groups
+        }
+        is_admin = bool(
+            user
+            and (
+                user.get("is_admin")
+                or user.get("is_owner")
+                or "system-admin" in group_ids
+            )
+        )
+    except Exception as err:
+        print(f"HA Views access lookup failed: {type(err).__name__}: {err}", flush=True)
+        is_admin = False
+    USER_ACCESS_CACHE[user_id] = {"checked": time.monotonic(), "is_admin": is_admin}
+    return is_admin
+
+async def editor_denial(request):
+    if await request_is_admin(request):
+        return None
+    return web.json_response(
+        {"ok": False, "error": "HA Views is view-only for this user"},
+        status=403,
+    )
+
+async def api_access(request):
+    return web.json_response({"ok": True, "viewer": not await request_is_admin(request)})
 
 
 async def ha_all_states():
@@ -987,6 +1041,9 @@ async def api_all_integration_entities(request):
 # ============================================================
 
 async def api_enable_entity(request):
+    denial = await editor_denial(request)
+    if denial:
+        return denial
 
     try:
 
@@ -1064,6 +1121,9 @@ async def api_enable_entity(request):
 # ============================================================
 
 async def api_disable_entity(request):
+    denial = await editor_denial(request)
+    if denial:
+        return denial
 
     try:
 
@@ -1167,6 +1227,7 @@ async def api_entity_events(request):
                 HA_WS,
                 headers=headers(),
                 heartbeat=30,
+                max_msg_size=HA_WS_MAX_MSG_SIZE,
             ) as ws:
 
                 first = await ws.receive_json()
@@ -1288,6 +1349,9 @@ def ensure_background_store():
     else:
         _atomic_json(BACKGROUND_META, {"current": None})
 
+def _background_stem(value):
+    return re.sub(r'[\x00-\x1f<>:"/\\|?*]+', "_", os.path.splitext(str(value or ""))[0]).strip(" .") or "background"
+
 def _background_name(value):
     name = os.path.basename(str(value or "")).strip()
     if not name or name in {".", ".."}:
@@ -1335,17 +1399,26 @@ async def api_background_download(request):
     return response
 
 async def api_background_upload(request):
+    denial = await editor_denial(request)
+    if denial:
+        return denial
     ensure_background_store()
     reader = await request.multipart()
     field = await reader.next()
     if field is None or field.name != "file":
         return web.json_response({"ok": False, "error": "Brak pliku"}, status=400)
-    original = _background_name(field.filename)
+    original = _background_name(unquote(field.filename or ""))
     ext = os.path.splitext(original or "")[1].lower()
     if ext not in ALLOWED_BACKGROUND_EXT:
         return web.json_response({"ok": False, "error": "Dozwolone: PNG, JPG, JPEG, WEBP"}, status=400)
-    stem = re.sub(r"[^A-Za-z0-9._-]+", "_", os.path.splitext(original)[0]).strip("._") or "background"
-    name = stem + "_" + str(int(time.time())) + ext
+    # Keep the original file name (Polish letters and spaces included). Only characters that are not allowed
+    # in file names are replaced. A name that is already taken gets " (2)", " (3)" …, never overwrites:
+    # the same file may be used by the stable add-on, and images are cached by name.
+    stem = _background_stem(original)
+    name, counter = stem + ext, 2
+    while os.path.exists(os.path.join(BACKGROUND_DIR, name)):
+        name = f"{stem} ({counter}){ext}"
+        counter += 1
     final_path = os.path.join(BACKGROUND_DIR, name)
     tmp_path = final_path + ".upload"
     size = 0
@@ -1368,6 +1441,9 @@ async def api_background_upload(request):
     return web.json_response({"ok": True, "name": name, "size": size})
 
 async def api_background_select(request):
+    denial = await editor_denial(request)
+    if denial:
+        return denial
     ensure_background_store()
     body = await request.json()
     name = _background_name(body.get("name"))
@@ -1377,13 +1453,72 @@ async def api_background_select(request):
     _atomic_json(BACKGROUND_META, {"current": name})
     return web.json_response({"ok": True, "current": name})
 
-async def api_background_delete(request):
+def _other_background_usage():
+    """Backgrounds used by the other add-on (stable <-> beta share /config/ha_views/backgrounds): {name: [view names]}."""
+    usage = {}
+    data = _read_json(OTHER_REWRITE_STATE_FILE, None)
+    views = data.get("views") if isinstance(data, dict) else None
+    for view_id, view in (views or {}).items():
+        if not isinstance(view, dict):
+            continue
+        label = str(view.get("name") or view_id)
+        for key in ("background", "nightBackground"):
+            name = view.get(key)
+            if isinstance(name, str) and name:
+                usage.setdefault(name, [])
+                if label not in usage[name]:
+                    usage[name].append(label)
+    return usage
+
+def _other_usage_error():
+    return "Tło jest używane w " + ("stabilnej wersji HA Views" if OTHER_CHANNEL == "stable" else "HA Views Beta")
+
+async def api_background_usage(request):
+    usage = _other_background_usage()
+    return web.json_response({"ok": True, "other": usage, "otherChannel": OTHER_CHANNEL, "stable": usage})
+
+async def api_background_rename(request):
+    denial = await editor_denial(request)
+    if denial:
+        return denial
     ensure_background_store()
     body = await request.json()
     name = _background_name(body.get("name"))
     path = os.path.join(BACKGROUND_DIR, name) if name else ""
     if not name or not os.path.isfile(path):
         return web.json_response({"ok": False, "error": "Nie znaleziono tła"}, status=404)
+    wanted = os.path.basename(str(body.get("newName") or "").replace("\\", "/")).strip()
+    # The file keeps its own extension (the image format does not change); a typed image extension is dropped.
+    ext = os.path.splitext(name)[1].lower()
+    if os.path.splitext(wanted)[1].lower() in ALLOWED_BACKGROUND_EXT:
+        wanted = os.path.splitext(wanted)[0]
+    new_name = _background_stem(wanted + ext) + ext
+    if new_name == name:
+        return web.json_response({"ok": True, "name": name})
+    if os.path.exists(os.path.join(BACKGROUND_DIR, new_name)):
+        return web.json_response({"ok": False, "error": "Plik o tej nazwie już istnieje"}, status=409)
+    # Renaming a file the stable add-on uses leaves its view without a background: only on a confirmed request.
+    if name in _other_background_usage() and body.get("force") is not True:
+        return web.json_response({"ok": False, "error": _other_usage_error(), "stable": True}, status=409)
+    os.rename(path, os.path.join(BACKGROUND_DIR, new_name))
+    meta = _read_json(BACKGROUND_META, {})
+    if meta.get("current") == name:
+        _atomic_json(BACKGROUND_META, {"current": new_name})
+    return web.json_response({"ok": True, "name": new_name})
+
+async def api_background_delete(request):
+    denial = await editor_denial(request)
+    if denial:
+        return denial
+    ensure_background_store()
+    body = await request.json()
+    name = _background_name(body.get("name"))
+    path = os.path.join(BACKGROUND_DIR, name) if name else ""
+    if not name or not os.path.isfile(path):
+        return web.json_response({"ok": False, "error": "Nie znaleziono tła"}, status=404)
+    # A file the stable add-on uses is removed only on an explicit, confirmed request (force).
+    if name in _other_background_usage() and body.get("force") is not True:
+        return web.json_response({"ok": False, "error": _other_usage_error()}, status=409)
     os.remove(path)
     meta = _read_json(BACKGROUND_META, {})
     if meta.get("current") == name:
@@ -1395,6 +1530,9 @@ async def api_marker_styles_get(request):
     return web.json_response({"ok": True, "data": data})
 
 async def api_marker_styles_save(request):
+    denial = await editor_denial(request)
+    if denial:
+        return denial
     data = await request.json()
     if not isinstance(data, dict):
         return web.json_response({"ok": False, "error": "Dane muszą być obiektem JSON"}, status=400)
@@ -1408,9 +1546,32 @@ async def api_marker_styles_save(request):
 
 
 # ===== HA Views CLEAN REWRITE STATE =====
-REWRITE_STATE_FILE = "/config/ha_views/rewrite_state.json"
+# One code base, two add-ons. HA Views (stable) and HA Views Beta share /config/ha_views (backgrounds too), but each
+# keeps its own layout file: sharing one let an open page of one add-on silently roll back changes of the other.
+# The stable add-on sets ADDON_CHANNEL = "stable". On its first start the beta copies the stable layout once.
+ADDON_CHANNEL = "stable"
+STABLE_STATE_FILE = "/config/ha_views/rewrite_state.json"
+BETA_STATE_FILE = "/config/ha_views/rewrite_state_beta.json"
+REWRITE_STATE_FILE = BETA_STATE_FILE if ADDON_CHANNEL == "beta" else STABLE_STATE_FILE
+# The other add-on's layout: its backgrounds are protected in the background manager.
+OTHER_CHANNEL = "stable" if ADDON_CHANNEL == "beta" else "beta"
+OTHER_REWRITE_STATE_FILE = STABLE_STATE_FILE if ADDON_CHANNEL == "beta" else BETA_STATE_FILE
+SHARED_REWRITE_STATE_FILE = STABLE_STATE_FILE
+
+def _ensure_beta_state_file():
+    if ADDON_CHANNEL != "beta" or os.path.exists(REWRITE_STATE_FILE):
+        return
+    shared = _read_json(SHARED_REWRITE_STATE_FILE, None)
+    if isinstance(shared, dict):
+        _atomic_json(REWRITE_STATE_FILE, shared)
+
+try:
+    _ensure_beta_state_file()
+except Exception as error:
+    print(f"HA Views Beta: could not copy the shared layout: {error}", flush=True)
 
 async def api_rewrite_state_get(request):
+    _ensure_beta_state_file()
     data = _read_json(REWRITE_STATE_FILE, None)
     return web.json_response({
         "ok": True,
@@ -1419,6 +1580,9 @@ async def api_rewrite_state_get(request):
     })
 
 async def api_rewrite_state_save(request):
+    denial = await editor_denial(request)
+    if denial:
+        return denial
     try:
         data = await request.json()
     except Exception:
@@ -1431,6 +1595,31 @@ async def api_rewrite_state_save(request):
             {"ok": False, "error": "Stan musi być obiektem JSON"},
             status=400,
         )
+    # Optimistic concurrency: a client sends the revision it last loaded/saved.
+    # A save based on an older revision (e.g. a phone that kept a stale page
+    # open) is rejected instead of silently overwriting newer changes.
+    base_revision = data.pop("baseRevision", None)
+    current = _read_json(REWRITE_STATE_FILE, None)
+    current_revision = _layout_revision(current)
+    # A page without baseRevision is an old cached app version; it must not overwrite the layout.
+    if base_revision is None and isinstance(current, dict) and current_revision > 0:
+        base_revision = -1
+    if base_revision is not None:
+        try:
+            base_revision = int(base_revision)
+        except (TypeError, ValueError):
+            base_revision = -1
+        if isinstance(current, dict) and base_revision != current_revision:
+            return web.json_response(
+                {
+                    "ok": False,
+                    "conflict": True,
+                    "revision": current_revision,
+                    "error": "Układ został zmieniony na innym urządzeniu",
+                },
+                status=409,
+            )
+        data["revision"] = current_revision + 1
     encoded = json.dumps(data, ensure_ascii=False).encode("utf-8")
     if len(encoded) > 2 * 1024 * 1024:
         return web.json_response(
@@ -1438,7 +1627,20 @@ async def api_rewrite_state_save(request):
             status=413,
         )
     _atomic_json(REWRITE_STATE_FILE, data)
-    return web.json_response({"ok": True})
+    return web.json_response({"ok": True, "revision": data.get("revision")})
+
+
+def _layout_revision(data):
+    if not isinstance(data, dict):
+        return 0
+    try:
+        return int(data.get("revision") or 0)
+    except (TypeError, ValueError):
+        return 0
+
+
+async def api_rewrite_state_revision(request):
+    return web.json_response({"ok": True, "revision": _layout_revision(_read_json(REWRITE_STATE_FILE, None))})
 
 CUSTOM_COMPONENTS_DIR = "/config/custom_components"
 INTEGRATION_ICON_FILES = (
@@ -1491,7 +1693,9 @@ app = web.Application(middlewares=[frontend_no_store])
 
 app.router.add_get("/", index)
 app.router.add_get("/rewrite", rewrite_index)
+app.router.add_get("/api/access", api_access)
 app.router.add_get("/api/rewrite_state", api_rewrite_state_get)
+app.router.add_get("/api/rewrite_state_revision", api_rewrite_state_revision)
 app.router.add_post("/api/rewrite_state", api_rewrite_state_save)
 app.router.add_get("/api/integration_icon", api_integration_icon)
 
@@ -1529,6 +1733,8 @@ app.router.add_post("/api/layout", api_layout_save)
 # HA Views BACKGROUNDS + MARKER STYLES V16
 app.router.add_get("/api/backgrounds", api_backgrounds_list)
 app.router.add_get("/api/background/current", api_background_current)
+app.router.add_get("/api/background/usage", api_background_usage)
+app.router.add_post("/api/background/rename", api_background_rename)
 app.router.add_get("/api/background/file", api_background_file)
 app.router.add_get("/api/background/download", api_background_download)
 app.router.add_post("/api/background/upload", api_background_upload)

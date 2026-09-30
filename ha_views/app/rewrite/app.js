@@ -18,14 +18,25 @@ const TRANSLATIONS = {
     'Dodaj':'Add','Pokaż':'Show','Usuń':'Remove','Pozostałe integracje':'Other integrations','używane':'used','Zapisano':'Saved','Brak danych':'No data','Niedostępne':'Unavailable','Nieznany':'Unknown',
     'Przyciąganie do siatki włączone':'Snap to grid enabled','Przyciąganie do siatki wyłączone':'Snap to grid disabled','Dodano nowy widok':'New view added','Zmieniono nazwę widoku':'View renamed','Zmieniono kolejność widoków':'View order updated','Ustawiono widok startowy':'Startup view set','Kolejność widoków':'View order','Przesuń widok w lewo':'Move view left','Przesuń widok w prawo':'Move view right','Ustaw jako widok startowy':'Set as startup view','Widok startowy':'Startup view','Blokada geometrii':'Geometry lock','Efekt światła':'Light effect','Jednolity':'Solid','Centralny':'Center','Róg':'Corner','Od ściany':'From wall','Ambient':'Ambient','Pozycja pozioma':'Horizontal position','Pozycja pionowa':'Vertical position','Rozproszenie':'Spread','Wypełnienie':'Fill','Kierunek':'Direction','Pozycja na ścianie':'Position on wall','Lewa':'Left','Prawa':'Right','Góra':'Top','Dół':'Bottom','Utworzono kopię widoku':'View duplicated','Usunięto widok':'View deleted','Przywrócono domyślne dopasowanie tła':'Default background fit restored','Przywrócono styl domyślny':'Default style restored','Wklejono kompletny styl 1:1':'Full style pasted 1:1',
     'Dodano do widoku':'Added to view','Usunięto z widoku':'Removed from view','Usunięto tło':'Background deleted','Skopiowano styl':'Style copied','Nie udało się wczytać układu:':'Could not load layout:',
-    'Jednostka':'Unit','Zaokrąglenie':'Rounding','Skala elementów':'Element scale','Dotknięcie w widoku':'Tap in View','Więcej informacji':'More info','Przełącz ON/OFF':'Toggle ON/OFF','Tekst ON':'ON text','Tekst OFF':'OFF text','Pokaż':'Show','Kolor':'Colour','Przezrocz.':'Opacity','Przezroczystość':'Opacity','Przezroczystość ON':'ON opacity','Przezroczystość OFF':'OFF opacity','Przezroczystość obrysu':'Outline opacity','Przezroczystość obrysu ON':'ON outline opacity','Przezroczystość obrysu OFF':'OFF outline opacity','Kolor zależny ON/OFF':'Colour depends on ON/OFF','Przezroczystość zależna ON/OFF':'Opacity depends on ON/OFF','Ikona zależna ON/OFF':'Icon depends on ON/OFF','Tło zależne ON/OFF':'Background depends on ON/OFF','Ramka zależna ON/OFF':'Border depends on ON/OFF','Obrys zależny ON/OFF':'Outline depends on ON/OFF','Ikona podstawowa':'Base icon','Ikona ON':'ON icon','Ikona OFF':'OFF icon','Szerokość':'Width','Wysokość':'Height','Grubość':'Thickness','Źródło':'Source','Z encji Home Assistant':'From Home Assistant entity','Logo integracji':'Integration logo','Własna ikona MDI':'Custom MDI icon','Brak danych':'No data','Zakres i wartość':'Range and value','Minimum':'Minimum','Maksimum':'Maximum','Tor':'Track','Wartość':'Value','Geometria wskaźnika':'Gauge geometry','Skala':'Scale','Pozycja':'Position','Kąt start':'Start angle','Kąt koniec':'End angle','Podziałka':'Ticks','Pokaż ticki':'Show ticks','Co ile':'Interval','Offset':'Offset','Długość':'Length','Liczby skali':'Scale labels','Czcionka':'Font','Odsunięcie':'Offset','Włącz':'Enable','Start':'Start','Koniec':'End','Procent':'Percent','Własny kolor RGB…':'Custom RGB colour…','Brak dodatkowych atrybutów.':'No additional attributes.','Nie dodano jeszcze żadnych encji.':'No entities have been added yet.','Kliknij, aby wczytać encje.':'Click to load entities.','Dodaj do widoku':'Add to view','Encja jest wyłączona':'Entity is disabled','Dodano świeży Badge z ustawieniami domyślnymi':'Added a new Badge with default settings','Usunięto marker i wszystkie jego ustawienia':'Removed marker and all its settings','Połączono':'Connected','Błąd danych':'Data error','Na żywo':'Live','Ponowne łączenie…':'Reconnecting…','Bez tła':'No background','Błąd zapisu':'Save error','Błąd':'Error'
+    'Jednostka':'Unit','Zaokrąglenie':'Rounding','Skala elementów':'Element scale','Dotknięcie w widoku':'Tap in View','Więcej informacji':'More info','Przełącz ON/OFF':'Toggle ON/OFF','Tekst ON':'ON text','Tekst OFF':'OFF text','Pokaż':'Show','Kolor':'Colour','Przezrocz.':'Opacity','Przezroczystość':'Opacity','Przezroczystość ON':'ON opacity','Przezroczystość OFF':'OFF opacity','Przezroczystość obrysu':'Outline opacity','Przezroczystość obrysu ON':'ON outline opacity','Przezroczystość obrysu OFF':'OFF outline opacity','Kolor zależny ON/OFF':'Colour depends on ON/OFF','Przezroczystość zależna ON/OFF':'Opacity depends on ON/OFF','Ikona zależna ON/OFF':'Icon depends on ON/OFF','Tło zależne ON/OFF':'Background depends on ON/OFF','Ramka zależna ON/OFF':'Border depends on ON/OFF','Obrys zależny ON/OFF':'Outline depends on ON/OFF','Ikona podstawowa':'Base icon','Ikona ON':'ON icon','Ikona OFF':'OFF icon','Szerokość':'Width','Wysokość':'Height','Grubość':'Thickness','Źródło':'Source','Z encji Home Assistant':'From Home Assistant entity','Logo integracji':'Integration logo','Własna ikona MDI':'Custom MDI icon','Brak danych':'No data','Zakres i wartość':'Range and value','Minimum':'Minimum','Maksimum':'Maximum','Tor':'Track','Wartość':'Value','Geometria wskaźnika':'Gauge geometry','Skala':'Scale','Pozycja':'Position','Kąt start':'Start angle','Kąt koniec':'End angle','Podziałka':'Ticks','Pokaż ticki':'Show ticks','Co ile':'Interval','Offset':'Offset','Długość':'Length','Liczby skali':'Scale labels','Czcionka':'Font','Odsunięcie':'Offset','Włącz':'Enable','Start':'Start','Koniec':'End','Procent':'Percent','Własny kolor RGB…':'Custom RGB colour…','Brak dodatkowych atrybutów.':'No additional attributes.','Nie dodano jeszcze żadnych encji.':'No entities have been added yet.','Kliknij, aby wczytać encje.':'Click to load entities.','Dodaj do widoku':'Add to view','Encja jest wyłączona':'Entity is disabled','Dodano świeży Badge z ustawieniami domyślnymi':'Added a new Badge with default settings','Usunięto marker i wszystkie jego ustawienia':'Removed marker and all its settings','Połączono':'Connected','Błąd danych':'Data error','Na żywo':'Live','Ponowne łączenie…':'Reconnecting…','Bez tła':'No background','Błąd zapisu':'Save error','Błąd':'Error',
+    "Encja i kierunek":"Entity and direction","Aktualna wartość":"Current value","Sterowanie":"Control","Stały kierunek":"Fixed direction","Kierunek wg znaku + / −":"Direction by sign + / −","Kierunek dla +":"Direction for +","Kierunek dla −":"Direction for −","Osobny styl dla −":"Separate style for −","Prawo":"Right","Lewo":"Left","Próg aktywności":"Activity threshold","Ukryj poniżej progu":"Hide below threshold","Flow jest nieaktywny, gdy |wartość| ≤ próg — np. próg 0 wyłącza strzałki fotowoltaiki przy 0 W w nocy. Nieaktywny Flow jest przygaszony i bez animacji albo, z opcją ukrywania, całkiem niewidoczny. W trybie edycji ukryty Flow ma tylko przerywaną ramkę, żeby dało się go kliknąć.":"Flow is inactive when |value| ≤ threshold — e.g. a threshold of 0 turns off the solar arrows at 0 W at night. An inactive Flow is dimmed without animation or, with hiding enabled, fully invisible. In edit mode a hidden Flow shows only a dashed frame so it can still be clicked.","Kształt":"Shape","Rodzaj":"Type","Chevron":"Chevron","Strzałka":"Arrow","Grot":"Arrowhead","Trójkąt":"Triangle","Segment":"Segment","Liczba":"Count","Grubość trzonu":"Shaft thickness","Rozmiar i pozycja":"Size and position","Odstęp":"Spacing","Korekta obrotu":"Rotation offset","Długość i szerokość to rozmiar ramki liczony względem kierunku strzałki. Liczba i odstęp rozkładają elementy wewnątrz ramki i nie zmieniają jej rozmiaru.":"Length and width are the frame size, measured along the arrow direction. Count and spacing arrange the items inside the frame and do not change its size.","Kolory i wygląd":"Colours and appearance","Kolor dla +":"Colour for +","Kolor dla −":"Colour for −","Obrys":"Outline","Kolor obrysu":"Outline colour","Poświata":"Glow","Osobny kolor poświaty":"Separate glow colour","Kolor poświaty":"Glow colour","Krycie":"Opacity","Animacja":"Animation","Typ":"Type","Brak":"None","Pulsowanie":"Pulse","Przepływ":"Flow","Tempo":"Speed","Tempo od wartości":"Speed follows value","Pełne tempo przy":"Full speed at","Wartość +":"Value +","Wartość −":"Value −","Styl dla +":"Style for +","Styl dla −":"Style for −","Styl wspólny dla + i −":"Shared style for + and −","Podgląd i edycja dla wartości dodatniej.":"Preview and editing for a positive value.","Podgląd i edycja dla wartości ujemnej.":"Preview and editing for a negative value.","Każda strona ma własny styl.":"Each side has its own style.","Kształt, rozmiar i animacja są wspólne — kolor jest osobny.":"Shape, size and animation are shared — only the colour is separate.","Kopiuj styl Flow":"Copy Flow style","Wklej styl Flow":"Paste Flow style","Usuń Flow":"Delete Flow","Dodaj Flow testowy":"Add Flow","Skopiowano styl Flow — wklej go w innym Flow":"Flow style copied — paste it into another Flow","Wklejono styl Flow":"Flow style pasted","Przywrócono domyślny Flow":"Flow defaults restored","Dodano Flow — przeciągnij go w trybie edycji":"Flow added — drag it in edit mode","Usunięto Flow":"Flow removed","Przywrócić domyślny Flow?":"Restore Flow defaults?","Obecne ustawienia wyglądu i działania Flow zostaną zastąpione domyślnymi. Pozycja i nazwa zostaną zachowane.":"The current Flow appearance and behaviour settings will be replaced with defaults. Position and name are kept.","Usunąć Flow?":"Delete Flow?","Kolor ON":"ON colour","Kolor OFF":"OFF colour","Kolor obrysu ON":"ON outline colour","Kolor obrysu OFF":"OFF outline colour","Grubość obrysu":"Outline thickness","Grubość obrysu ON":"ON outline thickness","Grubość obrysu OFF":"OFF outline thickness","Grubość ON":"ON thickness","Grubość OFF":"OFF thickness","Zależne ON/OFF":"Depends on ON/OFF","Przezrocz. ON":"ON opacity","Przezrocz. OFF":"OFF opacity","Lewo / prawo":"Left / right","Góra / dół":"Up / down","Prostokąt":"Rectangle","Zaokrąglony":"Rounded","Koło / owal":"Circle / oval","Gradient":"Gradient","Auto":"Auto","Monospace":"Monospace","Przywróć domyślną wartość":"Restore default value","Wybierz kolor":"Choose colour","Własny kolor":"Custom colour","Własny kolor RGB":"Custom RGB colour","Podaj kolor w formacie #RRGGBB.":"Enter a colour in #RRGGBB format.","Ustaw":"Set","Typ markera i jego ustawienia wyglądu zostaną zastąpione domyślnymi.":"The marker type and its appearance settings will be replaced with defaults.","Zmień":"Change","Nie można przełączyć encji w tym stanie.":"This entity cannot be toggled in its current state.","Stan encji nie został jeszcze potwierdzony.":"The entity state has not been confirmed yet.","Błąd encji":"Entity error","Błąd przełączania":"Toggle error","Nie udało się pobrać historii":"Could not load history","Pobierz tło":"Download background","Wybierz tło widoku":"Choose view background","Wgraj nowy obraz":"Upload a new image","Wybierz istniejące tło":"Choose an existing background","Wybierz istniejące tło…":"Choose an existing background…","Załaduj wybrane tło":"Load selected background","Wybierz kolor tła":"Choose background colour","Format kolorowego tła":"Colour background format","Usunąć tło?":"Delete background?","Zresetować dopasowanie tła?":"Reset background fit?","Skala, pozycja i tryb dopasowania tego tła wrócą do wartości domyślnych.":"Scale, position and fit mode of this background will return to defaults.","Resetuj":"Reset","Brak aktywnych integracji.":"No active integrations.","Brak encji.":"No entities.","Brak historii w wybranym okresie.":"No history in the selected period.","Brak pasujących encji.":"No matching entities.","Nie dodano jeszcze żadnych elementów.":"Nothing has been added yet.","Widok ogólny":"Overview",
+    "Brak entity_id":"Missing entity_id","Brak entry_id":"Missing entry_id","Brak listy encji":"Missing entity list","Brak pliku":"No file","Dane muszą być obiektem JSON":"Data must be a JSON object","Dozwolone: PNG, JPG, JPEG, WEBP":"Allowed: PNG, JPG, JPEG, WEBP","Layout jest za duży":"Layout is too large","Layout musi być obiektem JSON":"Layout must be a JSON object","Nie znaleziono tła":"Background not found","Nieprawidlowa encja":"Invalid entity","Nieprawidłowy JSON":"Invalid JSON","Plik stylów jest za duży":"Style file is too large","Stan jest za duży":"State is too large","Stan musi być obiektem JSON":"State must be a JSON object",
+    "Cofnij":"Undo","Przywrócono widok":"View restored","Usunięto widok":"View deleted","Widok jest pusty.":"The view is empty.","Usuń widok":"Delete view","Usunąć widok?":"Delete view?",
+    "Długość ramki":"Frame length","Długość elementu":"Item length","Długość ramki i szerokość to rozmiar ramki liczony względem kierunku strzałki. Długość elementu to rozmiar jednej strzałki. Liczba i odstęp nie zmieniają ani ramki, ani kształtu strzałek — elementy są wyśrodkowane w ramce, a to, co się nie mieści, jest przycinane.":"Frame length and width are the frame size, measured along the arrow direction. Item length is the size of a single arrow. Count and spacing change neither the frame nor the arrow shape — items are centred in the frame and anything that does not fit is clipped.",
+    "Duplikuj Flow":"Duplicate Flow","Utworzono kopię Flow — przeciągnij ją w wybrane miejsce":"Flow copy created — drag it where you want",
+    "Ostrość":"Sharpness",
+    "Układ został zmieniony na innym urządzeniu — wczytano najnowszą wersję. Ostatnia zmiana z tego urządzenia nie została zapisana.":"The layout was changed on another device — the latest version was loaded. The last change from this device was not saved.","Układ zmieniono na innym urządzeniu":"Layout changed on another device","Wczytaj":"Load","Wczytano zmiany z innego urządzenia":"Loaded changes from another device","HA Views Beta":"HA Views Beta","stabilna wersja HA Views":"the stable HA Views","Beta":"Beta","Używane przez":"Used by","Usunąć tło używane przez drugą wersję?":"Delete a background used by the other version?","Zmienić nazwę tła używanego przez drugą wersję?":"Rename a background used by the other version?","Jasność":"Brightness","Przywróć 100%":"Reset to 100%","Widok":"View","Opcje":"Options","Obraz":"Image","Wgraj tło":"Upload background","Zmień nazwę pliku tła":"Rename background file","Auto — przełącza encja":"Auto — switched by the entity","Kolor zamiast obrazu":"Colour instead of an image","Wybór koloru zastąpi obraz":"Choosing a colour replaces the image","Tło w kolorze":"Colour background","Szerokość":"Width","Wysokość":"Height","Ustaw rozmiar na ekranie":"Set the size on screen","Przeciągnij kółka, aby ustawić rozmiar":"Drag the circles to set the size","Tło tego widoku":"This view's background","Ustaw jako tło tego widoku":"Use as this view's background","Tło nocne tego widoku":"This view's night background","Ustaw jako tło nocne tego widoku":"Use as this view's night background","Zmień nazwę":"Rename","Pobierz":"Download","Ustawiono tło widoku":"View background set","Zmień nazwę pliku tła?":"Rename background file?","Zmienić nazwę tła wersji stabilnej?":"Rename a stable-version background?","Zmień mimo to":"Rename anyway","Zmieniono nazwę tła":"Background renamed","Zmień":"Change","Używane w stabilnej wersji — usunięcie wymaga potwierdzenia":"Used by the stable version — deleting needs confirmation","Usunąć tło wersji stabilnej?":"Delete a stable-version background?","Usuń mimo to":"Delete anyway","Tego nie da się cofnąć.":"This cannot be undone.","Tryb tła":"Background mode","Automatycznie wg encji":"Automatic by entity","Zawsze dzień":"Always day","Zawsze noc":"Always night","Zawsze noc — encja nie jest używana":"Always night — the entity is not used","Zawsze dzień — encja nie jest używana":"Always day — the entity is not used","Pliki tła":"Background files","Usuń nieużywane":"Remove unused","plików":"files","plik":"file","pliki":"files","nieużywane":"unused","Nieużywane":"Unused","Stabilna":"Stable","noc":"night","dzień":"day","Używane w stabilnej wersji — usuń je tam":"Used by the stable version — remove it there","Usuń plik":"Delete file","Brak wgranych teł.":"No uploaded backgrounds.","Wczytywanie…":"Loading…","Usunąć plik tła?":"Delete background file?","Usunąć nieużywane tła?":"Remove unused backgrounds?","Usunięto plik tła":"Background file deleted","Tło nocne":"Night background","Bez tła nocnego":"No night background","Wgraj tło nocne":"Upload night background","Przełącza encja":"Switched by entity","Encja przełączająca tło nocne":"Entity that switches the night background","Dzień":"Day","Noc":"Night","Podgląd: dzień":"Preview: day","Podgląd: noc":"Preview: night","Podgląd tła":"Background preview","Teraz: noc":"Now: night","Teraz: dzień":"Now: day","podgląd":"preview","Najpierw ustaw tło dzienne":"Set the day background first","Ustawiono tło nocne":"Night background set","Wgrywanie…":"Uploading…","Intensywność ON":"ON intensity","Intensywność OFF":"OFF intensity","Obrót":"Rotation","Obróć zaznaczony":"Rotate selected","Obróć o 90° w lewo":"Rotate 90° left","Obróć o 15° w lewo":"Rotate 15° left","Obróć o 15° w prawo":"Rotate 15° right","Obróć o 90° w prawo":"Rotate 90° right","Bez obrotu":"No rotation","Obrót płynny":"Smooth rotation","Przyciąganie i siatka":"Snapping and grid","Linie pomocnicze":"Guides","Przyciągaj do":"Snap to","Tło (środek i krawędzie)":"Background (centre and edges)","Punkty":"Points","Środki":"Centres","Krawędzie":"Edges","Wyrównaj zaznaczony do tła":"Align selected to background","Do lewej krawędzi tła":"To the left edge","Wyśrodkuj w poziomie":"Centre horizontally","Do prawej krawędzi tła":"To the right edge","Do górnej krawędzi tła":"To the top edge","Wyśrodkuj w pionie":"Centre vertically","Do dolnej krawędzi tła":"To the bottom edge","Dodaj Flow":"Add Flow","Dodano Flow — wybierz encję albo zostaw bez encji":"Flow added — choose an entity or leave it without one","Usuń encję":"Remove entity","Podgląd: włączony":"Preview: on","Podgląd: wyłączony":"Preview: off","Tempo to stała prędkość strzałek (1× = 150 px/s) — nie zależy od rozmiaru, odstępu ani liczby, więc Flow z tym samym tempem jadą identycznie.":"Tempo is a constant arrow speed (1\u00d7 = 75 px/s) \u2014 it does not depend on size, spacing or count, so Flows with the same tempo move identically.","Ramka i pozycja":"Frame and position","Szerokość ramki":"Frame width","Strzałki":"Arrows","Długość strzałki":"Arrow length","Ramka to obszar Flow na planie, liczony wzdłuż kierunku strzałek. Szerokość ramki jest też wysokością strzałek. Uchwyty zaznaczenia zmieniają to samo.":"The frame is the Flow area on the plan, measured along the arrow direction. The frame width is also the arrow height. The selection handles change the same values.","W animacji „Przepływ” strzałki wypełniają całą ramkę, więc liczba nie ma znaczenia.":"With the “Flow” animation the arrows fill the whole frame, so the count does not matter.","Strzałki są wyśrodkowane w ramce; to, co się nie mieści, jest przycinane. Liczba i odstęp nie zmieniają ramki. Ujemny odstęp wsuwa strzałki jedna w drugą (gęściej).":"Arrows are centred in the frame; what does not fit is clipped. Count and spacing do not change the frame. A negative spacing nests the arrows into each other (denser).","Tempo pulsowania nie zależy od rozmiaru Flow.":"The pulse tempo does not depend on the Flow size.","Ustaw tę animację w pozostałych Flow tej encji":"Apply this animation to the other Flows of this entity","Ustawiono tę samą animację w innych Flow tej encji":"Same animation applied to other Flows of this entity","Granice tła":"Background bounds","Elementy nie wychodzą poza tło":"Elements stay inside the background","Elementy nie wyjdą poza tło":"Elements will stay inside the background","Elementy mogą wychodzić poza tło":"Elements may go outside the background","Edytuj ikonę":"Edit icon","Usuń ikonę":"Remove icon","Dodaj ikonę":"Add icon","Ikona pomieszczenia to zwykły marker typu Ikona z pełnym edytorem (kolory ON/OFF, obrys, tło, ramka, rozmiar, kolory wg wartości). Świeci, gdy pomieszczenie jest zapalone, a dotknięcie wykonuje akcję pomieszczenia.":"The room icon is a regular Icon marker with the full editor (ON/OFF colours, outline, background, border, size, colours by value). It is lit while the room is on, and tapping it runs the room action.","Dodano ikonę pomieszczenia — przeciągnij ją w wybrane miejsce":"Room icon added — drag it where you want it","Usunięto ikonę pomieszczenia":"Room icon removed","Markery":"Markers","Pomieszczenia":"Rooms","Markery, Flow i pomieszczenia tego widoku":"Markers, Flows and rooms of this view","Rozjaśnij — jak światło lampy: plan jaśnieje w kolorze poświaty, ciemne miejsca najmocniej.":"Lighten — like lamp light: the plan brightens in the glow colour, dark areas the most.","Miękkie światło — delikatne ocieplenie, plan zachowuje swoje kolory i kontrast.":"Soft light — a gentle tint, the plan keeps its colours and contrast.","Nakładka — mocniejszy efekt: jasne miejsca jaśnieją, ciemne ciemnieją, kolor jest wyraźny.":"Overlay — a stronger effect: light areas get lighter, dark areas darker, the colour is clear.","Zwykłe — płaski, półprzezroczysty kolor położony na plan.":"Normal — a flat, semi-transparent colour laid over the plan.","Geometria zablokowana — kliknij, aby odblokować":"Geometry locked — click to unlock","Zablokuj geometrię":"Lock geometry","Zablokowano geometrię":"Geometry locked","Odblokowano geometrię":"Geometry unlocked","Podgląd":"Preview","Rzeczywisty stan":"Actual state","Włączony":"On","Wyłączony":"Off","Usuń z pomieszczenia":"Remove from room","Dodaj do pomieszczenia":"Add to room","Z tego widoku":"From this view","Wpisz co najmniej 2 znaki.":"Type at least 2 characters.","Wyszukiwanie encji…":"Searching entities…","Brak — wyszukaj encję poniżej.":"None — search for an entity below.","Szukaj nazwy lub encji…":"Search name or entity…","Geometria jest zablokowana (kłódka u góry).":"The geometry is locked (padlock at the top).","Duplikuj pomieszczenie":"Duplicate room","Kopiuj styl pomieszczenia":"Copy room style","Wklej styl pomieszczenia":"Paste room style","Skopiowano styl pomieszczenia — wklej go w innym pomieszczeniu":"Room style copied — paste it into another room","Wklejono styl pomieszczenia":"Room style pasted","Przywrócić domyślny wygląd?":"Restore the default look?","Wygląd i akcja dotknięcia pomieszczenia wrócą do domyślnych. Kształt, nazwa i encje zostaną.":"The room look and tap action return to defaults. Shape, name and entities stay.","Przywrócono domyślny wygląd pomieszczenia":"Room look restored to default","kopia":"copy","Utworzono kopię pomieszczenia — przeciągnij ją w wybrane miejsce":"Room copied — drag it where you want it","Naprawiono błędny domyślny panel HA — ustaw go ponownie w menu widoku":"Fixed an invalid HA default panel — set it again in the view menu","Domyślny panel Home Assistant":"Home Assistant default panel","Bez zmian (ustawienia HA)":"Unchanged (HA settings)","HA Views — moje konto":"HA Views — my account","HA Views — tylko to urządzenie":"HA Views — this device only","HA Views jest teraz domyślnym panelem na Twoim koncie":"HA Views is now the default panel for your account","HA Views jest domyślnym panelem na tym urządzeniu":"HA Views is the default panel on this device","Przywrócono domyślny panel z ustawień Home Assistant":"Restored the default panel from Home Assistant settings","Otwieraj HA Views po starcie Home Assistant (to urządzenie)":"Open HA Views when Home Assistant starts (this device)","Ta opcja działa tylko w HA Views otwartym z panelu Home Assistant":"This option only works when HA Views is opened from the Home Assistant sidebar","HA Views będzie otwierać się po starcie Home Assistant na tym urządzeniu":"HA Views will open when Home Assistant starts on this device","Po starcie Home Assistant znów otworzy się domyślny dashboard":"Home Assistant will open its default dashboard again","Brak akcji":"No action","Przełącz światło":"Toggle the light","Nic":"Nothing","To pomieszczenie nie ma jeszcze encji — wybierz je w trybie edycji":"This room has no entities yet — choose them in edit mode","Błąd przełączania: ":"Toggle error: ","Pomieszczenie":"Room","Dodaj pomieszczenie":"Add room","Klikaj kolejne narożniki pomieszczenia":"Click the corners of the room one by one","Kliknij pierwszy punkt albo „Gotowe”, aby zamknąć kształt":"Click the first point or “Done” to close the shape","Cofnij punkt":"Undo point","Gotowe":"Done","Usuń pomieszczenie":"Delete room","Dodano pomieszczenie — wybierz encje, które je zapalają":"Room added — choose the entities that light it up","Pomieszczenie musi mieć co najmniej 3 narożniki":"A room needs at least 3 corners","Ten widok nie ma jeszcze encji — dodaj np. światło przez Integracje albo wpisz encję poniżej.":"This view has no entities yet — add e.g. a light via Integrations or type an entity below.","Brak encji":"No entities","Zapalają je encje":"Lit by entities","Inne encje":"Other entities","Pomieszczenie świeci, gdy włączona jest dowolna z wybranych encji (światło, gniazdko, ruch, otwarte drzwi…).":"The room lights up when any of the selected entities is on (light, plug, motion, open door…).","Wygląd":"Appearance","Efekt":"Effect","Poświata kolorem":"Colour glow","Zapalony obraz":"Lit image","Obraz zapalony":"Lit image","— wybierz —":"— choose —","Wgraj jako tło drugą wersję planu (np. render z włączonymi światłami) i wybierz ją tutaj — pomieszczenie odsłoni ją tylko w swoim kształcie. Obraz powinien mieć ten sam kadr co plan.":"Upload a second version of the plan as a background (e.g. a render with the lights on) and choose it here — the room reveals it only inside its shape. The image should have the same framing as the plan.","Kolor ze światła":"Colour from the light","Mieszanie":"Blending","Rozjaśnij":"Lighten","Miękkie światło":"Soft light","Nakładka":"Overlay","Zwykłe":"Normal","Jasność ze światła":"Brightness from the light","Intensywność":"Intensity","Miękkość krawędzi":"Edge softness","Podgląd włączonego":"Preview as on","Przeciągnij narożnik, aby go przesunąć. Mały punkt na krawędzi dodaje nowy narożnik. Dwuklik na narożniku go usuwa. Przeciągnij wnętrze, aby przesunąć całe pomieszczenie. Narożniki przyciągają się do ścian innych pomieszczeń (Alt wyłącza).":"Drag a corner to move it. The small dot on an edge adds a corner. Double-click a corner to remove it. Drag the inside to move the whole room. Corners snap to the walls of other rooms (Alt disables).","Usunąć pomieszczenie?":"Delete room?","Usunięto pomieszczenie":"Room deleted","Kolory wg wartości":"Colours by value","Dolny próg":"Lower threshold","Górny próg":"Upper threshold","Kolor poniżej":"Colour below","Kolor pomiędzy":"Colour between","Kolor od górnego":"Colour from upper","Płynne przejście":"Smooth blend","Koloruj ikonę":"Colour the icon","Koloruj wartość":"Colour the value","Koloruj łuk":"Colour the arc","Koloruj tło":"Colour the background","Koloruj ramkę":"Colour the border","Ikona poniżej":"Icon below","Ikona pomiędzy":"Icon between","Ikona od górnego":"Icon from upper","Puste pole ikony = zwykła ikona markera.":"Empty icon field = the marker’s normal icon.","Stan encji nie jest liczbą — kolory wg wartości nie działają dla tej encji.":"The entity state is not a number — colours by value do not apply to this entity.","Teraz: poniżej dolnego progu.":"Now: below the lower threshold.","Teraz: pomiędzy progami.":"Now: between the thresholds.","Teraz: od górnego progu.":"Now: at or above the upper threshold.","Połączono z nowszymi zmianami z innego urządzenia":"Merged with newer changes from another device","Układ został zmieniony na innym urządzeniu":"The layout was changed on another device",
+    "Zarządzaj widokiem":"Manage view","Tło widoku":"View background","Ustaw tło":"Set background","Wstecz":"Back","Podgląd wybranego tła":"Selected background preview",
+    "Przełączanie palcem":"Swipe between views","Wyłączone (tylko zakładki)":"Off (tabs only)","Przesunięcie":"Slide","Kostka":"Cube","Zapisano sposób przełączania widoków":"View switching saved",
+    "Diagnostyka przesuwania":"Swipe diagnostics"
   }
 };
 function translateValue(value) {
   const text = String(value ?? '');
+  if (text.includes('\n')) return text.split('\n').map(translateValue).join('\n');
   if (uiLanguage === 'pl') {
-    const reverse = Object.fromEntries(Object.entries(TRANSLATIONS.en).map(([pl,en]) => [en,pl]));
-    return reverse[text] || text;
+    translateValue.reverse ||= Object.fromEntries(Object.entries(TRANSLATIONS.en).map(([pl,en]) => [en,pl]));
+    return translateValue.reverse[text] || text;
   }
   const direct = TRANSLATIONS.en[text];
   if (direct) return direct;
@@ -34,14 +45,37 @@ function translateValue(value) {
   const deleteMarkerMatch = text.match(/^„(.+)” zniknie z tego widoku razem ze swoimi ustawieniami\.$/);
   if (deleteMarkerMatch) return `“${deleteMarkerMatch[1]}” will be removed from this view together with its settings.`;
   if (text.startsWith('Skopiowano styl ')) return `Style copied: ${text.slice('Skopiowano styl '.length)}`;
-  for (const [pl,en] of Object.entries(TRANSLATIONS.en)) if (text.startsWith(pl + ':')) return en + text.slice(pl.length);
+  const viewCountsMatch = text.match(/^Markery: (\d+), Flow: (\d+)\.$/);
+  if (viewCountsMatch) return `Markers: ${viewCountsMatch[1]}, Flow: ${viewCountsMatch[2]}.`;
+  const deleteFlowMatch = text.match(/^„(.+)” zniknie z tego widoku\. Zwykły marker tej encji zostanie\.$/);
+  if (deleteFlowMatch) return `“${deleteFlowMatch[1]}” will be removed from this view. The regular marker of this entity stays.`;
+  const deleteBackgroundMatch = text.match(/^Tło „(.+)” zostanie trwale usunięte ze wszystkich widoków\.$/);
+  if (deleteBackgroundMatch) return `Background “${deleteBackgroundMatch[1]}” will be permanently deleted from all views.`;
+  const changeTypeMatch = text.match(/^Zmienić na (.+)\?$/);
+  if (changeTypeMatch) return `Change to ${translateValue(changeTypeMatch[1])}?`;
+  for (const [pl,en] of Object.entries(TRANSLATIONS.en)) if (text.startsWith(pl + ':')) { const rest = text.slice(pl.length + 1).trim(); return en + ':' + (rest ? ' ' + (TRANSLATIONS.en[rest] || rest) : ''); }
   return text;
+}
+const I18N_ATTRIBUTES = [['title','i18nTitle'],['aria-label','i18nAriaLabel'],['placeholder','i18nPlaceholder']];
+// Attributes keep their Polish source in data-i18n-*; a value changed later by the app becomes the new source.
+function translateAttributes(element) {
+  I18N_ATTRIBUTES.forEach(([attribute, key]) => {
+    if (!element.hasAttribute(attribute)) return;
+    const current = element.getAttribute(attribute), cached = element.dataset[key];
+    const source = cached !== undefined && (current === cached || current === translateValue(cached)) ? cached : current;
+    element.dataset[key] = source;
+    const value = translateValue(source);
+    if (value !== current) element.setAttribute(attribute, value);
+  });
 }
 function translateNode(node) {
   if (node.nodeType === Node.TEXT_NODE) {
+    if (node.parentElement?.closest('#markers,[data-no-i18n]')) return;
     const translated = translateValue(node.nodeValue);
     if (translated !== node.nodeValue) node.nodeValue = translated;
   } else if (node.nodeType === Node.ELEMENT_NODE && !node.closest('#markers')) {
+    translateAttributes(node);
+    if (node.hasAttribute('data-no-i18n')) return;
     [...node.childNodes].forEach(translateNode);
   }
 }
@@ -69,7 +103,7 @@ function applyLanguage() {
     }
   });
   translateNode(document.body);
-  document.querySelectorAll('[title]').forEach(el => { const original = el.dataset.i18nTitle || el.getAttribute('title') || ''; el.dataset.i18nTitle = original; const value = translateValue(original); el.title = value; el.setAttribute('aria-label', value); });
+  document.querySelectorAll('[title],[aria-label],[placeholder]').forEach(el => { if (!el.closest('#markers')) translateAttributes(el); });
 }
 function bindLanguageObserver() {
   new MutationObserver(records => records.forEach(record => {
@@ -79,24 +113,24 @@ function bindLanguageObserver() {
 }
 
 const els = {
-  body: document.body, viewport: $('#scene-viewport'), sceneCard: $('.scene-card'), scene: $('#scene'), image: $('#scene-image'), empty: $('#scene-empty'), markers: $('#markers'), panoramaIndicator: $('#panorama-indicator'), mobilePanStart: $('#mobile-pan-start'),
-  selection: $('#selection'), editor: $('#editor'), editorTitle: $('#editor-title'), editorEntity: $('#editor-entity'), editorIntegration: $('#editor-integration'), editorIntegrationIcon: $('#editor-integration-icon'),
-  editorContent: $('#editor-content'), editorStatus: $('#editor-status'), toast: $('#toast'), connection: $('#connection'),
+  body: document.body, viewport: $('#scene-viewport'), sceneCard: $('.scene-card'), scene: $('#scene'), image: $('#scene-image'), nightImage: $('#scene-night-image'), empty: $('#scene-empty'), markers: $('#markers'), panoramaIndicator: $('#panorama-indicator'), mobilePanStart: $('#mobile-pan-start'),
+  selection: $('#selection'), flowSelection: $('#flow-selection'), editor: $('#editor'), editorTitle: $('#editor-title'), editorEntity: $('#editor-entity'), editorIntegration: $('#editor-integration'), editorIntegrationIcon: $('#editor-integration-icon'),
+  editorContent: $('#editor-content'), editorStatus: $('#editor-status'), flowEditor: $('#flow-editor'), flowEditorEntity: $('#flow-editor-entity'), flowEditorContent: $('#flow-editor-content'), flowEditorTitle: $('#flow-editor-title'), flowEditorIntegration: $('#flow-editor-integration'), flowEditorIcon: $('#flow-editor-icon'), flowEditorClose: $('#flow-editor-close'), toast: $('#toast'), connection: $('#connection'),
   confirmBox: $('#app-confirm'), confirmTitle: $('#app-confirm-title'), confirmMessage: $('#app-confirm-message'), confirmInput: $('#app-confirm-input'), confirmCancel: $('#app-confirm-cancel'), confirmOk: $('#app-confirm-ok'), language: $('#language-select'),
   editToggle: $('#edit-toggle'), editMenu: $('#edit-menu'), settingsToggle: $('#settings-toggle'), settingsMenu: $('#settings-menu'), gridStatus: $('#grid-status'), gridPresets: Array.from(document.querySelectorAll('.grid-preset')), bgUploadProgress: $('#background-upload-progress'), solidCanvasRatio: $('#solid-canvas-ratio'), bgColorToggle: $('#background-color-toggle'), bgRgbOpen: $('#background-rgb-open'), bgSelect: $('#background-select'), bgColor: $('#background-color'), bgDownload: $('#background-download'), bgDelete: $('#background-delete'),
-  bgFile: $('#background-file'), bgStatus: $('#background-status'), bgManage: $('#background-manage'), backgroundBar: $('#background-bar'), emptyColor: $('#empty-background-color'), emptyColorToggle: $('#empty-color-toggle'), emptyColorMenu: $('#empty-color-menu'), emptyColorStart: $('#empty-color-start'), emptyRgb: $('#empty-rgb'), emptyOpenIntegrations: $('#empty-open-integrations'), addedList: $('#added-list'),
+  bgFile: $('#background-file'), bgStatus: $('#background-status'), bgManage: $('#background-manage'), backgroundBar: $('#vm-background'), emptyColor: $('#empty-background-color'), emptyColorToggle: $('#empty-color-toggle'), emptyColorMenu: $('#empty-color-menu'), emptyColorStart: $('#empty-color-start'), emptyRgb: $('#empty-rgb'), emptyBackgroundSelect: $('#empty-background-select'), emptyBackgroundPreviewWrap: $('#empty-background-preview-wrap'), emptyBackgroundPreview: $('#empty-background-preview'), emptyBackgroundConfirm: $('#empty-background-confirm'), emptyOpenIntegrations: $('#empty-open-integrations'), addedList: $('#added-list'),
   bgTransformToggle: $('#background-transform-toggle'), bgTransformPanel: $('#background-transform-panel'), bgMode: $('#background-mode'), bgScale: $('#background-scale'), bgX: $('#background-x'), bgY: $('#background-y'), bgScaleValue: $('#background-scale-value'), bgXValue: $('#background-x-value'), bgYValue: $('#background-y-value'),
   addedCount: $('#added-count'), integrationList: $('#integration-list'), integrationSearch: $('#integration-search'), snapToggle: $('#snap-toggle'),
   zoomOut: $('#zoom-out'), zoomIn: $('#zoom-in'), zoomReset: $('#zoom-reset'), zoomValue: $('#zoom-value'),
-  sceneTabs: $('#scene-tabs'), integrationsButton: $('#integrations-button'), viewManage: $('#view-manage'), viewSwitcher: $('#view-switcher'), viewAdd: $('#view-add'), viewRename: $('#view-rename'), viewDuplicate: $('#view-duplicate'), viewMoveLeft: $('#view-move-left'), viewMoveRight: $('#view-move-right'), viewDefault: $('#view-default'), viewDelete: $('#view-delete'),
+  sceneTabs: $('#scene-tabs'), integrationsButton: $('#integrations-button'), viewManage: $('#view-manage'), viewSwitcher: $('#view-menu'), viewAdd: $('#view-add'), viewRename: $('#view-rename'), viewDuplicate: $('#view-duplicate'), viewMoveLeft: $('#view-move-left'), viewMoveRight: $('#view-move-right'), viewDefault: $('#view-default'), viewDelete: $('#view-delete'),
   moreInfo: $('#more-info'), moreInfoBackdrop: $('#more-info-backdrop'), moreInfoIcon: $('#more-info-icon'), moreInfoTitle: $('#more-info-title'), moreInfoEntity: $('#more-info-entity'),
   moreInfoState: $('#more-info-state'), moreInfoUpdated: $('#more-info-updated'), moreInfoChart: $('#more-info-chart'), moreInfoAttributes: $('#more-info-attributes')
 };
 
 const badgeDefaults = () => ({
   width: 247, height: 137, contentScale: 1, baseContentScale: 2.2, showLabel: true, showValue: true, showBackground: true, showBorder: true,
-  labelColor: '#9BC1D8', labelOpacity: 1, labelScale: 1, labelY: 0,
-  valueColor: '#FFFFFF', valueOpacity: 1, valueScale: 1, valueY: 0,
+  labelColor: '#9BC1D8', labelOpacity: 1, labelScale: 1, labelX: 0, labelY: 0,
+  valueColor: '#FFFFFF', valueOpacity: 1, valueScale: 1, valueX: 0, valueY: 0,
   backgroundColor: '#03101A', backgroundOpacity: .76, backgroundGradient: 'none', backgroundGradientX: 50, backgroundGradientY: 50, backgroundGradientSpread: .65, backgroundGradientFill: .15, backgroundGradientDirection: 'left', backgroundStateEnabled: false, backgroundOnColor: '#03101A', backgroundOffColor: '#03101A', backgroundOnOpacity: .76, backgroundOffOpacity: .76,
   borderColor: '#607D8B', borderOpacity: .55, borderWidth: 1, radius: 10, shape: 'rounded', borderStateEnabled: false, borderOnColor: '#607D8B', borderOffColor: '#607D8B', borderOnOpacity: .55, borderOffOpacity: .55, borderOnWidth: 1, borderOffWidth: 1,
   showIcon: false, iconSize: 26, iconX: 0, iconY: 0, iconOpacity: 1, iconStateEnabled: true, iconOpacityStateEnabled: false, iconOnOpacity: 1, iconOffOpacity: 1, iconFillEnabled: true, iconOutlineEnabled: false, iconOutlineColor: '#FFFFFF', iconOutlineOpacity: 1, iconOutlineWidth: 1, iconOutlineStateEnabled: false, iconOutlineOnColor: '#FFFFFF', iconOutlineOffColor: '#FFFFFF', iconOutlineOnOpacity: 1, iconOutlineOffOpacity: 1, iconOutlineOnWidth: 1, iconOutlineOffWidth: 1,
@@ -110,8 +144,8 @@ const gaugeDefaults = () => ({
   useGradient: false, gradientStart: '#21BCEB', gradientEnd: '#F59E0B',
   showBackground: true, backgroundColor: '#03101A', backgroundOpacity: .76, backgroundGradient: 'none', backgroundGradientX: 50, backgroundGradientY: 50, backgroundGradientSpread: .65, backgroundGradientFill: .15, backgroundGradientDirection: 'left', backgroundStateEnabled: false, backgroundOnColor: '#03101A', backgroundOffColor: '#03101A', backgroundOnOpacity: .76, backgroundOffOpacity: .76,
   showBorder: true, borderColor: '#607D8B', borderOpacity: .55, borderWidth: 1, radius: 16, shape: 'rounded', borderStateEnabled: false, borderOnColor: '#607D8B', borderOffColor: '#607D8B', borderOnOpacity: .55, borderOffOpacity: .55, borderOnWidth: 1, borderOffWidth: 1,
-  showLabel: true, labelColor: '#9BC1D8', labelOpacity: 1, labelScale: 1, labelY: 0,
-  showValue: true, valueColor: '#FFFFFF', valueOpacity: 1, valueScale: 1, valueY: 0,
+  showLabel: true, labelColor: '#9BC1D8', labelOpacity: 1, labelScale: 1, labelX: 0, labelY: 0,
+  showValue: true, valueColor: '#FFFFFF', valueOpacity: 1, valueScale: 1, valueX: 0, valueY: 0,
   showPercent: true, percentColor: '#8FDFFF', percentOpacity: 1, percentScale: 1, percentY: 0,
   showIcon: false, iconSize: 26, iconX: 0, iconY: 0, iconOpacity: 1, iconStateEnabled: true, iconOpacityStateEnabled: false, iconOnOpacity: 1, iconOffOpacity: 1, iconFillEnabled: true, iconOutlineEnabled: false, iconOutlineColor: '#FFFFFF', iconOutlineOpacity: 1, iconOutlineWidth: 1, iconOutlineStateEnabled: false, iconOutlineOnColor: '#FFFFFF', iconOutlineOffColor: '#FFFFFF', iconOutlineOnOpacity: 1, iconOutlineOffOpacity: 1, iconOutlineOnWidth: 1, iconOutlineOffWidth: 1,
   iconColor: '#9BC1D8', iconOnColor: '#20B9E7', iconOffColor: '#8AA2AF', iconUnavailableColor: '#FF6374'
@@ -129,6 +163,16 @@ const gaugeVisualTransform = (marker, style) => {
   return `translateY(${y}px) scale(${scale})`;
 };
 const COLOR_PALETTE = ['#FFFFFF','#DCE8EF','#9BC1D8','#607D8B','#03101A','#102A3A','#20B9E7','#147EA5','#22D69B','#39B86C','#FFD166','#F59E0B','#FF6374','#E63946','#B66DFF','#7C4DFF','#EC4899','#8B5E3C'];
+const FLOW_DEFAULTS = Object.freeze({ direction:'right', directionMode:'manual', positiveDirection:'right', negativeDirection:'left', negativeStyleEnabled:false, itemSizeV2:true, shape:'chevron', shapeSharpness:100, flowCount:3, flowLength:84, chevronWidth:22, chevronHeight:22, chevronThickness:5, gap:9, rotation:0, color:'#20B9E7', positiveColor:'#20B9E7', negativeColor:'#FF6374', outlineWidth:0, outlineColor:'#FFFFFF', glowCustom:false, glowColor:'#20B9E7', glow:5, opacity:100, deadband:0, hideInactive:false, animation:'none', animationSpeed:1.2, speedByValue:false, speedValueMax:1000 });
+// Tempo is a real travel speed: 1× = FLOW_SPEED_PX design pixels per second, whatever the item size, spacing
+// or count, so two Flows with the same tempo move exactly alike.
+const FLOW_SPEED_PX = 150;
+const FLOW_ANIMATION_KEYS = ['animation','animationSpeed','speedByValue','speedValueMax'];
+const FLOW_STYLE_KEYS = ['shape','shapeSharpness','flowCount','flowLength','chevronWidth','chevronHeight','chevronThickness','gap','outlineWidth','outlineColor','glow','glowCustom','glowColor','opacity','animation','animationSpeed','speedByValue','speedValueMax'];
+const FLOW_SHAPES = [['chevron','Chevron'],['arrow','Strzałka'],['dart','Grot'],['triangle','Trójkąt'],['segment','Segment']];
+const FLOW_LIMITS = Object.freeze({ min:4, size:600, length:1600, thickness:120, gap:300, count:12 });
+const ICON_LABELS_EN = {"Deszcz": "Rain", "Ulewa": "Downpour", "Słońce": "Sun", "Woda": "Water", "Wilgotność": "Humidity", "Basen": "Pool", "Pompa": "Pump", "Fotowoltaika": "Solar", "Energia": "Energy", "Temperatura": "Temperature", "Wentylator": "Fan", "Zasilanie": "Power", "Włączone": "On", "Wyłączone": "Off", "Ruch": "Motion", "Dym": "Smoke", "Alarm": "Alarm", "Wskaźnik": "Gauge", "Światło": "Light", "Sieć": "Network"};
+const iconChoiceLabel = label => uiLanguage === 'en' ? (ICON_LABELS_EN[label] || translateValue(label)) : label;
 const ICON_CHOICES = [['','Automatyczna'],['mdi:weather-rainy','Deszcz'],['mdi:weather-pouring','Ulewa'],['mdi:weather-sunny','Słońce'],['mdi:water','Woda'],['mdi:water-off','Brak wody'],['mdi:water-percent','Wilgotność'],['mdi:pool','Basen'],['mdi:heat-pump','Pompa ciepła'],['mdi:pump','Pompa'],['mdi:solar-power','Fotowoltaika'],['mdi:flash','Energia'],['mdi:home-lightning-bolt','Energia domu'],['mdi:thermometer','Temperatura'],['mdi:fan','Wentylator'],['mdi:power','Zasilanie'],['mdi:toggle-switch','Włączone'],['mdi:toggle-switch-off','Wyłączone'],['mdi:door-open','Drzwi otwarte'],['mdi:door-closed','Drzwi zamknięte'],['mdi:window-open','Okno otwarte'],['mdi:window-closed','Okno zamknięte'],['mdi:motion-sensor','Ruch'],['mdi:smoke-detector','Dym'],['mdi:alert-circle','Alarm'],['mdi:check-circle','OK'],['mdi:close-circle','Wyłączone'],['mdi:gauge','Wskaźnik'],['mdi:lightbulb','Światło'],['mdi:wifi','Sieć']];
 const freshMarker = (entity, integration) => ({
   id: uid(), entityId: entity.entity_id, integrationId: integration.entry_id || '', integrationName: integration.title || integration.domain || 'Home Assistant',
@@ -138,11 +182,12 @@ const freshMarker = (entity, integration) => ({
 });
 
 let model = { version: 2, revision: 0, settings: { snapEnabled: true, snapStep: .25 }, activeViewId: '', viewOrder: [], views: {}, entities: {} };
-let stateCache = {}, editMode = false, selectedId = null, styleClipboard = null, saveTimer = null;
+let stateCache = {}, editMode = false, selectedId = null, selectedFlowId = null, styleClipboard = null, flowStyleClipboard = null, saveTimer = null, access = { viewer: false };
+let viewSwipe = null, tabDrag = null, suppressTabClick = false, lastSwipeDecision = null;
 let saveRunning = false, savePending = false, integrations = [], integrationEntities = new Map(), openIntegrations = new Set();
 let unusedIntegrationsOpen = false, entityEvents = null, resumeTimer = null;
 let integrationSearchText = '', integrationSearchTimer = null, integrationSearchLoading = false, integrationSearchRequest = 0;
-let editorDragged = false;
+let editorDragged = false, flowEditorDragged = false;
 let editorOpenSectionIndex = -1;
 let editorPreview = { entityId: '', state: '' };
 let sceneScale = 1;
@@ -162,13 +207,22 @@ async function api(path, options = {}) {
   const response = await fetch(`api/${path}`, { cache: 'no-store', ...options });
   const type = response.headers.get('content-type') || '';
   const data = type.includes('json') ? await response.json() : await response.text();
-  if (!response.ok || (data && data.ok === false)) throw new Error(data?.error || `HTTP ${response.status}`);
+  if (!response.ok || (data && data.ok === false)) { const error = new Error(data?.error || `HTTP ${response.status}`); error.status = response.status; error.data = data; throw error; }
   return data;
 }
 const jsonOptions = body => ({ method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
 function notify(text, error = false) {
+  els.toast.classList.remove('with-action');
   els.toast.textContent = text; els.toast.style.borderColor = error ? '#ff6374' : ''; els.toast.classList.add('visible');
   clearTimeout(notify.timer); notify.timer = setTimeout(() => els.toast.classList.remove('visible'), 2200);
+}
+function notifyWithAction(text, actionText, action, duration = 7000) {
+  els.toast.innerHTML = ''; els.toast.style.borderColor = ''; els.toast.classList.add('visible','with-action');
+  const label = document.createElement('span'), button = document.createElement('button');
+  label.textContent = text; button.type = 'button'; button.textContent = actionText;
+  button.addEventListener('click', () => { clearTimeout(notify.timer); els.toast.classList.remove('visible','with-action'); action(); }, { once:true });
+  els.toast.append(label, button);
+  clearTimeout(notify.timer); notify.timer = setTimeout(() => els.toast.classList.remove('visible','with-action'), duration);
 }
 function closeAppConfirm(result = false) {
   if (!confirmResolver) return;
@@ -193,18 +247,44 @@ function appPrompt({ title, message = '', value = '', confirmText = 'Zapisz' }) 
 }
 function activeSceneView() { return model.views?.[model.activeViewId] || null; }
 function updateEmptyState() {
-  const view = activeSceneView(), hasMarkers = Object.keys(model.entities || {}).length > 0;
+  const view = activeSceneView(), hasMarkers = Object.keys(model.entities || {}).length > 0 || Object.keys(view?.flows || {}).length > 0 || Object.keys(view?.rooms || {}).length > 0;
   const showWelcome = !currentBackground && !view?.onboardingDone && !hasMarkers;
-  const showEntitiesHint = !currentBackground && !!view?.onboardingDone && !hasMarkers;
+  const showEntitiesHint = !showWelcome && !!view?.onboardingDone && !hasMarkers;
   els.empty.classList.toggle('visible', showWelcome || showEntitiesHint);
   els.empty.classList.toggle('show-entities-hint', showEntitiesHint);
   const solid = String(view?.backgroundColor || '');
   els.empty.classList.toggle('solid-background', Boolean(solid));
   els.empty.style.setProperty('--solid-background', solid || 'transparent');
 }
+// The background panel is the second page of the view menu (a bottom sheet on phones).
+// On phones the view menu is a bottom sheet. The top bar uses backdrop-filter, which would make it the
+// containing block of a fixed child, so the sheet is moved to <body> there and back to its anchor on desktop.
+function placeViewSheet() {
+  const sheet = els.viewSwitcher, anchor = els.viewManage?.parentElement; if (!sheet || !anchor) return;
+  if (mobileView()) { if (sheet.parentElement !== document.body) document.body.append(sheet); }
+  else if (sheet.parentElement !== anchor) els.viewManage.after(sheet);
+}
+// Pages of the view menu: main (view actions + Tło / Opcje), background and options.
+function setViewMenuPage(page) {
+  const menu = els.viewSwitcher; if (!menu) return;
+  menu.dataset.page = page;
+  const title = $('#vm-title'); if (title) title.textContent = translateValue(page === 'background' ? 'Tło' : page === 'options' ? 'Opcje' : 'Widok');
+  const name = $('#vm-name'); if (name) name.textContent = activeSceneView()?.name || '';
+  if (page !== 'background') { hideBackgroundPreview(true); els.backgroundBar?.classList.remove('open','onboarding'); if (els.bgStatus) els.bgStatus.textContent = ''; }
+  else { els.backgroundBar?.classList.add('open'); syncCanvasControls(); syncNightControls(); }
+}
+function setBackgroundPage(open) { setViewMenuPage(open ? 'background' : 'main'); }
+function hideBackgroundPreview(resetSelect = false) {
+  const wrap = $('#background-preview-wrap'); if (wrap) wrap.hidden = true;
+  if (resetSelect && els.bgSelect) els.bgSelect.value = currentBackground || '';
+}
+function showBackgroundPreview(name) {
+  const wrap = $('#background-preview-wrap'), image = $('#background-preview'); if (!wrap || !image) return;
+  image.src = `api/background/file?name=${encodeURIComponent(name)}`; wrap.hidden = false;
+  requestAnimationFrame(() => wrap.scrollIntoView({ block:'nearest' }));
+}
 function openBackgroundMenu(hint = '') {
-  els.backgroundBar.classList.add('open');
-  els.bgManage.classList.add('active');
+  setBackgroundPage(true);
   els.backgroundBar.classList.toggle('onboarding', Boolean(hint));
   els.bgStatus.textContent = hint;
 }
@@ -228,7 +308,7 @@ function setBackgroundColour(colour) {
   els.empty.style.setProperty('--solid-background', view.backgroundColor);
   els.empty.classList.add('solid-background');
   els.scene.style.backgroundImage = 'none'; els.scene.style.backgroundColor = view.backgroundColor;
-  els.bgSelect.value = ''; els.bgDelete.disabled = true;
+  els.bgSelect.value = ''; syncCanvasControls();
   if (els.bgColor) els.bgColor.value = view.backgroundColor;
   if (els.bgColorToggle) els.bgColorToggle.style.background = view.backgroundColor;
   applyBackgroundColour(); updateEmptyState(); renderMarkers(); updateSceneGeometry(); scheduleSave(true);
@@ -249,16 +329,60 @@ function ensureMultiViewModel() {
   model.viewOrder = (model.viewOrder || []).filter(id => model.views[id]);
   Object.keys(model.views).forEach(id => { if (!model.viewOrder.includes(id)) model.viewOrder.push(id); });
   const defaultView = model.settings?.defaultViewId;
-  if (defaultView && model.views[defaultView]) model.activeViewId = defaultView;
+  let reloadView = ''; try { reloadView = sessionStorage.getItem(RELOAD_VIEW_KEY) || ''; sessionStorage.removeItem(RELOAD_VIEW_KEY); } catch {}
+  if (reloadView && model.views[reloadView]) model.activeViewId = reloadView;
+  else if (defaultView && model.views[defaultView]) model.activeViewId = defaultView;
   else try {
     const rememberedView = localStorage.getItem(ACTIVE_VIEW_CACHE_KEY);
     if (rememberedView && model.views[rememberedView]) model.activeViewId = rememberedView;
   } catch {}
   if (!model.views[model.activeViewId]) model.activeViewId = model.viewOrder[0];
   Object.values(model.views).forEach((view, index) => {
-    view.id ||= model.viewOrder[index]; view.name ||= `Widok ${index + 1}`; view.entities ||= {}; view.backgroundTransforms ||= {};
+    view.id ||= model.viewOrder[index]; view.name ||= `Widok ${index + 1}`; view.entities ||= {}; view.flows ||= {}; view.backgroundTransforms ||= {};
     view.backgroundColor ??= ''; view.onboardingDone ??= false;
-    Object.values(view.entities).forEach(marker => { marker.tapAction ??= 'more_info'; });
+    Object.values(view.entities).forEach(marker => { marker.tapAction ??= 'more_info'; if (bringIntoScene(marker)) migrated = true; });
+    Object.values(view.flows).forEach((flow, flowIndex) => {
+      if (Number.isFinite(Number(flow.xPercent)) && Number.isFinite(Number(flow.yPercent)) && bringIntoScene(flow)) migrated = true;
+      if (!Number.isFinite(Number(flow.xPercent))) { flow.xPercent = 50 + (flowIndex % 4) * 3; migrated = true; }
+      if (!Number.isFinite(Number(flow.yPercent))) { flow.yPercent = 50 + (flowIndex % 4) * 3; migrated = true; }
+      if (!Number.isFinite(Number(flow.rotation))) { flow.rotation = 0; migrated = true; }
+      if (!Number.isFinite(Number(flow.width))) { flow.width = 140; migrated = true; }
+      if (!Number.isFinite(Number(flow.height))) { flow.height = 54; migrated = true; }
+      if (!Number.isFinite(Number(flow.chevronSize))) { flow.chevronSize = 22; migrated = true; }
+      if (!Number.isFinite(Number(flow.gap))) { flow.gap = 9; migrated = true; }
+      if (!flow.color) { flow.color = '#20B9E7'; migrated = true; }
+      flow.geometryLocked ??= false;
+      if (flow.outlineCustom === undefined) { flow.outlineCustom = Boolean(flow.outlineColor) && String(flow.outlineColor).toUpperCase() !== String(flow.color).toUpperCase(); migrated = true; }
+      if (flow.glowCustom === undefined) { flow.glowCustom = Boolean(flow.glowColor) && String(flow.glowColor).toUpperCase() !== String(flow.color).toUpperCase(); migrated = true; }
+      // Old Flow versions kept the fill colour in fillColor/chevronMode. Take it over once (only for flows
+      // from before shapes existed) and drop the old keys — otherwise every start overwrote the colour.
+      if (flow.fillColor !== undefined || flow.chevronMode !== undefined) {
+        if (!flow.shape && flow.directionMode !== 'auto' && flow.fillColor && flow.chevronMode === 'filled') flow.color = flow.fillColor;
+        delete flow.fillColor; delete flow.chevronMode; migrated = true;
+      }
+      if (!flow.shape) {
+        flow.shape = flow.flowStyle === 'segments' ? 'segment' : ['arrow','bar'].includes(flow.chevronVariant) ? 'arrow' : 'chevron';
+        if (flow.shape === 'segment') { flow.chevronWidth = Math.max(8, Math.round((Number(flow.chevronWidth) || 22) * .9)); flow.chevronHeight = Math.max(4, Math.round((Number(flow.chevronHeight) || 22) * .32)); }
+        flow.outlineWidth ??= flow.outlineCustom ? 2 : 0; migrated = true;
+      }
+      [flow, flow.negativeStyle].forEach(style => {
+        if (!style || Number.isFinite(Number(style.flowLength)) && Number(style.flowLength) > 0) return;
+        const count = clamp(Math.round(Number(style.flowCount ?? flow.flowCount) || 3), 1, 12), width = Number(style.chevronWidth ?? flow.chevronWidth) || 22, gap = Math.max(0, Number(style.gap ?? flow.gap) || 0);
+        if (style === flow || style.chevronWidth !== undefined || style.gap !== undefined || style.flowCount !== undefined) { style.flowLength = Math.round(count * width + (count - 1) * gap); migrated = true; }
+      });
+      // beta.180: item length is stored separately again; keep the item size the frame produced so far.
+      if (!flow.itemSizeV2) {
+        [flow, flow.negativeStyle].forEach(style => {
+          if (!style) return;
+          const effective = style === flow ? flow : { ...flow, ...style };
+          if (style !== flow && style.flowLength === undefined && style.gap === undefined && style.flowCount === undefined && style.chevronWidth === undefined) return;
+          const count = clamp(Math.round(Number(effective.flowCount) || 3), 1, 12), length = clamp(Number(effective.flowLength) || 84, 8, 1600);
+          const gap = count > 1 ? Math.min(Math.max(0, Number(effective.gap) || 0), (length - count * 2) / (count - 1)) : 0;
+          style.chevronWidth = Math.max(2, Math.round((length - (count - 1) * gap) / count));
+        });
+        flow.itemSizeV2 = true; migrated = true;
+      }
+    });
   });
   model.version = 2; attachActiveEntities(); return migrated;
 }
@@ -272,7 +396,10 @@ function showMainView(name) {
 }
 function renderViewSelector() {
   if (!els.sceneTabs) return;
-  els.sceneTabs.innerHTML = model.viewOrder.map(id => `<button class="tab scene-view-tab ${id === model.activeViewId ? 'active' : ''}" data-scene-view="${escapeHtml(id)}">${escapeHtml(model.views[id].name)}</button>`).join('');
+  const sheetName = $('#vm-name'); if (sheetName) sheetName.textContent = activeSceneView()?.name || '';
+  const transition = $('#view-transition'); if (transition) transition.value = viewTransitionMode();
+  els.sceneCard?.parentElement?.classList.toggle('swipe-mode-cube', viewTransitionMode() === 'cube' && mobileView());
+  els.sceneTabs.innerHTML = model.viewOrder.map(id => `<button class="tab scene-view-tab ${id === model.activeViewId ? 'active' : ''}" data-scene-view="${escapeHtml(id)}">${model.settings?.defaultViewId === id ? '<i class="mdi mdi-home-variant-outline scene-tab-home" title="Widok startowy" aria-label="Widok startowy"></i>' : ''}<span data-no-i18n>${escapeHtml(model.views[id].name)}</span></button>`).join('');
   els.viewDelete.disabled = model.viewOrder.length <= 1;
   const index = model.viewOrder.indexOf(model.activeViewId);
   if (els.viewMoveLeft) els.viewMoveLeft.disabled = index <= 0;
@@ -281,18 +408,50 @@ function renderViewSelector() {
 }
 async function switchSceneView(id, persist = true) {
   if (!model.views[id] || id === model.activeViewId && persist) return;
-  closeCompactMenus(); closeEditor(); closeMoreInfo(); model.activeViewId = id; try { localStorage.setItem(ACTIVE_VIEW_CACHE_KEY, id); } catch {} attachActiveEntities(); currentBackground = '';
+  closeCompactMenus(); closeEditor(); closeMoreInfo(); closeRoomEditor(); cancelRoomDrawing(); model.activeViewId = id; try { localStorage.setItem(ACTIVE_VIEW_CACHE_KEY, id); } catch {} attachActiveEntities(); currentBackground = '';
   renderViewSelector(); els.markers.classList.add('background-pending'); renderIntegrations();
-  await loadBackgrounds(true); resetViewZoom(); renderMarkers(); els.markers.classList.remove('background-pending'); await refreshStates();
-  if (persist) scheduleSave(true);
+  await loadBackgrounds(true, false, null, 2500); if (currentBackground) applyBackgroundTransform(); updateSceneGeometry(); resetViewZoom(); renderMarkers(); els.markers.classList.remove('background-pending'); refreshStates();
+  // The open view is remembered per device (localStorage); switching views does not rewrite the shared layout.
+  prebuildSwipePreviews(60);
 }
 async function addSceneView() {
   closeCompactMenus();
   const name = await appPrompt({ title: 'Nowy widok', message: 'Podaj krótką nazwę nowego widoku.', value: `Widok ${model.viewOrder.length + 1}`, confirmText: 'Dodaj' });
   if (!name) return;
   const id = `view_${Date.now().toString(36)}_${Math.random().toString(36).slice(2,6)}`;
-  model.views[id] = { id, name, background: '', backgroundColor: '', solidCanvasRatio: mobileView() ? 9 / 16 : 16 / 9, onboardingDone: false, backgroundTransforms: {}, entities: {} }; model.viewOrder.push(id);
+  model.views[id] = { id, name, background: '', backgroundColor: '', solidCanvasRatio: mobileView() ? 9 / 16 : 16 / 9, onboardingDone: false, backgroundTransforms: {}, entities: {}, flows: {} }; model.viewOrder.push(id);
   await switchSceneView(id, false); scheduleSave(true); notify('Dodano nowy widok');
+}
+// Tabs can be reordered by dragging (mouse: drag; touch: long-press, then drag). Admin only.
+function startTabDrag(event) {
+  const tab = event.target.closest('[data-scene-view]');
+  if (!tab || isViewer() || model.viewOrder.length < 2 || (event.pointerType === 'mouse' && event.button !== 0)) return;
+  const touch = event.pointerType !== 'mouse';
+  tabDrag = { tab, id:event.pointerId, x:event.clientX, y:event.clientY, active:false, timer:null };
+  const activate = () => { if (!tabDrag) return; tabDrag.active = true; tab.classList.add('dragging'); els.sceneTabs.classList.add('reordering'); try { tab.setPointerCapture(event.pointerId); } catch {} navigator.vibrate?.(15); };
+  if (touch) tabDrag.timer = setTimeout(activate, 380);
+  const move = e => {
+    if (!tabDrag || e.pointerId !== tabDrag.id) return;
+    const dx = e.clientX - tabDrag.x, dy = e.clientY - tabDrag.y;
+    if (!tabDrag.active) { if (touch) { if (Math.hypot(dx, dy) > 8) finish(); return; } if (Math.abs(dx) > 6) activate(); else return; }
+    e.preventDefault();
+    const siblings = $$('[data-scene-view]', els.sceneTabs).filter(item => item !== tab);
+    const before = siblings.find(item => { const r = item.getBoundingClientRect(); return e.clientX < r.left + r.width / 2; });
+    if (before) { if (tab.nextElementSibling !== before) els.sceneTabs.insertBefore(tab, before); } else if (els.sceneTabs.lastElementChild !== tab) els.sceneTabs.append(tab);
+    const r = els.sceneTabs.getBoundingClientRect();
+    if (e.clientX < r.left + 24) els.sceneTabs.scrollLeft -= 8; else if (e.clientX > r.right - 24) els.sceneTabs.scrollLeft += 8;
+  };
+  const finish = () => {
+    if (!tabDrag) return;
+    clearTimeout(tabDrag.timer); window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', finish); window.removeEventListener('pointercancel', finish);
+    const wasActive = tabDrag.active; tabDrag = null; tab.classList.remove('dragging'); els.sceneTabs.classList.remove('reordering');
+    if (!wasActive) return;
+    suppressTabClick = true; setTimeout(() => { suppressTabClick = false; }, 200);
+    const order = $$('[data-scene-view]', els.sceneTabs).map(item => item.dataset.sceneView);
+    if (order.join('|') === model.viewOrder.join('|')) return renderViewSelector();
+    model.viewOrder = order; renderViewSelector(); scheduleSave(true); notify('Zmieniono kolejność widoków');
+  };
+  window.addEventListener('pointermove', move, { passive:false }); window.addEventListener('pointerup', finish); window.addEventListener('pointercancel', finish);
 }
 function setDefaultSceneView() {
   if (!model.views[model.activeViewId]) return;
@@ -319,9 +478,19 @@ async function duplicateSceneView() {
 }
 async function deleteSceneView() {
   const view = activeSceneView(); if (!view || model.viewOrder.length <= 1) return;
-  if (!await appConfirm({ title: 'Usunąć widok?', message: `„${view.name}” oraz wszystkie markery tego widoku zostaną usunięte.`, confirmText: 'Usuń widok', danger: true })) return;
-  const index = model.viewOrder.indexOf(view.id); delete model.views[view.id]; model.viewOrder.splice(index, 1);
-  model.activeViewId = model.viewOrder[Math.max(0, index - 1)]; if (model.settings?.defaultViewId === view.id) model.settings.defaultViewId = model.activeViewId; attachActiveEntities(); renderViewSelector(); els.markers.classList.add('background-pending'); renderIntegrations(); await loadBackgrounds(true); renderMarkers(); els.markers.classList.remove('background-pending'); await refreshStates(); scheduleSave(true); notify('Usunięto widok');
+  const markerCount = Object.keys(view.entities || {}).length, flowCount = Object.keys(view.flows || {}).length;
+  const message = `„${view.name}” oraz wszystkie markery tego widoku zostaną usunięte.`;
+  const details = markerCount || flowCount ? `Markery: ${markerCount}, Flow: ${flowCount}.` : 'Widok jest pusty.';
+  if (!await appConfirm({ title: 'Usunąć widok?', message: message + '\n' + details, confirmText: 'Usuń widok', danger: true })) return;
+  const index = model.viewOrder.indexOf(view.id), snapshot = clone(view), wasDefault = model.settings?.defaultViewId === view.id;
+  delete model.views[view.id]; model.viewOrder.splice(index, 1);
+  model.activeViewId = model.viewOrder[Math.max(0, index - 1)]; if (wasDefault) model.settings.defaultViewId = model.activeViewId; attachActiveEntities(); renderViewSelector(); els.markers.classList.add('background-pending'); renderIntegrations(); await loadBackgrounds(true); renderMarkers(); els.markers.classList.remove('background-pending'); await refreshStates(); scheduleSave(true);
+  notifyWithAction('Usunięto widok', 'Cofnij', async () => {
+    if (model.views[snapshot.id]) return;
+    model.views[snapshot.id] = snapshot; model.viewOrder.splice(Math.min(index, model.viewOrder.length), 0, snapshot.id);
+    if (wasDefault) model.settings.defaultViewId = snapshot.id;
+    await switchSceneView(snapshot.id, false); scheduleSave(true); notify('Przywrócono widok');
+  });
 }
 function rgba(hex, alpha) {
   const raw = String(hex || '#000000').replace('#', '');
@@ -338,7 +507,8 @@ function markerBackgroundFill(color, opacity, variant = 'none', style = {}) {
   return rgba(color, alpha);
 }
 function scheduleSave(immediate = false) {
-  model.revision = (model.revision || 0) + 1; clearTimeout(saveTimer);
+  if (isViewer()) return Promise.resolve();
+  clearTimeout(saveTimer); lastLocalChangeAt = Date.now();
   if (immediate) return queueSave();
   saveTimer = setTimeout(queueSave, 200);
 }
@@ -364,13 +534,563 @@ function applySnapUi() {
 }
 function closeCompactMenus() {
   els.settingsMenu?.classList.remove('open'); els.settingsToggle?.classList.remove('active');
-  els.editMenu?.classList.remove('open'); els.viewSwitcher?.classList.remove('open'); els.viewManage?.classList.remove('active');
+  els.editMenu?.classList.remove('open'); $('#snap-menu')?.classList.remove('open'); $('#snap-menu-button')?.classList.remove('active'); els.viewSwitcher?.classList.remove('open'); els.viewManage?.classList.remove('active'); setBackgroundPage(false);
   els.backgroundBar?.classList.remove('open','onboarding'); els.bgManage?.classList.remove('active');
+}
+// Keeps a stored position inside the scene (0–100 %); returns true when it had to be corrected.
+function bringIntoScene(item) {
+  if (!item) return false;
+  const x = Number(item.xPercent), y = Number(item.yPercent);
+  const nx = Number.isFinite(x) ? clamp(x, 0, 100) : 50, ny = Number.isFinite(y) ? clamp(y, 0, 100) : 50;
+  if (nx === x && ny === y) return false;
+  item.xPercent = nx; item.yPercent = ny; return true;
 }
 function snapPercent(value) {
   if (model.settings?.snapEnabled === false) return clamp(value, 0, 100);
   const step = Number(model.settings?.snapStep) || .25;
   return clamp(Math.round(value / step) * step, 0, 100);
+}
+// ---- Rooms: polygons on the plan that light up with their entities -------------------
+// A room is a polygon in scene percent coordinates (any shape: L-shapes, stairs, slanted walls). It lights
+// up when one of its entities is on: either a soft coloured glow blended over the plan, or a second "lit"
+// image revealed only inside the polygon. Light colour and brightness can follow the light entity.
+// One set of tap actions (same names and order) for markers and rooms; "toggle" only where something can be switched.
+// Copy / paste style also carries the icon choice (source, own MDI icon, ON/OFF icons) and the tap action.
+const MARKER_ICON_KEYS = ['iconMode','iconName','iconOn','iconOff','iconVariantEnabled'];
+const TAP_ACTIONS = [['more_info','Więcej informacji'],['toggle','Przełącz ON/OFF'],['none','Brak akcji']];
+function tapActionControl(value, canToggle) {
+  const items = TAP_ACTIONS.filter(([key]) => key !== 'toggle' || canToggle), current = items.some(([key]) => key === value) ? value : 'more_info';
+  return control('Dotknięcie w widoku','tapAction','select',current,{ items });
+}
+const ROOM_DEFAULTS = Object.freeze({ name:'Pomieszczenie', points:[], entityIds:[], tapAction:'toggle', mode:'glow', color:'#FFD27A', useLightColor:true, useBrightness:true, opacity:.45, feather:14, blend:'screen', litImage:'', stateEnabled:false, offColor:'#20B9E7', offOpacity:.2 });
+const ROOM_ON_STATES = new Set(['on','open','opening','home','playing','heat','heating','cool','cooling','detected','unlocked','active','true']);
+let selectedRoomId = null, roomDraft = null, roomPreviewOn = '', roomEditorOpenSectionIndex = -1, roomStyleClipboard = null, allEntitiesCache = null, allEntitiesLoading = null;
+const ROOM_STYLE_KEYS = ['tapAction','color','opacity','feather','stateEnabled','offColor','offOpacity'];
+function roomsOf(view = activeSceneView()) { return view?.rooms || {}; }
+function roomOf(id) { const room = roomsOf()[id]; return room ? { ...ROOM_DEFAULTS, ...room } : null; }
+function roomLight(room) {
+  let on = false, color = '', level = 0;
+  (room.entityIds || []).forEach(id => {
+    const st = stateCache[id], state = String(st?.state ?? '').toLowerCase(); if (!ROOM_ON_STATES.has(state)) return;
+    on = true; const attrs = st?.attributes || {};
+    level = 1;
+  });
+  return { on, color: color || room.color, level: on ? level || 1 : 0 };
+}
+function roomPointsAttr(points) { return (points || []).map(([x, y]) => `${Math.round(x * 1000) / 1000},${Math.round(y * 1000) / 1000}`).join(' '); }
+function roomBackgroundUrl(name) { return `api/background/file?name=${encodeURIComponent(name)}`; }
+// One <svg> per room so each can blend with the plan (mix-blend-mode) on its own.
+function roomLayerMarkup(room, prefix, width, height, preview = '') {
+  const r = { ...ROOM_DEFAULTS, ...room }, light = roomLight(r), on = preview ? preview === 'on' : light.on, level = light.on ? light.level : 1;
+  const id = `${prefix}-${String(r.id).replace(/[^a-z0-9_-]/gi, '')}`, fx = Math.max(0, Number(r.feather) || 0) * 100 / Math.max(1, width), fy = Math.max(0, Number(r.feather) || 0) * 100 / Math.max(1, height);
+  const blur = `<filter id="${id}-blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="${fx.toFixed(3)} ${fy.toFixed(3)}"/></filter>`;
+  // Without "Kolor zależny ON/OFF" an off room is invisible; with it, OFF has its own colour and intensity.
+  const dual = Boolean(r.stateEnabled), color = on || !dual ? r.color : r.offColor;
+  const opacity = on ? clamp(Number(r.opacity) || 0, 0, 1) * level : dual ? clamp(Number(r.offOpacity) || 0, 0, 1) : 0, points = roomPointsAttr(r.points);
+  const image = false; // the "lit image" effect was removed; rooms always use the colour glow
+  const body = image
+    ? `<defs>${blur}<mask id="${id}-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><polygon points="${points}" fill="#fff" filter="url(#${id}-blur)"/></mask></defs><image href="${escapeHtml(roomBackgroundUrl(r.litImage))}" x="0" y="0" width="100" height="100" preserveAspectRatio="none" mask="url(#${id}-mask)"/>`
+    : `<defs>${blur}</defs><polygon class="room-fill" points="${points}" fill="${escapeHtml(color)}" filter="url(#${id}-blur)"/>`;
+  return { html: `<svg class="room-layer" data-room-id="${escapeHtml(r.id)}" viewBox="0 0 100 100" preserveAspectRatio="none" style="opacity:${opacity.toFixed(3)};mix-blend-mode:screen">${body}</svg>`,
+    signature: [r.mode, r.litImage, r.blend, r.feather, points, width, height].join('|'), opacity, color };
+}
+function renderRooms() {
+  syncRoomIconStates();
+  const layer = $('#rooms'); if (!layer) return;
+  const view = activeSceneView(), rooms = Object.values(roomsOf(view)).filter(room => (room.points || []).length >= 3);
+  const width = els.scene.offsetWidth || 1, height = els.scene.offsetHeight || 1, kept = new Set();
+  rooms.forEach(room => {
+    const preview = editMode && room.id === selectedRoomId ? roomPreviewOn : '', built = roomLayerMarkup(room, 'room', width, height, preview);
+    let node = layer.querySelector(`.room-layer[data-room-id="${CSS.escape(room.id)}"]`);
+    // Unchanged geometry keeps its node, so switching the light on/off fades (CSS transition on opacity).
+    if (node && node.dataset.signature === built.signature) { node.style.opacity = built.opacity.toFixed(3); const fill = node.querySelector('.room-fill'); if (fill) fill.setAttribute('fill', built.color); }
+    else { const holder = document.createElement('div'); holder.innerHTML = built.html; const fresh = holder.firstElementChild; fresh.dataset.signature = built.signature; if (node) node.replaceWith(fresh); else layer.append(fresh); node = fresh; }
+    kept.add(room.id);
+  });
+  $$('.room-layer', layer).forEach(node => { if (!kept.has(node.dataset.roomId)) node.remove(); });
+  if (els.addedList && $('#view-integrations')?.classList.contains('active')) renderAdded();
+  renderRoomEditLayer();
+}
+// Outlines, vertex handles and the drawing preview (edit mode only), above the markers.
+function renderRoomEditLayer() {
+  const layer = $('#room-edit-layer'); if (!layer) return;
+  if (!editMode) { layer.innerHTML = ''; return; }
+  const rooms = Object.values(roomsOf()).filter(room => (room.points || []).length >= 3);
+  let svg = rooms.map(room => `<polygon class="room-outline${room.id === selectedRoomId ? ' selected' : ''}" points="${roomPointsAttr(room.points)}"/>`).join('');
+  if (roomDraft?.points.length) {
+    const pts = roomDraft.cursor ? [...roomDraft.points, roomDraft.cursor] : roomDraft.points;
+    svg += `<polyline class="room-draft" points="${roomPointsAttr(pts)}"/>`;
+  }
+  let handles = '';
+  const room = selectedRoomId && roomsOf()[selectedRoomId];
+  if (room && !roomDraft && !room.geometryLocked) {
+    const pts = room.points || [];
+    handles += pts.map(([x, y], index) => `<i class="room-handle" data-room-point="${index}" style="left:${x}%;top:${y}%"></i>`).join('');
+    handles += pts.map(([x, y], index) => { const [nx, ny] = pts[(index + 1) % pts.length]; return `<i class="room-handle mid" data-room-mid="${index}" style="left:${(x + nx) / 2}%;top:${(y + ny) / 2}%"></i>`; }).join('');
+  }
+  if (roomDraft) handles += roomDraft.points.map(([x, y], index) => `<i class="room-handle draft${index === 0 && roomDraft.points.length >= 3 ? ' closable' : ''}" style="left:${x}%;top:${y}%"></i>`).join('');
+  layer.innerHTML = `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${svg}</svg>${handles}`;
+}
+function scenePercentAt(event) {
+  const r = els.scene.getBoundingClientRect();
+  return [clamp((event.clientX - r.left) / Math.max(1, r.width) * 100, 0, 100), clamp((event.clientY - r.top) / Math.max(1, r.height) * 100, 0, 100)];
+}
+// Snaps a point to the corners/axes of the room outlines (walls line up), otherwise to the grid.
+function snapRoomPoint([x, y], skip = null, event = null) {
+  if (event?.altKey) return [x, y];
+  const r = els.scene.getBoundingClientRect(), tx = 7 / Math.max(1, r.width) * 100, ty = 7 / Math.max(1, r.height) * 100;
+  const others = [];
+  Object.values(roomsOf()).forEach(room => (room.points || []).forEach((p, index) => { if (!(skip && skip.roomId === room.id && skip.index === index)) others.push(p); }));
+  (roomDraft?.points || []).forEach(p => others.push(p));
+  let bx = null, by = null, gx = null, gy = null;
+  others.forEach(([ox, oy]) => { if (Math.abs(ox - x) <= tx && (bx === null || Math.abs(ox - x) < Math.abs(bx - x))) { bx = ox; gx = { room:true }; } if (Math.abs(oy - y) <= ty && (by === null || Math.abs(oy - y) < Math.abs(by - y))) { by = oy; gy = { room:true }; } });
+  // Corners also line up with markers, Flows and the background (same targets as dragging an element).
+  if (snapTargets().guides) {
+    const g = guideTargets({ roomId: skip?.roomId || '__draft' });
+    g.xs.forEach(c => { const v = c.v / Math.max(1, r.width) * 100; if (Math.abs(v - x) <= tx && (bx === null || Math.abs(v - x) < Math.abs(bx - x) - .01)) { bx = v; gx = c; } });
+    g.ys.forEach(c => { const v = c.v / Math.max(1, r.height) * 100; if (Math.abs(v - y) <= ty && (by === null || Math.abs(v - y) < Math.abs(by - y) - .01)) { by = v; gy = c; } });
+    showAlignGuides(bx !== null ? [{ at: bx, room: gx.room, bg: gx.bg }] : [], by !== null ? [{ at: by, room: gy.room, bg: gy.bg }] : []);
+  }
+  return [bx ?? snapPercent(x), by ?? snapPercent(y)];
+}
+function pointInPolygon([x, y], points) {
+  let inside = false;
+  for (let i = 0, j = points.length - 1; i < points.length; j = i++) {
+    const [xi, yi] = points[i], [xj, yj] = points[j];
+    if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / ((yj - yi) || 1e-9) + xi) inside = !inside;
+  }
+  return inside;
+}
+function roomAt(point) { return Object.values(roomsOf()).reverse().find(room => (room.points || []).length >= 3 && pointInPolygon(point, room.points)); }
+// ---- Drawing a new room
+function startRoomDrawing() {
+  if (!editMode) return;
+  closeCompactMenus(); closeEditor(); closeFlowEditor(); closeRoomEditor();
+  roomDraft = { points: [], cursor: null }; els.body.classList.add('room-drawing'); $('#room-draw-bar')?.classList.add('visible');
+  updateRoomDrawBar(); renderRoomEditLayer();
+}
+function updateRoomDrawBar() {
+  const count = roomDraft?.points.length || 0, text = $('#room-draw-text');
+  if (text) text.textContent = translateValue(count < 3 ? 'Klikaj kolejne narożniki pomieszczenia' : 'Kliknij pierwszy punkt albo „Gotowe”, aby zamknąć kształt');
+  const done = $('#room-draw-done'), undo = $('#room-draw-undo'); if (done) done.disabled = count < 3; if (undo) undo.disabled = !count;
+}
+function cancelRoomDrawing() { showAlignGuides([], []); roomDraft = null; els.body.classList.remove('room-drawing'); $('#room-draw-bar')?.classList.remove('visible'); renderRoomEditLayer(); }
+function finishRoomDrawing() {
+  if (!roomDraft || roomDraft.points.length < 3) return;
+  const view = activeSceneView(); if (!view) return cancelRoomDrawing();
+  view.rooms ||= {};
+  const id = 'room_' + uid(), now = new Date().toISOString(), count = Object.keys(view.rooms).length + 1;
+  view.rooms[id] = { ...clone(ROOM_DEFAULTS), id, name: `${translateValue('Pomieszczenie')} ${count}`, points: roomDraft.points.map(p => p.map(v => Math.round(v * 1000) / 1000)), createdAt: now, updatedAt: now };
+  cancelRoomDrawing(); renderRooms(); openRoomEditor(id); scheduleSave(true); notify('Dodano pomieszczenie — wybierz encje, które je zapalają');
+}
+function onRoomDrawClick(event) {
+  if (!roomDraft) return;
+  event.preventDefault(); event.stopPropagation();
+  const r = els.scene.getBoundingClientRect(), point = snapRoomPoint(scenePercentAt(event), null, event), first = roomDraft.points[0];
+  if (first && roomDraft.points.length >= 3 && Math.hypot((first[0] - point[0]) / 100 * r.width, (first[1] - point[1]) / 100 * r.height) <= 14) return finishRoomDrawing();
+  roomDraft.points.push(point); roomDraft.cursor = null; if (event.pointerType !== 'mouse') showAlignGuides([], []); updateRoomDrawBar(); renderRoomEditLayer();
+}
+function onRoomDrawMove(event) {
+  if (!roomDraft?.points.length || event.pointerType !== 'mouse') return;
+  roomDraft.cursor = snapRoomPoint(scenePercentAt(event), null, event); renderRoomEditLayer();
+}
+// ---- Editing the shape (vertex drag, insert on an edge midpoint, double-click removes, drag inside moves)
+function startRoomHandleDrag(event) {
+  const handle = event.target.closest('.room-handle'); if (!handle || !editMode || !selectedRoomId || roomDraft) return;
+  const room = roomsOf()[selectedRoomId]; if (!room) return;
+  event.preventDefault(); event.stopPropagation();
+  // The handle is redrawn on every move; the finger is captured by the scene, which stays, so the drag never stalls.
+  try { els.scene.setPointerCapture(event.pointerId); } catch {}
+  let index = Number(handle.dataset.roomPoint);
+  if (handle.dataset.roomMid !== undefined) { const at = Number(handle.dataset.roomMid), [x, y] = room.points[at], [nx, ny] = room.points[(at + 1) % room.points.length]; room.points.splice(at + 1, 0, [(x + nx) / 2, (y + ny) / 2]); index = at + 1; renderRoomEditLayer(); }
+  let moved = false;
+  const move = e => { if (e.pointerId !== event.pointerId) return; moved = true; room.points[index] = snapRoomPoint(scenePercentAt(e), { roomId: room.id, index }, e); renderRooms(); };
+  const up = e => { if (e.pointerId !== event.pointerId) return; window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up); showAlignGuides([], []); if (!moved && handle.dataset.roomMid === undefined) return; room.points = room.points.map(p => p.map(v => Math.round(v * 1000) / 1000)); room.updatedAt = new Date().toISOString(); scheduleSave(true); renderRooms(); };
+  window.addEventListener('pointermove', move); window.addEventListener('pointerup', up); window.addEventListener('pointercancel', up);
+}
+function removeRoomPoint(event) {
+  const handle = event.target.closest('.room-handle[data-room-point]'), room = selectedRoomId && roomsOf()[selectedRoomId]; if (!handle || !room || !editMode) return;
+  event.preventDefault(); event.stopPropagation();
+  if (room.points.length <= 3) return notify('Pomieszczenie musi mieć co najmniej 3 narożniki');
+  room.points.splice(Number(handle.dataset.roomPoint), 1); room.updatedAt = new Date().toISOString(); renderRooms(); scheduleSave(true);
+}
+function startRoomMove(event) {
+  if (!editMode || roomDraft || event.button > 0 || !selectedRoomId || (event.target !== els.markers && event.target !== els.scene && event.target !== els.image)) return false;
+  const room = roomsOf()[selectedRoomId], start = scenePercentAt(event); if (!room || room.geometryLocked || !pointInPolygon(start, room.points)) return false;
+  const original = clone(room.points); let moved = false, guides = null;
+  try { els.scene.setPointerCapture(event.pointerId); } catch {}
+  const move = e => {
+    if (e.pointerId !== event.pointerId) return; const [x, y] = scenePercentAt(e); let dx = x - start[0], dy = y - start[1];
+    if (!moved && Math.hypot(e.clientX - event.clientX, e.clientY - event.clientY) < 4) return; moved = true;
+    const minX = Math.min(...original.map(p => p[0])), maxX = Math.max(...original.map(p => p[0])), minY = Math.min(...original.map(p => p[1])), maxY = Math.max(...original.map(p => p[1]));
+    guides ||= guideTargets({ roomId: room.id });
+    const w = guides.scene.width || 1, h = guides.scene.height || 1;
+    const snapped = alignToGuides({ ...guides, halfW: (maxX - minX) / 200 * w, halfH: (maxY - minY) / 200 * h }, (minX + maxX) / 2 + dx, (minY + maxY) / 2 + dy, e);
+    dx = snapped.xPercent - (minX + maxX) / 2; dy = snapped.yPercent - (minY + maxY) / 2;
+    dx = clamp(dx, -minX, 100 - maxX); dy = clamp(dy, -minY, 100 - maxY);
+    room.points = original.map(([px, py]) => [px + dx, py + dy]); renderRooms();
+  };
+  const up = e => { if (e.pointerId !== event.pointerId) return; window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up); showAlignGuides([], []); if (moved) { room.points = room.points.map(p => p.map(v => Math.round(v * 1000) / 1000)); room.updatedAt = new Date().toISOString(); scheduleSave(true); els.markers.dataset.roomMoved = '1'; } };
+  window.addEventListener('pointermove', move); window.addEventListener('pointerup', up); window.addEventListener('pointercancel', up);
+  return true;
+}
+// ---- Room editor panel
+// ---- Room entities: added list + dynamic search over all HA entities (like Integrations)
+async function loadAllEntities() {
+  if (allEntitiesCache) return allEntitiesCache;
+  allEntitiesLoading ||= (async () => {
+    if (!integrations.length) { try { const data = await api('integrations'); integrations = data.integrations || []; } catch {} }
+    const titles = new Map(integrations.map(item => [item.entry_id, item.title || item.domain || '']));
+    let list = [];
+    try { const data = await api('integration_entities_all'); Object.entries(data.entities_by_entry || {}).forEach(([entry, entities]) => (entities || []).forEach(entity => list.push({ id: entity.entity_id, name: entity.name || entity.entity_id, integration: titles.get(entry) || '', enabled: entity.enabled !== false }))); } catch {}
+    const seen = new Set(); allEntitiesCache = list.filter(entity => entity.id && !seen.has(entity.id) && seen.add(entity.id));
+    return allEntitiesCache;
+  })();
+  return allEntitiesLoading;
+}
+function roomEntityName(id) {
+  const view = activeSceneView(), marker = view?.entities?.[id], flow = Object.values(view?.flows || {}).find(item => item.entityId === id);
+  return marker?.displayName || flow?.displayName || allEntitiesCache?.find(entity => entity.id === id)?.name || stateCache[id]?.attributes?.friendly_name || id;
+}
+function roomEntityRank(id) { return /^(light|switch)\./.test(id) ? 0 : /^(binary_sensor|input_boolean|fan)\./.test(id) ? 1 : 2; }
+function roomEntityRow(id, action) {
+  const state = String(stateCache[id]?.state ?? '');
+  const button = action === 'remove' ? `<button type="button" class="room-entity-action" data-room-remove="${escapeHtml(id)}" title="${escapeHtml(translateValue('Usuń z pomieszczenia'))}"><i class="mdi mdi-close"></i></button>` : `<button type="button" class="room-entity-action add" data-room-add="${escapeHtml(id)}" title="${escapeHtml(translateValue('Dodaj do pomieszczenia'))}"><i class="mdi mdi-plus"></i></button>`;
+  return `<div class="room-entity${action === 'remove' ? ' added' : ''}"${action === 'add' ? ` data-room-add="${escapeHtml(id)}"` : ''}><div><strong data-no-i18n>${escapeHtml(roomEntityName(id))}</strong><code data-no-i18n>${escapeHtml(id)}${state ? ' · ' + escapeHtml(state) : ''}</code></div>${button}</div>`;
+}
+function renderRoomEntityResults() {
+  const box = $('#room-entity-results'), input = $('#room-entity-search'), room = roomsOf()[selectedRoomId]; if (!box || !input || !room) return;
+  const query = searchText(input.value), added = new Set(room.entityIds || []);
+  if (query.length < 2) { box.innerHTML = ''; return; }
+  if (!allEntitiesCache) { box.innerHTML = `<div class="room-entity-heading">${escapeHtml(translateValue('Wyszukiwanie encji…'))}</div>`; loadAllEntities().then(() => { if ($('#room-entity-search') === input) renderRoomEntityResults(); }); return; }
+  const matches = allEntitiesCache.filter(entity => !added.has(entity.id) && (searchText(entity.id).includes(query) || searchText(entity.name).includes(query) || searchText(entity.integration).includes(query)))
+    .sort((a, b) => roomEntityRank(a.id) - roomEntityRank(b.id) || Number(b.enabled) - Number(a.enabled) || a.name.localeCompare(b.name)).slice(0, 40);
+  box.innerHTML = matches.length ? matches.map(entity => roomEntityRow(entity.id, 'add')).join('') : `<div class="room-entity-heading">${escapeHtml(translateValue('Brak pasujących encji.'))}</div>`;
+}
+function roomEditorMarkup(room) {
+  const r = { ...ROOM_DEFAULTS, ...room }, light = roomLight(r), refresh = { refresh:true };
+  const note = text => `<p class="flow-section-note">${text}</p>`, canToggle = r.entityIds.some(id => isToggleableMarker({ entityId:id }));
+  const addedList = r.entityIds.map(id => roomEntityRow(id, 'remove')).join('');
+  const entities = section('Pomieszczenie', control('Nazwa','name','text',r.name)
+    + `<div class="control"><label>Stan</label><strong class="flow-live-value">${translateValue(light.on ? 'Włączone' : r.entityIds.length ? 'Wyłączone' : 'Brak encji')}</strong><span></span></div>`
+    + tapActionControl(canToggle ? r.tapAction : (r.tapAction === 'toggle' ? 'more_info' : r.tapAction), canToggle)
+    + `<div class="control room-entities-control"><label>Zapalają je encje</label><div class="room-entity-list">${addedList}</div>`
+    + `<label class="room-entity-search"><i class="mdi mdi-magnify"></i><input id="room-entity-search" type="search" autocomplete="off" placeholder="${escapeHtml(translateValue('Szukaj nazwy lub encji…'))}"></label><div id="room-entity-results" class="room-entity-list room-entity-results"></div></div>`
+    );
+  const look = section('Wygląd', stateButtons('previewOn', roomPreviewOn)
+    + control('Kolor zależny ON/OFF','stateEnabled','checkbox',!!r.stateEnabled,refresh)
+    + (r.stateEnabled
+      ? control('Kolor ON','color','color',r.color) + control('Kolor OFF','offColor','color',r.offColor)
+        + control('Intensywność ON','opacity','range',Math.round(clamp(Number(r.opacity) || 0, 0, 1) * 100),{ min:5, max:100, step:1, suffix:'%', integer:true })
+        + control('Intensywność OFF','offOpacity','range',Math.round(clamp(Number(r.offOpacity) || 0, 0, 1) * 100),{ min:0, max:100, step:1, suffix:'%', integer:true })
+      : control('Kolor','color','color',r.color)
+        + control('Intensywność','opacity','range',Math.round(clamp(Number(r.opacity) || 0, 0, 1) * 100),{ min:5, max:100, step:1, suffix:'%', integer:true }))
+    + control('Miękkość krawędzi','feather','range',Number(r.feather) || 0,{ min:0, max:80, step:1, suffix:'px', integer:true }));
+  return entities + look;
+}
+function openRoomEditor(id, preserveSection = roomEditorOpenSectionIndex) {
+  const room = roomsOf()[id], panel = $('#room-editor'); if (!room || !panel) return closeRoomEditor();
+  const newlySelected = selectedRoomId !== id;
+  if (newlySelected) { preserveSection = roomEditorOpenSectionIndex = -1; roomPreviewOn = ''; }
+  closeEditor(); closeFlowEditor(); selectedRoomId = id;
+  $('#room-editor-title').textContent = room.name || translateValue('Pomieszczenie');
+  const entityInfo = $('#room-editor-entities'); if (entityInfo) entityInfo.textContent = (room.entityIds || []).join(', ') || '—';
+  syncLockButton($('#room-geometry-lock'), room.geometryLocked); const paste = $('#room-paste-style'); if (paste) paste.disabled = !roomStyleClipboard;
+  const content = $('#room-editor-content'), scroll = content.scrollTop;
+  content.innerHTML = roomEditorMarkup(room);
+  const sections = $$('.editor-section', content);
+  if (Number.isInteger(preserveSection) && preserveSection >= 0 && sections[preserveSection]) sections[preserveSection].open = true;
+  sections.forEach((details, index) => details.addEventListener('toggle', () => {
+    if (details.open) { roomEditorOpenSectionIndex = index; sections.forEach(other => { if (other !== details) other.removeAttribute('open'); }); }
+    else if (roomEditorOpenSectionIndex === index) roomEditorOpenSectionIndex = -1;
+  }));
+  $$('input,select', content).forEach(input => {
+    if (input.type === 'range' || input.type === 'color') { input.addEventListener('input', onRoomEditorInput); input.addEventListener('change', onRoomEditorInput); }
+    else if (input.id !== 'room-entity-search') input.addEventListener('change', onRoomEditorInput);
+  });
+  $('#room-entity-search')?.addEventListener('input', renderRoomEntityResults); renderRoomEntityResults();
+  content.scrollTop = scroll;
+  panel.classList.add('visible'); panel.setAttribute('aria-hidden', 'false'); renderRooms();
+  if (newlySelected) requestAnimationFrame(() => requestAnimationFrame(() => { focusSceneBoxOnMobile(room.points || []); renderRoomEditLayer(); }));
+  requestAnimationFrame(() => { const outline = $('#room-edit-layer .room-outline.selected'); if (outline && !mobileView() && !panel.dataset.dragged) placeEditorNear(panel, outline); });
+}
+function closeRoomEditor() {
+  const panel = $('#room-editor'); if (!panel) return;
+  if (mobileView() && editMode && panel.classList.contains('visible')) requestAnimationFrame(applyViewTransform);
+  const had = selectedRoomId; selectedRoomId = null; roomPreviewOn = ''; delete panel.dataset.dragged;
+  panel.classList.remove('visible'); panel.setAttribute('aria-hidden', 'true'); if (had) renderRooms();
+}
+function onRoomEditorInput(event) {
+  const room = roomsOf()[selectedRoomId], input = event.target; if (!room) return;
+  const path = input.dataset.path; if (!path) return;
+  let value = input.type === 'checkbox' ? input.checked : input.value;
+  if (input.dataset.valueType === 'range' || input.dataset.valueType === 'number') { value = Number(value); if (!Number.isFinite(value)) return; }
+  if (input.type === 'color') { value = String(value).toUpperCase(); const preview = input.closest('.color-picker')?.querySelector('.color-current'); if (preview) preview.style.background = value; }
+  if (path === 'previewOn') { roomPreviewOn = String(value); renderRooms(); return; }
+  if (path === 'opacity') value = clamp(value / 100, .05, 1);
+  if (path === 'offOpacity') value = clamp(value / 100, 0, 1);
+  if (path === 'name') { value = String(value).trim() || translateValue('Pomieszczenie'); $('#room-editor-title').textContent = value; const icon = model.entities[roomIconId(room.id)]; if (icon) { icon.displayName = value; renderMarkers(); } }
+  room[path] = value; room.updatedAt = new Date().toISOString();
+  const output = input.closest('.control')?.querySelector('output'); if (output) output.textContent = input.value + (output.dataset.suffix || '');
+  renderRooms();
+  if (input.dataset.editorRefresh === 'true') { openRoomEditor(room.id); scheduleSave(true); return; }
+  scheduleSave(event.type === 'change');
+}
+function onRoomEditorClick(event) {
+  const previewButton = event.target.closest('[data-preview-path="previewOn"]');
+  if (previewButton) { event.preventDefault(); const value = previewButton.dataset.previewValue; roomPreviewOn = roomPreviewOn === value ? '' : value; renderRooms(); if (selectedRoomId) openRoomEditor(selectedRoomId, openSectionIndex($('#room-editor-content'), roomEditorOpenSectionIndex)); return; }
+  const iconAction = event.target.closest('[data-room-icon]')?.dataset.roomIcon;
+  if (iconAction) {
+    event.preventDefault(); const room = roomsOf()[selectedRoomId]; if (!room) return;
+    if (iconAction === 'add') addRoomIcon(room);
+    else if (iconAction === 'edit') editRoomIcon(room);
+    else if (iconAction === 'remove' && removeRoomIcon(activeSceneView(), room.id)) { renderMarkers(); openRoomEditor(room.id, openSectionIndex($('#room-editor-content'), roomEditorOpenSectionIndex)); scheduleSave(true); notify('Usunięto ikonę pomieszczenia'); }
+    return;
+  }
+  const addId = event.target.closest('[data-room-add]')?.dataset.roomAdd, removeId = event.target.closest('[data-room-remove]')?.dataset.roomRemove;
+  if (addId || removeId) {
+    event.preventDefault(); const room = roomsOf()[selectedRoomId]; if (!room) return;
+    const ids = new Set(room.entityIds || []); if (addId) ids.add(addId); if (removeId) ids.delete(removeId);
+    room.entityIds = [...ids]; room.updatedAt = new Date().toISOString();
+    const query = $('#room-entity-search')?.value || ''; refreshStates(); openRoomEditor(room.id, openSectionIndex($('#room-editor-content'), roomEditorOpenSectionIndex)); scheduleSave(true);
+    const search = $('#room-entity-search'); if (search && addId && query) { search.value = query; renderRoomEntityResults(); }
+    return;
+  }
+  const toggle = event.target.closest('[data-color-toggle]'), swatch = event.target.closest('[data-palette-color]'), rgb = event.target.closest('[data-rgb-color]'), content = $('#room-editor-content');
+  const reset = event.target.closest('[data-reset-path]');
+  if (reset) { event.preventDefault(); const input = content.querySelector(`input[data-path="${CSS.escape(reset.dataset.resetPath)}"]`), defaults = { opacity: ROOM_DEFAULTS.opacity * 100, offOpacity: ROOM_DEFAULTS.offOpacity * 100, feather: ROOM_DEFAULTS.feather }; if (input && reset.dataset.resetPath in defaults) { input.value = defaults[reset.dataset.resetPath]; input.dispatchEvent(new Event('change', { bubbles:true })); } return; }
+  if (toggle) { event.preventDefault(); const menu = toggle.closest('.color-picker').querySelector('.color-menu'), open = menu.classList.contains('visible'); $$('.color-menu', content).forEach(x => x.classList.remove('visible')); menu.classList.toggle('visible', !open); return; }
+  if (swatch) { event.preventDefault(); const picker = swatch.closest('.color-picker'), input = $('.color-native', picker); input.value = swatch.dataset.paletteColor; $('.color-current', picker).style.background = input.value; $('.color-menu', picker).classList.remove('visible'); input.dispatchEvent(new Event('change', { bubbles:true })); return; }
+  if (rgb) { event.preventDefault(); rgb.closest('.color-picker').querySelector('.color-native').click(); }
+}
+async function removeRoom() {
+  const view = activeSceneView(), room = view?.rooms?.[selectedRoomId]; if (!room) return;
+  if (!await appConfirm({ title:'Usunąć pomieszczenie?', message:`Pomieszczenie „${room.name}” zostanie usunięte z tego widoku. Encje i markery zostają.`, confirmText:'Usuń', danger:true })) return;
+  delete view.rooms[room.id]; closeRoomEditor(); if (removeRoomIcon(view, room.id)) renderMarkers(); renderRooms(); scheduleSave(true); notify('Usunięto pomieszczenie');
+}
+// Tapping a room in view mode: toggles its lights/switches (all off when any is on, otherwise all on),
+// or opens More Info of its first entity.
+const roomTogglesInFlight = new Set();
+async function onRoomTap(room, action = null) {
+  const r = { ...ROOM_DEFAULTS, ...room, ...(action ? { tapAction: action } : {}) }, ids = r.entityIds || [];
+  if (!ids.length) { if (!isViewer()) notify('To pomieszczenie nie ma jeszcze encji — wybierz je w trybie edycji'); return; }
+  const toggleable = ids.filter(id => isToggleableMarker({ entityId: id }));
+  if (r.tapAction === 'none') return;
+  if (r.tapAction === 'more_info' || isViewer() || !toggleable.length) return openMoreInfo(toggleable[0] || ids[0]);
+  if (roomTogglesInFlight.has(r.id)) return;
+  const anyOn = toggleable.some(id => String(stateCache[id]?.state || '').toLowerCase() === 'on'), expected = anyOn ? 'off' : 'on';
+  roomTogglesInFlight.add(r.id);
+  toggleable.forEach(id => { pendingToggleStates.set(id, expected); stateCache[id] = { ...(stateCache[id] || { entity_id:id, attributes:{} }), state:expected }; });
+  renderRooms(); toggleable.forEach(id => { const marker = model.entities[id]; if (marker) renderMarkerState(id, stateCache[id]); });
+  try { await Promise.all(toggleable.map(id => api('control', jsonOptions({ entity_id:id, action: expected === 'on' ? 'turn_on' : 'turn_off' })))); }
+  catch (error) { notify(`Błąd przełączania: ${error.message}`, true); }
+  finally { await delay(700); toggleable.forEach(id => pendingToggleStates.delete(id)); roomTogglesInFlight.delete(r.id); refreshStates(); }
+}
+function toggleRoomLock() { const room = roomsOf()[selectedRoomId]; if (!room) return; room.geometryLocked = !room.geometryLocked; room.updatedAt = new Date().toISOString(); openRoomEditor(room.id, openSectionIndex($('#room-editor-content'), roomEditorOpenSectionIndex)); scheduleSave(true); notify(room.geometryLocked ? 'Zablokowano geometrię' : 'Odblokowano geometrię'); }
+function copyRoomStyle() { const room = roomsOf()[selectedRoomId]; if (!room) return; roomStyleClipboard = Object.fromEntries(ROOM_STYLE_KEYS.filter(key => key in room).map(key => [key, clone(room[key])])); const paste = $('#room-paste-style'); if (paste) paste.disabled = false; notify('Skopiowano styl pomieszczenia — wklej go w innym pomieszczeniu'); }
+function pasteRoomStyle() { const room = roomsOf()[selectedRoomId]; if (!room || !roomStyleClipboard) return; ROOM_STYLE_KEYS.forEach(key => delete room[key]); Object.assign(room, clone(roomStyleClipboard), { updatedAt:new Date().toISOString() }); renderRooms(); openRoomEditor(room.id); scheduleSave(true); notify('Wklejono styl pomieszczenia'); }
+async function resetRoomStyle() { const room = roomsOf()[selectedRoomId]; if (!room || !await appConfirm({ title:'Przywrócić domyślny wygląd?', message:'Wygląd i akcja dotknięcia pomieszczenia wrócą do domyślnych. Kształt, nazwa i encje zostaną.', confirmText:'Przywróć', danger:true })) return; ROOM_STYLE_KEYS.forEach(key => delete room[key]); room.updatedAt = new Date().toISOString(); renderRooms(); openRoomEditor(room.id); scheduleSave(true); notify('Przywrócono domyślny wygląd pomieszczenia'); }
+function duplicateRoom() {
+  const view = activeSceneView(), room = view?.rooms?.[selectedRoomId]; if (!room) return;
+  const id = 'room_' + uid(), now = new Date().toISOString(), copy = clone(room), xs = room.points.map(p => p[0]), ys = room.points.map(p => p[1]);
+  const dx = Math.max(...xs) + 3 <= 100 ? 3 : -3, dy = Math.max(...ys) + 3 <= 100 ? 3 : -3;
+  Object.assign(copy, { id, name: `${room.name} (${translateValue('kopia')})`, points: room.points.map(([x, y]) => [clamp(x + dx, 0, 100), clamp(y + dy, 0, 100)]), geometryLocked:false, createdAt:now, updatedAt:now });
+  view.rooms[id] = copy; renderRooms(); openRoomEditor(id); scheduleSave(true); notify('Utworzono kopię pomieszczenia — przeciągnij ją w wybrane miejsce');
+}
+// ---- Room icon: a regular "icon" marker bound to the room (full marker editor, drag, lock, styles).
+// Its entity is virtual ("room.<room id>"): ON while the room is lit, OFF otherwise; tapping it runs the room action.
+const ROOM_ICON_DOMAIN = 'room';
+function roomIconId(roomId) { return `${ROOM_ICON_DOMAIN}.${roomId}`; }
+function isRoomIconId(entityId) { return String(entityId || '').startsWith(`${ROOM_ICON_DOMAIN}.`); }
+function syncRoomIconStates() {
+  Object.values(model.views || {}).forEach(view => Object.values(view.rooms || {}).forEach(room => {
+    const id = roomIconId(room.id); if (!view.entities?.[id]) return;
+    const light = roomLight({ ...ROOM_DEFAULTS, ...room }), state = light.on ? 'on' : 'off', previous = stateCache[id]?.state;
+    stateCache[id] = { entity_id:id, state, attributes:{ friendly_name: room.name || id }, last_changed: previous === state ? stateCache[id]?.last_changed : new Date().toISOString() };
+    if (previous !== state && view === activeSceneView()) renderMarkerState(id, stateCache[id]);
+  }));
+}
+function roomCentroid(points) { const n = Math.max(1, points.length); return [points.reduce((sum, p) => sum + p[0], 0) / n, points.reduce((sum, p) => sum + p[1], 0) / n]; }
+function addRoomIcon(room) {
+  const id = roomIconId(room.id); if (model.entities[id]) return editRoomIcon(room);
+  const [x, y] = roomCentroid(room.points || [[50, 50]]), now = new Date().toISOString();
+  model.entities[id] = { id: uid(), entityId:id, roomId: room.id, integrationId:'', integrationName: translateValue('Pomieszczenie'), sourceDomain: ROOM_ICON_DOMAIN, displayName: room.name || translateValue('Pomieszczenie'),
+    unitOverride:'', decimals:'auto', stateOnLabel:'', stateOffLabel:'', iconMode:'manual', iconName:'mdi:lightbulb-group', iconOn:'mdi:lightbulb-group', iconOff:'mdi:lightbulb-group-off', iconVariantEnabled:true,
+    tapAction: room.tapAction || 'toggle', xPercent: Math.round(x * 100) / 100, yPercent: Math.round(y * 100) / 100, type:'icon', style: normalizedStyle('icon', {}), createdAt:now, updatedAt:now };
+  syncRoomIconStates(); renderMarkers(); scheduleSave(true); editRoomIcon(room); notify('Dodano ikonę pomieszczenia — przeciągnij ją w wybrane miejsce');
+}
+function editRoomIcon(room) { const id = roomIconId(room.id); if (!model.entities[id]) return; closeRoomEditor(); selectedId = id; renderMarkers(); openEditor(-1); }
+function removeRoomIcon(view, roomId) { const id = roomIconId(roomId); if (!view?.entities?.[id]) return false; delete view.entities[id]; delete stateCache[id]; if (selectedId === id) closeEditor(); return true; }
+function roomUsesEntity(entityId) { return Object.values(roomsOf()).some(room => (room.entityIds || []).includes(entityId)); }
+// ---- HA default panel -------------------------------------------------------------------
+// Home Assistant opens: the user's default panel (Profile → "Panel", stored in frontend user data "core"),
+// then the system default, then the per-device localStorage "defaultPanel", then Overview. Its picker lists
+// only dashboards, but any panel is accepted — also this add-on's ingress panel. The page runs on the same
+// origin as HA, so it can set either value through the HA frontend around it.
+function haPanelContext() {
+  try {
+    const top = window.top; if (!top || top === window) return null;
+    const hass = top.document.querySelector('home-assistant')?.hass, panels = hass?.panels || {};
+    const pathname = decodeURIComponent(top.location.pathname), segments = pathname.split('/').filter(Boolean);
+    // The panel is taken from HA's own panel list (never guessed from the URL shape: add-on panels live at
+    // /<slug>, /app/<slug> or /hassio/ingress/<slug> depending on the HA version).
+    const keys = Object.keys(panels);
+    const appKeys = keys.filter(key => isAppPanel(panels[key]));
+    const panel = appKeys.filter(key => pathname === `/${key}` || pathname.startsWith(`/${key}/`)).sort((a, b) => b.length - a.length)[0] || appKeys.find(key => segments.includes(key)) || '';
+    if (!panel) return null;
+    return { panel, hass, storage: top.localStorage };
+  } catch { return null; }
+}
+// An add-on (app) panel as HA registers it: url_path = add-on slug, config.addon (older HA: config.ingress).
+function isAppPanel(entry) { return Boolean(entry && (entry.config?.addon || entry.config?.ingress)); }
+function haStartMode(context = haPanelContext()) {
+  if (!context) return 'off';
+  if (context.hass?.userData?.default_panel === context.panel) return 'user';
+  try { if (JSON.parse(context.storage.getItem('defaultPanel') || 'null') === context.panel) return 'device'; } catch {}
+  return 'off';
+}
+function syncHaStartSelect() {
+  const row = $('#ha-start-row'), select = $('#ha-start-select'), context = haPanelContext();
+  if (!row || !select) return; row.hidden = !context; if (context) select.value = haStartMode(context);
+}
+// A default panel that does not exist leaves HA on an endless spinner; beta.207 could write such a value.
+async function repairBrokenDefaultPanel() {
+  const context = haPanelContext(), hass = context?.hass, current = hass?.userData?.default_panel, panels = hass?.panels || {};
+  if (!context || !current || !Object.keys(panels).length || panels[current] || !hass.connection) return;
+  const userData = { ...hass.userData }; delete userData.default_panel;
+  try { await hass.connection.sendMessagePromise({ type:'frontend/set_user_data', key:'core', value:userData }); notify('Naprawiono błędny domyślny panel HA — ustaw go ponownie w menu widoku'); } catch {}
+  setTimeout(syncHaStartSelect, 300);
+}
+async function setHaStart(mode) {
+  const context = haPanelContext(); if (!context) return notify('Ta opcja działa tylko w HA Views otwartym z panelu Home Assistant', true);
+  const hass = context.hass, userData = { ...(hass?.userData || {}) };
+  try {
+    // Account level (all devices of this user): the same value HA's own Profile → Panel picker writes.
+    if (mode === 'user' || userData.default_panel === context.panel) {
+      if (!hass?.connection) throw new Error('brak połączenia z Home Assistant');
+      if (mode === 'user') userData.default_panel = context.panel; else delete userData.default_panel;
+      await hass.connection.sendMessagePromise({ type:'frontend/set_user_data', key:'core', value:userData });
+    }
+    if (mode === 'device') context.storage.setItem('defaultPanel', JSON.stringify(context.panel));
+    else if (JSON.parse(context.storage.getItem('defaultPanel') || 'null') === context.panel) context.storage.removeItem('defaultPanel');
+  } catch (error) { notify(`Nie udało się zapisać: ${error.message}`, true); return setTimeout(syncHaStartSelect, 300); }
+  const other = mode === 'device' && ([hass?.userData?.default_panel, hass?.systemData?.default_panel].find(value => value && value !== context.panel));
+  if (other) notify(`Zapisano, ale ustawiony jest też domyślny panel „${other}”, który ma pierwszeństwo — wybierz „HA Views — moje konto” albo zmień Panel w profilu HA.`, true);
+  else notify(mode === 'user' ? 'HA Views jest teraz domyślnym panelem na Twoim koncie' : mode === 'device' ? 'HA Views jest domyślnym panelem na tym urządzeniu' : 'Przywrócono domyślny panel z ustawień Home Assistant');
+  setTimeout(syncHaStartSelect, 300);
+}
+// ---- Alignment guides while dragging (edit mode) --------------------------------------
+// The dragged marker/Flow snaps to the edges and centres of the other elements of the view; a blue line
+// shows what it is aligned with. Holding Alt (desktop) drags freely.
+// Rooms add their own guides (centre and edges of the room's bounding box) in a different colour, for the
+// room the dragged element sits in (and the room of a room icon), e.g. to put an icon right in the middle.
+const SNAP_DEFAULTS = Object.freeze({ guides:true, markers:true, flows:true, rooms:true, background:true, centers:true, edges:true });
+function snapTargets() { return { ...SNAP_DEFAULTS, ...(model.settings?.snapTargets || {}) }; }
+function syncSnapMenu() {
+  const t = snapTargets(); $$('[data-snap-key]').forEach(button => { const on = !!t[button.dataset.snapKey]; button.classList.toggle('active', on); button.setAttribute('aria-pressed', String(on)); });
+  const selected = Boolean((selectedId && model.entities[selectedId]) || (selectedFlowId && activeSceneView()?.flows?.[selectedFlowId]) || (selectedRoomId && roomsOf()[selectedRoomId]));
+  $$('[data-align]').forEach(button => { button.disabled = !selected; });
+  syncRotateControls();
+}
+// ---- Rotation of the selected marker / Flow (snap menu) ---------------------------------------
+// Buttons turn in steps (15° / 90°), the slider turns smoothly by 1°. Markers keep the angle in marker.rotation,
+// Flows in flow.rotation (the same value as the Flow editor's Rotation slider). Rooms are not rotated.
+function rotationTarget() {
+  if (selectedId && model.entities[selectedId]) return model.entities[selectedId];
+  if (selectedFlowId && !selectedId) return activeSceneView()?.flows?.[selectedFlowId] || null;
+  return null;
+}
+const normalizeAngle = angle => { let a = Math.round(Number(angle) || 0) % 360; if (a > 180) a -= 360; if (a <= -180) a += 360; return a; };
+function syncRotateControls() {
+  const item = rotationTarget(), usable = Boolean(item && !item.geometryLocked), angle = Number(item?.rotation) || 0;
+  $$('[data-rotate]').forEach(button => { button.disabled = !usable; });
+  const range = $('#rotate-range'); if (range) { range.disabled = !usable; if (document.activeElement !== range) range.value = angle; }
+  const out = $('#rotate-value'); if (out) out.textContent = `${angle}°`;
+}
+function setSelectedRotation(angle, save = true) {
+  const item = rotationTarget(); if (!item || item.geometryLocked) return;
+  item.rotation = normalizeAngle(angle); item.updatedAt = new Date().toISOString();
+  if (selectedId) { const node = $(`.marker[data-entity-id="${CSS.escape(selectedId)}"]`); if (node) applyMarkerStyle(node, item); syncSelection(); } else { renderMarkers(); syncFlowSelection(); }
+  const editorRoot = selectedId ? els.editorContent : els.flowEditorContent, input = editorRoot?.querySelector('input[data-path="rotation"]');
+  if (input) { input.value = item.rotation; const output = input.parentElement.querySelector('output'); if (output) output.textContent = `${item.rotation}°`; }
+  syncRotateControls(); scheduleSave(save);
+}
+// Moves the selected marker / Flow / room so its box touches an edge of the background or sits in its middle.
+function alignSelectedToBackground(where) {
+  const s = els.scene.getBoundingClientRect(); if (!s.width || !s.height) return;
+  const shift = r => ({ x: where === 'left' ? s.left - r.left : where === 'right' ? s.right - r.right : where === 'hcenter' ? (s.left + s.right) / 2 - (r.left + r.right) / 2 : 0,
+    y: where === 'top' ? s.top - r.top : where === 'bottom' ? s.bottom - r.bottom : where === 'vcenter' ? (s.top + s.bottom) / 2 - (r.top + r.bottom) / 2 : 0 });
+  if (selectedRoomId && roomsOf()[selectedRoomId]) {
+    const room = roomsOf()[selectedRoomId], xs = room.points.map(p => p[0]), ys = room.points.map(p => p[1]);
+    const box = { left: s.left + Math.min(...xs) / 100 * s.width, right: s.left + Math.max(...xs) / 100 * s.width, top: s.top + Math.min(...ys) / 100 * s.height, bottom: s.top + Math.max(...ys) / 100 * s.height };
+    const d = shift(box); room.points = room.points.map(([x, y]) => [Math.round(clamp(x + d.x / s.width * 100, 0, 100) * 1000) / 1000, Math.round(clamp(y + d.y / s.height * 100, 0, 100) * 1000) / 1000]); room.updatedAt = new Date().toISOString(); renderRooms(); scheduleSave(true); return;
+  }
+  const item = selectedId ? model.entities[selectedId] : activeSceneView()?.flows?.[selectedFlowId];
+  const node = selectedId ? $(`.marker[data-entity-id="${CSS.escape(selectedId)}"]`) : $(`.flow-marker[data-flow-id="${CSS.escape(selectedFlowId || '')}"]`);
+  if (!item || !node) return;
+  const d = shift(node.getBoundingClientRect());
+  item.xPercent = clamp(Number(item.xPercent) + d.x / s.width * 100, 0, 100); item.yPercent = clamp(Number(item.yPercent) + d.y / s.height * 100, 0, 100); item.updatedAt = new Date().toISOString();
+  renderMarkers(); if (selectedId) syncSelection(); else syncFlowSelection(); scheduleSave(true);
+}
+// Snap targets shared by markers, Flows and rooms: every other marker / Flow, every room (its bounding box and
+// its corners, so irregular walls line up too) and the background. Nothing depends on where the drag starts.
+function guideTargets({ node = null, roomId = '' } = {}) {
+  const scene = els.scene.getBoundingClientRect();
+  const t = snapTargets(), points = (a, b) => [...(t.edges ? [a, b] : []), ...(t.centers ? [(a + b) / 2] : [])];
+  const selector = [t.markers ? '.marker' : '', t.flows ? '.flow-marker' : ''].filter(Boolean).join(', ');
+  const targets = selector ? $$(selector, els.markers).filter(other => other !== node && other.offsetParent !== null && !(roomId && model.entities[other.dataset?.entityId]?.roomId === roomId)).map(other => other.getBoundingClientRect()) : [];
+  const xs = targets.flatMap(r => points(r.left, r.right).map(v => ({ v: v - scene.left, room:false })));
+  const ys = targets.flatMap(r => points(r.top, r.bottom).map(v => ({ v: v - scene.top, room:false })));
+  if (t.background) { xs.push(...points(0, scene.width).map(v => ({ v, bg:true }))); ys.push(...points(0, scene.height).map(v => ({ v, bg:true }))); }
+  if (t.rooms) Object.values(roomsOf()).filter(room => room.id !== roomId && (room.points || []).length >= 3).forEach(room => {
+    const px = room.points.map(p => p[0] / 100 * scene.width), py = room.points.map(p => p[1] / 100 * scene.height);
+    const [minX, maxX, minY, maxY] = [Math.min(...px), Math.max(...px), Math.min(...py), Math.max(...py)];
+    xs.push(...points(minX, maxX).map(v => ({ v, room:true }))); ys.push(...points(minY, maxY).map(v => ({ v, room:true })));
+    if (t.edges) { px.forEach(v => { if (v > minX + .5 && v < maxX - .5) xs.push({ v, room:true }); }); py.forEach(v => { if (v > minY + .5 && v < maxY - .5) ys.push({ v, room:true }); }); }
+  });
+  return { scene, xs, ys, offsets: [...(t.centers ? [0] : []), ...(t.edges ? [-1, 1] : [])] };
+}
+function alignmentContext(node) {
+  const own = node.getBoundingClientRect();
+  return { ...guideTargets({ node }), halfW: own.width / 2, halfH: own.height / 2 };
+}
+function alignToGuides(context, xPercent, yPercent, event) {
+  if (!context || event?.altKey || !snapTargets().guides || !context.scene.width || !context.scene.height) { showAlignGuides([], []); return { xPercent, yPercent }; }
+  const threshold = 6, match = (centre, half, values) => {
+    let best = null;
+    (context.offsets || [0, -1, 1]).map(k => k * half).forEach(offset => values.forEach(({ v, room, bg }) => { const distance = Math.abs(centre + offset - v); if (distance <= threshold && (!best || distance < best.distance - .01 || (Math.abs(distance - best.distance) <= .01 && (room || bg) && !best.room && !best.bg))) best = { distance, centre: v - offset, line: v, room, bg }; }));
+    return best;
+  };
+  const { width, height } = context.scene, bx = match(xPercent / 100 * width, context.halfW, context.xs), by = match(yPercent / 100 * height, context.halfH, context.ys);
+  if (bx) xPercent = clamp(bx.centre / width * 100, 0, 100);
+  if (by) yPercent = clamp(by.centre / height * 100, 0, 100);
+  showAlignGuides(bx ? [{ at: bx.line / width * 100, room: bx.room, bg: bx.bg }] : [], by ? [{ at: by.line / height * 100, room: by.room, bg: by.bg }] : []);
+  return { xPercent, yPercent };
+}
+function showAlignGuides(vertical, horizontal) {
+  let layer = $('#align-guides');
+  if (!vertical.length && !horizontal.length) { if (layer) layer.innerHTML = ''; return; }
+  if (!layer) { layer = document.createElement('div'); layer.id = 'align-guides'; layer.setAttribute('aria-hidden', 'true'); els.scene.append(layer); }
+  const kind = g => g.room ? ' room' : g.bg ? ' bg' : '';
+  layer.innerHTML = vertical.map(g => `<span class="align-guide vertical${kind(g)}" style="left:${g.at}%"></span>`).join('') + horizontal.map(g => `<span class="align-guide horizontal${kind(g)}" style="top:${g.at}%"></span>`).join('');
+}
+// ---- Keep elements inside the background ("Granice tła", on by default) -------------------
+// Markers and Flows are kept with their whole box inside the scene while dragging or resizing
+// (rooms already cannot leave it: their corners are limited to 0–100 %).
+function keepInBounds() { return model.settings?.keepInBounds !== false; }
+function boundsShift(node) {
+  const s = els.scene.getBoundingClientRect(), r = node.getBoundingClientRect(); if (!s.width || !s.height || !r.width) return null;
+  const dx = r.width >= s.width ? s.left - r.left : r.left < s.left ? s.left - r.left : r.right > s.right ? s.right - r.right : 0;
+  const dy = r.height >= s.height ? s.top - r.top : r.top < s.top ? s.top - r.top : r.bottom > s.bottom ? s.bottom - r.bottom : 0;
+  return Math.abs(dx) > .5 || Math.abs(dy) > .5 ? { x: dx / s.width * 100, y: dy / s.height * 100 } : null;
+}
+function nodeOutsideScene(node) {
+  const s = els.scene.getBoundingClientRect(), r = node.getBoundingClientRect();
+  return r.left < s.left - 1 || r.top < s.top - 1 || r.right > s.right + 1 || r.bottom > s.bottom + 1;
+}
+function applyBoundsUi() {
+  const on = keepInBounds(), button = $('#bounds-toggle'), status = $('#bounds-status');
+  if (button) button.classList.toggle('active', on); if (status) status.textContent = on ? 'ON' : 'OFF';
 }
 function mobileView() { return matchMedia('(max-width: 900px) and (pointer: coarse), (max-width: 768px)').matches; }
 function sceneCameraActive() { return mobileView() || editMode || viewZoom > 1.001; }
@@ -409,6 +1129,8 @@ function updateMobileMarkerLayout(renderedWidth, renderedHeight) {
 }
 function updateSceneGeometry() {
   const hasImage = !els.image.hidden && els.image.naturalWidth > 0 && els.image.naturalHeight > 0;
+  // A new background is still loading: keep the current geometry instead of briefly collapsing to the colour ratio.
+  if (!hasImage && currentBackground && !els.image.hidden && !els.image.complete) return;
   const solidRatio = clamp(activeSceneView()?.solidCanvasRatio || 16 / 9, .25, 4);
   const width = hasImage ? els.image.naturalWidth : solidRatio * 100, height = hasImage ? els.image.naturalHeight : 100, ratio = width / height;
   const panorama = mobileWidePanorama();
@@ -439,7 +1161,7 @@ function updateSceneGeometry() {
       const marker = model.entities[node.dataset.entityId];
       if (marker) applyMarkerStyle(node, marker);
     });
-    syncSelection(); positionEditor();
+    syncSelection(); positionEditor(); syncFlowSelection(); positionFlowEditor(); renderRooms(); if ($('#snap-menu')?.classList.contains('open')) syncSnapMenu();
   });
 }
 function portraitZoomExpansion() {
@@ -449,15 +1171,23 @@ function minViewZoom() {
   if (!mobileWidePanorama()) return 1;
   return clamp(els.viewport.clientWidth / Math.max(1, els.scene.offsetWidth), .08, 1);
 }
+function editSheetCover() {
+  if (!mobileView() || !editMode) return 0;
+  const sheets = [els.editor, els.flowEditor, $('#room-editor')].filter(panel => panel?.classList.contains('visible'));
+  if (!sheets.length) return 0;
+  // offsetHeight ignores the slide-in transform, so the value is final even while the sheet animates.
+  const sheetTop = Math.min(...sheets.map(panel => innerHeight - panel.offsetHeight)), viewportBottom = els.viewport.getBoundingClientRect().bottom;
+  return Math.max(0, viewportBottom - sheetTop);
+}
 function clampViewPan() {
   if (!sceneCameraActive()) { viewPanX = 0; viewPanY = 0; return; }
   const panorama = mobileWidePanorama();
   if (viewZoom <= minViewZoom() && !panorama) { viewPanX = 0; viewPanY = 0; return; }
   const maxX = Math.max(0, els.scene.offsetWidth * viewZoom - els.viewport.clientWidth);
   const maxY = Math.max(0, els.scene.offsetHeight * viewZoom - els.viewport.clientHeight);
-  // While editing on a phone, allow the camera beyond the lower scene edge.
-  // This keeps a marker near the bottom visible above the bottom editor.
-  const editBottomAllowance = mobileView() && editMode ? els.viewport.clientHeight * .78 : 0;
+  // While editing on a phone, the camera may go past the lower scene edge only by the part of the viewport
+  // the bottom editor covers: the empty area then stays hidden under the editor, never shown as a bare frame.
+  const editBottomAllowance = editSheetCover();
   viewPanX = clamp(viewPanX, -maxX, 0); viewPanY = clamp(viewPanY, -(maxY + editBottomAllowance), 0);
 }
 function updatePanoramaIndicator() {
@@ -511,7 +1241,13 @@ function applyBackgroundTransform() {
   const card = els.sceneCard; if (!card) return;
   const hasImage = !els.image.hidden && els.image.naturalWidth > 0 && els.image.naturalHeight > 0;
   if (!hasImage) {
-    card.style.width = '100%'; card.style.marginLeft = '0'; card.style.marginRight = '0';
+    if (currentBackground) { card.style.width = '100%'; card.style.marginLeft = '0'; card.style.marginRight = '0'; }
+    else {
+      // Colour background: largest whole canvas of the chosen size that fits the workspace (like an image).
+      const ratio = clamp(activeSceneView()?.solidCanvasRatio || 16 / 9, .25, 4), parentWidth = Math.max(1, card.parentElement?.clientWidth || innerWidth);
+      const availableHeight = Math.max(160, (window.visualViewport?.height || innerHeight) - card.getBoundingClientRect().top - 8);
+      card.style.width = `${(Math.min(parentWidth, availableHeight * ratio) / parentWidth) * 100}%`; card.style.marginLeft = 'auto'; card.style.marginRight = 'auto';
+    }
     els.image.style.objectFit = 'fill'; els.image.style.transform = '';
     requestAnimationFrame(updateSceneGeometry);
     return;
@@ -550,14 +1286,97 @@ function updateMobilePanStart() {
   currentBackgroundTransform().mobilePanStart = Number(els.mobilePanStart.value);
   resetViewZoom(); syncBackgroundTransformControls(); scheduleSave();
 }
+// ---- Layout sync between devices -------------------------------------------------
+// The layout is stored on the server with a revision. Saves send the revision they are based on
+// (the server rejects stale ones), and an open page checks for newer revisions.
+// syncBase is the layout as the server holds it at serverRevision. When another device saved in
+// between, the changes are merged per field: what this device changed since syncBase wins, everything
+// else comes from the server — so a colour set on the phone and a move made on the PC both survive.
+let serverRevision = 0, lastLocalChangeAt = 0, syncBase = null;
+const RELOAD_VIEW_KEY = 'ha-views:reload-view', RELOAD_MESSAGE_KEY = 'ha-views:reload-message';
+const SYNC_LOCAL_KEYS = new Set(['entities', 'revision', 'baseRevision']);
+function layoutSnapshot(source) { const data = clone(source || {}); SYNC_LOCAL_KEYS.forEach(key => delete data[key]); return data; }
+const isPlainObject = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+function layoutDiff(before, after, path = [], ops = []) {
+  if (isPlainObject(before) && isPlainObject(after)) {
+    new Set([...Object.keys(before), ...Object.keys(after)]).forEach(key => {
+      if (!(key in after)) ops.push({ path:[...path, key], remove:true });
+      else if (!(key in before)) ops.push({ path:[...path, key], value:after[key] });
+      else layoutDiff(before[key], after[key], [...path, key], ops);
+    });
+  } else if (JSON.stringify(before) !== JSON.stringify(after)) ops.push({ path, value:after });
+  return ops;
+}
+function applyLayoutOps(target, ops) {
+  ops.forEach(({ path, value, remove }) => {
+    let node = target;
+    for (const key of path.slice(0, -1)) { if (!isPlainObject(node[key])) node[key] = {}; node = node[key]; }
+    const last = path[path.length - 1];
+    if (remove) delete node[last]; else node[last] = clone(value);
+  });
+}
+const pathsOverlap = (a, b) => a.slice(0, Math.min(a.length, b.length)).every((key, index) => key === b[index]);
+// Pulls the newest server layout into the open page without a reload; returns false when it cannot merge.
+async function mergeRemoteLayout() {
+  if (!syncBase) return false;
+  const latest = await api('rewrite_state'), server = latest?.data;
+  if (!latest?.exists || !isPlainObject(server) || !isPlainObject(server.views)) return false;
+  const serverData = layoutSnapshot(server), local = layoutDiff(syncBase, layoutSnapshot(model));
+  // The open view is chosen per device, so another device's activeViewId is not taken over.
+  const remote = layoutDiff(syncBase, serverData).filter(op => op.path[0] !== 'activeViewId' && !local.some(mine => pathsOverlap(mine.path, op.path)));
+  const activeId = model.activeViewId, backgroundKeys = ['background','backgroundColor','backgroundTransforms','solidCanvasRatio','solidCanvasSize','nightBackground','nightMode','nightEntity','backgroundBrightness','nightBrightness'];
+  const backgroundChanged = remote.some(op => op.path[0] === 'views' && op.path[1] === activeId && (op.path.length === 2 || backgroundKeys.includes(op.path[2])));
+  applyLayoutOps(model, remote);
+  syncBase = serverData; serverRevision = model.revision = Number(server.revision) || 0;
+  if (!model.views[model.activeViewId]) model.activeViewId = model.viewOrder.find(id => model.views[id]) || Object.keys(model.views)[0];
+  model.viewOrder = (model.viewOrder || []).filter(id => model.views[id]); Object.keys(model.views).forEach(id => { if (!model.viewOrder.includes(id)) model.viewOrder.push(id); });
+  attachActiveEntities(); renderViewSelector();
+  if (backgroundChanged || model.activeViewId !== activeId) { currentBackground = ''; await loadBackgrounds(true, false, null, 2500); if (currentBackground) applyBackgroundTransform(); }
+  updateSceneGeometry(); renderMarkers(); renderAdded();
+  if (selectedFlowId) { if (activeSceneView()?.flows?.[selectedFlowId] && els.flowEditor.classList.contains('visible')) openFlowEditor(selectedFlowId); else if (!activeSceneView()?.flows?.[selectedFlowId]) closeFlowEditor(); }
+  if (selectedId) { if (!model.entities[selectedId]) closeEditor(); else if (els.editor.classList.contains('visible')) openEditor(); }
+  prebuildSwipePreviews(60);
+  return { remote:remote.length, local:local.length };
+}
+function reloadLayout(message = '') {
+  try { sessionStorage.setItem(RELOAD_VIEW_KEY, model.activeViewId || ''); if (message) sessionStorage.setItem(RELOAD_MESSAGE_KEY, message); } catch {}
+  location.reload();
+}
+let remoteCheckRunning = false;
+async function checkRemoteLayout() {
+  if (document.hidden || remoteCheckRunning || !appRevealed || saveRunning || savePending || Date.now() - lastLocalChangeAt < 3000) return;
+  remoteCheckRunning = true;
+  try {
+    const { revision } = await api('rewrite_state_revision');
+    if (!(Number(revision) > serverRevision) || saveRunning || savePending) return;
+    if (!editMode) return reloadLayout('Wczytano zmiany z innego urządzenia');
+    // In edit mode the page stays open: the newer layout is merged in place.
+    const merged = await mergeRemoteLayout().catch(() => false);
+    if (!merged) { notifyWithAction('Układ zmieniono na innym urządzeniu', 'Wczytaj', () => reloadLayout(), 15000); return; }
+    if (merged.local) scheduleSave(true);
+    notify('Wczytano zmiany z innego urządzenia');
+  } catch {} finally { remoteCheckRunning = false; }
+}
 async function queueSave() {
+  if (isViewer()) return;
   clearTimeout(saveTimer); savePending = true;
   if (saveRunning) return;
-  saveRunning = true;
+  saveRunning = true; let conflicts = 0;
   while (savePending) {
-    savePending = false; const snapshot = clone(model); delete snapshot.entities;
-    try { await api('rewrite_state', jsonOptions(snapshot)); els.editorStatus.textContent = 'Zapisano'; }
-    catch (error) { savePending = true; els.editorStatus.textContent = 'Błąd zapisu'; notify(`Błąd zapisu: ${error.message}`, true); await new Promise(r => setTimeout(r, 900)); }
+    savePending = false; const snapshot = clone(model); delete snapshot.entities; snapshot.baseRevision = serverRevision;
+    try {
+      const result = await api('rewrite_state', jsonOptions(snapshot));
+      if (Number.isFinite(Number(result?.revision))) { serverRevision = model.revision = Number(result.revision); snapshot.revision = serverRevision; syncBase = layoutSnapshot(snapshot); }
+      els.editorStatus.textContent = 'Zapisano';
+    }
+    catch (error) {
+      if (error.status === 409) {
+        // Another device saved first: merge its layout with this device's changes and save again.
+        const merged = ++conflicts <= 3 ? await mergeRemoteLayout().catch(() => false) : false;
+        if (merged) { if (merged.local) savePending = true; notify('Połączono z nowszymi zmianami z innego urządzenia'); continue; }
+        savePending = false; saveRunning = false; reloadLayout('Układ został zmieniony na innym urządzeniu — wczytano najnowszą wersję. Ostatnia zmiana z tego urządzenia nie została zapisana.'); return;
+      }
+      savePending = true; els.editorStatus.textContent = 'Błąd zapisu'; notify(`Błąd zapisu: ${error.message}`, true); await new Promise(r => setTimeout(r, 900)); }
   }
   saveRunning = false;
 }
@@ -581,7 +1400,7 @@ function normalizedStyle(type, raw = {}) {
     }
   }
   if (!Object.prototype.hasOwnProperty.call(raw || {}, 'iconOpacityStateEnabled')) base.iconOpacityStateEnabled = Boolean(raw?.iconStateEnabled);
-  ['width','height','contentScale','baseContentScale','borderWidth','radius','labelScale','valueScale','labelY','valueY','iconSize','iconX','iconY','iconOpacity','iconOutlineWidth','backgroundOnOpacity','backgroundOffOpacity','borderOnOpacity','borderOffOpacity','borderOnWidth','borderOffWidth','iconOnOpacity','iconOffOpacity','backgroundGradientX','backgroundGradientY','backgroundGradientSpread','backgroundGradientFill','iconOutlineOpacity','iconOutlineOnOpacity','iconOutlineOffOpacity','iconOutlineOnWidth','iconOutlineOffWidth'].forEach(k => base[k] = numberOr(base[k], markerStyleDefaults(type)[k]));
+  ['width','height','contentScale','baseContentScale','borderWidth','radius','labelScale','valueScale','labelX','labelY','valueX','valueY','iconSize','iconX','iconY','iconOpacity','iconOutlineWidth','backgroundOnOpacity','backgroundOffOpacity','borderOnOpacity','borderOffOpacity','borderOnWidth','borderOffWidth','iconOnOpacity','iconOffOpacity','backgroundGradientX','backgroundGradientY','backgroundGradientSpread','backgroundGradientFill','iconOutlineOpacity','iconOutlineOnOpacity','iconOutlineOffOpacity','iconOutlineOnWidth','iconOutlineOffWidth'].forEach(k => base[k] = numberOr(base[k], markerStyleDefaults(type)[k]));
   if (isGaugeType(type)) ['min','max','thickness','percentScale','percentY'].forEach(k => base[k] = numberOr(base[k], gaugeDefaults()[k]));
   return base;
 }
@@ -676,7 +1495,44 @@ function automaticIcon(marker) {
   if (byDevice[dc]) return byDevice[dc];
   return ({ binary_sensor: active ? 'mdi:checkbox-marked-circle' : 'mdi:checkbox-blank-circle-outline', sensor: 'mdi:gauge', switch: active ? 'mdi:toggle-switch' : 'mdi:toggle-switch-off', light: 'mdi:lightbulb', climate: 'mdi:thermostat', fan: 'mdi:fan', water_heater: 'mdi:water-boiler', sun: 'mdi:weather-sunny' })[domain] || 'mdi:cube-outline';
 }
+// ---- Colours / icons by value (optional per marker) -------------------------------
+// Two thresholds split the numeric state into three bands (below / between / above); each band has a colour
+// and optionally its own icon. "Smooth" blends the colours across the range instead of hard steps.
+const VALUE_RULE_DEFAULTS = Object.freeze({ enabled:false, low:20, high:25, colorLow:'#20B9E7', colorMid:'#35D07F', colorHigh:'#FF6374', smooth:false, icon:true, value:false, background:false, border:false, arc:true, iconLow:'', iconMid:'', iconHigh:'' });
+function valueRulesOf(marker) { return { ...VALUE_RULE_DEFAULTS, ...(marker.valueRules || {}) }; }
+function mixHex(a, b, t) {
+  const p = hex => { const h = String(hex || '#000000').replace('#', ''); return [0, 2, 4].map(i => parseInt(h.slice(i, i + 2), 16) || 0); };
+  const x = p(a), y = p(b); return '#' + x.map((v, i) => Math.round(v + (y[i] - v) * clamp(t, 0, 1)).toString(16).padStart(2, '0')).join('').toUpperCase();
+}
+function valueRuleResult(marker) {
+  const rules = marker.valueRules; if (!rules?.enabled) return null;
+  const r = valueRulesOf(marker), n = Number(String(stateCache[marker.entityId]?.state ?? '').replace(',', '.'));
+  if (!Number.isFinite(n)) return null;
+  const low = Math.min(Number(r.low), Number(r.high)), high = Math.max(Number(r.low), Number(r.high));
+  const band = n < low ? 'Low' : n >= high ? 'High' : 'Mid';
+  let color = r['color' + band];
+  if (r.smooth) { const mid = (low + high) / 2; color = n <= mid ? mixHex(r.colorLow, r.colorMid, (n - low) / Math.max(1e-9, mid - low)) : mixHex(r.colorMid, r.colorHigh, (n - mid) / Math.max(1e-9, high - mid)); }
+  return { band, color, icon: r['icon' + band] || '', apply: { icon:!!r.icon, value:!!r.value, background:!!r.background, border:!!r.border, arc:!!r.arc } };
+}
+function valueRulesSection(marker) {
+  const r = valueRulesOf(marker), refresh = { refresh:true }, result = valueRuleResult(marker);
+  const bandName = { Low:'Teraz: poniżej dolnego progu.', Mid:'Teraz: pomiędzy progami.', High:'Teraz: od górnego progu.' };
+  let body = control('Włącz','valueRules.enabled','checkbox',r.enabled,refresh);
+  if (r.enabled) {
+    body += (result ? `<p class="flow-section-note">${bandName[result.band]}</p>` : '<p class="flow-section-note">Stan encji nie jest liczbą — kolory wg wartości nie działają dla tej encji.</p>')
+      + control('Dolny próg','valueRules.low','number',r.low,{ valueType:'number' }) + control('Górny próg','valueRules.high','number',r.high,{ valueType:'number' })
+      + control('Kolor poniżej','valueRules.colorLow','color',r.colorLow) + control('Kolor pomiędzy','valueRules.colorMid','color',r.colorMid) + control('Kolor od górnego','valueRules.colorHigh','color',r.colorHigh)
+      + control('Płynne przejście','valueRules.smooth','checkbox',r.smooth)
+      + (marker.type === 'icon' || marker.style?.showIcon ? control('Koloruj ikonę','valueRules.icon','checkbox',r.icon) : '')
+      + (marker.type !== 'icon' ? control('Koloruj wartość','valueRules.value','checkbox',r.value) : '')
+      + (isGaugeType(marker.type) ? control('Koloruj łuk','valueRules.arc','checkbox',r.arc) : '')
+      + control('Koloruj tło','valueRules.background','checkbox',r.background) + control('Koloruj ramkę','valueRules.border','checkbox',r.border)
+      + (marker.iconMode !== 'integration' ? mdiControl('Ikona poniżej','valueRules.iconLow',r.iconLow) + mdiControl('Ikona pomiędzy','valueRules.iconMid',r.iconMid) + mdiControl('Ikona od górnego','valueRules.iconHigh',r.iconHigh) + '<p class="flow-section-note">Puste pole ikony = zwykła ikona markera.</p>' : '');
+  }
+  return section('Kolory wg wartości', body);
+}
 function resolvedIcon(marker) {
+  const ruleIcon = valueRuleResult(marker)?.icon; if (ruleIcon) return ruleIcon;
   if (marker.iconMode !== 'manual') return automaticIcon(marker);
   if (marker.iconVariantEnabled) {
     const kind = stateKind(marker);
@@ -763,12 +1619,14 @@ function enabledIcon(enabled) {
 }
 function applyMarkerStyle(node, marker) {
   const s = marker.style, baseContentScale = Number(s.baseContentScale) || 1, contentScale = clamp(baseContentScale * (Number(s.contentScale) || 1), .4, Math.max(5.5, baseContentScale * 5));
-  const displayY = marker.yPercent, kind = stateKind(marker), stateSuffix = kind === 'on' ? 'On' : kind === 'off' ? 'Off' : '';
-  const backgroundColor = s.backgroundStateEnabled && stateSuffix ? s[`background${stateSuffix}Color`] : s.backgroundColor;
+  const displayY = marker.yPercent, kind = stateKind(marker), stateSuffix = kind === 'on' ? 'On' : kind === 'off' ? 'Off' : '', rule = valueRuleResult(marker);
+  const backgroundColor = rule?.apply.background ? rule.color : s.backgroundStateEnabled && stateSuffix ? s[`background${stateSuffix}Color`] : s.backgroundColor;
   const backgroundOpacity = s.backgroundStateEnabled && stateSuffix ? s[`background${stateSuffix}Opacity`] : s.backgroundOpacity;
-  const borderColor = s.borderStateEnabled && stateSuffix ? s[`border${stateSuffix}Color`] : s.borderColor;
+  const borderColor = rule?.apply.border ? rule.color : s.borderStateEnabled && stateSuffix ? s[`border${stateSuffix}Color`] : s.borderColor;
   const borderOpacity = s.borderStateEnabled && stateSuffix ? s[`border${stateSuffix}Opacity`] : s.borderOpacity;
   const borderWidth = s.borderStateEnabled && stateSuffix ? s[`border${stateSuffix}Width`] : s.borderWidth;
+  const rotation = Number(marker.rotation) || 0;
+  node.style.transform = rotation ? `translate(-50%,-50%) rotate(${rotation}deg) scale(var(--scene-scale,1))` : '';
   Object.assign(node.style, {
     left: `${marker.xPercent}%`, top: `${displayY}%`, width: `${s.width}px`, height: `${s.height}px`,
     background: s.showBackground ? markerBackgroundFill(backgroundColor, backgroundOpacity, s.backgroundGradient, s) : 'transparent',
@@ -780,14 +1638,14 @@ function applyMarkerStyle(node, marker) {
   if (outlineNode) Object.assign(outlineNode.style, { inset: `-${borderWidth}px`, border: s.showBorder && borderWidth > 0 ? `${borderWidth}px solid ${rgba(borderColor, borderOpacity)}` : '0 solid transparent', borderRadius: outlineRadius });
   const label = $('.label', node), value = $('.value', node);
   if (label) Object.assign(label.style, { color: s.labelColor, opacity: clamp(s.labelOpacity, 0, 1), fontSize: `${12 * s.labelScale * contentScale}px` });
-  if (value) Object.assign(value.style, { color: s.valueColor, opacity: clamp(s.valueOpacity, 0, 1), fontSize: `${22 * s.valueScale * contentScale}px` });
+  if (value) Object.assign(value.style, { color: rule?.apply.value ? rule.color : s.valueColor, opacity: clamp(s.valueOpacity, 0, 1), fontSize: `${22 * s.valueScale * contentScale}px` });
   if (marker.type === 'badge' || marker.type === 'icon') {
-    if (label) label.style.transform = `translateY(${s.labelY * contentScale}px)`;
-    if (value) value.style.transform = `translateY(${s.valueY * contentScale}px)`;
+    if (label) label.style.transform = `translate(${(Number(s.labelX) || 0) * contentScale}px, ${s.labelY * contentScale}px)`;
+    if (value) value.style.transform = `translate(${(Number(s.valueX) || 0) * contentScale}px, ${s.valueY * contentScale}px)`;
   }
   const icon = $('.marker-icon', node);
   if (icon) {
-    const iconColor = kind === 'unavailable' ? s.iconUnavailableColor : s.iconStateEnabled !== false && stateSuffix ? s[`icon${stateSuffix}Color`] : s.iconColor;
+    const iconColor = kind === 'unavailable' ? s.iconUnavailableColor : rule?.apply.icon ? rule.color : s.iconStateEnabled !== false && stateSuffix ? s[`icon${stateSuffix}Color`] : s.iconColor;
     const iconOpacity = s.iconOpacityStateEnabled && stateSuffix ? s[`icon${stateSuffix}Opacity`] : s.iconOpacity;
     const outlineColor = s.iconOutlineStateEnabled && stateSuffix ? s[`iconOutline${stateSuffix}Color`] : s.iconOutlineColor;
     const outlineOpacity = s.iconOutlineStateEnabled && stateSuffix ? s[`iconOutline${stateSuffix}Opacity`] : s.iconOutlineOpacity;
@@ -800,8 +1658,8 @@ function applyMarkerStyle(node, marker) {
   if (isGaugeType(marker.type)) {
     // Anchor labels to the marker centre: resizing the Gauge changes neither their
     // horizontal nor vertical screen position. The Position sliders stay additive.
-    if (label) Object.assign(label.style, { left: '50%', top: `calc(50% + ${(37 + Number(s.labelY || 0)) * contentScale}px)` });
-    if (value) Object.assign(value.style, { left: '50%', top: `calc(50% + ${(10 + Number(s.valueY || 0)) * contentScale}px)` });
+    if (label) Object.assign(label.style, { left: `calc(50% + ${Number(s.labelX || 0) * contentScale}px)`, top: `calc(50% + ${(37 + Number(s.labelY || 0)) * contentScale}px)` });
+    if (value) Object.assign(value.style, { left: `calc(50% + ${Number(s.valueX || 0) * contentScale}px)`, top: `calc(50% + ${(10 + Number(s.valueY || 0)) * contentScale}px)` });
     const percent = $('.percent', node); if (percent) Object.assign(percent.style, { left: '50%', top: `calc(50% + ${(-18 + Number(s.percentY || 0)) * contentScale}px)`, color: rgba(s.percentColor, s.percentOpacity), fontSize: `${11 * s.percentScale * contentScale}px` });
     const svg = $('.gauge-svg', node); if (svg) Object.assign(svg.style, { inset: 'auto', left: '50%', top: '50%', width: marker.type === 'horseshoe' ? '136px' : '', height: marker.type === 'horseshoe' ? '118px' : '', transform: `translate(-50%, -50%) scale(${contentScale})`, transformOrigin: '50% 50%' });
     const visual = $('.gauge-visual', node); if (visual) Object.assign(visual.style, { transform: gaugeVisualTransform(marker, s), transformOrigin: '100px 90px' });
@@ -809,7 +1667,7 @@ function applyMarkerStyle(node, marker) {
     const pct = Number.isFinite(n) ? clamp(((n - Number(s.min)) / span) * 100, 0, 100) : 0;
     const gradientId = `gauge-gradient-${String(marker.id).replace(/[^a-z0-9_-]/gi, '')}`;
     Object.assign(track.style, { stroke: s.trackColor, strokeWidth: s.thickness });
-    Object.assign(progress.style, { stroke: s.useGradient ? `url(#${gradientId})` : s.progressColor, strokeWidth: s.thickness, strokeDasharray: `${pct} 100` });
+    Object.assign(progress.style, { stroke: rule?.apply.arc ? rule.color : s.useGradient ? `url(#${gradientId})` : s.progressColor, strokeWidth: s.thickness, strokeDasharray: `${pct} 100` });
     $$('.gauge-tick', node).forEach(tick => Object.assign(tick.style, { stroke: rgba(s.tickColor, s.tickOpacity), strokeWidth: s.tickWidth }));
     $$('.gauge-tick-label', node).forEach(text => Object.assign(text.style, { fill: s.tickLabelColor, fontSize: `${s.tickFontSize}px`, fontFamily: s.tickFontFamily }));
   }
@@ -968,22 +1826,318 @@ function openMoreInfo(entityId) {
 
 function renderMarkers() {
   const previous = selectedId;
-  els.markers.innerHTML = '';
+  // Flow nodes are reconciled in place by renderFlows() so running animations are not restarted.
+  [...els.markers.children].forEach(node => { if (!node.classList.contains('flow-marker')) node.remove(); });
   Object.values(model.entities).forEach(marker => {
     const node = document.createElement('div'); node.className = `marker ${marker.type}${marker.id === selectedId ? ' selected' : ''}`;
     node.dataset.entityId = marker.entityId; node.innerHTML = markerHtml(marker); applyMarkerStyle(node, marker);
     node.addEventListener('pointerdown', startDrag); node.addEventListener('click', onMarkerClick); els.markers.append(node);
   });
+  renderFlows();
   if (previous && model.entities[previous]) syncSelection(); else hideSelection();
-  updateEmptyState(); renderAdded();
+  if (selectedFlowId && activeSceneView()?.flows?.[selectedFlowId]) syncFlowSelection(); else hideFlowSelection();
+  if (selectedRoomId && !roomsOf()[selectedRoomId]) closeRoomEditor();
+  updateEmptyState(); renderAdded(); renderRooms();
+}
+function flowSideOf(flow, numericState) { return flow.directionMode === 'auto' && numericState !== null && numericState < 0 ? 'negative' : 'positive'; }
+function flowSeparateStyles(flow) { return flow.directionMode === 'auto' && Boolean(flow.negativeStyleEnabled); }
+function flowEffective(flow, side) {
+  const style = { ...FLOW_DEFAULTS, ...flow };
+  if (side === 'negative' && flowSeparateStyles(flow)) Object.assign(style, flow.negativeStyle || {});
+  style.activeColor = flow.directionMode === 'auto' ? (side === 'negative' ? (flow.negativeColor || FLOW_DEFAULTS.negativeColor) : (flow.positiveColor || flow.color || FLOW_DEFAULTS.positiveColor)) : (flow.color || FLOW_DEFAULTS.color);
+  style.activeDirection = flow.directionMode === 'auto' ? (side === 'negative' ? (flow.negativeDirection || 'left') : (flow.positiveDirection || 'right')) : (flow.direction || 'right');
+  return style;
+}
+// sharpness (10–100 %) is the depth of the point as a share of the item length: lower = flatter, more open V.
+// The flattened shape stays centred in its item slot, so item size, spacing and frame do not change.
+function flowShapePath(shape, w, h, t, sharpness = 100) {
+  const cy = h / 2, f = n => Math.round(n * 100) / 100, poly = points => 'M ' + points.map(p => f(p[0]) + ' ' + f(p[1])).join(' L ') + ' Z';
+  // Above 100 % the point is deeper than the item is long; it stays centred and simply reaches past the item box.
+  const k = clamp(Number(sharpness) || 100, 10, 300) / 100;
+  if (shape === 'segment') { const r = Math.min(w, h) / 2; return 'M ' + f(r) + ' 0 H ' + f(w - r) + ' A ' + f(r) + ' ' + f(r) + ' 0 0 1 ' + f(w) + ' ' + f(r) + ' V ' + f(h - r) + ' A ' + f(r) + ' ' + f(r) + ' 0 0 1 ' + f(w - r) + ' ' + f(h) + ' H ' + f(r) + ' A ' + f(r) + ' ' + f(r) + ' 0 0 1 0 ' + f(h - r) + ' V ' + f(r) + ' A ' + f(r) + ' ' + f(r) + ' 0 0 1 ' + f(r) + ' 0 Z'; }
+  if (shape === 'arrow') {
+    const head = Math.min(Math.min(w * .55, h * .95) * k, w * .95), shaft = clamp(t, 1, h * .8), neck = w - head * .78;
+    return poly([[0,cy - shaft / 2],[neck,cy - shaft / 2],[w - head,0],[w,cy],[w - head,h],[neck,cy + shaft / 2],[0,cy + shaft / 2]]);
+  }
+  const depth = w * k, x0 = (w - depth) / 2, tip = x0 + depth;
+  if (shape === 'triangle') return poly([[x0,0],[tip,cy],[x0,h]]);
+  if (shape === 'dart') return poly([[x0,0],[tip,cy],[x0,h],[x0 + depth * .32,cy]]);
+  const d = Math.min(depth * .85, clamp(t, 1, 200) * Math.hypot(depth, cy) / Math.max(1, cy));
+  return poly([[x0,0],[x0 + d,0],[tip,cy],[x0 + d,h],[x0,h],[tip - d,cy]]);
+}
+function retimeFlowAnimations(node, duration) {
+  $$('.flow-train,.flow-chevron', node).forEach(element => element.getAnimations?.().forEach(animation => {
+    const progress = Number(animation.effect?.getComputedTiming?.().progress);
+    animation.effect?.updateTiming?.({ duration: duration * 1000, delay: 0 });
+    if (Number.isFinite(progress)) animation.currentTime = progress * duration * 1000;
+  }));
+}
+// Builds the DOM node of one Flow (no listeners, no position/tempo); null when hidden.
+function buildFlowNode(flow) {
+    const numericState = flowNumericState(flow.entityId), autoDirection = flow.directionMode === 'auto';
+    const deadband = Math.max(0, Number(flow.deadband) || 0);
+    const isActive = numericState === null || Math.abs(numericState) > deadband;
+    if (!isActive && flow.hideInactive && !editMode) return null;
+    const previewSide = editMode && selectedFlowId === flow.id && autoDirection ? flowEditorSide : null;
+    const side = previewSide || flowSideOf(flow, numericState), style = flowEffective(flow, side);
+    const shape = FLOW_SHAPES.some(([key]) => key === style.shape) ? style.shape : 'chevron';
+    const itemCount = clamp(Math.round(Number(style.flowCount) || 3), 1, FLOW_LIMITS.count);
+    const frameLength = clamp(Number(style.flowLength) || 84, 8, FLOW_LIMITS.length), itemHeight = clamp(Number(style.chevronHeight) || 22, FLOW_LIMITS.min, FLOW_LIMITS.size);
+    const itemWidth = clamp(Number(style.chevronWidth) || 22, 2, FLOW_LIMITS.size);
+    // A negative spacing nests the arrows into each other (denser than touching); at most down to a 2 px pitch.
+    const gap = clamp(Number(style.gap) || 0, -(itemWidth - 2), FLOW_LIMITS.gap);
+    const thickness = clamp(Number(style.chevronThickness) || 5, 1, FLOW_LIMITS.thickness);
+    const outlineWidth = clamp(Number(style.outlineWidth) || 0, 0, 20), glow = clamp(Number(style.glow) || 0, 0, 40), opacity = clamp(Number(style.opacity) || 100, 10, 100);
+    const color = style.activeColor, glowColor = style.glowCustom ? (style.glowColor || color) : color, outlineColor = style.outlineColor || '#FFFFFF';
+    const pathData = flowShapePath(shape, itemWidth, itemHeight, thickness, style.shapeSharpness);
+    const item = '<svg class="flow-chevron" width="' + itemWidth + '" height="' + itemHeight + '" style="width:' + itemWidth + 'px;height:' + itemHeight + 'px" preserveAspectRatio="none" viewBox="0 0 ' + itemWidth + ' ' + itemHeight + '" aria-hidden="true"><path d="' + pathData + '" fill="' + escapeHtml(color) + '"' + (outlineWidth ? ' stroke="' + escapeHtml(outlineColor) + '" stroke-width="' + outlineWidth + '" stroke-linejoin="round" paint-order="stroke fill"' : ' stroke="none"') + '></path></svg>';
+    const items = item.repeat(itemCount), animation = style.animation || 'none';
+    const node = document.createElement('div');
+    node.className = 'flow-marker'; node.dataset.flowId = flow.id; node.dataset.side = side;
+    // Items keep their own size; count and spacing only change how many there are and how far apart.
+    // A streaming train repeats the group until it covers the frame plus one period (seamless loop).
+    // The train moves by one item pitch per loop (items are identical, so the loop is seamless) and fills the frame.
+    const streaming = isActive && animation === 'flow', period = itemWidth + gap, contentLength = itemCount * itemWidth + (itemCount - 1) * gap;
+    node.innerHTML = '<div class="flow-train">' + (streaming ? item.repeat(Math.max(2, Math.ceil(frameLength / Math.max(1, period)) + 1)) : items) + '</div>';
+    node.classList.toggle('flow-overflow', !streaming && contentLength > frameLength + .5);
+    const contentWidth = frameLength;
+    const angle = ({ right:0, down:90, left:180, up:-90 }[style.activeDirection] ?? 0) + Number(flow.rotation || 0);
+    node.dataset.angle = String(angle);
+    const speedFactor = style.speedByValue && numericState !== null ? Math.max(.2, Math.min(1, Math.abs(numericState) / Math.max(1, Number(style.speedValueMax) || 1000))) : 1;
+    const tempo = Math.max(.05, (Number(style.animationSpeed) || FLOW_DEFAULTS.animationSpeed) * speedFactor);
+    const duration = streaming ? Math.max(1, period) / (FLOW_SPEED_PX * tempo) : 1.2 / tempo;
+    Object.assign(node.style, { width: contentWidth + 'px', height: itemHeight + 'px', opacity: opacity / 100, transform: 'translate(-50%,-50%) rotate(' + angle + 'deg) scale(var(--scene-scale,1))' });
+    node.style.setProperty('--flow-color', color); node.style.setProperty('--flow-gap', gap + 'px');
+    if (glow) node.style.setProperty('--flow-glow', 'drop-shadow(0 0 ' + glow + 'px ' + glowColor + ')');
+    if (streaming) node.style.setProperty('--flow-period', period.toFixed(2) + 'px');
+    node.classList.toggle('flow-inactive', !isActive); node.classList.toggle('flow-hidden-preview', !isActive && Boolean(flow.hideInactive));
+    node.classList.toggle('flow-animate-pulse', isActive && animation === 'pulse'); node.classList.toggle('flow-animate-flow', isActive && animation === 'flow');
+    node.classList.toggle('flow-locked', Boolean(flow.geometryLocked));
+    return { node, signature: node.outerHTML, duration, durationKey: duration.toFixed(3) };
+}
+function placeFlowNode(node, flow, duration) {
+  node.style.left = Number(flow.xPercent) + '%'; node.style.top = Number(flow.yPercent) + '%';
+  node.style.setProperty('--flow-duration', duration.toFixed(3) + 's'); node.style.setProperty('--flow-delay', (-((Date.now() / 1000) % duration)).toFixed(3) + 's');
+}
+function renderFlows() {
+  const flows = Object.values(activeSceneView()?.flows || {}), existing = new Map($$('.flow-marker', els.markers).map(node => [node.dataset.flowId, node])), kept = new Set();
+  flows.forEach(flow => {
+    const built = buildFlowNode(flow); if (!built) return;
+    const { node, signature, duration, durationKey } = built;
+    // Unchanged Flow keeps its DOM node (and its running animation); only position and tempo are updated.
+    const previous = existing.get(flow.id);
+    if (previous && previous.dataset.signature === signature) {
+      previous.style.left = Number(flow.xPercent) + '%'; previous.style.top = Number(flow.yPercent) + '%';
+      if (previous.dataset.duration !== durationKey) { retimeFlowAnimations(previous, duration); previous.dataset.duration = durationKey; }
+      kept.add(previous); return;
+    }
+    node.dataset.signature = signature; node.dataset.duration = durationKey; placeFlowNode(node, flow, duration);
+    node.addEventListener('pointerdown', startFlowDrag);
+    node.addEventListener('click', event => { event.stopPropagation(); if (event.currentTarget.dataset.dragged === '1') { event.currentTarget.dataset.dragged = '0'; return; } if (editMode) openFlowEditor(flow.id); });
+    if (previous) previous.replaceWith(node); else els.markers.append(node);
+    kept.add(node);
+  });
+  existing.forEach(node => { if (!kept.has(node)) node.remove(); });
+}
+function startFlowDrag(event) {
+  if (!editMode || event.button !== 0) return;
+  closeCompactMenus();
+  const flow = activeSceneView()?.flows?.[event.currentTarget.dataset.flowId]; if (!flow || flow.geometryLocked) return;
+  event.preventDefault(); event.stopPropagation();
+  const node = event.currentTarget, start = { x:event.clientX, y:event.clientY, px:Number(flow.xPercent), py:Number(flow.yPercent) };
+  let moved = false, guides = null; node.setPointerCapture(event.pointerId);
+  const move = current => {
+    const rect = els.scene.getBoundingClientRect(), dx=current.clientX-start.x, dy=current.clientY-start.y;
+    if (Math.hypot(dx,dy) > 3) moved = true;
+    if (!moved) return;
+    guides ||= alignmentContext(node);
+    ({ xPercent: flow.xPercent, yPercent: flow.yPercent } = alignToGuides(guides, snapPercent(start.px + dx / rect.width * 100), snapPercent(start.py + dy / rect.height * 100), current));
+    node.style.left = flow.xPercent + '%'; node.style.top = flow.yPercent + '%';
+    const fix = keepInBounds() && boundsShift(node); if (fix) { flow.xPercent = clamp(flow.xPercent + fix.x, 0, 100); flow.yPercent = clamp(flow.yPercent + fix.y, 0, 100); node.style.left = flow.xPercent + '%'; node.style.top = flow.yPercent + '%'; }
+    if (selectedFlowId === flow.id) syncFlowSelection();
+  };
+  const finish = () => {
+    node.removeEventListener('pointermove',move); node.removeEventListener('pointerup',finish); node.removeEventListener('pointercancel',finish); showAlignGuides([], []);
+    try { if (node.hasPointerCapture?.(event.pointerId)) node.releasePointerCapture(event.pointerId); } catch {}
+    node.dataset.dragged = moved ? '1' : '0';
+    if (moved) { flow.updatedAt = new Date().toISOString(); scheduleSave(true); renderAdded(); positionFlowEditor(); }
+  };
+  node.addEventListener('pointermove',move); node.addEventListener('pointerup',finish,{once:true}); node.addEventListener('pointercancel',finish,{once:true});
+}
+function closeFlowEditor() {
+  if (mobileView() && editMode) requestAnimationFrame(applyViewTransform);
+  selectedFlowId = null; flowEditorDragged = false; flowEditorOpenSectionIndex = -1;
+  hideFlowSelection();
+  els.flowEditor?.classList.remove('visible'); els.flowEditor?.setAttribute('aria-hidden','true');
+}
+function flowNumericState(entityId) {
+  const raw = stateCache?.[entityId]?.state;
+  const value = Number(String(raw ?? '').replace(',', '.'));
+  return Number.isFinite(value) ? value : null;
+}
+let flowEditorOpenSectionIndex = -1, flowEditorSide = 'positive';
+function flowEditorMarkup(flow) {
+  const dirs = { items:[['right','Prawo'],['left','Lewo'],['up','Góra'],['down','Dół']] }, refresh = { refresh:true };
+  const auto = flow.directionMode === 'auto', locked = !!flow.geometryLocked, side = auto ? flowEditorSide : 'positive', s = flowEffective(flow, side);
+  const separate = flowSeparateStyles(flow), styleNote = auto ? (separate ? 'Styl dla ' + (side === 'negative' ? '−' : '+') : 'Styl wspólny dla + i −') : '';
+  const value = flowNumericState(flow.entityId), unit = stateCache?.[flow.entityId]?.attributes?.unit_of_measurement || '';
+  const sideSwitch = auto ? '<div class="flow-side-switch" role="tablist"><button type="button" data-flow-side="positive" class="' + (side === 'positive' ? 'active' : '') + '">Wartość +</button><button type="button" data-flow-side="negative" class="' + (side === 'negative' ? 'active' : '') + '">Wartość −</button></div><p class="flow-side-note"><span>' + (side === 'negative' ? 'Podgląd i edycja dla wartości ujemnej.' : 'Podgląd i edycja dla wartości dodatniej.') + '</span> <span>' + (separate ? 'Każda strona ma własny styl.' : 'Kształt, rozmiar i animacja są wspólne — kolor jest osobny.') + '</span></p>' : '';
+  const note = text => text ? '<p class="flow-section-note">' + text + '</p>' : '';
+  const entityPicker = `<div class="control room-entities-control"><label>Encja</label><div class="room-entity-list">${flow.entityId ? flowEntityRow(flow.entityId, 'clear') : ''}</div><label class="room-entity-search"><i class="mdi mdi-magnify"></i><input id="flow-entity-search" type="search" autocomplete="off" placeholder="${escapeHtml(translateValue('Szukaj nazwy lub encji…'))}"></label><div id="flow-entity-results" class="room-entity-list room-entity-results"></div></div>`;
+  const steering = section('Encja i kierunek', control('Nazwa','displayName','text',flow.displayName || '') + entityPicker + '<div class="control"><label>Aktualna wartość</label><strong class="flow-live-value">' + (value === null ? '—' : escapeHtml(String(value)) + (unit ? ' ' + escapeHtml(unit) : '')) + '</strong><span></span></div>'
+    + control('Sterowanie','directionMode','select',auto ? 'auto' : 'manual',{ items:[['manual','Stały kierunek'],['auto','Kierunek wg znaku + / −']], refresh:true })
+    + (auto ? control('Kierunek dla +','positiveDirection','select',flow.positiveDirection || 'right',dirs) + control('Kierunek dla −','negativeDirection','select',flow.negativeDirection || 'left',dirs) + control('Osobny styl dla −','negativeStyleEnabled','checkbox',!!flow.negativeStyleEnabled,refresh) : control('Kierunek','direction','select',flow.direction || 'right',dirs))
+    + control('Próg aktywności','deadband','number',Number(flow.deadband) || 0,{ valueType:'number', min:0 }) + control('Ukryj poniżej progu','hideInactive','checkbox',!!flow.hideInactive)
+    + note('Flow jest nieaktywny, gdy |wartość| ≤ próg — np. próg 0 wyłącza strzałki fotowoltaiki przy 0 W w nocy. Nieaktywny Flow jest przygaszony i bez animacji albo, z opcją ukrywania, całkiem niewidoczny. W trybie edycji ukryty Flow ma tylko przerywaną ramkę, żeby dało się go kliknąć.'));
+  const shapeKey = FLOW_SHAPES.some(([key]) => key === s.shape) ? s.shape : 'chevron';
+  const streamingAnim = (s.animation || 'none') === 'flow';
+  const frame = section('Ramka i pozycja', note(styleNote)
+    + control('Długość ramki','flowLength','range',Number(s.flowLength) || 84,{ min:8, max:FLOW_LIMITS.length, step:1, suffix:'px', integer:true, disabled:locked })
+    + control('Szerokość ramki','chevronHeight','range',Number(s.chevronHeight) || 22,{ min:FLOW_LIMITS.min, max:FLOW_LIMITS.size, step:1, suffix:'px', integer:true, disabled:locked })
+    + control('Obrót','rotation','range',Number(flow.rotation) || 0,{ min:-180, max:180, step:1, suffix:'°', integer:true, disabled:locked })
+    + note('Ramka to obszar Flow na planie, liczony wzdłuż kierunku strzałek. Szerokość ramki jest też wysokością strzałek. Uchwyty zaznaczenia zmieniają to samo.'));
+  const shape = section('Strzałki', note(styleNote) + control('Rodzaj','shape','select',shapeKey,{ items:FLOW_SHAPES, refresh:true })
+    + (shapeKey === 'segment' ? '' : control('Ostrość','shapeSharpness','range',clamp(Number(s.shapeSharpness) || 100,10,300),{ min:10, max:300, step:1, suffix:'%', integer:true }))
+    + (shapeKey === 'chevron' || shapeKey === 'arrow' ? control(shapeKey === 'arrow' ? 'Grubość trzonu' : 'Grubość','chevronThickness','range',Number(s.chevronThickness) || 5,{ min:1, max:FLOW_LIMITS.thickness, step:1, suffix:'px', integer:true }) : '')
+    + control('Długość strzałki','chevronWidth','range',Number(s.chevronWidth) || 22,{ min:2, max:FLOW_LIMITS.size, step:1, suffix:'px', integer:true, disabled:locked })
+    + control('Odstęp','gap','range',Number(s.gap) || 0,{ min:-(Math.max(2, Number(s.chevronWidth) || 22) - 2), max:FLOW_LIMITS.gap, step:1, suffix:'px', integer:true, disabled:locked })
+    + (streamingAnim ? note('W animacji „Przepływ” strzałki wypełniają całą ramkę, więc liczba nie ma znaczenia.') : control('Liczba','flowCount','range',clamp(Number(s.flowCount) || 3,1,FLOW_LIMITS.count),{ min:1, max:FLOW_LIMITS.count, step:1, integer:true }) + note('Strzałki są wyśrodkowane w ramce; to, co się nie mieści, jest przycinane. Liczba i odstęp nie zmieniają ramki. Ujemny odstęp wsuwa strzałki jedna w drugą (gęściej).')));
+  const colorProp = auto ? (side === 'negative' ? 'negativeColor' : 'positiveColor') : 'color';
+  const colors = section('Kolory i wygląd', note(styleNote) + control(auto ? (side === 'negative' ? 'Kolor dla −' : 'Kolor dla +') : 'Kolor','' + colorProp,'color',s.activeColor)
+    + control('Obrys','outlineWidth','range',Number(s.outlineWidth) || 0,{ min:0, max:20, step:.5, suffix:'px', refresh:true }) + (Number(s.outlineWidth) > 0 ? control('Kolor obrysu','outlineColor','color',s.outlineColor || '#FFFFFF') : '')
+    + control('Poświata','glow','range',Number(s.glow) || 0,{ min:0, max:40, step:1, suffix:'px', integer:true }) + control('Osobny kolor poświaty','glowCustom','checkbox',!!s.glowCustom,refresh) + (s.glowCustom ? control('Kolor poświaty','glowColor','color',s.glowColor || s.activeColor) : '')
+    + control('Krycie','opacity','range',clamp(Number(s.opacity) || 100,10,100),{ min:10, max:100, step:1, suffix:'%', integer:true }));
+  const animated = s.animation && s.animation !== 'none';
+  const siblings = Object.values(activeSceneView()?.flows || {}).filter(other => other.id !== flow.id && other.entityId === flow.entityId);
+  const animation = section('Animacja', note(styleNote) + control('Typ','animation','select',s.animation || 'none',{ items:[['none','Brak'],['pulse','Pulsowanie'],['flow','Przepływ']], refresh:true }) + (animated
+    ? control('Tempo','animationSpeed','range',Number(s.animationSpeed) || FLOW_DEFAULTS.animationSpeed,{ min:.2, max:6, step:.1, suffix:'×' }) + control('Tempo od wartości','speedByValue','checkbox',!!s.speedByValue,refresh) + (s.speedByValue ? control('Pełne tempo przy','speedValueMax','number',Number(s.speedValueMax) || FLOW_DEFAULTS.speedValueMax,{ valueType:'number', min:1 }) : '')
+      + note(streamingAnim ? 'Tempo to stała prędkość strzałek (1× = 150 px/s) — nie zależy od rozmiaru, odstępu ani liczby, więc Flow z tym samym tempem jadą identycznie.' : 'Tempo pulsowania nie zależy od rozmiaru Flow.')
+    : '')
+    + (siblings.length ? '<div class="room-icon-actions"><button type="button" data-flow-sync-animation><i class="mdi mdi-sync"></i><span>' + escapeHtml(translateValue('Ustaw tę animację w pozostałych Flow tej encji')) + ' (' + siblings.length + ')</span></button></div>' : ''));
+  return sideSwitch + steering + frame + shape + colors + animation;
+}
+function openFlowEditor(id, preserveSection = flowEditorOpenSectionIndex) {
+  const flow = activeSceneView()?.flows?.[id]; if (!flow) return closeFlowEditor();
+  const newlySelected = selectedFlowId !== id;
+  if (newlySelected) { preserveSection = flowEditorOpenSectionIndex = -1; flowEditorSide = flowSideOf(flow, flowNumericState(flow.entityId)); }
+  closeEditor(); closeRoomEditor(); selectedFlowId = id;
+  els.flowEditorTitle.textContent = flow.displayName || flow.entityId || 'Flow'; els.flowEditorEntity.textContent = flow.entityId || '—'; els.flowEditorIntegration.textContent = 'Flow' + (flow.integrationName ? ' · ' + flow.integrationName : '');
+  if (els.flowEditorIcon) els.flowEditorIcon.innerHTML = flow.entityId ? integrationIconMarkupFor(flow.sourceDomain || flow.entityId.split('.')[0], flow.integrationName || flow.sourceDomain, 'editor-brand-icon') : '<span class="integration-icon room-editor-icon"><i class="mdi mdi-chevron-triple-right"></i></span>';
+  const scroll = els.flowEditorContent.scrollTop;
+  els.flowEditorContent.innerHTML = flowEditorMarkup(flow);
+  const sections = $$('.editor-section', els.flowEditorContent);
+  if (Number.isInteger(preserveSection) && preserveSection >= 0 && sections[preserveSection]) sections[preserveSection].open = true;
+  sections.forEach((details, index) => details.addEventListener('toggle', () => {
+    if (details.open) { flowEditorOpenSectionIndex = index; sections.forEach(other => { if (other !== details) other.removeAttribute('open'); }); }
+    else if (flowEditorOpenSectionIndex === index) flowEditorOpenSectionIndex = -1;
+    requestAnimationFrame(() => requestAnimationFrame(() => { if (details.open) details.scrollIntoView({ block: 'nearest' }); keepEditorInViewport(els.flowEditor); }));
+  }));
+  $('#flow-entity-search')?.addEventListener('input', renderFlowEntityResults);
+  $$('input,select', els.flowEditorContent).forEach(input => {
+    if (input.id === 'flow-entity-search') return;
+    if (input.type === 'checkbox' || input.tagName === 'SELECT' || input.type === 'number' || input.type === 'text') input.addEventListener('change', onFlowEditorInput);
+    else { input.addEventListener('input', onFlowEditorInput); input.addEventListener('change', onFlowEditorInput); }
+  });
+  els.flowEditorContent.scrollTop = scroll;
+  $('#flow-paste-style').disabled = !flowStyleClipboard; syncLockButton($('#flow-geometry-lock'), flow.geometryLocked);
+  els.flowEditor.classList.add('visible'); els.flowEditor.setAttribute('aria-hidden','false'); renderMarkers();
+  if (newlySelected) requestAnimationFrame(() => requestAnimationFrame(() => { focusScenePointOnMobile(flow.xPercent, flow.yPercent); syncFlowSelection(); }));
+  requestAnimationFrame(positionFlowEditor);
+}
+function flowStyleTarget(flow, prop, side = flowEditorSide) {
+  if (side === 'negative' && flowSeparateStyles(flow) && FLOW_STYLE_KEYS.includes(prop)) return (flow.negativeStyle ||= {});
+  return flow;
+}
+function onFlowEditorInput(event) {
+  const flow = activeSceneView()?.flows?.[selectedFlowId], input = event.target, prop = input.dataset.path; if (!flow || !prop) return;
+  let value = input.type === 'checkbox' ? input.checked : input.value;
+  if (input.dataset.valueType === 'range' || input.dataset.valueType === 'number') { value = Number(value); if (!Number.isFinite(value)) return; }
+  if (input.dataset.integer === 'true') value = Math.round(value);
+  if (input.type === 'color') value = String(value).toUpperCase();
+  if (prop === 'displayName') value = String(value).trim() || flow.entityId;
+  if (prop === 'negativeStyleEnabled' && value && !flow.negativeStyle) flow.negativeStyle = Object.fromEntries(FLOW_STYLE_KEYS.map(key => [key, clone(flow[key] ?? FLOW_DEFAULTS[key])]));
+  flowStyleTarget(flow, prop)[prop] = value; flow.updatedAt = new Date().toISOString();
+  if (prop === 'displayName') { els.flowEditorTitle.textContent = value; renderAdded(); }
+  const output = input.closest('.control')?.querySelector('output');
+  if (output) output.textContent = input.value + (output.dataset.suffix || '');
+  renderMarkers();
+  if (input.dataset.editorRefresh === 'true' && event.type === 'change') { openFlowEditor(flow.id); scheduleSave(true); return; }
+  scheduleSave(event.type === 'change');
+}
+function onFlowEditorClick(event) {
+  const setId = event.target.closest('[data-flow-entity-set]')?.dataset.flowEntitySet, clear = event.target.closest('[data-flow-entity-clear]');
+  if (setId || clear) { event.preventDefault(); const flow = activeSceneView()?.flows?.[selectedFlowId]; if (flow) setFlowEntity(flow, setId || ''); return; }
+  if (event.target.closest('[data-flow-sync-animation]')) {
+    event.preventDefault(); const view = activeSceneView(), flow = view?.flows?.[selectedFlowId]; if (!flow) return;
+    const source = flowEffective(flow, flowEditorSide), values = Object.fromEntries(FLOW_ANIMATION_KEYS.map(key => [key, source[key]])), now = new Date().toISOString();
+    const others = Object.values(view.flows).filter(other => other.id !== flow.id && other.entityId === flow.entityId);
+    others.forEach(other => { Object.assign(other, clone(values), { updatedAt:now }); if (other.negativeStyle) Object.assign(other.negativeStyle, clone(values)); });
+    renderMarkers(); scheduleSave(true); notify(`${translateValue('Ustawiono tę samą animację w innych Flow tej encji')}: ${others.length}`); return;
+  }
+  const sideButton = event.target.closest('[data-flow-side]');
+  if (sideButton) { event.preventDefault(); flowEditorSide = sideButton.dataset.flowSide === 'negative' ? 'negative' : 'positive'; openFlowEditor(selectedFlowId); return; }
+  const reset = event.target.closest('[data-reset-path]');
+  if (reset) {
+    event.preventDefault(); const input = els.flowEditorContent.querySelector('input[data-path="' + CSS.escape(reset.dataset.resetPath) + '"]');
+    if (!input || input.disabled || !(reset.dataset.resetPath in FLOW_DEFAULTS)) return;
+    input.value = FLOW_DEFAULTS[reset.dataset.resetPath]; input.dispatchEvent(new Event('change', { bubbles:true })); return;
+  }
+  const toggle = event.target.closest('[data-color-toggle]'), swatch = event.target.closest('[data-palette-color]'), rgb = event.target.closest('[data-rgb-color]');
+  if (toggle) { event.preventDefault(); const menu = toggle.closest('.color-picker').querySelector('.color-menu'), open = menu.classList.contains('visible'); $$('.color-menu', els.flowEditorContent).forEach(x => x.classList.remove('visible')); menu.classList.toggle('visible', !open); if (!open) requestAnimationFrame(() => menu.scrollIntoView({ block:'nearest' })); return; }
+  if (swatch) { event.preventDefault(); const picker = swatch.closest('.color-picker'), input = $('.color-native', picker); input.value = swatch.dataset.paletteColor; $('.color-current', picker).style.background = input.value; $('.color-menu', picker).classList.remove('visible'); input.dispatchEvent(new Event('change', { bubbles:true })); return; }
+  if (rgb) { event.preventDefault(); rgb.closest('.color-picker').querySelector('.color-native').click(); }
+}
+function flowStyleOf(flow) {
+  const excluded = new Set(['id','entityId','integrationId','integrationName','sourceDomain','displayName','xPercent','yPercent','createdAt','updatedAt','geometryLocked']);
+  return clone(Object.fromEntries(Object.entries(flow).filter(([key]) => !excluded.has(key))));
+}
+function copyFlowStyle() {
+  const flow = activeSceneView()?.flows?.[selectedFlowId]; if (!flow) return;
+  flowStyleClipboard = flowStyleOf(flow); $('#flow-paste-style').disabled = false; notify('Skopiowano styl Flow — wklej go w innym Flow');
+}
+function pasteFlowStyle() {
+  const flow = activeSceneView()?.flows?.[selectedFlowId]; if (!flow || !flowStyleClipboard) return;
+  Object.assign(flow, clone(flowStyleClipboard), { updatedAt:new Date().toISOString() }); if (!flowStyleClipboard.negativeStyle) delete flow.negativeStyle;
+  openFlowEditor(flow.id); scheduleSave(true); notify('Wklejono styl Flow');
+}
+async function resetFlowStyle() {
+  const flow = activeSceneView()?.flows?.[selectedFlowId]; if (!flow || !await appConfirm({ title:'Przywrócić domyślny Flow?', message:'Obecne ustawienia wyglądu i działania Flow zostaną zastąpione domyślnymi. Pozycja i nazwa zostaną zachowane.', confirmText:'Przywróć', danger:true })) return;
+  Object.assign(flow, clone(FLOW_DEFAULTS), { updatedAt:new Date().toISOString() }); delete flow.negativeStyle; flowEditorSide = 'positive';
+  openFlowEditor(flow.id); scheduleSave(true); notify('Przywrócono domyślny Flow');
+}
+// Several Flow objects may use the same entity; a duplicate keeps the whole style and gets its own id.
+function duplicateFlow() {
+  const view = activeSceneView(), flow = view?.flows?.[selectedFlowId]; if (!flow) return;
+  const id = 'flow_' + uid(), now = new Date().toISOString(), copy = clone(flow);
+  Object.assign(copy, { id, xPercent: clamp(Number(flow.xPercent) + 4, 0, 100), yPercent: clamp(Number(flow.yPercent) + 4, 0, 100), geometryLocked: false, createdAt: now, updatedAt: now });
+  view.flows[id] = copy; renderAdded(); openFlowEditor(id); scheduleSave(true); notify('Utworzono kopię Flow — przeciągnij ją w wybrane miejsce');
+}
+async function confirmRemoveFlow() {
+  const flow = activeSceneView()?.flows?.[selectedFlowId]; if (!flow || !await appConfirm({ title:'Usunąć Flow?', message:'„' + (flow.displayName || flow.entityId) + '” zniknie z tego widoku. Zwykły marker tej encji zostanie.', confirmText:'Usuń', danger:true })) return;
+  closeFlowEditor(); removeFlow(flow.id);
 }
 function isToggleableMarker(marker) {
-  return ['switch', 'light', 'fan', 'input_boolean'].includes(String(marker?.entityId || '').split('.', 1)[0]);
+  const toggleable = id => ['switch', 'light', 'fan', 'input_boolean'].includes(String(id || '').split('.', 1)[0]);
+  if (marker?.roomId) return (roomsOf()[marker.roomId]?.entityIds || []).some(toggleable);
+  return toggleable(marker?.entityId);
 }
 const delay = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
+// While a finger is on the scene, marker/Flow nodes are not rebuilt: replacing the node under the finger
+// makes the browser send the rest of that touch to the removed node, so the page never sees it move or
+// lift (the view swipe then stops half-way). Deferred updates are drawn right after the gesture.
+const deferredMarkerIds = new Set(); let deferredFlows = false, deferredFullRender = false, lastPointerActivity = 0;
+function touchGestureActive() { return Boolean(viewSwipe) || swipeBusy || (viewPointers.size > 0 && performance.now() - lastPointerActivity < 3000); }
+function flushDeferredRenders() {
+  if (touchGestureActive() || (!deferredMarkerIds.size && !deferredFlows && !deferredFullRender)) return;
+  if (deferredFullRender) { deferredFullRender = false; deferredFlows = false; deferredMarkerIds.clear(); renderMarkers(); if (selectedFlowId) syncFlowSelection(); return; }
+  const ids = [...deferredMarkerIds]; deferredMarkerIds.clear();
+  ids.forEach(entityId => { const marker = model.entities[entityId], node = marker && $(`.marker[data-entity-id="${CSS.escape(entityId)}"]`); if (marker && node) { node.innerHTML = markerHtml(marker); applyMarkerStyle(node, marker); } });
+  if (deferredFlows) { deferredFlows = false; renderFlows(); if (selectedFlowId) syncFlowSelection(); }
+}
 function renderMarkerState(entityId, nextState) {
   if (!nextState) return;
   stateCache[entityId] = { ...stateCache[entityId], ...nextState };
+  if (touchGestureActive()) { deferredMarkerIds.add(entityId); if (moreInfoEntityId === entityId) refreshMoreInfoState(); return; }
   const marker = model.entities[entityId], node = marker && $(`.marker[data-entity-id="${CSS.escape(entityId)}"]`);
   if (marker && node) { node.innerHTML = markerHtml(marker); applyMarkerStyle(node, marker); }
   if (moreInfoEntityId === entityId) refreshMoreInfoState();
@@ -1025,12 +2179,32 @@ function onMarkerClick(event) {
   event.stopPropagation();
   const marker = model.entities[event.currentTarget.dataset.entityId];
   if (!marker) return;
-  if (!editMode) return marker.tapAction === 'toggle' && isToggleableMarker(marker) ? toggleMarker(marker) : openMoreInfo(marker.entityId);
+  if (!editMode && marker.roomId) { const room = roomsOf()[marker.roomId]; if (marker.tapAction === 'none' || !room) return; return onRoomTap(room, marker.tapAction); }
+  if (!editMode) { if (marker.tapAction === 'none') return; return isViewer() ? openMoreInfo(marker.entityId) : (marker.tapAction === 'toggle' && isToggleableMarker(marker) ? toggleMarker(marker) : openMoreInfo(marker.entityId)); }
   selectMarker(marker.entityId);
 }
 function focusSelectedMarkerOnMobile() {
   if (!mobileView() || !editMode || !selectedId) return;
   const marker = model.entities[selectedId]; if (!marker) return;
+  focusScenePointOnMobile(marker.xPercent, marker.yPercent);
+}
+// Like a marker, a selected room is brought into view on phones: zoomed so the whole room fits above the
+// bottom editor (never closer than a marker gets), centred at the same spot.
+function focusSceneBoxOnMobile(points) {
+  if (!mobileView() || !editMode || !points.length) return;
+  const sceneWidth = els.scene.offsetWidth || 1, sceneHeight = els.scene.offsetHeight || 1;
+  const xs = points.map(p => Number(p[0]) / 100 * sceneWidth), ys = points.map(p => Number(p[1]) / 100 * sceneHeight);
+  const boxW = Math.max(1, Math.max(...xs) - Math.min(...xs)), boxH = Math.max(1, Math.max(...ys) - Math.min(...ys));
+  const viewW = els.viewport.clientWidth || 1, viewH = els.viewport.clientHeight || 1;
+  const nextZoom = clamp(Math.min(viewW * .86 / boxW, viewH * .42 / boxH), minViewZoom(), 2.35);
+  const centreX = (Math.min(...xs) + Math.max(...xs)) / 2, centreY = (Math.min(...ys) + Math.max(...ys)) / 2;
+  const targetY = Math.max(74 + boxH * nextZoom / 2, viewH * .27);
+  viewZoom = nextZoom; viewPanX = viewW / 2 - centreX * nextZoom; viewPanY = targetY - centreY * nextZoom;
+  applyViewTransform();
+}
+function focusScenePointOnMobile(xPercent, yPercent) {
+  if (!mobileView() || !editMode) return;
+  const marker = { xPercent, yPercent };
   // Deliberately closer than beta.52: selected markers remain clear of the
   // bottom editor even on the lowest part of a portrait background.
   const nextZoom = clamp(Math.max(viewZoom, 2.1), minViewZoom(), 2.35);
@@ -1054,36 +2228,85 @@ function syncSelection() {
   els.selection.classList.toggle('geometry-locked', Boolean(model.entities[selectedId]?.geometryLocked));
   els.selection.classList.add('visible');
 }
-function positionEditor() {
-  if (mobileView() || editorDragged || !selectedId || !els.editor.classList.contains('visible')) return;
-  const node = $(`.marker[data-entity-id="${CSS.escape(selectedId)}"]`); if (!node) return;
-  const r = node.getBoundingClientRect(), width = els.editor.offsetWidth || 390, height = els.editor.offsetHeight || 500, gap = 14;
+function hideFlowSelection() { els.flowSelection?.classList.remove('visible','geometry-locked'); }
+function syncFlowSelection() {
+  const flow = activeSceneView()?.flows?.[selectedFlowId], node = flow && $('.flow-marker[data-flow-id="' + CSS.escape(flow.id) + '"]');
+  if (!flow || !node || !els.flowSelection) return hideFlowSelection();
+  const sr = els.scene.getBoundingClientRect(), r = node.getBoundingClientRect(), zoom = sceneCameraActive() ? viewZoom : 1;
+  Object.assign(els.flowSelection.style, { left: `${(r.left - sr.left) / zoom}px`, top: `${(r.top - sr.top) / zoom}px`, width: `${r.width / zoom}px`, height: `${r.height / zoom}px` });
+  els.flowSelection.classList.toggle('geometry-locked', Boolean(flow.geometryLocked));
+  els.flowSelection.classList.add('visible');
+}
+function startFlowResize(event) {
+  const flow = activeSceneView()?.flows?.[selectedFlowId], node = flow && $('.flow-marker[data-flow-id="' + CSS.escape(flow.id) + '"]');
+  if (!editMode || !flow || !node || flow.geometryLocked || event.button !== 0) return;
+  event.preventDefault(); event.stopPropagation();
+  const handle = event.currentTarget.dataset.flowHandle, side = node.dataset.side || 'positive', style = flowEffective(flow, side);
+  const target = flowStyleTarget(flow, 'flowLength', side);
+  const angle = (Number(node.dataset.angle) || 0) * Math.PI / 180, cos = Math.cos(angle), sin = Math.sin(angle);
+  const k = (sceneScale || 1) * (sceneCameraActive() ? viewZoom : 1), sceneRect = els.scene.getBoundingClientRect();
+  const hx = handle.includes('w') ? -1 : 1, hy = handle.includes('n') ? -1 : 1;
+  const lsx = Math.sign(hx * cos + hy * sin) || 1, lsy = Math.sign(-hx * sin + hy * cos) || 1;
+  const start = { x:event.clientX, y:event.clientY, w:Number(style.flowLength) || 84, h:Number(style.chevronHeight) || 22, item:Number(style.chevronWidth) || 22, gap:(Number(style.gap) || 0), px:Number(flow.xPercent), py:Number(flow.yPercent) };
+  let changed = false, lastValid = null;
+  const move = current => {
+    if ((current.buttons & 1) !== 1) return finish();
+    lastValid ||= { flowLength:target.flowLength, chevronHeight:target.chevronHeight, chevronWidth:target.chevronWidth, gap:target.gap, x:flow.xPercent, y:flow.yPercent };
+    const dx = current.clientX - start.x, dy = current.clientY - start.y, lx = (dx * cos + dy * sin) / k, ly = (-dx * sin + dy * cos) / k;
+    const w = clamp(Math.round(start.w + lsx * lx), 8, FLOW_LIMITS.length), h = clamp(Math.round(start.h + lsy * ly), FLOW_LIMITS.min, FLOW_LIMITS.size);
+    const ratio = w / Math.max(1, start.w);
+    target.flowLength = w; target.chevronHeight = h; target.chevronWidth = clamp(Math.round(start.item * ratio), 2, FLOW_LIMITS.size); target.gap = Math.round(start.gap * ratio);
+    const shiftX = lsx * (w - start.w) / 2 * k, shiftY = lsy * (h - start.h) / 2 * k;
+    flow.xPercent = start.px + (shiftX * cos - shiftY * sin) / sceneRect.width * 100; flow.yPercent = start.py + (shiftX * sin + shiftY * cos) / sceneRect.height * 100;
+    changed = true; renderMarkers();
+    const drawn = $('.flow-marker[data-flow-id="' + CSS.escape(flow.id) + '"]');
+    if (keepInBounds() && drawn && nodeOutsideScene(drawn)) { Object.assign(target, { flowLength:lastValid.flowLength, chevronHeight:lastValid.chevronHeight, chevronWidth:lastValid.chevronWidth, gap:lastValid.gap }); flow.xPercent = lastValid.x; flow.yPercent = lastValid.y; renderMarkers(); }
+    else lastValid = { flowLength:target.flowLength, chevronHeight:target.chevronHeight, chevronWidth:target.chevronWidth, gap:target.gap, x:flow.xPercent, y:flow.yPercent };
+  };
+  const finish = () => { window.removeEventListener('pointermove',move); window.removeEventListener('pointerup',finish); window.removeEventListener('pointercancel',finish); if (changed) { flow.updatedAt = new Date().toISOString(); scheduleSave(true); openFlowEditor(flow.id); } };
+  window.addEventListener('pointermove',move); window.addEventListener('pointerup',finish); window.addEventListener('pointercancel',finish);
+}
+// Desktop editors open next to the edited element (markers and Flow share this placement).
+function placeEditorNear(panel, node) {
+  const r = node.getBoundingClientRect(), width = panel.offsetWidth || 390, height = panel.offsetHeight || 500, gap = 14;
   let left = r.left + r.width / 2 < innerWidth / 2 ? r.right + gap : r.left - width - gap;
   if (left + width > innerWidth - 8) left = r.left - width - gap;
   if (left < 8) left = r.right + gap;
   left = clamp(left, 8, Math.max(8, innerWidth - width - 8));
   const top = clamp(r.top - 18, 80, Math.max(80, innerHeight - height - 8));
-  Object.assign(els.editor.style, { left: `${left}px`, right: 'auto', top: `${top}px` });
+  Object.assign(panel.style, { left: `${left}px`, right: 'auto', top: `${top}px` });
 }
-function keepEditorInViewport() {
-  if (mobileView() || !els.editor.classList.contains('visible')) return;
-  const r = els.editor.getBoundingClientRect(), left = clamp(r.left, 8, Math.max(8, innerWidth - r.width - 8)), top = clamp(r.top, 8, Math.max(8, innerHeight - r.height - 8));
-  Object.assign(els.editor.style, { left: `${left}px`, right: 'auto', top: `${top}px` });
+function positionEditor() {
+  if (mobileView() || editorDragged || !selectedId || !els.editor.classList.contains('visible')) return;
+  const node = $(`.marker[data-entity-id="${CSS.escape(selectedId)}"]`); if (!node) return;
+  placeEditorNear(els.editor, node);
+}
+function positionFlowEditor() {
+  if (mobileView() || flowEditorDragged || !selectedFlowId || !els.flowEditor.classList.contains('visible')) return;
+  const node = $('.flow-marker[data-flow-id="' + CSS.escape(selectedFlowId) + '"]'); if (!node) return;
+  placeEditorNear(els.flowEditor, node);
+}
+function keepEditorInViewport(panel = els.editor) {
+  if (mobileView() || !panel.classList.contains('visible')) return;
+  const r = panel.getBoundingClientRect(), left = clamp(r.left, 8, Math.max(8, innerWidth - r.width - 8)), top = clamp(r.top, 8, Math.max(8, innerHeight - r.height - 8));
+  Object.assign(panel.style, { left: `${left}px`, right: 'auto', top: `${top}px` });
 }
 function startDrag(event) {
   if (!editMode || event.button !== 0) return;
   event.preventDefault(); const node = event.currentTarget, entityId = node.dataset.entityId, marker = model.entities[entityId];
   if (marker?.geometryLocked) return;
-  const start = { x: event.clientX, y: event.clientY, px: marker.xPercent, py: marker.yPercent }; let moved = false;
+  const start = { x: event.clientX, y: event.clientY, px: marker.xPercent, py: marker.yPercent }; let moved = false, guides = null;
   node.setPointerCapture(event.pointerId);
   const move = e => {
     const r = els.scene.getBoundingClientRect(), dx = e.clientX - start.x, dy = e.clientY - start.y;
     if (Math.hypot(dx, dy) > 3 && !moved) { moved = true; els.editor.classList.add('marker-moving'); }
     if (!moved) return;
-    marker.xPercent = snapPercent(start.px + dx / r.width * 100); marker.yPercent = snapPercent(start.py + dy / r.height * 100);
-    node.style.left = `${marker.xPercent}%`; node.style.top = `${marker.yPercent}%`; if (selectedId === entityId) syncSelection();
+    guides ||= alignmentContext(node);
+    ({ xPercent: marker.xPercent, yPercent: marker.yPercent } = alignToGuides(guides, snapPercent(start.px + dx / r.width * 100), snapPercent(start.py + dy / r.height * 100), e));
+    const live = node.isConnected ? node : $(`.marker[data-entity-id="${CSS.escape(entityId)}"]`);
+    if (live) { live.style.left = `${marker.xPercent}%`; live.style.top = `${marker.yPercent}%`; const fix = keepInBounds() && boundsShift(live); if (fix) { marker.xPercent = clamp(marker.xPercent + fix.x, 0, 100); marker.yPercent = clamp(marker.yPercent + fix.y, 0, 100); live.style.left = `${marker.xPercent}%`; live.style.top = `${marker.yPercent}%`; } } if (selectedId === entityId) syncSelection();
   };
-  const up = () => { node.removeEventListener('pointermove', move); node.removeEventListener('pointerup', up); node.removeEventListener('pointercancel', up); try { if (node.hasPointerCapture?.(event.pointerId)) node.releasePointerCapture(event.pointerId); } catch {} els.editor.classList.remove('marker-moving'); node.dataset.dragged = moved ? '1' : '0'; if (moved) { marker.updatedAt = new Date().toISOString(); scheduleSave(true); positionEditor(); } };
+  const up = () => { node.removeEventListener('pointermove', move); node.removeEventListener('pointerup', up); node.removeEventListener('pointercancel', up); try { if (node.hasPointerCapture?.(event.pointerId)) node.releasePointerCapture(event.pointerId); } catch {} els.editor.classList.remove('marker-moving'); showAlignGuides([], []); node.dataset.dragged = moved ? '1' : '0'; if (moved) { marker.updatedAt = new Date().toISOString(); scheduleSave(true); positionEditor(); } };
   node.addEventListener('pointermove', move); node.addEventListener('pointerup', up, { once: true }); node.addEventListener('pointercancel', up, { once: true });
 }
 
@@ -1117,10 +2340,10 @@ function backgroundGradientControls(s) {
 function iconEditorMarkup(marker) {
   const s = marker.style;
   const refresh = { refresh:true };
-  const tapAction = isToggleableMarker(marker) ? control('Dotknięcie w widoku','tapAction','select',marker.tapAction || 'more_info',{items:[['more_info','Więcej informacji'],['toggle','Przełącz ON/OFF']]}) : '';
+  const tapAction = tapActionControl(marker.tapAction || 'more_info', isToggleableMarker(marker));
   const entity = section('Encja', control('Nazwa','displayName','text',marker.displayName) + tapAction);
-  const size = section('Rozmiar', control('Blokada geometrii','geometryLocked','checkbox',!!marker.geometryLocked,{refresh:true}) + control('Szerokość','style.width','range',s.width,{min:24,max:2400,step:1,suffix:'px',integer:true,disabled:!!marker.geometryLocked}) + control('Wysokość','style.height','range',s.height,{min:24,max:1800,step:1,suffix:'px',integer:true,disabled:!!marker.geometryLocked}));
-  const mdiList = `<datalist id="mdi-icon-list">${ICON_CHOICES.slice(1).map(([name,label]) => `<option value="${name}">${label}</option>`).join('')}</datalist>`;
+  const size = section('Rozmiar', control('Szerokość','style.width','range',s.width,{min:24,max:2400,step:1,suffix:'px',integer:true,disabled:!!marker.geometryLocked}) + control('Wysokość','style.height','range',s.height,{min:24,max:1800,step:1,suffix:'px',integer:true,disabled:!!marker.geometryLocked}) + control('Obrót','rotation','range',Number(marker.rotation) || 0,{min:-180,max:180,step:1,suffix:'°',integer:true,disabled:!!marker.geometryLocked}));
+  const mdiList = `<datalist id="mdi-icon-list">${ICON_CHOICES.slice(1).map(([name,label]) => `<option value="${name}">${iconChoiceLabel(label)}</option>`).join('')}</datalist>`;
   const manual = marker.iconMode === 'manual';
   const integrationLogo = marker.iconMode === 'integration';
   const manualIcons = manual ? control('Ikona zależna ON/OFF','iconVariantEnabled','checkbox',!!marker.iconVariantEnabled,refresh) + (marker.iconVariantEnabled ? mdiControl('Ikona ON','iconOn',marker.iconOn) + mdiControl('Ikona OFF','iconOff',marker.iconOff) : mdiControl('Ikona podstawowa','iconName',marker.iconName)) : '';
@@ -1132,7 +2355,7 @@ function iconEditorMarkup(marker) {
   const background = section('Tło', bgBody);
   const borderBody = control('Pokaż','style.showBorder','checkbox',s.showBorder,refresh) + (s.showBorder ? control('Kształt','style.shape','select',s.shape,{items:[['rounded','Zaokrąglony'],['circle','Koło / owal']],...refresh}) + (s.shape === 'rounded' ? control('Zaokrąglenie','style.radius','range',s.radius,{min:0,max:100,step:1,suffix:'px'}) : '') + (s.borderStateEnabled ? control('Kolor ON','style.borderOnColor','color',s.borderOnColor) + control('Kolor OFF','style.borderOffColor','color',s.borderOffColor) + control('Przezroczystość ON','style.borderOnOpacity','range',s.borderOnOpacity,{min:0,max:1,step:.01}) + control('Przezroczystość OFF','style.borderOffOpacity','range',s.borderOffOpacity,{min:0,max:1,step:.01}) + control('Grubość ON','style.borderOnWidth','range',s.borderOnWidth,{min:0,max:12,step:1,suffix:'px'}) + control('Grubość OFF','style.borderOffWidth','range',s.borderOffWidth,{min:0,max:12,step:1,suffix:'px'}) : control('Kolor','style.borderColor','color',s.borderColor) + control('Przezroczystość','style.borderOpacity','range',s.borderOpacity,{min:0,max:1,step:.01}) + control('Grubość','style.borderWidth','range',s.borderWidth,{min:0,max:12,step:1,suffix:'px'})) + control('Ramka zależna ON/OFF','style.borderStateEnabled','checkbox',s.borderStateEnabled,refresh) : '');
   const border = section('Ramka', borderBody);
-  return entity + size + icon + background + border;
+  return withStatePreview(entity + size + icon + valueRulesSection(marker) + background + border, marker, ['Encja','Ikona','Tło','Ramka']);
 }
 
 
@@ -1147,8 +2370,8 @@ function compactBadgeEditor(root, marker) {
     if (input) input.dataset.editorRefresh = 'true';
   });
   refresh(['style.showLabel','style.showValue','style.showBackground','style.backgroundStateEnabled','style.showBorder','style.shape','style.borderStateEnabled','style.showIcon','iconMode','iconVariantEnabled','style.iconFillEnabled','style.iconStateEnabled','style.iconOpacityStateEnabled','style.iconOutlineEnabled','style.iconOutlineStateEnabled']);
-  if (!s.showLabel) hide(['style.labelColor','style.labelOpacity','style.labelScale','style.labelY']);
-  if (!s.showValue) hide(['style.valueColor','style.valueOpacity','style.valueScale','style.valueY']);
+  if (!s.showLabel) hide(['style.labelColor','style.labelOpacity','style.labelScale','style.labelX','style.labelY']);
+  if (!s.showValue) hide(['style.valueColor','style.valueOpacity','style.valueScale','style.valueX','style.valueY']);
   if (!s.showBackground) hide(['style.backgroundGradient','style.backgroundGradientX','style.backgroundGradientY','style.backgroundGradientDirection','style.backgroundGradientSpread','style.backgroundGradientFill','style.backgroundColor','style.backgroundOpacity','style.backgroundStateEnabled','style.backgroundOnColor','style.backgroundOffColor','style.backgroundOnOpacity','style.backgroundOffOpacity']);
   else {
     if ((s.backgroundGradient || 'none') === 'none') hide(['style.backgroundGradientX','style.backgroundGradientY','style.backgroundGradientDirection','style.backgroundGradientSpread','style.backgroundGradientFill']);
@@ -1186,16 +2409,16 @@ function compactBadgeEditor(root, marker) {
 function editorMarkup(marker) {
   if (marker.type === 'icon') return iconEditorMarkup(marker);
   const s = marker.style;
-  const tapAction = isToggleableMarker(marker) ? control('Dotknięcie w widoku','tapAction','select',marker.tapAction || 'more_info',{items:[['more_info','Więcej informacji'],['toggle','Przełącz ON/OFF']]}) : '';
+  const tapAction = tapActionControl(marker.tapAction || 'more_info', isToggleableMarker(marker));
   const entity = section('Encja', control('Nazwa','displayName','text',marker.displayName) + control('Jednostka','unitOverride','text',marker.unitOverride) + control('Zaokrąglenie','decimals','select',marker.decimals,{items:[['auto','Auto'],[0,'0'],[1,'1'],[2,'2'],[3,'3']]}) + control('Tekst ON','stateOnLabel','text',marker.stateOnLabel) + control('Tekst OFF','stateOffLabel','text',marker.stateOffLabel) + tapAction);
-  const label = section('Nazwa', control('Pokaż','style.showLabel','checkbox',s.showLabel) + control('Kolor','style.labelColor','color',s.labelColor) + control('Przezrocz.','style.labelOpacity','range',s.labelOpacity,{min:0,max:1,step:.01}) + control('Rozmiar','style.labelScale','range',s.labelScale,{min:.5,max:3,step:.05}) + control('Pozycja','style.labelY','range',s.labelY,{min:-100,max:100,step:1,suffix:'px'}));
-  const value = section('Stan', control('Pokaż','style.showValue','checkbox',s.showValue) + control('Kolor','style.valueColor','color',s.valueColor) + control('Przezrocz.','style.valueOpacity','range',s.valueOpacity,{min:0,max:1,step:.01}) + control('Rozmiar','style.valueScale','range',s.valueScale,{min:.5,max:3,step:.05}) + control('Pozycja','style.valueY','range',s.valueY,{min:-100,max:100,step:1,suffix:'px'}));
+  const label = section('Nazwa', control('Pokaż','style.showLabel','checkbox',s.showLabel) + control('Kolor','style.labelColor','color',s.labelColor) + control('Przezrocz.','style.labelOpacity','range',s.labelOpacity,{min:0,max:1,step:.01}) + control('Rozmiar','style.labelScale','range',s.labelScale,{min:.5,max:3,step:.05}) + control('Lewo / prawo','style.labelX','range',s.labelX,{min:-100,max:100,step:1,suffix:'px'}) + control('Góra / dół','style.labelY','range',s.labelY,{min:-100,max:100,step:1,suffix:'px'}));
+  const value = section('Stan', control('Pokaż','style.showValue','checkbox',s.showValue) + control('Kolor','style.valueColor','color',s.valueColor) + control('Przezrocz.','style.valueOpacity','range',s.valueOpacity,{min:0,max:1,step:.01}) + control('Rozmiar','style.valueScale','range',s.valueScale,{min:.5,max:3,step:.05}) + control('Lewo / prawo','style.valueX','range',s.valueX,{min:-100,max:100,step:1,suffix:'px'}) + control('Góra / dół','style.valueY','range',s.valueY,{min:-100,max:100,step:1,suffix:'px'}));
   const minimumSize = isGaugeType(marker.type) ? { width: 44, height: 28 } : marker.type === 'icon' ? { width: 24, height: 24 } : { width: 36, height: 24 };
   const maximumSize = { width: 2400, height: 1800 };
-  const size = section('Rozmiar', control('Blokada geometrii','geometryLocked','checkbox',!!marker.geometryLocked,{refresh:true}) + control('Szerokość','style.width','range',s.width,{min:minimumSize.width,max:maximumSize.width,step:1,suffix:'px',integer:true,disabled:!!marker.geometryLocked}) + control('Wysokość','style.height','range',s.height,{min:minimumSize.height,max:maximumSize.height,step:1,suffix:'px',integer:true,disabled:!!marker.geometryLocked}) + control('Skala elementów','style.contentScale','range',s.contentScale,{min:.4,max:5,step:.05,suffix:'×'}));
+  const size = section('Rozmiar', control('Szerokość','style.width','range',s.width,{min:minimumSize.width,max:maximumSize.width,step:1,suffix:'px',integer:true,disabled:!!marker.geometryLocked}) + control('Wysokość','style.height','range',s.height,{min:minimumSize.height,max:maximumSize.height,step:1,suffix:'px',integer:true,disabled:!!marker.geometryLocked}) + control('Skala elementów','style.contentScale','range',s.contentScale,{min:.4,max:5,step:.05,suffix:'×'}) + control('Obrót','rotation','range',Number(marker.rotation) || 0,{min:-180,max:180,step:1,suffix:'°',integer:true,disabled:!!marker.geometryLocked}));
   const background = section('Tło', control('Pokaż','style.showBackground','checkbox',s.showBackground) + backgroundGradientControls(s) + control('Kolor','style.backgroundColor','color',s.backgroundColor) + control('Przezrocz.','style.backgroundOpacity','range',s.backgroundOpacity,{min:0,max:1,step:.01}) + control('Zależne ON/OFF','style.backgroundStateEnabled','checkbox',s.backgroundStateEnabled) + control('Kolor ON','style.backgroundOnColor','color',s.backgroundOnColor) + control('Kolor OFF','style.backgroundOffColor','color',s.backgroundOffColor) + control('Przezrocz. ON','style.backgroundOnOpacity','range',s.backgroundOnOpacity,{min:0,max:1,step:.01}) + control('Przezrocz. OFF','style.backgroundOffOpacity','range',s.backgroundOffOpacity,{min:0,max:1,step:.01}));
   const border = section('Ramka', control('Kształt','style.shape','select',s.shape,{items:[['square','Prostokąt'],['rounded','Zaokrąglony'],['circle','Koło / owal']]}) + control('Pokaż','style.showBorder','checkbox',s.showBorder) + control('Kolor','style.borderColor','color',s.borderColor) + control('Przezrocz.','style.borderOpacity','range',s.borderOpacity,{min:0,max:1,step:.01}) + control('Grubość','style.borderWidth','range',s.borderWidth,{min:0,max:12,step:1,suffix:'px'}) + control('Zaokrąglenie','style.radius','range',s.radius,{min:0,max:100,step:1,suffix:'px'}) + control('Zależne ON/OFF','style.borderStateEnabled','checkbox',s.borderStateEnabled) + control('Kolor ON','style.borderOnColor','color',s.borderOnColor) + control('Kolor OFF','style.borderOffColor','color',s.borderOffColor) + control('Przezrocz. ON','style.borderOnOpacity','range',s.borderOnOpacity,{min:0,max:1,step:.01}) + control('Przezrocz. OFF','style.borderOffOpacity','range',s.borderOffOpacity,{min:0,max:1,step:.01}) + control('Grubość ON','style.borderOnWidth','range',s.borderOnWidth,{min:0,max:12,step:1,suffix:'px'}) + control('Grubość OFF','style.borderOffWidth','range',s.borderOffWidth,{min:0,max:12,step:1,suffix:'px'}));
-  const mdiList = `<datalist id="mdi-icon-list">${ICON_CHOICES.slice(1).map(([name,label]) => `<option value="${name}">${label}</option>`).join('')}</datalist>`;
+  const mdiList = `<datalist id="mdi-icon-list">${ICON_CHOICES.slice(1).map(([name,label]) => `<option value="${name}">${iconChoiceLabel(label)}</option>`).join('')}</datalist>`;
   const manualIcons = marker.type === 'badge'
     ? (marker.iconMode === 'manual' ? control('Ikona zależna ON/OFF','iconVariantEnabled','checkbox',!!marker.iconVariantEnabled,{refresh:true}) + `<div data-manual-icons>${marker.iconVariantEnabled ? mdiControl('Ikona ON','iconOn',marker.iconOn) + mdiControl('Ikona OFF','iconOff',marker.iconOff) : mdiControl('Ikona podstawowa','iconName',marker.iconName)}</div>` : '')
     : `<div data-manual-icons ${marker.iconMode === 'manual' ? '' : 'hidden'}>${mdiControl('Podstawowa','iconName',marker.iconName)}${mdiControl('Dla ON','iconOn',marker.iconOn)}${mdiControl('Dla OFF','iconOff',marker.iconOff)}</div>`;
@@ -1210,7 +2433,7 @@ function editorMarkup(marker) {
     const percent = gaugeSubsection('Procent', control('Pokaż','style.showPercent','checkbox',s.showPercent) + control('Kolor','style.percentColor','color',s.percentColor) + control('Przezrocz.','style.percentOpacity','range',s.percentOpacity,{min:0,max:1,step:.01}) + control('Rozmiar','style.percentScale','range',s.percentScale,{min:.5,max:3,step:.05}) + control('Pozycja','style.percentY','range',s.percentY,{min:-100,max:100,step:1,suffix:'px'}));
     gauge = section(marker.type === 'horseshoe' ? 'Podkowa' : 'Gauge', range + geometry + ticks + tickLabels + gradient + percent);
   }
-  return entity + size + value + label + icon + gauge + background + border;
+  return withStatePreview(entity + size + value + label + icon + gauge + valueRulesSection(marker) + background + border, marker, ['Encja','Stan','Ikona','Tło','Ramka']);
 }
 function bindEditorInputs(root) {
   $$('input,select', root).forEach(input => {
@@ -1234,6 +2457,7 @@ function refreshIconEditorSection(marker, sourceInput) {
   return true;
 }
 function openEditor(preserveSection = editorOpenSectionIndex) {
+  closeFlowEditor(); closeRoomEditor();
   const marker = model.entities[selectedId]; if (!marker) return closeEditor();
   els.editorTitle.textContent = marker.displayName; els.editorEntity.textContent = marker.entityId; els.editorIntegration.textContent = `Integracja: ${marker.integrationName || 'Home Assistant'}`;
   if (els.editorIntegrationIcon) els.editorIntegrationIcon.innerHTML = integrationIconMarkupFor(marker.sourceDomain || marker.entityId.split('.')[0], marker.integrationName || marker.sourceDomain, 'editor-brand-icon');
@@ -1254,7 +2478,26 @@ function openEditor(preserveSection = editorOpenSectionIndex) {
     if (details.open) $$('.gauge-subsection', els.editorContent).forEach(other => { if (other !== details) other.removeAttribute('open'); });
     requestAnimationFrame(() => { if (details.open) details.scrollIntoView({ block: 'nearest' }); });
   }));
-  syncPreviewStateButton(); requestAnimationFrame(positionEditor);
+  syncPreviewStateButton(); syncLockButton($('#geometry-lock'), marker.geometryLocked); requestAnimationFrame(positionEditor);
+}
+// Geometry lock lives in every popup's header (marker, Flow, room), next to "Set default".
+function syncLockButton(button, locked) {
+  if (!button) return; button.classList.toggle('active', !!locked);
+  const icon = button.querySelector('i'); if (icon) icon.className = `mdi ${locked ? 'mdi-lock' : 'mdi-lock-open-variant-outline'}`;
+  const label = translateValue(locked ? 'Geometria zablokowana — kliknij, aby odblokować' : 'Zablokuj geometrię'); button.title = label; button.setAttribute('aria-label', label);
+}
+function openSectionIndex(content, fallback) { const index = $$('.editor-section', content).findIndex(section => section.open); return index >= 0 ? index : fallback; }
+// ON/OFF preview inside the sections whose look depends on the state (instead of a header button).
+function markerHasOnOff(marker) { const raw = String(stateCache[marker.entityId]?.state || '').toLowerCase(); return isToggleableMarker(marker) || ['on','off','open','closed','opened','close','active','inactive','true','false'].includes(raw); }
+function stateButtons(path, value) {
+  const button = (state, icon, label) => `<button type="button" class="preview-state-button${value === state ? ' active' : ''}" data-preview-path="${path}" data-preview-value="${state}" title="${escapeHtml(translateValue(label))}" aria-pressed="${value === state}"><i class="mdi ${icon}"></i><span>${state.toUpperCase()}</span></button>`;
+  return `<div class="control preview-control"><label>Podgląd</label><div class="preview-state-buttons">${button('on', 'mdi-lightbulb-on-outline', 'Podgląd: włączony')}${button('off', 'mdi-lightbulb-off-outline', 'Podgląd: wyłączony')}</div><span></span></div>`;
+}
+function previewControl(marker) { return stateButtons('__preview', editorPreview.entityId === marker.entityId ? editorPreview.state : ''); }
+function withStatePreview(markup, marker, titles) {
+  if (!markerHasOnOff(marker)) return markup;
+  titles.forEach(title => { markup = markup.replace(`<summary>${title}</summary><div class="editor-section-body">`, `<summary>${title}</summary><div class="editor-section-body">${previewControl(marker)}`); });
+  return markup;
 }
 function syncPreviewStateButton() {
   const button = $('#preview-state-toggle'), marker = model.entities[selectedId]; if (!button) return;
@@ -1269,23 +2512,26 @@ function onColorPickerClick(event) {
   if (swatch) { event.preventDefault(); const picker = swatch.closest('.color-picker'), input = $('.color-native', picker); input.value = swatch.dataset.paletteColor; $('.color-current', picker).style.background = input.value; input.dispatchEvent(new Event('input', { bubbles: true })); $('.color-menu', picker).classList.remove('visible'); return; }
   if (rgb) { event.preventDefault(); rgb.closest('.color-picker').querySelector('.color-native').click(); }
 }
-function closeEditor() { selectedId = null; editorDragged = false; editorOpenSectionIndex = -1; els.editor.classList.remove('visible'); els.editor.setAttribute('aria-hidden','true'); hideSelection(); $$('.marker.selected').forEach(n => n.classList.remove('selected')); }
+function closeEditor() { if (mobileView() && editMode) requestAnimationFrame(applyViewTransform); selectedId = null; editorDragged = false; editorOpenSectionIndex = -1; els.editor.classList.remove('visible'); els.editor.setAttribute('aria-hidden','true'); hideSelection(); $$('.marker.selected').forEach(n => n.classList.remove('selected')); }
 function startEditorDrag(event) {
   if (mobileView() || event.button !== 0 || (event.buttons & 1) !== 1 || event.target.closest('button,input,select')) return;
-  event.preventDefault(); editorDragged = true;
-  const r = els.editor.getBoundingClientRect(), startX = event.clientX, startY = event.clientY, startLeft = r.left, startTop = r.top;
+  const panel = event.currentTarget?.closest?.('.editor') || els.editor;
+  event.preventDefault(); if (panel === els.editor) editorDragged = true; else flowEditorDragged = true;
+  const r = panel.getBoundingClientRect(), startX = event.clientX, startY = event.clientY, startLeft = r.left, startTop = r.top;
   const move = e => {
     if ((e.buttons & 1) !== 1) return finish();
-    const left = clamp(startLeft + e.clientX - startX, 8, Math.max(8, innerWidth - els.editor.offsetWidth - 8));
-    const top = clamp(startTop + e.clientY - startY, 8, Math.max(8, innerHeight - els.editor.offsetHeight - 8));
-    Object.assign(els.editor.style, { left: `${left}px`, right: 'auto', top: `${top}px` });
+    const left = clamp(startLeft + e.clientX - startX, 8, Math.max(8, innerWidth - panel.offsetWidth - 8));
+    const top = clamp(startTop + e.clientY - startY, 8, Math.max(8, innerHeight - panel.offsetHeight - 8));
+    Object.assign(panel.style, { left: `${left}px`, right: 'auto', top: `${top}px` });
   };
   const finish = () => { window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', finish); window.removeEventListener('pointercancel', finish); };
   window.addEventListener('pointermove', move); window.addEventListener('pointerup', finish); window.addEventListener('pointercancel', finish);
 }
-function setPath(object, path, value) { const parts = path.split('.'); let target = object; while (parts.length > 1) target = target[parts.shift()]; target[parts[0]] = value; }
+function setPath(object, path, value) { const parts = path.split('.'); let target = object; while (parts.length > 1) { const key = parts.shift(); if (target[key] === undefined || target[key] === null) target[key] = key === 'valueRules' ? { ...VALUE_RULE_DEFAULTS } : {}; target = target[key]; } target[parts[0]] = value; }
 function resetEditorRange(path) {
-  const marker = model.entities[selectedId]; if (!marker || !path.startsWith('style.')) return;
+  const marker = model.entities[selectedId]; if (!marker) return;
+  if (path === 'rotation') { const input = els.editorContent.querySelector('input[data-path="rotation"]'); if (input) { input.value = 0; input.dispatchEvent(new Event('change', { bubbles: true })); } return; }
+  if (!path.startsWith('style.')) return;
   const defaults = markerStyleDefaults(marker.type), key = path.slice('style.'.length);
   if (!(key in defaults)) return;
   const input = els.editorContent.querySelector(`input[data-path="${CSS.escape(path)}"]`);
@@ -1295,6 +2541,7 @@ function resetEditorRange(path) {
 }
 function onEditorInput(event) {
   const marker = model.entities[selectedId], input = event.target; if (!marker || !input.dataset.path) return;
+  if (input.dataset.path === '__preview') { editorPreview = input.value ? { entityId: marker.entityId, state: input.value } : { entityId:'', state:'' }; renderMarkers(); openEditor(openSectionIndex(els.editorContent, editorOpenSectionIndex)); return; }
   let value = input.type === 'checkbox' ? input.checked : input.value;
   if (input.dataset.valueType === 'range' || input.dataset.valueType === 'number') value = Number(value); if (input.dataset.integer === 'true') value = Math.round(value);
   setPath(marker, input.dataset.path, value); marker.updatedAt = new Date().toISOString();
@@ -1309,7 +2556,7 @@ function onEditorInput(event) {
   const output = input.parentElement.querySelector('output'); if (output) output.textContent = `${value}${output.dataset.suffix || ''}`;
   const node = $(`.marker[data-entity-id="${CSS.escape(marker.entityId)}"]`);
   if (input.dataset.path === 'displayName') { els.editorTitle.textContent = value; if (node) node.innerHTML = markerHtml(marker); }
-  const needsMarkup = input.dataset.path === 'unitOverride' || input.dataset.path === 'decimals' || input.dataset.path === 'stateOnLabel' || input.dataset.path === 'stateOffLabel' || input.dataset.path.startsWith('icon') || input.dataset.path.startsWith('style.show') || isGaugeType(marker.type) && input.dataset.path.startsWith('style.');
+  const needsMarkup = input.dataset.path === 'unitOverride' || input.dataset.path === 'decimals' || input.dataset.path === 'stateOnLabel' || input.dataset.path === 'stateOffLabel' || input.dataset.path.startsWith('icon') || input.dataset.path.startsWith('valueRules.') || input.dataset.path.startsWith('style.show') || isGaugeType(marker.type) && input.dataset.path.startsWith('style.');
   // A range input keeps pointer capture only while its DOM node remains intact.
   // Rebuild Gauge/Horseshoe SVG after the finger is released, never while dragging.
   if (needsMarkup && (input.type !== 'range' || event.type === 'change')) { if (node) node.innerHTML = markerHtml(marker); }
@@ -1329,8 +2576,14 @@ async function changeType(type) {
 }
 
 function renderAdded() {
-  const items = Object.values(model.entities); els.addedCount.textContent = items.length;
-  els.addedList.innerHTML = items.length ? items.map(m => `<div class="entity-row added-row"><div class="added-identity">${integrationIconMarkupFor(m.sourceDomain || m.entityId.split('.')[0], m.integrationName || m.sourceDomain, 'added-icon')}<div><strong>${escapeHtml(m.displayName)}</strong><small>${escapeHtml(m.entityId)} · ${escapeHtml(m.integrationName || 'Home Assistant')} · ${markerTypeLabel(m.type)}</small></div></div><div class="entity-actions"><button data-focus="${escapeHtml(m.entityId)}">Pokaż</button><button class="danger" data-remove="${escapeHtml(m.entityId)}">Usuń z widoku</button></div></div>`).join('') : '<div class="empty-row">Nie dodano jeszcze żadnych encji.</div>';
+  const view = activeSceneView(), markers = Object.values(model.entities), flows = Object.values(view?.flows || {}), rooms = Object.values(view?.rooms || {});
+  const actions = (kind, id) => `<div class="entity-actions"><button data-added-show="${kind}" data-id="${escapeHtml(id)}">Pokaż</button><button class="danger" data-added-remove="${kind}" data-id="${escapeHtml(id)}">Usuń z widoku</button></div>`;
+  const markerRows = markers.map(m => `<div class="entity-row added-row"><div class="added-identity">${integrationIconMarkupFor(m.sourceDomain || m.entityId.split('.')[0], m.integrationName || m.sourceDomain, 'added-icon')}<div><strong data-no-i18n>${escapeHtml(m.displayName)}</strong><small>${escapeHtml(m.entityId)} · ${escapeHtml(m.integrationName || 'Home Assistant')} · ${markerTypeLabel(m.type)}</small></div></div>${actions('marker', m.entityId)}</div>`);
+  const flowRows = flows.map(flow => `<div class="entity-row added-row flow-row"><div class="added-identity"><span class="added-kind-icon"><i class="mdi mdi-chevron-triple-right"></i></span><div><strong data-no-i18n>${escapeHtml(flow.displayName || flow.entityId)}</strong><small>${escapeHtml(flow.entityId || '—')}${flow.integrationName ? ' · ' + escapeHtml(flow.integrationName) : ''}</small></div></div>${actions('flow', flow.id)}</div>`);
+  const roomRows = rooms.map(room => `<div class="entity-row added-row room-row"><div class="added-identity"><span class="added-kind-icon"><i class="mdi mdi-floor-plan"></i></span><div><strong data-no-i18n>${escapeHtml(room.name || translateValue('Pomieszczenie'))}</strong><small data-no-i18n>${escapeHtml((room.entityIds || []).join(', ') || '—')}</small></div></div>${actions('room', room.id)}</div>`);
+  const group = (title, rows) => rows.length ? `<div class="added-group"><div class="added-group-title"><span data-no-i18n>${title === 'Flow' ? 'Flow' : translateValue(title)}</span><b>${rows.length}</b></div>${rows.join('')}</div>` : '';
+  const total = markerRows.length + flowRows.length + roomRows.length; els.addedCount.textContent = total;
+  els.addedList.innerHTML = total ? group('Markery', markerRows) + group('Flow', flowRows) + group('Pomieszczenia', roomRows) : '<div class="empty-row">Nie dodano jeszcze żadnych elementów.</div>';
 }
 async function loadIntegrations(force = false) {
   if (integrations.length && !force) return renderIntegrations();
@@ -1341,13 +2594,13 @@ async function loadIntegrations(force = false) {
 function searchText(value) { return String(value || '').toLocaleLowerCase('pl').trim(); }
 function searchResultMarkup(entity, integration) {
   const added = !!model.entities[entity.entity_id];
-  return `<div class="entity-row search-result ${entity.enabled ? '' : 'disabled-entity'}"><div><strong>${escapeHtml(entity.name || entity.entity_id)}</strong><small>${escapeHtml(entity.entity_id)} · ${escapeHtml(integration.title || integration.domain || 'Home Assistant')}${entity.state != null ? ` · ${escapeHtml(entity.state)}${entity.unit ? ` ${escapeHtml(entity.unit)}` : ''}` : ''}</small></div><div class="entity-actions">${enabledIcon(entity.enabled)}<button class="add-entity" data-add="${escapeHtml(entity.entity_id)}" data-entry="${escapeHtml(integration.entry_id)}" ${added || !entity.enabled ? 'disabled' : ''} title="${added ? 'Dodano do widoku' : entity.enabled ? 'Dodaj do widoku' : 'Encja jest wyłączona'}">${added ? '✓' : '+'}</button></div></div>`;
+  return `<div class="entity-row search-result ${entity.enabled ? '' : 'disabled-entity'}"><div><strong data-no-i18n>${escapeHtml(entity.name || entity.entity_id)}</strong><small>${escapeHtml(entity.entity_id)} · ${escapeHtml(integration.title || integration.domain || 'Home Assistant')}${entity.state != null ? ` · ${escapeHtml(entity.state)}${entity.unit ? ` ${escapeHtml(entity.unit)}` : ''}` : ''}</small></div><div class="entity-actions">${enabledIcon(entity.enabled)}<button class="add-entity" data-add="${escapeHtml(entity.entity_id)}" data-entry="${escapeHtml(integration.entry_id)}" ${added || !entity.enabled ? 'disabled' : ''} title="${added ? 'Dodano do widoku' : 'Dodaj wskaźnik'}">${added ? '✓' : '+'}</button></div></div>`;
 }
 function renderIntegrationSearch() {
   const query = searchText(integrationSearchText);
   if (!query) return false;
   if (query.length < 2) { els.integrationList.innerHTML = '<div class="empty-row">Wpisz co najmniej 2 znaki.</div>'; return true; }
-  const matches = integrations.flatMap(integration => (integrationEntities.get(integration.entry_id) || []).filter(entity => !model.entities[entity.entity_id] && (searchText(entity.entity_id).includes(query) || searchText(entity.name).includes(query))).map(entity => ({ entity, integration }))).sort((a,b) => String(a.entity.name || a.entity.entity_id).localeCompare(String(b.entity.name || b.entity.entity_id), 'pl', { sensitivity:'base' }));
+  const matches = integrations.flatMap(integration => (integrationEntities.get(integration.entry_id) || []).filter(entity => searchText(entity.entity_id).includes(query) || searchText(entity.name).includes(query)).map(entity => ({ entity, integration }))).sort((a,b) => String(a.entity.name || a.entity.entity_id).localeCompare(String(b.entity.name || b.entity.entity_id), 'pl', { sensitivity:'base' }));
   const status = integrationSearchLoading ? '<div class="search-status">Wyszukiwanie encji…</div>' : '';
   els.integrationList.innerHTML = status + (matches.length ? matches.map(({entity,integration}) => searchResultMarkup(entity,integration)).join('') : '<div class="empty-row">Brak pasujących encji.</div>');
   return true;
@@ -1392,7 +2645,7 @@ function renderIntegrations() {
   els.integrationList.innerHTML = usedHtml + unusedHtml;
 }
 function integrationMarkup(group) {
-  return `<div class="integration ${group.used ? 'used' : ''} ${openIntegrations.has(group.key) ? 'open' : ''}" data-integration="${escapeHtml(group.key)}"><button class="integration-summary">${integrationIconMarkup(group)}<span class="integration-name"><strong>${escapeHtml(group.title)}</strong><small>${escapeHtml([...new Set(group.entries.map(x => x.domain))].join(', '))}${group.entries.length > 1 ? ` · ${group.entries.length} połączone` : ''}</small></span>${group.used ? `<span class="used-count">${group.used} używane</span>` : ''}</button><div class="integration-body">${integrationBody(group)}</div></div>`;
+  return `<div class="integration ${group.used ? 'used' : ''} ${openIntegrations.has(group.key) ? 'open' : ''}" data-integration="${escapeHtml(group.key)}"><button class="integration-summary">${integrationIconMarkup(group)}<span class="integration-name"><strong data-no-i18n>${escapeHtml(group.title)}</strong><small>${escapeHtml([...new Set(group.entries.map(x => x.domain))].join(', '))}${group.entries.length > 1 ? ` · ${group.entries.length} połączone` : ''}</small></span>${group.used ? `<span class="used-count">${group.used} używane</span>` : ''}</button><div class="integration-body">${integrationBody(group)}</div></div>`;
 }
 function getIntegrationGroups() {
   const grouped = new Map();
@@ -1403,7 +2656,7 @@ function integrationBody(group) {
   if (group.entries.some(item => !integrationEntities.has(item.entry_id))) return '<div class="empty-row">Kliknij, aby wczytać encje.</div>';
   const seen = new Set(), entities = group.entries.flatMap(item => (integrationEntities.get(item.entry_id) || []).map(entity => ({ ...entity, _entryId: item.entry_id }))).filter(entity => !seen.has(entity.entity_id) && seen.add(entity.entity_id)).sort((a,b) => String(a.name).localeCompare(String(b.name), 'pl', { sensitivity: 'base' }));
   if (!entities.length) return '<div class="empty-row">Brak encji.</div>';
-  return entities.map(e => { const added = !!model.entities[e.entity_id]; return `<div class="entity-row ${e.enabled ? '' : 'disabled-entity'}"><div><strong>${escapeHtml(e.name)}</strong><small>${escapeHtml(e.entity_id)}${e.state != null ? ` · ${escapeHtml(e.state)}${e.unit ? ` ${escapeHtml(e.unit)}` : ''}` : ''}</small></div><div class="entity-actions">${enabledIcon(e.enabled)}<button class="add-entity" data-add="${escapeHtml(e.entity_id)}" data-entry="${escapeHtml(e._entryId)}" ${added || !e.enabled ? 'disabled' : ''} title="${added ? 'Dodano do widoku' : e.enabled ? 'Dodaj do widoku' : 'Encja jest wyłączona'}">${added ? '✓' : '+'}</button></div></div>`; }).join('');
+  return entities.map(e => { const added = !!model.entities[e.entity_id]; return `<div class="entity-row ${e.enabled ? '' : 'disabled-entity'}"><div><strong data-no-i18n>${escapeHtml(e.name)}</strong><small>${escapeHtml(e.entity_id)}${e.state != null ? ` · ${escapeHtml(e.state)}${e.unit ? ` ${escapeHtml(e.unit)}` : ''}` : ''}</small></div><div class="entity-actions">${enabledIcon(e.enabled)}<button class="add-entity" data-add="${escapeHtml(e.entity_id)}" data-entry="${escapeHtml(e._entryId)}" ${added || !e.enabled ? 'disabled' : ''} title="${added ? 'Dodano do widoku' : e.enabled ? 'Dodaj wskaźnik' : 'Encja jest wyłączona'}">${added ? '✓' : '+'}</button></div></div>`; }).join('');
 }
 async function toggleIntegration(groupKey) {
   if (openIntegrations.has(groupKey)) { openIntegrations.delete(groupKey); return renderIntegrations(); }
@@ -1417,6 +2670,49 @@ function updateIntegrationMetadata(entryId) {
   entities.forEach(e => { const marker = model.entities[e.entity_id]; if (marker && integration && (!marker.integrationId || marker.integrationName === 'Home Assistant')) { marker.integrationId = entryId; marker.integrationName = integration.title; marker.sourceDomain = integration.domain; changed = true; } });
   if (changed) { renderAdded(); scheduleSave(); }
 }
+// A Flow is added like a room (edit menu), with or without an entity; the entity is picked in its popup.
+function addBlankFlow() {
+  const view = activeSceneView(); if (!view || !editMode) return; closeCompactMenus();
+  const s = els.scene.getBoundingClientRect(), v = els.viewport.getBoundingClientRect(), now = new Date().toISOString();
+  const x = s.width ? clamp(((Math.max(s.left, v.left) + Math.min(s.right, v.right)) / 2 - s.left) / s.width * 100, 5, 95) : 50;
+  const y = s.height ? clamp(((Math.max(s.top, v.top) + Math.min(s.bottom, v.bottom)) / 2 - s.top) / s.height * 100, 5, 95) : 50;
+  view.flows ||= {}; const id = 'flow_' + uid();
+  view.flows[id] = { id, entityId:'', integrationId:'', integrationName:'', sourceDomain:'', displayName:'Flow', xPercent:Math.round(x * 100) / 100, yPercent:Math.round(y * 100) / 100, ...clone(FLOW_DEFAULTS), itemSizeV2:true, geometryLocked:false, createdAt:now, updatedAt:now };
+  renderMarkers(); renderAdded(); openFlowEditor(id); scheduleSave(true); notify('Dodano Flow — wybierz encję albo zostaw bez encji');
+}
+function flowEntityRow(id, action) {
+  const name = allEntitiesCache?.find(entity => entity.id === id)?.name || stateCache[id]?.attributes?.friendly_name || id, state = String(stateCache[id]?.state ?? '');
+  const button = action === 'clear' ? `<button type="button" class="room-entity-action" data-flow-entity-clear title="${escapeHtml(translateValue('Usuń encję'))}"><i class="mdi mdi-close"></i></button>` : `<button type="button" class="room-entity-action add" data-flow-entity-set="${escapeHtml(id)}"><i class="mdi mdi-check"></i></button>`;
+  return `<div class="room-entity${action === 'clear' ? ' added' : ''}"${action === 'set' ? ` data-flow-entity-set="${escapeHtml(id)}"` : ''}><div><strong data-no-i18n>${escapeHtml(name)}</strong><code data-no-i18n>${escapeHtml(id)}${state ? ' · ' + escapeHtml(state) : ''}</code></div>${button}</div>`;
+}
+function renderFlowEntityResults() {
+  const box = $('#flow-entity-results'), input = $('#flow-entity-search'), flow = activeSceneView()?.flows?.[selectedFlowId]; if (!box || !input || !flow) return;
+  const query = searchText(input.value); if (query.length < 2) { box.innerHTML = ''; return; }
+  if (!allEntitiesCache) { box.innerHTML = ''; loadAllEntities().then(() => { if ($('#flow-entity-search') === input) renderFlowEntityResults(); }); return; }
+  const matches = allEntitiesCache.filter(entity => entity.id !== flow.entityId && (searchText(entity.id).includes(query) || searchText(entity.name).includes(query) || searchText(entity.integration).includes(query)))
+    .sort((a, b) => Number(/^sensor\./.test(b.id)) - Number(/^sensor\./.test(a.id)) || a.name.localeCompare(b.name)).slice(0, 40);
+  box.innerHTML = matches.map(entity => flowEntityRow(entity.id, 'set')).join('');
+}
+function setFlowEntity(flow, entityId) {
+  const previousName = flow.entityId ? (allEntitiesCache?.find(entity => entity.id === flow.entityId)?.name || flow.entityId) : 'Flow';
+  const entry = entityId ? allEntitiesCache?.find(entity => entity.id === entityId) : null;
+  if (!flow.displayName || flow.displayName === previousName || flow.displayName === 'Flow' || flow.displayName === flow.entityId) flow.displayName = entry?.name || entityId || 'Flow';
+  flow.entityId = entityId; flow.integrationName = entry?.integration || ''; flow.sourceDomain = entityId ? entityId.split('.')[0] : ''; flow.integrationId = ''; flow.updatedAt = new Date().toISOString();
+  refreshStates(); renderMarkers(); renderAdded(); openFlowEditor(flow.id, openSectionIndex(els.flowEditorContent, flowEditorOpenSectionIndex)); scheduleSave(true);
+}
+async function addFlow(entityId, entryId) {
+  const view = activeSceneView(), integration = integrations.find(x => x.entry_id === entryId), entity = (integrationEntities.get(entryId) || []).find(x => x.entity_id === entityId);
+  if (!view || !integration || !entity) return;
+  view.flows ||= {};
+  const id = 'flow_' + uid();
+  const flowOffset = Object.keys(view.flows).length % 5;
+  view.flows[id] = { id, entityId, integrationId: integration.entry_id || '', integrationName: integration.title || integration.domain || 'Home Assistant', sourceDomain: integration.domain || entityId.split('.')[0], displayName: entity.name || entityId, xPercent:50 + flowOffset * 3, yPercent:50 + flowOffset * 3, ...clone(FLOW_DEFAULTS), geometryLocked:false, createdAt:new Date().toISOString(), updatedAt:new Date().toISOString() };
+  renderMarkers(); renderAdded(); renderIntegrations(); await queueSave(); notify('Dodano Flow — przeciągnij go w trybie edycji');
+}
+async function removeFlow(id) {
+  const view = activeSceneView(); if (!view?.flows?.[id]) return;
+  delete view.flows[id]; renderMarkers(); renderAdded(); renderIntegrations(); await queueSave(); notify('Usunięto Flow');
+}
 async function addEntity(entityId, entryId) {
   if (model.entities[entityId]) return;
   const integration = integrations.find(x => x.entry_id === entryId), entity = (integrationEntities.get(entryId) || []).find(x => x.entity_id === entityId); if (!integration || !entity) return;
@@ -1427,8 +2723,14 @@ async function removeEntity(entityId) {
   if (!model.entities[entityId]) return; delete model.entities[entityId]; delete stateCache[entityId]; if (selectedId === entityId) closeEditor();
   renderMarkers(); renderIntegrations(); await queueSave(); notify('Usunięto marker i wszystkie jego ustawienia');
 }
+// Entities of every view: states of neighbouring views are kept fresh for the swipe preview.
+function allViewEntityIds() {
+  const ids = new Set(Object.keys(model.entities || {}));
+  Object.values(model.views || {}).forEach(view => { Object.keys(view.entities || {}).forEach(id => ids.add(id)); Object.values(view.flows || {}).forEach(flow => { if (flow.entityId) ids.add(flow.entityId); }); Object.values(view.rooms || {}).forEach(room => (room.entityIds || []).forEach(id => ids.add(id))); if (view.nightBackground) ids.add(nightEntityOf(view)); });
+  return [...ids];
+}
 async function refreshStates() {
-  const ids = Object.keys(model.entities); if (!ids.length) return renderMarkers();
+  const ids = allViewEntityIds().filter(id => !isRoomIconId(id)); if (!ids.length) return renderMarkers();
   try {
     const data = await api('selected_states', jsonOptions({ entity_ids: ids }));
     Object.entries(data.states || {}).forEach(([entityId, nextState]) => {
@@ -1438,7 +2740,9 @@ async function refreshStates() {
       if (expected) pendingToggleStates.delete(entityId);
       stateCache[entityId] = { ...stateCache[entityId], ...nextState };
     });
-    renderMarkers();
+    if (touchGestureActive()) deferredFullRender = true; else renderMarkers();
+    applyNightBackground();
+    prebuildSwipePreviews();
     if (els.connection) { els.connection.textContent = 'Połączono'; els.connection.className = 'connection live'; }
   } catch (error) { if (els.connection) { els.connection.textContent = 'Błąd danych'; els.connection.className = 'connection error'; } }
 }
@@ -1446,27 +2750,241 @@ function connectEvents() {
   entityEvents?.close();
   entityEvents = new EventSource('api/entity_events');
   entityEvents.onopen = () => { if (els.connection) { els.connection.textContent = 'Na żywo'; els.connection.className = 'connection live'; } };
-  entityEvents.onmessage = event => { try { const data = JSON.parse(event.data), marker = model.entities[data.entity_id]; if (!marker) return; const expected = pendingToggleStates.get(data.entity_id), received = String(data.state || '').toLowerCase(); if (expected && received !== expected) return; if (expected) pendingToggleStates.delete(data.entity_id); renderMarkerState(data.entity_id, { entity_id: data.entity_id, state: data.state, attributes: data.attributes || {}, last_changed: data.last_changed || new Date().toISOString() }); } catch {} };
+  entityEvents.onmessage = event => { try { const data = JSON.parse(event.data), marker = model.entities[data.entity_id], flowUsesEntity = Object.values(activeSceneView()?.flows || {}).some(flow => flow.entityId === data.entity_id); if (!marker && !flowUsesEntity && !allViewEntityIds().includes(data.entity_id)) return; const expected = pendingToggleStates.get(data.entity_id), received = String(data.state || '').toLowerCase(); if (expected && received !== expected) return; if (expected) pendingToggleStates.delete(data.entity_id); renderMarkerState(data.entity_id, { entity_id: data.entity_id, state: data.state, attributes: data.attributes || {}, last_changed: data.last_changed || new Date().toISOString() }); if (flowUsesEntity) { if (touchGestureActive()) deferredFlows = true; else { renderFlows(); if (selectedFlowId) syncFlowSelection(); } } if (roomUsesEntity(data.entity_id)) renderRooms(); if (activeSceneView()?.nightBackground && data.entity_id === nightEntityOf(activeSceneView())) applyNightBackground(); } catch {} };
   entityEvents.onerror = () => { if (els.connection) { els.connection.textContent = 'Ponowne łączenie…'; els.connection.className = 'connection error'; } };
   entityEvents.addEventListener('open', refreshStates);
 }
 function resumeLiveConnection() {
-  if (document.hidden) return;
+  if (document.hidden || !appRevealed) return;
+  checkRemoteLayout();
   clearTimeout(resumeTimer); resumeTimer = setTimeout(() => {
     refreshStates();
     if (!entityEvents || entityEvents.readyState === EventSource.CLOSED) connectEvents();
   }, 120);
 }
-async function loadBackgrounds(waitForImage = false, bustCache = false) {
+// ---- Night background -----------------------------------------------------------------------
+// A view may have a second image for the night. It lies exactly over the day image (same size and fit: the
+// geometry always comes from the day image) and fades in when the chosen entity says it is night:
+// sun.sun below_horizon by default, or any on/off entity (input_boolean, binary_sensor …) that is on.
+// view.nightMode: 'auto' (entity, default), 'day' (always day) or 'night' (always night); saved with the view.
+const NIGHT_STATES = new Set(['below_horizon','on','true','night']);
+function nightEntityOf(view) { return String(view?.nightEntity || '').trim() || 'sun.sun'; }
+function nightModeOf(view) { return ['day','night'].includes(view?.nightMode) ? view.nightMode : 'auto'; }
+function nightByEntity(view) { return NIGHT_STATES.has(String(stateCache[nightEntityOf(view)]?.state ?? '').toLowerCase()); }
+function viewIsNight(view) {
+  if (!view?.nightBackground || !view.background) return false;
+  const mode = nightModeOf(view); if (mode !== 'auto') return mode === 'night';
+  return nightByEntity(view);
+}
+function applyNightBackground() {
+  const view = activeSceneView(), img = els.nightImage; if (!img) return;
+  const name = view?.nightBackground && currentBackground ? view.nightBackground : '';
+  if (!name) { img.classList.remove('visible'); img.hidden = true; img.removeAttribute('src'); delete img.dataset.name; }
+  else {
+    if (img.dataset.name !== name) { img.dataset.name = name; img.src = `api/background/file?name=${encodeURIComponent(name)}`; }
+    if (img.hidden) { img.hidden = false; void img.offsetWidth; }
+    img.classList.toggle('visible', viewIsNight(view));
+  }
+  syncNightControls(); applyBackgroundBrightness();
+}
+function syncNightControls() {
+  const view = activeSceneView(), block = $('.night-bg-block'); if (!block || !view) return;
+  const has = Boolean(view.nightBackground && currentBackground), entity = nightEntityOf(view), state = stateCache[entity]?.state;
+  block.classList.toggle('off', !has);
+  const input = $('#night-entity'); if (input && document.activeElement !== input) input.value = view.nightEntity || '';
+  const mode = nightModeOf(view); $$('[data-night-mode]').forEach(button => { button.disabled = !has; button.classList.toggle('active', has && button.dataset.nightMode === mode); button.setAttribute('aria-pressed', String(has && button.dataset.nightMode === mode)); });
+  const entityRow = $('.night-bg-entity'); if (entityRow) entityRow.classList.toggle('muted', mode !== 'auto');
+  const status = $('#night-status'); if (status) status.textContent = !currentBackground ? translateValue('Najpierw ustaw tło dzienne') : !has ? '' : (mode === 'auto' ? `${translateValue(nightByEntity(view) ? 'Teraz: noc' : 'Teraz: dzień')} · ${entity}: ${state ?? '—'}` : translateValue(mode === 'night' ? 'Zawsze noc — encja nie jest używana' : 'Zawsze dzień — encja nie jest używana'));
+}
+function setNightMode(mode) { const view = activeSceneView(); if (!view) return; if (mode === 'auto') delete view.nightMode; else view.nightMode = mode; applyNightBackground(); scheduleSave(true); prebuildSwipePreviews(); }
+async function uploadNightBackground(file) {
+  if (!file) return; const status = $('#night-status'); if (status) status.textContent = translateValue('Wgrywanie…'); const form = new FormData(); form.append('file', file);
+  try { const result = await api('background/upload', { method: 'POST', body: form }); activeSceneView().nightBackground = result.name || ''; await loadBackgrounds(); scheduleSave(true); refreshStates(); notify('Ustawiono tło nocne'); }
+  catch (error) { if (status) status.textContent = `${translateValue('Błąd')}: ${error.message}`; } finally { const input = $('#night-background-file'); if (input) input.value = ''; }
+}
+// ---- Background files manager -------------------------------------------------------------------
+// Lists every uploaded image with where it is used (day / night background of beta views, and the stable
+// add-on, which shares the folder). Unused files can be removed one by one or all at once. Files the stable
+// add-on uses cannot be removed here (the server refuses it too).
+// bgStableUsage = backgrounds of the OTHER add-on (stable for the beta, beta for the stable), bgOtherChannel says which.
+let bgManagerItems = [], bgStableUsage = {}, bgOtherChannel = 'stable';
+const otherVersionName = () => translateValue(bgOtherChannel === 'beta' ? 'HA Views Beta' : 'stabilna wersja HA Views');
+function filesWord(n) { const tens = n % 100, ones = n % 10; return n === 1 ? 'plik' : ones >= 2 && ones <= 4 && !(tens >= 12 && tens <= 14) ? 'pliki' : 'plików'; }
+function formatBytes(bytes) { const n = Number(bytes) || 0; return n >= 1048576 ? `${(n / 1048576).toFixed(1)} MB` : `${Math.max(1, Math.round(n / 1024))} KB`; }
+function backgroundUses(name) {
+  const uses = [];
+  Object.values(model.views || {}).forEach(view => { const label = view.name || view.id; if (view.background === name) uses.push({ kind:'day', label }); if (view.nightBackground === name) uses.push({ kind:'night', label }); });
+  (bgStableUsage[name] || []).forEach(label => uses.push({ kind:'stable', label }));
+  return uses;
+}
+function renderBackgroundManager() {
+  const list = $('#bg-manager-list'); if (!list) return;
+  const unused = bgManagerItems.filter(item => !backgroundUses(item.name).length), total = bgManagerItems.reduce((sum, item) => sum + (Number(item.size) || 0), 0);
+  $('#bg-manager-summary').textContent = `${bgManagerItems.length} ${translateValue(filesWord(bgManagerItems.length))} · ${formatBytes(total)} · ${translateValue('nieużywane')}: ${unused.length}`;
+  const clean = $('#bg-manager-clean'); if (clean) clean.disabled = !unused.length;
+  const chip = use => `<span class="${use.kind}">${escapeHtml(use.kind === 'stable' ? `${translateValue(bgOtherChannel === 'beta' ? 'Beta' : 'Stabilna')}: ${use.label}` : `${use.label} · ${translateValue(use.kind === 'night' ? 'noc' : 'dzień')}`)}</span>`;
+  list.innerHTML = bgManagerItems.length ? bgManagerItems.map(item => {
+    const uses = backgroundUses(item.name), stable = uses.some(use => use.kind === 'stable');
+    const view = activeSceneView(), isDay = view?.background === item.name, isNight = view?.nightBackground === item.name, n = escapeHtml(item.name);
+    const action = (kind, icon, title, extra = '') => `<button type="button" data-bg-action="${kind}" data-name="${n}" title="${escapeHtml(translateValue(title))}" aria-label="${escapeHtml(translateValue(title))}" ${extra}><i class="mdi ${icon}"></i></button>`;
+    return `<div class="bg-file${uses.length ? '' : ' unused'}"><div class="bg-thumb"><img loading="lazy" alt="" src="api/background/file?name=${encodeURIComponent(item.name)}"></div><div class="bg-info"><strong data-no-i18n title="${n}">${n}</strong><small>${formatBytes(item.size)}</small><div class="bg-uses" data-no-i18n>${uses.length ? uses.map(chip).join('') : `<span class="none">${escapeHtml(translateValue('Nieużywane'))}</span>`}</div></div>`
+      + `<div class="bg-actions">${action('day', 'mdi-image-check-outline', isDay ? 'Tło tego widoku' : 'Ustaw jako tło tego widoku', isDay ? 'class="current" disabled' : '')}${action('night', 'mdi-weather-night', isNight ? 'Tło nocne tego widoku' : 'Ustaw jako tło nocne tego widoku', isNight || isDay || !view?.background ? `${isNight ? 'class="current"' : ''} disabled` : '')}${action('rename', 'mdi-rename-outline', 'Zmień nazwę')}${action('download', 'mdi-download-outline', 'Pobierz')}`
+      + `<button type="button" class="${stable ? 'stable-delete' : ''}" data-bg-delete="${n}" title="${escapeHtml((stable ? `${translateValue('Używane przez')}: ${otherVersionName()}` : translateValue('Usuń plik')))}" aria-label="${escapeHtml(translateValue('Usuń plik'))}"><i class="mdi mdi-delete-outline"></i></button></div></div>`;
+  }).join('') : `<small>${escapeHtml(translateValue('Brak wgranych teł.'))}</small>`;
+}
+async function openBackgroundManager() {
+  const box = $('#bg-manager'); if (!box) return;
+  box.classList.add('visible'); box.setAttribute('aria-hidden', 'false'); $('#bg-manager-list').innerHTML = `<small>${escapeHtml(translateValue('Wczytywanie…'))}</small>`;
+  try { const [list, usage] = await Promise.all([api('backgrounds'), api('background/usage').catch(() => ({}))]); bgManagerItems = list.items || []; bgStableUsage = usage.other || usage.stable || {}; bgOtherChannel = usage.otherChannel || 'stable'; renderBackgroundManager(); }
+  catch (error) { $('#bg-manager-list').innerHTML = `<small>${escapeHtml(error.message)}</small>`; }
+}
+function closeBackgroundManager() { const box = $('#bg-manager'); if (!box) return; box.classList.remove('visible'); box.setAttribute('aria-hidden', 'true'); }
+async function deleteBackgroundFiles(names, onlyUnused = false) {
+  // Bulk clean-up never touches files of the stable add-on; a single file may be removed after a warning.
+  if (onlyUnused) names = names.filter(name => !(bgStableUsage[name] || []).length); if (!names.length) return;
+  const usedIn = [...new Set(names.flatMap(name => backgroundUses(name).filter(use => use.kind !== 'stable').map(use => use.label)))];
+  const stableIn = [...new Set(names.flatMap(name => bgStableUsage[name] || []))], force = stableIn.length > 0;
+  const message = names.length === 1
+    ? [force ? `Plik „${names[0]}” jest tłem w innej wersji dodatku: ${otherVersionName()} (widoki: ${stableIn.join(', ')}). Po usunięciu te widoki zostaną tam bez tła.` : '', usedIn.length ? `W becie jest ustawiony w widokach: ${usedIn.join(', ')}. Te widoki zostaną bez tego tła.` : '', !force && !usedIn.length ? `Plik „${names[0]}” zostanie trwale usunięty.` : 'Tego nie da się cofnąć.'].filter(Boolean).join(' ')
+    : `${names.length} nieużywanych plików zostanie trwale usuniętych.`;
+  if (!await appConfirm({ title: force ? 'Usunąć tło używane przez drugą wersję?' : names.length === 1 ? 'Usunąć plik tła?' : 'Usunąć nieużywane tła?', message, confirmText: force ? 'Usuń mimo to' : 'Usuń', danger:true })) return;
+  let removed = 0; const errors = [];
+  for (const name of names) {
+    try { await api('background/delete', jsonOptions(force ? { name, force:true } : { name })); removed++; delete bgStableUsage[name]; bgManagerItems = bgManagerItems.filter(item => item.name !== name);
+      Object.values(model.views || {}).forEach(view => { if (view.background === name) view.background = ''; if (view.nightBackground === name) view.nightBackground = ''; if (view.backgroundTransforms) delete view.backgroundTransforms[name]; }); }
+    catch (error) { errors.push(`${name}: ${error.message}`); }
+  }
+  if (removed) { currentBackground = ''; scheduleSave(true); await loadBackgrounds(); }
+  renderBackgroundManager();
+  notify(errors.length ? errors[0] : removed === 1 ? 'Usunięto plik tła' : `Usunięto pliki tła: ${removed}`, Boolean(errors.length));
+}
+function downloadBackgroundFile(name) { if (!name) return; const link = document.createElement('a'); link.href = `api/background/download?name=${encodeURIComponent(name)}`; link.download = name; document.body.appendChild(link); link.click(); link.remove(); }
+async function backgroundFileAction(kind, name) {
+  const view = activeSceneView(); if (!view || !name) return;
+  if (kind === 'download') return downloadBackgroundFile(name);
+  if (kind === 'rename') return renameBackgroundFile(name);
+  if (kind === 'day') { view.background = name; view.backgroundColor = ''; view.onboardingDone = true; if (view.nightBackground === name) view.nightBackground = ''; }
+  if (kind === 'night') { if (!view.background || view.background === name) return; view.nightBackground = name; }
+  scheduleSave(true); await loadBackgrounds(true); refreshStates(); renderBackgroundManager(); notify(kind === 'day' ? 'Ustawiono tło widoku' : 'Ustawiono tło nocne');
+}
+// Renames the image file on the server and every reference to it in the beta views (day / night / fit).
+async function renameBackgroundFile(name) {
+  if (!name) return;
+  if (!Object.keys(bgStableUsage).length) { try { const usage = await api('background/usage'); bgStableUsage = usage.other || usage.stable || {}; bgOtherChannel = usage.otherChannel || 'stable'; } catch {} }
+  const stem = name.replace(/\.[^.]+$/, ''), stableIn = bgStableUsage[name] || [];
+  els.confirmInput.maxLength = 150;
+  const value = await appPrompt({ title:'Zmień nazwę pliku tła', message:`${name} — rozszerzenie pliku zostaje bez zmian.`, value:stem, confirmText:'Zmień' });
+  els.confirmInput.maxLength = 60;
+  const wanted = String(value || '').trim(); if (!wanted || wanted === stem) return;
+  if (stableIn.length && !await appConfirm({ title:'Zmienić nazwę tła używanego przez drugą wersję?', message:`Plik „${name}” jest tłem w innej wersji dodatku: ${otherVersionName()} (widoki: ${stableIn.join(', ')}). Po zmianie nazwy te widoki zostaną tam bez tła.`, confirmText:'Zmień mimo to', danger:true })) return;
   try {
-    const data = await api('backgrounds'), items = data.items || [], names = new Set(items.map(item => item.name)), view = activeSceneView();
+    const result = await api('background/rename', jsonOptions(stableIn.length ? { name, newName:wanted, force:true } : { name, newName:wanted })), next = result.name;
+    Object.values(model.views || {}).forEach(view => {
+      if (view.background === name) view.background = next; if (view.nightBackground === name) view.nightBackground = next;
+      if (view.backgroundTransforms?.[name]) { view.backgroundTransforms[next] = view.backgroundTransforms[name]; delete view.backgroundTransforms[name]; }
+    });
+    bgManagerItems = bgManagerItems.map(item => item.name === name ? { ...item, name:next } : item); delete bgStableUsage[name];
+    scheduleSave(true); await loadBackgrounds(); renderBackgroundManager(); notify('Zmieniono nazwę tła');
+  } catch (error) { notify(error.message, true); }
+}
+// ---- Background brightness (day / night image) ----------------------------------------------------
+// A CSS brightness filter on the <img> only: the browser rasterises the image once on the GPU, so markers,
+// Flows and animations above it are not slowed down. 100 % = unchanged (no filter at all).
+function brightnessOf(view, key) { return clamp(Math.round(Number(view?.[key]) || 100), 30, 200); }
+function brightnessFilter(value) { return value === 100 ? '' : `brightness(${value / 100})`; }
+function applyBackgroundBrightness() {
+  const view = activeSceneView();
+  if (els.image) els.image.style.filter = brightnessFilter(brightnessOf(view, 'backgroundBrightness'));
+  if (els.nightImage) els.nightImage.style.filter = brightnessFilter(brightnessOf(view, 'nightBrightness'));
+  [['backgroundBrightness', Boolean(currentBackground)], ['nightBrightness', Boolean(view?.nightBackground && currentBackground)]].forEach(([key, enabled]) => {
+    const input = $(`[data-brightness="${key}"]`); if (!input) return;
+    const value = brightnessOf(view, key); if (document.activeElement !== input) input.value = value;
+    input.disabled = !enabled; const row = input.closest('.vm-range'); row?.classList.toggle('disabled', !enabled);
+    const out = row?.querySelector('output'); if (out) out.textContent = `${value}%`;
+  });
+}
+function setBackgroundBrightness(key, value, save) {
+  const view = activeSceneView(); if (!view) return;
+  value = clamp(Math.round(Number(value) || 100), 30, 200);
+  if (value === 100) delete view[key]; else view[key] = value;
+  applyBackgroundBrightness(); if (save) { scheduleSave(true); prebuildSwipePreviews(); }
+}
+// ---- Colour background size -------------------------------------------------------------------
+// A colour background has its own size (W × H, only the proportion matters on screen): typical presets,
+// own numbers, or dragging the circles on the scene edges. An image background always uses the image size.
+function canvasSizeOf(view = activeSceneView()) {
+  const size = view?.solidCanvasSize, ratio = clamp(view?.solidCanvasRatio || 16 / 9, .25, 4);
+  if (size && Number(size.w) > 0 && Number(size.h) > 0 && Math.abs(size.w / size.h - ratio) < .01) return { w: Math.round(size.w), h: Math.round(size.h) };
+  return ratio >= 1 ? { w: Math.round(1080 * ratio), h: 1080 } : { w: 1080, h: Math.round(1080 / ratio) };
+}
+function syncCanvasControls() {
+  const view = activeSceneView(); if (!view) return;
+  const { w, h } = canvasSizeOf(view), image = Boolean(currentBackground), zone = $('.vm-colour-zone');
+  zone?.classList.toggle('image-active', image);
+  const note = $('.vm-colour-note'); if (note) note.textContent = translateValue(image ? 'Wybór koloru zastąpi obraz' : 'Tło w kolorze');
+  $$('[data-canvas-size]').forEach(button => { const [pw, ph] = button.dataset.canvasSize.split('x').map(Number); button.classList.toggle('active', !image && Math.abs(w / h - pw / ph) < .005); button.disabled = image; });
+  const wi = $('#canvas-width'), hi = $('#canvas-height');
+  if (wi && document.activeElement !== wi) wi.value = w; if (hi && document.activeElement !== hi) hi.value = h;
+  [wi, hi, $('#canvas-resize-start')].forEach(control => { if (control) control.disabled = image; });
+  const value = $('#canvas-resize-value'); if (value) value.textContent = `${w} × ${h}`;
+}
+function setCanvasSize(w, h, save = true) {
+  const view = activeSceneView(); if (!view || currentBackground) return;
+  w = clamp(Math.round(Number(w) || 0), 100, 10000); h = clamp(Math.round(Number(h) || 0), 100, 10000);
+  if (w / h > 4) w = h * 4; if (w / h < .25) h = w * 4;
+  view.solidCanvasSize = { w, h }; view.solidCanvasRatio = w / h;
+  applyBackgroundTransform(); updateSceneGeometry(); syncCanvasControls(); renderCanvasHandles();
+  if (save) scheduleSave(true);
+}
+let canvasResizing = false;
+function renderCanvasHandles() {
+  let layer = $('#canvas-handles');
+  if (!canvasResizing) { layer?.remove(); return; }
+  if (!layer) { layer = document.createElement('div'); layer.id = 'canvas-handles'; layer.innerHTML = ['e','s','se'].map(k => `<i class="canvas-handle ${k}" data-canvas-handle="${k}"></i>`).join(''); els.scene.append(layer); layer.addEventListener('pointerdown', startCanvasHandleDrag); }
+}
+function startCanvasResize() {
+  if (currentBackground) return;
+  closeCompactMenus(); resetViewZoom(); canvasResizing = true; els.body.classList.add('canvas-resizing');
+  $('#canvas-resize-bar')?.classList.add('visible'); renderCanvasHandles(); syncCanvasControls();
+}
+function finishCanvasResize() {
+  canvasResizing = false; els.body.classList.remove('canvas-resizing'); $('#canvas-resize-bar')?.classList.remove('visible'); renderCanvasHandles(); scheduleSave(true);
+  placeViewSheet(); els.viewSwitcher?.classList.add('open'); els.viewManage?.classList.add('active'); setViewMenuPage('background');
+}
+function startCanvasHandleDrag(event) {
+  const handle = event.target.closest('[data-canvas-handle]'); if (!handle) return;
+  event.preventDefault(); event.stopPropagation(); try { els.scene.setPointerCapture(event.pointerId); } catch {}
+  // Measured from the moment the circle is grabbed (a refit scene never feeds back into the drag).
+  // The canvas is centred, so dragging the right edge by d px widens it by 2·d; the top edge stays.
+  const kind = handle.dataset.canvasHandle, start = canvasSizeOf(), rect = els.scene.getBoundingClientRect();
+  const move = e => {
+    if (e.pointerId !== event.pointerId) return;
+    const w = kind === 's' ? start.w : start.w * Math.max(40, rect.width + 2 * (e.clientX - event.clientX)) / Math.max(1, rect.width);
+    const h = kind === 'e' ? start.h : start.h * Math.max(40, rect.height + (e.clientY - event.clientY)) / Math.max(1, rect.height);
+    setCanvasSize(Math.round(w / 10) * 10, Math.round(h / 10) * 10, false);
+  };
+  const up = e => { if (e.pointerId !== event.pointerId) return; window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up); scheduleSave(true); };
+  window.addEventListener('pointermove', move); window.addEventListener('pointerup', up); window.addEventListener('pointercancel', up);
+}
+async function loadBackgrounds(waitForImage = false, bustCache = false, prefetched = null, imageTimeout = 0) {
+  try {
+    const data = prefetched ? await prefetched : await api('backgrounds');
+    if (data instanceof Error) throw data;
+    const items = data.items || [], names = new Set(items.map(item => item.name)), view = activeSceneView();
     if (view.background === undefined || view.background === null) { view.background = data.current || ''; scheduleSave(); }
     if (view.background && !names.has(view.background)) view.background = '';
     currentBackground = view.background || '';
     // Each view loads its own named file; no global background selection is needed.
     els.bgSelect.innerHTML = '<option value="">Bez tła</option>' + items.map(x => `<option value="${escapeHtml(x.name)}" ${x.name === currentBackground ? 'selected' : ''}>${escapeHtml(x.name)}</option>`).join('');
-    els.bgSelect.value = currentBackground; els.bgSelect.disabled = false; els.bgDownload.disabled = !currentBackground; els.bgDelete.disabled = !currentBackground;
-    view.solidCanvasRatio ||= mobileView() ? 9 / 16 : 16 / 9;
+    els.bgSelect.value = currentBackground; els.bgSelect.disabled = false; els.bgDownload.disabled = !currentBackground; const renameButton = $('#background-rename'); if (renameButton) renameButton.disabled = !currentBackground;
+    if (view.nightBackground && !names.has(view.nightBackground)) view.nightBackground = '';
+    const nightSelect = $('#night-background-select');
+    if (nightSelect) { nightSelect.innerHTML = `<option value="">${escapeHtml(translateValue('Bez tła nocnego'))}</option>` + items.filter(x => x.name !== currentBackground).map(x => `<option value="${escapeHtml(x.name)}">${escapeHtml(x.name)}</option>`).join(''); nightSelect.value = view.nightBackground || ''; }
+    if (els.emptyBackgroundSelect) {
+      els.emptyBackgroundSelect.innerHTML = '<option value="">Wybierz istniejące tło…</option>' + items.map(x => `<option value="${escapeHtml(x.name)}">${escapeHtml(x.name)}</option>`).join('');
+      els.emptyBackgroundSelect.disabled = !items.length;
+    }
+    view.solidCanvasRatio ||= mobileView() ? 9 / 16 : 16 / 9; syncCanvasControls();
     if (els.solidCanvasRatio) els.solidCanvasRatio.value = String([1.7777777778,1.3333333333,1,.5625].reduce((best, ratio) => Math.abs(ratio - view.solidCanvasRatio) < Math.abs(best - view.solidCanvasRatio) ? ratio : best, 1.7777777778));
     applyBackgroundColour(); updateEmptyState(); els.image.hidden = !currentBackground; syncBackgroundTransformControls();
     if (currentBackground) {
@@ -1479,9 +2997,10 @@ async function loadBackgrounds(waitForImage = false, bustCache = false) {
           els.image.addEventListener('load', done, { once:true }); els.image.addEventListener('error', done, { once:true });
         });
         els.image.dataset.backgroundName = currentBackground; els.image.src = src;
-        if (waitForImage) await loaded;
+        if (waitForImage) await (imageTimeout > 0 ? Promise.race([loaded, new Promise(resolve => setTimeout(resolve, imageTimeout))]) : loaded);
       }
     } else { els.image.removeAttribute('src'); delete els.image.dataset.backgroundName; applyBackgroundTransform(); updateSceneGeometry(); }
+    applyNightBackground(); applyBackgroundBrightness();
   } catch (error) { els.bgStatus.textContent = `Błąd: ${error.message}`; }
 }
 async function uploadBackground(file) {
@@ -1500,8 +3019,15 @@ function viewportPointerDown(event) {
   // Desktop uses a dedicated mouse drag below. Pointer gestures are touch-only there.
   if (!sceneCameraActive() || (!mobileView() && event.pointerType === 'mouse') || (event.pointerType === 'mouse' && event.button !== 0)) return;
   // A new primary touch after an interrupted WebView gesture means every remembered pointer is stale.
+  // A gesture whose release never arrived (card left between two views) is taken over by the new finger.
+  const hanging = viewSwipe && viewSwipe.id !== event.pointerId && viewSwipe.tracking && !viewSwipe.fromPan && !swipeBusy ? viewSwipe : null;
+  if (hanging) { cancelAnimationFrame(hanging.frame); viewSwipe = null; }
   if ((event.pointerType === 'mouse') || (event.pointerType === 'touch' && event.isPrimary && viewPointers.size && !viewPointers.has(event.pointerId))) resetViewportPointers();
-  viewPointers.set(event.pointerId, { x:event.clientX, y:event.clientY });
+  viewPointers.set(event.pointerId, { x:event.clientX, y:event.clientY }); lastPointerActivity = performance.now();
+  if (!swipeBusy && !viewSwipe && !hanging) resetStuckSwipe(false);
+  viewSwipe = mobileView() && !editMode && viewTransitionMode() !== 'off' && event.pointerType !== 'mouse' && viewPointers.size === 1 && model.viewOrder.length > 1 ? { id:event.pointerId, x:event.clientX, y:event.clientY, t:Date.now(), panX:viewPanX, target:event.target, start:performance.now(), lastMove:performance.now() } : null;
+  if (hanging && viewSwipe && swipePreview) { const carry = hanging.lastDx || 0; Object.assign(viewSwipe, { x:event.clientX - carry, tracking:true, direction:hanging.direction, lastDx:carry, maxDx:Math.abs(carry) }); swipeLog(`przejęcie zawieszonego gestu (${Math.round(carry)} px)`); }
+  else if (hanging && !viewSwipe) settleBack(hanging.direction || 1, 180);
   if (viewPointers.size === 2) {
     const [a,b] = [...viewPointers.values()], r = els.viewport.getBoundingClientRect();
     pinchGesture = { distance:Math.hypot(a.x-b.x,a.y-b.y), zoom:viewZoom, panX:viewPanX, panY:viewPanY, x:(a.x+b.x)/2-r.left, y:(a.y+b.y)/2-r.top };
@@ -1512,12 +3038,18 @@ function viewportPointerDown(event) {
     // In viewing mode a drag beginning on a marker is still a panorama; only a short tap opens More Info.
     if (canPan && (!editMode || !marker)) {
       panGesture = { id:event.pointerId, x:event.clientX, y:event.clientY, panX:viewPanX, panY:viewPanY, marker, moved:false };
-      els.scene.setPointerCapture?.(event.pointerId);
+      try { els.scene.setPointerCapture?.(event.pointerId); } catch {}
     }
   }
 }
 function viewportPointerMove(event) {
+  lastPointerActivity = performance.now();
+  // The view swipe follows its own pointer even if the pan/pinch pointer list was reset meanwhile.
+  if (viewSwipe?.id === event.pointerId && !viewPointers.has(event.pointerId)) { viewSwipe.lastX = event.clientX; viewSwipe.lastY = event.clientY; viewSwipe.lastMove = performance.now(); trackViewSwipe(event); return; }
   if (!viewPointers.has(event.pointerId)) return;
+  if (viewPointers.size > 1 && viewSwipe) { if (viewSwipe.tracking) { const d = viewSwipe.direction || 1; viewSwipe = null; settleBack(d); } viewSwipe = null; }
+  if (viewSwipe?.id === event.pointerId) { viewSwipe.lastX = event.clientX; viewSwipe.lastY = event.clientY; viewSwipe.lastMove = performance.now(); }
+  if (viewSwipe?.id === event.pointerId && !panGesture && !pinchGesture) trackViewSwipe(event);
   viewPointers.set(event.pointerId, { x:event.clientX, y:event.clientY });
   if (viewPointers.size === 2 && pinchGesture) {
     const [a,b] = [...viewPointers.values()], distance = Math.hypot(a.x-b.x,a.y-b.y), next = clamp(pinchGesture.zoom * distance / Math.max(1,pinchGesture.distance),minViewZoom(),4), ratio = next / pinchGesture.zoom;
@@ -1525,18 +3057,263 @@ function viewportPointerMove(event) {
   } else if (panGesture?.id === event.pointerId) {
     const dx = event.clientX - panGesture.x, dy = event.clientY - panGesture.y;
     if (Math.hypot(dx, dy) > 6) { panGesture.moved = true; if (panGesture.marker) panGesture.marker.dataset.dragged = '1'; }
-    viewPanX = panGesture.panX + dx; viewPanY = panGesture.panY + dy; applyViewTransform();
+    const wantedPanX = panGesture.panX + dx;
+    viewPanX = wantedPanX; viewPanY = panGesture.panY + dy; applyViewTransform();
+    // A panorama scrolled to its edge hands the rest of the horizontal drag over to the view swipe.
+    const overscroll = wantedPanX - viewPanX;
+    if (viewSwipe?.id === event.pointerId && !pinchGesture && (Math.abs(overscroll) > 1 || viewSwipe.tracking)) { viewSwipe.fromPan = true; trackViewSwipe(event, overscroll); }
     if (panGesture.moved) event.preventDefault();
   }
 }
 function viewportPointerUp(event) {
+  if (event.type === 'pointerup' && viewSwipe?.id === event.pointerId && !viewPointers.has(event.pointerId)) { finishViewSwipe(event); return; }
+  if (event.type === 'lostpointercapture' && event.target !== els.scene) return;
   if (event.type === 'pointercancel' || event.type === 'lostpointercapture') {
+    const cancelled = viewSwipe; viewSwipe = null;
+    if (cancelled?.tracking) { cancelAnimationFrame(cancelled.frame); settleBack(cancelled.direction || 1); }
     resetViewportPointers();
     return;
   }
   viewPointers.delete(event.pointerId);
+  if (viewSwipe?.id === event.pointerId) finishViewSwipe(event);
   if (panGesture?.id === event.pointerId) panGesture = null;
   if (viewPointers.size < 2) pinchGesture = null;
+}
+// One-finger horizontal swipe switches to the neighbouring view (view mode, phone), but only
+// when the gesture was not used to pan a zoomed-in or panoramic scene.
+// Swiping between views works like the phone gallery: the current scene card follows the finger and a
+// ready-made preview of the neighbouring view (same geometry as the real view) slides in next to it.
+// Previews are prepared ahead of time (image decoded first, markers added afterwards), so a swipe only moves them.
+const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+const nextFrames = (count = 1) => new Promise(resolve => { const step = left => left ? requestAnimationFrame(() => step(left - 1)) : resolve(); step(count); });
+const swipeImages = new Map(), swipePreviews = new Map();
+let swipePreview = null, swipePrebuildTimer = null, swipeBusy = false, pendingSwipe = 0;
+function swipeNeighbour(dx) { const index = model.viewOrder.indexOf(model.activeViewId); return model.viewOrder[index + (dx < 0 ? 1 : -1)]; }
+// Transition between views on phones: 'off' (tabs only), 'slide' (pager) or 'cube' (3D cube).
+function viewTransitionMode() { const mode = model.settings?.viewTransition; return mode === 'off' || mode === 'cube' ? mode : 'slide'; }
+function swipePageDistance() { if (viewTransitionMode() === 'cube') return els.sceneCard?.offsetWidth || innerWidth; return (els.sceneCard?.parentElement?.clientWidth || innerWidth) + 16; }
+const withTimeout = (promise, ms) => Promise.race([Promise.resolve(promise).catch(() => {}), new Promise(resolve => setTimeout(resolve, ms))]);
+// Cancels a swipe in progress (lost touch, app sent to background) and puts both cards back.
+// Safety net: cards may never stay between two views without a gesture or an animation running.
+let activeTouches = 0, touchEventsSeen = false;
+function swipeStuck() { return Boolean(swipePreview && !swipePreview.element.hidden) || Boolean(els.sceneCard?.style.transform); }
+function resetStuckSwipe(animate = true) {
+  if (swipeBusy || viewSwipe || !swipeStuck()) return;
+  if (!animate) { removeSwipePreview(); positionSwipe(0, 1); return; }
+  settleViewSwipe(0, 1, 180).then(() => { if (!viewSwipe && !swipeBusy) { removeSwipePreview(); positionSwipe(0, 1); } });
+}
+function swipeWatchdog() {
+  flushDeferredRenders();
+  // "Finger gone" is only trusted when the page really receives touch events; otherwise wait for a long idle.
+  const idle = viewSwipe ? performance.now() - (viewSwipe.lastMove || viewSwipe.start || 0) : 0;
+  if (viewSwipe && !swipeBusy && ((touchEventsSeen && activeTouches === 0 && idle > 250) || idle > (viewSwipe.tracking ? 1500 : 4000))) {
+    // The finger is gone but no pointerup/cancel arrived: finish the gesture with its last known position.
+    swipeLog(`STRAŻNIK: brak puszczenia (bezczynność ${Math.round(idle)} ms)`);
+    const swipe = viewSwipe; viewPointers.delete(swipe.id); finishViewSwipe({ clientX: swipe.lastX ?? swipe.x, clientY: swipe.lastY ?? swipe.y });
+    return;
+  }
+  if (!viewSwipe && !swipeBusy && swipeStuck() && performance.now() - (swipeWatchdog.lastEnd || 0) > 600) { swipeLog('STRAŻNIK: karty w połowie → powrót'); resetStuckSwipe(true); }
+}
+// Optional on-screen swipe diagnostics (per device): shows what the page receives during a swipe.
+const SWIPE_DEBUG_KEY = 'ha-views:swipe-debug';
+let swipeDebug = false, swipeDebugLines = [], swipeDebugT0 = 0;
+try { localStorage.removeItem(SWIPE_DEBUG_KEY); } catch {}
+function swipeLog(text) {
+  if (!swipeDebug) return;
+  const now = performance.now(); if (!swipeDebugT0 || now - swipeDebugT0 > 4000) swipeDebugT0 = now;
+  swipeDebugLines.push(`${String(Math.round(now - swipeDebugT0)).padStart(5)} ${text}`); swipeDebugLines = swipeDebugLines.slice(-14);
+  let box = $('#swipe-debug');
+  if (!box) { box = document.createElement('pre'); box.id = 'swipe-debug'; box.setAttribute('data-no-i18n', ''); document.body.append(box); }
+  box.textContent = swipeDebugLines.join('\n') + `\n— busy:${swipeBusy ? 1 : 0} swipe:${viewSwipe ? (viewSwipe.tracking ? 'track' : 'wait') : '-'} touches:${activeTouches}${touchEventsSeen ? '' : '?'} card:${els.sceneCard?.style.transform ? 'moved' : 'home'}`;
+}
+function setSwipeDebug(on) {
+  swipeDebug = on; try { localStorage.setItem(SWIPE_DEBUG_KEY, on ? '1' : '0'); } catch {}
+  if (!on) { $('#swipe-debug')?.remove(); swipeDebugLines = []; } else swipeLog('diagnostyka włączona');
+}
+function abortViewSwipe() {
+  if (viewSwipe) swipeLog('ABORT (utrata dotyku / tło / fokus)');
+  const swipe = viewSwipe; viewSwipe = null; if (!swipe) return;
+  cancelAnimationFrame(swipe.frame);
+  if (swipe.tracking && !swipeBusy) settleBack(swipe.direction || 1, 180);
+}
+function swipeImage(name) {
+  if (!swipeImages.has(name)) {
+    const image = new Image(); image.decoding = 'async'; image.src = `api/background/file?name=${encodeURIComponent(name)}`;
+    const ready = (image.decode ? image.decode() : new Promise(resolve => { image.onload = resolve; })).catch(() => {}).then(() => image);
+    swipeImages.set(name, { image, ready });
+  }
+  return swipeImages.get(name);
+}
+// Mirrors applyBackgroundTransform()/updateSceneGeometry()/resetViewZoom() for a view that is not active yet.
+function swipeGeometry(view, image) {
+  const card = els.sceneCard, parentWidth = Math.max(1, card.parentElement?.clientWidth || innerWidth), cardTop = card.getBoundingClientRect().top;
+  const screenHeight = window.visualViewport?.height || innerHeight, border = 2, designWidth = Number(model.settings?.designWidth) || DESIGN_WIDTH;
+  const hasImage = Boolean(image?.naturalWidth && image?.naturalHeight), ratio = hasImage ? image.naturalWidth / image.naturalHeight : clamp(view.solidCanvasRatio || 16 / 9, .25, 4);
+  if (hasImage && mobileView() && innerHeight > innerWidth && image.naturalWidth > image.naturalHeight) {
+    const viewportHeight = Math.max(180, screenHeight - cardTop - 1 - 8), sceneWidth = Math.round(viewportHeight * ratio), viewportWidth = parentWidth - border;
+    const panStart = clamp(view.backgroundTransforms?.[view.background]?.mobilePanStart ?? .5, 0, 1);
+    return { cardWidth: parentWidth, cardLeft: 0, viewportHeight, viewportWidth, sceneWidth, sceneHeight: viewportHeight, panX: -Math.max(0, sceneWidth - viewportWidth) * panStart, scale: sceneWidth / designWidth, panorama: sceneWidth - viewportWidth > 1 };
+  }
+  const cardWidth = Math.min(parentWidth, Math.max(160, screenHeight - cardTop - 8) * ratio), sceneWidth = cardWidth - border, sceneHeight = sceneWidth / ratio;
+  return { cardWidth, cardLeft: (parentWidth - cardWidth) / 2, viewportHeight: sceneHeight, sceneWidth, sceneHeight, panX: 0, scale: sceneWidth / designWidth };
+}
+function buildSwipePreview(targetId) {
+  const view = model.views[targetId]; if (!view || !els.sceneCard) return null;
+  const imageEntry = view.background ? swipeImage(viewIsNight(view) ? view.nightBackground : view.background) : null;
+  const wrap = document.createElement('div'); wrap.className = 'scene-card swipe-preview'; wrap.setAttribute('data-no-i18n', ''); wrap.setAttribute('aria-hidden', 'true'); wrap.hidden = true;
+  const viewport = document.createElement('div'); viewport.className = 'swipe-preview-viewport';
+  const scene = document.createElement('div'); scene.className = 'scene swipe-preview-scene';
+  scene.style.background = view.backgroundColor || 'linear-gradient(145deg,#0d2838,#0a1c27)';
+  viewport.append(scene); wrap.append(viewport); els.sceneCard.parentElement.append(wrap);
+  const preview = { element: wrap, targetId, viewport, scene, geometry: null };
+  const layout = image => {
+    const g = preview.geometry = swipeGeometry(view, image);
+    Object.assign(wrap.style, { top: els.sceneCard.offsetTop + 'px', left: g.cardLeft + 'px', width: g.cardWidth + 'px' });
+    viewport.style.height = g.viewportHeight + 'px';
+    Object.assign(scene.style, { width: g.sceneWidth + 'px', height: g.sceneHeight + 'px', transform: `translateX(${g.panX}px)` });
+    scene.style.setProperty('--scene-scale', g.scale);
+    wrap.querySelector('.panorama-indicator')?.remove();
+    if (g.panorama) {
+      const indicator = document.createElement('div'), thumb = document.createElement('i'), maxX = g.sceneWidth - g.viewportWidth, size = clamp(g.viewportWidth / g.sceneWidth * 100, 12, 92);
+      indicator.className = 'panorama-indicator visible'; thumb.style.width = `${size}%`; thumb.style.transform = `translateX(${(-g.panX / maxX) * (100 - size)}%)`;
+      indicator.append(thumb); wrap.append(indicator);
+    }
+  };
+  const addMarkers = () => {
+    if (!wrap.isConnected) return;
+    const layer = document.createElement('div'); layer.className = 'markers';
+    Object.values(view.entities || {}).forEach(marker => { const node = document.createElement('div'); node.className = `marker ${marker.type}`; node.innerHTML = markerHtml(marker); applyMarkerStyle(node, marker); layer.append(node); });
+    Object.values(view.flows || {}).forEach(flow => { const built = buildFlowNode(flow); if (built) { placeFlowNode(built.node, flow, built.duration); layer.append(built.node); } });
+    const rooms = Object.values(view.rooms || {}).filter(room => (room.points || []).length >= 3);
+    if (rooms.length) { const roomLayer = document.createElement('div'); roomLayer.className = 'rooms'; roomLayer.innerHTML = rooms.map(room => roomLayerMarkup(room, `pv-${targetId}`, preview.geometry?.sceneWidth || 1, preview.geometry?.sceneHeight || 1).html).join(''); scene.append(roomLayer); }
+    scene.append(layer);
+  };
+  if (imageEntry) {
+    layout(null);
+    imageEntry.ready.then(image => { if (!wrap.isConnected) return; const clone = image.cloneNode(); clone.style.filter = brightnessFilter(brightnessOf(view, viewIsNight(view) ? 'nightBrightness' : 'backgroundBrightness')); clone.className = 'swipe-preview-image'; clone.alt = ''; clone.draggable = false; scene.prepend(clone); layout(image); addMarkers(); });
+  } else { layout(null); addMarkers(); }
+  return preview;
+}
+function clearSwipePreviews() { swipePreviews.forEach(preview => preview.element.remove()); swipePreviews.clear(); }
+function prebuildSwipePreviews(delay = 400) {
+  clearTimeout(swipePrebuildTimer);
+  swipePrebuildTimer = setTimeout(() => {
+    if (viewSwipe?.tracking || swipePreview || swipeBusy) return prebuildSwipePreviews(300);
+    clearSwipePreviews();
+    if (!mobileView() || editMode || model.viewOrder.length < 2 || !els.sceneCard) return;
+    const index = model.viewOrder.indexOf(model.activeViewId);
+    [model.viewOrder[index - 1], model.viewOrder[index + 1]].filter(Boolean).forEach(id => { const preview = buildSwipePreview(id); if (preview) swipePreviews.set(id, preview); });
+  }, delay);
+}
+function setSwipeClip(on) {
+  const section = els.sceneCard?.parentElement; if (!section) return;
+  if (on && !section.classList.contains('view-swiping')) section.style.minHeight = `${Math.max(section.offsetHeight, ...[...swipePreviews.values()].map(preview => preview.element.offsetTop + preview.element.offsetHeight))}px`;
+  if (!on) section.style.minHeight = '';
+  section.classList.toggle('view-swiping', on);
+}
+function removeSwipePreview() { if (swipePreview) swipePreview.element.hidden = true; swipePreview = null; setSwipeClip(false); }
+function positionSwipe(offset, direction, animate = 0) {
+  const distance = swipePageDistance(), transition = animate ? `transform ${animate}ms cubic-bezier(.22,.61,.36,1)` : 'none';
+  const cube = viewTransitionMode() === 'cube', section = els.sceneCard?.parentElement;
+  if (cube) {
+    // Two faces of one cube rotating about the cube's centre: the current view turns away, the next one turns in.
+    const progress = clamp(offset / distance, -1, 1), angle = 90 * progress, half = distance / 2;
+    const face = a => `translateZ(${-half}px) rotateY(${a}deg) translateZ(${half}px)`;
+    if (els.sceneCard) Object.assign(els.sceneCard.style, { transition, transformOrigin: '50% 50%', transform: offset ? face(angle) : '' });
+    if (swipePreview) Object.assign(swipePreview.element.style, { transition, transformOrigin: '50% 50%', transform: face(angle - direction * 90) });
+    if (!offset && els.sceneCard) els.sceneCard.style.transformOrigin = '';
+    return;
+  }
+  if (els.sceneCard) { els.sceneCard.style.transition = transition; els.sceneCard.style.transformOrigin = ''; els.sceneCard.style.transform = offset ? `translateX(${offset}px)` : ''; }
+  if (swipePreview) { swipePreview.element.style.transition = transition; swipePreview.element.style.transformOrigin = ''; swipePreview.element.style.transform = `translateX(${offset - direction * distance}px)`; }
+}
+function trackViewSwipe(event, forcedDx = null) {
+  const swipe = viewSwipe;
+  // While the previous page is still settling, remember the gesture; once it is done, continue from the finger's current position.
+  // While the previous page is still settling, only remember the gesture; afterwards it continues with its full distance.
+  if (swipeBusy) { swipe.busyDx = event.clientX - swipe.x; swipe.caughtUp = false; swipe.panX = viewPanX; return; }
+  const dx = forcedDx ?? event.clientX - swipe.x, dy = forcedDx === null ? event.clientY - swipe.y : 0;
+  swipe.lastDx = dx; swipe.maxDx = Math.max(swipe.maxDx || 0, Math.abs(dx));
+  swipe.samples = (swipe.samples || []).concat([[event.clientX, performance.now()]]).slice(-6);
+  if (!swipe.tracking) { if (Math.abs(dx) < 10 || Math.abs(dx) < Math.abs(dy) * 1.3) return; swipe.tracking = true; swipeLog(`śledzenie start${swipe.fromPan ? ' (z panoramy)' : ''}`); try { if (!els.scene.hasPointerCapture(swipe.id)) els.scene.setPointerCapture(swipe.id); } catch {} $$('.swipe-preview.swipe-fading').forEach(node => node.remove()); }
+  if (swipe.fromPan && Math.abs(dx) < .5) { removeSwipePreview(); positionSwipe(0, swipe.direction || 1); return; }
+  const target = swipeNeighbour(dx), direction = dx < 0 ? -1 : 1; swipe.direction = direction;
+  if (swipePreview?.targetId !== target) {
+    removeSwipePreview();
+    if (target) { swipePreview = swipePreviews.get(target) || null; if (!swipePreview) { swipePreview = buildSwipePreview(target); if (swipePreview) swipePreviews.set(target, swipePreview); } if (swipePreview) { swipePreview.element.hidden = false; setSwipeClip(true); } }
+  }
+  const offset = target ? dx : dx * .25;
+  cancelAnimationFrame(swipe.frame);
+  // First frame after catching up with a busy transition glides to the finger instead of jumping.
+  if (swipe.caughtUp === false) { swipe.caughtUp = true; positionSwipe(offset, direction, 90); }
+  else swipe.frame = requestAnimationFrame(() => positionSwipe(offset, direction));
+  event.preventDefault();
+}
+// Puts the cards back after a cancelled gesture. The final reset is skipped when a newer gesture or a view
+// transition has started in the meantime; resetting then would snap that gesture's cards back mid-way.
+function settleBack(direction = 1, duration = 200) {
+  return settleViewSwipe(0, direction, duration).then(() => { if (!viewSwipe?.tracking && !swipeBusy) { removeSwipePreview(); positionSwipe(0, direction); } });
+}
+function settleViewSwipe(offset = 0, direction = 1, duration = 220) {
+  return new Promise(resolve => {
+    if (reducedMotion()) { positionSwipe(offset, direction); return resolve(); }
+    positionSwipe(offset, direction, duration);
+    setTimeout(resolve, duration + 30);
+  });
+}
+async function finishViewSwipe(event) {
+  const swipe = viewSwipe; viewSwipe = null; if (!swipe) return; swipeLog(`koniec gestu${event?.type ? ' (' + event.type + ')' : ' (awaryjny)'}${swipeBusy ? ' w trakcie przejścia → kolejka' : ''}`); cancelAnimationFrame(swipe.frame); swipeWatchdog.lastEnd = performance.now();
+  if (swipeBusy) { const queued = swipe.busyDx ?? event.clientX - swipe.x; if (Math.abs(queued) >= 40) pendingSwipe = Math.sign(queued); return; }
+  const dx = swipe.fromPan ? (swipe.lastDx || 0) : event.clientX - swipe.x, dy = swipe.fromPan ? 0 : event.clientY - swipe.y, distance = swipePageDistance(), direction = dx < 0 ? -1 : 1;
+  // Gallery-like decision. The finger's recent speed (last ~100 ms, ignoring the few pixels of jitter when it is
+  // lifted) projects where the page is heading; only a clear pull-back of the finger cancels the switch.
+  if (!swipe.fromPan) swipe.samples = (swipe.samples || []).concat([[event.clientX, performance.now()]]);
+  const samples = (swipe.samples || []).filter(([, t]) => performance.now() - t < 100), first = samples[0], last = samples[samples.length - 1];
+  let velocity = first && last && last[1] - first[1] >= 8 ? (last[0] - first[0]) / (last[1] - first[1]) : 0;
+  if (Math.sign(velocity) !== Math.sign(dx) && Math.abs(velocity) < .35) velocity = 0;
+  const pulledBack = (swipe.maxDx || Math.abs(dx)) - Math.abs(dx) > Math.max(30, distance * .08) && Math.sign(velocity) !== Math.sign(dx);
+  const horizontal = Math.abs(dx) >= Math.abs(dy) * (swipe.tracking ? .7 : 1.3) && (swipe.fromPan || Math.abs(viewPanX - swipe.panX) <= 12);
+  const projected = dx + velocity * 200;
+  let go = !pulledBack && (Math.abs(projected) > distance * .5 || (Math.abs(velocity) > .25 && Math.abs(dx) > 30) || Math.abs(dx) > distance * .4);
+  if (pulledBack && Math.abs(dx) > distance * .6) go = true;
+  // A short, quick flick (few move events) also counts.
+  if (!swipe.fromPan && !pulledBack && Date.now() - swipe.t <= 300 && Math.abs(dx) >= 50 && !(Math.abs(velocity) > .35 && Math.sign(velocity) !== Math.sign(dx))) go = true;
+  lastSwipeDecision = { dx: Math.round(dx), dy: Math.round(dy), velocity: +velocity.toFixed(2), pulledBack, horizontal, go };
+  swipeLog(`decyzja dx=${Math.round(dx)} dy=${Math.round(dy)} v=${velocity.toFixed(2)}${pulledBack ? ' cofnięty' : ''}${horizontal ? '' : ' nie-poziomy'} → ${go && horizontal ? 'PRZEŁĄCZ' : 'ZOSTAŃ'}`);
+  const target = go && horizontal ? swipeNeighbour(dx) : null;
+  if (!target) { if (swipe.tracking) await settleBack(direction, 200); return; }
+  const marker = swipe.target?.closest?.('.marker,.flow-marker'); if (marker) marker.dataset.dragged = '1';
+  await completeViewSwipe(target, direction, dx, velocity);
+}
+async function completeViewSwipe(target, direction, dx = 0, velocity = 0) {
+  const distance = swipePageDistance();
+  if (!swipePreview || swipePreview.targetId !== target) { removeSwipePreview(); swipePreview = swipePreviews.get(target) || buildSwipePreview(target); if (swipePreview) { swipePreview.element.hidden = false; setSwipeClip(true); positionSwipe(dx, direction); void els.sceneCard.offsetWidth; } }
+  const remaining = Math.max(0, distance - Math.abs(dx)), speed = Math.max(Math.abs(velocity), 1.4);
+  swipeBusy = true; let preview = null; swipeLog('przejście…');
+  try {
+    await settleViewSwipe(direction * distance, direction, Math.round(clamp(remaining / speed, 110, 240)));
+    // The preview now sits exactly where the real view will be: swap the real view in underneath and fade it out.
+    preview = swipePreview; swipePreview = null; swipePreviews.delete(target);
+    await withTimeout(switchSceneView(target), 4000);
+    // Make the real view final (decoded image, final card/scene geometry) and painted under the still opaque
+    // preview before the preview fades; otherwise one intermediate frame can blink on slower phones.
+    if (currentBackground && els.image.decode) await withTimeout(els.image.decode(), 800);
+    applyBackgroundTransform(); updateSceneGeometry();
+    await nextFrames(2);
+    positionSwipe(0, direction);
+    await nextFrames(2);
+    setSwipeClip(false);
+  } catch (error) {
+    // Never leave the cards between two views, whatever failed.
+    console.warn('HA Views swipe', error); removeSwipePreview(); positionSwipe(0, direction);
+  } finally { swipeBusy = false; swipeWatchdog.lastEnd = performance.now(); swipeLog('przejście gotowe'); }
+  if (preview) { preview.element.classList.add('swipe-fading'); preview.element.style.transition = 'opacity 140ms ease'; preview.element.style.opacity = '0'; setTimeout(() => preview.element.remove(), 170); }
+  // A flick made during this transition continues straight to the next view.
+  if (pendingSwipe && !viewSwipe?.tracking) {
+    const queued = pendingSwipe, next = swipeNeighbour(queued); pendingSwipe = 0;
+    if (next) { removeSwipePreview(); swipePreview = swipePreviews.get(next) || buildSwipePreview(next); if (swipePreview) { swipePreview.element.hidden = false; setSwipeClip(true); positionSwipe(0, queued < 0 ? -1 : 1); void els.sceneCard.offsetWidth; } await completeViewSwipe(next, queued < 0 ? -1 : 1, 0, 1.6); }
+  }
+  pendingSwipe = 0;
 }
 function startDesktopPan(event) {
   if (mobileView() || event.button !== 0 || viewZoom <= 1.001) return;
@@ -1566,32 +3343,99 @@ function startDesktopPan(event) {
 function bindEvents() {
   document.addEventListener('error', integrationIconError, true);
   els.language?.addEventListener('change', () => {
-    uiLanguage = els.language.value === 'pl' ? 'pl' : 'en';
+    uiLanguage = els.language.value === 'pl' ? 'pl' : 'en'; try { localStorage.setItem(LANGUAGE_CACHE_KEY, uiLanguage); } catch {}
     model.settings ||= {}; model.settings.language = uiLanguage;
     applyLanguage(); scheduleSave(true);
   });
-  els.sceneTabs?.addEventListener('click', event => { const tab=event.target.closest('[data-scene-view]'); if(!tab)return; showMainView('overview'); switchSceneView(tab.dataset.sceneView); });
+  els.sceneTabs?.addEventListener('pointerdown', startTabDrag);
+  els.sceneTabs?.addEventListener('touchmove', event => { if (tabDrag?.active) event.preventDefault(); }, { passive:false });
+  els.sceneTabs?.addEventListener('contextmenu', event => { if (tabDrag) event.preventDefault(); });
+  els.sceneTabs?.addEventListener('click', event => { if (suppressTabClick) { suppressTabClick = false; event.preventDefault(); event.stopPropagation(); return; } const tab=event.target.closest('[data-scene-view]'); if(!tab)return; showMainView('overview'); switchSceneView(tab.dataset.sceneView); });
   els.settingsToggle?.addEventListener('click', () => { const open = !els.settingsMenu?.classList.contains('open'); closeCompactMenus(); els.settingsMenu?.classList.toggle('open', open); els.settingsToggle?.classList.toggle('active', open); });
-  els.integrationsButton?.addEventListener('click', () => { closeEditor(); closeMoreInfo(); openIntegrations.clear(); unusedIntegrationsOpen = false; closeCompactMenus(); showMainView('integrations'); });
-  els.viewManage?.addEventListener('click', () => { const open = !els.viewSwitcher.classList.contains('open'); closeCompactMenus(); els.viewSwitcher.classList.toggle('open', open); els.viewManage.classList.toggle('active', open); });
+  els.integrationsButton?.addEventListener('click', () => { if (els.integrationsButton.classList.contains('active')) { showMainView('overview'); return; } closeEditor(); closeFlowEditor(); closeRoomEditor(); cancelRoomDrawing(); closeMoreInfo(); openIntegrations.clear(); unusedIntegrationsOpen = false; closeCompactMenus(); showMainView('integrations'); });
+  els.viewManage?.addEventListener('click', () => { placeViewSheet(); const open = !els.viewSwitcher.classList.contains('open'); closeCompactMenus(); els.viewSwitcher.classList.toggle('open', open); els.viewManage.classList.toggle('active', open); });
   els.viewAdd?.addEventListener('click', addSceneView); els.viewRename?.addEventListener('click', renameSceneView);
   els.viewDuplicate?.addEventListener('click', duplicateSceneView); els.viewDefault?.addEventListener('click', setDefaultSceneView); els.viewMoveLeft?.addEventListener('click', () => moveSceneView(-1)); els.viewMoveRight?.addEventListener('click', () => moveSceneView(1)); els.viewDelete?.addEventListener('click', deleteSceneView);
   els.confirmInput?.addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); closeAppConfirm(true); } });
-  els.editToggle.addEventListener('click', () => { closeMoreInfo(); editMode = !editMode; els.body.classList.toggle('editing', editMode); els.editToggle.classList.toggle('active', editMode); els.editToggle.setAttribute('aria-pressed', String(editMode)); els.editToggle.title = translateValue('Edytuj widok'); els.editToggle.setAttribute('aria-label', els.editToggle.title); if (editMode) { closeCompactMenus(); els.editMenu?.classList.add('open'); } else { editorPreview = { entityId:'', state:'' }; closeEditor(); closeCompactMenus(); els.bgTransformPanel?.classList.remove('open'); els.bgTransformToggle?.classList.remove('active'); renderMarkers(); } requestAnimationFrame(() => { applyBackgroundTransform(); updateSceneGeometry(); }); });
+  els.flowEditorClose?.addEventListener('click', closeFlowEditor);
+  $('#flow-default-style')?.addEventListener('click', resetFlowStyle); $('#flow-copy-style')?.addEventListener('click', copyFlowStyle); $('#flow-duplicate')?.addEventListener('click', duplicateFlow); $('#flow-paste-style')?.addEventListener('click', pasteFlowStyle); $('#flow-remove')?.addEventListener('click', confirmRemoveFlow);
+  els.flowEditorContent?.addEventListener('click', onFlowEditorClick);
+  els.flowEditorContent?.addEventListener('pointerdown', event => { if (event.target.closest('input[type="checkbox"],select')) event.stopPropagation(); });
+  $('.flow-editor .editor-head')?.addEventListener('pointerdown', startEditorDrag);
+  els.editToggle.addEventListener('click', () => { if (isViewer()) return; closeMoreInfo(); editMode = !editMode; els.body.classList.toggle('editing', editMode); els.editToggle.classList.toggle('active', editMode); els.editToggle.setAttribute('aria-pressed', String(editMode)); els.editToggle.title = translateValue('Edytuj widok'); els.editToggle.setAttribute('aria-label', els.editToggle.title); if (editMode) { closeCompactMenus(); els.editMenu?.classList.add('open'); renderMarkers(); } else { editorPreview = { entityId:'', state:'' }; roomPreviewOn = ''; resetViewZoom(); closeEditor(); closeFlowEditor(); cancelRoomDrawing(); closeRoomEditor(); renderRoomEditLayer(); closeCompactMenus(); els.bgTransformPanel?.classList.remove('open'); els.bgTransformToggle?.classList.remove('active'); renderMarkers(); } requestAnimationFrame(() => { applyBackgroundTransform(); updateSceneGeometry(); }); });
+  $('#snap-menu-button')?.addEventListener('click', event => { event.stopPropagation(); const menu = $('#snap-menu'), open = !menu.classList.contains('open'); closeCompactMenus(); menu.classList.toggle('open', open); $('#snap-menu-button').classList.toggle('active', open); syncSnapMenu(); });
+  $('#snap-menu')?.addEventListener('click', event => {
+    event.stopPropagation();
+    const key = event.target.closest('[data-snap-key]')?.dataset.snapKey, align = event.target.closest('[data-align]')?.dataset.align;
+    if (key) { model.settings ||= {}; model.settings.snapTargets = { ...snapTargets(), [key]: !snapTargets()[key] }; syncSnapMenu(); scheduleSave(true); }
+    if (align) alignSelectedToBackground(align);
+    const rotate = event.target.closest('[data-rotate]')?.dataset.rotate;
+    if (rotate !== undefined) { const item = rotationTarget(); if (item) setSelectedRotation(rotate === 'reset' ? 0 : (Number(item.rotation) || 0) + Number(rotate), true); }
+  });
+  $('#rotate-range')?.addEventListener('input', event => setSelectedRotation(event.target.value, false));
+  $('#rotate-range')?.addEventListener('change', event => setSelectedRotation(event.target.value, true));
+  $('#snap-menu')?.addEventListener('pointerdown', event => { if (event.target.closest('#rotate-range')) event.stopPropagation(); });
+  $('#flow-add')?.addEventListener('click', addBlankFlow);
+  $('#night-background-select')?.addEventListener('change', event => { const view = activeSceneView(); if (!view) return; view.nightBackground = event.target.value; applyNightBackground(); scheduleSave(true); refreshStates(); });
+  $('#night-background-upload')?.addEventListener('click', () => $('#night-background-file')?.click());
+  $('#night-background-file')?.addEventListener('change', event => uploadNightBackground(event.target.files?.[0]));
+  $('#night-entity')?.addEventListener('change', event => { const view = activeSceneView(); if (!view) return; view.nightEntity = event.target.value.trim(); if (!view.nightEntity) delete view.nightEntity; scheduleSave(true); refreshStates(); applyNightBackground(); });
+  $('.night-mode')?.addEventListener('click', event => { const mode = event.target.closest('[data-night-mode]')?.dataset.nightMode; if (mode) setNightMode(mode); });
+  $('#background-files')?.addEventListener('click', openBackgroundManager);
+  $('#bg-manager-close')?.addEventListener('click', closeBackgroundManager);
+  $('#bg-manager')?.addEventListener('click', event => { if (event.target.id === 'bg-manager') closeBackgroundManager(); const name = event.target.closest('[data-bg-delete]')?.dataset.bgDelete; if (name) deleteBackgroundFiles([name]); const act = event.target.closest('[data-bg-action]'); if (act) backgroundFileAction(act.dataset.bgAction, act.dataset.name); });
+  document.addEventListener('keydown', event => { if (event.key !== 'Escape') return; if ($('#bg-manager')?.classList.contains('visible') && !els.confirmBox.classList.contains('visible')) closeBackgroundManager(); });
+  $('#bg-manager-clean')?.addEventListener('click', () => deleteBackgroundFiles(bgManagerItems.filter(item => !backgroundUses(item.name).length).map(item => item.name), true));
+  $('#bounds-toggle')?.addEventListener('click', () => { model.settings ||= {}; model.settings.keepInBounds = !keepInBounds(); applyBoundsUi(); scheduleSave(true); notify(keepInBounds() ? 'Elementy nie wyjdą poza tło' : 'Elementy mogą wychodzić poza tło'); });
+  applyBoundsUi();
   els.snapToggle.addEventListener('click', () => { model.settings.snapEnabled = !model.settings.snapEnabled; applySnapUi(); scheduleSave(true); notify(model.settings.snapEnabled ? 'Przyciąganie do siatki włączone' : 'Przyciąganie do siatki wyłączone'); });
   els.gridPresets.forEach(button => button.addEventListener('click', () => {
     model.settings.snapStep = Number(button.dataset.gridStep);
     applySnapUi(); scheduleSave(true);
   }));
   els.solidCanvasRatio?.addEventListener('change', () => { const view = activeSceneView(); if (!view) return; view.solidCanvasRatio = clamp(els.solidCanvasRatio.value, .25, 4); updateSceneGeometry(); scheduleSave(true); });
-  els.bgManage.addEventListener('click', () => { const open = !els.backgroundBar.classList.contains('open'); if (open) { closeEditor(); closeMoreInfo(); } els.backgroundBar.classList.toggle('open', open); els.bgManage.classList.toggle('active', open); if (open) openBackgroundMenu(); else { els.backgroundBar.classList.remove('onboarding'); els.bgStatus.textContent = ''; } });
+  els.bgManage.addEventListener('click', () => { closeEditor(); closeMoreInfo(); openBackgroundMenu(); });
+  $('#view-options')?.addEventListener('click', () => setViewMenuPage('options'));
+  $('#vm-back')?.addEventListener('click', () => setViewMenuPage('main'));
+  $('#vm-close')?.addEventListener('click', closeCompactMenus);
+  $('#background-rename')?.addEventListener('click', () => renameBackgroundFile(currentBackground));
+  $$('[data-canvas-size]').forEach(button => button.addEventListener('click', () => { const [w, h] = button.dataset.canvasSize.split('x').map(Number); setCanvasSize(w, h); }));
+  ['#canvas-width','#canvas-height'].forEach(id => $(id)?.addEventListener('change', () => setCanvasSize(Number($('#canvas-width').value), Number($('#canvas-height').value))));
+  $('#canvas-resize-start')?.addEventListener('click', startCanvasResize);
+  $$('[data-brightness]').forEach(input => { input.addEventListener('input', () => setBackgroundBrightness(input.dataset.brightness, input.value, false)); input.addEventListener('change', () => setBackgroundBrightness(input.dataset.brightness, input.value, true)); });
+  $$('[data-brightness-reset]').forEach(button => button.addEventListener('click', () => setBackgroundBrightness(button.dataset.brightnessReset, 100, true)));
+  $('#canvas-resize-done')?.addEventListener('click', finishCanvasResize);
+  $('#view-transition')?.addEventListener('change', event => { model.settings ||= {}; model.settings.viewTransition = event.target.value; renderViewSelector(); prebuildSwipePreviews(60); scheduleSave(true); notify('Zapisano sposób przełączania widoków'); });
+  $('#background-preview-cancel')?.addEventListener('click', () => hideBackgroundPreview(true));
+  $('#background-preview-apply')?.addEventListener('click', async () => { try { const view = activeSceneView(); view.background = els.bgSelect.value; if (view.background) view.onboardingDone = true; hideBackgroundPreview(); await loadBackgrounds(); scheduleSave(true); } catch (error) { notify(error.message, true); } });
   els.bgTransformToggle?.addEventListener('click', () => { els.bgTransformPanel.classList.toggle('open'); els.bgTransformToggle.classList.toggle('active', els.bgTransformPanel.classList.contains('open')); syncBackgroundTransformControls(); });
   [els.bgScale].forEach(control => { control?.addEventListener('input', updateBackgroundTransform); control?.addEventListener('change', updateBackgroundTransform); });
   els.mobilePanStart?.addEventListener('change', updateMobilePanStart);
   els.bgTransformPanel?.addEventListener('click', event => { const x = event.target.closest('[data-bg-align-x]'); if (!currentBackground || !x) return; const t = currentBackgroundTransform(); t.x = Number(x.dataset.bgAlignX); applyBackgroundTransform(); syncBackgroundTransformControls(); scheduleSave(true); });
   $('#background-transform-reset')?.addEventListener('click', async () => { if (!currentBackground || !await appConfirm({ title:'Zresetować dopasowanie tła?', message:'Skala, pozycja i tryb dopasowania tego tła wrócą do wartości domyślnych.', confirmText:'Resetuj', danger:true })) return; activeSceneView().backgroundTransforms[currentBackground] = defaultBackgroundTransform(); applyBackgroundTransform(); syncBackgroundTransformControls(); scheduleSave(true); notify('Przywrócono domyślne dopasowanie tła'); });
-  els.scene.addEventListener('click', event => { if (event.target === els.scene || event.target === els.markers || event.target === els.image) { closeEditor(); closeMoreInfo(); } });
-  $('#editor-close').addEventListener('click', closeEditor); document.addEventListener('keydown', e => { if (e.key !== 'Escape') return; if (els.confirmBox.classList.contains('visible')) closeAppConfirm(false); else if (els.moreInfo.classList.contains('visible')) closeMoreInfo(); else closeEditor(); });
+  els.scene.addEventListener('click', onRoomDrawClick, true);
+  els.scene.addEventListener('pointerdown', event => { els.scene.__tapStart = { x:event.clientX, y:event.clientY, t:performance.now() }; }, true);
+  els.scene.addEventListener('pointermove', onRoomDrawMove);
+  els.scene.addEventListener('pointerdown', event => { if (startRoomMove(event)) { event.preventDefault(); event.stopImmediatePropagation(); } });
+  els.scene.addEventListener('click', event => {
+    if (!(event.target === els.scene || event.target === els.markers || event.target === els.image)) return;
+    if (els.markers.dataset.roomMoved === '1') { els.markers.dataset.roomMoved = '0'; return; }
+    const room = roomAt(scenePercentAt(event));
+    if (!editMode) { const start = els.scene.__tapStart; if (room && start && Math.hypot(event.clientX - start.x, event.clientY - start.y) < 10 && performance.now() - start.t < 600) onRoomTap(room); return; }
+    closeEditor(); closeFlowEditor(); closeMoreInfo();
+    if (room) openRoomEditor(room.id); else closeRoomEditor();
+  });
+  $('#room-edit-layer')?.addEventListener('pointerdown', startRoomHandleDrag);
+  $('#room-edit-layer')?.addEventListener('dblclick', removeRoomPoint);
+  $('#room-add')?.addEventListener('click', startRoomDrawing);
+  $('#room-draw-done')?.addEventListener('click', finishRoomDrawing);
+  $('#room-draw-undo')?.addEventListener('click', () => { if (!roomDraft) return; roomDraft.points.pop(); roomDraft.cursor = null; updateRoomDrawBar(); renderRoomEditLayer(); });
+  $('#room-draw-cancel')?.addEventListener('click', cancelRoomDrawing);
+  $('#room-editor-close')?.addEventListener('click', closeRoomEditor);
+  $('#room-remove')?.addEventListener('click', removeRoom); $('#room-geometry-lock')?.addEventListener('click', toggleRoomLock); $('#room-copy-style')?.addEventListener('click', copyRoomStyle); $('#room-paste-style')?.addEventListener('click', pasteRoomStyle); $('#room-default-style')?.addEventListener('click', resetRoomStyle); $('#room-duplicate')?.addEventListener('click', duplicateRoom);
+  $('#room-editor-content')?.addEventListener('click', onRoomEditorClick);
+  $('.room-editor .editor-head')?.addEventListener('pointerdown', event => { const panel = $('#room-editor'); if (panel && !mobileView() && !event.target.closest('button,input,select')) panel.dataset.dragged = '1'; startEditorDrag(event); });
+  $('#editor-close').addEventListener('click', closeEditor); document.addEventListener('keydown', e => { if (e.key !== 'Escape') return; if (els.confirmBox.classList.contains('visible')) closeAppConfirm(false); else if (els.moreInfo.classList.contains('visible')) closeMoreInfo(); else if (roomDraft) cancelRoomDrawing(); else { closeEditor(); closeFlowEditor(); closeRoomEditor(); } });
   els.confirmCancel.addEventListener('click', () => closeAppConfirm(false)); els.confirmOk.addEventListener('click', () => closeAppConfirm(true));
   els.confirmBox.addEventListener('click', event => { if (event.target === els.confirmBox) closeAppConfirm(false); });
   $('#more-info-close')?.addEventListener('click', closeMoreInfo); els.moreInfoBackdrop?.addEventListener('click', closeMoreInfo);
@@ -1599,11 +3443,15 @@ function bindEvents() {
   $('.editor-head').addEventListener('pointerdown', startEditorDrag);
   els.editorContent.addEventListener('pointerdown', event => { if (event.target.closest('input[type="checkbox"],select')) event.stopPropagation(); });
   els.editorContent.addEventListener('click', event => {
+    const previewButton = event.target.closest('[data-preview-path="__preview"]');
+    if (previewButton) { event.preventDefault(); const marker = model.entities[selectedId]; if (!marker) return; const value = previewButton.dataset.previewValue, current = editorPreview.entityId === marker.entityId ? editorPreview.state : ''; editorPreview = current === value ? { entityId:'', state:'' } : { entityId: marker.entityId, state: value }; renderMarkers(); openEditor(openSectionIndex(els.editorContent, editorOpenSectionIndex)); return; }
     const reset = event.target.closest('[data-reset-path]');
     if (reset) { event.preventDefault(); resetEditorRange(reset.dataset.resetPath); return; }
     onColorPickerClick(event);
   });
   $$('[data-editor-tab]').forEach(button => button.addEventListener('click', () => changeType(button.dataset.editorTab)));
+  $('#geometry-lock')?.addEventListener('click', () => { const m = model.entities[selectedId]; if (!m) return; m.geometryLocked = !m.geometryLocked; m.updatedAt = new Date().toISOString(); renderMarkers(); openEditor(openSectionIndex(els.editorContent, editorOpenSectionIndex)); scheduleSave(true); notify(m.geometryLocked ? 'Zablokowano geometrię' : 'Odblokowano geometrię'); });
+  $('#flow-geometry-lock')?.addEventListener('click', () => { const flow = activeSceneView()?.flows?.[selectedFlowId]; if (!flow) return; flow.geometryLocked = !flow.geometryLocked; flow.updatedAt = new Date().toISOString(); renderMarkers(); openFlowEditor(flow.id, openSectionIndex(els.flowEditorContent, flowEditorOpenSectionIndex)); scheduleSave(true); notify(flow.geometryLocked ? 'Zablokowano geometrię' : 'Odblokowano geometrię'); });
   $('#preview-state-toggle')?.addEventListener('click', () => {
     const marker = model.entities[selectedId]; if (!marker || !editMode) return;
     const current = previewStateFor(marker) || stateKind(marker);
@@ -1611,10 +3459,25 @@ function bindEvents() {
     renderMarkers(); syncPreviewStateButton();
   });
   $('#default-style').addEventListener('click', async () => { const m = model.entities[selectedId]; if (!m || !await appConfirm({ title: 'Przywrócić styl domyślny?', message: 'Obecne ustawienia wyglądu markera zostaną zastąpione.', confirmText: 'Przywróć', danger: true })) return; m.style = markerStyleDefaults(m.type); renderMarkers(); openEditor(); scheduleSave(true); notify('Przywrócono styl domyślny'); });
-  $('#copy-style').addEventListener('click', () => { const m = model.entities[selectedId]; if (!m) return; styleClipboard = { type: m.type, style: clone(m.style) }; $('#paste-style').disabled = false; notify(`Skopiowano styl ${markerTypeLabel(m.type)}`); });
-  $('#paste-style').addEventListener('click', () => { const m = model.entities[selectedId]; if (!m || !styleClipboard) return; m.type = styleClipboard.type; m.style = clone(styleClipboard.style); m.updatedAt = new Date().toISOString(); renderMarkers(); openEditor(); scheduleSave(true); notify('Wklejono kompletny styl 1:1'); });
+  $('#copy-style').addEventListener('click', () => { const m = model.entities[selectedId]; if (!m) return; styleClipboard = { type: m.type, style: clone(m.style), valueRules: m.valueRules ? clone(m.valueRules) : null, icon: Object.fromEntries(MARKER_ICON_KEYS.map(key => [key, clone(m[key] ?? '')])), tapAction: m.tapAction || 'more_info' }; $('#paste-style').disabled = false; notify(`Skopiowano styl ${markerTypeLabel(m.type)}`); });
+  $('#paste-style').addEventListener('click', () => { const m = model.entities[selectedId]; if (!m || !styleClipboard) return; m.type = styleClipboard.type; m.style = clone(styleClipboard.style); if (styleClipboard.valueRules) m.valueRules = clone(styleClipboard.valueRules); else delete m.valueRules;
+    if (styleClipboard.icon) Object.assign(m, clone(styleClipboard.icon));
+    if (styleClipboard.tapAction) m.tapAction = styleClipboard.tapAction === 'toggle' && !isToggleableMarker(m) ? 'more_info' : styleClipboard.tapAction; m.updatedAt = new Date().toISOString(); renderMarkers(); openEditor(); scheduleSave(true); notify('Wklejono kompletny styl 1:1'); });
   $('#remove-marker').addEventListener('click', async () => { const m = model.entities[selectedId]; if (!m || !await appConfirm({ title: 'Usunąć marker?', message: `„${m.displayName}” zniknie z tego widoku razem ze swoimi ustawieniami.`, confirmText: 'Usuń', danger: true })) return; removeEntity(m.entityId); });
   $('#background-upload').addEventListener('click', () => els.bgFile.click()); $('#empty-upload').addEventListener('click', () => els.bgFile.click()); els.bgFile.addEventListener('change', () => uploadBackground(els.bgFile.files[0]));
+  els.emptyBackgroundSelect?.addEventListener('change', () => {
+    const name = els.emptyBackgroundSelect.value, preview = els.emptyBackgroundPreview;
+    if (!name || !preview) { if (els.emptyBackgroundPreviewWrap) els.emptyBackgroundPreviewWrap.hidden = true; return; }
+    preview.src = `api/background/file?name=${encodeURIComponent(name)}`;
+    els.emptyBackgroundPreviewWrap.hidden = false;
+  });
+  els.emptyBackgroundConfirm?.addEventListener('click', async () => {
+    const name = els.emptyBackgroundSelect?.value, view = activeSceneView(); if (!name || !view) return;
+    try {
+      view.background = name; view.backgroundColor = ''; view.onboardingDone = true;
+      await loadBackgrounds(true); scheduleSave(true);
+    } catch (error) { notify(error.message, true); }
+  });
   const setBackgroundMenuColour = colour => { if (!/^#[0-9a-f]{6}$/i.test(colour || '')) return; els.backgroundBar.classList.remove('onboarding'); els.bgStatus.textContent = ''; setBackgroundColour(colour); };
   els.bgColor?.addEventListener('input', () => setBackgroundMenuColour(els.bgColor.value));
   els.bgColorToggle?.addEventListener('click', () => els.backgroundBar.querySelector('.color-menu')?.classList.toggle('visible'));
@@ -1638,9 +3501,13 @@ function bindEvents() {
   });
   els.emptyColorStart?.addEventListener('click', () => setBackgroundColour(els.emptyColor.value));
   els.emptyOpenIntegrations?.addEventListener('click', () => els.integrationsButton.click());
-  els.bgSelect.addEventListener('change', async () => { try { const view = activeSceneView(); view.background = els.bgSelect.value; if (view.background) view.onboardingDone = true; await loadBackgrounds(); scheduleSave(true); } catch (error) { notify(error.message, true); } });
-  els.bgDownload.addEventListener('click', () => { const name = els.bgSelect.value; if (!name) return; const link = document.createElement('a'); link.href = `api/background/download?name=${encodeURIComponent(name)}`; link.download = name; document.body.appendChild(link); link.click(); link.remove(); });
-  els.bgDelete.addEventListener('click', async () => { const name = els.bgSelect.value; if (!name || !await appConfirm({ title: 'Usunąć tło?', message: `Tło „${name}” zostanie trwale usunięte ze wszystkich widoków.`, confirmText: 'Usuń', danger: true })) return; try { await api('background/delete', jsonOptions({ name })); Object.values(model.views).forEach(view => { if (view.background === name) view.background = ''; if (view.backgroundTransforms) delete view.backgroundTransforms[name]; }); currentBackground = ''; scheduleSave(true); await loadBackgrounds(); notify('Usunięto tło'); } catch (error) { notify(error.message, true); } });
+  els.bgSelect.addEventListener('change', async () => {
+    if (els.bgSelect.value && els.bgSelect.value !== currentBackground) { showBackgroundPreview(els.bgSelect.value); return; }
+    hideBackgroundPreview();
+    try { const view = activeSceneView(); view.background = els.bgSelect.value; if (view.background) view.onboardingDone = true; await loadBackgrounds(); scheduleSave(true); } catch (error) { notify(error.message, true); }
+  });
+  els.bgDownload.addEventListener('click', () => downloadBackgroundFile(els.bgSelect.value));
+  els.bgDelete?.addEventListener('click', async () => { const name = els.bgSelect.value; if (!name || !await appConfirm({ title: 'Usunąć tło?', message: `Tło „${name}” zostanie trwale usunięte ze wszystkich widoków.`, confirmText: 'Usuń', danger: true })) return; try { await api('background/delete', jsonOptions({ name })); Object.values(model.views).forEach(view => { if (view.background === name) view.background = ''; if (view.nightBackground === name) view.nightBackground = ''; if (view.backgroundTransforms) delete view.backgroundTransforms[name]; }); currentBackground = ''; scheduleSave(true); await loadBackgrounds(); notify('Usunięto tło'); } catch (error) { notify(error.message, true); } });
   $('#reload-integrations').addEventListener('click', () => { integrations = []; integrationEntities.clear(); openIntegrations.clear(); loadIntegrations(true); });
   els.integrationSearch?.addEventListener('input', () => {
     integrationSearchText = els.integrationSearch.value;
@@ -1648,13 +3515,32 @@ function bindEvents() {
     integrationSearchTimer = setTimeout(runIntegrationSearch, 220);
   });
   els.integrationList.addEventListener('click', event => {
-    const unusedSummary = event.target.closest('.unused-integrations > summary'), add = event.target.closest('[data-add]'), summary = event.target.closest('.integration-summary');
+    const unusedSummary = event.target.closest('.unused-integrations > summary'), flow = event.target.closest('[data-add-flow]'), add = event.target.closest('[data-add]'), summary = event.target.closest('.integration-summary');
     if (unusedSummary) { event.preventDefault(); unusedIntegrationsOpen = !unusedIntegrationsOpen; renderIntegrations(); }
+    else if (flow) addFlow(flow.dataset.addFlow, flow.dataset.entry);
     else if (add) addEntity(add.dataset.add, add.dataset.entry);
     else if (summary) toggleIntegration(summary.closest('.integration').dataset.integration);
   });
-  els.addedList.addEventListener('click', event => { const remove = event.target.closest('[data-remove]'), focus = event.target.closest('[data-focus]'); if (remove) removeEntity(remove.dataset.remove); else if (focus) { showMainView('overview'); if (!editMode) els.editToggle.click(); selectMarker(focus.dataset.focus); } });
-  $$('.selection i').forEach(handle => handle.addEventListener('pointerdown', startResize));
+  els.addedList.addEventListener('click', async event => {
+    const show = event.target.closest('[data-added-show]'), remove = event.target.closest('[data-added-remove]');
+    if (show) {
+      const kind = show.dataset.addedShow, id = show.dataset.id; showMainView('overview'); if (!editMode) els.editToggle.click();
+      if (kind === 'marker') { if (bringIntoScene(model.entities[id])) scheduleSave(true); selectMarker(id); }
+      else if (kind === 'flow') openFlowEditor(id);
+      else if (kind === 'room') openRoomEditor(id);
+      return;
+    }
+    if (!remove) return;
+    const kind = remove.dataset.addedRemove, id = remove.dataset.id, view = activeSceneView();
+    const name = kind === 'marker' ? model.entities[id]?.displayName : kind === 'flow' ? view?.flows?.[id]?.displayName : view?.rooms?.[id]?.name;
+    const titles = { marker:'Usunąć marker?', flow:'Usunąć Flow?', room:'Usunąć pomieszczenie?' };
+    if (!await appConfirm({ title: titles[kind], message: `„${name || id}” zniknie z tego widoku razem ze swoimi ustawieniami.`, confirmText:'Usuń', danger:true })) return;
+    if (kind === 'marker') removeEntity(id);
+    else if (kind === 'flow') { if (selectedFlowId === id) closeFlowEditor(); removeFlow(id); }
+    else if (kind === 'room' && view?.rooms?.[id]) { if (selectedRoomId === id) closeRoomEditor(); delete view.rooms[id]; if (removeRoomIcon(view, id)) renderMarkers(); renderRooms(); renderAdded(); updateEmptyState(); scheduleSave(true); notify('Usunięto pomieszczenie'); }
+  });
+  document.querySelectorAll('.selection i').forEach(handle => handle.addEventListener('pointerdown', startResize));
+  document.querySelectorAll('.flow-selection i').forEach(handle => handle.addEventListener('pointerdown', startFlowResize));
   els.image.addEventListener('load', () => { updateSceneGeometry(); applyBackgroundTransform(); });
   window.addEventListener('resize', () => { applyBackgroundTransform(); syncMobileOrientation(); });
   window.visualViewport?.addEventListener('resize', () => { if (mobileView()) applyBackgroundTransform(); });
@@ -1669,16 +3555,32 @@ function bindEvents() {
   // Touch gestures and desktop mouse dragging are deliberately separate.
   els.editorContent?.addEventListener('focusin', resetViewportPointers);
   els.scene?.addEventListener('mousedown', startDesktopPan);
-  els.scene?.addEventListener('pointerdown', viewportPointerDown); els.scene?.addEventListener('pointermove', viewportPointerMove);
+  els.scene?.addEventListener('pointerdown', viewportPointerDown);
+  els.sceneCard?.parentElement?.addEventListener('pointerdown', event => { if (event.target.closest?.('.swipe-preview')) viewportPointerDown(event); }); els.scene?.addEventListener('pointermove', viewportPointerMove);
   els.scene?.addEventListener('pointerup', viewportPointerUp); els.scene?.addEventListener('pointercancel', viewportPointerUp); els.scene?.addEventListener('lostpointercapture', viewportPointerUp);
   window.addEventListener('pointermove', viewportPointerMove); window.addEventListener('pointerup', viewportPointerUp); window.addEventListener('pointercancel', viewportPointerUp);
   document.addEventListener('pointerdown', event => {
-    if (event.target.closest('.compact-menu,.view-management,#settings-toggle,#edit-toggle,#view-manage,.editor,.app-confirm-card')) return;
+    if (event.target.closest('.compact-menu,.vm,#settings-toggle,#edit-toggle,#view-manage,.editor,.app-confirm,.bg-manager,#canvas-resize-bar,.canvas-handle')) return;
     closeCompactMenus();
   });
-  const resumeApp = () => { resetViewportPointers(); resumeLiveConnection(); };
+  // Only a real return to the page resets gestures; a window 'focus' can arrive right after touching the screen in the HA app.
+  const resumeApp = event => { if (event?.type !== 'focus') { abortViewSwipe(); resetViewportPointers(); } resumeLiveConnection(); };
+  // Fallback if the WebView swallows pointerup/pointercancel of a swipe.
+  window.addEventListener('touchend', event => { if (viewSwipe && !event.touches.length) { viewPointers.delete(viewSwipe.id); finishViewSwipe({ clientX: viewSwipe.lastX ?? viewSwipe.x, clientY: viewSwipe.lastY ?? viewSwipe.y }); } }, { passive:true });
+  window.addEventListener('touchcancel', event => { activeTouches = event.touches.length; if (viewSwipe) { abortViewSwipe(); resetViewportPointers(); } }, { passive:true });
+  window.addEventListener('touchstart', event => { touchEventsSeen = true; activeTouches = event.touches.length; }, { passive:true, capture:true });
+  window.addEventListener('touchend', event => { activeTouches = event.touches.length; }, { passive:true, capture:true });
+  setInterval(swipeWatchdog, 300);
+  ['pointerdown','pointerup','pointercancel','lostpointercapture'].forEach(type => window.addEventListener(type, event => { if (swipeDebug && event.pointerType !== 'mouse') swipeLog(`${type} #${event.pointerId}${viewSwipe?.id === event.pointerId ? ' (gest)' : ''}`); }, { capture:true, passive:true }));
+  ['touchstart','touchend','touchcancel'].forEach(type => window.addEventListener(type, event => { if (swipeDebug) swipeLog(`${type} palce=${event.touches.length}`); }, { capture:true, passive:true }));
+  ['focus','blur','pageshow'].forEach(type => window.addEventListener(type, () => { if (swipeDebug) swipeLog(`okno: ${type}`); }));
+  document.addEventListener('visibilitychange', () => { if (swipeDebug) swipeLog(`widoczność: ${document.visibilityState}`); });
+  $('#swipe-debug-toggle')?.addEventListener('change', event => setSwipeDebug(event.target.checked));
+  $('#ha-start-select')?.addEventListener('change', event => setHaStart(event.target.value)); syncHaStartSelect(); repairBrokenDefaultPanel();
+  if ($('#swipe-debug-toggle')) $('#swipe-debug-toggle').checked = swipeDebug;
+  if (swipeDebug) swipeLog('diagnostyka włączona');
   document.addEventListener('visibilitychange', resumeApp);
-  window.addEventListener('pageshow', resumeApp); window.addEventListener('focus', resumeApp); window.addEventListener('blur', resetViewportPointers);
+  window.addEventListener('pageshow', resumeApp); window.addEventListener('focus', resumeApp); window.addEventListener('blur', () => { abortViewSwipe(); resetViewportPointers(); });
 }
 function startResize(event) {
   const marker = model.entities[selectedId];
@@ -1687,7 +3589,7 @@ function startResize(event) {
   const handle = event.currentTarget.dataset.handle, scale = sceneScale || 1, node = $(`.marker[data-entity-id="${CSS.escape(marker.entityId)}"]`);
   if (!node) return;
   const initialRect = node.getBoundingClientRect(), fixed = { x:handle.includes('w') ? initialRect.right : initialRect.left, y:handle.includes('n') ? initialRect.bottom : initialRect.top };
-  const start = { x:event.clientX, y:event.clientY, w:Number(marker.style.width), h:Number(marker.style.height), px:marker.xPercent, py:marker.yPercent }; let changed = false;
+  const start = { x:event.clientX, y:event.clientY, w:Number(marker.style.width), h:Number(marker.style.height), px:marker.xPercent, py:marker.yPercent }; let changed = false, lastValid = { w:start.w, h:start.h, x:start.px, y:start.py };
   const move = e => {
     if ((e.buttons & 1) !== 1) return finish();
     const sx = handle.includes('w') ? -1 : 1, sy = handle.includes('n') ? -1 : 1; changed = true;
@@ -1695,11 +3597,28 @@ function startResize(event) {
     const minWidth = isGaugeType(marker.type) ? 44 : marker.type === 'icon' ? 24 : 36, minHeight = isGaugeType(marker.type) ? 28 : marker.type === 'icon' ? 24 : 24;
     marker.style.width = clamp(snapSize(start.w + (e.clientX-start.x)*sx/scale, 2400),minWidth,2400);
     marker.style.height = clamp(snapSize(start.h + (e.clientY-start.y)*sy/scale, 1800),minHeight,1800);
-    marker.xPercent = start.px; marker.yPercent = start.py; applyMarkerStyle(node, marker);
-    const sceneRect = els.scene.getBoundingClientRect(), current = node.getBoundingClientRect();
-    marker.xPercent += (fixed.x - (handle.includes('w') ? current.right : current.left)) / sceneRect.width * 100;
-    marker.yPercent += (fixed.y - (handle.includes('n') ? current.bottom : current.top)) / sceneRect.height * 100;
-    applyMarkerStyle(node, marker); syncSelection();
+    // The scene may be re-rendered during the gesture (live states); always measure the node that is on screen.
+    const live = node.isConnected ? node : $(`.marker[data-entity-id="${CSS.escape(marker.entityId)}"]`);
+    if (!live) return;
+    marker.xPercent = start.px; marker.yPercent = start.py; applyMarkerStyle(live, marker);
+    const sceneRect = els.scene.getBoundingClientRect(), current = live.getBoundingClientRect();
+    if (!sceneRect.width || !sceneRect.height || !current.width || !current.height) return;
+    marker.xPercent = clamp(marker.xPercent + (fixed.x - (handle.includes('w') ? current.right : current.left)) / sceneRect.width * 100, 0, 100);
+    marker.yPercent = clamp(marker.yPercent + (fixed.y - (handle.includes('n') ? current.bottom : current.top)) / sceneRect.height * 100, 0, 100);
+    applyMarkerStyle(live, marker);
+    if (keepInBounds() && nodeOutsideScene(live)) {
+      // Keep growing along the axis that still fits: first new width with the last good height, then the reverse.
+      const wanted = { w:marker.style.width, h:marker.style.height }, placeAt = (w, h) => {
+        Object.assign(marker.style, { width:w, height:h }); marker.xPercent = start.px; marker.yPercent = start.py; applyMarkerStyle(live, marker);
+        const rect = live.getBoundingClientRect();
+        marker.xPercent = clamp(marker.xPercent + (fixed.x - (handle.includes('w') ? rect.right : rect.left)) / sceneRect.width * 100, 0, 100);
+        marker.yPercent = clamp(marker.yPercent + (fixed.y - (handle.includes('n') ? rect.bottom : rect.top)) / sceneRect.height * 100, 0, 100);
+        applyMarkerStyle(live, marker); return !nodeOutsideScene(live);
+      };
+      if (!placeAt(wanted.w, lastValid.h) && !placeAt(lastValid.w, wanted.h)) { Object.assign(marker.style, { width:lastValid.w, height:lastValid.h }); marker.xPercent = lastValid.x; marker.yPercent = lastValid.y; applyMarkerStyle(live, marker); }
+    }
+    lastValid = { w:marker.style.width, h:marker.style.height, x:marker.xPercent, y:marker.yPercent };
+    syncSelection();
   };
   const finish = () => {
     window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', finish); window.removeEventListener('pointercancel', finish);
@@ -1708,14 +3627,52 @@ function startResize(event) {
   window.addEventListener('pointermove', move); window.addEventListener('pointerup', finish); window.addEventListener('pointercancel', finish);
 }
 
+function isViewer() { return access?.viewer === true; }
+function applyViewerMode() {
+  if (!isViewer()) return;
+  editMode = false; selectedId = null; closeEditor?.();
+  els.body.classList.remove('editing'); els.body.classList.add('viewer-mode');
+  [els.editToggle, els.viewManage, els.settingsToggle, els.integrationsButton].forEach(el => {
+    if (!el) return;
+    el.hidden = true;
+    el.style.display = 'none';
+  });
+  els.editMenu?.remove();
+  els.viewSwitcher?.remove();
+  els.settingsMenu?.remove();
+}
+
+const LANGUAGE_CACHE_KEY = 'ha_views_language';
+let appRevealed = false;
+// Scene content stays hidden (CSS: .app-booting) until the saved layout, the
+// background list and the first entity states are known, so the start view
+// never flashes onboarding panels or "unavailable" marker colours.
+function revealApp() {
+  if (appRevealed) return; appRevealed = true;
+  document.documentElement.classList.remove('app-booting');
+}
+const settleWithin = (promise, ms) => Promise.race([Promise.resolve(promise).catch(() => {}), new Promise(resolve => setTimeout(resolve, ms))]);
 async function boot() {
-  bindEvents(); let legacyMigrated = false;
-  try { const saved = await api('rewrite_state'); if (saved.exists && (saved.data?.entities || saved.data?.views)) model = saved.data; else legacyMigrated = await migrateLegacy(); }
+  const revealFallback = setTimeout(revealApp, 5000);
+  bindEvents();
+  bindLanguageObserver();
+  try { const cachedLanguage = localStorage.getItem(LANGUAGE_CACHE_KEY); if (cachedLanguage === 'pl' || cachedLanguage === 'en') { uiLanguage = cachedLanguage; applyLanguage(); } } catch {}
+  // Independent start-up requests run in parallel instead of one after another.
+  const accessRequest = api('access').catch(() => ({ viewer: true }));
+  const layoutRequest = api('rewrite_state').then(data => ({ data }), error => ({ error }));
+  const backgroundsRequest = api('backgrounds').catch(error => error instanceof Error ? error : new Error(String(error)));
+  const iconsReady = new Promise(resolve => { const link = document.getElementById('mdi-stylesheet'); if (!link || link.sheet) return resolve(); link.addEventListener('load', resolve, { once:true }); link.addEventListener('error', resolve, { once:true }); });
+  access = await accessRequest;
+  applyViewerMode();
+  let legacyMigrated = false;
+  try { const layout = await layoutRequest; if (layout.error) throw layout.error; const saved = layout.data; if (saved.exists && (saved.data?.entities || saved.data?.views)) { model = saved.data; if (saved.data.views) syncBase = layoutSnapshot(saved.data); } else legacyMigrated = await migrateLegacy(); }
   catch (error) { notify(`Nie udało się wczytać układu: ${error.message}`, true); }
   model.settings = { snapEnabled: true, snapStep: .25, designWidth: DESIGN_WIDTH, language: 'en', ...(model.settings || {}) };
+  serverRevision = model.revision = Number(model.revision) || 0;
   uiLanguage = model.settings.language === 'pl' ? 'pl' : 'en';
-  bindLanguageObserver(); applyLanguage();
-  const multiMigrated = ensureMultiViewModel(); const gridPresetMigrated = migrateGridPresetSteps(); applySnapUi(); renderViewSelector();
+  try { localStorage.setItem(LANGUAGE_CACHE_KEY, uiLanguage); } catch {}
+  applyLanguage();
+  const multiMigrated = ensureMultiViewModel(); const gridPresetMigrated = migrateGridPresetSteps(); applySnapUi(); applyBoundsUi(); renderViewSelector();
   Object.values(model.views).flatMap(view => Object.values(view.entities || {})).forEach(m => {
     m.type = ['badge','gauge','icon','horseshoe'].includes(m.type) ? m.type : 'badge'; m.style = normalizedStyle(m.type, m.style);
     m.stateOnLabel ??= ''; m.stateOffLabel ??= ''; m.iconMode ||= 'auto'; m.iconName ??= ''; m.iconOn ??= ''; m.iconOff ??= ''; m.iconVariantEnabled ??= Boolean(m.iconOn || m.iconOff);
@@ -1724,15 +3681,18 @@ async function boot() {
   const gaugeMigrated = migrateGaugeZeroOffsets();
   const horseshoeMigrated = migrateHorseshoeBaseline();
   if (legacyMigrated || multiMigrated || gridPresetMigrated || iconHorizontalMigrated || gaugeMigrated || horseshoeMigrated) scheduleSave(true);
-  // Markers are independent from the background image and from live-state
-  // retrieval. Render them immediately: the first `selected_states` request
-  // may be slow, but it must never keep the restored view blank.
   attachActiveEntities(); updateSceneGeometry(); renderMarkers(); resetViewZoom();
   mobileOrientation = mobileView() ? (innerHeight > innerWidth ? 'portrait' : 'landscape') : 'desktop';
-  await loadBackgrounds(true);
+  // Live states are requested now, in parallel with the background image.
+  const statesReady = refreshStates();
+  await loadBackgrounds(true, false, backgroundsRequest, 2500);
   attachActiveEntities(); updateSceneGeometry(); renderMarkers();
+  await settleWithin(Promise.all([statesReady, iconsReady]), 1500);
+  clearTimeout(revealFallback); revealApp();
   connectEvents();
-  refreshStates();
+  try { const message = sessionStorage.getItem(RELOAD_MESSAGE_KEY); sessionStorage.removeItem(RELOAD_MESSAGE_KEY); if (message) notify(message); } catch {}
+  setInterval(checkRemoteLayout, 20000);
+  prebuildSwipePreviews(); window.addEventListener('resize', prebuildSwipePreviews); window.addEventListener('resize', placeViewSheet); placeViewSheet();
 }
 
 boot();
