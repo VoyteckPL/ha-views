@@ -811,3 +811,7 @@ svg.flow-chevron{overflow:visible}
 .room-handle.mid{width:calc(11px / var(--view-zoom,1))!important;height:calc(11px / var(--view-zoom,1))!important;margin:calc(-5.5px / var(--view-zoom,1)) 0 0 calc(-5.5px / var(--view-zoom,1))!important}
 .room-handle.draft.closable{width:calc(18px / var(--view-zoom,1))!important;height:calc(18px / var(--view-zoom,1))!important;margin:calc(-9px / var(--view-zoom,1)) 0 0 calc(-9px / var(--view-zoom,1))!important}
 .room-handle::before{inset:calc(-12px / var(--view-zoom,1))!important}
+/* Selected room corner: red ring and a × button next to it (constant on-screen size like the handles) */
+.room-handle.picked{box-shadow:0 0 0 calc(3px / var(--view-zoom,1)) #ff6374,0 0 calc(6px / var(--view-zoom,1)) rgba(0,0,0,.6)!important}
+.room-corner-del{position:absolute;z-index:3;display:grid;place-items:center;width:calc(26px / var(--view-zoom,1));height:calc(26px / var(--view-zoom,1));margin:calc(-34px / var(--view-zoom,1)) 0 0 calc(8px / var(--view-zoom,1));padding:0;border:calc(2px / var(--view-zoom,1)) solid #fff;border-radius:50%;background:#ff6374;color:#fff;font-size:calc(16px / var(--view-zoom,1));line-height:1;box-shadow:0 2px 8px rgba(0,0,0,.5);pointer-events:auto;cursor:pointer;touch-action:none}
+.room-corner-del::before{content:'';position:absolute;inset:calc(-8px / var(--view-zoom,1));border-radius:50%}
