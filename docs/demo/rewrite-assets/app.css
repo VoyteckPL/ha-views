@@ -830,3 +830,5 @@ body.dock-switching main,body.dock-switching .editor,body.dock-switching .edit-d
 .edit-dock-empty{display:grid;justify-items:center;gap:10px;margin:auto 0;padding:24px;text-align:center}.edit-dock-empty i{font-size:40px;color:#5cdbff;opacity:.8}.edit-dock-empty p{margin:0;font-size:13px;color:#dff2fa}.edit-dock-empty small{font-size:11px;color:#8fa9b7;line-height:1.45}
 body:not(.dock-mode) .dock-side{display:none!important}
 body.dock-mode .editor-head{flex-wrap:wrap;align-items:center}body.dock-mode .editor-title-block{flex:1 1 0;min-width:0}body.dock-mode .editor-quick-actions{flex:1 0 100%;display:flex!important;flex-wrap:nowrap;justify-content:space-between;gap:4px;margin:0}body.dock-mode .editor-quick-actions .editor-version{display:none}
+/* Top bar menus (edit, snap & grid, view) open above the dock */
+body.dock-mode .topbar{z-index:70}
