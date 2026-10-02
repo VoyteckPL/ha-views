@@ -832,3 +832,9 @@ body:not(.dock-mode) .dock-side{display:none!important}
 body.dock-mode .editor-head{flex-wrap:wrap;align-items:center}body.dock-mode .editor-title-block{flex:1 1 0;min-width:0}body.dock-mode .editor-quick-actions{flex:1 0 100%;display:flex!important;flex-wrap:nowrap;justify-content:space-between;gap:4px;margin:0}body.dock-mode .editor-quick-actions .editor-version{display:none}
 /* Top bar menus (edit, snap & grid, view) open above the dock */
 body.dock-mode .topbar{z-index:70}
+/* Dimming one background by the sun */
+.scene-dim-tint{position:absolute;inset:0;z-index:0;pointer-events:none;background:#16244f;mix-blend-mode:multiply;opacity:0}
+.sun-dim-block{display:grid;gap:8px;padding-top:2px}.sun-dim-block[hidden]{display:none}
+.sun-dim-controls{display:none;gap:8px}.sun-dim-block.on .sun-dim-controls{display:grid}
+.vm-check{display:flex;align-items:center;gap:8px;color:#dce8ef;font-size:12px;cursor:pointer}.vm-check input{width:16px;height:16px;accent-color:#20b9e7}
+.vm-slider{display:grid;gap:4px}.vm-slider span{display:flex;justify-content:space-between;gap:8px;color:#9fbfcf;font-size:11px}.vm-slider output{color:#8fe3fb}.vm-slider input{width:100%;accent-color:#20b9e7}

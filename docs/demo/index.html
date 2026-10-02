@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link id="mdi-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" media="print" onload="this.media='all'">
   <style>.app-booting .markers,.app-booting .scene-empty,.app-booting .selection,.app-booting .flow-selection,.app-booting #edit-toggle,.app-booting #view-manage,.app-booting #settings-toggle{visibility:hidden!important}</style>
-  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260928-244">
+  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260928-245">
   <meta name="description" content="HA Views live demo: visual Home Assistant dashboards on your own floor plan. Runs entirely in your browser.">
   <style>
     #demo-bar{position:fixed;left:10px;bottom:10px;z-index:60;display:flex;align-items:center;gap:8px;max-width:calc(100vw - 20px);padding:6px 8px 6px 12px;border:1px solid rgba(99,181,216,.4);border-radius:999px;background:rgba(6,22,32,.92);color:#cfe6f1;font:12px/1.3 system-ui,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.45);backdrop-filter:blur(6px)}
@@ -16,7 +16,7 @@
     body.editing #demo-bar{opacity:.35}body.editing #demo-bar:hover{opacity:1}
     @media (max-width:640px){#demo-bar .demo-note{display:none}}
   </style>
-  <script>window.HA_VIEWS_DEMO_APP = 'rewrite-assets/app.js?v=20260928-244';</script>
+  <script>window.HA_VIEWS_DEMO_APP = 'rewrite-assets/app.js?v=20260928-245';</script>
   <script src="demo-layout.js"></script>
   <script src="demo.js"></script>
 </head>
@@ -64,6 +64,15 @@
             </div>
             <div class="vm-range"><i class="mdi mdi-brightness-6" title="Jasność" aria-hidden="true"></i><input id="night-brightness" type="range" min="30" max="200" step="5" value="100" data-brightness="nightBrightness" aria-label="Jasność"><output>100%</output><button type="button" class="vm-range-reset" data-brightness-reset="nightBrightness" title="Przywróć 100%" aria-label="Przywróć 100%"><i class="mdi mdi-restore"></i></button></div>
             <label class="night-bg-entity vm-field"><span>Przełącza encja</span><input id="night-entity" type="text" autocomplete="off" spellcheck="false" placeholder="sun.sun" aria-label="Encja przełączająca tło nocne"></label>
+            <div class="sun-dim-block">
+              <label class="vm-check"><input id="sun-dim-toggle" type="checkbox"><span>Ściemniaj tło wg słońca</span></label>
+              <div class="sun-dim-controls">
+                <label class="vm-slider"><span>Jasność w nocy<output data-sundim-out="dimNight"></output></span><input type="range" min="10" max="100" step="5" data-sundim="dimNight" aria-label="Jasność w nocy"></label>
+                <label class="vm-slider"><span>Zaczyna ściemniać, gdy słońce na<output data-sundim-out="dimFrom"></output></span><input type="range" min="-10" max="20" step="1" data-sundim="dimFrom" aria-label="Zaczyna ściemniać, gdy słońce na"></label>
+                <label class="vm-slider"><span>Pełna noc, gdy słońce na<output data-sundim-out="dimTo"></output></span><input type="range" min="-18" max="5" step="1" data-sundim="dimTo" aria-label="Pełna noc, gdy słońce na"></label>
+                <label class="vm-check"><input type="checkbox" data-sundim-cool><span>Chłodny odcień nocą</span></label>
+              </div>
+            </div>
             <small id="night-status" class="vm-status"></small>
             <input id="night-background-file" type="file" accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp" hidden>
           </section>
@@ -156,6 +165,7 @@
           <div id="scene" class="scene">
             <img id="scene-image" alt="Tło widoku HA Views" draggable="false">
             <img id="scene-night-image" class="scene-night" alt="" draggable="false" hidden>
+            <div id="scene-dim-tint" class="scene-dim-tint" aria-hidden="true"></div>
             <div id="rooms" class="rooms" aria-hidden="true"></div>
             <div id="scene-empty" class="scene-empty"><div id="background-upload-progress" class="background-upload-progress" aria-live="polite"><i class="mdi mdi-loading"></i><span>Wgrywanie tła…</span></div>
               <div class="welcome-card">
@@ -331,6 +341,6 @@
   </div>
 
   <div id="toast" class="toast"></div>
-  <div id="demo-bar" data-no-i18n><b>HA Views demo</b><span class="demo-note">0.4.1-beta.244 preview · example data · your changes stay in this browser</span><button type="button" onclick="haViewsDemoReset()" title="Restore the example dashboard">Reset</button><a href="https://github.com/VoyteckPL/ha-views" target="_blank" rel="noopener">Get the add-on</a></div>
+  <div id="demo-bar" data-no-i18n><b>HA Views demo</b><span class="demo-note">0.4.1-beta.245 preview · example data · your changes stay in this browser</span><button type="button" onclick="haViewsDemoReset()" title="Restore the example dashboard">Reset</button><a href="https://github.com/VoyteckPL/ha-views" target="_blank" rel="noopener">Get the add-on</a></div>
 </body>
 </html>
