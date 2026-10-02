@@ -815,3 +815,18 @@ svg.flow-chevron{overflow:visible}
 .room-handle.picked{box-shadow:0 0 0 calc(3px / var(--view-zoom,1)) #ff6374,0 0 calc(6px / var(--view-zoom,1)) rgba(0,0,0,.6)!important}
 .room-corner-del{position:absolute;z-index:3;display:grid;place-items:center;width:calc(26px / var(--view-zoom,1));height:calc(26px / var(--view-zoom,1));margin:calc(-34px / var(--view-zoom,1)) 0 0 calc(8px / var(--view-zoom,1));padding:0;border:calc(2px / var(--view-zoom,1)) solid #fff;border-radius:50%;background:#ff6374;color:#fff;font-size:calc(16px / var(--view-zoom,1));line-height:1;box-shadow:0 2px 8px rgba(0,0,0,.5);pointer-events:auto;cursor:pointer;touch-action:none}
 .room-corner-del::before{content:'';position:absolute;inset:calc(-8px / var(--view-zoom,1));border-radius:50%}
+/* ---- Desktop editing dock (edit mode on a computer) ---- */
+body{--dock-w:360px}
+.edit-dock{display:none}
+body.dock-mode main{width:auto;margin-left:16px;margin-right:calc(var(--dock-w) + 16px)}
+body.dock-mode.dock-left main{margin-left:calc(var(--dock-w) + 16px);margin-right:16px}
+body.dock-mode .edit-dock,body.dock-mode .editor{position:fixed!important;top:44px!important;bottom:0!important;right:0!important;left:auto!important;width:var(--dock-w)!important;max-height:none!important;height:auto!important;border-radius:0!important;border-width:0 0 0 1px!important;box-shadow:-12px 0 30px rgba(0,0,0,.35)!important;transform:none!important}
+body.dock-mode.dock-left .edit-dock,body.dock-mode.dock-left .editor{left:0!important;right:auto!important;border-width:0 1px 0 0!important;box-shadow:12px 0 30px rgba(0,0,0,.35)!important}
+body.dock-mode .edit-dock{z-index:59;display:flex;flex-direction:column;border:0 solid rgba(99,181,216,.35);background:rgba(7,25,36,.97);color:#cfe3ec}
+body.dock-mode .editor.marker-moving{opacity:1;visibility:visible;pointer-events:auto}
+body.dock-mode .editor .editor-head{cursor:default}
+body.dock-switching main,body.dock-switching .editor,body.dock-switching .edit-dock{transition:none!important}
+.edit-dock-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid rgba(99,181,216,.2)}.edit-dock-head b{font-size:13px;color:#f4fbff}
+.edit-dock-empty{display:grid;justify-items:center;gap:10px;margin:auto 0;padding:24px;text-align:center}.edit-dock-empty i{font-size:40px;color:#5cdbff;opacity:.8}.edit-dock-empty p{margin:0;font-size:13px;color:#dff2fa}.edit-dock-empty small{font-size:11px;color:#8fa9b7;line-height:1.45}
+body:not(.dock-mode) .dock-side{display:none!important}
+body.dock-mode .editor-head{flex-wrap:wrap;align-items:center}body.dock-mode .editor-title-block{flex:1 1 0;min-width:0}body.dock-mode .editor-quick-actions{flex:1 0 100%;display:flex!important;flex-wrap:nowrap;justify-content:space-between;gap:4px;margin:0}body.dock-mode .editor-quick-actions .editor-version{display:none}

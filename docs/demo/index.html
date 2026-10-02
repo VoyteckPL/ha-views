@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link id="mdi-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" media="print" onload="this.media='all'">
   <style>.app-booting .markers,.app-booting .scene-empty,.app-booting .selection,.app-booting .flow-selection,.app-booting #edit-toggle,.app-booting #view-manage,.app-booting #settings-toggle{visibility:hidden!important}</style>
-  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260928-242">
+  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260928-243">
   <meta name="description" content="HA Views live demo: visual Home Assistant dashboards on your own floor plan. Runs entirely in your browser.">
   <style>
     #demo-bar{position:fixed;left:10px;bottom:10px;z-index:60;display:flex;align-items:center;gap:8px;max-width:calc(100vw - 20px);padding:6px 8px 6px 12px;border:1px solid rgba(99,181,216,.4);border-radius:999px;background:rgba(6,22,32,.92);color:#cfe6f1;font:12px/1.3 system-ui,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.45);backdrop-filter:blur(6px)}
@@ -16,7 +16,7 @@
     body.editing #demo-bar{opacity:.35}body.editing #demo-bar:hover{opacity:1}
     @media (max-width:640px){#demo-bar .demo-note{display:none}}
   </style>
-  <script>window.HA_VIEWS_DEMO_APP = 'rewrite-assets/app.js?v=20260928-242';</script>
+  <script>window.HA_VIEWS_DEMO_APP = 'rewrite-assets/app.js?v=20260928-243';</script>
   <script src="demo-layout.js"></script>
   <script src="demo.js"></script>
 </head>
@@ -207,6 +207,10 @@
     </section>
   </main>
 
+  <aside id="edit-dock" class="edit-dock" aria-hidden="true">
+    <div class="edit-dock-head"><b>Edycja</b><button type="button" class="editor-icon-button dock-side" data-dock-side title="Przenieś panel na drugą stronę" aria-label="Przenieś panel na drugą stronę"><i class="mdi mdi-dock-left"></i></button></div>
+    <div class="edit-dock-empty"><i class="mdi mdi-cursor-default-click-outline"></i><p>Kliknij marker, Flow albo pomieszczenie, żeby je edytować.</p><small>Nowe elementy dodasz z menu edycji (ołówek), a przyciąganie i wyrównanie z menu magnesu.</small></div>
+  </aside>
   <aside id="editor" class="editor" aria-hidden="true">
     <div class="editor-head">
       <div id="editor-integration-icon" class="editor-integration-icon"></div>
@@ -221,6 +225,7 @@
         <button id="copy-style" class="editor-icon-button" title="Kopiuj styl" aria-label="Kopiuj styl"><i class="mdi mdi-content-copy"></i></button>
         <button id="paste-style" class="editor-icon-button" title="Wklej styl" aria-label="Wklej styl"><i class="mdi mdi-content-paste"></i></button>
         <button id="remove-marker" class="editor-icon-button danger" title="Usuń z widoku" aria-label="Usuń z widoku"><i class="mdi mdi-delete-outline"></i></button>
+        <button type="button" class="editor-icon-button dock-side" data-dock-side title="Przenieś panel na drugą stronę" aria-label="Przenieś panel na drugą stronę"><i class="mdi mdi-dock-left"></i></button>
         <button id="editor-close" class="editor-icon-button" title="Zamknij" aria-label="Zamknij"><i class="mdi mdi-close"></i></button>
         <span class="editor-version" title="HA Views app version">v0.3.0-b55</span>
       </div>
@@ -249,6 +254,7 @@
         <button id="flow-copy-style" class="editor-icon-button" title="Kopiuj styl Flow" aria-label="Kopiuj styl Flow"><i class="mdi mdi-content-copy"></i></button>
         <button id="flow-paste-style" class="editor-icon-button" title="Wklej styl Flow" aria-label="Wklej styl Flow"><i class="mdi mdi-content-paste"></i></button>
         <button id="flow-remove" class="editor-icon-button danger" title="Usuń Flow" aria-label="Usuń Flow"><i class="mdi mdi-delete-outline"></i></button>
+        <button type="button" class="editor-icon-button dock-side" data-dock-side title="Przenieś panel na drugą stronę" aria-label="Przenieś panel na drugą stronę"><i class="mdi mdi-dock-left"></i></button>
         <button id="flow-editor-close" class="editor-icon-button" title="Zamknij" aria-label="Zamknij"><i class="mdi mdi-close"></i></button>
       </div>
     </div>
@@ -270,6 +276,7 @@
         <button id="room-copy-style" class="editor-icon-button" title="Kopiuj styl pomieszczenia" aria-label="Kopiuj styl pomieszczenia"><i class="mdi mdi-content-copy"></i></button>
         <button id="room-paste-style" class="editor-icon-button" title="Wklej styl pomieszczenia" aria-label="Wklej styl pomieszczenia"><i class="mdi mdi-content-paste"></i></button>
         <button id="room-remove" class="editor-icon-button danger" title="Usuń pomieszczenie" aria-label="Usuń pomieszczenie"><i class="mdi mdi-delete-outline"></i></button>
+        <button type="button" class="editor-icon-button dock-side" data-dock-side title="Przenieś panel na drugą stronę" aria-label="Przenieś panel na drugą stronę"><i class="mdi mdi-dock-left"></i></button>
         <button id="room-editor-close" class="editor-icon-button" title="Zamknij" aria-label="Zamknij"><i class="mdi mdi-close"></i></button>
       </div>
     </div>
@@ -324,6 +331,6 @@
   </div>
 
   <div id="toast" class="toast"></div>
-  <div id="demo-bar" data-no-i18n><b>HA Views demo</b><span class="demo-note">0.4.1-beta.242 preview · example data · your changes stay in this browser</span><button type="button" onclick="haViewsDemoReset()" title="Restore the example dashboard">Reset</button><a href="https://github.com/VoyteckPL/ha-views" target="_blank" rel="noopener">Get the add-on</a></div>
+  <div id="demo-bar" data-no-i18n><b>HA Views demo</b><span class="demo-note">0.4.1-beta.243 preview · example data · your changes stay in this browser</span><button type="button" onclick="haViewsDemoReset()" title="Restore the example dashboard">Reset</button><a href="https://github.com/VoyteckPL/ha-views" target="_blank" rel="noopener">Get the add-on</a></div>
 </body>
 </html>
