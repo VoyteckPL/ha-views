@@ -670,7 +670,7 @@ function roomAt(point) { return Object.values(roomsOf()).reverse().find(room => 
 function startRoomDrawing() {
   if (!editMode) return;
   closeCompactMenus(); closeEditor(); closeFlowEditor(); closeRoomEditor();
-  roomDraft = { points: [], cursor: null }; els.body.classList.add('room-drawing'); $('#room-draw-bar')?.classList.add('visible');
+  roomDraft = { points: [], cursor: null }; els.body.classList.add('room-drawing'); $('#room-draw-bar')?.classList.add('visible'); placeRoomDrawBar(false);
   updateRoomDrawBar(); renderRoomEditLayer();
 }
 function updateRoomDrawBar() {
@@ -692,9 +692,22 @@ function onRoomDrawClick(event) {
   event.preventDefault(); event.stopPropagation();
   const r = els.scene.getBoundingClientRect(), point = snapRoomPoint(scenePercentAt(event), null, event), first = roomDraft.points[0];
   if (first && roomDraft.points.length >= 3 && Math.hypot((first[0] - point[0]) / 100 * r.width, (first[1] - point[1]) / 100 * r.height) <= 14) return finishRoomDrawing();
-  roomDraft.points.push(point); roomDraft.cursor = null; if (event.pointerType !== 'mouse') showAlignGuides([], []); updateRoomDrawBar(); renderRoomEditLayer();
+  roomDraft.points.push(point); roomDraft.cursor = null; if (event.pointerType !== 'mouse') showAlignGuides([], []); updateRoomDrawBar(); renderRoomEditLayer(); avoidRoomDrawBar(event.clientY);
+}
+// The drawing bar keeps out of the way: it sits at the bottom, jumps under the top bar when corners are placed
+// in the lower part of the screen (and back), and a tap on its free area moves it to the other edge.
+function placeRoomDrawBar(atTop) {
+  const bar = $('#room-draw-bar'); if (!bar) return;
+  bar.classList.toggle('top', atTop);
+  bar.style.top = atTop ? `${Math.round(($('.topbar')?.getBoundingClientRect().bottom || 0) + 8)}px` : '';
+}
+function avoidRoomDrawBar(clientY) {
+  const bar = $('#room-draw-bar'); if (!bar?.classList.contains('visible')) return;
+  const atTop = bar.classList.contains('top'), h = window.innerHeight;
+  if (!atTop && clientY > h * .55) placeRoomDrawBar(true); else if (atTop && clientY < h * .45) placeRoomDrawBar(false);
 }
 function onRoomDrawMove(event) {
+  if (roomDraft && event.pointerType === 'mouse') avoidRoomDrawBar(event.clientY);
   if (!roomDraft?.points.length || event.pointerType !== 'mouse') return;
   roomDraft.cursor = snapRoomPoint(scenePercentAt(event), null, event); renderRoomEditLayer();
 }
@@ -3657,6 +3670,7 @@ function bindEvents() {
   });
   $('#room-add')?.addEventListener('click', startRoomDrawing);
   $('#room-draw-done')?.addEventListener('click', finishRoomDrawing);
+  $('#room-draw-bar')?.addEventListener('click', event => { if (event.target.closest('button')) return; const bar = event.currentTarget; placeRoomDrawBar(!bar.classList.contains('top')); });
   $('#room-draw-undo')?.addEventListener('click', () => { if (!roomDraft) return; roomDraft.points.pop(); roomDraft.cursor = null; updateRoomDrawBar(); renderRoomEditLayer(); });
   $('#room-draw-cancel')?.addEventListener('click', cancelRoomDrawing);
   $('#room-editor-close')?.addEventListener('click', closeRoomEditor);
