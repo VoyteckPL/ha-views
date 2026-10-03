@@ -3803,7 +3803,7 @@ function bindEvents() {
   els.scene?.addEventListener('pointerup', viewportPointerUp); els.scene?.addEventListener('pointercancel', viewportPointerUp); els.scene?.addEventListener('lostpointercapture', viewportPointerUp);
   window.addEventListener('pointermove', viewportPointerMove); window.addEventListener('pointerup', viewportPointerUp); window.addEventListener('pointercancel', viewportPointerUp);
   document.addEventListener('pointerdown', event => {
-    if (event.target.closest('.compact-menu,.vm,#settings-toggle,#edit-toggle,#view-manage,.editor,.app-confirm,.bg-manager,#canvas-resize-bar,.canvas-handle')) return;
+    if (event.target.closest('.compact-menu,.vm,#settings-toggle,#edit-toggle,#view-manage,#snap-menu-button,.editor,.app-confirm,.bg-manager,#canvas-resize-bar,.canvas-handle')) return;
     closeCompactMenus();
   });
   // Only a real return to the page resets gestures; a window 'focus' can arrive right after touching the screen in the HA app.
