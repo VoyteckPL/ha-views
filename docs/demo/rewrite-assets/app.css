@@ -838,3 +838,5 @@ body.dock-mode .topbar{z-index:70}
 .sun-dim-controls{display:none;gap:8px}.sun-dim-block.on .sun-dim-controls{display:grid}
 .vm-check{display:flex;align-items:center;gap:8px;color:#dce8ef;font-size:12px;cursor:pointer}.vm-check input{width:16px;height:16px;accent-color:#20b9e7}
 .vm-slider{display:grid;gap:4px}.vm-slider span{display:flex;justify-content:space-between;gap:8px;color:#9fbfcf;font-size:11px}.vm-slider output{color:#8fe3fb}.vm-slider input{width:100%;accent-color:#20b9e7}
+
+.control.linked-size output{font-size:10.5px;white-space:nowrap;letter-spacing:-.2px}.linked-size-icon{color:#63b5d8;font-size:15px;text-align:center;opacity:.85}.control.linked-size label{color:#9fd8ef}
