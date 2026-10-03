@@ -3023,6 +3023,7 @@ function brightnessFilter(value) { return value === 100 ? '' : `brightness(${val
 // for a night image: Auto follows the sun, Always day / Always night fix it. Another entity (on = night) dims fully.
 const SUN_DIM_DEFAULTS = Object.freeze({ dimNight:45, dimFrom:6, dimTo:-6 });
 function sunDimValue(view, key) { const v = Number(view?.[key]); return Number.isFinite(v) ? v : SUN_DIM_DEFAULTS[key]; }
+function sunDimTint(view, f = dimFactor(view)) { return sunDimOn(view) && view.dimCool !== false ? (.38 * f).toFixed(3) : '0'; }
 function sunDimOn(view) { return Boolean(view?.sunDim && view.background && !view.nightBackground); }
 function sunElevation(view) { const v = Number(stateCache[nightEntityOf(view)]?.attributes?.elevation); return Number.isFinite(v) ? v : null; }
 function dimFactor(view) {
@@ -3041,9 +3042,11 @@ function dayImageFilter(view) {
 }
 function applyBackgroundBrightness(animate = false) {
   const view = activeSceneView();
-  if (els.image) { els.image.style.transition = animate ? 'filter 2.5s linear' : ''; els.image.style.filter = dayImageFilter(view); }
+  // Only a live sun change fades; entering a view or moving a slider sets the final look at once (no fade from full brightness).
   const tint = $('#scene-dim-tint'), f = dimFactor(view);
-  if (tint) { tint.style.transition = animate ? 'opacity 2.5s linear' : 'none'; tint.style.opacity = sunDimOn(view) && view.dimCool !== false ? (.38 * f).toFixed(3) : '0'; }
+  if (els.image) { els.image.style.transition = animate ? 'filter 2.5s linear' : 'none'; els.image.style.filter = dayImageFilter(view); }
+  if (tint) { tint.style.transition = animate ? 'opacity 2.5s linear' : 'none'; tint.style.opacity = sunDimTint(view, f); }
+  if (!animate && els.image) { void els.image.offsetWidth; els.image.style.transition = ''; }
   syncSunDimControls(view, f);
   if (els.nightImage) els.nightImage.style.filter = brightnessFilter(brightnessOf(view, 'nightBrightness'));
   [['backgroundBrightness', Boolean(currentBackground)], ['nightBrightness', Boolean(view?.nightBackground && currentBackground)]].forEach(([key, enabled]) => {
@@ -3161,7 +3164,7 @@ async function loadBackgrounds(waitForImage = false, bustCache = false, prefetch
     if (els.solidCanvasRatio) els.solidCanvasRatio.value = String([1.7777777778,1.3333333333,1,.5625].reduce((best, ratio) => Math.abs(ratio - view.solidCanvasRatio) < Math.abs(best - view.solidCanvasRatio) ? ratio : best, 1.7777777778));
     applyBackgroundColour(); updateEmptyState(); els.image.hidden = !currentBackground; syncBackgroundTransformControls();
     if (currentBackground) {
-      applyBackgroundTransform();
+      applyBackgroundTransform(); applyBackgroundBrightness();
       const cacheKey = bustCache ? `&v=${Date.now()}` : '', src = `api/background/file?name=${encodeURIComponent(currentBackground)}${cacheKey}`;
       const ready = els.image.dataset.backgroundName === currentBackground && els.image.complete && els.image.naturalWidth > 0 && !bustCache;
       if (!ready) {
@@ -3363,7 +3366,7 @@ function buildSwipePreview(targetId) {
   };
   if (imageEntry) {
     layout(null);
-    imageEntry.ready.then(image => { if (!wrap.isConnected) return; const clone = image.cloneNode(); clone.style.filter = viewIsNight(view) ? brightnessFilter(brightnessOf(view, 'nightBrightness')) : dayImageFilter(view); clone.className = 'swipe-preview-image'; clone.alt = ''; clone.draggable = false; scene.prepend(clone); layout(image); addMarkers(); });
+    imageEntry.ready.then(image => { if (!wrap.isConnected) return; const clone = image.cloneNode(); clone.style.filter = viewIsNight(view) ? brightnessFilter(brightnessOf(view, 'nightBrightness')) : dayImageFilter(view); clone.className = 'swipe-preview-image'; clone.alt = ''; clone.draggable = false; const tint = Number(viewIsNight(view) ? 0 : sunDimTint(view)); if (tint) { const shade = document.createElement('div'); shade.className = 'scene-dim-tint'; shade.style.opacity = tint; scene.prepend(shade); } scene.prepend(clone); layout(image); addMarkers(); });
   } else { layout(null); addMarkers(); }
   return preview;
 }
