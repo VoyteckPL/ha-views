@@ -2248,7 +2248,7 @@ function readableAttribute(value) {
   return String(value);
 }
 function refreshMoreInfoState() {
-  const marker = markerForEntity(moreInfoEntityId); if (!marker) return;
+  if (!moreInfoEntityId) return; const marker = moreInfoSubject(moreInfoEntityId);
   const state = stateCache[moreInfoEntityId] || {}, formatted = formatState(marker), icon = String(resolvedIcon(marker) || 'mdi:cube-outline').replace(/^mdi:/,'mdi-');
   els.moreInfoIcon.innerHTML = `<i class="mdi ${escapeHtml(icon)}"></i>`; els.moreInfoTitle.textContent = marker.displayName; els.moreInfoEntity.textContent = marker.entityId;
   els.moreInfoState.textContent = `${formatted.value}${formatted.unit ? ` ${formatted.unit}` : ''}`;
@@ -2381,8 +2381,13 @@ function openNativeHaMoreInfo(entityId) {
     return true;
   } catch { return false; }
 }
+// Entities of rooms and icons need not have a marker on the plan; More Info then describes the entity itself.
+function moreInfoSubject(entityId) {
+  return markerForEntity(entityId) || { id:'', entityId, type:'icon', displayName: stateCache[entityId]?.attributes?.friendly_name || roomEntityName(entityId) || entityId,
+    iconMode:'auto', iconName:'', iconOn:'', iconOff:'', iconVariantEnabled:false, unitOverride:'', decimals:'auto', stateOnLabel:'', stateOffLabel:'', style: normalizedStyle('icon', {}) };
+}
 function openMoreInfo(entityId) {
-  const marker=markerForEntity(entityId); if(!marker)return;
+  if (!entityId) return;
   if (openNativeHaMoreInfo(entityId)) return;
   moreInfoEntityId=entityId; refreshMoreInfoState(); els.moreInfo.classList.add('visible'); els.moreInfoBackdrop.classList.add('visible');
   els.moreInfo.setAttribute('aria-hidden','false'); els.moreInfoBackdrop.setAttribute('aria-hidden','false'); loadMoreInfoHistory(24);
