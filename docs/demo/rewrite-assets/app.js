@@ -722,7 +722,7 @@ function onRoomDrawMove(event) {
 function startRoomHandleDrag(event) {
   const handle = event.target.closest('.room-handle'); if (!handle || !editMode || !selectedRoomId || roomDraft) return;
   const room = roomsOf()[selectedRoomId]; if (!room) return;
-  event.preventDefault(); event.stopPropagation();
+  event.preventDefault(); event.stopPropagation(); handleTapAt = performance.now();
   if (event.button === 2) {
     // The corner is gone before the browser opens its context menu, so block that menu wherever it lands.
     const noMenu = e => e.preventDefault(); window.addEventListener('contextmenu', noMenu, { capture:true, once:true }); setTimeout(() => window.removeEventListener('contextmenu', noMenu, true), 1000);
@@ -756,7 +756,7 @@ function removeRoomCorner(index) {
 // Removing a corner: click/tap it to select it, then the × next to it or Delete / Backspace; right-click removes it
 // at once; a quick double click / double tap also works. (A handle holds the pointer through the scene for smooth
 // dragging, so the browser's own dblclick never reaches it — the double click is detected here.)
-let lastCornerTap = null, selectedCorner = null;
+let lastCornerTap = null, selectedCorner = null, handleTapAt = 0;
 function pickedCorner() { const room = selectedRoomId && roomsOf()[selectedRoomId]; return room && selectedCorner?.roomId === room.id && selectedCorner.index < (room.points || []).length ? selectedCorner.index : -1; }
 function startRoomMove(event) {
   if (!editMode || roomDraft || event.button > 0 || !selectedRoomId || (event.target !== els.markers && event.target !== els.scene && event.target !== els.image)) return false;
@@ -4089,7 +4089,9 @@ function bindEvents() {
   window.visualViewport?.addEventListener('resize', () => { if (mobileView()) applyBackgroundTransform(); });
   if ('ResizeObserver' in window) new ResizeObserver(updateSceneGeometry).observe(els.scene);
   els.zoomOut?.addEventListener('click', () => setViewZoom(viewZoom-.5)); els.zoomIn?.addEventListener('click', () => setViewZoom(viewZoom+.5)); els.zoomReset?.addEventListener('click', resetViewZoom);
-  els.viewport?.addEventListener('dblclick', event => { if (sceneCameraActive()) setViewZoom(viewZoom > 1 ? 1 : 2, event.clientX, event.clientY); });
+  // A double tap on a room corner removes the corner; the browser also turns those two taps into a dblclick,
+  // which must not toggle the zoom (on a phone the view used to jump back to 100 %).
+  els.viewport?.addEventListener('dblclick', event => { if (roomDraft || performance.now() - handleTapAt < 800 || event.target.closest?.('.room-handle, #room-edit-layer')) return; if (sceneCameraActive()) setViewZoom(viewZoom > 1 ? 1 : 2, event.clientX, event.clientY); });
   els.viewport?.addEventListener('wheel', event => {
     if (mobileView()) return;
     event.preventDefault();
