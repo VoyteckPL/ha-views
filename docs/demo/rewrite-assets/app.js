@@ -1705,7 +1705,7 @@ function applyBoundsUi() {
 function mobileView() { return matchMedia('(max-width: 900px) and (pointer: coarse), (max-width: 768px)').matches; }
 function sceneCameraActive() { return mobileView() || editMode || viewZoom > 1.001; }
 function mobileWidePanorama() {
-  return mobileView() && innerHeight > innerWidth && els.image.naturalWidth > els.image.naturalHeight;
+  return mobileView() && layoutViewportHeight() > innerWidth && els.image.naturalWidth > els.image.naturalHeight;
 }
 // Mobile keeps the readable marker scale. Only markers which truly collide
 // are moved apart temporarily on the Y axis; saved desktop positions stay intact.
@@ -1737,6 +1737,15 @@ function updateMobileMarkerLayout(renderedWidth, renderedHeight) {
     placed.push({ ...item, y });
   }
 }
+// Height used to lay out the plan. While a text field is being edited on a phone the on-screen keyboard shrinks the
+// window; the plan keeps the height from before the keyboard, so its size, zoom and camera do not jump.
+let stableViewportHeight = 0;
+function typingOnPhone() { const el = document.activeElement; return mobileView() && !!el?.matches?.('input:not([type=range]):not([type=checkbox]):not([type=radio]):not([type=color]):not([type=button]),textarea,[contenteditable="true"]'); }
+function layoutViewportHeight() {
+  const h = window.visualViewport?.height || innerHeight;
+  if (!typingOnPhone() || !stableViewportHeight) stableViewportHeight = h;
+  return typingOnPhone() ? stableViewportHeight : h;
+}
 function updateSceneGeometry() {
   const hasImage = !els.image.hidden && els.image.naturalWidth > 0 && els.image.naturalHeight > 0;
   // A new background is still loading: keep the current geometry instead of briefly collapsing to the colour ratio.
@@ -1746,7 +1755,7 @@ function updateSceneGeometry() {
   const panorama = mobileWidePanorama();
   let renderedWidth;
   if (panorama) {
-    const viewportHeight = window.visualViewport?.height || innerHeight;
+    const viewportHeight = layoutViewportHeight();
     const top = els.viewport.getBoundingClientRect().top;
     const renderedHeight = Math.max(180, viewportHeight - top - (editMode ? 44 : 8));
     renderedWidth = Math.round(renderedHeight * ratio);
@@ -1838,7 +1847,7 @@ function resetViewZoom() {
   applyViewTransform();
 }
 function syncMobileOrientation() {
-  const next = mobileView() ? (innerHeight > innerWidth ? 'portrait' : 'landscape') : 'desktop';
+  const next = mobileView() ? (layoutViewportHeight() > innerWidth ? 'portrait' : 'landscape') : 'desktop';
   if (next !== mobileOrientation) { mobileOrientation = next; requestAnimationFrame(resetViewZoom); }
 }
 function defaultBackgroundTransform() { return { mode:'contain', scale:1, x:0, y:0, mobilePanStart:.5 }; }
@@ -1856,7 +1865,7 @@ function applyBackgroundTransform() {
     else {
       // Colour background: largest whole canvas of the chosen size that fits the workspace (like an image).
       const ratio = clamp(activeSceneView()?.solidCanvasRatio || 16 / 9, .25, 4), parentWidth = Math.max(1, card.parentElement?.clientWidth || innerWidth);
-      const availableHeight = Math.max(160, (window.visualViewport?.height || innerHeight) - card.getBoundingClientRect().top - 8);
+      const availableHeight = Math.max(160, layoutViewportHeight() - card.getBoundingClientRect().top - 8);
       card.style.width = `${(Math.min(parentWidth, availableHeight * ratio) / parentWidth) * 100}%`; card.style.marginLeft = 'auto'; card.style.marginRight = 'auto';
     }
     els.image.style.objectFit = 'fill'; els.image.style.transform = '';
@@ -1873,7 +1882,7 @@ function applyBackgroundTransform() {
     // Every other combination: largest whole image that still fits in the visible workspace.
     const parentWidth = Math.max(1, card.parentElement?.clientWidth || innerWidth);
     const top = card.getBoundingClientRect().top;
-    const viewportHeight = window.visualViewport?.height || innerHeight;
+    const viewportHeight = layoutViewportHeight();
     const availableHeight = Math.max(160, viewportHeight - top - 8);
     const fittedWidth = Math.min(parentWidth, availableHeight * ratio);
     card.style.width = `${(fittedWidth / parentWidth) * 100}%`;
@@ -4230,9 +4239,9 @@ function swipeImage(name) {
 // Mirrors applyBackgroundTransform()/updateSceneGeometry()/resetViewZoom() for a view that is not active yet.
 function swipeGeometry(view, image) {
   const card = els.sceneCard, parentWidth = Math.max(1, card.parentElement?.clientWidth || innerWidth), cardTop = card.getBoundingClientRect().top;
-  const screenHeight = window.visualViewport?.height || innerHeight, border = 2, designWidth = Number(model.settings?.designWidth) || DESIGN_WIDTH;
+  const screenHeight = layoutViewportHeight(), border = 2, designWidth = Number(model.settings?.designWidth) || DESIGN_WIDTH;
   const hasImage = Boolean(image?.naturalWidth && image?.naturalHeight), ratio = hasImage ? image.naturalWidth / image.naturalHeight : clamp(view.solidCanvasRatio || 16 / 9, .25, 4);
-  if (hasImage && mobileView() && innerHeight > innerWidth && image.naturalWidth > image.naturalHeight) {
+  if (hasImage && mobileView() && layoutViewportHeight() > innerWidth && image.naturalWidth > image.naturalHeight) {
     const viewportHeight = Math.max(180, screenHeight - cardTop - 1 - 8), sceneWidth = Math.round(viewportHeight * ratio), viewportWidth = parentWidth - border;
     const panStart = clamp(view.backgroundTransforms?.[view.background]?.mobilePanStart ?? .5, 0, 1);
     return { cardWidth: parentWidth, cardLeft: 0, viewportHeight, viewportWidth, sceneWidth, sceneHeight: viewportHeight, panX: -Math.max(0, sceneWidth - viewportWidth) * panStart, scale: sceneWidth / designWidth, panorama: sceneWidth - viewportWidth > 1 };
@@ -4684,6 +4693,16 @@ function bindEvents() {
   window.addEventListener('resize', () => { syncDock(); applyBackgroundTransform(); syncMobileOrientation(); });
   $$('[data-dock-side]').forEach(button => button.addEventListener('click', event => { event.stopPropagation(); toggleDockSide(); }));
   window.visualViewport?.addEventListener('resize', () => { if (mobileView()) applyBackgroundTransform(); });
+  // Keyboard closed after editing a name, a value…: lay the plan out again and bring the selected element back into view.
+  document.addEventListener('focusout', event => {
+    if (!mobileView() || !editMode || !event.target?.matches?.('input,textarea')) return;
+    setTimeout(() => {
+      if (typingOnPhone()) return;
+      applyBackgroundTransform();
+      const room = selectedRoomId && roomsOf()[selectedRoomId];
+      if (room) focusSceneBoxOnMobile(isIconRoom(room) ? iconFocusBox(room) : room.points || []); else focusSelectedMarkerOnMobile();
+    }, 350);
+  });
   if ('ResizeObserver' in window) new ResizeObserver(updateSceneGeometry).observe(els.scene);
   els.zoomOut?.addEventListener('click', () => setViewZoom(viewZoom-.5)); els.zoomIn?.addEventListener('click', () => setViewZoom(viewZoom+.5)); els.zoomReset?.addEventListener('click', resetViewZoom);
   // A double tap on a room corner removes the corner; the browser also turns those two taps into a dblclick,
@@ -4825,7 +4844,7 @@ async function boot() {
   const horseshoeMigrated = migrateHorseshoeBaseline();
   if (legacyMigrated || multiMigrated || gridPresetMigrated || iconHorizontalMigrated || gaugeMigrated || horseshoeMigrated) scheduleSave(true);
   attachActiveEntities(); updateSceneGeometry(); renderMarkers(); resetViewZoom();
-  mobileOrientation = mobileView() ? (innerHeight > innerWidth ? 'portrait' : 'landscape') : 'desktop';
+  mobileOrientation = mobileView() ? (layoutViewportHeight() > innerWidth ? 'portrait' : 'landscape') : 'desktop';
   // Live states are requested now, in parallel with the background image.
   const statesReady = refreshStates();
   await loadBackgrounds(true, false, backgroundsRequest, 2500);
