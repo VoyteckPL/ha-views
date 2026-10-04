@@ -946,3 +946,16 @@ body.editing .room-labels{z-index:3}
 .room-card-swatch{display:block;width:30px;height:16px;border-radius:5px}
 .room-card-swatch.none{border:1px dashed #6f93a4}.room-card-swatch.dark{background:#081822;border:1px solid #2b4a5a}.room-card-swatch.light{background:#fff}
 .room-card-swatch.glass{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.5)}.room-card-swatch.room{background:rgba(255,210,122,.35);border:1.5px solid #FFD27A}
+
+/* Editor header: all quick buttons in one row under the title; ON/OFF preview row right below */
+.editor-head{flex-wrap:wrap}
+.editor-head>.editor-quick-actions,.flow-editor .editor-head>.editor-quick-actions{flex:1 0 100%;display:flex!important;flex-wrap:nowrap;justify-content:space-between;gap:4px;margin:2px 0 0}
+.editor-head>.editor-quick-actions .editor-icon-button{flex:0 1 32px;min-width:26px}
+.editor-quick-actions .editor-version{display:none}
+.editor-preview-row{display:flex;align-items:center;gap:6px;margin:0 0 8px;padding:2px 2px 6px;border-bottom:1px solid rgba(99,181,216,.14)}
+.editor-preview-row>span{flex:1;color:#7fa3b3;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.preview-mini{display:inline-flex;align-items:center;gap:3px;height:24px!important;padding:0 8px!important;border:1px solid rgba(99,181,216,.3);border-radius:12px;background:#0d2635;color:#9fc4d4;font-size:9.5px!important;font-weight:800;cursor:pointer}
+.preview-mini .mdi{font-size:14px}.preview-mini.active{background:#20b9e7;border-color:#20b9e7;color:#03101a}
+.room-card-presets{flex-wrap:nowrap!important}
+.room-card-preset{min-width:0!important;flex:1 1 0;padding:6px 0!important}
+.room-card-preset .mdi{font-size:19px}
