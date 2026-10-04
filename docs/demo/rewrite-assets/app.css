@@ -1010,3 +1010,12 @@ body.editing .room-labels{z-index:3}
 @media (max-width:768px),(max-width:900px) and (pointer:coarse){.room-wizard{bottom:auto}}
 .room-label-part.tappable,.room-label-card.tappable{pointer-events:auto;cursor:pointer}
 .scene-empty.solid-background .welcome-card{background:rgba(7,27,39,.78)}
+.room-wizard[data-step="name"] .room-wizard-parts-step,.room-wizard[data-step="entities"] .room-wizard-parts-step,.room-wizard[data-step="parts"] .room-wizard-name-step,.room-wizard[data-step="parts"] .room-wizard-entity-step{display:none}
+.room-wizard-parts-step>small{margin:0 2px 8px}
+.room-wizard-parts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.room-wizard-part{position:relative;height:auto;min-height:74px;width:auto;display:flex;justify-content:center;flex-direction:column;align-items:center;gap:5px;padding:12px 6px 10px;border:1px solid rgba(99,181,216,.3);border-radius:11px;background:#0b2230;color:#9fb6c3;font:inherit;font-size:12.5px;cursor:pointer}
+.room-wizard-part>.mdi:first-child{font-size:24px}
+.room-wizard-part.on{border-color:#20b9e7;background:rgba(32,185,231,.14);color:#e6f7ff}.room-wizard-part.on>.mdi:first-child{color:#ffc46b}
+.room-wizard-part-check{position:absolute;top:5px;right:6px;font-size:14px;color:#6f93a4}.room-wizard-part.on .room-wizard-part-check{color:#20b9e7}
+.room-wizard-next:disabled{opacity:.45;cursor:default}
+.room-wizard-next:hover:not(:disabled){background:#4fcdf2;color:#03202c}.room-wizard-skip:hover{background:rgba(99,181,216,.12);color:#e6f7ff}
