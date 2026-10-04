@@ -618,9 +618,9 @@ main{width:min(1600px,calc(100% - 32px));margin:20px auto 40px}.view{display:non
 
 /* Alignment guides while dragging in edit mode */
 #align-guides{position:absolute;inset:0;z-index:40;pointer-events:none}
-.align-guide{position:absolute;background:#20b9e7;box-shadow:0 0 0 1px rgba(3,16,26,.55),0 0 6px rgba(32,185,231,.8)}
-.align-guide.vertical{top:0;bottom:0;width:1px;transform:translateX(-.5px)}
-.align-guide.horizontal{left:0;right:0;height:1px;transform:translateY(-.5px)}
+.align-guide{position:absolute;--g:calc(.8px / var(--view-zoom,1));background:#20b9e7;box-shadow:0 0 calc(2.5px / var(--view-zoom,1)) rgba(32,185,231,.55)}
+.align-guide.vertical{top:0;bottom:0;width:var(--g);transform:translateX(-50%)}
+.align-guide.horizontal{left:0;right:0;height:var(--g);transform:translateY(-50%)}
 
 /* Rooms: light polygons under the markers; outlines and handles above them in edit mode */
 .rooms{position:absolute;inset:0;pointer-events:none}
@@ -686,7 +686,7 @@ main{width:min(1600px,calc(100% - 32px));margin:20px auto 40px}.view{display:non
 .flow-train>.flow-chevron+.flow-chevron{margin-left:var(--flow-gap,9px)}
 
 /* Room guides (centre / edges of the room the element is in) use their own colour */
-.align-guide.room{background:#ffb547;box-shadow:0 0 0 1px rgba(3,16,26,.55),0 0 6px rgba(255,181,71,.85)}
+.align-guide.room{background:#ffb547;box-shadow:0 0 calc(2.5px / var(--view-zoom,1)) rgba(255,181,71,.6)}
 /* Bigger touch target for room corners on phones */
 @media(pointer:coarse){.room-handle::before{content:'';position:absolute;inset:-12px;border-radius:50%}}
 
@@ -721,7 +721,7 @@ body:not(.editing) #snap-menu-button,body:not(.editing) #add-button{display:none
 .snap-icon.active{color:#80e9ff;border-color:#20b9e7;background:rgba(32,185,231,.18)}
 .snap-icon:disabled{opacity:.35}
 .align-icons .snap-icon{color:#dce8ef}
-.align-guide.bg{background:#35d07f;box-shadow:0 0 0 1px rgba(3,16,26,.55),0 0 6px rgba(53,208,127,.85)}
+.align-guide.bg{background:#35d07f;box-shadow:0 0 calc(2.5px / var(--view-zoom,1)) rgba(53,208,127,.6)}
 
 /* Sharpness above 100 % draws the point past the item box: do not clip it */
 svg.flow-chevron{overflow:visible}
