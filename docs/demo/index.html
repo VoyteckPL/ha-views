@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link id="mdi-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" media="print" onload="this.media='all'">
   <style>.app-booting .markers,.app-booting .scene-empty,.app-booting .selection,.app-booting .flow-selection,.app-booting #edit-toggle,.app-booting #view-manage,.app-booting #settings-toggle{visibility:hidden!important}</style>
-  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260928-249">
+  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260928-250">
   <meta name="description" content="HA Views live demo: visual Home Assistant dashboards on your own floor plan. Runs entirely in your browser.">
   <style>
     #demo-bar{position:fixed;left:10px;bottom:10px;z-index:60;display:flex;align-items:center;gap:8px;max-width:calc(100vw - 20px);padding:6px 8px 6px 12px;border:1px solid rgba(99,181,216,.4);border-radius:999px;background:rgba(6,22,32,.92);color:#cfe6f1;font:12px/1.3 system-ui,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.45);backdrop-filter:blur(6px)}
@@ -16,7 +16,7 @@
     body.editing #demo-bar{opacity:.35}body.editing #demo-bar:hover{opacity:1}
     @media (max-width:640px){#demo-bar .demo-note{display:none}}
   </style>
-  <script>window.HA_VIEWS_DEMO_APP = 'rewrite-assets/app.js?v=20260928-249';</script>
+  <script>window.HA_VIEWS_DEMO_APP = 'rewrite-assets/app.js?v=20260928-250';</script>
   <script src="demo-layout.js"></script>
   <script src="demo.js"></script>
 </head>
@@ -110,9 +110,10 @@
     </div>
     <div class="top-actions">
       <div id="edit-menu" class="compact-menu edit-menu">
-        <button id="room-add" class="menu-action" title="Dodaj pomieszczenie" aria-label="Dodaj pomieszczenie"><i class="mdi mdi-vector-polygon"></i><span>Pomieszczenie</span></button>
-        <button id="flow-add" class="menu-action" title="Dodaj Flow" aria-label="Dodaj Flow"><i class="mdi mdi-chevron-triple-right"></i><span data-no-i18n>Flow</span></button>
-        <button id="text-add" class="menu-action" title="Dodaj tekst lub przycisk" aria-label="Dodaj tekst lub przycisk"><i class="mdi mdi-format-text"></i><span>Tekst / przycisk</span></button>
+        <button id="element-add" class="menu-action add-main" title="Dodaj do widoku" aria-label="Dodaj do widoku"><i class="mdi mdi-plus-box-multiple-outline"></i><span>Dodaj</span></button>
+        <button id="room-add" class="menu-action" hidden title="Dodaj pomieszczenie" aria-label="Dodaj pomieszczenie"><i class="mdi mdi-vector-polygon"></i><span>Pomieszczenie</span></button>
+        <button id="flow-add" class="menu-action" hidden title="Dodaj Flow" aria-label="Dodaj Flow"><i class="mdi mdi-chevron-triple-right"></i><span data-no-i18n>Flow</span></button>
+        <button id="text-add" class="menu-action" hidden title="Dodaj tekst lub przycisk" aria-label="Dodaj tekst lub przycisk"><i class="mdi mdi-format-text"></i><span>Tekst / przycisk</span></button>
         <div class="menu-divider"></div>
         <div class="language-row"><i class="mdi mdi-translate"></i><span>Język</span><select id="language-select" title="Language / Język" aria-label="Language / Język"><option value="en">EN</option><option value="pl">PL</option></select></div>
       </div>
@@ -152,6 +153,7 @@
           <button type="button" class="snap-icon" data-rotate="90" title="Obróć o 90° w prawo"><i class="mdi mdi-rotate-right"></i></button>
         </div><div class="rotate-row"><input id="rotate-range" type="range" min="-180" max="180" step="1" value="0" title="Obrót płynny" aria-label="Obrót płynny"><output id="rotate-value">0°</output></div></div>
       </div>
+      <button id="add-button" class="icon-action add-top" title="Dodaj do widoku" aria-label="Dodaj do widoku"><i class="mdi mdi-plus"></i></button>
       <button id="snap-menu-button" class="icon-action" title="Przyciąganie i siatka" aria-label="Przyciąganie i siatka"><i class="mdi mdi-magnet"></i></button>
       <button id="integrations-button" class="icon-action" title="Integracje" aria-label="Integracje"><i class="mdi mdi-puzzle-outline"></i></button>
       <button id="edit-toggle" class="icon-action" title="Edytuj widok" aria-label="Edytuj widok"><i class="mdi mdi-pencil-outline"></i></button>
@@ -234,6 +236,7 @@
         <button id="geometry-lock" class="editor-icon-button" title="Zablokuj geometrię" aria-label="Zablokuj geometrię"><i class="mdi mdi-lock-open-variant-outline"></i></button>
         <button id="copy-style" class="editor-icon-button" title="Kopiuj styl" aria-label="Kopiuj styl"><i class="mdi mdi-content-copy"></i></button>
         <button id="paste-style" class="editor-icon-button" title="Wklej styl" aria-label="Wklej styl"><i class="mdi mdi-content-paste"></i></button>
+        <button id="marker-duplicate" class="editor-icon-button" title="Duplikuj marker" aria-label="Duplikuj marker"><i class="mdi mdi-content-duplicate"></i></button>
         <button id="remove-marker" class="editor-icon-button danger" title="Usuń z widoku" aria-label="Usuń z widoku"><i class="mdi mdi-delete-outline"></i></button>
         <button type="button" class="editor-icon-button dock-side" data-dock-side title="Przenieś panel na drugą stronę" aria-label="Przenieś panel na drugą stronę"><i class="mdi mdi-dock-left"></i></button>
         <button id="editor-close" class="editor-icon-button" title="Zamknij" aria-label="Zamknij"><i class="mdi mdi-close"></i></button>
@@ -296,6 +299,21 @@
     <span>Przeciągnij kółka, aby ustawić rozmiar</span><b id="canvas-resize-value" data-no-i18n></b>
     <button id="canvas-resize-done" type="button" class="primary"><i class="mdi mdi-check"></i><span>Gotowe</span></button>
   </div>
+  <div id="add-dialog" class="add-dialog" aria-hidden="true">
+    <div class="add-card-wrap" role="dialog" aria-modal="true" aria-labelledby="add-title">
+      <div class="add-head"><div><h2 id="add-title">Dodaj do widoku</h2><small id="add-sub"></small></div><button type="button" class="editor-icon-button" data-add-close title="Zamknij" aria-label="Zamknij"><i class="mdi mdi-close"></i></button></div>
+      <div class="add-body">
+        <div id="add-selected"></div>
+        <div class="add-label">Co dodać?</div>
+        <div id="add-types" class="add-types"></div>
+        <div class="add-label">Encja<em id="add-entity-note"></em></div>
+        <label class="add-search"><i class="mdi mdi-magnify"></i><input id="add-search" type="search" autocomplete="off" spellcheck="false" placeholder="Szukaj: nazwa, obszar, entity_id…" aria-label="Szukaj encji"></label>
+        <div id="add-chips" class="add-chips"></div>
+        <div id="add-list" class="add-list"></div>
+      </div>
+      <div class="add-foot"><label class="add-pick"><input id="add-pick" type="checkbox"><span class="add-switch"></span><span class="add-pick-text">Wskaż miejsce na planie</span></label><span class="add-spacer"></span><button type="button" class="add-cancel" data-add-close>Anuluj</button><button type="button" id="add-go" class="add-go"></button></div>
+    </div>
+  </div>
   <div id="room-draw-bar" class="room-draw-bar" role="toolbar">
     <span id="room-draw-text">Klikaj kolejne narożniki pomieszczenia</span>
     <button id="room-draw-undo" type="button" title="Cofnij punkt" aria-label="Cofnij punkt"><i class="mdi mdi-undo"></i><span>Cofnij punkt</span></button>
@@ -341,6 +359,6 @@
   </div>
 
   <div id="toast" class="toast"></div>
-  <div id="demo-bar" data-no-i18n><b>HA Views demo</b><span class="demo-note">0.4.1-beta.249 preview · example data · your changes stay in this browser</span><button type="button" onclick="haViewsDemoReset()" title="Restore the example dashboard">Reset</button><a href="https://github.com/VoyteckPL/ha-views" target="_blank" rel="noopener">Get the add-on</a></div>
+  <div id="demo-bar" data-no-i18n><b>HA Views demo</b><span class="demo-note">0.4.1-beta.250 preview · example data · your changes stay in this browser</span><button type="button" onclick="haViewsDemoReset()" title="Restore the example dashboard">Reset</button><a href="https://github.com/VoyteckPL/ha-views" target="_blank" rel="noopener">Get the add-on</a></div>
 </body>
 </html>

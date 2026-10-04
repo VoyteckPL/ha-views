@@ -100,6 +100,12 @@
       }
       case 'integrations': return json({ ok: true, integrations: INTEGRATIONS });
       case 'integration_entities': { const entry = q.get('entry_id'); return json({ ok: true, entry_id: entry, entities: (BY_ENTRY[entry] || []).map(id => ({ entity_id: id, name: E[id].attributes.friendly_name, state: E[id].state, unit: E[id].attributes.unit_of_measurement || null, platform: entry, disabled_by: null, enabled: true, device_id: '', device_name: '' })) }); }
+      case 'entity_catalog': {
+        const AREAS = ['Living room', 'Kitchen', 'Bedroom', 'Bathroom', 'Hall', 'Garden', 'Office', 'Garage'];
+        const entryOf = id => Object.keys(BY_ENTRY).find(entry => BY_ENTRY[entry].includes(id)) || '';
+        const entities = Object.values(E).map(e => { const name = e.attributes.friendly_name || e.entity_id; return { entity_id: e.entity_id, name, domain: e.entity_id.split('.')[0], state: e.state, unit: e.attributes.unit_of_measurement || '', device_class: e.attributes.device_class || '', icon: e.attributes.icon || '', area: AREAS.find(a => name.toLowerCase().includes(a.toLowerCase())) || '', entry_id: entryOf(e.entity_id), platform: '', hidden: false }; }).sort((a, b) => a.name.localeCompare(b.name));
+        return json({ ok: true, entities, areas: AREAS.filter(a => entities.some(e => e.area === a)) });
+      }
       case 'integration_entities_all': return json({ ok: true, entities_by_entry: Object.fromEntries(Object.entries(BY_ENTRY).map(([entry, ids]) => [entry, ids.map(id => ({ entity_id: id, name: E[id].attributes.friendly_name, enabled: true }))])) });
       case 'entity_history': { const hours = Number(q.get('hours')) || 24, id = q.get('entity_id'); return json({ ok: true, entity_id: id, hours, points: history(id, hours) }); }
       case 'backgrounds': return json({ ok: true, current: null, items: await listFiles() });

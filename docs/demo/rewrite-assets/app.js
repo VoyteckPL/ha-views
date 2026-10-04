@@ -3,6 +3,11 @@ const $$ = (s, root = document) => [...root.querySelectorAll(s)];
 const clone = value => JSON.parse(JSON.stringify(value));
 const clamp = (value, min, max) => Math.min(max, Math.max(min, Number(value) || 0));
 const uid = () => `m_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
+// Markers are keyed by their own id (layout v3); the HA entity is marker.entityId, so one entity can appear on a view many times.
+// Layouts from before v3 used the entity id as the key — those keys stay valid ids, nothing is moved.
+const markersForEntity = (entityId, entities = model.entities) => Object.values(entities || {}).filter(marker => marker.entityId === entityId);
+const markerForEntity = (entityId, entities = model.entities) => entities?.[entityId]?.entityId === entityId ? entities[entityId] : markersForEntity(entityId, entities)[0];
+const markerNode = key => $(`.marker[data-marker-id="${CSS.escape(String(key || ''))}"]`);
 const DESIGN_WIDTH = 1600;
 const ACTIVE_VIEW_CACHE_KEY = 'ha-views:last-active-view';
 
@@ -23,7 +28,7 @@ const TRANSLATIONS = {
     "Brak entity_id":"Missing entity_id","Brak entry_id":"Missing entry_id","Brak listy encji":"Missing entity list","Brak pliku":"No file","Dane muszą być obiektem JSON":"Data must be a JSON object","Dozwolone: PNG, JPG, JPEG, WEBP":"Allowed: PNG, JPG, JPEG, WEBP","Layout jest za duży":"Layout is too large","Layout musi być obiektem JSON":"Layout must be a JSON object","Nie znaleziono tła":"Background not found","Nieprawidlowa encja":"Invalid entity","Nieprawidłowy JSON":"Invalid JSON","Plik stylów jest za duży":"Style file is too large","Stan jest za duży":"State is too large","Stan musi być obiektem JSON":"State must be a JSON object",
     "Cofnij":"Undo","Przywrócono widok":"View restored","Usunięto widok":"View deleted","Widok jest pusty.":"The view is empty.","Usuń widok":"Delete view","Usunąć widok?":"Delete view?",
     "Długość ramki":"Frame length","Długość elementu":"Item length","Długość ramki i szerokość to rozmiar ramki liczony względem kierunku strzałki. Długość elementu to rozmiar jednej strzałki. Liczba i odstęp nie zmieniają ani ramki, ani kształtu strzałek — elementy są wyśrodkowane w ramce, a to, co się nie mieści, jest przycinane.":"Frame length and width are the frame size, measured along the arrow direction. Item length is the size of a single arrow. Count and spacing change neither the frame nor the arrow shape — items are centred in the frame and anything that does not fit is clipped.",
-    "Duplikuj Flow":"Duplicate Flow","Utworzono kopię Flow — przeciągnij ją w wybrane miejsce":"Flow copy created — drag it where you want",
+    "Duplikuj Flow":"Duplicate Flow","Utworzono kopię Flow — przeciągnij ją w wybrane miejsce":"Flow copy created — drag it where you want","Utworzono kopię markera — przeciągnij ją w wybrane miejsce":"Marker copy created — drag it where you want","Duplikuj marker":"Duplicate marker","Dodaj do widoku":"Add to view","Wybierz wygląd dla tej encji":"Choose a look for this entity","Wybierz typ albo encję — kolejność dowolna":"Pick a type or an entity — in any order","Co dodać?":"What to add?","Encja":"Entity","— tylko encje liczbowe":"— numeric entities only","— opcjonalnie dla Pomieszczenia, Flow i Tekstu":"— optional for Room, Flow and Text","Szukaj: nazwa, obszar, entity_id…":"Search: name, area, entity_id…","Szukaj encji":"Search entities","Wszystkie":"All","Ostatnie":"Recent","Bez obszaru":"No area","Obszary":"Areas","Typy":"Types","Światła":"Lights","Przełączniki":"Switches","Czujniki":"Sensors","Czujniki binarne":"Binary sensors","Rolety":"Covers","Klimat":"Climate","Media":"Media","Inne":"Other","Wczytywanie encji…":"Loading entities…","Ten element nie potrzebuje encji.":"This element needs no entity.","Brak ostatnio dodanych encji.":"No recently added entities.","Brak pasujących encji.":"No matching entities.","na widoku":"on view","Pokazano":"Showing","zawęż wyszukiwanie":"narrow the search","Wybierz, co dodać":"Choose what to add","Wybierz typ":"Choose a type","Wybierz encję":"Choose an entity","Dodaj":"Add","Polecane":"Suggested","Zmień":"Change","Dla wartości liczbowych":"For numeric values","Bez encji":"No entity","Ikona":"Icon","Tekst / przycisk":"Text / button","Pomieszczenie":"Room","Światło, gniazdko, przełącznik":"Light, socket, switch","Temperatura, wilgotność, stan":"Temperature, humidity, state","Moc, poziom, procent":"Power, level, percent","Moc, bateria, zużycie":"Power, battery, usage","Obszar świeci od encji":"Area lit by an entity","Przepływ energii, wody":"Energy or water flow","Podpis, link do widoku, akcja":"Label, view link, action","Podpis":"Label","Przycisk":"Button","Wskaż miejsce na planie":"Pick the spot on the plan","Anuluj":"Cancel","Zamknij":"Close","Dotknij plan w miejscu, gdzie ma stanąć element":"Tap the plan where the element should go","Anulowano dodawanie":"Adding cancelled","Dodano":"Added","Dodano Flow":"Flow added","Poziom":"Level","Bateria":"Battery","Salon":"Living room",
     "Ostrość":"Sharpness",
     "Układ został zmieniony na innym urządzeniu — wczytano najnowszą wersję. Ostatnia zmiana z tego urządzenia nie została zapisana.":"The layout was changed on another device — the latest version was loaded. The last change from this device was not saved.","Układ zmieniono na innym urządzeniu":"Layout changed on another device","Wczytaj":"Load","Wczytano zmiany z innego urządzenia":"Loaded changes from another device","Ściemniaj tło wg słońca":"Dim the background with the sun","Jasność w nocy":"Night brightness","Zaczyna ściemniać, gdy słońce na":"Starts dimming with the sun at","Pełna noc, gdy słońce na":"Full night with the sun at","Chłodny odcień nocą":"Cool tint at night","Ściemnienie":"Dimming","słońce":"sun","Edycja":"Editing","Przenieś panel na drugą stronę":"Move the panel to the other side","Kliknij marker, Flow albo pomieszczenie, żeby je edytować.":"Click a marker, Flow or room to edit it.","Nowe elementy dodasz z menu edycji (ołówek), a przyciąganie i wyrównanie z menu magnesu.":"Add new elements from the edit menu (pencil); snapping and alignment are in the magnet menu.","Usuń narożnik":"Remove corner","Ostatnia zmiana":"Last changed","7 dni":"7 days","Tekst / przycisk":"Text / button","Tekst":"Text","Tekst i akcja":"Text and action","Podpis":"Caption","Przejdź do widoku":"Go to view","Otwórz stronę Home Assistant":"Open a Home Assistant page","Otwórz link":"Open a link","Adres w HA":"HA path","Link":"Link","W nowej karcie":"In a new tab","Dodano tekst — przeciągnij go w wybrane miejsce":"Text added — drag it into place","Link do tego widoku":"Link to this view","Kopiuj link do widoku":"Copy link to this view","Skopiowano do schowka. Otwiera HA Views od razu na tym widoku — w przeglądarce, w zakładce albo w akcji „navigate” innego dashboardu.":"Copied to the clipboard. It opens HA Views directly on this view — in a browser, a bookmark or a “navigate” action of another dashboard.","Skopiuj link. Otwiera HA Views od razu na tym widoku — w przeglądarce, w zakładce albo w akcji „navigate” innego dashboardu.":"Copy the link. It opens HA Views directly on this view — in a browser, a bookmark or a “navigate” action of another dashboard.","OK":"OK","HA Views Beta":"HA Views Beta","stabilna wersja HA Views":"the stable HA Views","Beta":"Beta","Używane przez":"Used by","Usunąć tło używane przez drugą wersję?":"Delete a background used by the other version?","Zmienić nazwę tła używanego przez drugą wersję?":"Rename a background used by the other version?","Jasność":"Brightness","Przywróć 100%":"Reset to 100%","Widok":"View","Opcje":"Options","Obraz":"Image","Wgraj tło":"Upload background","Zmień nazwę pliku tła":"Rename background file","Auto — przełącza encja":"Auto — switched by the entity","Kolor zamiast obrazu":"Colour instead of an image","Wybór koloru zastąpi obraz":"Choosing a colour replaces the image","Tło w kolorze":"Colour background","Szerokość":"Width","Wysokość":"Height","Ustaw rozmiar na ekranie":"Set the size on screen","Przeciągnij kółka, aby ustawić rozmiar":"Drag the circles to set the size","Tło tego widoku":"This view's background","Ustaw jako tło tego widoku":"Use as this view's background","Tło nocne tego widoku":"This view's night background","Ustaw jako tło nocne tego widoku":"Use as this view's night background","Zmień nazwę":"Rename","Pobierz":"Download","Ustawiono tło widoku":"View background set","Zmień nazwę pliku tła?":"Rename background file?","Zmienić nazwę tła wersji stabilnej?":"Rename a stable-version background?","Zmień mimo to":"Rename anyway","Zmieniono nazwę tła":"Background renamed","Zmień":"Change","Używane w stabilnej wersji — usunięcie wymaga potwierdzenia":"Used by the stable version — deleting needs confirmation","Usunąć tło wersji stabilnej?":"Delete a stable-version background?","Usuń mimo to":"Delete anyway","Tego nie da się cofnąć.":"This cannot be undone.","Tryb tła":"Background mode","Automatycznie wg encji":"Automatic by entity","Zawsze dzień":"Always day","Zawsze noc":"Always night","Zawsze noc — encja nie jest używana":"Always night — the entity is not used","Zawsze dzień — encja nie jest używana":"Always day — the entity is not used","Pliki tła":"Background files","Usuń nieużywane":"Remove unused","plików":"files","plik":"file","pliki":"files","nieużywane":"unused","Nieużywane":"Unused","Stabilna":"Stable","noc":"night","dzień":"day","Używane w stabilnej wersji — usuń je tam":"Used by the stable version — remove it there","Usuń plik":"Delete file","Brak wgranych teł.":"No uploaded backgrounds.","Wczytywanie…":"Loading…","Usunąć plik tła?":"Delete background file?","Usunąć nieużywane tła?":"Remove unused backgrounds?","Usunięto plik tła":"Background file deleted","Tło nocne":"Night background","Bez tła nocnego":"No night background","Wgraj tło nocne":"Upload night background","Przełącza encja":"Switched by entity","Encja przełączająca tło nocne":"Entity that switches the night background","Dzień":"Day","Noc":"Night","Podgląd: dzień":"Preview: day","Podgląd: noc":"Preview: night","Podgląd tła":"Background preview","Teraz: noc":"Now: night","Teraz: dzień":"Now: day","podgląd":"preview","Najpierw ustaw tło dzienne":"Set the day background first","Ustawiono tło nocne":"Night background set","Wgrywanie…":"Uploading…","Intensywność ON":"ON intensity","Intensywność OFF":"OFF intensity","Obrót":"Rotation","Obróć zaznaczony":"Rotate selected","Obróć o 90° w lewo":"Rotate 90° left","Obróć o 15° w lewo":"Rotate 15° left","Obróć o 15° w prawo":"Rotate 15° right","Obróć o 90° w prawo":"Rotate 90° right","Bez obrotu":"No rotation","Obrót płynny":"Smooth rotation","Przyciąganie i siatka":"Snapping and grid","Linie pomocnicze":"Guides","Przyciągaj do":"Snap to","Tło (środek i krawędzie)":"Background (centre and edges)","Punkty":"Points","Środki":"Centres","Krawędzie":"Edges","Wyrównaj zaznaczony do tła":"Align selected to background","Do lewej krawędzi tła":"To the left edge","Wyśrodkuj w poziomie":"Centre horizontally","Do prawej krawędzi tła":"To the right edge","Do górnej krawędzi tła":"To the top edge","Wyśrodkuj w pionie":"Centre vertically","Do dolnej krawędzi tła":"To the bottom edge","Dodaj Flow":"Add Flow","Dodano Flow — wybierz encję albo zostaw bez encji":"Flow added — choose an entity or leave it without one","Usuń encję":"Remove entity","Podgląd: włączony":"Preview: on","Podgląd: wyłączony":"Preview: off","Tempo to stała prędkość strzałek (1× = 150 px/s) — nie zależy od rozmiaru, odstępu ani liczby, więc Flow z tym samym tempem jadą identycznie.":"Tempo is a constant arrow speed (1\u00d7 = 75 px/s) \u2014 it does not depend on size, spacing or count, so Flows with the same tempo move identically.","Ramka i pozycja":"Frame and position","Szerokość ramki":"Frame width","Strzałki":"Arrows","Długość strzałki":"Arrow length","Ramka to obszar Flow na planie, liczony wzdłuż kierunku strzałek. Szerokość ramki jest też wysokością strzałek. Uchwyty zaznaczenia zmieniają to samo.":"The frame is the Flow area on the plan, measured along the arrow direction. The frame width is also the arrow height. The selection handles change the same values.","W animacji „Przepływ” strzałki wypełniają całą ramkę, więc liczba nie ma znaczenia.":"With the “Flow” animation the arrows fill the whole frame, so the count does not matter.","Strzałki są wyśrodkowane w ramce; to, co się nie mieści, jest przycinane. Liczba i odstęp nie zmieniają ramki. Ujemny odstęp wsuwa strzałki jedna w drugą (gęściej).":"Arrows are centred in the frame; what does not fit is clipped. Count and spacing do not change the frame. A negative spacing nests the arrows into each other (denser).","Tempo pulsowania nie zależy od rozmiaru Flow.":"The pulse tempo does not depend on the Flow size.","Ustaw tę animację w pozostałych Flow tej encji":"Apply this animation to the other Flows of this entity","Ustawiono tę samą animację w innych Flow tej encji":"Same animation applied to other Flows of this entity","Granice tła":"Background bounds","Elementy nie wychodzą poza tło":"Elements stay inside the background","Elementy nie wyjdą poza tło":"Elements will stay inside the background","Elementy mogą wychodzić poza tło":"Elements may go outside the background","Edytuj ikonę":"Edit icon","Usuń ikonę":"Remove icon","Dodaj ikonę":"Add icon","Ikona pomieszczenia to zwykły marker typu Ikona z pełnym edytorem (kolory ON/OFF, obrys, tło, ramka, rozmiar, kolory wg wartości). Świeci, gdy pomieszczenie jest zapalone, a dotknięcie wykonuje akcję pomieszczenia.":"The room icon is a regular Icon marker with the full editor (ON/OFF colours, outline, background, border, size, colours by value). It is lit while the room is on, and tapping it runs the room action.","Dodano ikonę pomieszczenia — przeciągnij ją w wybrane miejsce":"Room icon added — drag it where you want it","Usunięto ikonę pomieszczenia":"Room icon removed","Markery":"Markers","Pomieszczenia":"Rooms","Markery, Flow i pomieszczenia tego widoku":"Markers, Flows and rooms of this view","Rozjaśnij — jak światło lampy: plan jaśnieje w kolorze poświaty, ciemne miejsca najmocniej.":"Lighten — like lamp light: the plan brightens in the glow colour, dark areas the most.","Miękkie światło — delikatne ocieplenie, plan zachowuje swoje kolory i kontrast.":"Soft light — a gentle tint, the plan keeps its colours and contrast.","Nakładka — mocniejszy efekt: jasne miejsca jaśnieją, ciemne ciemnieją, kolor jest wyraźny.":"Overlay — a stronger effect: light areas get lighter, dark areas darker, the colour is clear.","Zwykłe — płaski, półprzezroczysty kolor położony na plan.":"Normal — a flat, semi-transparent colour laid over the plan.","Geometria zablokowana — kliknij, aby odblokować":"Geometry locked — click to unlock","Zablokuj geometrię":"Lock geometry","Zablokowano geometrię":"Geometry locked","Odblokowano geometrię":"Geometry unlocked","Podgląd":"Preview","Rzeczywisty stan":"Actual state","Włączony":"On","Wyłączony":"Off","Usuń z pomieszczenia":"Remove from room","Dodaj do pomieszczenia":"Add to room","Z tego widoku":"From this view","Wpisz co najmniej 2 znaki.":"Type at least 2 characters.","Wyszukiwanie encji…":"Searching entities…","Brak — wyszukaj encję poniżej.":"None — search for an entity below.","Szukaj nazwy lub encji…":"Search name or entity…","Geometria jest zablokowana (kłódka u góry).":"The geometry is locked (padlock at the top).","Duplikuj pomieszczenie":"Duplicate room","Kopiuj styl pomieszczenia":"Copy room style","Wklej styl pomieszczenia":"Paste room style","Skopiowano styl pomieszczenia — wklej go w innym pomieszczeniu":"Room style copied — paste it into another room","Wklejono styl pomieszczenia":"Room style pasted","Przywrócić domyślny wygląd?":"Restore the default look?","Wygląd i akcja dotknięcia pomieszczenia wrócą do domyślnych. Kształt, nazwa i encje zostaną.":"The room look and tap action return to defaults. Shape, name and entities stay.","Przywrócono domyślny wygląd pomieszczenia":"Room look restored to default","kopia":"copy","Utworzono kopię pomieszczenia — przeciągnij ją w wybrane miejsce":"Room copied — drag it where you want it","Naprawiono błędny domyślny panel HA — ustaw go ponownie w menu widoku":"Fixed an invalid HA default panel — set it again in the view menu","Domyślny panel Home Assistant":"Home Assistant default panel","Bez zmian (ustawienia HA)":"Unchanged (HA settings)","HA Views — moje konto":"HA Views — my account","HA Views — tylko to urządzenie":"HA Views — this device only","HA Views jest teraz domyślnym panelem na Twoim koncie":"HA Views is now the default panel for your account","HA Views jest domyślnym panelem na tym urządzeniu":"HA Views is the default panel on this device","Przywrócono domyślny panel z ustawień Home Assistant":"Restored the default panel from Home Assistant settings","Otwieraj HA Views po starcie Home Assistant (to urządzenie)":"Open HA Views when Home Assistant starts (this device)","Ta opcja działa tylko w HA Views otwartym z panelu Home Assistant":"This option only works when HA Views is opened from the Home Assistant sidebar","HA Views będzie otwierać się po starcie Home Assistant na tym urządzeniu":"HA Views will open when Home Assistant starts on this device","Po starcie Home Assistant znów otworzy się domyślny dashboard":"Home Assistant will open its default dashboard again","Brak akcji":"No action","Przełącz światło":"Toggle the light","Nic":"Nothing","To pomieszczenie nie ma jeszcze encji — wybierz je w trybie edycji":"This room has no entities yet — choose them in edit mode","Błąd przełączania: ":"Toggle error: ","Pomieszczenie":"Room","Dodaj pomieszczenie":"Add room","Klikaj kolejne narożniki pomieszczenia":"Click the corners of the room one by one","Kliknij pierwszy punkt albo „Gotowe”, aby zamknąć kształt":"Click the first point or “Done” to close the shape","Cofnij punkt":"Undo point","Gotowe":"Done","Usuń pomieszczenie":"Delete room","Dodano pomieszczenie — wybierz encje, które je zapalają":"Room added — choose the entities that light it up","Pomieszczenie musi mieć co najmniej 3 narożniki":"A room needs at least 3 corners","Ten widok nie ma jeszcze encji — dodaj np. światło przez Integracje albo wpisz encję poniżej.":"This view has no entities yet — add e.g. a light via Integrations or type an entity below.","Brak encji":"No entities","Zapalają je encje":"Lit by entities","Inne encje":"Other entities","Pomieszczenie świeci, gdy włączona jest dowolna z wybranych encji (światło, gniazdko, ruch, otwarte drzwi…).":"The room lights up when any of the selected entities is on (light, plug, motion, open door…).","Wygląd":"Appearance","Efekt":"Effect","Poświata kolorem":"Colour glow","Zapalony obraz":"Lit image","Obraz zapalony":"Lit image","— wybierz —":"— choose —","Wgraj jako tło drugą wersję planu (np. render z włączonymi światłami) i wybierz ją tutaj — pomieszczenie odsłoni ją tylko w swoim kształcie. Obraz powinien mieć ten sam kadr co plan.":"Upload a second version of the plan as a background (e.g. a render with the lights on) and choose it here — the room reveals it only inside its shape. The image should have the same framing as the plan.","Kolor ze światła":"Colour from the light","Mieszanie":"Blending","Rozjaśnij":"Lighten","Miękkie światło":"Soft light","Nakładka":"Overlay","Zwykłe":"Normal","Jasność ze światła":"Brightness from the light","Intensywność":"Intensity","Miękkość krawędzi":"Edge softness","Podgląd włączonego":"Preview as on","Przeciągnij narożnik, aby go przesunąć. Mały punkt na krawędzi dodaje nowy narożnik. Dwuklik na narożniku go usuwa. Przeciągnij wnętrze, aby przesunąć całe pomieszczenie. Narożniki przyciągają się do ścian innych pomieszczeń (Alt wyłącza).":"Drag a corner to move it. The small dot on an edge adds a corner. Double-click a corner to remove it. Drag the inside to move the whole room. Corners snap to the walls of other rooms (Alt disables).","Usunąć pomieszczenie?":"Delete room?","Usunięto pomieszczenie":"Room deleted","Kolory wg wartości":"Colours by value","Dolny próg":"Lower threshold","Górny próg":"Upper threshold","Kolor poniżej":"Colour below","Kolor pomiędzy":"Colour between","Kolor od górnego":"Colour from upper","Płynne przejście":"Smooth blend","Koloruj ikonę":"Colour the icon","Koloruj wartość":"Colour the value","Koloruj łuk":"Colour the arc","Koloruj tło":"Colour the background","Koloruj ramkę":"Colour the border","Ikona poniżej":"Icon below","Ikona pomiędzy":"Icon between","Ikona od górnego":"Icon from upper","Puste pole ikony = zwykła ikona markera.":"Empty icon field = the marker’s normal icon.","Stan encji nie jest liczbą — kolory wg wartości nie działają dla tej encji.":"The entity state is not a number — colours by value do not apply to this entity.","Teraz: poniżej dolnego progu.":"Now: below the lower threshold.","Teraz: pomiędzy progami.":"Now: between the thresholds.","Teraz: od górnego progu.":"Now: at or above the upper threshold.","Połączono z nowszymi zmianami z innego urządzenia":"Merged with newer changes from another device","Układ został zmieniony na innym urządzeniu":"The layout was changed on another device",
     "Zarządzaj widokiem":"Manage view","Tło widoku":"View background","Ustaw tło":"Set background","Wstecz":"Back","Podgląd wybranego tła":"Selected background preview",
@@ -85,7 +90,7 @@ function applyLanguage() {
   if (select) select.value = uiLanguage;
   const titles = {
     'settings-toggle':'Ustawienia','integrations-button':'Integracje','edit-toggle':'Edytuj widok','view-manage':'Zarządzaj widokami','view-add':'Dodaj widok','view-rename':'Zmień nazwę widoku','view-duplicate':'Duplikuj widok','view-delete':'Usuń widok',
-    'background-manage':'Zarządzaj tłem','background-upload':'Wgraj obraz','background-download':'Pobierz tło','background-delete':'Usuń tło','snap-toggle':'Siatka włączona','default-style':'Ustaw domyślny','preview-state-toggle':'Testuj stan ON/OFF','copy-style':'Kopiuj styl','paste-style':'Wklej styl','remove-marker':'Usuń z widoku','editor-close':'Zamknij','more-info-close':'Zamknij'
+    'background-manage':'Zarządzaj tłem','background-upload':'Wgraj obraz','background-download':'Pobierz tło','background-delete':'Usuń tło','snap-toggle':'Siatka włączona','default-style':'Ustaw domyślny','preview-state-toggle':'Testuj stan ON/OFF','copy-style':'Kopiuj styl','paste-style':'Wklej styl','remove-marker':'Usuń z widoku','marker-duplicate':'Duplikuj marker','element-add':'Dodaj do widoku','add-button':'Dodaj do widoku','editor-close':'Zamknij','more-info-close':'Zamknij'
   };
   Object.entries(titles).forEach(([id,label]) => { const el = document.getElementById(id); if (el) { const value = translateValue(label); el.title = value; el.setAttribute('aria-label', value); } });
   document.querySelectorAll('[data-i18n-title]').forEach(el => {
@@ -117,7 +122,7 @@ const els = {
   selection: $('#selection'), flowSelection: $('#flow-selection'), editor: $('#editor'), editorTitle: $('#editor-title'), editorEntity: $('#editor-entity'), editorIntegration: $('#editor-integration'), editorIntegrationIcon: $('#editor-integration-icon'),
   editorContent: $('#editor-content'), editorStatus: $('#editor-status'), flowEditor: $('#flow-editor'), flowEditorEntity: $('#flow-editor-entity'), flowEditorContent: $('#flow-editor-content'), flowEditorTitle: $('#flow-editor-title'), flowEditorIntegration: $('#flow-editor-integration'), flowEditorIcon: $('#flow-editor-icon'), flowEditorClose: $('#flow-editor-close'), toast: $('#toast'), connection: $('#connection'),
   confirmBox: $('#app-confirm'), confirmTitle: $('#app-confirm-title'), confirmMessage: $('#app-confirm-message'), confirmInput: $('#app-confirm-input'), confirmCancel: $('#app-confirm-cancel'), confirmOk: $('#app-confirm-ok'), language: $('#language-select'),
-  editToggle: $('#edit-toggle'), editMenu: $('#edit-menu'), settingsToggle: $('#settings-toggle'), settingsMenu: $('#settings-menu'), gridStatus: $('#grid-status'), gridPresets: Array.from(document.querySelectorAll('.grid-preset')), bgUploadProgress: $('#background-upload-progress'), solidCanvasRatio: $('#solid-canvas-ratio'), bgColorToggle: $('#background-color-toggle'), bgRgbOpen: $('#background-rgb-open'), bgSelect: $('#background-select'), bgColor: $('#background-color'), bgDownload: $('#background-download'), bgDelete: $('#background-delete'),
+  editToggle: $('#edit-toggle'), editMenu: $('#edit-menu'), addDialog: $('#add-dialog'), settingsToggle: $('#settings-toggle'), settingsMenu: $('#settings-menu'), gridStatus: $('#grid-status'), gridPresets: Array.from(document.querySelectorAll('.grid-preset')), bgUploadProgress: $('#background-upload-progress'), solidCanvasRatio: $('#solid-canvas-ratio'), bgColorToggle: $('#background-color-toggle'), bgRgbOpen: $('#background-rgb-open'), bgSelect: $('#background-select'), bgColor: $('#background-color'), bgDownload: $('#background-download'), bgDelete: $('#background-delete'),
   bgFile: $('#background-file'), bgStatus: $('#background-status'), bgManage: $('#background-manage'), backgroundBar: $('#vm-background'), emptyColor: $('#empty-background-color'), emptyColorToggle: $('#empty-color-toggle'), emptyColorMenu: $('#empty-color-menu'), emptyColorStart: $('#empty-color-start'), emptyRgb: $('#empty-rgb'), emptyBackgroundSelect: $('#empty-background-select'), emptyBackgroundPreviewWrap: $('#empty-background-preview-wrap'), emptyBackgroundPreview: $('#empty-background-preview'), emptyBackgroundConfirm: $('#empty-background-confirm'), emptyOpenIntegrations: $('#empty-open-integrations'), addedList: $('#added-list'),
   bgTransformToggle: $('#background-transform-toggle'), bgTransformPanel: $('#background-transform-panel'), bgMode: $('#background-mode'), bgScale: $('#background-scale'), bgX: $('#background-x'), bgY: $('#background-y'), bgScaleValue: $('#background-scale-value'), bgXValue: $('#background-x-value'), bgYValue: $('#background-y-value'),
   addedCount: $('#added-count'), integrationList: $('#integration-list'), integrationSearch: $('#integration-search'), snapToggle: $('#snap-toggle'),
@@ -181,7 +186,7 @@ const freshMarker = (entity, integration) => ({
   createdAt: new Date().toISOString(), updatedAt: new Date().toISOString()
 });
 
-let model = { version: 2, revision: 0, settings: { snapEnabled: true, snapStep: .25 }, activeViewId: '', viewOrder: [], views: {}, entities: {} };
+let model = { version: 3, revision: 0, settings: { snapEnabled: true, snapStep: .25 }, activeViewId: '', viewOrder: [], views: {}, entities: {} };
 let stateCache = {}, editMode = false, selectedId = null, selectedFlowId = null, styleClipboard = null, flowStyleClipboard = null, saveTimer = null, access = { viewer: false };
 let viewSwipe = null, tabDrag = null, suppressTabClick = false, lastSwipeDecision = null;
 let saveRunning = false, savePending = false, integrations = [], integrationEntities = new Map(), openIntegrations = new Set();
@@ -342,7 +347,8 @@ function ensureMultiViewModel() {
   Object.values(model.views).forEach((view, index) => {
     view.id ||= model.viewOrder[index]; view.name ||= `Widok ${index + 1}`; view.entities ||= {}; view.flows ||= {}; view.backgroundTransforms ||= {};
     view.backgroundColor ??= ''; view.onboardingDone ??= false;
-    Object.values(view.entities).forEach(marker => { marker.tapAction ??= 'more_info'; if (bringIntoScene(marker)) migrated = true; });
+    // Layout v3: a marker's id is its key in view.entities (older layouts keyed markers by entity id and some had a random id).
+    Object.entries(view.entities).forEach(([key, marker]) => { if (marker.id !== key) { marker.id = key; migrated = true; } marker.entityId ||= key; marker.tapAction ??= 'more_info'; if (bringIntoScene(marker)) migrated = true; });
     Object.values(view.flows).forEach((flow, flowIndex) => {
       if (Number.isFinite(Number(flow.xPercent)) && Number.isFinite(Number(flow.yPercent)) && bringIntoScene(flow)) migrated = true;
       if (!Number.isFinite(Number(flow.xPercent))) { flow.xPercent = 50 + (flowIndex % 4) * 3; migrated = true; }
@@ -386,7 +392,8 @@ function ensureMultiViewModel() {
       }
     });
   });
-  model.version = 2; attachActiveEntities(); return migrated;
+  if ((Number(model.version) || 0) < 3) migrated = true;
+  model.version = 3; attachActiveEntities(); return migrated;
 }
 function showMainView(name) {
   $$('.view').forEach(view => view.classList.toggle('active', view.id === `view-${name}`));
@@ -475,7 +482,7 @@ async function duplicateSceneView() {
   const name = await appPrompt({ title: 'Duplikuj widok', message: 'Kopia zachowa tło, markery i wszystkie ich ustawienia.', value: `${source.name} — kopia`, confirmText: 'Duplikuj' });
   if (!name) return;
   const id = `view_${Date.now().toString(36)}_${Math.random().toString(36).slice(2,6)}`, copy = clone(source);
-  copy.id = id; copy.name = name; Object.values(copy.entities).forEach(marker => { marker.id = uid(); marker.updatedAt = new Date().toISOString(); });
+  copy.id = id; copy.name = name; Object.entries(copy.entities).forEach(([key, marker]) => { marker.id = key; marker.updatedAt = new Date().toISOString(); });
   model.views[id] = copy; model.viewOrder.push(id); await switchSceneView(id, false); scheduleSave(true); notify('Utworzono kopię widoku');
 }
 async function deleteSceneView() {
@@ -684,8 +691,8 @@ function finishRoomDrawing() {
   const view = activeSceneView(); if (!view) return cancelRoomDrawing();
   view.rooms ||= {};
   const id = 'room_' + uid(), now = new Date().toISOString(), count = Object.keys(view.rooms).length + 1;
-  view.rooms[id] = { ...clone(ROOM_DEFAULTS), id, name: `${translateValue('Pomieszczenie')} ${count}`, points: roomDraft.points.map(p => p.map(v => Math.round(v * 1000) / 1000)), createdAt: now, updatedAt: now };
-  cancelRoomDrawing(); renderRooms(); openRoomEditor(id); scheduleSave(true); notify('Dodano pomieszczenie — wybierz encje, które je zapalają');
+  view.rooms[id] = { ...clone(ROOM_DEFAULTS), id, name: roomDraft.name || `${translateValue('Pomieszczenie')} ${count}`, entityIds: [...(roomDraft.entityIds || [])], points: roomDraft.points.map(p => p.map(v => Math.round(v * 1000) / 1000)), createdAt: now, updatedAt: now };
+  const withEntities = view.rooms[id].entityIds.length > 0; cancelRoomDrawing(); renderRooms(); openRoomEditor(id); scheduleSave(true); if (withEntities) refreshStates(); notify('Dodano pomieszczenie — wybierz encje, które je zapalają');
 }
 function onRoomDrawClick(event) {
   if (!roomDraft) return;
@@ -786,7 +793,7 @@ async function loadAllEntities() {
   return allEntitiesLoading;
 }
 function roomEntityName(id) {
-  const view = activeSceneView(), marker = view?.entities?.[id], flow = Object.values(view?.flows || {}).find(item => item.entityId === id);
+  const view = activeSceneView(), marker = markerForEntity(id, view?.entities), flow = Object.values(view?.flows || {}).find(item => item.entityId === id);
   return marker?.displayName || flow?.displayName || allEntitiesCache?.find(entity => entity.id === id)?.name || stateCache[id]?.attributes?.friendly_name || id;
 }
 function roomEntityRank(id) { return /^(light|switch)\./.test(id) ? 0 : /^(binary_sensor|input_boolean|fan)\./.test(id) ? 1 : 2; }
@@ -919,7 +926,7 @@ async function onRoomTap(room, action = null) {
   const anyOn = toggleable.some(id => String(stateCache[id]?.state || '').toLowerCase() === 'on'), expected = anyOn ? 'off' : 'on';
   roomTogglesInFlight.add(r.id);
   toggleable.forEach(id => { pendingToggleStates.set(id, expected); stateCache[id] = { ...(stateCache[id] || { entity_id:id, attributes:{} }), state:expected }; });
-  renderRooms(); toggleable.forEach(id => { const marker = model.entities[id]; if (marker) renderMarkerState(id, stateCache[id]); });
+  renderRooms(); toggleable.forEach(id => { if (markersForEntity(id).length) renderMarkerState(id, stateCache[id]); });
   try { await Promise.all(toggleable.map(id => api('control', jsonOptions({ entity_id:id, action: expected === 'on' ? 'turn_on' : 'turn_off' })))); }
   catch (error) { notify(`Błąd przełączania: ${error.message}`, true); }
   finally { await delay(700); toggleable.forEach(id => pendingToggleStates.delete(id)); roomTogglesInFlight.delete(r.id); refreshStates(); }
@@ -955,13 +962,13 @@ function linkControls(marker) {
   if (action === 'url') target = control('Link','linkUrl','text',marker.linkUrl || '') + control('W nowej karcie','linkNewTab','checkbox',marker.linkNewTab !== false);
   return control('Dotknięcie w widoku','linkAction','select',action,{ items:LINK_ACTIONS, refresh:true }) + target;
 }
-function addTextElement() {
+function addTextElement(at = null) {
   if (!editMode) return;
   closeCompactMenus(); closeFlowEditor(); closeRoomEditor();
   const id = `${TEXT_DOMAIN}.${uid()}`, now = new Date().toISOString();
-  model.entities[id] = { id: uid(), entityId:id, integrationId:'', integrationName: translateValue('Tekst / przycisk'), sourceDomain: TEXT_DOMAIN, displayName:'', textValue: translateValue('Tekst'),
+  model.entities[id] = { id, entityId:id, integrationId:'', integrationName: translateValue('Tekst / przycisk'), sourceDomain: TEXT_DOMAIN, displayName:'', textValue: translateValue('Tekst'),
     unitOverride:'', decimals:'auto', stateOnLabel:'', stateOffLabel:'', iconMode:'manual', iconName:'mdi:gesture-tap-button', iconOn:'mdi:gesture-tap-button', iconOff:'mdi:gesture-tap-button', iconVariantEnabled:false,
-    tapAction:'none', linkAction:'none', xPercent:50, yPercent:50, type:'badge', style: normalizedStyle('badge', { width:200, height:76, showLabel:false, showIcon:false }), createdAt:now, updatedAt:now };
+    tapAction:'none', linkAction:'none', xPercent: at?.[0] ?? 50, yPercent: at?.[1] ?? 50, type:'badge', style: normalizedStyle('badge', { width:200, height:76, showLabel:false, showIcon:false }), createdAt:now, updatedAt:now };
   renderMarkers(); renderAdded(); scheduleSave(true); selectMarker(id); notify('Dodano tekst — przeciągnij go w wybrane miejsce');
 }
 // Navigates the Home Assistant window this page is embedded in (same origin), like a dashboard "navigate" action.
@@ -1015,7 +1022,7 @@ function roomCentroid(points) { const n = Math.max(1, points.length); return [po
 function addRoomIcon(room) {
   const id = roomIconId(room.id); if (model.entities[id]) return editRoomIcon(room);
   const [x, y] = roomCentroid(room.points || [[50, 50]]), now = new Date().toISOString();
-  model.entities[id] = { id: uid(), entityId:id, roomId: room.id, integrationId:'', integrationName: translateValue('Pomieszczenie'), sourceDomain: ROOM_ICON_DOMAIN, displayName: room.name || translateValue('Pomieszczenie'),
+  model.entities[id] = { id, entityId:id, roomId: room.id, integrationId:'', integrationName: translateValue('Pomieszczenie'), sourceDomain: ROOM_ICON_DOMAIN, displayName: room.name || translateValue('Pomieszczenie'),
     unitOverride:'', decimals:'auto', stateOnLabel:'', stateOffLabel:'', iconMode:'manual', iconName:'mdi:lightbulb-group', iconOn:'mdi:lightbulb-group', iconOff:'mdi:lightbulb-group-off', iconVariantEnabled:true,
     tapAction: room.tapAction || 'toggle', xPercent: Math.round(x * 100) / 100, yPercent: Math.round(y * 100) / 100, type:'icon', style: normalizedStyle('icon', {}), createdAt:now, updatedAt:now };
   syncRoomIconStates(); renderMarkers(); scheduleSave(true); editRoomIcon(room); notify('Dodano ikonę pomieszczenia — przeciągnij ją w wybrane miejsce');
@@ -1111,7 +1118,7 @@ function syncRotateControls() {
 function setSelectedRotation(angle, save = true) {
   const item = rotationTarget(); if (!item || item.geometryLocked) return;
   item.rotation = normalizeAngle(angle); item.updatedAt = new Date().toISOString();
-  if (selectedId) { const node = $(`.marker[data-entity-id="${CSS.escape(selectedId)}"]`); if (node) applyMarkerStyle(node, item); syncSelection(); } else { renderMarkers(); syncFlowSelection(); }
+  if (selectedId) { const node = markerNode(selectedId); if (node) applyMarkerStyle(node, item); syncSelection(); } else { renderMarkers(); syncFlowSelection(); }
   const editorRoot = selectedId ? els.editorContent : els.flowEditorContent, input = editorRoot?.querySelector('input[data-path="rotation"]');
   if (input) { input.value = item.rotation; const output = input.parentElement.querySelector('output'); if (output) output.textContent = `${item.rotation}°`; }
   syncRotateControls(); scheduleSave(save);
@@ -1127,7 +1134,7 @@ function alignSelectedToBackground(where) {
     const d = shift(box); room.points = room.points.map(([x, y]) => [Math.round(clamp(x + d.x / s.width * 100, 0, 100) * 1000) / 1000, Math.round(clamp(y + d.y / s.height * 100, 0, 100) * 1000) / 1000]); room.updatedAt = new Date().toISOString(); renderRooms(); scheduleSave(true); return;
   }
   const item = selectedId ? model.entities[selectedId] : activeSceneView()?.flows?.[selectedFlowId];
-  const node = selectedId ? $(`.marker[data-entity-id="${CSS.escape(selectedId)}"]`) : $(`.flow-marker[data-flow-id="${CSS.escape(selectedFlowId || '')}"]`);
+  const node = selectedId ? markerNode(selectedId) : $(`.flow-marker[data-flow-id="${CSS.escape(selectedFlowId || '')}"]`);
   if (!item || !node) return;
   const d = shift(node.getBoundingClientRect());
   item.xPercent = clamp(Number(item.xPercent) + d.x / s.width * 100, 0, 100); item.yPercent = clamp(Number(item.yPercent) + d.y / s.height * 100, 0, 100); item.updatedAt = new Date().toISOString();
@@ -1139,7 +1146,7 @@ function guideTargets({ node = null, roomId = '' } = {}) {
   const scene = els.scene.getBoundingClientRect();
   const t = snapTargets(), points = (a, b) => [...(t.edges ? [a, b] : []), ...(t.centers ? [(a + b) / 2] : [])];
   const selector = [t.markers ? '.marker' : '', t.flows ? '.flow-marker' : ''].filter(Boolean).join(', ');
-  const targets = selector ? $$(selector, els.markers).filter(other => other !== node && other.offsetParent !== null && !(roomId && model.entities[other.dataset?.entityId]?.roomId === roomId)).map(other => other.getBoundingClientRect()) : [];
+  const targets = selector ? $$(selector, els.markers).filter(other => other !== node && other.offsetParent !== null && !(roomId && model.entities[other.dataset?.markerId]?.roomId === roomId)).map(other => other.getBoundingClientRect()) : [];
   const xs = targets.flatMap(r => points(r.left, r.right).map(v => ({ v: v - scene.left, room:false })));
   const ys = targets.flatMap(r => points(r.top, r.bottom).map(v => ({ v: v - scene.top, room:false })));
   if (t.background) { xs.push(...points(0, scene.width).map(v => ({ v, bg:true }))); ys.push(...points(0, scene.height).map(v => ({ v, bg:true }))); }
@@ -1224,7 +1231,7 @@ function updateMobileMarkerLayout(renderedWidth, renderedHeight) {
       if (y < minimumY) y = minimumY;
     }
     y = Math.min(y, renderedHeight - item.height / 2 - 4);
-    mobileLayoutY.set(item.marker.entityId, y * 100 / renderedHeight);
+    mobileLayoutY.set(item.marker.id, y * 100 / renderedHeight);
     placed.push({ ...item, y });
   }
 }
@@ -1259,7 +1266,7 @@ function updateSceneGeometry() {
   applyViewTransform();
   requestAnimationFrame(() => {
     $$('.marker', els.markers).forEach(node => {
-      const marker = model.entities[node.dataset.entityId];
+      const marker = model.entities[node.dataset.markerId];
       if (marker) applyMarkerStyle(node, marker);
     });
     syncSelection(); positionEditor(); syncFlowSelection(); positionFlowEditor(); renderRooms(); if ($('#snap-menu')?.classList.contains('open')) syncSnapMenu();
@@ -1551,7 +1558,7 @@ async function migrateLegacy() {
     const type = String(raw.displayMode || raw.type || 'badge').toLowerCase() === 'gauge' ? 'gauge' : 'badge';
     const pos = positions[key] || positions[`scene-extra-${key}`] || {};
     model.entities[entityId] = {
-      id: uid(), entityId, integrationId: '', integrationName: 'Home Assistant', sourceDomain: entityId.split('.')[0],
+      id: entityId, entityId, integrationId: '', integrationName: 'Home Assistant', sourceDomain: entityId.split('.')[0],
       displayName: data.name || raw.displayName || entityId, unitOverride: raw.unitOverride ?? '', decimals: raw.decimals ?? 'auto',
       stateOnLabel: '', stateOffLabel: '', iconMode: 'auto', iconName: '', iconOn: '', iconOff: '',
       xPercent: clamp(pos.x ?? pos.left ?? 50, 0, 100), yPercent: clamp(pos.y ?? pos.top ?? 50, 0, 100),
@@ -1562,7 +1569,7 @@ async function migrateLegacy() {
 }
 
 function previewStateFor(marker) {
-  return editMode && selectedId === marker?.entityId && editorPreview.entityId === marker?.entityId ? editorPreview.state : '';
+  return editMode && marker && selectedId === marker.id && editorPreview.entityId === marker.entityId ? editorPreview.state : '';
 }
 function formatState(marker) {
   if (isTextId(marker.entityId)) return { value: String(marker.textValue ?? ''), unit:'' };
@@ -1788,7 +1795,7 @@ function readableAttribute(value) {
   return String(value);
 }
 function refreshMoreInfoState() {
-  const marker = model.entities[moreInfoEntityId]; if (!marker) return;
+  const marker = markerForEntity(moreInfoEntityId); if (!marker) return;
   const state = stateCache[moreInfoEntityId] || {}, formatted = formatState(marker), icon = String(resolvedIcon(marker) || 'mdi:cube-outline').replace(/^mdi:/,'mdi-');
   els.moreInfoIcon.innerHTML = `<i class="mdi ${escapeHtml(icon)}"></i>`; els.moreInfoTitle.textContent = marker.displayName; els.moreInfoEntity.textContent = marker.entityId;
   els.moreInfoState.textContent = `${formatted.value}${formatted.unit ? ` ${formatted.unit}` : ''}`;
@@ -1922,7 +1929,7 @@ function openNativeHaMoreInfo(entityId) {
   } catch { return false; }
 }
 function openMoreInfo(entityId) {
-  const marker=model.entities[entityId]; if(!marker)return;
+  const marker=markerForEntity(entityId); if(!marker)return;
   if (openNativeHaMoreInfo(entityId)) return;
   moreInfoEntityId=entityId; refreshMoreInfoState(); els.moreInfo.classList.add('visible'); els.moreInfoBackdrop.classList.add('visible');
   els.moreInfo.setAttribute('aria-hidden','false'); els.moreInfoBackdrop.setAttribute('aria-hidden','false'); loadMoreInfoHistory(24);
@@ -1934,7 +1941,7 @@ function renderMarkers() {
   [...els.markers.children].forEach(node => { if (!node.classList.contains('flow-marker')) node.remove(); });
   Object.values(model.entities).forEach(marker => {
     const node = document.createElement('div'); node.className = `marker ${marker.type}${marker.id === selectedId ? ' selected' : ''}`;
-    node.dataset.entityId = marker.entityId; node.innerHTML = markerHtml(marker); applyMarkerStyle(node, marker);
+    node.dataset.markerId = marker.id; node.dataset.entityId = marker.entityId; node.innerHTML = markerHtml(marker); applyMarkerStyle(node, marker);
     node.addEventListener('pointerdown', startDrag); node.addEventListener('click', onMarkerClick); els.markers.append(node);
   });
   renderFlows();
@@ -2210,6 +2217,13 @@ async function resetFlowStyle() {
   Object.assign(flow, clone(FLOW_DEFAULTS), { updatedAt:new Date().toISOString() }); delete flow.negativeStyle; flowEditorSide = 'positive';
   openFlowEditor(flow.id); scheduleSave(true); notify('Przywrócono domyślny Flow');
 }
+// A marker copy keeps the whole look and gets its own id; a text element also gets its own virtual entity id.
+function duplicateMarker() {
+  const marker = model.entities[selectedId]; if (!marker || marker.roomId) return;
+  const now = new Date().toISOString(), copy = clone(marker), text = isTextId(marker.entityId), id = text ? `${TEXT_DOMAIN}.${uid()}` : uid();
+  Object.assign(copy, { id, entityId: text ? id : marker.entityId, xPercent: clamp(Number(marker.xPercent) + 4, 0, 100), yPercent: clamp(Number(marker.yPercent) + 4, 0, 100), geometryLocked: false, createdAt: now, updatedAt: now });
+  model.entities[id] = copy; renderMarkers(); renderAdded(); scheduleSave(true); selectMarker(id); notify('Utworzono kopię markera — przeciągnij ją w wybrane miejsce');
+}
 // Several Flow objects may use the same entity; a duplicate keeps the whole style and gets its own id.
 function duplicateFlow() {
   const view = activeSceneView(), flow = view?.flows?.[selectedFlowId]; if (!flow) return;
@@ -2236,15 +2250,14 @@ function flushDeferredRenders() {
   if (touchGestureActive() || (!deferredMarkerIds.size && !deferredFlows && !deferredFullRender)) return;
   if (deferredFullRender) { deferredFullRender = false; deferredFlows = false; deferredMarkerIds.clear(); renderMarkers(); if (selectedFlowId) syncFlowSelection(); return; }
   const ids = [...deferredMarkerIds]; deferredMarkerIds.clear();
-  ids.forEach(entityId => { const marker = model.entities[entityId], node = marker && $(`.marker[data-entity-id="${CSS.escape(entityId)}"]`); if (marker && node) { node.innerHTML = markerHtml(marker); applyMarkerStyle(node, marker); } });
+  ids.forEach(entityId => markersForEntity(entityId).forEach(marker => { const node = markerNode(marker.id); if (node) { node.innerHTML = markerHtml(marker); applyMarkerStyle(node, marker); } }));
   if (deferredFlows) { deferredFlows = false; renderFlows(); if (selectedFlowId) syncFlowSelection(); }
 }
 function renderMarkerState(entityId, nextState) {
   if (!nextState) return;
   stateCache[entityId] = { ...stateCache[entityId], ...nextState };
   if (touchGestureActive()) { deferredMarkerIds.add(entityId); if (moreInfoEntityId === entityId) refreshMoreInfoState(); return; }
-  const marker = model.entities[entityId], node = marker && $(`.marker[data-entity-id="${CSS.escape(entityId)}"]`);
-  if (marker && node) { node.innerHTML = markerHtml(marker); applyMarkerStyle(node, marker); }
+  markersForEntity(entityId).forEach(marker => { const node = markerNode(marker.id); if (node) { node.innerHTML = markerHtml(marker); applyMarkerStyle(node, marker); } });
   if (moreInfoEntityId === entityId) refreshMoreInfoState();
 }
 async function confirmToggleState(marker, expectedState) {
@@ -2282,12 +2295,12 @@ async function toggleMarker(marker) {
 function onMarkerClick(event) {
   if (event.currentTarget.dataset.dragged === '1') { event.currentTarget.dataset.dragged = '0'; return; }
   event.stopPropagation();
-  const marker = model.entities[event.currentTarget.dataset.entityId];
+  const marker = model.entities[event.currentTarget.dataset.markerId];
   if (!marker) return;
   if (!editMode && isTextId(marker.entityId)) return runLinkAction(marker);
   if (!editMode && marker.roomId) { const room = roomsOf()[marker.roomId]; if (marker.tapAction === 'none' || !room) return; return onRoomTap(room, marker.tapAction); }
   if (!editMode) { if (marker.tapAction === 'none') return; return (marker.tapAction === 'toggle' && isToggleableMarker(marker) ? toggleMarker(marker) : openMoreInfo(marker.entityId)); }
-  selectMarker(marker.entityId);
+  selectMarker(marker.id);
 }
 function focusSelectedMarkerOnMobile() {
   if (!mobileView() || !editMode || !selectedId) return;
@@ -2322,13 +2335,13 @@ function focusScenePointOnMobile(xPercent, yPercent) {
   viewZoom = nextZoom; viewPanX = targetX - markerX * nextZoom; viewPanY = targetY - markerY * nextZoom;
   applyViewTransform();
 }
-function selectMarker(entityId) {
-  editorOpenSectionIndex = -1; if (selectedId !== entityId) editorPreview = { entityId:'', state:'' }; selectedId = entityId; renderMarkers(); openEditor();
+function selectMarker(key) {
+  editorOpenSectionIndex = -1; if (selectedId !== key) editorPreview = { entityId:'', state:'' }; selectedId = key; renderMarkers(); openEditor();
   requestAnimationFrame(() => requestAnimationFrame(focusSelectedMarkerOnMobile));
 }
 function hideSelection() { els.selection.classList.remove('visible','geometry-locked'); }
 function syncSelection() {
-  const node = $(`.marker[data-entity-id="${CSS.escape(selectedId)}"]`); if (!node) return hideSelection();
+  const node = markerNode(selectedId); if (!node) return hideSelection();
   const sr = els.scene.getBoundingClientRect(), r = node.getBoundingClientRect(), zoom = sceneCameraActive() ? viewZoom : 1;
   Object.assign(els.selection.style, { left: `${(r.left - sr.left) / zoom}px`, top: `${(r.top - sr.top) / zoom}px`, width: `${r.width / zoom}px`, height: `${r.height / zoom}px` });
   els.selection.classList.toggle('geometry-locked', Boolean(model.entities[selectedId]?.geometryLocked));
@@ -2403,7 +2416,7 @@ function placeEditorNear(panel, node) {
 }
 function positionEditor() {
   if (mobileView() || editorDragged || !selectedId || !els.editor.classList.contains('visible')) return;
-  const node = $(`.marker[data-entity-id="${CSS.escape(selectedId)}"]`); if (!node) return;
+  const node = markerNode(selectedId); if (!node) return;
   placeEditorNear(els.editor, node);
 }
 function positionFlowEditor() {
@@ -2418,7 +2431,7 @@ function keepEditorInViewport(panel = els.editor) {
 }
 function startDrag(event) {
   if (!editMode || event.button !== 0) return;
-  event.preventDefault(); const node = event.currentTarget, entityId = node.dataset.entityId, marker = model.entities[entityId];
+  event.preventDefault(); const node = event.currentTarget, key = node.dataset.markerId, marker = model.entities[key];
   if (marker?.geometryLocked) return;
   const start = { x: event.clientX, y: event.clientY, px: marker.xPercent, py: marker.yPercent }; let moved = false, guides = null;
   node.setPointerCapture(event.pointerId);
@@ -2428,8 +2441,8 @@ function startDrag(event) {
     if (!moved) return;
     guides ||= alignmentContext(node);
     ({ xPercent: marker.xPercent, yPercent: marker.yPercent } = alignToGuides(guides, snapPercent(start.px + dx / r.width * 100), snapPercent(start.py + dy / r.height * 100), e));
-    const live = node.isConnected ? node : $(`.marker[data-entity-id="${CSS.escape(entityId)}"]`);
-    if (live) { live.style.left = `${marker.xPercent}%`; live.style.top = `${marker.yPercent}%`; const fix = keepInBounds() && boundsShift(live); if (fix) { marker.xPercent = clamp(marker.xPercent + fix.x, 0, 100); marker.yPercent = clamp(marker.yPercent + fix.y, 0, 100); live.style.left = `${marker.xPercent}%`; live.style.top = `${marker.yPercent}%`; } } if (selectedId === entityId) syncSelection();
+    const live = node.isConnected ? node : markerNode(key);
+    if (live) { live.style.left = `${marker.xPercent}%`; live.style.top = `${marker.yPercent}%`; const fix = keepInBounds() && boundsShift(live); if (fix) { marker.xPercent = clamp(marker.xPercent + fix.x, 0, 100); marker.yPercent = clamp(marker.yPercent + fix.y, 0, 100); live.style.left = `${marker.xPercent}%`; live.style.top = `${marker.yPercent}%`; } } if (selectedId === key) syncSelection();
   };
   const up = () => { node.removeEventListener('pointermove', move); node.removeEventListener('pointerup', up); node.removeEventListener('pointercancel', up); try { if (node.hasPointerCapture?.(event.pointerId)) node.releasePointerCapture(event.pointerId); } catch {} els.editor.classList.remove('marker-moving'); showAlignGuides([], []); node.dataset.dragged = moved ? '1' : '0'; if (moved) { marker.updatedAt = new Date().toISOString(); scheduleSave(true); positionEditor(); } };
   node.addEventListener('pointermove', move); node.addEventListener('pointerup', up, { once: true }); node.addEventListener('pointercancel', up, { once: true });
@@ -2711,7 +2724,7 @@ function onEditorInput(event) {
   if (input.dataset.path === 'iconMode') { const manual = $('[data-manual-icons]', els.editorContent); if (manual) manual.hidden = value !== 'manual'; }
   if (input.type === 'color') { const preview = input.closest('.color-picker')?.querySelector('.color-current'); if (preview) preview.style.background = value; }
   const output = input.parentElement.querySelector('output'); if (output) output.textContent = `${value}${output.dataset.suffix || ''}`;
-  const node = $(`.marker[data-entity-id="${CSS.escape(marker.entityId)}"]`);
+  const node = markerNode(marker.id);
   if (input.dataset.path === 'displayName' || input.dataset.path === 'textValue') { els.editorTitle.textContent = isTextId(marker.entityId) ? (marker.textValue || marker.displayName || translateValue('Tekst / przycisk')) : value; if (node) node.innerHTML = markerHtml(marker); }
   const needsMarkup = input.dataset.path === 'unitOverride' || input.dataset.path === 'decimals' || input.dataset.path === 'stateOnLabel' || input.dataset.path === 'stateOffLabel' || input.dataset.path.startsWith('icon') || input.dataset.path.startsWith('valueRules.') || input.dataset.path.startsWith('style.show') || isGaugeType(marker.type) && input.dataset.path.startsWith('style.');
   // A range input keeps pointer capture only while its DOM node remains intact.
@@ -2750,7 +2763,7 @@ async function loadIntegrations(force = false) {
 }
 function searchText(value) { return String(value || '').toLocaleLowerCase('pl').trim(); }
 function searchResultMarkup(entity, integration) {
-  const added = !!model.entities[entity.entity_id];
+  const added = markersForEntity(entity.entity_id).length > 0;
   return `<div class="entity-row search-result ${entity.enabled ? '' : 'disabled-entity'}"><div><strong data-no-i18n>${escapeHtml(entity.name || entity.entity_id)}</strong><small>${escapeHtml(entity.entity_id)} · ${escapeHtml(integration.title || integration.domain || 'Home Assistant')}${entity.state != null ? ` · ${escapeHtml(entity.state)}${entity.unit ? ` ${escapeHtml(entity.unit)}` : ''}` : ''}</small></div><div class="entity-actions">${enabledIcon(entity.enabled)}<button class="add-entity" data-add="${escapeHtml(entity.entity_id)}" data-entry="${escapeHtml(integration.entry_id)}" ${added || !entity.enabled ? 'disabled' : ''} title="${added ? 'Dodano do widoku' : 'Dodaj wskaźnik'}">${added ? '✓' : '+'}</button></div></div>`;
 }
 function renderIntegrationSearch() {
@@ -2813,7 +2826,7 @@ function integrationBody(group) {
   if (group.entries.some(item => !integrationEntities.has(item.entry_id))) return '<div class="empty-row">Kliknij, aby wczytać encje.</div>';
   const seen = new Set(), entities = group.entries.flatMap(item => (integrationEntities.get(item.entry_id) || []).map(entity => ({ ...entity, _entryId: item.entry_id }))).filter(entity => !seen.has(entity.entity_id) && seen.add(entity.entity_id)).sort((a,b) => String(a.name).localeCompare(String(b.name), 'pl', { sensitivity: 'base' }));
   if (!entities.length) return '<div class="empty-row">Brak encji.</div>';
-  return entities.map(e => { const added = !!model.entities[e.entity_id]; return `<div class="entity-row ${e.enabled ? '' : 'disabled-entity'}"><div><strong data-no-i18n>${escapeHtml(e.name)}</strong><small>${escapeHtml(e.entity_id)}${e.state != null ? ` · ${escapeHtml(e.state)}${e.unit ? ` ${escapeHtml(e.unit)}` : ''}` : ''}</small></div><div class="entity-actions">${enabledIcon(e.enabled)}<button class="add-entity" data-add="${escapeHtml(e.entity_id)}" data-entry="${escapeHtml(e._entryId)}" ${added || !e.enabled ? 'disabled' : ''} title="${added ? 'Dodano do widoku' : e.enabled ? 'Dodaj wskaźnik' : 'Encja jest wyłączona'}">${added ? '✓' : '+'}</button></div></div>`; }).join('');
+  return entities.map(e => { const added = markersForEntity(e.entity_id).length > 0; return `<div class="entity-row ${e.enabled ? '' : 'disabled-entity'}"><div><strong data-no-i18n>${escapeHtml(e.name)}</strong><small>${escapeHtml(e.entity_id)}${e.state != null ? ` · ${escapeHtml(e.state)}${e.unit ? ` ${escapeHtml(e.unit)}` : ''}` : ''}</small></div><div class="entity-actions">${enabledIcon(e.enabled)}<button class="add-entity" data-add="${escapeHtml(e.entity_id)}" data-entry="${escapeHtml(e._entryId)}" ${added || !e.enabled ? 'disabled' : ''} title="${added ? 'Dodano do widoku' : e.enabled ? 'Dodaj wskaźnik' : 'Encja jest wyłączona'}">${added ? '✓' : '+'}</button></div></div>`; }).join('');
 }
 async function toggleIntegration(groupKey) {
   if (openIntegrations.has(groupKey)) { openIntegrations.delete(groupKey); return renderIntegrations(); }
@@ -2824,8 +2837,229 @@ async function toggleIntegration(groupKey) {
 }
 function updateIntegrationMetadata(entryId) {
   const integration = integrations.find(x => x.entry_id === entryId), entities = integrationEntities.get(entryId) || []; let changed = false;
-  entities.forEach(e => { const marker = model.entities[e.entity_id]; if (marker && integration && (!marker.integrationId || marker.integrationName === 'Home Assistant')) { marker.integrationId = entryId; marker.integrationName = integration.title; marker.sourceDomain = integration.domain; changed = true; } });
+  entities.forEach(e => markersForEntity(e.entity_id).forEach(marker => { if (integration && (!marker.integrationId || marker.integrationName === 'Home Assistant')) { marker.integrationId = entryId; marker.integrationName = integration.title; marker.sourceDomain = integration.domain; changed = true; } }));
   if (changed) { renderAdded(); scheduleSave(); }
+}
+// ---- Add window ------------------------------------------------------------------------------
+// One place to add anything: element type tiles with live thumbnails + a search over every HA entity (also YAML/template
+// ones without an integration). Type first or entity first; the thumbnails redraw with the chosen entity's real state.
+const ADD_TYPES = [
+  { key:'icon', label:'Ikona', hint:'Światło, gniazdko, przełącznik', entity:'required' },
+  { key:'badge', label:'Badge', hint:'Temperatura, wilgotność, stan', entity:'required' },
+  { key:'gauge', label:'Gauge', hint:'Moc, poziom, procent', entity:'required', numeric:true },
+  { key:'horseshoe', label:'Horseshoe', hint:'Moc, bateria, zużycie', entity:'required', numeric:true },
+  { key:'room', label:'Pomieszczenie', hint:'Obszar świeci od encji', entity:'optional' },
+  { key:'flow', label:'Flow', hint:'Przepływ energii, wody', entity:'optional', numeric:true },
+  { key:'text', label:'Tekst / przycisk', hint:'Podpis, link do widoku, akcja', entity:'none' },
+];
+const ADD_SAMPLES = {
+  icon: { entity_id:'light.hav_sample', name:'Salon', state:'on', unit:'' },
+  badge: { entity_id:'sensor.hav_sample_temperature', name:'Salon', state:'21.8', unit:'°C', device_class:'temperature' },
+  gauge: { entity_id:'sensor.hav_sample_level', name:'Poziom', state:'64', unit:'%' },
+  horseshoe: { entity_id:'sensor.hav_sample_battery', name:'Bateria', state:'72', unit:'%', device_class:'battery' },
+};
+const ADD_TYPE_GROUPS = [['light','Światła',['light']],['switch','Przełączniki',['switch','input_boolean','fan']],['sensor','Czujniki',['sensor']],['binary_sensor','Czujniki binarne',['binary_sensor']],['cover','Rolety',['cover']],['climate','Klimat',['climate','water_heater']],['media','Media',['media_player']]];
+const ADD_DOMAIN_ICONS = { light:'mdi-lightbulb', switch:'mdi-toggle-switch-variant', input_boolean:'mdi-toggle-switch-outline', fan:'mdi-fan', binary_sensor:'mdi-radiobox-marked', cover:'mdi-window-shutter', climate:'mdi-thermostat', water_heater:'mdi-water-boiler', media_player:'mdi-cast', camera:'mdi-cctv', lock:'mdi-lock', person:'mdi-account', device_tracker:'mdi-map-marker', weather:'mdi-weather-partly-cloudy', sun:'mdi-white-balance-sunny', scene:'mdi-palette', script:'mdi-script-text', automation:'mdi-robot', button:'mdi-gesture-tap-button', number:'mdi-ray-vertex', select:'mdi-format-list-bulleted', input_number:'mdi-ray-vertex', input_select:'mdi-format-list-bulleted', update:'mdi-package-up', vacuum:'mdi-robot-vacuum', alarm_control_panel:'mdi-shield-home' };
+const ADD_SENSOR_ICONS = { temperature:'mdi-thermometer', humidity:'mdi-water-percent', power:'mdi-flash', energy:'mdi-lightning-bolt', battery:'mdi-battery', illuminance:'mdi-brightness-5', pressure:'mdi-gauge', voltage:'mdi-sine-wave', current:'mdi-current-ac', carbon_dioxide:'mdi-molecule-co2' };
+const RECENT_ADD_KEY = 'ha-views-recent-entities', ADD_PICK_KEY = 'ha-views-add-pick';
+const TOGGLE_DOMAINS = ['switch', 'light', 'fan', 'input_boolean'];
+let addState = null, entityCatalog = null, entityCatalogLoading = null, addPicking = null;
+
+async function loadEntityCatalog() {
+  if (entityCatalog) return entityCatalog;
+  entityCatalogLoading ||= (async () => {
+    if (!integrations.length) { try { integrations = (await api('integrations')).integrations || []; } catch {} }
+    try { const data = await api('entity_catalog'); if (data.ok === false || !Array.isArray(data.entities)) throw new Error(data.error || 'catalog'); entityCatalog = { entities: data.entities || [], areas: data.areas || [] }; }
+    catch {
+      // Older server or HA error: fall back to the per-integration list the room editor already uses.
+      const list = await loadAllEntities();
+      entityCatalog = { entities: list.map(item => ({ entity_id: item.id, name: item.name, domain: item.id.split('.')[0], state: stateCache[item.id]?.state ?? null, unit: stateCache[item.id]?.attributes?.unit_of_measurement || '', device_class: stateCache[item.id]?.attributes?.device_class || '', area:'', entry_id:'', integration: item.integration || '' })), areas: [] };
+    }
+    return entityCatalog;
+  })().finally(() => { entityCatalogLoading = null; });
+  return entityCatalogLoading;
+}
+function catalogIntegration(entity) { const item = integrations.find(x => x.entry_id === entity?.entry_id); return { entry_id: entity?.entry_id || '', title: item?.title || entity?.integration || '', domain: item?.domain || entity?.platform || entity?.domain || '' }; }
+function addRecent() { try { return JSON.parse(localStorage.getItem(RECENT_ADD_KEY) || '[]').filter(id => typeof id === 'string'); } catch { return []; } }
+function rememberAdded(entityId) { if (!entityId) return; try { localStorage.setItem(RECENT_ADD_KEY, JSON.stringify([entityId, ...addRecent().filter(id => id !== entityId)].slice(0, 12))); } catch {} }
+function addEntityNumeric(entity) { const raw = entity?.state; if (raw === null || raw === undefined || raw === '') return false; return Number.isFinite(Number(String(raw).replace(',', '.'))); }
+function addTypeAllowed(type, entity) {
+  if (!entity) return true;
+  if (type.entity === 'none') return true;
+  return !type.numeric || addEntityNumeric(entity);
+}
+function addRecommendedType(entity) {
+  if (!entity) return '';
+  const domain = entity.domain || entity.entity_id.split('.')[0], unit = String(entity.unit || '').toLowerCase(), dc = String(entity.device_class || '').toLowerCase();
+  if (TOGGLE_DOMAINS.includes(domain) || ['binary_sensor','cover','lock','media_player','vacuum'].includes(domain)) return 'icon';
+  if (addEntityNumeric(entity) && (['power','energy','battery'].includes(dc) || ['w','kw','kwh','wh','%'].includes(unit))) return 'gauge';
+  return 'badge';
+}
+function addEntityIcon(entity) {
+  const own = String(entity?.icon || ''); if (own.startsWith('mdi:')) return own.replace(/^mdi:/, 'mdi-');
+  const domain = entity?.domain || String(entity?.entity_id || '').split('.')[0];
+  if (domain === 'sensor') return ADD_SENSOR_ICONS[String(entity?.device_class || '')] || 'mdi-eye-outline';
+  return ADD_DOMAIN_ICONS[domain] || 'mdi-shape-outline';
+}
+// What already shows this entity on the current view: "Ikona, Flow, Pomieszczenie".
+function addUsageLabel(entityId) {
+  const view = activeSceneView(), parts = [];
+  markersForEntity(entityId).forEach(marker => parts.push(ADD_TYPES.find(type => type.key === marker.type)?.label || 'Marker'));
+  if (Object.values(view?.flows || {}).some(flow => flow.entityId === entityId)) parts.push('Flow');
+  if (Object.values(view?.rooms || {}).some(room => (room.entityIds || []).includes(entityId))) parts.push('Pomieszczenie');
+  return [...new Set(parts)].map(translateValue).join(', ');
+}
+function viewCenterPercent() {
+  const s = els.scene.getBoundingClientRect(), v = els.viewport.getBoundingClientRect();
+  const x = s.width ? clamp(((Math.max(s.left, v.left) + Math.min(s.right, v.right)) / 2 - s.left) / s.width * 100, 5, 95) : 50;
+  const y = s.height ? clamp(((Math.max(s.top, v.top) + Math.min(s.bottom, v.bottom)) / 2 - s.top) / s.height * 100, 5, 95) : 50;
+  return [Math.round(x * 100) / 100, Math.round(y * 100) / 100];
+}
+function addThumbMarker(type, entity) {
+  const sample = ADD_SAMPLES[type], source = entity || sample;
+  if (!entity || !stateCache[source.entity_id]) stateCache[source.entity_id] = { entity_id: source.entity_id, state: String(source.state ?? ''), attributes: { friendly_name: source.name, unit_of_measurement: source.unit || undefined, device_class: source.device_class || undefined, icon: source.icon || undefined } };
+  return { id:`__add_thumb_${type}`, entityId: source.entity_id, displayName: entity ? (source.name || source.entity_id) : translateValue(source.name), type, style: markerStyleDefaults(type), unitOverride: source.unit || '', decimals:'auto', stateOnLabel:'', stateOffLabel:'', iconMode:'auto', iconName:'', iconOn:'', iconOff:'', iconVariantEnabled:false, tapAction:'more_info', xPercent:50, yPercent:50 };
+}
+function addThumbStatic(type, entity) {
+  if (type === 'room') return `<svg class="add-thumb-room" viewBox="0 0 100 60" preserveAspectRatio="none"><path d="M12 10H62V30H88V52H12Z" fill="#FFD27A" opacity=".6"/><path d="M12 10H62V30H88V52H12Z" fill="none" stroke="#e39a3a" stroke-width=".8" stroke-dasharray="2 1.5"/></svg>${entity ? `<span class="add-thumb-caption" data-no-i18n>${escapeHtml(entity.area || entity.name)}</span>` : ''}`;
+  if (type === 'flow') return `<div class="add-thumb-flow"><i class="mdi mdi-chevron-right"></i><i class="mdi mdi-chevron-right"></i><i class="mdi mdi-chevron-right"></i><i class="mdi mdi-chevron-right"></i></div>${entity ? `<span class="add-thumb-caption" data-no-i18n>${escapeHtml(`${entity.state ?? ''} ${entity.unit || ''}`.trim())}</span>` : ''}`;
+  return `<span class="add-thumb-text">${escapeHtml(translateValue('Podpis'))}</span><span class="add-thumb-button"><i class="mdi mdi-arrow-right"></i>${escapeHtml(translateValue('Przycisk'))}</span>`;
+}
+function renderAddThumbs() {
+  $$('.add-thumb[data-thumb]', els.addDialog).forEach(thumb => {
+    const type = thumb.dataset.thumb, entity = addState.entity && addTypeAllowed(ADD_TYPES.find(t => t.key === type), addState.entity) ? addState.entity : null;
+    if (!ADD_SAMPLES[type]) { thumb.innerHTML = addThumbStatic(type, entity); return; }
+    const marker = addThumbMarker(type, entity), node = document.createElement('div');
+    node.className = `marker ${type}`; node.innerHTML = markerHtml(marker); applyMarkerStyle(node, marker);
+    const w = Number(marker.style.width) || 120, h = Number(marker.style.height) || 70, box = thumb.getBoundingClientRect();
+    node.style.setProperty('--scene-scale', String(Math.min(1, (box.width || 160) * .86 / w, (box.height || 86) * .9 / h)));
+    thumb.replaceChildren(node);
+  });
+}
+function addFilteredEntities() {
+  const all = entityCatalog?.entities || [], state = addState, type = ADD_TYPES.find(t => t.key === state.type);
+  const words = searchText(state.query).split(/\s+/).filter(Boolean);
+  let list = all.filter(entity => !entity.hidden || words.length);
+  if (type?.numeric && !state.entity) list = list.filter(addEntityNumeric);
+  if (type?.entity === 'none') list = [];
+  if (words.length) list = list.filter(entity => { const hay = searchText(`${entity.name} ${entity.entity_id} ${entity.area || ''} ${catalogIntegration(entity).title}`); return words.every(word => hay.includes(word)); });
+  else if (state.filter === 'recent') { const recent = addRecent(); list = recent.map(id => list.find(entity => entity.entity_id === id)).filter(Boolean); }
+  if (!words.length && state.filter.startsWith('area:')) { const area = state.filter.slice(5); list = list.filter(entity => (entity.area || '') === area); }
+  if (!words.length && state.filter.startsWith('type:')) { const group = ADD_TYPE_GROUPS.find(([key]) => `type:${key}` === state.filter); list = group ? list.filter(entity => group[2].includes(entity.domain)) : list.filter(entity => !ADD_TYPE_GROUPS.some(([, , domains]) => domains.includes(entity.domain))); }
+  return list;
+}
+function addChipsMarkup() {
+  const state = addState, chip = (value, label, raw = false) => `<button type="button" class="add-chip${state.filter === value ? ' on' : ''}" data-add-filter="${escapeHtml(value)}"${raw ? ' data-no-i18n' : ''}>${escapeHtml(raw ? label : translateValue(label))}</button>`;
+  const chips = [chip('all', 'Wszystkie')];
+  if (addRecent().length) chips.push(chip('recent', 'Ostatnie'));
+  if (state.group === 'areas') { (entityCatalog?.areas || []).forEach(area => chips.push(chip(`area:${area}`, area, true))); if (entityCatalog?.areas?.length) chips.push(chip('area:', 'Bez obszaru')); }
+  else { ADD_TYPE_GROUPS.forEach(([key, label]) => chips.push(chip(`type:${key}`, label))); chips.push(chip('type:other', 'Inne')); }
+  return chips.join('') + `<button type="button" class="add-chip seg" data-add-group><i class="mdi mdi-${state.group === 'areas' ? 'home-group' : 'shape-outline'}"></i>${escapeHtml(translateValue(state.group === 'areas' ? 'Obszary' : 'Typy'))}</button>`;
+}
+function addRowsMarkup() {
+  if (!entityCatalog) return `<div class="add-empty">${escapeHtml(translateValue('Wczytywanie encji…'))}</div>`;
+  const type = ADD_TYPES.find(t => t.key === addState.type);
+  if (type?.entity === 'none') return `<div class="add-empty">${escapeHtml(translateValue('Ten element nie potrzebuje encji.'))}</div>`;
+  const list = addFilteredEntities(), shown = list.slice(0, 120);
+  if (!shown.length) return `<div class="add-empty">${escapeHtml(translateValue(addState.filter === 'recent' && !addState.query ? 'Brak ostatnio dodanych encji.' : 'Brak pasujących encji.'))}</div>`;
+  const rows = shown.map(entity => {
+    const used = addUsageLabel(entity.entity_id), integration = catalogIntegration(entity).title, meta = [entity.area, integration].filter(Boolean).join(' · ');
+    const value = `${entity.state ?? ''}${entity.unit ? ` ${entity.unit}` : ''}`;
+    return `<button type="button" class="add-row${addState.entity?.entity_id === entity.entity_id ? ' sel' : ''}" data-add-entity="${escapeHtml(entity.entity_id)}"><span class="add-row-icon"><i class="mdi ${addEntityIcon(entity)}"></i></span><span class="add-row-name"><b data-no-i18n>${escapeHtml(entity.name || entity.entity_id)}</b><small data-no-i18n>${escapeHtml(entity.entity_id)}${meta ? ` · ${escapeHtml(meta)}` : ''}</small></span>${used ? `<span class="add-row-used">${escapeHtml(translateValue('na widoku'))}: ${escapeHtml(used)}</span>` : ''}<span class="add-row-state${String(entity.state) === 'on' ? ' on' : ''}" data-no-i18n>${escapeHtml(value)}</span></button>`;
+  }).join('');
+  const more = list.length > shown.length ? `<div class="add-empty">${escapeHtml(translateValue('Pokazano'))} ${shown.length} / ${list.length} — ${escapeHtml(translateValue('zawęż wyszukiwanie'))}</div>` : '';
+  return rows + more;
+}
+function addGoLabel() {
+  const type = ADD_TYPES.find(t => t.key === addState.type);
+  if (!type) return { text: addState.entity ? 'Wybierz, co dodać' : 'Wybierz typ', ok: false };
+  if (type.entity === 'required' && !addState.entity) return { text: 'Wybierz encję', ok: false };
+  return { text: `${translateValue('Dodaj')}: ${translateValue(type.label)}`, ok: true };
+}
+function renderAddDialog(part = 'all') {
+  if (!addState || !els.addDialog) return;
+  const state = addState, entity = state.entity, recommended = addRecommendedType(entity);
+  if (part === 'all') {
+    $('#add-sub', els.addDialog).textContent = translateValue(entity ? 'Wybierz wygląd dla tej encji' : 'Wybierz typ albo encję — kolejność dowolna');
+    $('#add-selected', els.addDialog).innerHTML = entity ? `<div class="add-selected"><span class="add-row-icon"><i class="mdi ${addEntityIcon(entity)}"></i></span><div><b data-no-i18n>${escapeHtml(entity.name || entity.entity_id)}</b><small data-no-i18n>${escapeHtml(entity.entity_id)} · ${escapeHtml(`${entity.state ?? ''}${entity.unit ? ` ${entity.unit}` : ''}`)}${addUsageLabel(entity.entity_id) ? ` · ${escapeHtml(translateValue('na widoku'))}: ${escapeHtml(addUsageLabel(entity.entity_id))}` : ''}</small></div><button type="button" class="add-link" data-add-clear>${escapeHtml(translateValue('Zmień'))}</button></div>` : '';
+    $('#add-types', els.addDialog).innerHTML = ADD_TYPES.map(type => {
+      const allowed = addTypeAllowed(type, entity), hint = !allowed ? 'Dla wartości liczbowych' : entity && type.entity === 'none' ? 'Bez encji' : type.hint;
+      return `<button type="button" class="add-card${state.type === type.key ? ' sel' : ''}${allowed ? '' : ' off'}" data-add-type="${type.key}" ${allowed ? '' : 'disabled'}>${recommended === type.key ? `<span class="add-tag">★ ${escapeHtml(translateValue('Polecane'))}</span>` : ''}<span class="add-thumb" data-thumb="${type.key}"></span><b>${escapeHtml(translateValue(type.label))}</b><i>${escapeHtml(translateValue(hint))}</i></button>`;
+    }).join('');
+    requestAnimationFrame(renderAddThumbs);
+    $('#add-chips', els.addDialog).innerHTML = addChipsMarkup();
+    const numericNote = ADD_TYPES.find(t => t.key === state.type)?.numeric && !entity;
+    $('#add-entity-note', els.addDialog).textContent = translateValue(numericNote ? '— tylko encje liczbowe' : '— opcjonalnie dla Pomieszczenia, Flow i Tekstu');
+  }
+  $('#add-list', els.addDialog).innerHTML = addRowsMarkup();
+  const go = addGoLabel(), button = $('#add-go', els.addDialog);
+  button.disabled = !go.ok; button.innerHTML = `<i class="mdi mdi-plus"></i><span>${escapeHtml(translateValue(go.text))}</span>`;
+}
+async function openAddDialog() {
+  if (!editMode || !els.addDialog) return;
+  closeCompactMenus(); closeEditor(); closeFlowEditor(); closeRoomEditor(); cancelRoomDrawing(); cancelAddPicking();
+  let pick = false; try { pick = localStorage.getItem(ADD_PICK_KEY) === '1'; } catch {}
+  addState = { type:'', entity:null, query:'', filter: addRecent().length ? 'recent' : 'all', group:'areas', pick };
+  const search = $('#add-search', els.addDialog); search.value = ''; $('#add-pick', els.addDialog).checked = pick;
+  els.addDialog.classList.add('visible'); els.addDialog.setAttribute('aria-hidden', 'false'); renderAddDialog();
+  if (!mobileView()) setTimeout(() => search.focus(), 60);
+  await loadEntityCatalog();
+  if (addState) { if (!entityCatalog.areas.length) addState.group = 'types'; renderAddDialog(); }
+}
+function closeAddDialog() { if (!els.addDialog) return; els.addDialog.classList.remove('visible'); els.addDialog.setAttribute('aria-hidden', 'true'); addState = null; }
+function cancelAddPicking() { if (!addPicking) return; addPicking = null; els.body.classList.remove('add-picking'); }
+function confirmAddDialog() {
+  if (!addState || !addGoLabel().ok) return;
+  const { type, entity, pick } = addState; closeAddDialog();
+  if (type === 'room') return addRoomFromDialog(entity);
+  if (pick) { addPicking = { type, entity }; els.body.classList.add('add-picking'); notify('Dotknij plan w miejscu, gdzie ma stanąć element'); return; }
+  createAddedElement(type, entity, viewCenterPercent());
+}
+function addRoomFromDialog(entity) {
+  startRoomDrawing(); if (!roomDraft) return;
+  if (entity) { roomDraft.entityIds = [entity.entity_id]; roomDraft.name = entity.area || ''; rememberAdded(entity.entity_id); }
+}
+function createAddedElement(type, entity, [x, y]) {
+  const view = activeSceneView(); if (!view || !editMode) return;
+  const now = new Date().toISOString(); if (entity) rememberAdded(entity.entity_id);
+  if (type === 'text') { addTextElement([x, y]); return; }
+  if (type === 'flow') {
+    const id = 'flow_' + uid(), integration = catalogIntegration(entity); view.flows ||= {};
+    view.flows[id] = { id, entityId: entity?.entity_id || '', integrationId: integration.entry_id, integrationName: entity ? integration.title : '', sourceDomain: entity ? (integration.domain || entity.domain) : '', displayName: entity?.name || 'Flow', xPercent:x, yPercent:y, ...clone(FLOW_DEFAULTS), itemSizeV2:true, geometryLocked:false, createdAt:now, updatedAt:now };
+    renderMarkers(); renderAdded(); openFlowEditor(id); scheduleSave(true); if (entity) refreshStates();
+    notify(entity ? 'Dodano Flow' : 'Dodano Flow — wybierz encję albo zostaw bez encji'); return;
+  }
+  const integration = catalogIntegration(entity), marker = freshMarker({ entity_id: entity.entity_id, name: entity.name, unit: entity.unit || '' }, { entry_id: integration.entry_id, title: integration.title || 'Home Assistant', domain: integration.domain || entity.domain });
+  marker.type = type; marker.style = markerStyleDefaults(type); marker.xPercent = x; marker.yPercent = y;
+  if (type === 'icon' && TOGGLE_DOMAINS.includes(entity.domain)) marker.tapAction = 'toggle';
+  bringIntoScene(marker); model.entities[marker.id] = marker;
+  if (!stateCache[entity.entity_id] && entity.state !== null && entity.state !== undefined) stateCache[entity.entity_id] = { entity_id: entity.entity_id, state: String(entity.state), attributes: { friendly_name: entity.name, unit_of_measurement: entity.unit || undefined, device_class: entity.device_class || undefined } };
+  renderMarkers(); renderAdded(); scheduleSave(true); refreshStates(); selectMarker(marker.id);
+  notify(`${translateValue('Dodano')}: ${translateValue(ADD_TYPES.find(t => t.key === type)?.label || type)}`);
+}
+function onAddPickPointer(event) {
+  if (!addPicking || !editMode) return;
+  event.preventDefault(); event.stopImmediatePropagation();
+  const { type, entity } = addPicking, [x, y] = scenePercentAt(event); cancelAddPicking();
+  window.addEventListener('click', swallow => { swallow.preventDefault(); swallow.stopPropagation(); }, { capture:true, once:true });
+  createAddedElement(type, entity, [Math.round(x * 100) / 100, Math.round(y * 100) / 100]);
+}
+function onAddDialogClick(event) {
+  const target = event.target;
+  if (target === els.addDialog || target.closest('[data-add-close]')) return closeAddDialog();
+  const typeButton = target.closest('[data-add-type]');
+  if (typeButton && !typeButton.disabled) { const key = typeButton.dataset.addType; addState.type = addState.type === key ? '' : key; return renderAddDialog(); }
+  const row = target.closest('[data-add-entity]');
+  if (row) {
+    const id = row.dataset.addEntity; addState.entity = addState.entity?.entity_id === id ? null : (entityCatalog?.entities || []).find(entity => entity.entity_id === id) || null;
+    const type = ADD_TYPES.find(t => t.key === addState.type);
+    if (addState.entity && (!type || !addTypeAllowed(type, addState.entity) || type.entity === 'none')) addState.type = addRecommendedType(addState.entity);
+    renderAddDialog(); $('.add-body', els.addDialog)?.scrollTo({ top: 0, behavior: 'smooth' }); return;
+  }
+  if (target.closest('[data-add-clear]')) { addState.entity = null; return renderAddDialog(); }
+  const chip = target.closest('[data-add-filter]'); if (chip) { addState.filter = chip.dataset.addFilter; addState.query = ''; $('#add-search', els.addDialog).value = ''; return renderAddDialog(); }
+  if (target.closest('[data-add-group]')) { addState.group = addState.group === 'areas' ? 'types' : 'areas'; addState.filter = 'all'; return renderAddDialog(); }
+  if (target.closest('#add-go')) return confirmAddDialog();
 }
 // A Flow is added like a room (edit menu), with or without an entity; the entity is picked in its popup.
 function addBlankFlow() {
@@ -2871,19 +3105,19 @@ async function removeFlow(id) {
   delete view.flows[id]; renderMarkers(); renderAdded(); renderIntegrations(); await queueSave(); notify('Usunięto Flow');
 }
 async function addEntity(entityId, entryId) {
-  if (model.entities[entityId]) return;
   const integration = integrations.find(x => x.entry_id === entryId), entity = (integrationEntities.get(entryId) || []).find(x => x.entity_id === entityId); if (!integration || !entity) return;
   let offset = Object.keys(model.entities).length % 7; const marker = freshMarker(entity, integration); marker.xPercent = 50 + offset * 2; marker.yPercent = 50 + offset * 2;
-  model.entities[entityId] = marker; renderMarkers(); renderIntegrations(); await queueSave(); await refreshStates(); notify('Dodano świeży Badge z ustawieniami domyślnymi');
+  model.entities[marker.id] = marker; renderMarkers(); renderIntegrations(); await queueSave(); await refreshStates(); notify('Dodano świeży Badge z ustawieniami domyślnymi');
 }
-async function removeEntity(entityId) {
-  if (!model.entities[entityId]) return; delete model.entities[entityId]; delete stateCache[entityId]; if (selectedId === entityId) closeEditor();
+async function removeMarker(key) {
+  const marker = model.entities[key]; if (!marker) return; delete model.entities[key];
+  if (!allViewEntityIds().includes(marker.entityId)) delete stateCache[marker.entityId]; if (selectedId === key) closeEditor();
   renderMarkers(); renderIntegrations(); await queueSave(); notify('Usunięto marker i wszystkie jego ustawienia');
 }
 // Entities of every view: states of neighbouring views are kept fresh for the swipe preview.
 function allViewEntityIds() {
-  const ids = new Set(Object.keys(model.entities || {}));
-  Object.values(model.views || {}).forEach(view => { Object.keys(view.entities || {}).forEach(id => ids.add(id)); Object.values(view.flows || {}).forEach(flow => { if (flow.entityId) ids.add(flow.entityId); }); Object.values(view.rooms || {}).forEach(room => (room.entityIds || []).forEach(id => ids.add(id))); if (view.nightBackground || view.sunDim) ids.add(nightEntityOf(view)); });
+  const ids = new Set(Object.values(model.entities || {}).map(marker => marker.entityId).filter(Boolean));
+  Object.values(model.views || {}).forEach(view => { Object.values(view.entities || {}).forEach(marker => { if (marker.entityId) ids.add(marker.entityId); }); Object.values(view.flows || {}).forEach(flow => { if (flow.entityId) ids.add(flow.entityId); }); Object.values(view.rooms || {}).forEach(room => (room.entityIds || []).forEach(id => ids.add(id))); if (view.nightBackground || view.sunDim) ids.add(nightEntityOf(view)); });
   return [...ids];
 }
 async function refreshStates() {
@@ -2907,7 +3141,7 @@ function connectEvents() {
   entityEvents?.close();
   entityEvents = new EventSource('api/entity_events');
   entityEvents.onopen = () => { if (els.connection) { els.connection.textContent = 'Na żywo'; els.connection.className = 'connection live'; } };
-  entityEvents.onmessage = event => { try { const data = JSON.parse(event.data), marker = model.entities[data.entity_id], flowUsesEntity = Object.values(activeSceneView()?.flows || {}).some(flow => flow.entityId === data.entity_id); if (!marker && !flowUsesEntity && !allViewEntityIds().includes(data.entity_id)) return; const expected = pendingToggleStates.get(data.entity_id), received = String(data.state || '').toLowerCase(); if (expected && received !== expected) return; if (expected) pendingToggleStates.delete(data.entity_id); renderMarkerState(data.entity_id, { entity_id: data.entity_id, state: data.state, attributes: data.attributes || {}, last_changed: data.last_changed || new Date().toISOString() }); if (flowUsesEntity) { if (touchGestureActive()) deferredFlows = true; else { renderFlows(); if (selectedFlowId) syncFlowSelection(); } } if (roomUsesEntity(data.entity_id)) renderRooms(); if (activeSceneView()?.nightBackground && data.entity_id === nightEntityOf(activeSceneView())) applyNightBackground(); if (sunDimOn(activeSceneView()) && data.entity_id === nightEntityOf(activeSceneView())) { applyBackgroundBrightness(true); syncNightControls(); } } catch {} };
+  entityEvents.onmessage = event => { try { const data = JSON.parse(event.data), marker = markerForEntity(data.entity_id), flowUsesEntity = Object.values(activeSceneView()?.flows || {}).some(flow => flow.entityId === data.entity_id); if (!marker && !flowUsesEntity && !allViewEntityIds().includes(data.entity_id)) return; const expected = pendingToggleStates.get(data.entity_id), received = String(data.state || '').toLowerCase(); if (expected && received !== expected) return; if (expected) pendingToggleStates.delete(data.entity_id); renderMarkerState(data.entity_id, { entity_id: data.entity_id, state: data.state, attributes: data.attributes || {}, last_changed: data.last_changed || new Date().toISOString() }); if (flowUsesEntity) { if (touchGestureActive()) deferredFlows = true; else { renderFlows(); if (selectedFlowId) syncFlowSelection(); } } if (roomUsesEntity(data.entity_id)) renderRooms(); if (activeSceneView()?.nightBackground && data.entity_id === nightEntityOf(activeSceneView())) applyNightBackground(); if (sunDimOn(activeSceneView()) && data.entity_id === nightEntityOf(activeSceneView())) { applyBackgroundBrightness(true); syncNightControls(); } } catch {} };
   entityEvents.onerror = () => { if (els.connection) { els.connection.textContent = 'Ponowne łączenie…'; els.connection.className = 'connection error'; } };
   entityEvents.addEventListener('open', refreshStates);
 }
@@ -3595,7 +3829,15 @@ function bindEvents() {
   $('#rotate-range')?.addEventListener('change', event => setSelectedRotation(event.target.value, true));
   $('#snap-menu')?.addEventListener('pointerdown', event => { if (event.target.closest('#rotate-range')) event.stopPropagation(); });
   $('#flow-add')?.addEventListener('click', addBlankFlow);
-  $('#text-add')?.addEventListener('click', addTextElement);
+  $('#text-add')?.addEventListener('click', () => addTextElement());
+  $('#element-add')?.addEventListener('click', openAddDialog);
+  $('#add-button')?.addEventListener('click', event => { event.stopPropagation(); openAddDialog(); });
+  els.addDialog?.addEventListener('click', onAddDialogClick);
+  $('#add-search')?.addEventListener('input', event => { if (!addState) return; addState.query = event.target.value; renderAddDialog('list'); });
+  $('#add-search')?.addEventListener('keydown', event => { if (event.key === 'Enter' && addState && addGoLabel().ok) { event.preventDefault(); confirmAddDialog(); } });
+  $('#add-pick')?.addEventListener('change', event => { if (!addState) return; addState.pick = event.target.checked; try { localStorage.setItem(ADD_PICK_KEY, addState.pick ? '1' : '0'); } catch {} });
+  els.scene?.addEventListener('pointerdown', onAddPickPointer, true);
+  window.addEventListener('keydown', event => { if (event.key !== 'Escape') return; if (addState) closeAddDialog(); else if (addPicking) { cancelAddPicking(); notify('Anulowano dodawanie'); } });
   $('#view-link')?.addEventListener('click', copyViewLink);
   const followLink = () => { const linked = viewFromLink(); if (linked && linked !== model.activeViewId) switchSceneView(linked, false); };
   try { if (window.top !== window) { window.top.addEventListener('location-changed', followLink); window.top.addEventListener('popstate', followLink); } } catch {}
@@ -3705,7 +3947,8 @@ function bindEvents() {
   $('#paste-style').addEventListener('click', () => { const m = model.entities[selectedId]; if (!m || !styleClipboard) return; m.type = styleClipboard.type; m.style = clone(styleClipboard.style); if (styleClipboard.valueRules) m.valueRules = clone(styleClipboard.valueRules); else delete m.valueRules;
     if (styleClipboard.icon) Object.assign(m, clone(styleClipboard.icon));
     if (styleClipboard.tapAction) m.tapAction = styleClipboard.tapAction === 'toggle' && !isToggleableMarker(m) ? 'more_info' : styleClipboard.tapAction; m.updatedAt = new Date().toISOString(); renderMarkers(); openEditor(); scheduleSave(true); notify('Wklejono kompletny styl 1:1'); });
-  $('#remove-marker').addEventListener('click', async () => { const m = model.entities[selectedId]; if (!m || !await appConfirm({ title: 'Usunąć marker?', message: `„${m.displayName}” zniknie z tego widoku razem ze swoimi ustawieniami.`, confirmText: 'Usuń', danger: true })) return; removeEntity(m.entityId); });
+  $('#marker-duplicate')?.addEventListener('click', duplicateMarker);
+  $('#remove-marker').addEventListener('click', async () => { const m = model.entities[selectedId]; if (!m || !await appConfirm({ title: 'Usunąć marker?', message: `„${m.displayName}” zniknie z tego widoku razem ze swoimi ustawieniami.`, confirmText: 'Usuń', danger: true })) return; removeMarker(selectedId); });
   $('#background-upload').addEventListener('click', () => els.bgFile.click()); $('#empty-upload').addEventListener('click', () => els.bgFile.click()); els.bgFile.addEventListener('change', () => uploadBackground(els.bgFile.files[0]));
   els.emptyBackgroundSelect?.addEventListener('change', () => {
     const name = els.emptyBackgroundSelect.value, preview = els.emptyBackgroundPreview;
@@ -3777,7 +4020,7 @@ function bindEvents() {
     const name = kind === 'marker' ? model.entities[id]?.displayName : kind === 'flow' ? view?.flows?.[id]?.displayName : view?.rooms?.[id]?.name;
     const titles = { marker:'Usunąć marker?', flow:'Usunąć Flow?', room:'Usunąć pomieszczenie?' };
     if (!await appConfirm({ title: titles[kind], message: `„${name || id}” zniknie z tego widoku razem ze swoimi ustawieniami.`, confirmText:'Usuń', danger:true })) return;
-    if (kind === 'marker') removeEntity(id);
+    if (kind === 'marker') removeMarker(id);
     else if (kind === 'flow') { if (selectedFlowId === id) closeFlowEditor(); removeFlow(id); }
     else if (kind === 'room' && view?.rooms?.[id]) { if (selectedRoomId === id) closeRoomEditor(); delete view.rooms[id]; if (removeRoomIcon(view, id)) renderMarkers(); renderRooms(); renderAdded(); updateEmptyState(); scheduleSave(true); notify('Usunięto pomieszczenie'); }
   });
@@ -3829,7 +4072,7 @@ function startResize(event) {
   const marker = model.entities[selectedId];
   if (!editMode || !marker || marker.geometryLocked || event.button !== 0 || (event.buttons & 1) !== 1) return;
   event.preventDefault(); event.stopPropagation();
-  const handle = event.currentTarget.dataset.handle, scale = sceneScale || 1, node = $(`.marker[data-entity-id="${CSS.escape(marker.entityId)}"]`);
+  const handle = event.currentTarget.dataset.handle, scale = sceneScale || 1, node = markerNode(marker.id);
   if (!node) return;
   const initialRect = node.getBoundingClientRect(), fixed = { x:handle.includes('w') ? initialRect.right : initialRect.left, y:handle.includes('n') ? initialRect.bottom : initialRect.top };
   const start = { x:event.clientX, y:event.clientY, w:Number(marker.style.width), h:Number(marker.style.height), px:marker.xPercent, py:marker.yPercent }; let changed = false, lastValid = { w:start.w, h:start.h, x:start.px, y:start.py };
@@ -3841,7 +4084,7 @@ function startResize(event) {
     marker.style.width = clamp(snapSize(start.w + (e.clientX-start.x)*sx/scale, 2400),minWidth,2400);
     marker.style.height = clamp(snapSize(start.h + (e.clientY-start.y)*sy/scale, 1800),minHeight,1800);
     // The scene may be re-rendered during the gesture (live states); always measure the node that is on screen.
-    const live = node.isConnected ? node : $(`.marker[data-entity-id="${CSS.escape(marker.entityId)}"]`);
+    const live = node.isConnected ? node : markerNode(marker.id);
     if (!live) return;
     marker.xPercent = start.px; marker.yPercent = start.py; applyMarkerStyle(live, marker);
     const sceneRect = els.scene.getBoundingClientRect(), current = live.getBoundingClientRect();
