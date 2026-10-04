@@ -1022,3 +1022,16 @@ body.editing .room-labels{z-index:3}
 /* A long press on the plan (marker, icon, label, Flow) never selects text or opens the browser's copy / share menu. */
 .scene,.scene *,.scene-card{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 .scene img{-webkit-user-drag:none}
+/* Selection frame of a marker / Flow: as thick as a selected room's outline and label frame. */
+.selection{border:2px dashed #20b9e7!important;box-shadow:0 0 0 1px rgba(3,16,26,.35)!important}
+/* Room / icon editor: square, equally sized buttons. */
+.room-editor .room-card-presets{display:flex!important;flex-wrap:wrap!important;gap:6px!important;justify-content:flex-start}
+.room-editor .room-card-preset{flex:0 0 40px!important;width:40px;min-width:40px!important;height:40px!important;padding:0!important;justify-content:center;border-radius:10px}
+.room-editor .room-card-preset .mdi{font-size:21px}
+.room-editor .room-card-preset .room-card-swatch{width:26px;height:26px;border-radius:7px}
+.control:has(input[data-path="tapAction"]) .seg-choice{justify-content:flex-start;gap:6px}
+.control:has(input[data-path="tapAction"]) .seg-btn{flex:0 0 40px!important;width:40px;height:40px!important;padding:0!important;border-radius:10px}
+.control:has(input[data-path="tapAction"]) .seg-btn .mdi{font-size:21px}
+.room-editor .control:has(.seg-choice),.room-editor .room-card-row{grid-template-columns:105px minmax(0,1fr) 0;align-items:start;margin:4px 0 10px}
+.room-editor .room-card-row>label,.room-editor .control:has(.seg-choice)>label{line-height:40px;margin:0}
+.room-editor .room-card-preset .mdi{font-size:20px}.room-editor .room-card-preset .room-card-swatch{width:22px;height:22px}
