@@ -1737,6 +1737,18 @@ function updateMobileMarkerLayout(renderedWidth, renderedHeight) {
     placed.push({ ...item, y });
   }
 }
+// While typing on a phone the keyboard pushes the editor up; the selected element is centred again in what is left
+// between the top bar and the editor (after the keyboard has settled).
+let refocusTypingTimer = 0;
+function refocusWhileTyping() {
+  if (!mobileView() || !editMode) return;
+  clearTimeout(refocusTypingTimer);
+  refocusTypingTimer = setTimeout(() => {
+    if (!typingOnPhone()) return;
+    const room = selectedRoomId && roomsOf()[selectedRoomId];
+    if (room) focusSceneBoxOnMobile(isIconRoom(room) ? iconFocusBox(room) : room.points || []); else focusSelectedMarkerOnMobile();
+  }, 320);
+}
 // Height used to lay out the plan. While a text field is being edited on a phone the on-screen keyboard shrinks the
 // window; the plan keeps the height from before the keyboard, so its size, zoom and camera do not jump.
 let stableViewportHeight = 0;
@@ -2837,18 +2849,25 @@ function focusSelectedMarkerOnMobile() {
 }
 // Like a marker, a selected room is brought into view on phones: zoomed so the whole room fits above the
 // bottom editor (never closer than a marker gets), centred at the same spot.
+// The free band of the scene viewport on a phone (viewport coordinates): from under the top bar to the top of the
+// open bottom editor — its final top, above the on-screen keyboard when that is open, even while it still slides in —
+// with a small margin. Selected elements are centred in it.
+function editorFreeBand() {
+  const vr = els.viewport.getBoundingClientRect();
+  const panel = ['#room-editor', '#editor', '#flow-editor'].map(sel => $(sel)).find(node => node?.classList.contains('visible'));
+  const screenBottom = window.visualViewport ? window.visualViewport.offsetTop + window.visualViewport.height : innerHeight;
+  const editorTop = panel ? Math.min(panel.getBoundingClientRect().top, screenBottom - panel.offsetHeight) : Math.min(vr.bottom, screenBottom);
+  const top = Math.max(($('.topbar')?.getBoundingClientRect().bottom || 0) - vr.top, 0) + 14;
+  const bottom = Math.min(editorTop, vr.bottom) - vr.top - 14;
+  return { top, bottom, height: Math.max(60, bottom - top) };
+}
 function focusSceneBoxOnMobile(points) {
   if (!mobileView() || !editMode || !points.length) return;
   const sceneWidth = els.scene.offsetWidth || 1, sceneHeight = els.scene.offsetHeight || 1;
   const xs = points.map(p => Number(p[0]) / 100 * sceneWidth), ys = points.map(p => Number(p[1]) / 100 * sceneHeight);
   const boxW = Math.max(1, Math.max(...xs) - Math.min(...xs)), boxH = Math.max(1, Math.max(...ys) - Math.min(...ys));
   const viewW = els.viewport.clientWidth || 1, viewH = els.viewport.clientHeight || 1;
-  // The free band is measured, not assumed: from under the top bar to the top of the bottom editor (its final
-  // height, even while it is still sliding in), with a small margin, so the whole room stays visible.
-  const vr = els.viewport.getBoundingClientRect(), panel = $('#room-editor');
-  const editorTop = panel?.classList.contains('visible') ? innerHeight - panel.offsetHeight : vr.bottom;
-  const freeTop = Math.max(($('.topbar')?.getBoundingClientRect().bottom || 0) - vr.top, 0) + 14;
-  const freeBottom = Math.min(editorTop, vr.bottom) - vr.top - 14, freeH = Math.max(60, freeBottom - freeTop);
+  const { top: freeTop, height: freeH } = editorFreeBand();
   const nextZoom = clamp(Math.min(viewW * .86 / boxW, freeH / boxH), minViewZoom(), 2.35);
   const centreX = (Math.min(...xs) + Math.max(...xs)) / 2, centreY = (Math.min(...ys) + Math.max(...ys)) / 2;
   const targetY = freeTop + freeH / 2;
@@ -2864,8 +2883,8 @@ function focusScenePointOnMobile(xPercent, yPercent) {
   const sceneWidth = els.scene.offsetWidth || 1, sceneHeight = els.scene.offsetHeight || 1;
   const markerX = Number(marker.xPercent || 50) / 100 * sceneWidth;
   const markerY = Number(marker.yPercent || 50) / 100 * sceneHeight;
-  const targetX = els.viewport.clientWidth / 2;
-  const targetY = Math.max(74, els.viewport.clientHeight * .27);
+  const targetX = els.viewport.clientWidth / 2, band = editorFreeBand();
+  const targetY = band.top + band.height / 2;
   viewZoom = nextZoom; viewPanX = targetX - markerX * nextZoom; viewPanY = targetY - markerY * nextZoom;
   applyViewTransform();
 }
@@ -4692,7 +4711,8 @@ function bindEvents() {
   els.image.addEventListener('load', () => { updateSceneGeometry(); applyBackgroundTransform(); });
   window.addEventListener('resize', () => { syncDock(); applyBackgroundTransform(); syncMobileOrientation(); });
   $$('[data-dock-side]').forEach(button => button.addEventListener('click', event => { event.stopPropagation(); toggleDockSide(); }));
-  window.visualViewport?.addEventListener('resize', () => { if (mobileView()) applyBackgroundTransform(); });
+  window.visualViewport?.addEventListener('resize', () => { if (mobileView()) applyBackgroundTransform(); refocusWhileTyping(); });
+  document.addEventListener('focusin', event => { if (event.target?.matches?.('input,textarea')) refocusWhileTyping(); });
   // Keyboard closed after editing a name, a value…: lay the plan out again and bring the selected element back into view.
   document.addEventListener('focusout', event => {
     if (!mobileView() || !editMode || !event.target?.matches?.('input,textarea')) return;
