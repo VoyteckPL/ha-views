@@ -1019,3 +1019,4 @@ body.editing .room-labels{z-index:3}
 .room-wizard-part-check{position:absolute;top:5px;right:6px;font-size:14px;color:#6f93a4}.room-wizard-part.on .room-wizard-part-check{color:#20b9e7}
 .room-wizard-next:disabled{opacity:.45;cursor:default}
 .room-wizard-next:hover:not(:disabled){background:#4fcdf2;color:#03202c}.room-wizard-skip:hover{background:rgba(99,181,216,.12);color:#e6f7ff}
+.room-label-group{display:contents}

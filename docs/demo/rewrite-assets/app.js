@@ -769,7 +769,16 @@ function roomLabelMarkup(room, preview = '', interactive = false) {
 function renderRoomLabels(view = activeSceneView()) {
   const layer = $('#room-labels'); if (!layer) return;
   const preview = id => editMode && id === selectedRoomId ? roomPreviewOn : '';
-  layer.innerHTML = Object.values(roomsOf(view)).map(room => roomLabelMarkup(room, preview(room.id), editMode && !room.geometryLocked && !roomDraft)).join('');
+  // Each room's label sits in its own wrapper (display:contents) and is rebuilt only when its markup changed,
+  // so dragging one room never re-creates (and flashes) the labels and icons of the others.
+  const kept = new Set();
+  Object.values(roomsOf(view)).forEach(room => {
+    const html = roomLabelMarkup(room, preview(room.id), editMode && !room.geometryLocked && !roomDraft); kept.add(room.id);
+    let group = [...layer.children].find(node => node.dataset.labelGroup === room.id);
+    if (!group) { group = document.createElement('div'); group.className = 'room-label-group'; group.dataset.labelGroup = room.id; layer.append(group); }
+    if (group.__html !== html) { group.innerHTML = html; group.__html = html; }
+  });
+  [...layer.children].forEach(node => { if (!kept.has(node.dataset.labelGroup)) node.remove(); });
 }
 // In edit mode a label part is dragged with the finger or mouse; it follows the grid (when on) and the camera follows it.
 function startRoomLabelDrag(event) {
@@ -2913,12 +2922,21 @@ function keepEditorInViewport(panel = els.editor) {
 }
 // While a marker or Flow is dragged near the edge of the view, the camera follows it (the element keeps sitting
 // under the finger, so it moves deeper with the camera). On phones the element is centred above the editor on release.
+// The part of the scene viewport really visible: below the top bar and, on phones, above an open bottom editor.
+// Edge zones that move the camera are measured from this band, not from the whole screen.
+function visibleSceneBand() {
+  const v = els.viewport.getBoundingClientRect(), topbar = $('.topbar')?.getBoundingClientRect().bottom || 0;
+  let bottom = v.bottom;
+  if (mobileView()) ['#editor', '#flow-editor', '#room-editor'].forEach(sel => { const panel = $(sel); if (panel?.classList.contains('visible')) bottom = Math.min(bottom, panel.getBoundingClientRect().top); });
+  const top = Math.max(v.top, topbar);
+  return { left: v.left, right: v.right, top, bottom: Math.max(bottom, top + 80) };
+}
 function dragCamera(onPan) {
   let last = null, frame = 0, since = 0;
   const step = now => {
     frame = 0; if (!last || !sceneCameraActive()) return;
     // Gentle: speed grows with the depth into the edge zone (squared) and ramps up over ~0.6 s after reaching it.
-    const v = els.viewport.getBoundingClientRect(), zone = mobileView() ? 64 : 48, push = d => d < zone ? Math.pow((zone - Math.max(0, d)) / zone, 2) * 6.5 : 0;
+    const v = visibleSceneBand(), zone = mobileView() ? 64 : 48, push = d => d < zone ? Math.pow((zone - Math.max(0, d)) / zone, 2) * 6.5 : 0;
     let vx = push(last.clientX - v.left) - push(v.right - last.clientX), vy = push(last.clientY - v.top) - push(v.bottom - last.clientY);
     if (!vx && !vy) { since = 0; return; }
     since ||= now; const ramp = Math.min(1, .25 + (now - since) / 800); vx *= ramp; vy *= ramp;
