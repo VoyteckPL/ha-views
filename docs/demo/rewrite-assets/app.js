@@ -254,9 +254,7 @@ function activeSceneView() { return model.views?.[model.activeViewId] || null; }
 function updateEmptyState() {
   const view = activeSceneView(), hasMarkers = Object.keys(model.entities || {}).length > 0 || Object.keys(view?.flows || {}).length > 0 || Object.keys(view?.rooms || {}).length > 0;
   const showWelcome = !currentBackground && !view?.onboardingDone && !hasMarkers;
-  const showEntitiesHint = !showWelcome && !!view?.onboardingDone && !hasMarkers;
-  els.empty.classList.toggle('visible', showWelcome || showEntitiesHint);
-  els.empty.classList.toggle('show-entities-hint', showEntitiesHint);
+  els.empty.classList.toggle('visible', showWelcome);
   const solid = String(view?.backgroundColor || '');
   els.empty.classList.toggle('solid-background', Boolean(solid));
   els.empty.style.setProperty('--solid-background', solid || 'transparent');
@@ -4516,7 +4514,6 @@ function bindEvents() {
     if (value) setEmptyColourPreview(value);
   });
   els.emptyColorStart?.addEventListener('click', () => setBackgroundColour(els.emptyColor.value));
-  els.emptyOpenIntegrations?.addEventListener('click', () => els.integrationsButton.click());
   els.bgSelect.addEventListener('change', async () => {
     if (els.bgSelect.value && els.bgSelect.value !== currentBackground) { showBackgroundPreview(els.bgSelect.value); return; }
     hideBackgroundPreview();

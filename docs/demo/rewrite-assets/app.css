@@ -233,9 +233,6 @@ main{width:min(1600px,calc(100% - 32px));margin:20px auto 40px}.view{display:non
 .welcome-card h2{font-size:19px;color:#f2fbff}.welcome-card>p{margin:5px 0 12px;color:#9bc1d8;font-size:12px}.welcome-card ol{margin:0 0 16px;padding-left:19px;color:#c5dce6;font-size:12px;line-height:1.7}.welcome-card li::marker{color:#35c9f3;font-weight:800}
 .welcome-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px}.welcome-actions button{height:34px;padding:0 11px;font-size:11px}.welcome-actions .primary{background:#109ec9;color:#fff}.welcome-color{display:flex;align-items:center;gap:7px;height:34px;padding:0 8px;border:1px solid var(--line);border-radius:8px;background:#0b202d;color:#b9d4e0;font-size:10px;font-weight:700}
 @media(max-width:600px){.scene-empty{display:none}.scene-empty.visible{display:block;overflow-y:auto;padding:14px}.welcome-card{padding:16px;margin:auto}.welcome-icon{width:38px;height:38px;margin-bottom:8px;font-size:21px}.welcome-card h2{font-size:17px}.welcome-card>p{margin:4px 0 8px}.welcome-card ol{margin-bottom:10px;line-height:1.45}.welcome-actions{display:grid;grid-template-columns:1fr 1fr}.welcome-actions .primary{grid-column:1/-1}.welcome-color{justify-content:space-between}}
-.scene-empty .empty-entities-message{display:none;width:min(380px,100%);padding:22px;border:1px solid rgba(119,211,245,.36);border-radius:16px;background:rgba(7,27,39,.92);box-shadow:0 20px 60px rgba(0,0,0,.32);text-align:center}
-.scene-empty.show-entities-hint .welcome-card{display:none}.scene-empty.show-entities-hint .empty-entities-message{display:block}
-.empty-entities-message .welcome-icon{margin:0 auto 11px}.empty-entities-message h2{font-size:18px;color:#f2fbff}.empty-entities-message p{margin:7px 0 15px;color:#b9d4e0;font-size:12px;line-height:1.5}.empty-entities-message button{height:34px;padding:0 12px;font-size:11px}
 
 /* Clear text actions on desktop, compact icon controls on mobile */
 .background-menu-title{color:#dff6ff;font-size:11px;font-weight:850}
@@ -260,7 +257,6 @@ main{width:min(1600px,calc(100% - 32px));margin:20px auto 40px}.view{display:non
 .scene-toolbar .background-bar{height:38px;padding:3px 4px;gap:5px;border:1px solid var(--line);border-radius:10px;background:rgba(11,31,44,.95)}
 .editing .scene-toolbar .background-bar.open{display:flex}
 .scene-toolbar .background-bar select{min-width:180px;width:min(260px,24vw);height:30px;border:0;background:#0b202d}
-.scene-empty.show-entities-hint{background:transparent}
 .scene-toolbar .background-bar.onboarding{border-color:#31c7f0;box-shadow:0 0 0 2px rgba(49,199,240,.16),0 12px 30px rgba(0,0,0,.35)}
 .scene-toolbar .background-bar.onboarding #background-status{display:block;position:absolute;top:43px;left:0;width:max-content;max-width:320px;padding:7px 9px;border:1px solid rgba(49,199,240,.38);border-radius:8px;background:#09202d;color:#bfefff;font-size:10px;line-height:1.25;box-shadow:0 10px 24px rgba(0,0,0,.35)}
 @media(max-width:768px){
@@ -404,7 +400,6 @@ main{width:min(1600px,calc(100% - 32px));margin:20px auto 40px}.view{display:non
 
 /* beta.38 — show the selected colour on the first-run layer as well as the scene */
 .scene-empty.solid-background{background:var(--solid-background)!important}
-.scene-empty.solid-background .empty-entities-message,.scene-empty.solid-background .welcome-card{background:rgba(7,27,39,.78)}
 
 /* beta.40 — persistent solid-colour canvas format */
 .solid-canvas-row{display:grid;grid-template-columns:22px minmax(0,1fr) auto;align-items:center;gap:7px;color:#c9e8f3;font-size:9px}.solid-canvas-row i{color:#62dafb;font-size:15px}.solid-canvas-row select{height:28px;padding:0 5px;border:1px solid rgba(99,181,216,.3);border-radius:6px;background:#0d2e3e;color:#e1f6ff;font-size:9px}
@@ -1014,3 +1009,4 @@ body.editing .room-labels{z-index:3}
 .room-wizard-next{border:0;background:#20b9e7;color:#03202c;font-weight:700}
 @media (max-width:768px),(max-width:900px) and (pointer:coarse){.room-wizard{bottom:auto}}
 .room-label-part.tappable,.room-label-card.tappable{pointer-events:auto;cursor:pointer}
+.scene-empty.solid-background .welcome-card{background:rgba(7,27,39,.78)}
