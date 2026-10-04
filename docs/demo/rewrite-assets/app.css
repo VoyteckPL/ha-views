@@ -959,3 +959,15 @@ body.editing .room-labels{z-index:3}
 .room-card-presets{flex-wrap:nowrap!important}
 .room-card-preset{min-width:0!important;flex:1 1 0;padding:6px 0!important}
 .room-card-preset .mdi{font-size:19px}
+
+/* Choice buttons instead of drop-down lists */
+.seg-choice{display:flex;flex-wrap:nowrap;gap:4px;min-width:0}
+.seg-btn{flex:1 1 0;min-width:0;height:30px!important;padding:0 4px!important;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(99,181,216,.3);border-radius:8px;background:#0d2635;color:#cfe3ec;cursor:pointer;font-size:10.5px!important;line-height:1.05}
+.seg-btn .mdi{font-size:18px}.seg-btn.text span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.seg-btn.active{border-color:#20b9e7;background:#12384a;color:#8fdfff;box-shadow:0 0 0 1px #20b9e7}
+.seg-btn:disabled{opacity:.45;cursor:default}
+.control:has(.seg-choice){grid-template-columns:105px minmax(0,1fr) 0}
+.room-label-brand{width:1em;height:1em;object-fit:contain;display:block}
+.room-label-part.icon,.room-card-part.icon{box-sizing:content-box}
+.gauge-subsection .control.range-control{grid-template-columns:96px minmax(0,1fr) 22px 42px}
+@media (max-width:768px),(max-width:900px) and (pointer:coarse){.gauge-subsection .control.range-control{grid-template-columns:82px minmax(0,1fr) 22px 40px}}
