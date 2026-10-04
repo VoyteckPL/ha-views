@@ -971,3 +971,10 @@ body.editing .room-labels{z-index:3}
 .room-label-part.icon,.room-card-part.icon{box-sizing:content-box}
 .gauge-subsection .control.range-control{grid-template-columns:96px minmax(0,1fr) 22px 42px}
 @media (max-width:768px),(max-width:900px) and (pointer:coarse){.gauge-subsection .control.range-control{grid-template-columns:82px minmax(0,1fr) 22px 40px}}
+
+/* ON/OFF preview stays visible while scrolling the editor */
+.editor-preview-row{position:sticky;top:-1px;z-index:5;margin:0 -2px 8px;padding:6px 4px 7px;background:rgba(7,25,36,.97);backdrop-filter:blur(4px)}
+.editor-content>.editor-preview-row{top:-10px;margin-top:-10px;padding-top:12px}
+@media (max-width:768px),(max-width:900px) and (pointer:coarse){.editor-content>.editor-preview-row{top:-7px;margin-top:-7px;padding-top:9px}}
+.editor-content>.editor-preview-row{margin-left:-12px;margin-right:-12px;padding-left:14px;padding-right:14px}
+@media (max-width:768px),(max-width:900px) and (pointer:coarse){.editor-content>.editor-preview-row{margin-left:-9px;margin-right:-9px;padding-left:11px;padding-right:11px}}

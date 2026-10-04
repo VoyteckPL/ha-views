@@ -581,12 +581,12 @@ const ROOM_DEFAULTS = Object.freeze({ name:'Pomieszczenie', points:[], entityIds
   labelIconOutlineState:false, labelIconOutlineOnColor:'#FFFFFF', labelIconOutlineOffColor:'#9FB6C3', labelIconOutlineOnWidth:1.5, labelIconOutlineOffWidth:1.5,
   labelIconBgState:false, labelIconBgOnColor:'#3A2A08', labelIconBgOffColor:'#081822', labelIconBgOnOpacity:.6, labelIconBgOffOpacity:.55,
   labelIconBorderState:false, labelIconBorderOnColor:'#FFC46B', labelIconBorderOffColor:'#9FB6C3', labelIconBorderOnOpacity:.8, labelIconBorderOffOpacity:.5, labelIconBorderOnWidth:2, labelIconBorderOffWidth:1.5,
-  labelIconBorder:false, labelIconBorderColor:'#FFFFFF', labelIconBorderOpacity:.6, labelIconBorderWidth:1.5, labelIconShape:'circle', labelIconRadius:10, labelIconPadding:6,
+  labelIconBorder:false, labelIconBlur:false, labelIconBorderColor:'#FFFFFF', labelIconBorderOpacity:.6, labelIconBorderWidth:1.5, labelIconShape:'circle', labelIconRadius:10, labelIconPadding:6,
   labelName:false, labelNameColor:'#FFFFFF', labelNameSize:60, labelNameX:0, labelNameY:28, labelNameBg:false, labelNameBgOpacity:.55, labelNameBgColor:'#081822',
   labelState:false, labelStateColor:'#DCE8EF', labelStateSize:50, labelStateX:0, labelStateY:84, labelStateBg:false, labelStateBgOpacity:.55, labelStateBgColor:'#081822' });
 // Room label parts: each is shown, styled and placed on its own (offsets in plan pixels from the room centre).
 const ROOM_LABEL_PARTS = [['icon','labelIcon','Ikona'],['name','labelName','Nazwa'],['state','labelState','Stan']];
-const ROOM_LABEL_KEYS = ROOM_LABEL_PARTS.flatMap(([, k]) => [k, `${k}Size`, `${k}X`, `${k}Y`, `${k}Bg`, `${k}BgOpacity`, `${k}BgColor`]).concat(['labelCardX','labelCardY','labelCardLayout','labelCardAlign','labelCardBg','labelCardBgColor','labelCardBgOpacity','labelCardBlur','labelCardRadius','labelCardPadding','labelCardGap','labelCardBorder','labelCardBorderColor','labelCardBorderOpacity','labelCardBorderWidth','labelCardScale','labelIconDX','labelIconDY','labelNameDX','labelNameDY','labelStateDX','labelStateDY']).concat(['labelLinked','labelIconName','labelIconOn','labelIconOff','labelNameColor','labelStateColor','labelIconVariant','labelIconNameOn','labelIconNameOff','labelIconOpacityOn','labelIconOpacityOff','labelIconFill','labelIconOutline','labelIconOutlineColor','labelIconOutlineWidth','labelIconSource','labelIconBorder','labelIconBorderColor','labelIconBorderOpacity','labelIconBorderWidth','labelIconShape','labelIconRadius','labelIconPadding','labelIconColorState','labelIconColor','labelIconOpacity','labelIconOutlineState','labelIconOutlineOnColor','labelIconOutlineOffColor','labelIconOutlineOnWidth','labelIconOutlineOffWidth','labelIconBgState','labelIconBgOnColor','labelIconBgOffColor','labelIconBgOnOpacity','labelIconBgOffOpacity','labelIconBorderState','labelIconBorderOnColor','labelIconBorderOffColor','labelIconBorderOnOpacity','labelIconBorderOffOpacity','labelIconBorderOnWidth','labelIconBorderOffWidth']);
+const ROOM_LABEL_KEYS = ROOM_LABEL_PARTS.flatMap(([, k]) => [k, `${k}Size`, `${k}X`, `${k}Y`, `${k}Bg`, `${k}BgOpacity`, `${k}BgColor`]).concat(['labelCardX','labelCardY','labelCardLayout','labelCardAlign','labelCardBg','labelCardBgColor','labelCardBgOpacity','labelCardBlur','labelCardRadius','labelCardPadding','labelCardGap','labelCardBorder','labelCardBorderColor','labelCardBorderOpacity','labelCardBorderWidth','labelCardScale','labelIconDX','labelIconDY','labelNameDX','labelNameDY','labelStateDX','labelStateDY']).concat(['labelLinked','labelIconName','labelIconOn','labelIconOff','labelNameColor','labelStateColor','labelIconVariant','labelIconNameOn','labelIconNameOff','labelIconOpacityOn','labelIconOpacityOff','labelIconFill','labelIconOutline','labelIconOutlineColor','labelIconOutlineWidth','labelIconSource','labelIconBorder','labelIconBorderColor','labelIconBorderOpacity','labelIconBorderWidth','labelIconShape','labelIconRadius','labelIconPadding','labelIconBlur','labelIconColorState','labelIconColor','labelIconOpacity','labelIconOutlineState','labelIconOutlineOnColor','labelIconOutlineOffColor','labelIconOutlineOnWidth','labelIconOutlineOffWidth','labelIconBgState','labelIconBgOnColor','labelIconBgOffColor','labelIconBgOnOpacity','labelIconBgOffOpacity','labelIconBorderState','labelIconBorderOnColor','labelIconBorderOffColor','labelIconBorderOnOpacity','labelIconBorderOffOpacity','labelIconBorderOnWidth','labelIconBorderOffWidth']);
 const ROOM_LIGHT_KEYS = ['lightEffect','lightX','lightY','lightDirection','lightWallPos','lightSpread','lightFill'];
 const ROOM_ON_STATES = new Set(['on','open','opening','home','playing','heat','heating','cool','cooling','detected','unlocked','active','true']);
 let selectedRoomId = null, roomDraft = null, roomPreviewOn = '', roomEditorOpenSectionIndex = -1, roomStyleClipboard = null, allEntitiesCache = null, allEntitiesLoading = null;
@@ -686,6 +686,7 @@ function roomIconFrameStyle(r, on = false) {
   const radius = shape === 'circle' ? '50%' : shape === 'square' ? '0' : `${clamp(Number(r.labelIconRadius) || 0, 0, 200)}px`;
   return `;padding:${clamp(Number(r.labelIconPadding ?? 6), 0, 120)}px;border-radius:${radius}`
     + (r.labelIconBg ? `;background:${rgba(pick('labelIconBgState', 'labelIconBg', 'Color') || '#081822', clamp(Number(pick('labelIconBgState', 'labelIconBg', 'Opacity') ?? .55), 0, 1))}` : '')
+    + (r.labelIconBg && r.labelIconBlur ? ';-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)' : '')
     + (r.labelIconBorder ? `;border:${clamp(Number(pick('labelIconBorderState', 'labelIconBorder', 'Width')) || 1.5, .5, 12)}px solid ${rgba(pick('labelIconBorderState', 'labelIconBorder', 'Color') || '#FFFFFF', clamp(Number(pick('labelIconBorderState', 'labelIconBorder', 'Opacity') ?? .6), 0, 1))}` : '');
 }
 // beta.256 had one label block (shared colour, size, layout, offset); it becomes three parts placed the same way.
@@ -719,7 +720,7 @@ function roomLabelMarkup(room, preview = '', interactive = false) {
   const state = !r.labelState ? '' : preview === 'off' ? translateValue('Wył.') : preview === 'on' && !realOn ? translateValue('Wł.') : roomLabelState(r);
   const iconColor = r.labelIconColorState === false ? r.labelIconColor : on ? r.labelIconOn : r.labelIconOff, iconOpacity = clamp(Number(r.labelIconColorState === false ? r.labelIconOpacity : on ? r.labelIconOpacityOn : r.labelIconOpacityOff) ?? 1, 0, 1);
   const outlineColor = r.labelIconOutlineState ? (on ? r.labelIconOutlineOnColor : r.labelIconOutlineOffColor) : r.labelIconOutlineColor, outlineWidth = r.labelIconOutlineState ? (on ? r.labelIconOutlineOnWidth : r.labelIconOutlineOffWidth) : r.labelIconOutlineWidth;
-  const iconStyle = `color:${escapeHtml(iconColor)};-webkit-text-fill-color:${r.labelIconFill !== false ? rgba(iconColor, iconOpacity) : 'transparent'};-webkit-text-stroke:${r.labelIconOutline ? `${clamp(Number(outlineWidth) || 1.5, .5, 8)}px ${rgba(outlineColor || '#FFFFFF', iconOpacity)}` : '0 transparent'}`;
+  const iconStyle = `text-shadow:none;filter:drop-shadow(0 1px 2px rgba(0,0,0,${(.6 * (r.labelIconFill !== false ? iconOpacity : r.labelIconOutline ? 1 : 0)).toFixed(2)}));color:${escapeHtml(iconColor)};-webkit-text-fill-color:${r.labelIconFill !== false ? rgba(iconColor, iconOpacity) : 'transparent'};-webkit-text-stroke:${r.labelIconOutline ? `${clamp(Number(outlineWidth) || 1.5, .5, 8)}px ${rgba(outlineColor || '#FFFFFF', iconOpacity)}` : '0 transparent'}`;
   const spec = r.labelIcon ? roomLabelIconSpec(r, on) : null;
   const iconHtml = !spec ? '' : spec.domain ? `<img class="room-label-brand" src="api/integration_icon?domain=${encodeURIComponent(spec.domain)}" data-icon-fallback="${escapeHtml(`https://brands.home-assistant.io/_/${encodeURIComponent(spec.domain)}/dark_icon.png`)}" alt="" style="opacity:${iconOpacity}">` : `<i class="mdi ${escapeHtml(spec.cls)}" style="${iconStyle}"></i>`;
   const content = { icon: iconHtml, name: r.labelName && r.name ? `<b data-no-i18n style="color:${escapeHtml(r.labelNameColor)}">${escapeHtml(r.name)}</b>` : '', state: state ? `<small data-no-i18n style="color:${escapeHtml(r.labelStateColor)}">${escapeHtml(state)}</small>` : '' };
@@ -1071,7 +1072,8 @@ function roomEditorMarkup(room) {
         + (r.labelIconBgState
           ? control('Kolor ON','labelIconBgOnColor','color',r.labelIconBgOnColor) + control('Kolor OFF','labelIconBgOffColor','color',r.labelIconBgOffColor)
             + control('Przezrocz. ON','labelIconBgOnOpacity','range',pct(r.labelIconBgOnOpacity),{ min:0, max:100, step:1, suffix:'%', integer:true }) + control('Przezrocz. OFF','labelIconBgOffOpacity','range',pct(r.labelIconBgOffOpacity),{ min:0, max:100, step:1, suffix:'%', integer:true })
-          : control('Kolor tła','labelIconBgColor','color',r.labelIconBgColor || '#081822') + control('Przezrocz. tła','labelIconBgOpacity','range',pct(r.labelIconBgOpacity ?? .55),{ min:0, max:100, step:1, suffix:'%', integer:true })) : ''))
+          : control('Kolor tła','labelIconBgColor','color',r.labelIconBgColor || '#081822') + control('Przezrocz. tła','labelIconBgOpacity','range',pct(r.labelIconBgOpacity ?? .55),{ min:0, max:100, step:1, suffix:'%', integer:true }))
+        + control('Rozmycie','labelIconBlur','checkbox',!!r.labelIconBlur) : ''))
     + sub('Ramka', control('Ramka','labelIconBorder','checkbox',!!r.labelIconBorder,refresh)
       + (r.labelIconBorder ? control('Zależne ON/OFF','labelIconBorderState','checkbox',!!r.labelIconBorderState,refresh)
         + (r.labelIconBorderState
@@ -1087,7 +1089,7 @@ function roomEditorMarkup(room) {
       + control('Rozmiar',`${key}Size`,'range',clamp(Number(r[`${key}Size`]) || ROOM_DEFAULTS[`${key}Size`], 6, 400),{ min:6, max: part === 'icon' ? 360 : 120, step:1, suffix:'px', integer:true })
       + (part === 'icon' ? '' : control('Tło',`${key}Bg`,'checkbox',!!r[`${key}Bg`],refresh)
         + (r[`${key}Bg`] ? control('Kolor tła',`${key}BgColor`,'color',r[`${key}BgColor`] || '#081822') + control('Przezrocz. tła',`${key}BgOpacity`,'range',pct(r[`${key}BgOpacity`] ?? .55),{ min:0, max:100, step:1, suffix:'%', integer:true }) : ''))
-      + (r.labelLinked
+      + (part === 'icon' ? '' : r.labelLinked
         ? control('Przesunięcie w karcie: poziomo',`${key}DX`,'range',Number(r[`${key}DX`]) || 0,{ min:-120, max:120, step:1, suffix:'px', integer:true }) + control('Przesunięcie w karcie: pionowo',`${key}DY`,'range',Number(r[`${key}DY`]) || 0,{ min:-120, max:120, step:1, suffix:'px', integer:true })
         : control('Lewo / prawo',`${key}X`,'range',Number(r[`${key}X`]) || 0,{ min:-600, max:600, step:1, suffix:'px', integer:true }) + control('Góra / dół',`${key}Y`,'range',Number(r[`${key}Y`]) || 0,{ min:-600, max:600, step:1, suffix:'px', integer:true }))
       + (part === 'icon' ? iconOptions() : '') : ''));
@@ -2812,6 +2814,15 @@ function choiceIcon(path, value) {
   if (own && !Object.keys(own).length) return '';
   return CHOICE_ICONS.any[String(value)] || '';
 }
+// Sub-sections work like an accordion: opening one closes the others of the same section, and a section opened
+// by hand starts with all its sub-sections folded.
+document.addEventListener('click', event => {
+  const summary = event.target.closest('summary'); if (!summary) return;
+  const details = summary.parentElement;
+  if (details.classList.contains('gauge-subsection')) {
+    if (!details.open) $$(':scope > .gauge-subsection, :scope > * > .gauge-subsection', details.parentElement).forEach(other => { if (other !== details) other.open = false; });
+  } else if (details.classList.contains('editor-section') && !details.open) $$('.gauge-subsection', details).forEach(sub => { sub.open = false; });
+}, true);
 document.addEventListener('click', event => {
   const button = event.target.closest('.seg-btn'); if (!button || button.disabled) return;
   const control = button.closest('.control'), input = control?.querySelector('input[type="hidden"][data-path]'); if (!input) return;
