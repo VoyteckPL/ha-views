@@ -915,8 +915,10 @@ body.add-picking .scene,body.add-picking .scene *{cursor:crosshair!important}
 .room-label-part{position:absolute;display:flex;align-items:center;justify-content:center;white-space:nowrap;line-height:1.1;text-shadow:0 1px 3px rgba(0,0,0,.75);font-size:var(--lsize,18px);transform:translate(-50%,-50%) translate(calc(var(--lx,0px) * var(--scene-scale,1)),calc(var(--ly,0px) * var(--scene-scale,1))) scale(var(--scene-scale,1));transition:color .25s}
 .room-label-part b{font-weight:700}.room-label-part small{font-size:1em;opacity:.95}
 .room-label-part .mdi{font-size:1em;line-height:1;transition:color .25s}
-.room-label-part.bg{padding:.28em .55em;border-radius:.7em;background:rgba(8,24,34,var(--lbg,.55));text-shadow:none;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.room-label-part.bg{padding:.28em .55em;border-radius:.7em;text-shadow:none;box-shadow:0 4px 14px rgba(0,0,0,.25)}
 .room-label-part.icon.bg{padding:.22em;border-radius:50%}
 .room-label-part.editable{pointer-events:auto;cursor:grab;touch-action:none}
 .room-label-part.editable::after{content:'';position:absolute;inset:-6px;border:1px dashed rgba(143,223,255,.55);border-radius:8px;pointer-events:none}
 .room-label-part.editable:active{cursor:grabbing}
+.room-label-part.editable.linked::after{border-color:rgba(255,181,71,.7)}
+body.editing .room-labels{z-index:3}
