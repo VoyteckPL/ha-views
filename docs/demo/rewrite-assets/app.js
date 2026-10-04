@@ -588,8 +588,19 @@ const ROOM_DEFAULTS = Object.freeze({ name:'Pomieszczenie', points:[], entityIds
   labelState:false, labelStateColor:'#DCE8EF', labelStateSize:50, labelStateX:0, labelStateY:84, labelStateBg:false, labelStateBgOpacity:.55, labelStateBgColor:'#081822' });
 // A freshly drawn room starts with its icon, name and state visible and the usual extras switched on
 // (icon outline, backgrounds, icon border), so every option is visible and can be tuned or turned off.
-const NEW_ROOM_LABEL = Object.freeze({ labelIcon:true, labelName:true, labelState:true, labelIconOutline:true, labelIconBg:true, labelIconBorder:true, labelNameBg:true, labelStateBg:true,
-  labelIconY:-97, labelNameY:26, labelStateY:123 });
+const NEW_ROOM_LABEL = Object.freeze({ labelIcon:true, labelName:true, labelState:true, labelLinked:true, labelCardBg:true, labelCardBorder:true,
+  labelIconOutline:true, labelIconBg:true, labelIconBorder:true, labelIconY:-97, labelNameY:26, labelStateY:123 });
+// Scales a new room's group so it fits inside the drawn shape (at most 70 % of its width and 60 % of its height, never above the default size).
+function fitRoomLabel(id) {
+  const room = roomsOf()[id], card = document.querySelector(`.room-label-card[data-room-id="${CSS.escape(id)}"]`), scene = els.scene?.getBoundingClientRect();
+  if (!room?.labelLinked || !card || !scene?.width || !room.points?.length) return;
+  const box = card.getBoundingClientRect(), scale = clamp(Number(room.labelCardScale) || 1, .3, 4); if (!box.width || !box.height) return;
+  const xs = room.points.map(p => p[0]), ys = room.points.map(p => p[1]);
+  const roomW = (Math.max(...xs) - Math.min(...xs)) / 100 * scene.width, roomH = (Math.max(...ys) - Math.min(...ys)) / 100 * scene.height;
+  const fit = Math.min(roomW * .7 / (box.width / scale), roomH * .6 / (box.height / scale));
+  const next = Math.round(clamp(fit, .3, 1) * 20) / 20; if (next === room.labelCardScale) return;
+  room.labelCardScale = next; renderRooms();
+}
 // Room label parts: each is shown, styled and placed on its own (offsets in plan pixels from the room centre).
 const ROOM_LABEL_PARTS = [['icon','labelIcon','Ikona'],['name','labelName','Nazwa'],['state','labelState','Stan']];
 const ROOM_LABEL_KEYS = ROOM_LABEL_PARTS.flatMap(([, k]) => [k, `${k}Size`, `${k}X`, `${k}Y`, `${k}Bg`, `${k}BgOpacity`, `${k}BgColor`]).concat(['labelCardX','labelCardY','labelCardLayout','labelCardAlign','labelCardBg','labelCardBgColor','labelCardBgOpacity','labelCardBlur','labelCardRadius','labelCardPadding','labelCardGap','labelCardBorder','labelCardBorderColor','labelCardBorderOpacity','labelCardBorderWidth','labelCardBgState','labelCardBgOnColor','labelCardBgOffColor','labelCardBgOnOpacity','labelCardBgOffOpacity','labelCardBorderState','labelCardBorderOnColor','labelCardBorderOffColor','labelCardBorderOnOpacity','labelCardBorderOffOpacity','labelCardBorderOnWidth','labelCardBorderOffWidth','labelCardScale','labelIconDX','labelIconDY','labelNameDX','labelNameDY','labelStateDX','labelStateDY']).concat(['labelLinked','labelIconName','labelIconOn','labelIconOff','labelNameColor','labelStateColor','labelIconVariant','labelIconNameOn','labelIconNameOff','labelIconOpacityOn','labelIconOpacityOff','labelIconFill','labelIconOutline','labelIconOutlineColor','labelIconOutlineWidth','labelIconSource','labelIconBorder','labelIconBorderColor','labelIconBorderOpacity','labelIconBorderWidth','labelIconShape','labelIconRadius','labelIconPadding','labelIconBlur','labelIconColorState','labelIconColor','labelIconOpacity','labelIconOutlineState','labelIconOutlineOnColor','labelIconOutlineOffColor','labelIconOutlineOnWidth','labelIconOutlineOffWidth','labelIconOutlineOpacity','labelIconOutlineOnOpacity','labelIconOutlineOffOpacity','labelIconBgState','labelIconBgOnColor','labelIconBgOffColor','labelIconBgOnOpacity','labelIconBgOffOpacity','labelIconBorderState','labelIconBorderOnColor','labelIconBorderOffColor','labelIconBorderOnOpacity','labelIconBorderOffOpacity','labelIconBorderOnWidth','labelIconBorderOffWidth']);
@@ -913,7 +924,7 @@ function finishRoomDrawing() {
   view.rooms ||= {};
   const id = 'room_' + uid(), now = new Date().toISOString(), count = Object.keys(view.rooms).length + 1;
   view.rooms[id] = { ...clone(ROOM_DEFAULTS), ...NEW_ROOM_LABEL, id, name: roomDraft.name || `${translateValue('Pomieszczenie')} ${count}`, entityIds: [...(roomDraft.entityIds || [])], points: roomDraft.points.map(p => p.map(v => Math.round(v * 1000) / 1000)), createdAt: now, updatedAt: now };
-  const withEntities = view.rooms[id].entityIds.length > 0; cancelRoomDrawing(); renderRooms(); scheduleSave(true); if (withEntities) refreshStates();
+  const withEntities = view.rooms[id].entityIds.length > 0; cancelRoomDrawing(); renderRooms(); fitRoomLabel(id); scheduleSave(true); if (withEntities) refreshStates();
   openRoomWizard(id);
 }
 // After drawing, a small two-step popup asks for the name (empty = the generated one) and the entities that
@@ -934,7 +945,7 @@ function closeRoomWizard() {
   if (!room) return;
   const before = (room.entityIds || []).join('|'); room.entityIds = [...picked];
   if (room.entityIds.join('|') !== before) { room.updatedAt = new Date().toISOString(); refreshStates(); }
-  renderRooms(); scheduleSave(true); openRoomEditor(id, -1, 0);
+  renderRooms(); fitRoomLabel(id); scheduleSave(true); openRoomEditor(id, -1, 0);
   notify(room.entityIds.length ? 'Dodano pomieszczenie' : 'Dodano pomieszczenie — encje możesz dodać w panelu');
 }
 function roomWizardName() {
