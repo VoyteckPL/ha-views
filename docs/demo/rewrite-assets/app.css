@@ -922,3 +922,27 @@ body.add-picking .scene,body.add-picking .scene *{cursor:crosshair!important}
 .room-label-part.editable:active{cursor:grabbing}
 .room-label-part.editable.linked::after{border-color:rgba(255,181,71,.7)}
 body.editing .room-labels{z-index:3}
+
+/* One-element room label: a card with a shared background */
+.room-label-card{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;white-space:nowrap;line-height:1.1;text-shadow:0 1px 3px rgba(0,0,0,.6);transform:translate(-50%,-50%) translate(calc(var(--lx,0px) * var(--scene-scale,1)),calc(var(--ly,0px) * var(--scene-scale,1))) scale(calc(var(--lscale,1) * var(--scene-scale,1)));box-sizing:border-box}
+.room-label-card.bg{text-shadow:none;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.room-label-card.blur{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.room-label-card.layout-row{flex-direction:row}
+.room-label-card.layout-iconLeft,.room-label-card.layout-iconRight{display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto;column-gap:inherit;row-gap:2px;align-items:center}
+.room-label-card.layout-iconLeft{grid-template-areas:"icon name" "icon state"}.room-label-card.layout-iconRight{grid-template-areas:"name icon" "state icon"}
+.room-label-card.layout-iconLeft .room-card-part.icon,.room-label-card.layout-iconRight .room-card-part.icon{grid-area:icon}
+.room-label-card.layout-iconLeft .room-card-part.name,.room-label-card.layout-iconRight .room-card-part.name{grid-area:name}
+.room-label-card.layout-iconLeft .room-card-part.state,.room-label-card.layout-iconRight .room-card-part.state{grid-area:state}
+.room-label-card.align-left{align-items:flex-start;text-align:left}.room-label-card.align-right{align-items:flex-end;text-align:right}
+.room-label-card.layout-iconLeft.align-left .room-card-part.name,.room-label-card.layout-iconLeft.align-left .room-card-part.state{justify-self:start}
+.room-label-card.layout-iconRight.align-right .room-card-part.name,.room-label-card.layout-iconRight.align-right .room-card-part.state{justify-self:end}
+.room-card-part{display:flex;align-items:center;justify-content:center}.room-card-part .mdi{font-size:1em;line-height:1}.room-card-part b{font-weight:700}
+.room-card-part.bg{padding:.2em .5em;border-radius:.6em}.room-card-part.icon.bg{padding:.2em;border-radius:50%}
+.room-label-card.editable{pointer-events:auto;cursor:grab;touch-action:none}
+.room-label-card.editable::after{content:'';position:absolute;inset:-6px;border:1px dashed rgba(255,181,71,.75);border-radius:inherit;pointer-events:none}
+.room-card-row{align-items:start}.room-card-presets{grid-column:2 / -1;display:flex;flex-wrap:wrap;gap:6px}
+.room-card-preset{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:64px;height:auto;padding:6px 6px 5px;border:1px solid rgba(99,181,216,.3);border-radius:9px;background:#0d2635;color:#cfe3ec;font-size:9.5px;line-height:1.15;cursor:pointer}
+.room-card-preset .mdi{font-size:20px;color:#8fdfff}.room-card-preset.active{border-color:#20b9e7;box-shadow:0 0 0 1px #20b9e7;background:#12384a}
+.room-card-swatch{display:block;width:30px;height:16px;border-radius:5px}
+.room-card-swatch.none{border:1px dashed #6f93a4}.room-card-swatch.dark{background:#081822;border:1px solid #2b4a5a}.room-card-swatch.light{background:#fff}
+.room-card-swatch.glass{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.5)}.room-card-swatch.room{background:rgba(255,210,122,.35);border:1.5px solid #FFD27A}
