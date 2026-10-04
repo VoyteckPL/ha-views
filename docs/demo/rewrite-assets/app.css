@@ -978,3 +978,11 @@ body.editing .room-labels{z-index:3}
 @media (max-width:768px),(max-width:900px) and (pointer:coarse){.editor-content>.editor-preview-row{top:-7px;margin-top:-7px;padding-top:9px}}
 .editor-content>.editor-preview-row{margin-left:-12px;margin-right:-12px;padding-left:14px;padding-right:14px}
 @media (max-width:768px),(max-width:900px) and (pointer:coarse){.editor-content>.editor-preview-row{margin-left:-9px;margin-right:-9px;padding-left:11px;padding-right:11px}}
+.add-dialog.step-type .add-entity-step,.add-dialog.step-entity .add-type-step{display:none}
+.add-step-type{display:flex;align-items:center;gap:10px;margin:2px 0 4px}
+.add-back{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(99,181,216,.35);background:#0d2635;color:#cfe6f1;border-radius:10px;padding:7px 11px;font:inherit;font-size:12.5px;cursor:pointer}
+.add-back:hover{border-color:#20b9e7}
+.add-step-chip{display:inline-flex;align-items:center;gap:8px;min-width:0}.add-step-chip .add-thumb{width:64px;height:40px;flex:0 0 auto;border-radius:8px;overflow:hidden}.add-step-chip b{font-size:14px}
+.add-go[hidden]{display:none!important}
+.room-entity-hint{display:flex;align-items:flex-start;gap:7px;margin:0 0 8px;padding:7px 9px;border-radius:9px;background:rgba(32,185,231,.12);border:1px solid rgba(32,185,231,.35);color:#bfe9f7;font-size:11.5px;line-height:1.35}
+.room-entity-hint .mdi{font-size:15px;color:#20b9e7;line-height:1}

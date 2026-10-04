@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link id="mdi-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" media="print" onload="this.media='all'">
   <style>.app-booting .markers,.app-booting .scene-empty,.app-booting .selection,.app-booting .flow-selection,.app-booting #edit-toggle,.app-booting #view-manage,.app-booting #settings-toggle{visibility:hidden!important}</style>
-  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260928-266">
+  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260928-267">
   <meta name="description" content="HA Views live demo: visual Home Assistant dashboards on your own floor plan. Runs entirely in your browser.">
   <style>
     #demo-bar{position:fixed;left:10px;bottom:10px;z-index:60;display:flex;align-items:center;gap:8px;max-width:calc(100vw - 20px);padding:6px 8px 6px 12px;border:1px solid rgba(99,181,216,.4);border-radius:999px;background:rgba(6,22,32,.92);color:#cfe6f1;font:12px/1.3 system-ui,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.45);backdrop-filter:blur(6px)}
@@ -16,7 +16,7 @@
     body.editing #demo-bar{opacity:.35}body.editing #demo-bar:hover{opacity:1}
     @media (max-width:640px){#demo-bar .demo-note{display:none}}
   </style>
-  <script>window.HA_VIEWS_DEMO_APP = 'rewrite-assets/app.js?v=20260928-266';</script>
+  <script>window.HA_VIEWS_DEMO_APP = 'rewrite-assets/app.js?v=20260928-267';</script>
   <script src="demo-layout.js"></script>
   <script src="demo.js"></script>
 </head>
@@ -305,13 +305,18 @@
     <div class="add-card-wrap" role="dialog" aria-modal="true" aria-labelledby="add-title">
       <div class="add-head"><div><h2 id="add-title">Dodaj do widoku</h2><small id="add-sub"></small></div><button type="button" class="editor-icon-button" data-add-close title="Zamknij" aria-label="Zamknij"><i class="mdi mdi-close"></i></button></div>
       <div class="add-body">
-        <div id="add-selected"></div>
-        <div class="add-label">Co dodać?</div>
-        <div id="add-types" class="add-types"></div>
-        <div class="add-label">Encja<em id="add-entity-note"></em></div>
-        <label class="add-search"><i class="mdi mdi-magnify"></i><input id="add-search" type="search" autocomplete="off" spellcheck="false" placeholder="Szukaj: nazwa, obszar, entity_id…" aria-label="Szukaj encji"></label>
-        <div id="add-chips" class="add-chips"></div>
-        <div id="add-list" class="add-list"></div>
+        <div class="add-type-step">
+          <div class="add-label">Co dodać?</div>
+          <div id="add-types" class="add-types"></div>
+        </div>
+        <div class="add-entity-step">
+          <div id="add-step-type" class="add-step-type"></div>
+          <div id="add-selected"></div>
+          <div class="add-label">Encja<em id="add-entity-note"></em></div>
+          <label class="add-search"><i class="mdi mdi-magnify"></i><input id="add-search" type="search" autocomplete="off" spellcheck="false" placeholder="Szukaj: nazwa, obszar, entity_id…" aria-label="Szukaj encji"></label>
+          <div id="add-chips" class="add-chips"></div>
+          <div id="add-list" class="add-list"></div>
+        </div>
       </div>
       <div class="add-foot"><label class="add-pick"><input id="add-pick" type="checkbox"><span class="add-switch"></span><span class="add-pick-text">Wskaż miejsce na planie</span></label><span class="add-spacer"></span><button type="button" class="add-cancel" data-add-close>Anuluj</button><button type="button" id="add-go" class="add-go"></button></div>
     </div>
@@ -361,6 +366,6 @@
   </div>
 
   <div id="toast" class="toast"></div>
-  <div id="demo-bar" data-no-i18n><b>HA Views demo</b><span class="demo-note">0.4.1-beta.266 preview · example data · your changes stay in this browser</span><button type="button" onclick="haViewsDemoReset()" title="Restore the example dashboard">Reset</button><a href="https://github.com/VoyteckPL/ha-views" target="_blank" rel="noopener">Get the add-on</a></div>
+  <div id="demo-bar" data-no-i18n><b>HA Views demo</b><span class="demo-note">0.4.1-beta.267 preview · example data · your changes stay in this browser</span><button type="button" onclick="haViewsDemoReset()" title="Restore the example dashboard">Reset</button><a href="https://github.com/VoyteckPL/ha-views" target="_blank" rel="noopener">Get the add-on</a></div>
 </body>
 </html>
