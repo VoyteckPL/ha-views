@@ -621,6 +621,30 @@ function renderRooms() {
   renderRoomEditLayer();
 }
 // Outlines, vertex handles and the drawing preview (edit mode only), above the markers.
+function roomAngleMarks(points, closed) {
+  const w = els.scene.offsetWidth || 1, h = els.scene.offsetHeight || 1, n = points.length, zoom = sceneCameraActive() ? viewZoom : 1;
+  if (n < 3) return { svg:'', html:'' };
+  const px = points.map(([x, y]) => [x / 100 * w, y / 100 * h]), pct = ([x, y]) => `${(x / w * 100).toFixed(3)},${(y / h * 100).toFixed(3)}`;
+  let svg = '', html = '';
+  for (let i = 0; i < n; i++) {
+    if (!closed && (i === 0 || i === n - 1)) continue;
+    const c = px[i], a = px[(i - 1 + n) % n], b = px[(i + 1) % n];
+    const ua = [a[0] - c[0], a[1] - c[1]], ub = [b[0] - c[0], b[1] - c[1]], la = Math.hypot(...ua), lb = Math.hypot(...ub);
+    if (la < 2 || lb < 2) continue;
+    const da = [ua[0] / la, ua[1] / la], db = [ub[0] / lb, ub[1] / lb], angle = Math.acos(clamp(da[0] * db[0] + da[1] * db[1], -1, 1)) * 180 / Math.PI;
+    const kind = Math.abs(angle - 90) <= 1.5 ? 90 : Math.abs(angle - 45) <= 1.5 ? 45 : Math.abs(angle - 135) <= 1.5 ? 135 : 0; if (!kind) continue;
+    const size = Math.min(22 / zoom, la * .4, lb * .4), at = (d, k) => [c[0] + d[0] * k, c[1] + d[1] * k];
+    if (kind === 90) svg += `<polyline class="room-angle right" points="${pct(at(da, size))} ${pct([c[0] + (da[0] + db[0]) * size, c[1] + (da[1] + db[1]) * size])} ${pct(at(db, size))}"/>`;
+    else {
+      const r = size * 1.3, start = Math.atan2(da[1], da[0]); let sweep = Math.atan2(db[1], db[0]) - start;
+      while (sweep > Math.PI) sweep -= 2 * Math.PI; while (sweep < -Math.PI) sweep += 2 * Math.PI;
+      svg += `<polyline class="room-angle" points="${Array.from({ length: 9 }, (_, k) => pct([c[0] + Math.cos(start + sweep * k / 8) * r, c[1] + Math.sin(start + sweep * k / 8) * r])).join(' ')}"/>`;
+      const mid = start + sweep / 2, label = [c[0] + Math.cos(mid) * r * 1.9, c[1] + Math.sin(mid) * r * 1.9];
+      html += `<span class="room-angle-label" style="left:${label[0] / w * 100}%;top:${label[1] / h * 100}%">${kind}°</span>`;
+    }
+  }
+  return { svg, html };
+}
 function renderRoomEditLayer() {
   const layer = $('#room-edit-layer'); if (!layer) return;
   if (!editMode) { layer.innerHTML = ''; return; }
@@ -636,11 +660,12 @@ function renderRoomEditLayer() {
     const pts = room.points || [];
     const picked = pickedCorner();
     handles += pts.map(([x, y], index) => `<i class="room-handle${index === picked ? ' picked' : ''}" data-room-point="${index}" style="left:${x}%;top:${y}%"></i>`).join('');
-    if (picked >= 0) handles += `<button type="button" class="room-corner-del" data-corner-del style="left:${pts[picked][0]}%;top:${pts[picked][1]}%" title="${escapeHtml(translateValue('Usuń narożnik'))}" aria-label="${escapeHtml(translateValue('Usuń narożnik'))}"><i class="mdi mdi-close"></i></button>`;
     handles += pts.map(([x, y], index) => { const [nx, ny] = pts[(index + 1) % pts.length]; return `<i class="room-handle mid" data-room-mid="${index}" style="left:${(x + nx) / 2}%;top:${(y + ny) / 2}%"></i>`; }).join('');
   }
   if (roomDraft) handles += roomDraft.points.map(([x, y], index) => `<i class="room-handle draft${index === 0 && roomDraft.points.length >= 3 ? ' closable' : ''}" style="left:${x}%;top:${y}%"></i>`).join('');
-  layer.innerHTML = `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${svg}</svg>${handles}`;
+  // Right angles and 45° / 135° corners are marked: of the selected room, and of the room being drawn.
+  const angleShapes = room && !roomDraft ? roomAngleMarks(room.points || [], true) : roomDraft ? roomAngleMarks(roomDraft.cursor ? [...roomDraft.points, roomDraft.cursor] : roomDraft.points, false) : { svg:'', html:'' };
+  layer.innerHTML = `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${svg}${angleShapes.svg}</svg>${angleShapes.html}${handles}`;
 }
 function scenePercentAt(event) {
   const r = els.scene.getBoundingClientRect();

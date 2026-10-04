@@ -906,3 +906,6 @@ body.add-picking .scene,body.add-picking .scene *{cursor:crosshair!important}
 }
 #add-button{color:#03101a;background:#20b9e7;border-color:#20b9e7}#add-button .mdi{font-size:20px}
 .edit-menu .menu-action[hidden]{display:none!important}
+
+.room-angle{fill:none;stroke:#7dffb0;stroke-width:1.6;vector-effect:non-scaling-stroke;stroke-linejoin:round;filter:drop-shadow(0 0 1px rgba(0,0,0,.8))}
+.room-angle-label{position:absolute;z-index:2;transform:translate(-50%,-50%) scale(calc(1 / var(--view-zoom,1)));padding:1px 5px;border-radius:7px;background:rgba(5,30,22,.85);color:#7dffb0;font:700 10px/1.3 system-ui;white-space:nowrap;pointer-events:none}
