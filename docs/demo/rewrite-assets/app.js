@@ -122,7 +122,7 @@ const els = {
   selection: $('#selection'), flowSelection: $('#flow-selection'), editor: $('#editor'), editorTitle: $('#editor-title'), editorEntity: $('#editor-entity'), editorIntegration: $('#editor-integration'), editorIntegrationIcon: $('#editor-integration-icon'),
   editorContent: $('#editor-content'), editorStatus: $('#editor-status'), flowEditor: $('#flow-editor'), flowEditorEntity: $('#flow-editor-entity'), flowEditorContent: $('#flow-editor-content'), flowEditorTitle: $('#flow-editor-title'), flowEditorIntegration: $('#flow-editor-integration'), flowEditorIcon: $('#flow-editor-icon'), flowEditorClose: $('#flow-editor-close'), toast: $('#toast'), connection: $('#connection'),
   confirmBox: $('#app-confirm'), confirmTitle: $('#app-confirm-title'), confirmMessage: $('#app-confirm-message'), confirmInput: $('#app-confirm-input'), confirmCancel: $('#app-confirm-cancel'), confirmOk: $('#app-confirm-ok'), language: $('#language-select'),
-  editToggle: $('#edit-toggle'), editMenu: $('#edit-menu'), addDialog: $('#add-dialog'), settingsToggle: $('#settings-toggle'), settingsMenu: $('#settings-menu'), gridStatus: $('#grid-status'), gridPresets: Array.from(document.querySelectorAll('.grid-preset')), bgUploadProgress: $('#background-upload-progress'), solidCanvasRatio: $('#solid-canvas-ratio'), bgColorToggle: $('#background-color-toggle'), bgRgbOpen: $('#background-rgb-open'), bgSelect: $('#background-select'), bgColor: $('#background-color'), bgDownload: $('#background-download'), bgDelete: $('#background-delete'),
+  editToggle: $('#edit-toggle'), addDialog: $('#add-dialog'), settingsToggle: $('#settings-toggle'), settingsMenu: $('#settings-menu'), gridStatus: $('#grid-status'), gridPresets: Array.from(document.querySelectorAll('.grid-preset')), bgUploadProgress: $('#background-upload-progress'), solidCanvasRatio: $('#solid-canvas-ratio'), bgColorToggle: $('#background-color-toggle'), bgRgbOpen: $('#background-rgb-open'), bgSelect: $('#background-select'), bgColor: $('#background-color'), bgDownload: $('#background-download'), bgDelete: $('#background-delete'),
   bgFile: $('#background-file'), bgStatus: $('#background-status'), bgManage: $('#background-manage'), backgroundBar: $('#vm-background'), emptyColor: $('#empty-background-color'), emptyColorToggle: $('#empty-color-toggle'), emptyColorMenu: $('#empty-color-menu'), emptyColorStart: $('#empty-color-start'), emptyRgb: $('#empty-rgb'), emptyBackgroundSelect: $('#empty-background-select'), emptyBackgroundPreviewWrap: $('#empty-background-preview-wrap'), emptyBackgroundPreview: $('#empty-background-preview'), emptyBackgroundConfirm: $('#empty-background-confirm'), emptyOpenIntegrations: $('#empty-open-integrations'), addedList: $('#added-list'),
   bgTransformToggle: $('#background-transform-toggle'), bgTransformPanel: $('#background-transform-panel'), bgMode: $('#background-mode'), bgScale: $('#background-scale'), bgX: $('#background-x'), bgY: $('#background-y'), bgScaleValue: $('#background-scale-value'), bgXValue: $('#background-x-value'), bgYValue: $('#background-y-value'),
   addedCount: $('#added-count'), integrationList: $('#integration-list'), integrationSearch: $('#integration-search'), snapToggle: $('#snap-toggle'),
@@ -543,7 +543,7 @@ function applySnapUi() {
 }
 function closeCompactMenus() {
   els.settingsMenu?.classList.remove('open'); els.settingsToggle?.classList.remove('active');
-  els.editMenu?.classList.remove('open'); $('#snap-menu')?.classList.remove('open'); $('#snap-menu-button')?.classList.remove('active'); els.viewSwitcher?.classList.remove('open'); els.viewManage?.classList.remove('active'); setBackgroundPage(false);
+  $('#snap-menu')?.classList.remove('open'); $('#snap-menu-button')?.classList.remove('active'); els.viewSwitcher?.classList.remove('open'); els.viewManage?.classList.remove('active'); setBackgroundPage(false);
   els.backgroundBar?.classList.remove('open','onboarding'); els.bgManage?.classList.remove('active');
 }
 // Keeps a stored position inside the scene (0–100 %); returns true when it had to be corrected.
@@ -3732,16 +3732,6 @@ function onAddDialogClick(event) {
   if (target.closest('[data-add-group]')) { addState.group = addState.group === 'areas' ? 'types' : 'areas'; addState.filter = 'all'; return renderAddDialog(); }
   if (target.closest('#add-go')) return confirmAddDialog();
 }
-// A Flow is added like a room (edit menu), with or without an entity; the entity is picked in its popup.
-function addBlankFlow() {
-  const view = activeSceneView(); if (!view || !editMode) return; closeCompactMenus();
-  const s = els.scene.getBoundingClientRect(), v = els.viewport.getBoundingClientRect(), now = new Date().toISOString();
-  const x = s.width ? clamp(((Math.max(s.left, v.left) + Math.min(s.right, v.right)) / 2 - s.left) / s.width * 100, 5, 95) : 50;
-  const y = s.height ? clamp(((Math.max(s.top, v.top) + Math.min(s.bottom, v.bottom)) / 2 - s.top) / s.height * 100, 5, 95) : 50;
-  view.flows ||= {}; const id = 'flow_' + uid();
-  view.flows[id] = { id, entityId:'', integrationId:'', integrationName:'', sourceDomain:'', displayName:'Flow', xPercent:Math.round(x * 100) / 100, yPercent:Math.round(y * 100) / 100, ...clone(FLOW_DEFAULTS), itemSizeV2:true, geometryLocked:false, createdAt:now, updatedAt:now };
-  renderMarkers(); renderAdded(); openFlowEditor(id); scheduleSave(true); notify('Dodano Flow — wybierz encję albo zostaw bez encji');
-}
 function flowEntityRow(id, action) {
   const name = allEntitiesCache?.find(entity => entity.id === id)?.name || stateCache[id]?.attributes?.friendly_name || id, state = String(stateCache[id]?.state ?? '');
   const button = action === 'clear' ? `<button type="button" class="room-entity-action" data-flow-entity-clear title="${escapeHtml(translateValue('Usuń encję'))}"><i class="mdi mdi-close"></i></button>` : `<button type="button" class="room-entity-action add" data-flow-entity-set="${escapeHtml(id)}"><i class="mdi mdi-check"></i></button>`;
@@ -4486,7 +4476,7 @@ function bindEvents() {
   els.flowEditorContent?.addEventListener('click', onFlowEditorClick);
   els.flowEditorContent?.addEventListener('pointerdown', event => { if (event.target.closest('input[type="checkbox"],select')) event.stopPropagation(); });
   $('.flow-editor .editor-head')?.addEventListener('pointerdown', startEditorDrag);
-  els.editToggle.addEventListener('click', () => { if (isViewer()) return; closeMoreInfo(); editMode = !editMode; els.body.classList.toggle('editing', editMode); els.editToggle.classList.toggle('active', editMode); els.editToggle.setAttribute('aria-pressed', String(editMode)); syncDock(); els.editToggle.title = translateValue('Edytuj widok'); els.editToggle.setAttribute('aria-label', els.editToggle.title); if (editMode) { closeCompactMenus(); els.editMenu?.classList.add('open'); renderMarkers(); } else { editorPreview = { entityId:'', state:'' }; roomPreviewOn = ''; resetViewZoom(); closeEditor(); closeFlowEditor(); cancelRoomDrawing(); closeRoomEditor(); renderRoomEditLayer(); closeCompactMenus(); els.bgTransformPanel?.classList.remove('open'); els.bgTransformToggle?.classList.remove('active'); renderMarkers(); } requestAnimationFrame(() => { applyBackgroundTransform(); updateSceneGeometry(); }); });
+  els.editToggle.addEventListener('click', () => { if (isViewer()) return; closeMoreInfo(); editMode = !editMode; els.body.classList.toggle('editing', editMode); els.editToggle.classList.toggle('active', editMode); els.editToggle.setAttribute('aria-pressed', String(editMode)); syncDock(); els.editToggle.title = translateValue('Edytuj widok'); els.editToggle.setAttribute('aria-label', els.editToggle.title); if (editMode) { closeCompactMenus(); renderMarkers(); } else { editorPreview = { entityId:'', state:'' }; roomPreviewOn = ''; resetViewZoom(); closeEditor(); closeFlowEditor(); cancelRoomDrawing(); closeRoomEditor(); renderRoomEditLayer(); closeCompactMenus(); els.bgTransformPanel?.classList.remove('open'); els.bgTransformToggle?.classList.remove('active'); renderMarkers(); } requestAnimationFrame(() => { applyBackgroundTransform(); updateSceneGeometry(); }); });
   $('#snap-menu-button')?.addEventListener('click', event => { event.stopPropagation(); const menu = $('#snap-menu'), open = !menu.classList.contains('open'); closeCompactMenus(); menu.classList.toggle('open', open); $('#snap-menu-button').classList.toggle('active', open); syncSnapMenu(); });
   $('#snap-menu')?.addEventListener('click', event => {
     event.stopPropagation();
@@ -4499,9 +4489,6 @@ function bindEvents() {
   $('#rotate-range')?.addEventListener('input', event => setSelectedRotation(event.target.value, false));
   $('#rotate-range')?.addEventListener('change', event => setSelectedRotation(event.target.value, true));
   $('#snap-menu')?.addEventListener('pointerdown', event => { if (event.target.closest('#rotate-range')) event.stopPropagation(); });
-  $('#flow-add')?.addEventListener('click', addBlankFlow);
-  $('#text-add')?.addEventListener('click', () => addTextElement());
-  $('#element-add')?.addEventListener('click', openAddDialog);
   $('#add-button')?.addEventListener('click', event => { event.stopPropagation(); openAddDialog(); });
   els.addDialog?.addEventListener('click', onAddDialogClick);
   $('#add-search')?.addEventListener('input', event => { if (!addState) return; addState.query = event.target.value; renderAddDialog('list'); });
@@ -4605,7 +4592,6 @@ function bindEvents() {
     const index = pickedCorner(); if (index < 0) return;
     event.preventDefault(); removeRoomCorner(index);
   });
-  $('#room-add')?.addEventListener('click', startRoomDrawing);
   $('#room-draw-done')?.addEventListener('click', finishRoomDrawing);
   $('#room-draw-bar')?.addEventListener('click', event => { if (event.target.closest('button')) return; const bar = event.currentTarget; placeRoomDrawBar(!bar.classList.contains('top')); });
   $('#room-draw-undo')?.addEventListener('click', () => { if (!roomDraft) return; roomDraft.points.pop(); roomDraft.cursor = null; updateRoomDrawBar(); renderRoomEditLayer(); });
@@ -4823,7 +4809,6 @@ function applyViewerMode() {
     el.hidden = true;
     el.style.display = 'none';
   });
-  els.editMenu?.remove();
   els.viewSwitcher?.remove();
   els.settingsMenu?.remove();
 }

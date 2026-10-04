@@ -848,7 +848,6 @@ body.dock-mode .topbar{z-index:70}
 }
 
 /* Add window */
-.edit-menu .add-main{background:rgba(32,185,231,.16);border-color:rgba(32,185,231,.55);color:#bfefff;font-weight:700}
 .add-dialog{position:fixed;inset:0;z-index:130;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(1,8,13,.62);backdrop-filter:blur(2px)}
 .add-dialog.visible{display:flex}
 .add-card-wrap{width:min(900px,100%);max-height:min(94vh,980px);display:flex;flex-direction:column;background:rgba(7,25,36,.98);border:1px solid rgba(99,181,216,.35);border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.6);overflow:hidden;color:#dce8ef}
@@ -900,7 +899,6 @@ body.add-picking .scene,body.add-picking .scene *{cursor:crosshair!important}
   .add-row-used{display:none}
 }
 #add-button{color:#03101a;background:#20b9e7;border-color:#20b9e7}#add-button .mdi{font-size:20px}
-.edit-menu .menu-action[hidden]{display:none!important}
 
 .room-angle{fill:none;stroke:#7dffb0;stroke-width:1.6;vector-effect:non-scaling-stroke;stroke-linejoin:round;filter:drop-shadow(0 0 1px rgba(0,0,0,.8))}
 .room-angle-label{position:absolute;z-index:2;transform:translate(-50%,-50%) scale(calc(1 / var(--view-zoom,1)));padding:1px 5px;border-radius:7px;background:rgba(5,30,22,.85);color:#7dffb0;font:700 10px/1.3 system-ui;white-space:nowrap;pointer-events:none}
