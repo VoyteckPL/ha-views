@@ -1739,24 +1739,36 @@ function updateMobileMarkerLayout(renderedWidth, renderedHeight) {
 }
 // While typing on a phone the keyboard pushes the editor up; the selected element is centred again in what is left
 // between the top bar and the editor (after the keyboard has settled).
-let refocusTypingTimer = 0;
+let refocusTypingTimer = 0, keyboardWasOpen = false;
+function focusSelectedOnMobile() {
+  const room = selectedRoomId && roomsOf()[selectedRoomId];
+  if (room) focusSceneBoxOnMobile(isIconRoom(room) ? iconFocusBox(room) : room.points || []); else focusSelectedMarkerOnMobile();
+}
 function refocusWhileTyping() {
   if (!mobileView() || !editMode) return;
+  const open = keyboardOpen();
+  // Keyboard opening / open: centre at once on every size change (no waiting), and once more when it has settled.
+  if (open) { keyboardWasOpen = true; focusSelectedOnMobile(); }
   clearTimeout(refocusTypingTimer);
   refocusTypingTimer = setTimeout(() => {
-    if (!typingOnPhone()) return;
-    const room = selectedRoomId && roomsOf()[selectedRoomId];
-    if (room) focusSceneBoxOnMobile(isIconRoom(room) ? iconFocusBox(room) : room.points || []); else focusSelectedMarkerOnMobile();
-  }, 320);
+    const nowOpen = keyboardOpen();
+    // Keyboard closed: one clean centring above the editor.
+    if (nowOpen || keyboardWasOpen) focusSelectedOnMobile();
+    keyboardWasOpen = nowOpen;
+  }, 140);
 }
 // Height used to lay out the plan. While a text field is being edited on a phone the on-screen keyboard shrinks the
 // window; the plan keeps the height from before the keyboard, so its size, zoom and camera do not jump.
 let stableViewportHeight = 0;
 function typingOnPhone() { const el = document.activeElement; return mobileView() && !!el?.matches?.('input:not([type=range]):not([type=checkbox]):not([type=radio]):not([type=color]):not([type=button]),textarea,[contenteditable="true"]'); }
+let stableViewportWidth = 0;
+function keyboardOpen() { const h = window.visualViewport?.height || innerHeight; return mobileView() && stableViewportHeight > 0 && innerWidth === stableViewportWidth && h < stableViewportHeight - 90; }
 function layoutViewportHeight() {
   const h = window.visualViewport?.height || innerHeight;
-  if (!typingOnPhone() || !stableViewportHeight) stableViewportHeight = h;
-  return typingOnPhone() ? stableViewportHeight : h;
+  // A rotation (new width) or an ordinary small change (browser bars) is taken over; a keyboard-sized shrink while the
+  // width stays is ignored — also while the keyboard is still opening or closing.
+  if (!stableViewportHeight || innerWidth !== stableViewportWidth || (!keyboardOpen() && !typingOnPhone())) { stableViewportHeight = h; stableViewportWidth = innerWidth; }
+  return keyboardOpen() || typingOnPhone() ? stableViewportHeight : h;
 }
 function updateSceneGeometry() {
   const hasImage = !els.image.hidden && els.image.naturalWidth > 0 && els.image.naturalHeight > 0;
@@ -4713,16 +4725,9 @@ function bindEvents() {
   $$('[data-dock-side]').forEach(button => button.addEventListener('click', event => { event.stopPropagation(); toggleDockSide(); }));
   window.visualViewport?.addEventListener('resize', () => { if (mobileView()) applyBackgroundTransform(); refocusWhileTyping(); });
   document.addEventListener('focusin', event => { if (event.target?.matches?.('input,textarea')) refocusWhileTyping(); });
-  // Keyboard closed after editing a name, a value…: lay the plan out again and bring the selected element back into view.
-  document.addEventListener('focusout', event => {
-    if (!mobileView() || !editMode || !event.target?.matches?.('input,textarea')) return;
-    setTimeout(() => {
-      if (typingOnPhone()) return;
-      applyBackgroundTransform();
-      const room = selectedRoomId && roomsOf()[selectedRoomId];
-      if (room) focusSceneBoxOnMobile(isIconRoom(room) ? iconFocusBox(room) : room.points || []); else focusSelectedMarkerOnMobile();
-    }, 350);
-  });
+  // Enter in an editor field closes the on-screen keyboard instead of jumping to the next field.
+  document.addEventListener('focusin', event => { const el = event.target; if (el?.matches?.('.editor input:not([type=range]):not([type=checkbox]):not([type=color])')) el.enterKeyHint = 'done'; });
+  document.addEventListener('keydown', event => { const el = event.target; if (event.key === 'Enter' && !event.isComposing && el?.matches?.('.editor input:not([type=range]):not([type=checkbox]):not([type=color])')) { event.preventDefault(); el.blur(); } });
   if ('ResizeObserver' in window) new ResizeObserver(updateSceneGeometry).observe(els.scene);
   els.zoomOut?.addEventListener('click', () => setViewZoom(viewZoom-.5)); els.zoomIn?.addEventListener('click', () => setViewZoom(viewZoom+.5)); els.zoomReset?.addEventListener('click', resetViewZoom);
   // A double tap on a room corner removes the corner; the browser also turns those two taps into a dblclick,
