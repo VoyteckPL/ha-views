@@ -2057,21 +2057,24 @@ function startFlowDrag(event) {
   event.preventDefault(); event.stopPropagation();
   const node = event.currentTarget, start = { x:event.clientX, y:event.clientY, px:Number(flow.xPercent), py:Number(flow.yPercent) };
   let moved = false, guides = null; node.setPointerCapture(event.pointerId);
+  const r0 = els.scene.getBoundingClientRect(), grab = [(event.clientX - r0.left) / Math.max(1, r0.width) * 100 - start.px, (event.clientY - r0.top) / Math.max(1, r0.height) * 100 - start.py];
+  const camera = dragCamera(e => { guides = null; move(e); });
   const move = current => {
     const rect = els.scene.getBoundingClientRect(), dx=current.clientX-start.x, dy=current.clientY-start.y;
     if (Math.hypot(dx,dy) > 3) moved = true;
     if (!moved) return;
     guides ||= alignmentContext(node);
-    ({ xPercent: flow.xPercent, yPercent: flow.yPercent } = alignToGuides(guides, snapPercent(start.px + dx / rect.width * 100), snapPercent(start.py + dy / rect.height * 100), current));
+    ({ xPercent: flow.xPercent, yPercent: flow.yPercent } = alignToGuides(guides, snapPercent((current.clientX - rect.left) / Math.max(1, rect.width) * 100 - grab[0]), snapPercent((current.clientY - rect.top) / Math.max(1, rect.height) * 100 - grab[1]), current));
+    camera.track(current);
     node.style.left = flow.xPercent + '%'; node.style.top = flow.yPercent + '%';
     const fix = keepInBounds() && boundsShift(node); if (fix) { flow.xPercent = clamp(flow.xPercent + fix.x, 0, 100); flow.yPercent = clamp(flow.yPercent + fix.y, 0, 100); node.style.left = flow.xPercent + '%'; node.style.top = flow.yPercent + '%'; }
     if (selectedFlowId === flow.id) syncFlowSelection();
   };
   const finish = () => {
-    node.removeEventListener('pointermove',move); node.removeEventListener('pointerup',finish); node.removeEventListener('pointercancel',finish); showAlignGuides([], []);
+    camera.stop(); node.removeEventListener('pointermove',move); node.removeEventListener('pointerup',finish); node.removeEventListener('pointercancel',finish); showAlignGuides([], []);
     try { if (node.hasPointerCapture?.(event.pointerId)) node.releasePointerCapture(event.pointerId); } catch {}
     node.dataset.dragged = moved ? '1' : '0';
-    if (moved) { flow.updatedAt = new Date().toISOString(); scheduleSave(true); renderAdded(); positionFlowEditor(); }
+    if (moved) { flow.updatedAt = new Date().toISOString(); scheduleSave(true); renderAdded(); positionFlowEditor(); centerAfterDrag(flow.xPercent, flow.yPercent); }
   };
   node.addEventListener('pointermove',move); node.addEventListener('pointerup',finish,{once:true}); node.addEventListener('pointercancel',finish,{once:true});
 }
@@ -2429,22 +2432,54 @@ function keepEditorInViewport(panel = els.editor) {
   const r = panel.getBoundingClientRect(), left = clamp(r.left, 8, Math.max(8, innerWidth - r.width - 8)), top = clamp(r.top, 8, Math.max(8, innerHeight - r.height - 8));
   Object.assign(panel.style, { left: `${left}px`, right: 'auto', top: `${top}px` });
 }
+// While a marker or Flow is dragged near the edge of the view, the camera follows it (the element keeps sitting
+// under the finger, so it moves deeper with the camera). On phones the element is centred above the editor on release.
+function dragCamera(onPan) {
+  let last = null, frame = 0;
+  const step = () => {
+    frame = 0; if (!last || !sceneCameraActive()) return;
+    const v = els.viewport.getBoundingClientRect(), zone = mobileView() ? 64 : 48, push = d => d < zone ? (zone - Math.max(0, d)) / zone * 14 : 0;
+    const vx = push(last.clientX - v.left) - push(v.right - last.clientX), vy = push(last.clientY - v.top) - push(v.bottom - last.clientY);
+    if (!vx && !vy) return;
+    const beforeX = viewPanX, beforeY = viewPanY; viewPanX += vx; viewPanY += vy; applyViewTransform();
+    if (Math.abs(viewPanX - beforeX) < .01 && Math.abs(viewPanY - beforeY) < .01) return; // the camera is at its limit
+    onPan(last);
+  };
+  return { track(event) { last = event; if (!frame) frame = requestAnimationFrame(step); }, stop() { cancelAnimationFrame(frame); frame = 0; last = null; } };
+}
+function animateViewPan(toX, toY, ms = 280) {
+  cancelAnimationFrame(animateViewPan.frame);
+  const fromX = viewPanX, fromY = viewPanY, t0 = performance.now();
+  const tick = now => { const k = Math.min(1, (now - t0) / ms), e = 1 - Math.pow(1 - k, 3); viewPanX = fromX + (toX - fromX) * e; viewPanY = fromY + (toY - fromY) * e; applyViewTransform(); if (k < 1) animateViewPan.frame = requestAnimationFrame(tick); };
+  animateViewPan.frame = requestAnimationFrame(tick);
+}
+function centerAfterDrag(xPercent, yPercent) {
+  if (!mobileView() || !editMode) return;
+  // Two frames: the editor sheet is shown again first, so the part it covers is known.
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    const visible = els.viewport.clientHeight - editSheetCover();
+    animateViewPan(els.viewport.clientWidth / 2 - Number(xPercent) / 100 * els.scene.offsetWidth * viewZoom, Math.max(74, visible / 2) - Number(yPercent) / 100 * els.scene.offsetHeight * viewZoom);
+  }));
+}
 function startDrag(event) {
   if (!editMode || event.button !== 0) return;
   event.preventDefault(); const node = event.currentTarget, key = node.dataset.markerId, marker = model.entities[key];
   if (marker?.geometryLocked) return;
   const start = { x: event.clientX, y: event.clientY, px: marker.xPercent, py: marker.yPercent }; let moved = false, guides = null;
+  const r0 = els.scene.getBoundingClientRect(), grab = [(event.clientX - r0.left) / Math.max(1, r0.width) * 100 - Number(start.px), (event.clientY - r0.top) / Math.max(1, r0.height) * 100 - Number(start.py)];
+  const camera = dragCamera(e => { guides = null; move(e); });
   node.setPointerCapture(event.pointerId);
   const move = e => {
     const r = els.scene.getBoundingClientRect(), dx = e.clientX - start.x, dy = e.clientY - start.y;
     if (Math.hypot(dx, dy) > 3 && !moved) { moved = true; els.editor.classList.add('marker-moving'); }
     if (!moved) return;
     guides ||= alignmentContext(node);
-    ({ xPercent: marker.xPercent, yPercent: marker.yPercent } = alignToGuides(guides, snapPercent(start.px + dx / r.width * 100), snapPercent(start.py + dy / r.height * 100), e));
+    ({ xPercent: marker.xPercent, yPercent: marker.yPercent } = alignToGuides(guides, snapPercent((e.clientX - r.left) / Math.max(1, r.width) * 100 - grab[0]), snapPercent((e.clientY - r.top) / Math.max(1, r.height) * 100 - grab[1]), e));
+    camera.track(e);
     const live = node.isConnected ? node : markerNode(key);
     if (live) { live.style.left = `${marker.xPercent}%`; live.style.top = `${marker.yPercent}%`; const fix = keepInBounds() && boundsShift(live); if (fix) { marker.xPercent = clamp(marker.xPercent + fix.x, 0, 100); marker.yPercent = clamp(marker.yPercent + fix.y, 0, 100); live.style.left = `${marker.xPercent}%`; live.style.top = `${marker.yPercent}%`; } } if (selectedId === key) syncSelection();
   };
-  const up = () => { node.removeEventListener('pointermove', move); node.removeEventListener('pointerup', up); node.removeEventListener('pointercancel', up); try { if (node.hasPointerCapture?.(event.pointerId)) node.releasePointerCapture(event.pointerId); } catch {} els.editor.classList.remove('marker-moving'); showAlignGuides([], []); node.dataset.dragged = moved ? '1' : '0'; if (moved) { marker.updatedAt = new Date().toISOString(); scheduleSave(true); positionEditor(); } };
+  const up = () => { node.removeEventListener('pointermove', move); node.removeEventListener('pointerup', up); node.removeEventListener('pointercancel', up); try { if (node.hasPointerCapture?.(event.pointerId)) node.releasePointerCapture(event.pointerId); } catch {} camera.stop(); els.editor.classList.remove('marker-moving'); showAlignGuides([], []); node.dataset.dragged = moved ? '1' : '0'; if (moved) { marker.updatedAt = new Date().toISOString(); scheduleSave(true); positionEditor(); centerAfterDrag(marker.xPercent, marker.yPercent); } };
   node.addEventListener('pointermove', move); node.addEventListener('pointerup', up, { once: true }); node.addEventListener('pointercancel', up, { once: true });
 }
 
