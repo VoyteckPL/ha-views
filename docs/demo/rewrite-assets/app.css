@@ -1013,3 +1013,4 @@ body.editing .room-labels{z-index:3}
 .room-wizard-skip{border:1px solid rgba(99,181,216,.35);background:transparent;color:#cfe6f1}
 .room-wizard-next{border:0;background:#20b9e7;color:#03202c;font-weight:700}
 @media (max-width:768px),(max-width:900px) and (pointer:coarse){.room-wizard{bottom:auto}}
+.room-label-part.tappable,.room-label-card.tappable{pointer-events:auto;cursor:pointer}
