@@ -589,7 +589,7 @@ const ROOM_DEFAULTS = Object.freeze({ name:'Pomieszczenie', points:[], entityIds
 // A freshly drawn room starts with its icon, name and state visible and the usual extras switched on
 // (icon outline, backgrounds, icon border), so every option is visible and can be tuned or turned off.
 const NEW_ROOM_LABEL = Object.freeze({ labelIcon:true, labelName:true, labelState:true, labelLinked:true, labelCardBg:true, labelCardBorder:true,
-  labelIconOutline:true, labelIconBg:true, labelIconBorder:true, labelIconY:-97, labelNameY:26, labelStateY:123 });
+  labelIconOutline:true, labelIconBg:true, labelIconBorder:true, labelNameBg:true, labelStateBg:true, labelIconY:-97, labelNameY:26, labelStateY:123 });
 // Scales a new room's group so it fits inside the drawn shape (at most 70 % of its width and 60 % of its height, never above the default size).
 function fitRoomLabel(id) {
   const room = roomsOf()[id], card = document.querySelector(`.room-label-card[data-room-id="${CSS.escape(id)}"]`), scene = els.scene?.getBoundingClientRect();
@@ -945,7 +945,9 @@ function closeRoomWizard() {
   if (!room) return;
   const before = (room.entityIds || []).join('|'); room.entityIds = [...picked];
   if (room.entityIds.join('|') !== before) { room.updatedAt = new Date().toISOString(); refreshStates(); }
-  renderRooms(); fitRoomLabel(id); scheduleSave(true); openRoomEditor(id, -1, 0);
+  renderRooms(); fitRoomLabel(id); scheduleSave(true);
+  // With entities picked there is nothing left to do in the Room section, so the panel opens collapsed.
+  openRoomEditor(id, -1, room.entityIds.length ? -1 : 0);
   notify(room.entityIds.length ? 'Dodano pomieszczenie' : 'Dodano pomieszczenie — encje możesz dodać w panelu');
 }
 function roomWizardName() {
