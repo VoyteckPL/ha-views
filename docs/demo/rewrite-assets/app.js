@@ -769,12 +769,13 @@ function startRoomMove(event) {
     const minX = Math.min(...original.map(p => p[0])), maxX = Math.max(...original.map(p => p[0])), minY = Math.min(...original.map(p => p[1])), maxY = Math.max(...original.map(p => p[1]));
     guides ||= guideTargets({ roomId: room.id });
     const w = guides.scene.width || 1, h = guides.scene.height || 1;
-    const snapped = alignToGuides({ ...guides, halfW: (maxX - minX) / 200 * w, halfH: (maxY - minY) / 200 * h }, (minX + maxX) / 2 + dx, (minY + maxY) / 2 + dy, e);
+    guides.halfW = (maxX - minX) / 200 * w; guides.halfH = (maxY - minY) / 200 * h; guides.onSettle = () => move(e);
+    const snapped = alignToGuides(guides, (minX + maxX) / 2 + dx, (minY + maxY) / 2 + dy, e);
     dx = snapped.xPercent - (minX + maxX) / 2; dy = snapped.yPercent - (minY + maxY) / 2;
     dx = clamp(dx, -minX, 100 - maxX); dy = clamp(dy, -minY, 100 - maxY);
     room.points = original.map(([px, py]) => [px + dx, py + dy]); renderRooms();
   };
-  const up = e => { if (e.pointerId !== event.pointerId) return; window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up); showAlignGuides([], []); if (moved) { room.points = room.points.map(p => p.map(v => Math.round(v * 1000) / 1000)); room.updatedAt = new Date().toISOString(); scheduleSave(true); els.markers.dataset.roomMoved = '1'; } };
+  const up = e => { if (e.pointerId !== event.pointerId) return; clearTimeout(guides?.motion?.timer); if (guides) guides.onSettle = null; window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up); showAlignGuides([], []); if (moved) { room.points = room.points.map(p => p.map(v => Math.round(v * 1000) / 1000)); room.updatedAt = new Date().toISOString(); scheduleSave(true); els.markers.dataset.roomMoved = '1'; } };
   window.addEventListener('pointermove', move); window.addEventListener('pointerup', up); window.addEventListener('pointercancel', up);
   return true;
 }
@@ -1164,12 +1165,26 @@ function alignmentContext(node) {
 }
 function alignToGuides(context, xPercent, yPercent, event) {
   if (!context || event?.altKey || !snapTargets().guides || !context.scene.width || !context.scene.height) { showAlignGuides([], []); return { xPercent, yPercent }; }
-  const threshold = 6, match = (centre, half, values) => {
+  // Fewer flashing lines with many elements: while the element is dragged fast nothing snaps (no lines); they appear once
+  // the movement slows down near a line, and a caught line holds until the element is moved clearly away from it.
+  const motion = context.motion ||= { t: 0, x: 0, y: 0, speed: 0, stick: { x: null, y: null } };
+  if (event && Number.isFinite(event.clientX)) {
+    const now = event.timeStamp || performance.now();
+    if (motion.t) { const instant = Math.hypot(event.clientX - motion.x, event.clientY - motion.y) / Math.max(8, now - motion.t); motion.speed = motion.speed * .55 + instant * .45; }
+    motion.t = now; motion.x = event.clientX; motion.y = event.clientY;
+  }
+  const slow = motion.speed < (mobileView() ? .5 : .4), threshold = 6, release = 11, match = (axis, centre, half, values) => {
+    const stuck = motion.stick[axis];
+    if (stuck && Math.abs(centre + stuck.offset - stuck.line) <= release) return { ...stuck, centre: stuck.line - stuck.offset };
+    motion.stick[axis] = null; if (!slow) return null;
     let best = null;
-    (context.offsets || [0, -1, 1]).map(k => k * half).forEach(offset => values.forEach(({ v, room, bg }) => { const distance = Math.abs(centre + offset - v); if (distance <= threshold && (!best || distance < best.distance - .01 || (Math.abs(distance - best.distance) <= .01 && (room || bg) && !best.room && !best.bg))) best = { distance, centre: v - offset, line: v, room, bg }; }));
-    return best;
+    (context.offsets || [0, -1, 1]).map(k => k * half).forEach(offset => values.forEach(({ v, room, bg }) => { const distance = Math.abs(centre + offset - v); if (distance <= threshold && (!best || distance < best.distance - .01 || (Math.abs(distance - best.distance) <= .01 && (room || bg) && !best.room && !best.bg))) best = { distance, centre: v - offset, line: v, offset, room, bg }; }));
+    motion.stick[axis] = best; return best;
   };
-  const { width, height } = context.scene, bx = match(xPercent / 100 * width, context.halfW, context.xs), by = match(yPercent / 100 * height, context.halfH, context.ys);
+  // A fast drag that stops right on a line: ~0.12 s without movement counts as slow, so the line is offered then.
+  clearTimeout(motion.timer);
+  if (!slow && context.onSettle) motion.timer = setTimeout(() => { motion.speed = 0; context.onSettle?.(); }, 120);
+  const { width, height } = context.scene, bx = match('x', xPercent / 100 * width, context.halfW, context.xs), by = match('y', yPercent / 100 * height, context.halfH, context.ys);
   if (bx) xPercent = clamp(bx.centre / width * 100, 0, 100);
   if (by) yPercent = clamp(by.centre / height * 100, 0, 100);
   showAlignGuides(bx ? [{ at: bx.line / width * 100, room: bx.room, bg: bx.bg }] : [], by ? [{ at: by.line / height * 100, room: by.room, bg: by.bg }] : []);
@@ -2058,12 +2073,13 @@ function startFlowDrag(event) {
   const node = event.currentTarget, start = { x:event.clientX, y:event.clientY, px:Number(flow.xPercent), py:Number(flow.yPercent) };
   let moved = false, guides = null; node.setPointerCapture(event.pointerId);
   const r0 = els.scene.getBoundingClientRect(), grab = [(event.clientX - r0.left) / Math.max(1, r0.width) * 100 - start.px, (event.clientY - r0.top) / Math.max(1, r0.height) * 100 - start.py];
-  const camera = dragCamera(e => { guides = null; move(e); });
+  const dropGuides = () => { clearTimeout(guides?.motion?.timer); if (guides) guides.onSettle = null; guides = null; };
+  const camera = dragCamera(e => { dropGuides(); move(e); });
   const move = current => {
     const rect = els.scene.getBoundingClientRect(), dx=current.clientX-start.x, dy=current.clientY-start.y;
     if (Math.hypot(dx,dy) > 3) moved = true;
     if (!moved) return;
-    guides ||= alignmentContext(node);
+    guides ||= alignmentContext(node); guides.onSettle = () => move(current);
     ({ xPercent: flow.xPercent, yPercent: flow.yPercent } = alignToGuides(guides, snapPercent((current.clientX - rect.left) / Math.max(1, rect.width) * 100 - grab[0]), snapPercent((current.clientY - rect.top) / Math.max(1, rect.height) * 100 - grab[1]), current));
     camera.track(current);
     node.style.left = flow.xPercent + '%'; node.style.top = flow.yPercent + '%';
@@ -2071,7 +2087,7 @@ function startFlowDrag(event) {
     if (selectedFlowId === flow.id) syncFlowSelection();
   };
   const finish = () => {
-    camera.stop(); node.removeEventListener('pointermove',move); node.removeEventListener('pointerup',finish); node.removeEventListener('pointercancel',finish); showAlignGuides([], []);
+    camera.stop(); dropGuides(); node.removeEventListener('pointermove',move); node.removeEventListener('pointerup',finish); node.removeEventListener('pointercancel',finish); showAlignGuides([], []);
     try { if (node.hasPointerCapture?.(event.pointerId)) node.releasePointerCapture(event.pointerId); } catch {}
     node.dataset.dragged = moved ? '1' : '0';
     if (moved) { flow.updatedAt = new Date().toISOString(); scheduleSave(true); renderAdded(); positionFlowEditor(); centerAfterDrag(flow.xPercent, flow.yPercent); }
@@ -2435,17 +2451,19 @@ function keepEditorInViewport(panel = els.editor) {
 // While a marker or Flow is dragged near the edge of the view, the camera follows it (the element keeps sitting
 // under the finger, so it moves deeper with the camera). On phones the element is centred above the editor on release.
 function dragCamera(onPan) {
-  let last = null, frame = 0;
-  const step = () => {
+  let last = null, frame = 0, since = 0;
+  const step = now => {
     frame = 0; if (!last || !sceneCameraActive()) return;
-    const v = els.viewport.getBoundingClientRect(), zone = mobileView() ? 64 : 48, push = d => d < zone ? (zone - Math.max(0, d)) / zone * 14 : 0;
-    const vx = push(last.clientX - v.left) - push(v.right - last.clientX), vy = push(last.clientY - v.top) - push(v.bottom - last.clientY);
-    if (!vx && !vy) return;
+    // Gentle: speed grows with the depth into the edge zone (squared) and ramps up over ~0.6 s after reaching it.
+    const v = els.viewport.getBoundingClientRect(), zone = mobileView() ? 64 : 48, push = d => d < zone ? Math.pow((zone - Math.max(0, d)) / zone, 2) * 6.5 : 0;
+    let vx = push(last.clientX - v.left) - push(v.right - last.clientX), vy = push(last.clientY - v.top) - push(v.bottom - last.clientY);
+    if (!vx && !vy) { since = 0; return; }
+    since ||= now; const ramp = Math.min(1, .25 + (now - since) / 800); vx *= ramp; vy *= ramp;
     const beforeX = viewPanX, beforeY = viewPanY; viewPanX += vx; viewPanY += vy; applyViewTransform();
     if (Math.abs(viewPanX - beforeX) < .01 && Math.abs(viewPanY - beforeY) < .01) return; // the camera is at its limit
     onPan(last);
   };
-  return { track(event) { last = event; if (!frame) frame = requestAnimationFrame(step); }, stop() { cancelAnimationFrame(frame); frame = 0; last = null; } };
+  return { track(event) { last = event; if (!frame) frame = requestAnimationFrame(step); }, stop() { cancelAnimationFrame(frame); frame = 0; last = null; since = 0; } };
 }
 function animateViewPan(toX, toY, ms = 280) {
   cancelAnimationFrame(animateViewPan.frame);
@@ -2467,19 +2485,20 @@ function startDrag(event) {
   if (marker?.geometryLocked) return;
   const start = { x: event.clientX, y: event.clientY, px: marker.xPercent, py: marker.yPercent }; let moved = false, guides = null;
   const r0 = els.scene.getBoundingClientRect(), grab = [(event.clientX - r0.left) / Math.max(1, r0.width) * 100 - Number(start.px), (event.clientY - r0.top) / Math.max(1, r0.height) * 100 - Number(start.py)];
-  const camera = dragCamera(e => { guides = null; move(e); });
+  const dropGuides = () => { clearTimeout(guides?.motion?.timer); if (guides) guides.onSettle = null; guides = null; };
+  const camera = dragCamera(e => { dropGuides(); move(e); });
   node.setPointerCapture(event.pointerId);
   const move = e => {
     const r = els.scene.getBoundingClientRect(), dx = e.clientX - start.x, dy = e.clientY - start.y;
     if (Math.hypot(dx, dy) > 3 && !moved) { moved = true; els.editor.classList.add('marker-moving'); }
     if (!moved) return;
-    guides ||= alignmentContext(node);
+    guides ||= alignmentContext(node); guides.onSettle = () => move(e);
     ({ xPercent: marker.xPercent, yPercent: marker.yPercent } = alignToGuides(guides, snapPercent((e.clientX - r.left) / Math.max(1, r.width) * 100 - grab[0]), snapPercent((e.clientY - r.top) / Math.max(1, r.height) * 100 - grab[1]), e));
     camera.track(e);
     const live = node.isConnected ? node : markerNode(key);
     if (live) { live.style.left = `${marker.xPercent}%`; live.style.top = `${marker.yPercent}%`; const fix = keepInBounds() && boundsShift(live); if (fix) { marker.xPercent = clamp(marker.xPercent + fix.x, 0, 100); marker.yPercent = clamp(marker.yPercent + fix.y, 0, 100); live.style.left = `${marker.xPercent}%`; live.style.top = `${marker.yPercent}%`; } } if (selectedId === key) syncSelection();
   };
-  const up = () => { node.removeEventListener('pointermove', move); node.removeEventListener('pointerup', up); node.removeEventListener('pointercancel', up); try { if (node.hasPointerCapture?.(event.pointerId)) node.releasePointerCapture(event.pointerId); } catch {} camera.stop(); els.editor.classList.remove('marker-moving'); showAlignGuides([], []); node.dataset.dragged = moved ? '1' : '0'; if (moved) { marker.updatedAt = new Date().toISOString(); scheduleSave(true); positionEditor(); centerAfterDrag(marker.xPercent, marker.yPercent); } };
+  const up = () => { node.removeEventListener('pointermove', move); node.removeEventListener('pointerup', up); node.removeEventListener('pointercancel', up); try { if (node.hasPointerCapture?.(event.pointerId)) node.releasePointerCapture(event.pointerId); } catch {} camera.stop(); dropGuides(); els.editor.classList.remove('marker-moving'); showAlignGuides([], []); node.dataset.dragged = moved ? '1' : '0'; if (moved) { marker.updatedAt = new Date().toISOString(); scheduleSave(true); positionEditor(); centerAfterDrag(marker.xPercent, marker.yPercent); } };
   node.addEventListener('pointermove', move); node.addEventListener('pointerup', up, { once: true }); node.addEventListener('pointercancel', up, { once: true });
 }
 
