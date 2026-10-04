@@ -2785,9 +2785,15 @@ function focusSceneBoxOnMobile(points) {
   const xs = points.map(p => Number(p[0]) / 100 * sceneWidth), ys = points.map(p => Number(p[1]) / 100 * sceneHeight);
   const boxW = Math.max(1, Math.max(...xs) - Math.min(...xs)), boxH = Math.max(1, Math.max(...ys) - Math.min(...ys));
   const viewW = els.viewport.clientWidth || 1, viewH = els.viewport.clientHeight || 1;
-  const nextZoom = clamp(Math.min(viewW * .86 / boxW, viewH * .42 / boxH), minViewZoom(), 2.35);
+  // The free band is measured, not assumed: from under the top bar to the top of the bottom editor (its final
+  // height, even while it is still sliding in), with a small margin, so the whole room stays visible.
+  const vr = els.viewport.getBoundingClientRect(), panel = $('#room-editor');
+  const editorTop = panel?.classList.contains('visible') ? innerHeight - panel.offsetHeight : vr.bottom;
+  const freeTop = Math.max(($('.topbar')?.getBoundingClientRect().bottom || 0) - vr.top, 0) + 14;
+  const freeBottom = Math.min(editorTop, vr.bottom) - vr.top - 14, freeH = Math.max(60, freeBottom - freeTop);
+  const nextZoom = clamp(Math.min(viewW * .86 / boxW, freeH / boxH), minViewZoom(), 2.35);
   const centreX = (Math.min(...xs) + Math.max(...xs)) / 2, centreY = (Math.min(...ys) + Math.max(...ys)) / 2;
-  const targetY = Math.max(74 + boxH * nextZoom / 2, viewH * .27);
+  const targetY = freeTop + freeH / 2;
   viewZoom = nextZoom; viewPanX = viewW / 2 - centreX * nextZoom; viewPanY = targetY - centreY * nextZoom;
   applyViewTransform();
 }
