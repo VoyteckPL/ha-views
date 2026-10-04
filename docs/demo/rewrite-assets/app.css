@@ -636,7 +636,7 @@ main{width:min(1600px,calc(100% - 32px));margin:20px auto 40px}.view{display:non
 .room-handle.draft.closable{width:18px;height:18px;margin:-9px 0 0 -9px;background:#35d07f}
 @media(pointer:coarse){.room-handle{width:22px;height:22px;margin:-11px 0 0 -11px}.room-handle.mid{width:16px;height:16px;margin:-8px 0 0 -8px}}
 .room-drawing .scene{cursor:crosshair}
-.room-drawing .markers{pointer-events:none}
+.room-drawing .markers,.room-drawing #room-labels,.room-drawing #room-labels *{pointer-events:none!important}
 .room-draw-bar{position:fixed;left:50%;bottom:18px;z-index:120;display:none;align-items:center;gap:8px;max-width:calc(100% - 24px);padding:8px 10px;border:1px solid rgba(119,211,245,.4);border-radius:14px;background:rgba(7,27,39,.95);box-shadow:0 12px 40px rgba(0,0,0,.45);transform:translateX(-50%);color:#dce8ef;font-size:13px}
 .room-draw-bar.visible{display:flex;flex-wrap:wrap;justify-content:center}
 .room-draw-bar button{display:inline-flex;align-items:center;gap:5px;height:32px;padding:0 10px;border:1px solid rgba(119,211,245,.35);border-radius:9px;background:rgba(16,42,58,.9);color:#dce8ef;cursor:pointer}
