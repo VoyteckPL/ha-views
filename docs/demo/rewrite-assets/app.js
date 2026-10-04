@@ -1333,7 +1333,10 @@ async function onRoomTap(room, action = null) {
   renderRooms(); toggleable.forEach(id => { if (markersForEntity(id).length) renderMarkerState(id, stateCache[id]); });
   try { await Promise.all(toggleable.map(id => api('control', jsonOptions({ entity_id:id, action: expected === 'on' ? 'turn_on' : 'turn_off' })))); }
   catch (error) { notify(`Błąd przełączania: ${error.message}`, true); }
-  finally { await delay(700); toggleable.forEach(id => pendingToggleStates.delete(id)); roomTogglesInFlight.delete(r.id); refreshStates(); }
+  // The room accepts the next tap as soon as the command is sent; the expected state is kept a moment longer
+  // so a late, stale update does not flip it back.
+  roomTogglesInFlight.delete(r.id);
+  await delay(700); toggleable.forEach(id => { if (pendingToggleStates.get(id) === expected) pendingToggleStates.delete(id); }); refreshStates();
 }
 function toggleRoomLock() { const room = roomsOf()[selectedRoomId]; if (!room) return; room.geometryLocked = !room.geometryLocked; room.updatedAt = new Date().toISOString(); openRoomEditor(room.id, openSectionIndex($('#room-editor-content'), roomEditorOpenSectionIndex)); scheduleSave(true); notify(room.geometryLocked ? 'Zablokowano geometrię' : 'Odblokowano geometrię'); }
 function copyRoomStyle() { const room = roomsOf()[selectedRoomId]; if (!room) return; roomStyleClipboard = Object.fromEntries(ROOM_STYLE_KEYS.filter(key => key in room).map(key => [key, clone(room[key])])); const paste = $('#room-paste-style'); if (paste) paste.disabled = false; notify('Skopiowano styl pomieszczenia — wklej go w innym pomieszczeniu'); }
@@ -2690,6 +2693,8 @@ function renderMarkerState(entityId, nextState) {
 async function confirmToggleState(marker, expectedState) {
   for (const wait of [0, 180, 420, 800]) {
     if (wait) await delay(wait);
+    // A newer tap on the same entity takes over; this check is no longer needed.
+    if (pendingToggleStates.get(marker.entityId) !== expectedState) return true;
     const data = await api('selected_states', jsonOptions({ entity_ids: [marker.entityId] }));
     const current = data.states?.[marker.entityId];
     const state = String(current?.state || '').toLowerCase();
@@ -2700,24 +2705,30 @@ async function confirmToggleState(marker, expectedState) {
   }
   return false;
 }
+// The marker flips at once (optimistic) and Home Assistant's answer confirms or reverts it. Taps are only held
+// back while the command itself is being sent, not while the new state is being confirmed.
 async function toggleMarker(marker) {
-  if (!isToggleableMarker(marker) || markerTogglesInFlight.has(marker.entityId)) return;
-  const state = String(stateCache[marker.entityId]?.state || '').toLowerCase();
+  const id = marker.entityId;
+  if (!isToggleableMarker(marker) || markerTogglesInFlight.has(id)) return;
+  const state = String(stateCache[id]?.state || '').toLowerCase();
   if (!['on', 'off'].includes(state)) return notify('Nie można przełączyć encji w tym stanie.', true);
-  const expectedState = state === 'on' ? 'off' : 'on';
-  markerTogglesInFlight.add(marker.entityId);
-  pendingToggleStates.set(marker.entityId, expectedState);
+  const expectedState = state === 'on' ? 'off' : 'on', previous = stateCache[id];
+  markerTogglesInFlight.add(id);
+  pendingToggleStates.set(id, expectedState);
+  renderMarkerState(id, { ...previous, state: expectedState }); if (roomUsesEntity(id)) renderRooms();
   try {
-    await api('control', jsonOptions({ entity_id: marker.entityId, action: expectedState === 'on' ? 'turn_on' : 'turn_off' }));
-    if (!await confirmToggleState(marker, expectedState)) {
-      pendingToggleStates.delete(marker.entityId);
-      await refreshStates();
-      notify('Stan encji nie został jeszcze potwierdzony.', true);
-    }
+    await api('control', jsonOptions({ entity_id: id, action: expectedState === 'on' ? 'turn_on' : 'turn_off' }));
   } catch (error) {
-    pendingToggleStates.delete(marker.entityId);
-    notify(`Błąd przełączania: ${error.message}`, true);
-  } finally { markerTogglesInFlight.delete(marker.entityId); }
+    markerTogglesInFlight.delete(id);
+    if (pendingToggleStates.get(id) === expectedState) { pendingToggleStates.delete(id); renderMarkerState(id, previous); if (roomUsesEntity(id)) renderRooms(); }
+    return notify(`Błąd przełączania: ${error.message}`, true);
+  }
+  markerTogglesInFlight.delete(id);
+  if (!await confirmToggleState(marker, expectedState) && pendingToggleStates.get(id) === expectedState) {
+    pendingToggleStates.delete(id);
+    await refreshStates();
+    notify('Stan encji nie został jeszcze potwierdzony.', true);
+  }
 }
 function onMarkerClick(event) {
   if (event.currentTarget.dataset.dragged === '1') { event.currentTarget.dataset.dragged = '0'; return; }
@@ -4409,6 +4420,8 @@ function bindEvents() {
   $('#background-transform-reset')?.addEventListener('click', async () => { if (!currentBackground || !await appConfirm({ title:'Zresetować dopasowanie tła?', message:'Skala, pozycja i tryb dopasowania tego tła wrócą do wartości domyślnych.', confirmText:'Resetuj', danger:true })) return; activeSceneView().backgroundTransforms[currentBackground] = defaultBackgroundTransform(); applyBackgroundTransform(); syncBackgroundTransformControls(); scheduleSave(true); notify('Przywrócono domyślne dopasowanie tła'); });
   els.scene.addEventListener('click', onRoomDrawClick, true);
   $('#room-labels')?.addEventListener('pointerdown', startRoomLabelDrag);
+  // Every new press starts clean: a pan or swipe that ended without a click must not swallow the next tap.
+  document.addEventListener('pointerdown', event => { const node = event.target.closest?.('.marker,.flow-marker'); if (node) node.dataset.dragged = '0'; }, true);
   $('#room-labels')?.addEventListener('click', event => {
     const node = event.target.closest('.tappable'); if (!node || editMode) return;
     const room = roomsOf()[node.dataset.roomId]; if (room) { event.stopPropagation(); onRoomTap(room); }
@@ -4420,7 +4433,7 @@ function bindEvents() {
     if (!(event.target === els.scene || event.target === els.markers || event.target === els.image)) return;
     if (els.markers.dataset.roomMoved === '1') { els.markers.dataset.roomMoved = '0'; return; }
     const room = roomAt(scenePercentAt(event));
-    if (!editMode) { const start = els.scene.__tapStart; if (room && start && Math.hypot(event.clientX - start.x, event.clientY - start.y) < 10 && performance.now() - start.t < 600) onRoomTap(room); return; }
+    if (!editMode) { const start = els.scene.__tapStart; if (room && start && Math.hypot(event.clientX - start.x, event.clientY - start.y) < 12 && performance.now() - start.t < 1200) onRoomTap(room); return; }
     closeEditor(); closeFlowEditor(); closeMoreInfo();
     if (room) openRoomEditor(room.id); else closeRoomEditor();
   });
