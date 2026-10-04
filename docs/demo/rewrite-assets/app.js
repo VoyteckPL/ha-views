@@ -606,7 +606,7 @@ const ROOM_LABEL_PARTS = [['icon','labelIcon','Ikona'],['name','labelName','Nazw
 const ROOM_LABEL_KEYS = ROOM_LABEL_PARTS.flatMap(([, k]) => [k, `${k}Size`, `${k}X`, `${k}Y`, `${k}Bg`, `${k}BgOpacity`, `${k}BgColor`]).concat(['labelCardX','labelCardY','labelCardLayout','labelCardAlign','labelCardBg','labelCardBgColor','labelCardBgOpacity','labelCardBlur','labelCardRadius','labelCardPadding','labelCardGap','labelCardBorder','labelCardBorderColor','labelCardBorderOpacity','labelCardBorderWidth','labelCardBgState','labelCardBgOnColor','labelCardBgOffColor','labelCardBgOnOpacity','labelCardBgOffOpacity','labelCardBorderState','labelCardBorderOnColor','labelCardBorderOffColor','labelCardBorderOnOpacity','labelCardBorderOffOpacity','labelCardBorderOnWidth','labelCardBorderOffWidth','labelCardScale','labelIconDX','labelIconDY','labelNameDX','labelNameDY','labelStateDX','labelStateDY']).concat(['labelLinked','labelIconName','labelIconOn','labelIconOff','labelNameColor','labelStateColor','labelIconVariant','labelIconNameOn','labelIconNameOff','labelIconOpacityOn','labelIconOpacityOff','labelIconFill','labelIconOutline','labelIconOutlineColor','labelIconOutlineWidth','labelIconSource','labelIconBorder','labelIconBorderColor','labelIconBorderOpacity','labelIconBorderWidth','labelIconShape','labelIconRadius','labelIconPadding','labelIconBlur','labelIconColorState','labelIconColor','labelIconOpacity','labelIconOutlineState','labelIconOutlineOnColor','labelIconOutlineOffColor','labelIconOutlineOnWidth','labelIconOutlineOffWidth','labelIconOutlineOpacity','labelIconOutlineOnOpacity','labelIconOutlineOffOpacity','labelIconBgState','labelIconBgOnColor','labelIconBgOffColor','labelIconBgOnOpacity','labelIconBgOffOpacity','labelIconBorderState','labelIconBorderOnColor','labelIconBorderOffColor','labelIconBorderOnOpacity','labelIconBorderOffOpacity','labelIconBorderOnWidth','labelIconBorderOffWidth']);
 const ROOM_LIGHT_KEYS = ['lightEffect','lightX','lightY','lightDirection','lightWallPos','lightSpread','lightFill'];
 const ROOM_ON_STATES = new Set(['on','open','opening','home','playing','heat','heating','cool','cooling','detected','unlocked','active','true']);
-let movingRoomId = null, selectedRoomId = null, roomDraft = null, roomPreviewOn = '', roomEditorOpenSectionIndex = -1, roomStyleClipboard = null, allEntitiesCache = null, allEntitiesLoading = null;
+let skipRoomFocus = false, movingRoomId = null, selectedRoomId = null, roomDraft = null, roomPreviewOn = '', roomEditorOpenSectionIndex = -1, roomStyleClipboard = null, allEntitiesCache = null, allEntitiesLoading = null;
 const ROOM_STYLE_KEYS = ['tapAction','color','opacity','feather','stateEnabled','offColor','offOpacity', ...ROOM_LIGHT_KEYS, ...ROOM_LABEL_KEYS];
 function roomsOf(view = activeSceneView()) { return view?.rooms || {}; }
 function roomOf(id) { const room = roomsOf()[id]; return room ? { ...ROOM_DEFAULTS, ...room } : null; }
@@ -745,7 +745,7 @@ const ROOM_CARD_STYLES = [
   ['room','Kolor pokoju', room => ({ labelCardBg:true, labelCardBgColor: room.color || '#FFD27A', labelCardBgOpacity:.3, labelCardBlur:false, labelCardBorder:true, labelCardBorderColor: room.color || '#FFD27A', labelCardBorderOpacity:.65, labelCardBorderWidth:1.5, labelNameColor:'#FFFFFF', labelStateColor:'#FFFFFF' })]];
 function roomLabelMarkup(room, preview = '', interactive = false) {
   const r = { ...ROOM_DEFAULTS, ...room }; if (r.draft || !(r.labelIcon || r.labelName || r.labelState) || (!isIconRoom(r) && (r.points || []).length < 3)) return '';
-  const realOn = roomLight(r).on, on = preview ? preview === 'on' : realOn, [x, y] = roomAnchor(r), tap = isIconRoom(r) ? ' tappable' : '';
+  const realOn = roomLight(r).on, on = preview ? preview === 'on' : realOn, [x, y] = roomAnchor(r), tap = (isIconRoom(r) ? ' tappable' : '') + (interactive && r.id === selectedRoomId ? ' selected' : '');
   // The ON / OFF preview simulates the state text too.
   const state = !r.labelState ? '' : preview === 'off' ? translateValue('Wył.') : preview === 'on' && !realOn ? translateValue('Wł.') : roomLabelState(r);
   const iconColor = r.labelIconColorState === false ? r.labelIconColor : on ? r.labelIconOn : r.labelIconOff, iconOpacity = clamp(Number(r.labelIconColorState === false ? r.labelIconOpacity : on ? r.labelIconOpacityOn : r.labelIconOpacityOff) ?? 1, 0, 1);
@@ -803,7 +803,7 @@ function startRoomLabelDrag(event) {
   const node = event.target.closest('.room-label-part.editable, .room-label-card.editable'); if (!node || !editMode || event.button > 0) return;
   const room = roomsOf()[node.dataset.roomId], part = node.dataset.labelPart === 'card' ? ['card','labelCard','Grupa'] : ROOM_LABEL_PARTS.find(([p]) => p === node.dataset.labelPart); if (!room || !part) return;
   event.preventDefault(); event.stopPropagation();
-  if (selectedRoomId !== room.id) openRoomEditor(room.id);
+  const newlySelected = selectedRoomId !== room.id; if (newlySelected) { skipRoomFocus = true; try { openRoomEditor(room.id); } finally { skipRoomFocus = false; } }
   const key = part[1], [ax, ay] = roomAnchor(room), w = els.scene.offsetWidth || 1, h = els.scene.offsetHeight || 1, k = sceneScale || 1;
   // "One element": every visible part moves by the same amount as the one held.
   const moving = key === 'labelCard' ? [key] : room.labelLinked ? ROOM_LABEL_PARTS.filter(([, kk]) => room[kk]).map(([, kk]) => kk) : [key];
@@ -823,7 +823,7 @@ function startRoomLabelDrag(event) {
   let moved = false; const camera = dragCamera(e => { clearTimeout(guides?.motion?.timer); guides = null; place(e); });
   try { els.scene.setPointerCapture(event.pointerId); } catch {}
   const place = e => {
-    const [x, y] = scenePercentAt(e); guides ||= roomGuides(); guides.onSettle = () => place(e);
+    const [x, y] = scenePercentAt(e); if (!cameraPanning) { guides ||= roomGuides(); guides.onSettle = () => place(e); }
     const snapped = alignToGuides(guides, snapPercent(x - grab[0]), snapPercent(y - grab[1]), e);
     const dx = Math.round((snapped.xPercent - ax) / 100 * w / k) - startOffsets[key][0], dy = Math.round((snapped.yPercent - ay) / 100 * h / k) - startOffsets[key][1];
     moving.forEach(kk => { room[`${kk}X`] = startOffsets[kk][0] + dx; room[`${kk}Y`] = startOffsets[kk][1] + dy; });
@@ -836,7 +836,8 @@ function startRoomLabelDrag(event) {
     // The scene holds the finger, so the following click would land on the scene and select the room under the
     // label (e.g. the room an icon stands in); the label was already selected on press, so the click is dropped.
     const swallow = c => { c.stopPropagation(); c.preventDefault(); }; window.addEventListener('click', swallow, { capture:true, once:true }); setTimeout(() => window.removeEventListener('click', swallow, true), 500);
-    if (!moved) return;
+    // A tap (no move) always brings the room / icon into view, also when it was already selected.
+    if (!moved) { requestAnimationFrame(() => requestAnimationFrame(() => focusSceneBoxOnMobile(isIconRoom(room) ? iconFocusBox(room) : room.points || []))); return; }
     let [fx, fy] = partPct(key);
     // An icon has no shape: a moved group becomes its new position, so later centring, guides and copies use it.
     if (isIconRoom(room) && key === 'labelCard') { room.x = Math.round(clamp(fx, 0, 100) * 100) / 100; room.y = Math.round(clamp(fy, 0, 100) * 100) / 100; room.labelCardX = 0; room.labelCardY = 0; [fx, fy] = [room.x, room.y]; renderRoomLabels(); }
@@ -1138,10 +1139,13 @@ function startRoomMove(event) {
     if (!moved) { moved = true; movingRoomId = room.id; }
     camera.track(e);
     const minX = Math.min(...original.map(p => p[0])), maxX = Math.max(...original.map(p => p[0])), minY = Math.min(...original.map(p => p[1])), maxY = Math.max(...original.map(p => p[1]));
-    guides ||= guideTargets({ roomId: room.id });
-    const w = guides.scene.width || 1, h = guides.scene.height || 1;
-    guides.halfW = (maxX - minX) / 200 * w; guides.halfH = (maxY - minY) / 200 * h; guides.onSettle = () => move(e);
-    const snapped = alignToGuides(guides, (minX + maxX) / 2 + dx, (minY + maxY) / 2 + dy, e);
+    let snapped = { xPercent: (minX + maxX) / 2 + dx, yPercent: (minY + maxY) / 2 + dy };
+    if (!cameraPanning) {
+      guides ||= guideTargets({ roomId: room.id });
+      const w = guides.scene.width || 1, h = guides.scene.height || 1;
+      guides.halfW = (maxX - minX) / 200 * w; guides.halfH = (maxY - minY) / 200 * h; guides.onSettle = () => move(e);
+      snapped = alignToGuides(guides, snapped.xPercent, snapped.yPercent, e);
+    }
     dx = snapped.xPercent - (minX + maxX) / 2; dy = snapped.yPercent - (minY + maxY) / 2;
     dx = clamp(dx, -minX, 100 - maxX); dy = clamp(dy, -minY, 100 - maxY);
     room.points = original.map(([px, py]) => [px + dx, py + dy]); renderRooms();
@@ -1312,7 +1316,7 @@ function openRoomEditor(id, preserveSection = roomEditorOpenSectionIndex, forceS
   $('#room-entity-search')?.addEventListener('input', renderRoomEntityResults); renderRoomEntityResults();
   content.scrollTop = scroll;
   panel.classList.add('visible'); panel.setAttribute('aria-hidden', 'false'); renderRooms();
-  if (newlySelected) requestAnimationFrame(() => requestAnimationFrame(() => { focusSceneBoxOnMobile(isIconRoom(room) ? iconFocusBox(room) : room.points || []); renderRoomEditLayer(); }));
+  if (newlySelected && !skipRoomFocus) requestAnimationFrame(() => requestAnimationFrame(() => { focusSceneBoxOnMobile(isIconRoom(room) ? iconFocusBox(room) : room.points || []); renderRoomEditLayer(); }));
   requestAnimationFrame(() => { const outline = $('#room-edit-layer .room-outline.selected'); if (outline && !mobileView() && !panel.dataset.dragged) placeEditorNear(panel, outline); });
 }
 function closeRoomEditor() {
@@ -1647,7 +1651,7 @@ function alignmentContext(node) {
   return { ...guideTargets({ node }), halfW: own.width / 2, halfH: own.height / 2 };
 }
 function alignToGuides(context, xPercent, yPercent, event) {
-  if (!context || event?.altKey || !snapTargets().guides || !context.scene.width || !context.scene.height) { showAlignGuides([], []); return { xPercent, yPercent }; }
+  if (cameraPanning || !context || event?.altKey || !snapTargets().guides || !context.scene.width || !context.scene.height) { showAlignGuides([], []); return { xPercent, yPercent }; }
   // Fewer flashing lines with many elements: while the element is dragged fast nothing snaps (no lines); they appear once
   // the movement slows down near a line, and a caught line holds until the element is moved clearly away from it.
   const motion = context.motion ||= { t: 0, x: 0, y: 0, speed: 0, stick: { x: null, y: null } };
@@ -2961,6 +2965,7 @@ function visibleSceneBand() {
   const top = Math.max(v.top, topbar);
   return { left: v.left, right: v.right, top, bottom: Math.max(bottom, top + 80) };
 }
+let cameraPanning = false;
 function dragCamera(onPan) {
   let last = null, frame = 0, since = 0;
   const step = now => {
@@ -2972,7 +2977,10 @@ function dragCamera(onPan) {
     since ||= now; const ramp = Math.min(1, .25 + (now - since) / 800); vx *= ramp; vy *= ramp;
     const beforeX = viewPanX, beforeY = viewPanY; viewPanX += vx; viewPanY += vy; applyViewTransform();
     if (Math.abs(viewPanX - beforeX) < .01 && Math.abs(viewPanY - beforeY) < .01) return; // the camera is at its limit
-    onPan(last);
+    // While the camera carries the element nothing snaps to guides (they would hold it back in jerks).
+    cameraPanning = true; try { onPan(last); } finally { cameraPanning = false; }
+    // Keeps going on its own while the finger rests at the edge (a still finger sends no move events).
+    if (!frame) frame = requestAnimationFrame(step);
   };
   return { track(event) { last = event; if (!frame) frame = requestAnimationFrame(step); }, stop() { cancelAnimationFrame(frame); frame = 0; last = null; since = 0; } };
 }
@@ -4539,7 +4547,8 @@ function bindEvents() {
     const room = roomAt(scenePercentAt(event));
     if (!editMode) { const start = els.scene.__tapStart; if (room && start && Math.hypot(event.clientX - start.x, event.clientY - start.y) < 12 && performance.now() - start.t < 1200) onRoomTap(room); return; }
     closeEditor(); closeFlowEditor(); closeMoreInfo();
-    if (room) openRoomEditor(room.id); else closeRoomEditor();
+    if (room && room.id === selectedRoomId) focusSceneBoxOnMobile(room.points || []); // a tap on the selected room brings it back into view
+    else if (room) openRoomEditor(room.id); else closeRoomEditor();
   });
   $('#room-edit-layer')?.addEventListener('pointerdown', event => {
     if (event.target.closest('[data-corner-del]')) {
