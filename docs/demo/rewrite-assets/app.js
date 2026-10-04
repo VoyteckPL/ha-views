@@ -803,7 +803,8 @@ function startRoomLabelDrag(event) {
   const node = event.target.closest('.room-label-part.editable, .room-label-card.editable'); if (!node || !editMode || event.button > 0) return;
   const room = roomsOf()[node.dataset.roomId], part = node.dataset.labelPart === 'card' ? ['card','labelCard','Grupa'] : ROOM_LABEL_PARTS.find(([p]) => p === node.dataset.labelPart); if (!room || !part) return;
   event.preventDefault(); event.stopPropagation();
-  const newlySelected = selectedRoomId !== room.id; if (newlySelected) { skipRoomFocus = true; try { openRoomEditor(room.id); } finally { skipRoomFocus = false; } }
+  // The editor opens on a tap only (release without moving); grabbing and dragging right away just moves the label.
+  const newlySelected = selectedRoomId !== room.id;
   const key = part[1], [ax, ay] = roomAnchor(room), w = els.scene.offsetWidth || 1, h = els.scene.offsetHeight || 1, k = sceneScale || 1;
   // "One element": every visible part moves by the same amount as the one held.
   const moving = key === 'labelCard' ? [key] : room.labelLinked ? ROOM_LABEL_PARTS.filter(([, kk]) => room[kk]).map(([, kk]) => kk) : [key];
@@ -837,11 +838,16 @@ function startRoomLabelDrag(event) {
     // label (e.g. the room an icon stands in); the label was already selected on press, so the click is dropped.
     const swallow = c => { c.stopPropagation(); c.preventDefault(); }; window.addEventListener('click', swallow, { capture:true, once:true }); setTimeout(() => window.removeEventListener('click', swallow, true), 500);
     // A tap (no move) always brings the room / icon into view, also when it was already selected.
-    if (!moved) { requestAnimationFrame(() => requestAnimationFrame(() => focusSceneBoxOnMobile(isIconRoom(room) ? iconFocusBox(room) : room.points || []))); return; }
+    if (!moved) {
+      if (newlySelected) { skipRoomFocus = true; try { openRoomEditor(room.id); } finally { skipRoomFocus = false; } }
+      requestAnimationFrame(() => requestAnimationFrame(() => focusSceneBoxOnMobile(isIconRoom(room) ? iconFocusBox(room) : room.points || []))); return;
+    }
     let [fx, fy] = partPct(key);
     // An icon has no shape: a moved group becomes its new position, so later centring, guides and copies use it.
     if (isIconRoom(room) && key === 'labelCard') { room.x = Math.round(clamp(fx, 0, 100) * 100) / 100; room.y = Math.round(clamp(fy, 0, 100) * 100) / 100; room.labelCardX = 0; room.labelCardY = 0; [fx, fy] = [room.x, room.y]; renderRoomLabels(); }
-    room.updatedAt = new Date().toISOString(); scheduleSave(true); openRoomEditor(room.id, openSectionIndex($('#room-editor-content'), roomEditorOpenSectionIndex)); centerAfterDrag(fx, fy);
+    room.updatedAt = new Date().toISOString(); scheduleSave(true);
+    if (selectedRoomId === room.id) openRoomEditor(room.id, openSectionIndex($('#room-editor-content'), roomEditorOpenSectionIndex)); else renderRooms();
+    centerAfterDrag(fx, fy);
   };
   window.addEventListener('pointermove', move); window.addEventListener('pointerup', up); window.addEventListener('pointercancel', up);
 }
