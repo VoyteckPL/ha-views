@@ -606,7 +606,7 @@ const ROOM_LABEL_PARTS = [['icon','labelIcon','Ikona'],['name','labelName','Nazw
 const ROOM_LABEL_KEYS = ROOM_LABEL_PARTS.flatMap(([, k]) => [k, `${k}Size`, `${k}X`, `${k}Y`, `${k}Bg`, `${k}BgOpacity`, `${k}BgColor`]).concat(['labelCardX','labelCardY','labelCardLayout','labelCardAlign','labelCardBg','labelCardBgColor','labelCardBgOpacity','labelCardBlur','labelCardRadius','labelCardPadding','labelCardGap','labelCardBorder','labelCardBorderColor','labelCardBorderOpacity','labelCardBorderWidth','labelCardBgState','labelCardBgOnColor','labelCardBgOffColor','labelCardBgOnOpacity','labelCardBgOffOpacity','labelCardBorderState','labelCardBorderOnColor','labelCardBorderOffColor','labelCardBorderOnOpacity','labelCardBorderOffOpacity','labelCardBorderOnWidth','labelCardBorderOffWidth','labelCardScale','labelIconDX','labelIconDY','labelNameDX','labelNameDY','labelStateDX','labelStateDY']).concat(['labelLinked','labelIconName','labelIconOn','labelIconOff','labelNameColor','labelStateColor','labelIconVariant','labelIconNameOn','labelIconNameOff','labelIconOpacityOn','labelIconOpacityOff','labelIconFill','labelIconOutline','labelIconOutlineColor','labelIconOutlineWidth','labelIconSource','labelIconBorder','labelIconBorderColor','labelIconBorderOpacity','labelIconBorderWidth','labelIconShape','labelIconRadius','labelIconPadding','labelIconBlur','labelIconColorState','labelIconColor','labelIconOpacity','labelIconOutlineState','labelIconOutlineOnColor','labelIconOutlineOffColor','labelIconOutlineOnWidth','labelIconOutlineOffWidth','labelIconOutlineOpacity','labelIconOutlineOnOpacity','labelIconOutlineOffOpacity','labelIconBgState','labelIconBgOnColor','labelIconBgOffColor','labelIconBgOnOpacity','labelIconBgOffOpacity','labelIconBorderState','labelIconBorderOnColor','labelIconBorderOffColor','labelIconBorderOnOpacity','labelIconBorderOffOpacity','labelIconBorderOnWidth','labelIconBorderOffWidth']);
 const ROOM_LIGHT_KEYS = ['lightEffect','lightX','lightY','lightDirection','lightWallPos','lightSpread','lightFill'];
 const ROOM_ON_STATES = new Set(['on','open','opening','home','playing','heat','heating','cool','cooling','detected','unlocked','active','true']);
-let selectedRoomId = null, roomDraft = null, roomPreviewOn = '', roomEditorOpenSectionIndex = -1, roomStyleClipboard = null, allEntitiesCache = null, allEntitiesLoading = null;
+let movingRoomId = null, selectedRoomId = null, roomDraft = null, roomPreviewOn = '', roomEditorOpenSectionIndex = -1, roomStyleClipboard = null, allEntitiesCache = null, allEntitiesLoading = null;
 const ROOM_STYLE_KEYS = ['tapAction','color','opacity','feather','stateEnabled','offColor','offOpacity', ...ROOM_LIGHT_KEYS, ...ROOM_LABEL_KEYS];
 function roomsOf(view = activeSceneView()) { return view?.rooms || {}; }
 function roomOf(id) { const room = roomsOf()[id]; return room ? { ...ROOM_DEFAULTS, ...room } : null; }
@@ -815,7 +815,9 @@ function startRoomLabelDrag(event) {
 function renderRooms() {
   syncRoomIconStates();
   const layer = $('#rooms'); if (!layer) return;
-  const view = activeSceneView(), rooms = Object.values(roomsOf(view)).filter(room => (room.points || []).length >= 3);
+  // A room being moved shows only its outline and label (no light / state effect), so nothing flickers while it
+  // is rebuilt on every step; the effect fades back in when the room is dropped.
+  const view = activeSceneView(), rooms = Object.values(roomsOf(view)).filter(room => (room.points || []).length >= 3 && room.id !== movingRoomId);
   const width = els.scene.offsetWidth || 1, height = els.scene.offsetHeight || 1, kept = new Set();
   rooms.forEach(room => {
     const preview = editMode && room.id === selectedRoomId ? roomPreviewOn : '', built = roomLayerMarkup(room, 'room', width, height, preview);
@@ -1096,9 +1098,13 @@ function startRoomMove(event) {
   const room = roomsOf()[selectedRoomId], start = scenePercentAt(event); if (!room || room.geometryLocked || !pointInPolygon(start, room.points)) return false;
   const original = clone(room.points); let moved = false, guides = null;
   try { els.scene.setPointerCapture(event.pointerId); } catch {}
+  // The camera follows a room dragged to the edge of the screen, like markers and labels.
+  const camera = dragCamera(e => { clearTimeout(guides?.motion?.timer); guides = null; move(e); });
   const move = e => {
     if (e.pointerId !== event.pointerId) return; const [x, y] = scenePercentAt(e); let dx = x - start[0], dy = y - start[1];
-    if (!moved && Math.hypot(e.clientX - event.clientX, e.clientY - event.clientY) < 4) return; moved = true;
+    if (!moved && Math.hypot(e.clientX - event.clientX, e.clientY - event.clientY) < 4) return;
+    if (!moved) { moved = true; movingRoomId = room.id; }
+    camera.track(e);
     const minX = Math.min(...original.map(p => p[0])), maxX = Math.max(...original.map(p => p[0])), minY = Math.min(...original.map(p => p[1])), maxY = Math.max(...original.map(p => p[1]));
     guides ||= guideTargets({ roomId: room.id });
     const w = guides.scene.width || 1, h = guides.scene.height || 1;
@@ -1108,7 +1114,7 @@ function startRoomMove(event) {
     dx = clamp(dx, -minX, 100 - maxX); dy = clamp(dy, -minY, 100 - maxY);
     room.points = original.map(([px, py]) => [px + dx, py + dy]); renderRooms();
   };
-  const up = e => { if (e.pointerId !== event.pointerId) return; clearTimeout(guides?.motion?.timer); if (guides) guides.onSettle = null; window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up); showAlignGuides([], []); if (moved) { room.points = room.points.map(p => p.map(v => Math.round(v * 1000) / 1000)); room.updatedAt = new Date().toISOString(); scheduleSave(true); els.markers.dataset.roomMoved = '1'; } };
+  const up = e => { if (e.pointerId !== event.pointerId) return; camera.stop(); clearTimeout(guides?.motion?.timer); if (guides) guides.onSettle = null; window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up); showAlignGuides([], []); if (moved) { movingRoomId = null; room.points = room.points.map(p => p.map(v => Math.round(v * 1000) / 1000)); room.updatedAt = new Date().toISOString(); renderRooms(); scheduleSave(true); els.markers.dataset.roomMoved = '1'; } };
   window.addEventListener('pointermove', move); window.addEventListener('pointerup', up); window.addEventListener('pointercancel', up);
   return true;
 }
