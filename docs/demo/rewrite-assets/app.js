@@ -1346,6 +1346,7 @@ async function removeRoom() {
 // Tapping a room in view mode: toggles its lights/switches (all off when any is on, otherwise all on),
 // or opens More Info of its first entity.
 const roomTogglesInFlight = new Set();
+let lastLabelTap = 0;
 async function onRoomTap(room, action = null) {
   const r = { ...ROOM_DEFAULTS, ...room, ...(action ? { tapAction: action } : {}) }, ids = r.entityIds || [];
   if (!ids.length) { if (!isViewer()) notify(isIconRoom(room) ? 'Ta ikona nie ma jeszcze encji — wybierz je w trybie edycji' : 'To pomieszczenie nie ma jeszcze encji — wybierz je w trybie edycji'); return; }
@@ -4448,16 +4449,28 @@ function bindEvents() {
   $('#room-labels')?.addEventListener('pointerdown', startRoomLabelDrag);
   // Every new press starts clean: a pan or swipe that ended without a click must not swallow the next tap.
   document.addEventListener('pointerdown', event => { const node = event.target.closest?.('.marker,.flow-marker'); if (node) node.dataset.dragged = '0'; }, true);
-  $('#room-labels')?.addEventListener('click', event => {
-    const node = event.target.closest('.tappable'); if (!node || editMode) return;
-    const room = roomsOf()[node.dataset.roomId]; if (room) { event.stopPropagation(); onRoomTap(room); }
-  });
+  // Icons are tapped by press + release on the label itself. On phones the scene may capture the finger for
+  // panning / swiping, and the browser then sends the click to the scene instead of the label.
+  let labelTap = null;
+  document.addEventListener('pointerdown', event => { const node = event.target.closest?.('.tappable'); labelTap = node && !editMode ? { id: node.dataset.roomId, pid: event.pointerId, x: event.clientX, y: event.clientY, t: performance.now() } : null; }, true);
+  window.addEventListener('pointercancel', event => { if (labelTap?.pid === event.pointerId) labelTap = null; }, true);
+  window.addEventListener('pointerup', event => {
+    const tap = labelTap; if (!tap || tap.pid !== event.pointerId) return; labelTap = null;
+    if (editMode || Math.hypot(event.clientX - tap.x, event.clientY - tap.y) > 12 || performance.now() - tap.t > 1200) return;
+    const room = roomsOf()[tap.id]; if (!room) return;
+    // The click that follows this release is not needed any more (it could land on the sheet just opened).
+    lastLabelTap = performance.now(); const swallow = e => { e.stopPropagation(); e.preventDefault(); };
+    window.addEventListener('click', swallow, { capture:true, once:true }); setTimeout(() => window.removeEventListener('click', swallow, true), 600);
+    onRoomTap(room);
+  }, true);
+  $('#room-labels')?.addEventListener('click', event => { if (event.target.closest('.tappable') && !editMode) event.stopPropagation(); });
   els.scene.addEventListener('pointerdown', event => { els.scene.__tapStart = { x:event.clientX, y:event.clientY, t:performance.now() }; }, true);
   els.scene.addEventListener('pointermove', onRoomDrawMove);
   els.scene.addEventListener('pointerdown', event => { if (startRoomMove(event)) { event.preventDefault(); event.stopImmediatePropagation(); } });
   els.scene.addEventListener('click', event => {
     if (!(event.target === els.scene || event.target === els.markers || event.target === els.image)) return;
     if (els.markers.dataset.roomMoved === '1') { els.markers.dataset.roomMoved = '0'; return; }
+    if (!editMode && performance.now() - lastLabelTap < 700) return;
     const room = roomAt(scenePercentAt(event));
     if (!editMode) { const start = els.scene.__tapStart; if (room && start && Math.hypot(event.clientX - start.x, event.clientY - start.y) < 12 && performance.now() - start.t < 1200) onRoomTap(room); return; }
     closeEditor(); closeFlowEditor(); closeMoreInfo();
