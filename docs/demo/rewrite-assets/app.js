@@ -751,6 +751,21 @@ function roomTextPartStyle(r, key) {
   const border = r[`${key}Border`] ? `;box-shadow:inset 0 0 0 ${clamp(Number(r[`${key}BorderWidth`]) || 1.5, .5, 12)}px ${rgba(r[`${key}BorderColor`] || '#FFFFFF', clamp(Number(r[`${key}BorderOpacity`] ?? .6), 0, 1))}` : '';
   return bg + border;
 }
+// Switching grouping on / off keeps everything where it is on the plan: ungrouped parts take the places they had
+// inside the group; a new group is centred where the separate parts were.
+function keepLabelPlaceOnRegroup(room) {
+  const scene = els.scene.getBoundingClientRect(), k = sceneScale || 1, w = els.scene.offsetWidth || 1, h = els.scene.offsetHeight || 1; if (!scene.width) return;
+  const [ax, ay] = roomAnchor(room), anchorX = scene.left + ax / 100 * scene.width, anchorY = scene.top + ay / 100 * scene.height;
+  const toOffsetX = px => Math.round((px - anchorX) * w / (scene.width * k)), toOffsetY = py => Math.round((py - anchorY) * h / (scene.height * k));
+  const id = CSS.escape(room.id), centre = node => { const r = node.getBoundingClientRect(); return [(r.left + r.right) / 2, (r.top + r.bottom) / 2, r]; };
+  if (room.labelLinked) {
+    ROOM_LABEL_PARTS.forEach(([part, key]) => { const node = document.querySelector(`.room-label-card[data-room-id="${id}"] .room-card-part.${part}`); if (!node) return; const [cx, cy] = centre(node); room[`${key}X`] = toOffsetX(cx); room[`${key}Y`] = toOffsetY(cy); });
+  } else {
+    const rects = $$(`.room-label-part[data-room-id="${id}"]`).map(node => node.getBoundingClientRect()).filter(r => r.width); if (!rects.length) return;
+    room.labelCardX = toOffsetX((Math.min(...rects.map(r => r.left)) + Math.max(...rects.map(r => r.right))) / 2);
+    room.labelCardY = toOffsetY((Math.min(...rects.map(r => r.top)) + Math.max(...rects.map(r => r.bottom))) / 2);
+  }
+}
 function roomLabelMarkup(room, preview = '', interactive = false) {
   const r = { ...ROOM_DEFAULTS, ...room }; if (r.draft || !(r.labelIcon || r.labelName || r.labelState) || (!isIconRoom(r) && (r.points || []).length < 3)) return '';
   const realOn = roomLight(r).on, on = preview ? preview === 'on' : realOn, [x, y] = roomAnchor(r), tap = (isIconRoom(r) ? ' tappable' : '') + (interactive && r.id === selectedRoomId ? ' selected' : '');
@@ -780,7 +795,7 @@ function roomLabelMarkup(room, preview = '', interactive = false) {
   }
   return ROOM_LABEL_PARTS.filter(([part]) => content[part]).map(([part, key]) => {
     const bg = part === 'icon' ? roomIconFrameStyle(r, on) : roomTextPartStyle(r, key);
-    const style = `left:${x.toFixed(3)}%;top:${y.toFixed(3)}%;--lx:${Number(r[`${key}X`]) || 0}px;--ly:${Number(r[`${key}Y`]) || 0}px;--lsize:${clamp(Number(r[`${key}Size`]) || ROOM_DEFAULTS[`${key}Size`], 6, 420)}px${bg}`;
+    const style = `left:${x.toFixed(3)}%;top:${y.toFixed(3)}%;--lx:${Number(r[`${key}X`]) || 0}px;--ly:${Number(r[`${key}Y`]) || 0}px;--lscale:${clamp(Number(r.labelCardScale) || 1, .3, 4)};--lsize:${clamp(Number(r[`${key}Size`]) || ROOM_DEFAULTS[`${key}Size`], 6, 420)}px${bg}`;
     return `<div class="room-label-part ${part}${(r[`${key}Bg`] || r[`${key}Border`]) && part !== 'icon' ? ' bg' : ''}${interactive ? ' editable' : ''}${r.labelLinked ? ' linked' : ''}${tap}" data-room-id="${escapeHtml(r.id)}" data-label-part="${part}" style="${style}">${content[part]}</div>`;
   }).join('');
 }
@@ -1372,6 +1387,7 @@ function onRoomEditorClick(event) {
     event.preventDefault(); const room = roomsOf()[selectedRoomId]; if (!room) return; const key = partToggle.dataset.partToggle;
     // At least one of icon / name / state stays visible.
     if (key !== 'labelLinked' && room[key] && ['labelIcon','labelName','labelState'].filter(k => room[k]).length <= 1) return notify('Co najmniej jedna część musi być widoczna');
+    if (key === 'labelLinked') keepLabelPlaceOnRegroup(room);
     room[key] = !room[key]; room.updatedAt = new Date().toISOString(); renderRooms(); openRoomEditor(room.id, openSectionIndex($('#room-editor-content'), roomEditorOpenSectionIndex)); scheduleSave(true); return;
   }
   const layoutButton = event.target.closest('[data-card-layout]'), styleButton = event.target.closest('[data-card-style]'), alignButton = event.target.closest('[data-card-align]');
