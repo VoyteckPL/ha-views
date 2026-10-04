@@ -1019,3 +1019,6 @@ body.editing .room-labels{z-index:3}
 .room-wizard-next:hover:not(:disabled){background:#4fcdf2;color:#03202c}.room-wizard-skip:hover{background:rgba(99,181,216,.12);color:#e6f7ff}
 .room-label-group{display:contents}
 .room-label-card.editable.selected::after,.room-label-part.editable.selected::after{inset:-8px;border:2px dashed #20b9e7;box-shadow:0 0 0 1px rgba(3,16,26,.35)}
+/* A long press on the plan (marker, icon, label, Flow) never selects text or opens the browser's copy / share menu. */
+.scene,.scene *,.scene-card{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.scene img{-webkit-user-drag:none}

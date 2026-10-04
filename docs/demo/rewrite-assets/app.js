@@ -4553,6 +4553,8 @@ function bindEvents() {
   $('#background-transform-reset')?.addEventListener('click', async () => { if (!currentBackground || !await appConfirm({ title:'Zresetować dopasowanie tła?', message:'Skala, pozycja i tryb dopasowania tego tła wrócą do wartości domyślnych.', confirmText:'Resetuj', danger:true })) return; activeSceneView().backgroundTransforms[currentBackground] = defaultBackgroundTransform(); applyBackgroundTransform(); syncBackgroundTransformControls(); scheduleSave(true); notify('Przywrócono domyślne dopasowanie tła'); });
   els.scene.addEventListener('click', onRoomDrawClick, true);
   $('#room-labels')?.addEventListener('pointerdown', startRoomLabelDrag);
+  // No browser context menu (copy / share / save image) on a long press anywhere on the plan.
+  els.scene.addEventListener('contextmenu', event => event.preventDefault());
   // Every new press starts clean: a pan or swipe that ended without a click must not swallow the next tap.
   document.addEventListener('pointerdown', event => { const node = event.target.closest?.('.marker,.flow-marker'); if (node) node.dataset.dragged = '0'; }, true);
   // Icons are tapped by press + release on the label itself. On phones the scene may capture the finger for
