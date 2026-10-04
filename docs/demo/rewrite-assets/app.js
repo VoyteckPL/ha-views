@@ -665,6 +665,16 @@ const ROOM_TOGGLE_DOMAINS = ['light', 'switch', 'fan', 'input_boolean'];
 // Area centroid of the outline (falls back to the vertex average for a degenerate shape).
 // An "icon" element is a room without a drawn shape: only its label group, anchored at its own point.
 function isIconRoom(room) { return room?.kind === 'icon'; }
+// The plan area an icon's label covers (in scene %), used to centre it like a room; falls back to its point.
+function iconFocusBox(room) {
+  const scene = els.scene.getBoundingClientRect(), nodes = $$(`#room-labels [data-room-id="${CSS.escape(room.id)}"]`).map(node => node.getBoundingClientRect()).filter(r => r.width);
+  if (!nodes.length || !scene.width) return [roomAnchor(room)];
+  const toX = v => (v - scene.left) / scene.width * 100, toY = v => (v - scene.top) / scene.height * 100;
+  const l = toX(Math.min(...nodes.map(r => r.left))), r = toX(Math.max(...nodes.map(r => r.right))), t = toY(Math.min(...nodes.map(r => r.top))), b = toY(Math.max(...nodes.map(r => r.bottom)));
+  // A little room around it, so a small icon is not zoomed in as far as it would go.
+  const padX = Math.max((r - l) * .6, 4), padY = Math.max((b - t) * .6, 4);
+  return [[l - padX, t - padY], [r + padX, t - padY], [r + padX, b + padY], [l - padX, b + padY]];
+}
 function roomAnchor(room) { return isIconRoom(room) ? [Number(room.x) || 50, Number(room.y) || 50] : roomLabelAnchor(room.points || []); }
 function roomLabelAnchor(points) {
   let a = 0, cx = 0, cy = 0;
@@ -823,9 +833,14 @@ function startRoomLabelDrag(event) {
   const up = e => {
     if (e.pointerId !== event.pointerId) return; camera.stop(); clearTimeout(guides?.motion?.timer); if (guides) guides.onSettle = null; showAlignGuides([], []);
     window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up);
-    if (!moved) return;
+    // The scene holds the finger, so the following click would land on the scene and select the room under the
+    // label (e.g. the room an icon stands in); the label was already selected on press, so the click is dropped.
     const swallow = c => { c.stopPropagation(); c.preventDefault(); }; window.addEventListener('click', swallow, { capture:true, once:true }); setTimeout(() => window.removeEventListener('click', swallow, true), 500);
-    room.updatedAt = new Date().toISOString(); scheduleSave(true); openRoomEditor(room.id, openSectionIndex($('#room-editor-content'), roomEditorOpenSectionIndex)); const [fx, fy] = partPct(key); centerAfterDrag(fx, fy);
+    if (!moved) return;
+    let [fx, fy] = partPct(key);
+    // An icon has no shape: a moved group becomes its new position, so later centring, guides and copies use it.
+    if (isIconRoom(room) && key === 'labelCard') { room.x = Math.round(clamp(fx, 0, 100) * 100) / 100; room.y = Math.round(clamp(fy, 0, 100) * 100) / 100; room.labelCardX = 0; room.labelCardY = 0; [fx, fy] = [room.x, room.y]; renderRoomLabels(); }
+    room.updatedAt = new Date().toISOString(); scheduleSave(true); openRoomEditor(room.id, openSectionIndex($('#room-editor-content'), roomEditorOpenSectionIndex)); centerAfterDrag(fx, fy);
   };
   window.addEventListener('pointermove', move); window.addEventListener('pointerup', up); window.addEventListener('pointercancel', up);
 }
@@ -1297,7 +1312,7 @@ function openRoomEditor(id, preserveSection = roomEditorOpenSectionIndex, forceS
   $('#room-entity-search')?.addEventListener('input', renderRoomEntityResults); renderRoomEntityResults();
   content.scrollTop = scroll;
   panel.classList.add('visible'); panel.setAttribute('aria-hidden', 'false'); renderRooms();
-  if (newlySelected) requestAnimationFrame(() => requestAnimationFrame(() => { focusSceneBoxOnMobile(isIconRoom(room) ? [roomAnchor(room)] : room.points || []); renderRoomEditLayer(); }));
+  if (newlySelected) requestAnimationFrame(() => requestAnimationFrame(() => { focusSceneBoxOnMobile(isIconRoom(room) ? iconFocusBox(room) : room.points || []); renderRoomEditLayer(); }));
   requestAnimationFrame(() => { const outline = $('#room-edit-layer .room-outline.selected'); if (outline && !mobileView() && !panel.dataset.dragged) placeEditorNear(panel, outline); });
 }
 function closeRoomEditor() {
@@ -1587,6 +1602,13 @@ function alignSelectedToBackground(where) {
   const s = els.scene.getBoundingClientRect(); if (!s.width || !s.height) return;
   const shift = r => ({ x: where === 'left' ? s.left - r.left : where === 'right' ? s.right - r.right : where === 'hcenter' ? (s.left + s.right) / 2 - (r.left + r.right) / 2 : 0,
     y: where === 'top' ? s.top - r.top : where === 'bottom' ? s.bottom - r.bottom : where === 'vcenter' ? (s.top + s.bottom) / 2 - (r.top + r.bottom) / 2 : 0 });
+  if (selectedRoomId && isIconRoom(roomsOf()[selectedRoomId])) {
+    // An icon moves its point by the distance its label box has to travel.
+    const room = roomsOf()[selectedRoomId], rects = $$(`#room-labels [data-room-id="${CSS.escape(room.id)}"]`).map(node => node.getBoundingClientRect()).filter(r => r.width); if (!rects.length) return;
+    const d = shift({ left: Math.min(...rects.map(r => r.left)), right: Math.max(...rects.map(r => r.right)), top: Math.min(...rects.map(r => r.top)), bottom: Math.max(...rects.map(r => r.bottom)) });
+    room.x = Math.round(clamp((Number(room.x) || 50) + d.x / s.width * 100, 0, 100) * 1000) / 1000; room.y = Math.round(clamp((Number(room.y) || 50) + d.y / s.height * 100, 0, 100) * 1000) / 1000;
+    room.updatedAt = new Date().toISOString(); renderRooms(); scheduleSave(true); return;
+  }
   if (selectedRoomId && roomsOf()[selectedRoomId] && !isIconRoom(roomsOf()[selectedRoomId])) {
     const room = roomsOf()[selectedRoomId], xs = room.points.map(p => p[0]), ys = room.points.map(p => p[1]);
     const box = { left: s.left + Math.min(...xs) / 100 * s.width, right: s.left + Math.max(...xs) / 100 * s.width, top: s.top + Math.min(...ys) / 100 * s.height, bottom: s.top + Math.max(...ys) / 100 * s.height };
