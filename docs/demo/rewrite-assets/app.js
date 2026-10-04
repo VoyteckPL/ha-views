@@ -776,7 +776,15 @@ function renderRoomLabels(view = activeSceneView()) {
     const html = roomLabelMarkup(room, preview(room.id), editMode && !room.geometryLocked && !roomDraft); kept.add(room.id);
     let group = [...layer.children].find(node => node.dataset.labelGroup === room.id);
     if (!group) { group = document.createElement('div'); group.className = 'room-label-group'; group.dataset.labelGroup = room.id; layer.append(group); }
-    if (group.__html !== html) { group.innerHTML = html; group.__html = html; }
+    if (group.__html === html) return;
+    // Only the position changed (the room or the label is being dragged): the existing nodes get the new
+    // position styles instead of being re-created, so the icon is never rebuilt mid-drag.
+    const key = html.replace(/left:[-\d.]+%;top:[-\d.]+%/g, '').replace(/--l[xy]:[-\d.]+px/g, '');
+    if (group.__key === key && group.children.length) {
+      const fresh = document.createElement('template'); fresh.innerHTML = html;
+      [...fresh.content.children].forEach((node, index) => { const live = group.children[index]; if (live && live.getAttribute('style') !== node.getAttribute('style')) live.setAttribute('style', node.getAttribute('style')); });
+    } else group.innerHTML = html;
+    group.__html = html; group.__key = key;
   });
   [...layer.children].forEach(node => { if (!kept.has(node.dataset.labelGroup)) node.remove(); });
 }
