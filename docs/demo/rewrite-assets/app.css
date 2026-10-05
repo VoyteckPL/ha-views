@@ -1144,3 +1144,14 @@ body.dock-mode .editor .editor-head>.editor-quick-actions,.editor .editor-head>.
   .editor .editor-content::-webkit-scrollbar-track{background:transparent}
 }
 @media not all and (hover:hover) and (pointer:fine){.editor .editor-content{padding-left:9px!important;padding-right:9px!important}}
+/* Ikona / Nazwa / Stan: each in its own colour, with on / off buttons (outline, background, frame) on the section bar. */
+.part-section>summary{display:flex!important;align-items:center;gap:6px;padding-top:4px!important;padding-bottom:4px!important;min-height:30px}
+.part-section>summary>span:first-child{flex:1;min-width:0}
+.part-section .section-tools{display:flex;gap:4px;margin-left:auto}
+.part-section .section-toggle{width:26px;height:26px;min-width:26px;padding:0;display:grid;place-items:center;border-radius:7px;border:1px solid rgba(99,181,216,.3);background:#0d2635;color:#7fa3b4;cursor:pointer}
+.part-section .section-toggle .mdi{font-size:15px}
+.part-section .section-toggle.active{color:#03101a}
+.part-section{border-left:3px solid var(--part-color)!important}
+.part-section>summary>span:first-child{color:var(--part-color)}
+.part-section .section-toggle.active{background:var(--part-color);border-color:var(--part-color)}
+.part-icon{--part-color:#ffc46b}.part-name{--part-color:#7ee0a5}.part-state{--part-color:#b39dff}
