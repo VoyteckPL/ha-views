@@ -1135,3 +1135,4 @@ body.editing .room-labels{z-index:3}
 .editor .control>.color-picker>.color-menu.visible{position:absolute!important;right:0!important;left:auto!important;top:36px!important;margin:0!important;width:190px!important;max-width:calc(100vw - 40px)!important;box-sizing:border-box;z-index:90}
 /* Sub-section titles in their own colour, so they do not blend with the main section titles. */
 .editor .gauge-subsection>summary{color:#5fd0f5;font-weight:650;background:rgba(14,40,55,.6)}
+body.dock-mode .editor .editor-head>.editor-quick-actions,.editor .editor-head>.editor-quick-actions{justify-content:flex-end!important}
