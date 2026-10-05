@@ -675,7 +675,7 @@ function roomEffectBody(r, id, blur, points, color) {
 // the plan gets its own GPU layer (a finger pan / pinch) and on a phone it could vanish for a frame (a blink).
 // The glow is blurred anyway, so the bitmap scales without visible loss; a sharp-edged room (no feather) stays live.
 const ROOM_GLOW_BITMAPS = new Map(), ROOM_GLOW_PENDING = new Map();
-function roomGlowBitmap(roomId, key, body, width, height, box) {
+function roomGlowBitmap(roomId, key, body, width, height, box, onReady = renderRooms) {
   const ready = ROOM_GLOW_BITMAPS.get(key); if (ready) { ROOM_GLOW_BITMAPS.delete(key); ROOM_GLOW_BITMAPS.set(key, ready); return ready; }
   if (ROOM_GLOW_PENDING.get(roomId)?.key === key) return null;
   clearTimeout(ROOM_GLOW_PENDING.get(roomId)?.timer);
@@ -693,9 +693,18 @@ function roomGlowBitmap(roomId, key, body, width, height, box) {
       ROOM_GLOW_BITMAPS.set(key, url);
       while (ROOM_GLOW_BITMAPS.size > 80) { const [oldKey, oldUrl] = ROOM_GLOW_BITMAPS.entries().next().value; ROOM_GLOW_BITMAPS.delete(oldKey); URL.revokeObjectURL(oldUrl); }
     } catch {} finally { if (ROOM_GLOW_PENDING.get(roomId) === job) ROOM_GLOW_PENDING.delete(roomId); }
-    if (ROOM_GLOW_BITMAPS.has(key)) renderRooms();
+    if (ROOM_GLOW_BITMAPS.has(key)) onReady();
   }, 220) };
   ROOM_GLOW_PENDING.set(roomId, job); return null;
+}
+// Swaps a lit room's live SVG for its cached glow bitmap once one is ready (see roomGlowBitmap).
+function roomGlowApply(room, built, width, height, slot, onReady) {
+  if (built.feather < 2) return built;
+  const xs = room.points.map(p => Number(p[0])), ys = room.points.map(p => Number(p[1])), mx = built.feather * 3 * 100 / width, my = built.feather * 3 * 100 / height;
+  const box = [Math.min(...xs) - mx, Math.min(...ys) - my, Math.max(...xs) - Math.min(...xs) + 2 * mx, Math.max(...ys) - Math.min(...ys) + 2 * my].map(v => +v.toFixed(3));
+  const key = `${built.signature}|${built.color}|${box}|${built.body}`, url = roomGlowBitmap(slot, key, built.body, width, height, box, onReady);
+  if (url) Object.assign(built, { signature: `img|${key}`, html: `<img class="room-layer room-glow" data-room-id="${escapeHtml(room.id)}" src="${url}" alt="" draggable="false" style="left:${box[0]}%;top:${box[1]}%;width:${box[2]}%;height:${box[3]}%;opacity:${built.opacity.toFixed(3)};mix-blend-mode:screen">` });
+  return built;
 }
 function roomLayerMarkup(room, prefix, width, height, preview = '') {
   const r = { ...ROOM_DEFAULTS, ...room }, light = roomLight(r), on = preview ? preview === 'on' : light.on, level = light.on ? light.level : 1;
@@ -1218,12 +1227,8 @@ function renderRooms() {
   const width = els.scene.offsetWidth || 1, height = els.scene.offsetHeight || 1, kept = new Set();
   rooms.forEach(room => {
     const preview = editMode && room.id === selectedRoomId ? roomPreviewOn : '', built = roomLayerMarkup(room, 'room', width, height, preview);
-    if (built.feather >= 2) {
-      const xs = room.points.map(p => Number(p[0])), ys = room.points.map(p => Number(p[1])), mx = built.feather * 3 * 100 / width, my = built.feather * 3 * 100 / height;
-      const box = [Math.min(...xs) - mx, Math.min(...ys) - my, Math.max(...xs) - Math.min(...xs) + 2 * mx, Math.max(...ys) - Math.min(...ys) + 2 * my].map(v => +v.toFixed(3));
-      const key = `${built.signature}|${built.color}|${box}|${built.body}`, url = roomGlowBitmap(room.id, key, built.body, width, height, box);
-      if (url) Object.assign(built, { signature: `img|${key}`, html: `<img class="room-layer room-glow" data-room-id="${escapeHtml(room.id)}" src="${url}" alt="" draggable="false" style="left:${box[0]}%;top:${box[1]}%;width:${box[2]}%;height:${box[3]}%;opacity:${built.opacity.toFixed(3)};mix-blend-mode:screen">` });
-    }
+    roomGlowApply(room, built, width, height, room.id);
+
     let node = layer.querySelector(`.room-layer[data-room-id="${CSS.escape(room.id)}"]`);
     // Unchanged geometry keeps its node, so switching the light on/off fades (CSS transition on opacity).
     if (node && node.dataset.signature === built.signature) { node.style.opacity = built.opacity.toFixed(3); const fill = node.querySelector('.room-fill'); if (fill) fill.setAttribute('fill', built.color); node.querySelectorAll('.room-stop').forEach(stop => stop.setAttribute('stop-color', built.color)); }
@@ -4972,7 +4977,11 @@ function buildSwipePreview(targetId) {
     Object.values(view.entities || {}).forEach(marker => { const node = document.createElement('div'); node.className = `marker ${marker.type}`; node.innerHTML = markerHtml(marker); applyMarkerStyle(node, marker); layer.append(node); });
     Object.values(view.flows || {}).forEach(flow => { const built = buildFlowNode(flow); if (built) { placeFlowNode(built.node, flow, built.duration); layer.append(built.node); } });
     const rooms = Object.values(view.rooms || {}).filter(room => (room.points || []).length >= 3);
-    if (rooms.length) { const roomLayer = document.createElement('div'); roomLayer.className = 'rooms'; roomLayer.innerHTML = rooms.map(room => roomLayerMarkup(room, `pv-${targetId}`, preview.geometry?.sceneWidth || 1, preview.geometry?.sceneHeight || 1).html).join(''); scene.append(roomLayer); const labels = document.createElement('div'); labels.className = 'room-labels'; labels.innerHTML = rooms.map(room => roomLabelMarkup(room)).join(''); scene.append(labels); }
+    if (rooms.length) { const roomLayer = document.createElement('div'); roomLayer.className = 'rooms'; const w = preview.geometry?.sceneWidth || 1, h = preview.geometry?.sceneHeight || 1;
+      // The cube turn cannot keep up with live SVG blurs (the glows popped in only at its end): cached bitmaps, the same
+      // ones the view itself uses; the live markup (own ids) only until they are ready.
+      const fill = () => { if (!wrap.isConnected) return; roomLayer.innerHTML = rooms.map(room => { const glow = roomGlowApply(room, roomLayerMarkup(room, 'room', w, h), w, h, `pv:${targetId}:${room.id}`, fill); return glow.signature.startsWith('img|') ? glow.html : roomLayerMarkup(room, `pv-${targetId}`, w, h).html; }).join(''); };
+      fill(); scene.append(roomLayer); const labels = document.createElement('div'); labels.className = 'room-labels'; labels.innerHTML = rooms.map(room => roomLabelMarkup(room)).join(''); scene.append(labels); }
     scene.append(layer);
   };
   if (imageEntry) {
