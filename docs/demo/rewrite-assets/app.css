@@ -1043,3 +1043,8 @@ body.editing .room-labels{z-index:3}
 @keyframes wizardPin{0%,100%{margin-top:0}50%{margin-top:-6px}}
 .room-wizard.kb-open .room-wizard-entity-step>small,.room-wizard.kb-open .room-wizard-name-step>small{display:none}
 .room-wizard.kb-open .room-wizard-head{margin-bottom:6px}
+/* Ungrouped label parts: the edit outline hugs the part's own box, so guide lines meet exactly what is seen. */
+.room-label-part.editable::after{inset:0;border-radius:inherit}
+.room-label-part.editable.selected::after{inset:0;border-width:1.5px}
+/* Guide lines: hairline thin, no glow. */
+.align-guide{--g:calc(.5px / var(--view-zoom,1));box-shadow:none!important}

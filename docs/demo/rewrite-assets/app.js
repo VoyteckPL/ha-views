@@ -856,14 +856,14 @@ function startRoomLabelDrag(event) {
     $$(`.room-label-part[data-room-id="${CSS.escape(room.id)}"]`).filter(other => !moving.includes(ROOM_LABEL_PARTS.find(([p]) => p === other.dataset.labelPart)?.[1])).forEach(other => { const r = other.getBoundingClientRect(); [r.left, r.left + r.width / 2, r.right].forEach(v => gx.push({ v: v - scene.left })); [r.top, r.top + r.height / 2, r.bottom].forEach(v => gy.push({ v: v - scene.top })); });
     const own = node.getBoundingClientRect();
     // Centre and both edges of the dragged part line up with the edges and centres of the others.
-    return { scene, xs: gx, ys: gy, offsets: [0, -1, 1], halfW: own.width / 2, halfH: own.height / 2 };
+    return { scene, xs: gx, ys: gy, offsets: [0, -1, 1], halfW: own.width / 2, halfH: own.height / 2, precise: true };
   };
   let moved = false; const camera = dragCamera(e => { clearTimeout(guides?.motion?.timer); guides = null; place(e); });
   try { els.scene.setPointerCapture(event.pointerId); } catch {}
   const place = e => {
     const [x, y] = scenePercentAt(e); if (!cameraPanning) { guides ||= roomGuides(); guides.onSettle = () => place(e); }
     const snapped = alignToGuides(guides, snapPercent(x - grab[0]), snapPercent(y - grab[1]), e);
-    const dx = Math.round((snapped.xPercent - ax) / 100 * w / k) - startOffsets[key][0], dy = Math.round((snapped.yPercent - ay) / 100 * h / k) - startOffsets[key][1];
+    const dx = Math.round((snapped.xPercent - ax) / 100 * w / k * 100) / 100 - startOffsets[key][0], dy = Math.round((snapped.yPercent - ay) / 100 * h / k * 100) / 100 - startOffsets[key][1];
     moving.forEach(kk => { room[`${kk}X`] = startOffsets[kk][0] + dx; room[`${kk}Y`] = startOffsets[kk][1] + dy; });
     renderRoomLabels();
   };
@@ -1750,7 +1750,9 @@ function alignToGuides(context, xPercent, yPercent, event) {
     if (motion.t) { const instant = Math.hypot(event.clientX - motion.x, event.clientY - motion.y) / Math.max(8, now - motion.t); motion.speed = motion.speed * .55 + instant * .45; }
     motion.t = now; motion.x = event.clientX; motion.y = event.clientY;
   }
-  const slow = motion.speed < (mobileView() ? .5 : .4), threshold = 6, release = 11, match = (axis, centre, half, values) => {
+  // Precise mode (label parts): lines are offered at any speed and let go sooner, so sliding a part past another
+  // catches its left edge, centre and right edge one after another in a single movement.
+  const precise = !!context.precise, slow = precise || motion.speed < (mobileView() ? .5 : .4), threshold = precise ? 7 : 6, release = precise ? 8 : 11, match = (axis, centre, half, values) => {
     const stuck = motion.stick[axis];
     if (stuck && Math.abs(centre + stuck.offset - stuck.line) <= release) return { ...stuck, centre: stuck.line - stuck.offset };
     motion.stick[axis] = null; if (!slow) return null;
