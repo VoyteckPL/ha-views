@@ -800,6 +800,7 @@ function equalizeLabelFrames(room, group) {
     parts.forEach(node => { node.style.boxSizing = 'border-box'; node.style.minWidth = `${w}px`; node.style.minHeight = `${h}px`; });
   }
   fitFreeCard(room, group); fitLabelBackdrop(room, group);
+  group.querySelectorAll('.room-label-part').forEach(node => node.classList.toggle('square', !!node.querySelector('.part-handle') && Math.abs(node.offsetWidth - node.offsetHeight) < .5));
 }
 // The backdrop of ungrouped parts covers all of them (plus the group's margin), however far apart they are.
 function fitLabelBackdrop(room, group) {
@@ -912,6 +913,8 @@ function startPartResize(event, handle) {
   const centre0 = horizontal ? (rect0.left + rect0.right) / 2 : (rect0.top + rect0.bottom) / 2, start = Number(room[`${key}${horizontal ? 'X' : 'Y'}`]) || 0;
   const lines = others.flatMap(r => horizontal ? [r.left, (r.left + r.right) / 2, r.right] : [r.top, (r.top + r.bottom) / 2, r.bottom]);
   const sizes = others.map(r => horizontal ? r.width : r.height);
+  // Width equal to height (and back): a round icon stays a circle, not an egg — this catch wins and holds a bit longer.
+  const across = horizontal ? rect0.height : rect0.width;
   let moved = false;
   const move = e => {
     if (e.pointerId !== event.pointerId) return; moved = true;
@@ -920,12 +923,15 @@ function startPartResize(event, handle) {
     if (!e.altKey) {
       lines.forEach(v => { const d = Math.abs(edge - v); if (d <= 7 && (!best || d < best.d)) best = { d, edge: v }; });
       sizes.forEach(size => { const v = fixed + sign * size, d = Math.abs(edge - v); if (d <= 7 && (!best || d < best.d)) best = { d, edge: v, size: true }; });
+      const square = fixed + sign * across, ds = Math.abs(edge - square); if (ds <= 10) best = { d: ds, edge: square, square: true };
       if (best) edge = best.edge;
     }
     const local = Math.max(natural, Math.abs(edge - fixed) / localToScreen); edge = fixed + sign * local * localToScreen;
     room[`${key}${horizontal ? 'W' : 'H'}`] = Math.round(local * 10) / 10;
     room[`${key}${horizontal ? 'X' : 'Y'}`] = Math.round((start + ((fixed + edge) / 2 - centre0) / planToScreen) * 100) / 100;
     renderRoomLabels();
+    const live = $(`.room-label-part[data-room-id="${id}"][data-label-part="${node.dataset.labelPart}"]`); live?.classList.toggle('square', !!best?.square || (live && Math.abs(live.offsetWidth - live.offsetHeight) < .5));
+    if (best?.square) return showAlignGuides([], []);
     const at = horizontal ? (edge - scene.left) / scene.width * 100 : (edge - scene.top) / scene.height * 100;
     if (best) showAlignGuides(horizontal ? [{ at }] : [], horizontal ? [] : [{ at }]); else showAlignGuides([], []);
   };

@@ -1058,3 +1058,6 @@ body.editing .room-labels{z-index:3}
 
 .room-label-backdrop{position:absolute;box-sizing:border-box;pointer-events:none;transform:translate(-50%,-50%) translate(calc(var(--lx,0px) * var(--scene-scale,1)),calc(var(--ly,0px) * var(--scene-scale,1))) scale(calc(var(--lscale,1) * var(--scene-scale,1)))}
 .room-label-backdrop.blur{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.room-label-part.editable.selected.square::after{border-color:#4ade80;border-style:solid}
+.room-label-part.square .part-handle{border-color:#4ade80}
+.room-label-part.icon>.mdi,.room-card-part.icon>.mdi{display:block;width:1em;height:1em;text-align:center}
