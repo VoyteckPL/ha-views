@@ -1083,3 +1083,5 @@ body.editing .room-labels{z-index:3}
 .editor .editor-tabs button i{font-size:16px}
 .editor .editor-head>.editor-quick-actions{justify-content:flex-end}
 .editor .editor-head .head-preview{margin-right:auto}
+.room-outlines{position:absolute;inset:0;pointer-events:none}
+.room-outline-layer{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
