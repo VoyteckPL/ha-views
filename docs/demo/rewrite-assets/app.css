@@ -40,7 +40,8 @@ main{width:min(1600px,calc(100% - 32px));margin:20px auto 40px}.view{display:non
      camera expands it, hide the grid instead of clipping the background. */
   .portrait-zoom-expanded .scene:after{opacity:0!important}
   .scene-card.portrait-zoom-expanded{position:relative;z-index:3}
-  .scene{will-change:transform}
+  .scene{will-change:auto}
+  .scene.gesture-layer{will-change:transform}
   .editing .mobile-zoom{display:flex;align-items:center;justify-content:center;gap:5px;padding:5px;background:rgba(5,19,29,.96);border-top:1px solid var(--line)}
   .mobile-zoom button{display:grid;place-items:center;min-width:34px;height:32px;padding:0;font-size:17px;font-weight:800}
   .mobile-zoom #zoom-reset{min-width:68px;font-size:10px}
@@ -80,7 +81,8 @@ main{width:min(1600px,calc(100% - 32px));margin:20px auto 40px}.view{display:non
 .background-transform-panel output{text-align:right;color:var(--muted);font-size:9px}
 .background-transform-panel>button{height:31px;margin-top:2px;font-size:10px}
 .background-icon.active{color:#8fdfff;border-color:rgba(32,185,231,.65);background:#12384a}
-.scene>img{transform-origin:50% 50%;will-change:transform}
+.scene>img{transform-origin:50% 50%}
+.scene.gesture-layer>img{will-change:transform}
 @media(max-width:768px){
   .background-transform-panel{position:fixed;left:8px;right:8px;top:62px;width:auto}
 }

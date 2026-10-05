@@ -3802,6 +3802,7 @@ function onAddPickPointer(event) {
   if (!addPicking || !editMode) return;
   event.preventDefault(); event.stopImmediatePropagation();
   const { type, entity } = addPicking, [x, y] = scenePercentAt(event); cancelAddPicking();
+  clearTimeout(notify.timer); els.toast.classList.remove('visible'); // the "tap the plan" hint is done
   window.addEventListener('click', swallow => { swallow.preventDefault(); swallow.stopPropagation(); }, { capture:true, once:true });
   createAddedElement(type, entity, [Math.round(x * 100) / 100, Math.round(y * 100) / 100]);
 }
@@ -4215,7 +4216,14 @@ function resetViewportPointers() {
   for (const pointerId of viewPointers.keys()) {
     try { if (els.scene?.hasPointerCapture?.(pointerId)) els.scene.releasePointerCapture(pointerId); } catch {}
   }
-  viewPointers.clear(); panGesture = null; pinchGesture = null;
+  viewPointers.clear(); panGesture = null; pinchGesture = null; setGestureLayer(false);
+}
+// The plan is a separate GPU layer (will-change) only while a finger pans / pinches it. Kept permanently, a huge,
+// zoomed layer is re-drawn late after every window resize (on-screen keyboard), showing blank or blurred frames.
+let gestureLayerTimer = 0;
+function setGestureLayer(on) {
+  clearTimeout(gestureLayerTimer);
+  if (on) els.scene.classList.add('gesture-layer'); else gestureLayerTimer = setTimeout(() => { if (!viewPointers.size) els.scene.classList.remove('gesture-layer'); }, 350);
 }
 function viewportPointerDown(event) {
   // Desktop uses a dedicated mouse drag below. Pointer gestures are touch-only there.
@@ -4225,7 +4233,7 @@ function viewportPointerDown(event) {
   const hanging = viewSwipe && viewSwipe.id !== event.pointerId && viewSwipe.tracking && !viewSwipe.fromPan && !swipeBusy ? viewSwipe : null;
   if (hanging) { cancelAnimationFrame(hanging.frame); viewSwipe = null; }
   if ((event.pointerType === 'mouse') || (event.pointerType === 'touch' && event.isPrimary && viewPointers.size && !viewPointers.has(event.pointerId))) resetViewportPointers();
-  viewPointers.set(event.pointerId, { x:event.clientX, y:event.clientY }); lastPointerActivity = performance.now();
+  viewPointers.set(event.pointerId, { x:event.clientX, y:event.clientY }); lastPointerActivity = performance.now(); setGestureLayer(true);
   if (!swipeBusy && !viewSwipe && !hanging) resetStuckSwipe(false);
   viewSwipe = mobileView() && !editMode && viewTransitionMode() !== 'off' && event.pointerType !== 'mouse' && viewPointers.size === 1 && model.viewOrder.length > 1 ? { id:event.pointerId, x:event.clientX, y:event.clientY, t:Date.now(), panX:viewPanX, target:event.target, start:performance.now(), lastMove:performance.now() } : null;
   if (hanging && viewSwipe && swipePreview) { const carry = hanging.lastDx || 0; Object.assign(viewSwipe, { x:event.clientX - carry, tracking:true, direction:hanging.direction, lastDx:carry, maxDx:Math.abs(carry) }); swipeLog(`przejęcie zawieszonego gestu (${Math.round(carry)} px)`); }
@@ -4276,7 +4284,7 @@ function viewportPointerUp(event) {
     resetViewportPointers();
     return;
   }
-  viewPointers.delete(event.pointerId);
+  viewPointers.delete(event.pointerId); if (!viewPointers.size) setGestureLayer(false);
   if (viewSwipe?.id === event.pointerId) finishViewSwipe(event);
   if (panGesture?.id === event.pointerId) panGesture = null;
   if (viewPointers.size < 2) pinchGesture = null;
