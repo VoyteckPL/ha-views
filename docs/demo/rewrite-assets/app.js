@@ -1932,6 +1932,7 @@ function setViewZoom(next, clientX = null, clientY = null) {
   viewPanX = x - (x - viewPanX) * zoom / old; viewPanY = y - (y - viewPanY) * zoom / old; viewZoom = zoom; applyViewTransform();
 }
 function resetViewZoom() {
+  stopCameraGlide();
   // Normal scenes start fully visible; wide scenes on a portrait phone start at the saved panorama focus.
   viewZoom = 1; viewPanY = 0;
   const t = currentBackgroundTransform(), maxX = Math.max(0, els.scene.offsetWidth - els.viewport.clientWidth);
@@ -2954,8 +2955,7 @@ function focusSceneBoxOnMobile(points) {
   const nextZoom = clamp(Math.min(viewW * .86 / boxW, freeH / boxH), minViewZoom(), 2.35);
   const centreX = (Math.min(...xs) + Math.max(...xs)) / 2, centreY = (Math.min(...ys) + Math.max(...ys)) / 2;
   const targetY = freeTop + freeH / 2;
-  viewZoom = nextZoom; viewPanX = viewW / 2 - centreX * nextZoom; viewPanY = targetY - centreY * nextZoom;
-  applyViewTransform();
+  glideCamera(nextZoom, viewW / 2 - centreX * nextZoom, targetY - centreY * nextZoom);
 }
 function focusScenePointOnMobile(xPercent, yPercent) {
   if (!mobileView() || !editMode) return;
@@ -2968,8 +2968,26 @@ function focusScenePointOnMobile(xPercent, yPercent) {
   const markerY = Number(marker.yPercent || 50) / 100 * sceneHeight;
   const targetX = els.viewport.clientWidth / 2, band = editorFreeBand();
   const targetY = band.top + band.height / 2;
-  viewZoom = nextZoom; viewPanX = targetX - markerX * nextZoom; viewPanY = targetY - markerY * nextZoom;
+  glideCamera(nextZoom, targetX - markerX * nextZoom, targetY - markerY * nextZoom);
+}
+// Centring glides instead of jumping: the camera eases towards its target every frame, and a new target (e.g. each
+// size step of the on-screen keyboard) only moves the goal, so nothing jumps. A finger on the plan stops it.
+let cameraGoal = null, cameraGlideFrame = 0;
+function glideCamera(zoom, panX, panY) {
+  const from = [viewZoom, viewPanX, viewPanY];
+  viewZoom = zoom; viewPanX = panX; viewPanY = panY; applyViewTransform(); // the target, kept within the camera limits
+  cameraGoal = [viewZoom, viewPanX, viewPanY];
+  [viewZoom, viewPanX, viewPanY] = from; applyViewTransform();
+  if (!cameraGlideFrame) cameraGlideFrame = requestAnimationFrame(glideStep);
+}
+function stopCameraGlide() { cancelAnimationFrame(cameraGlideFrame); cameraGlideFrame = 0; cameraGoal = null; }
+function glideStep() {
+  cameraGlideFrame = 0; if (!cameraGoal || viewPointers.size) { cameraGoal = null; return; }
+  const [z, x, y] = cameraGoal, k = .25;
+  viewZoom += (z - viewZoom) * k; viewPanX += (x - viewPanX) * k; viewPanY += (y - viewPanY) * k;
+  if (Math.abs(z - viewZoom) < .002 && Math.abs(x - viewPanX) < .5 && Math.abs(y - viewPanY) < .5) { viewZoom = z; viewPanX = x; viewPanY = y; cameraGoal = null; }
   applyViewTransform();
+  if (cameraGoal) cameraGlideFrame = requestAnimationFrame(glideStep);
 }
 function selectMarker(key) {
   editorOpenSectionIndex = -1; if (selectedId !== key) editorPreview = { entityId:'', state:'' }; selectedId = key; renderMarkers(); openEditor();
@@ -3086,7 +3104,7 @@ function dragCamera(onPan) {
     let vx = push(last.clientX - v.left) - push(v.right - last.clientX), vy = push(last.clientY - v.top) - push(v.bottom - last.clientY);
     if (!vx && !vy) { since = 0; return; }
     since ||= now; const ramp = Math.min(1, .25 + (now - since) / 800); vx *= ramp; vy *= ramp;
-    const beforeX = viewPanX, beforeY = viewPanY; viewPanX += vx; viewPanY += vy; applyViewTransform();
+    stopCameraGlide(); const beforeX = viewPanX, beforeY = viewPanY; viewPanX += vx; viewPanY += vy; applyViewTransform();
     if (Math.abs(viewPanX - beforeX) < .01 && Math.abs(viewPanY - beforeY) < .01) return; // the camera is at its limit
     // While the camera carries the element nothing snaps to guides (they would hold it back in jerks).
     cameraPanning = true; try { onPan(last); } finally { cameraPanning = false; }
@@ -3096,7 +3114,7 @@ function dragCamera(onPan) {
   return { track(event) { last = event; if (!frame) frame = requestAnimationFrame(step); }, stop() { cancelAnimationFrame(frame); frame = 0; last = null; since = 0; } };
 }
 function animateViewPan(toX, toY, ms = 280) {
-  cancelAnimationFrame(animateViewPan.frame);
+  cancelAnimationFrame(animateViewPan.frame); stopCameraGlide();
   const fromX = viewPanX, fromY = viewPanY, t0 = performance.now();
   const tick = now => { const k = Math.min(1, (now - t0) / ms), e = 1 - Math.pow(1 - k, 3); viewPanX = fromX + (toX - fromX) * e; viewPanY = fromY + (toY - fromY) * e; applyViewTransform(); if (k < 1) animateViewPan.frame = requestAnimationFrame(tick); };
   animateViewPan.frame = requestAnimationFrame(tick);
