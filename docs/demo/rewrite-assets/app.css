@@ -1205,3 +1205,4 @@ body.dock-mode .editor .editor-head>.editor-quick-actions,.editor .editor-head>.
 .room-label-part.icon>.mdi::before,.room-card-part.icon>.mdi::before{display:block;width:1em;height:1em;line-height:1;vertical-align:top}
 .room-label-part.icon,.room-card-part.icon{justify-content:center;align-items:center}
 .room-label-part.icon>.mdi::before,.room-card-part.icon>.mdi::before{text-align:left;transform:translate(var(--gx,0),var(--gy,0))}
+.room-label-part.icon>.mdi-svg,.room-card-part.icon>.mdi-svg{display:block;width:1em;height:1em;margin:0;overflow:visible;filter:drop-shadow(0 1px 2px rgba(0,0,0,.55))}

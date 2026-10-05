@@ -936,6 +936,22 @@ function roomRuleColor(r) {
 }
 // The icon glyph's visible shape is centred in its square on every device: its ink box is measured once per icon with
 // this browser's own font rendering (phones lay the icon font out differently) and the glyph is nudged by the difference.
+// Label icons are drawn as inline SVG paths (MDI, 24x24 box): centred exactly on every device, unlike the icon font whose
+// metrics differ per WebView. Until a path is fetched the font glyph is shown and swapped in place once it arrives.
+const MDI_SVG_PATHS = new Map();
+function mdiSvgPath(cls) {
+  const name = String(cls || '').replace(/^mdi-/, ''); if (!/^[a-z0-9-]+$/.test(name)) return null;
+  const known = MDI_SVG_PATHS.get(name); if (typeof known === 'string' || known === null) return known;
+  if (!known) MDI_SVG_PATHS.set(name, fetch(`https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/${name}.svg`).then(res => res.ok ? res.text() : '').then(text => {
+    const d = (String(text).match(/\sd="([^"]+)"/) || [])[1] || null; MDI_SVG_PATHS.set(name, d); if (!d) return;
+    document.querySelectorAll(`i.mdi[data-svg-icon="${name}"]`).forEach(el => el.replaceWith(Object.assign(document.createElement('template'), { innerHTML: mdiSvgMarkup(d, decodeURIComponent(el.dataset.svgStyle || '')) }).content));
+  }).catch(() => MDI_SVG_PATHS.set(name, null)));
+  return undefined;
+}
+function mdiSvgMarkup(d, svg) {
+  const o = JSON.parse(svg || '{}');
+  return `<svg class="mdi-svg" viewBox="0 0 24 24" aria-hidden="true" style="color:${escapeHtml(o.color || 'currentColor')}"><path d="${String(d).replace(/[^MmLlHhVvCcSsQqTtAaZz0-9.,\s-]/g, '')}" fill="${escapeHtml(o.fill || 'currentColor')}"${o.stroke ? ` stroke="${escapeHtml(o.stroke)}" stroke-width="${Number(o.width) || 1.5}" vector-effect="non-scaling-stroke" stroke-linejoin="round"` : ''}/></svg>`;
+}
 const GLYPH_SHIFTS = new Map();
 function glyphShiftStyle(cls) {
   if (GLYPH_SHIFTS.has(cls)) return GLYPH_SHIFTS.get(cls);
@@ -965,7 +981,11 @@ function roomLabelMarkup(room, preview = '', interactive = false) {
   const outlineOpacity = clamp(Number(r.labelIconOutlineState ? (on ? r.labelIconOutlineOnOpacity : r.labelIconOutlineOffOpacity) : r.labelIconOutlineOpacity) ?? 1, 0, 1);
   const iconStyle = `text-shadow:none;filter:drop-shadow(0 1px 2px rgba(0,0,0,.55));color:${escapeHtml(iconColor)};-webkit-text-fill-color:${r.labelIconFill !== false ? rgba(iconColor, iconOpacity) : 'transparent'};-webkit-text-stroke:${r.labelIconOutline ? `${clamp(Number(outlineWidth) || 1.5, .5, 8)}px ${rgba(outlineColor || '#FFFFFF', outlineOpacity)}` : '0 transparent'}`;
   const spec = r.labelIcon ? roomLabelIconSpec(r, on) : null;
-  const iconHtml = !spec ? '' : spec.domain ? `<img class="room-label-brand" src="api/integration_icon?domain=${encodeURIComponent(spec.domain)}" data-icon-fallback="${escapeHtml(`https://brands.home-assistant.io/_/${encodeURIComponent(spec.domain)}/dark_icon.png`)}" alt="" style="opacity:${iconOpacity}">` : `<i class="mdi ${escapeHtml(spec.cls)}" style="${iconStyle}${glyphShiftStyle(spec.cls)}"></i>`;
+  const iconHtml = !spec ? '' : spec.domain ? `<img class="room-label-brand" src="api/integration_icon?domain=${encodeURIComponent(spec.domain)}" data-icon-fallback="${escapeHtml(`https://brands.home-assistant.io/_/${encodeURIComponent(spec.domain)}/dark_icon.png`)}" alt="" style="opacity:${iconOpacity}">` : (() => {
+    const svg = JSON.stringify({ color: iconColor, fill: r.labelIconFill !== false ? rgba(iconColor, iconOpacity) : 'none', stroke: r.labelIconOutline ? rgba(outlineColor || '#FFFFFF', outlineOpacity) : '', width: clamp(Number(outlineWidth) || 1.5, .5, 8) });
+    const d = mdiSvgPath(spec.cls);
+    return d ? mdiSvgMarkup(d, svg) : `<i class="mdi ${escapeHtml(spec.cls)}" data-svg-icon="${escapeHtml(String(spec.cls).replace(/^mdi-/, ''))}" data-svg-style="${encodeURIComponent(svg)}" style="${iconStyle}${glyphShiftStyle(spec.cls)}"></i>`;
+  })();
   const content = { icon: iconHtml, name: r.labelName && r.name ? `<b data-no-i18n style="${roomTextStyle(r, 'labelName', on)}">${escapeHtml(r.name)}</b>` : '', state: state ? `<small data-no-i18n style="${roomTextStyle(r, 'labelState', on)}${ruleColor && r.labelRulesState ? `;color:${escapeHtml(ruleColor)}` : ''}">${escapeHtml(state)}</small>` : '' };
   if (r.labelLinked) {
     // A "free" group keeps the parts where they were placed when it was grouped again (card-local positions).
