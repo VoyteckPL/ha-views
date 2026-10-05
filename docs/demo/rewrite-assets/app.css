@@ -1210,8 +1210,6 @@ body.dock-mode .editor .editor-head>.editor-quick-actions,.editor .editor-head>.
 /* A small ready image drawn into the plan's own texture (no GPU layer of its own: a separately composited, screen-blended
    layer is re-composed wrongly for a few frames when the view card turns in 3D, e.g. the cube transition). */
 img.room-layer.room-glow{display:block;inset:auto;max-width:none;object-fit:fill;pointer-events:none;user-select:none;-webkit-user-drag:none}
-/* Cube turn: no separate layers inside the turning card / preview face (see positionSwipe). */
-.scene-card.cube-turning .scene,.scene-card.cube-turning .scene>img{will-change:auto!important}
 /* Blurred label backgrounds are layers of their own, which a 3D turn dropped (markers vanished): plain for the turn. */
 .scene-card.cube-turning *{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 /* The card does not clip a portrait plan (it may overflow when zoomed), so the plan rounds its own corners. */
