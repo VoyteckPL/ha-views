@@ -1295,6 +1295,8 @@ function onRoomWizardClick(event) {
   if (toggle) {
     const id = toggle.dataset.wizardToggle, single = isIconRoom(roomsOf()[roomWizard.id]); // a label has one entity: picking another replaces it
     if (roomWizard.picked.has(id)) roomWizard.picked.delete(id); else { if (single) roomWizard.picked.clear(); roomWizard.picked.add(id); }
+    // A label takes one entity: picking it moves straight on to the next step.
+    if (single && roomWizard.picked.size) { if (document.activeElement?.blur) document.activeElement.blur(); return roomWizardNext(); }
     renderRoomWizard('list'); return renderRoomWizardButton();
   }
   const partButton = event.target.closest('[data-wizard-part]');
