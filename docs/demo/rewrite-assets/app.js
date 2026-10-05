@@ -1063,6 +1063,9 @@ function renderRoomWizard(part = 'all') {
     const name = $('#room-wizard-name', box); name.placeholder = w.generated;
     if (w.step === 'name') { name.value = room?.name === w.generated ? '' : room?.name || ''; setTimeout(() => name.focus(), 60); }
     else if (w.step === 'entities') { const search = $('#room-wizard-search', box); search.value = w.query; if (!mobileView()) setTimeout(() => search.focus(), 60); }
+    // Name → entities: the search field takes the focus right away (in the same tap / Enter), so the on-screen
+    // keyboard stays open between the two steps instead of closing and opening again.
+    if (w.step === 'entities' && document.activeElement?.id === 'room-wizard-name') $('#room-wizard-search', box).focus();
     $('#room-wizard-parts', box).innerHTML = WIZARD_PARTS.map(([key, label, mdi]) => `<button type="button" class="room-wizard-part${w.parts.has(key) ? ' on' : ''}" data-wizard-part="${key}" aria-pressed="${w.parts.has(key)}"><i class="mdi ${mdi}"></i><span>${escapeHtml(translateValue(label))}</span><i class="mdi ${w.parts.has(key) ? 'mdi-check-circle' : 'mdi-circle-outline'} room-wizard-part-check"></i></button>`).join('');
     renderRoomWizardButton();
   }
@@ -4593,6 +4596,8 @@ function bindEvents() {
   $('#add-pick')?.addEventListener('change', event => { if (!addState) return; addState.pick = event.target.checked; try { localStorage.setItem(ADD_PICK_KEY, addState.pick ? '1' : '0'); } catch {} });
   els.scene?.addEventListener('pointerdown', onAddPickPointer, true);
   $('#room-wizard')?.addEventListener('click', onRoomWizardClick);
+  // Buttons in the wizard never take the focus from its text field (that would close the keyboard).
+  ['pointerdown','mousedown'].forEach(type => $('#room-wizard')?.addEventListener(type, event => { if (event.target.closest('button') && document.activeElement?.closest?.('#room-wizard') && document.activeElement.matches('input')) event.preventDefault(); }));
   $('#room-wizard-name')?.addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); roomWizardNext(); } });
   $('#room-wizard-search')?.addEventListener('input', event => { if (!roomWizard) return; roomWizard.query = event.target.value; renderRoomWizard('list'); });
   $('#room-wizard-search')?.addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); roomWizardNext(); } });
