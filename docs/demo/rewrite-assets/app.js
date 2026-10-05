@@ -4931,11 +4931,9 @@ let swipePreview = null, swipePrebuildTimer = null, swipeBusy = false, pendingSw
 function swipeNeighbour(dx) { const index = model.viewOrder.indexOf(model.activeViewId); return model.viewOrder[index + (dx < 0 ? 1 : -1)]; }
 // Transition between views on phones: 'off' (tabs only), 'slide' (pager) or 'cube' (3D cube).
 function viewTransitionMode() { const mode = model.settings?.viewTransition; return mode === 'off' || mode === 'cube' ? mode : 'slide'; }
-// The motion of one swipe. A zoomed-in view slides instead of turning as a cube: a phone cannot draw a zoomed plan
-// (several screens large) inside a 3D turn - parts of it went missing (lights, markers, the lower half of the plan).
-// Locked for the whole swipe, so the motion does not change when the next view (zoom 100%) takes over.
+// The motion of one swipe, locked for the whole swipe (the next view takes over before the motion ends).
 let swipeMotionLock = null;
-function swipeMotion() { if (swipeMotionLock) return swipeMotionLock; const mode = viewTransitionMode(); return mode === 'cube' && sceneCameraActive() && viewZoom > 1.05 ? 'slide' : mode; }
+function swipeMotion() { return swipeMotionLock || viewTransitionMode(); }
 function swipePageDistance() { if (swipeMotion() === 'cube') return els.sceneCard?.offsetWidth || innerWidth; return (els.sceneCard?.parentElement?.clientWidth || innerWidth) + 16; }
 const withTimeout = (promise, ms) => Promise.race([Promise.resolve(promise).catch(() => {}), new Promise(resolve => setTimeout(resolve, ms))]);
 // Cancels a swipe in progress (lost touch, app sent to background) and puts both cards back.
@@ -5069,6 +5067,12 @@ function positionSwipe(offset, direction, animate = 0) {
   // While the card turns in 3D the (zoomed) plan is painted into the card's own screen-sized texture instead of being
   // a separate layer: a phone cannot work out which part of a huge zoomed layer is visible under a 3D turn and drew
   // it only partly (lights blinking, half-lit rooms). The card texture is small, drawn once and only rotated.
+  // A zoomed plan overflows the card (it may use the whole screen): during the turn the card is clipped to what is on
+  // screen, otherwise the turning card holds the whole zoomed plan (several screens) and the phone drew it only partly.
+  if (els.sceneCard && cube && offset && !els.sceneCard.classList.contains('cube-turning')) {
+    const r = els.sceneCard.getBoundingClientRect(), w = document.documentElement.clientWidth || innerWidth, h = innerHeight;
+    els.sceneCard.style.setProperty('--turn-clip', `${Math.ceil(Math.max(0, r.left, w - r.right, r.top, h - r.bottom))}px`);
+  }
   els.sceneCard?.classList.toggle('cube-turning', cube && !!offset);
   if (cube) {
     // Two faces of one cube rotating about the cube's centre: the current view turns away, the next one turns in.
