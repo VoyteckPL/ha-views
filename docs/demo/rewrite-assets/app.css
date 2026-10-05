@@ -1209,3 +1209,5 @@ body.dock-mode .editor .editor-head>.editor-quick-actions,.editor .editor-head>.
 /* A small ready image drawn into the plan's own texture (no GPU layer of its own: a separately composited, screen-blended
    layer is re-composed wrongly for a few frames when the view card turns in 3D, e.g. the cube transition). */
 img.room-layer.room-glow{display:block;inset:auto;max-width:none;object-fit:fill;pointer-events:none;user-select:none;-webkit-user-drag:none}
+/* A plain (baked) glow: its own small GPU texture, drawn once, only moved / scaled by gestures and the cube turn. */
+img.room-layer.room-glow.flat{will-change:transform}
