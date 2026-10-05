@@ -1111,3 +1111,9 @@ body.editing .room-labels{z-index:3}
 .group-tight .room-card-preset.group-toggle.active .mdi{color:#03101a}
 .group-tight .control:has(.color-picker)>.color-picker{grid-column:2;justify-self:end;margin-left:auto}
 .group-tight .control>.color-picker{display:flex;justify-content:flex-end}
+/* Sliders everywhere: name on the left, then the value, then the slider pushed to the right edge (reset button last). */
+.editor .control.range-control{display:grid!important;grid-template-columns:minmax(0,1fr) auto minmax(80px,150px) 26px!important;gap:6px!important;align-items:center}
+.editor .control.range-control>label{grid-column:1;grid-row:1;min-width:0}
+.editor .control.range-control>output{grid-column:2;grid-row:1;justify-self:end;text-align:right;min-width:0;white-space:nowrap}
+.editor .control.range-control>input[type=range]{grid-column:3;grid-row:1;width:100%;min-width:0}
+.editor .control.range-control>.slider-reset{grid-column:4;grid-row:1;justify-self:end}
