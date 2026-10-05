@@ -1096,3 +1096,18 @@ body.editing .room-labels{z-index:3}
 .label-entity .room-entity strong{font-size:11px;line-height:13px}.label-entity .room-entity code{font-size:8.5px;line-height:11px}
 .label-entity .room-entity-action{flex-basis:24px;width:24px;height:24px;font-size:14px}
 .label-entity .room-entity-search{height:32px;box-sizing:border-box}
+/* Group section: same tight layout as Ogólne — every row ends at the section's right edge. */
+.group-tight .room-card-row{grid-template-columns:105px minmax(0,1fr)!important;margin:4px 0 8px!important}
+.group-tight .room-card-presets{justify-content:flex-end!important}
+.group-tight .control.checkbox{grid-template-columns:minmax(0,1fr) auto!important}
+.group-tight .control.checkbox>span:last-child{display:none}
+.group-tight .control.checkbox>input{justify-self:end}
+.group-tight .control:has(.color-picker){grid-template-columns:105px minmax(0,1fr)!important}
+.group-tight .control:has(.color-picker)>span:last-child{display:none}
+.group-tight .control .color-picker{justify-self:end}
+.group-tight .room-card-preset.group-toggle{border-color:rgba(255,181,71,.55);color:#ffb547}
+.group-tight .room-card-preset.group-toggle .mdi{color:#ffb547}
+.group-tight .room-card-preset.group-toggle.active{background:#ffb547;border-color:#ffb547;box-shadow:0 0 0 1px #ffb547}
+.group-tight .room-card-preset.group-toggle.active .mdi{color:#03101a}
+.group-tight .control:has(.color-picker)>.color-picker{grid-column:2;justify-self:end;margin-left:auto}
+.group-tight .control>.color-picker{display:flex;justify-content:flex-end}
