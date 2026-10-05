@@ -1193,3 +1193,9 @@ body.dock-mode .editor .editor-head>.editor-quick-actions,.editor .editor-head>.
 .editor .room-card-preset:not(.text){display:inline-flex!important;align-items:center;justify-content:center;flex:0 0 30px!important;width:30px!important;min-width:30px!important;height:30px!important;padding:0!important;border-radius:8px!important}
 .editor .room-card-preset .mdi{font-size:16px!important}
 .editor .room-card-presets{display:flex!important;flex-wrap:wrap;gap:4px!important}
+/* Room shape points: a clear "you can grab this" cursor and a hover highlight. Corners move (four-way arrows),
+   the small middle points add a corner (plus), a held point shows the grabbing hand. */
+.room-handle:not(.draft){cursor:move!important;transition:transform .12s ease,box-shadow .12s ease}
+.room-handle.mid{cursor:copy!important}
+.room-handle:not(.draft):hover{transform:scale(1.4);box-shadow:0 0 0 3px rgba(255,181,71,.45),0 1px 5px rgba(0,0,0,.5)!important;z-index:2}
+.room-handle:not(.draft):active{cursor:grabbing!important}
