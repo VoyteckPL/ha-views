@@ -1061,3 +1061,23 @@ body.editing .room-labels{z-index:3}
 .room-label-part.editable.selected.square::after{border-color:#4ade80;border-style:solid}
 .room-label-part.square .part-handle{border-color:#4ade80}
 .room-label-part.icon>.mdi,.room-card-part.icon>.mdi{display:block;width:1em;height:1em;text-align:center}
+/* Editor popup header: close (X) in the top-right corner level with the name; below it one compact row of
+   equal icon buttons (incl. the optional ON / OFF preview toggle). All icon buttons in the popup share one size. */
+.editor .editor-head{position:relative;flex-wrap:wrap}
+.editor .editor-head>.editor-title-block{margin-right:34px}
+.editor .editor-head>.editor-quick-actions,body.dock-mode .editor .editor-quick-actions{flex:1 0 100%;display:flex!important;flex-wrap:wrap;justify-content:flex-start;gap:4px;margin:4px 0 0}
+.editor .editor-head .editor-icon-button,.editor .editor-head>.editor-quick-actions .editor-icon-button{flex:0 0 30px;width:30px;min-width:30px;height:30px;font-size:16px;border-radius:8px}
+.editor .editor-head .editor-icon-button[hidden]{display:none!important}
+.editor .editor-head [id$="editor-close"]{position:absolute;top:8px;right:9px}
+.editor .editor-head .head-preview.active{color:#03101a;background:#20b9e7;border-color:#20b9e7}
+.room-editor .room-card-presets{gap:4px!important}
+.room-editor .room-card-preset{flex:0 0 30px!important;width:30px;min-width:30px!important;height:30px!important;border-radius:8px}
+.room-editor .room-card-preset .mdi{font-size:16px}
+.room-editor .room-card-preset .room-card-swatch{width:18px;height:18px;border-radius:5px}
+.control:has(input[data-path="tapAction"]) .seg-choice{gap:4px}
+.control:has(input[data-path="tapAction"]) .seg-btn{flex:0 0 30px!important;width:30px;height:30px!important;border-radius:8px}
+.control:has(input[data-path="tapAction"]) .seg-btn .mdi{font-size:16px}
+.room-editor .room-card-row>label,.room-editor .control:has(.seg-choice)>label{line-height:30px}
+.editor .editor-tabs{display:flex!important;justify-content:flex-start;gap:4px;padding:4px 12px 6px}
+.editor .editor-tabs button{flex:0 0 30px;width:30px;min-width:30px;height:30px!important;padding:0;border-radius:8px}
+.editor .editor-tabs button i{font-size:16px}
