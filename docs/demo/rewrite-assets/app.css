@@ -932,7 +932,7 @@ body.editing .room-labels{z-index:3}
 .room-label-card.layout-iconLeft.align-left .room-card-part.name,.room-label-card.layout-iconLeft.align-left .room-card-part.state{justify-self:start}
 .room-label-card.layout-iconRight.align-right .room-card-part.name,.room-label-card.layout-iconRight.align-right .room-card-part.state{justify-self:end}
 .room-card-part{display:flex;align-items:center;justify-content:center}.room-card-part .mdi{font-size:1em;line-height:1}.room-card-part b{font-weight:700}
-.room-card-part.bg{padding:.2em .5em;border-radius:.6em}.room-card-part.icon.bg{padding:.2em;border-radius:50%}
+.room-card-part.bg{padding:.28em .55em;border-radius:.7em}.room-card-part small{font-size:1em;opacity:.95}.room-card-part.icon.bg{padding:.2em;border-radius:50%}
 .room-label-card.editable{pointer-events:auto;cursor:grab;touch-action:none}
 .room-label-card.editable::after{content:'';position:absolute;inset:-6px;border:1px dashed rgba(255,181,71,.75);border-radius:inherit;pointer-events:none}
 .room-card-row{align-items:start}.room-card-presets{grid-column:2 / -1;display:flex;flex-wrap:wrap;gap:6px}
@@ -1055,3 +1055,6 @@ body.editing .room-labels{z-index:3}
 .part-handle.n{left:50%;top:0;cursor:ns-resize}.part-handle.s{left:50%;top:100%;cursor:ns-resize}
 .part-handle.e{left:100%;top:50%;cursor:ew-resize}.part-handle.w{left:0;top:50%;cursor:ew-resize}
 .room-label-card.free{display:block}
+
+.room-label-backdrop{position:absolute;box-sizing:border-box;pointer-events:none;transform:translate(-50%,-50%) translate(calc(var(--lx,0px) * var(--scene-scale,1)),calc(var(--ly,0px) * var(--scene-scale,1))) scale(calc(var(--lscale,1) * var(--scene-scale,1)))}
+.room-label-backdrop.blur{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
