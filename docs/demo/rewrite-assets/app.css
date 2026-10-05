@@ -1048,3 +1048,10 @@ body.editing .room-labels{z-index:3}
 .room-label-part.editable.selected::after{inset:0;border-width:1.5px}
 /* Guide lines: hairline thin, no glow. */
 .align-guide{--g:calc(.5px / var(--view-zoom,1));box-shadow:none!important}
+/* Side dots of a selected, ungrouped part (keep their on-screen size at any zoom / scale). */
+.part-handle{position:absolute;z-index:3;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid #20b9e7;box-sizing:border-box;box-shadow:0 1px 3px rgba(0,0,0,.45);pointer-events:auto;touch-action:none;transform:translate(-50%,-50%) scale(calc(1 / (var(--lscale,1) * var(--scene-scale,1) * var(--view-zoom,1))))}
+.part-handle::before{content:"";position:absolute;inset:-6px;border-radius:50%}
+.part-handle.e,.part-handle.w{z-index:4}
+.part-handle.n{left:50%;top:0;cursor:ns-resize}.part-handle.s{left:50%;top:100%;cursor:ns-resize}
+.part-handle.e{left:100%;top:50%;cursor:ew-resize}.part-handle.w{left:0;top:50%;cursor:ew-resize}
+.room-label-card.free{display:block}
