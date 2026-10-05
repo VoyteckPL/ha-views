@@ -1131,3 +1131,5 @@ body.editing .room-labels{z-index:3}
 .editor .seg-btn.text{flex:0 0 auto!important;height:30px!important;padding:0 9px!important;border-radius:8px}
 .editor .room-card-presets{justify-content:flex-end!important}
 .editor .control:has(.seg-choice)>label,.editor .room-card-row>label{line-height:30px}
+/* The colour swatch stays where it is when its palette opens: the palette drops below it, right-aligned. */
+.editor .control>.color-picker>.color-menu.visible{position:absolute!important;right:0!important;left:auto!important;top:36px!important;margin:0!important;width:190px!important;max-width:calc(100vw - 40px)!important;box-sizing:border-box;z-index:90}
