@@ -2378,6 +2378,15 @@ function updateSceneGeometry() {
 // A portrait plan may overflow its card when zoomed (it can use the whole screen). The card is set up for that whenever
 // the plan is portrait, not only above 100%: switching it while a pinch crossed 100% rebuilt the plan's GPU layers
 // mid-gesture and the phone showed the plan without its background for a few frames. At 100% nothing overflows anyway.
+// A zoomed portrait plan may overflow its card up to the screen's edges, never further: the card always clips at the
+// screen (overflow: clip + a margin). Constant, so nothing is switched while zooming or when the card turns as a cube
+// (a turning card holding the whole zoomed plan, several screens large, was drawn only partly on a phone).
+function syncCardClip() {
+  const card = els.sceneCard; if (!card || card.style.transform) return;
+  const r = card.getBoundingClientRect(), w = document.documentElement.clientWidth || innerWidth, h = innerHeight;
+  const margin = `${Math.ceil(Math.max(0, r.left, w - r.right, r.top, h - r.bottom))}px`;
+  if (card.style.getPropertyValue('--card-clip') !== margin) card.style.setProperty('--card-clip', margin);
+}
 function portraitZoomExpansion() {
   return !mobileWidePanorama() && els.image.naturalHeight > els.image.naturalWidth;
 }
@@ -2417,6 +2426,7 @@ function applyViewTransform() {
   els.viewport.classList.toggle('portrait-zoom-expanded', expandedPortrait);
   els.sceneCard?.classList.toggle('portrait-zoom-expanded', expandedPortrait);
   els.viewport.classList.toggle('view-zoomed', viewZoom > 1.01); // hides the edit grid (a pseudo-element, cheap)
+  syncCardClip();
   if (!sceneCameraActive()) { els.scene.style.transform = ''; updatePanoramaIndicator(); return; }
   clampViewPan();
   els.scene.style.transformOrigin = '0 0';
@@ -5086,17 +5096,10 @@ function positionSwipe(offset, direction, animate = 0) {
   // While the card turns in 3D the (zoomed) plan is painted into the card's own screen-sized texture instead of being
   // a separate layer: a phone cannot work out which part of a huge zoomed layer is visible under a 3D turn and drew
   // it only partly (lights blinking, half-lit rooms). The card texture is small, drawn once and only rotated.
-  // A zoomed plan overflows the card (it may use the whole screen): during the turn the card is clipped to what is on
-  // screen, otherwise the turning card holds the whole zoomed plan (several screens) and the phone drew it only partly.
-  if (els.sceneCard && cube && offset && !els.sceneCard.classList.contains('cube-turning') && sceneCameraActive() && viewZoom > minViewZoom() + .001) {
-    const r = els.sceneCard.getBoundingClientRect(), w = document.documentElement.clientWidth || innerWidth, h = innerHeight;
-    els.sceneCard.style.setProperty('--turn-clip', `${Math.ceil(Math.max(0, r.left, w - r.right, r.top, h - r.bottom))}px`);
-  }
   // Back to the normal layers only once the card has stood still for a moment: switching them in the same frame as the
   // card snapped back (a turn started at the panorama's edge but not finished) re-drew the plan mid-motion (a blink).
   clearTimeout(positionSwipe.calm);
-  // Only a zoomed plan needs the turn state; at 100% the card turns as it is (switching layers would cost a re-draw).
-  if (cube && offset && (els.sceneCard?.classList.contains('cube-turning') || (sceneCameraActive() && viewZoom > minViewZoom() + .001))) els.sceneCard?.classList.add('cube-turning');
+  if (cube && offset) els.sceneCard?.classList.add('cube-turning');
   else if (els.sceneCard?.classList.contains('cube-turning')) positionSwipe.calm = setTimeout(() => { if (!els.sceneCard.style.transform) els.sceneCard.classList.remove('cube-turning'); }, animate + 300);
   if (cube) {
     // Two faces of one cube rotating about the cube's centre: the current view turns away, the next one turns in.

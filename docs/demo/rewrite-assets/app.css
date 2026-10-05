@@ -25,7 +25,7 @@ main{width:min(1600px,calc(100% - 32px));margin:20px auto 40px}.view{display:non
 
 /* Mobile scene viewport and local zoom */
 .scene-viewport{position:relative;width:100%;overflow:hidden}
-.scene-card.portrait-zoom-expanded,.scene-viewport.portrait-zoom-expanded{overflow:visible}
+.scene-card.portrait-zoom-expanded{overflow:clip;overflow-clip-margin:var(--card-clip,0px)}.scene-viewport.portrait-zoom-expanded{overflow:visible}
 .scene-card.portrait-zoom-expanded{position:relative;z-index:3}
 .mobile-zoom{display:none}
 @media(max-width:768px){
@@ -35,7 +35,7 @@ main{width:min(1600px,calc(100% - 32px));margin:20px auto 40px}.view{display:non
   /* Scrollable or overlaying parts of the scene must not let the browser take a horizontal drag (it cancels the view swipe). */
   .scene-viewport .scene-empty{touch-action:pan-y}.swipe-preview{touch-action:none}
   /* Zoomed background may use the full screen width, just like before. */
-  .scene-card.portrait-zoom-expanded,.scene-viewport.portrait-zoom-expanded{overflow:visible}
+  .scene-card.portrait-zoom-expanded{overflow:clip;overflow-clip-margin:var(--card-clip,0px)}.scene-viewport.portrait-zoom-expanded{overflow:visible}
   /* The positioning grid belongs to the fitted canvas only.  Once the
      camera expands it, hide the grid instead of clipping the background. */
   .portrait-zoom-expanded.view-zoomed .scene:after{opacity:0!important}
@@ -1212,7 +1212,6 @@ body.dock-mode .editor .editor-head>.editor-quick-actions,.editor .editor-head>.
 img.room-layer.room-glow{display:block;inset:auto;max-width:none;object-fit:fill;pointer-events:none;user-select:none;-webkit-user-drag:none}
 /* Cube turn: no separate layers inside the turning card / preview face (see positionSwipe). */
 .scene-card.cube-turning .scene,.scene-card.cube-turning .scene>img{will-change:auto!important}
-.scene-card.cube-turning,.scene-card.cube-turning>.scene-viewport{overflow:clip!important;overflow-clip-margin:var(--turn-clip,0px)}
 /* Blurred label backgrounds are layers of their own, which a 3D turn dropped (markers vanished): plain for the turn. */
 .scene-card.cube-turning *{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 /* The card does not clip a portrait plan (it may overflow when zoomed), so the plan rounds its own corners. */
