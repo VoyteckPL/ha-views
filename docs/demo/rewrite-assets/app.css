@@ -1184,3 +1184,12 @@ body.dock-mode .editor .editor-head>.editor-quick-actions,.editor .editor-head>.
 .add-thumb-label b{font-size:10px;line-height:1.1;color:#fff;max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .add-thumb-label small{font-size:9px;line-height:1.1;color:#dce8ef}
 .add-thumb:has(>.add-thumb-label){display:grid!important;place-items:center}
+.part-gauge{--part-color:#21bceb}
+#editor .editor-tabs[hidden]{display:none!important}
+.room-card-preset.text{width:auto!important;min-width:40px!important;flex:0 0 auto!important;padding:0 8px!important;font-size:11px;font-weight:700}
+.editor .room-card-preset.text{height:30px!important;border-radius:8px!important}
+.part-group{--part-color:#9fb6c3}
+.editor .room-card-preset.text{display:inline-flex!important;align-items:center;justify-content:center}
+.editor .room-card-preset:not(.text){display:inline-flex!important;align-items:center;justify-content:center;flex:0 0 30px!important;width:30px!important;min-width:30px!important;height:30px!important;padding:0!important;border-radius:8px!important}
+.editor .room-card-preset .mdi{font-size:16px!important}
+.editor .room-card-presets{display:flex!important;flex-wrap:wrap;gap:4px!important}
