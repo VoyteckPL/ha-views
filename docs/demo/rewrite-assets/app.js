@@ -4879,7 +4879,10 @@ function viewportPointerDown(event) {
   const hanging = viewSwipe && viewSwipe.id !== event.pointerId && viewSwipe.tracking && !viewSwipe.fromPan && !swipeBusy ? viewSwipe : null;
   if (hanging) { cancelAnimationFrame(hanging.frame); viewSwipe = null; }
   if ((event.pointerType === 'mouse') || (event.pointerType === 'touch' && event.isPrimary && viewPointers.size && !viewPointers.has(event.pointerId))) resetViewportPointers();
-  viewPointers.set(event.pointerId, { x:event.clientX, y:event.clientY }); lastPointerActivity = performance.now(); setGestureLayer(true);
+  viewPointers.set(event.pointerId, { x:event.clientX, y:event.clientY }); lastPointerActivity = performance.now();
+  // The plan's own GPU layer only when the touch can move it (pan / pinch). At 100% a single finger cannot pan, and a
+  // layer created at the touch was dropped again by the cube turn's first frame (the card showed one tile of the plan).
+  if (viewPointers.size > 1 || viewZoom > minViewZoom() + .001 || mobileWidePanorama()) setGestureLayer(true);
   if (!swipeBusy && !viewSwipe && !hanging) resetStuckSwipe(false);
   viewSwipe = mobileView() && !editMode && viewTransitionMode() !== 'off' && event.pointerType !== 'mouse' && viewPointers.size === 1 && model.viewOrder.length > 1 ? { id:event.pointerId, x:event.clientX, y:event.clientY, t:Date.now(), panX:viewPanX, target:event.target, start:performance.now(), lastMove:performance.now() } : null;
   if (hanging && viewSwipe && swipePreview) { const carry = hanging.lastDx || 0; Object.assign(viewSwipe, { x:event.clientX - carry, tracking:true, direction:hanging.direction, lastDx:carry, maxDx:Math.abs(carry) }); swipeLog(`przejęcie zawieszonego gestu (${Math.round(carry)} px)`); }
@@ -5085,14 +5088,15 @@ function positionSwipe(offset, direction, animate = 0) {
   // it only partly (lights blinking, half-lit rooms). The card texture is small, drawn once and only rotated.
   // A zoomed plan overflows the card (it may use the whole screen): during the turn the card is clipped to what is on
   // screen, otherwise the turning card holds the whole zoomed plan (several screens) and the phone drew it only partly.
-  if (els.sceneCard && cube && offset && !els.sceneCard.classList.contains('cube-turning')) {
+  if (els.sceneCard && cube && offset && !els.sceneCard.classList.contains('cube-turning') && sceneCameraActive() && viewZoom > minViewZoom() + .001) {
     const r = els.sceneCard.getBoundingClientRect(), w = document.documentElement.clientWidth || innerWidth, h = innerHeight;
     els.sceneCard.style.setProperty('--turn-clip', `${Math.ceil(Math.max(0, r.left, w - r.right, r.top, h - r.bottom))}px`);
   }
   // Back to the normal layers only once the card has stood still for a moment: switching them in the same frame as the
   // card snapped back (a turn started at the panorama's edge but not finished) re-drew the plan mid-motion (a blink).
   clearTimeout(positionSwipe.calm);
-  if (cube && offset) els.sceneCard?.classList.add('cube-turning');
+  // Only a zoomed plan needs the turn state; at 100% the card turns as it is (switching layers would cost a re-draw).
+  if (cube && offset && (els.sceneCard?.classList.contains('cube-turning') || (sceneCameraActive() && viewZoom > minViewZoom() + .001))) els.sceneCard?.classList.add('cube-turning');
   else if (els.sceneCard?.classList.contains('cube-turning')) positionSwipe.calm = setTimeout(() => { if (!els.sceneCard.style.transform) els.sceneCard.classList.remove('cube-turning'); }, animate + 300);
   if (cube) {
     // Two faces of one cube rotating about the cube's centre: the current view turns away, the next one turns in.
