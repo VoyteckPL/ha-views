@@ -993,7 +993,7 @@ body.editing .room-labels{z-index:3}
 .room-wizard-chip{display:inline-flex;align-items:center;gap:4px;border:1px solid rgba(32,185,231,.55);background:rgba(32,185,231,.16);color:#cfefff;border-radius:999px;padding:3px 6px 3px 9px;font:inherit;font-size:11.5px;cursor:pointer}
 .room-wizard-search{display:flex;align-items:center;gap:6px;padding:0 8px;border:1px solid rgba(99,181,216,.3);border-radius:9px;background:#0d2e3e}
 .room-wizard-search input{flex:1;min-width:0;height:34px;border:0;background:transparent;color:#dff6ff;outline:none;font:inherit;font-size:13px}
-.room-wizard-list{display:flex;flex-direction:column;gap:3px;margin-top:6px;max-height:min(220px,32vh);overflow:auto;overscroll-behavior:contain}
+.room-wizard-list{display:flex;flex-direction:column;gap:3px;margin-top:6px;max-height:200px;overflow:auto;overscroll-behavior:contain}
 .room-wizard-row{display:flex;align-items:center;gap:7px;width:100%;text-align:left;border:1px solid transparent;background:#0b2230;color:inherit;border-radius:8px;padding:5px 7px;font:inherit;cursor:pointer}
 .room-wizard-row:hover{border-color:rgba(99,181,216,.4)}.room-wizard-row.on{border-color:#20b9e7;background:rgba(32,185,231,.12)}
 .room-wizard-row>.mdi{font-size:17px;color:#6f93a4}.room-wizard-row.on>.mdi:first-child{color:#20b9e7}.room-wizard-row .room-wizard-icon{color:#ffc46b}
@@ -1035,3 +1035,7 @@ body.editing .room-labels{z-index:3}
 .room-editor .control:has(.seg-choice),.room-editor .room-card-row{grid-template-columns:105px minmax(0,1fr) 0;align-items:start;margin:4px 0 10px}
 .room-editor .room-card-row>label,.room-editor .control:has(.seg-choice)>label{line-height:40px;margin:0}
 .room-editor .room-card-preset .mdi{font-size:20px}.room-editor .room-card-preset .room-card-swatch{width:22px;height:22px}
+/* Spot of an icon being added (shown while its wizard is open). */
+.wizard-pin{position:absolute;z-index:6;transform:translate(-50%,-100%) scale(var(--scene-scale,1));transform-origin:50% 100%;pointer-events:none;color:#20b9e7;font-size:44px;line-height:1;filter:drop-shadow(0 3px 6px rgba(0,0,0,.45));animation:wizardPin 1.2s ease-in-out infinite}
+.wizard-pin .mdi{display:block}
+@keyframes wizardPin{0%,100%{margin-top:0}50%{margin-top:-6px}}

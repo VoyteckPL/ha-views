@@ -1000,18 +1000,26 @@ let roomWizard = null;
 // Parts an icon can show; the icon wizard asks for them in its last step.
 const WIZARD_PARTS = [['labelIcon','Ikona','mdi-lightbulb-outline'],['labelName','Nazwa','mdi-format-text'],['labelState','Stan','mdi-toggle-switch-outline']];
 function wizardSteps() { return isIconRoom(roomsOf()[roomWizard?.id]) ? ['name','entities','parts'] : ['name','entities']; }
+function showWizardPin(room) {
+  $('#wizard-pin')?.remove(); if (!room || !isIconRoom(room)) return;
+  const pin = document.createElement('div'); pin.id = 'wizard-pin'; pin.className = 'wizard-pin';
+  const [x, y] = roomAnchor(room); pin.style.left = `${x}%`; pin.style.top = `${y}%`; pin.innerHTML = '<i class="mdi mdi-map-marker"></i>';
+  els.scene.append(pin);
+}
 function openRoomWizard(id) {
   const room = roomsOf()[id], box = $('#room-wizard'); if (!room || !box) return openRoomEditor(id, -1, 0);
   roomWizard = { id, step:'name', generated: room.name, query:'', picked: new Set(room.entityIds || []), parts: new Set(WIZARD_PARTS.map(([key]) => key)) };
   // On a phone it sits under the top bar so the on-screen keyboard cannot cover it.
   box.style.top = mobileView() ? `${Math.round(($('.topbar')?.getBoundingClientRect().bottom || 0) + 8)}px` : '';
   box.classList.add('visible'); box.setAttribute('aria-hidden', 'false'); renderRoomWizard();
+  showWizardPin(room);
+  requestAnimationFrame(() => requestAnimationFrame(focusWizardTarget));
   loadEntityCatalog().then(() => { if (roomWizard?.step === 'entities') renderRoomWizard('list'); });
 }
 function closeRoomWizard() {
   const box = $('#room-wizard'); if (!roomWizard || !box) return;
   const { id, picked, parts, generated: roomWizard_generated } = roomWizard, room = roomsOf()[id]; roomWizard = null;
-  box.classList.remove('visible'); box.setAttribute('aria-hidden', 'true');
+  box.classList.remove('visible'); box.setAttribute('aria-hidden', 'true'); showWizardPin(null);
   if (!room) return;
   const before = (room.entityIds || []).join('|'); room.entityIds = [...picked];
   // An icon left without a typed name takes the name of its first entity.
@@ -1071,7 +1079,7 @@ function roomWizardNext() {
   const steps = wizardSteps(), next = steps[steps.indexOf(roomWizard.step) + 1];
   if (roomWizard.step === 'name') roomWizardName();
   if (roomWizard.step === 'parts' && !roomWizard.parts.size) return;
-  if (next) { roomWizard.step = next; return renderRoomWizard(); }
+  if (next) { roomWizard.step = next; renderRoomWizard(); return requestAnimationFrame(focusWizardTarget); }
   closeRoomWizard();
 }
 function onRoomWizardClick(event) {
@@ -1087,7 +1095,7 @@ function onRoomWizardClick(event) {
     if (roomWizard.step === 'entities') roomWizard.picked = new Set(roomsOf()[roomWizard.id]?.entityIds || []);
     if (roomWizard.step === 'parts') roomWizard.parts = new Set(WIZARD_PARTS.map(([key]) => key));
     const steps = wizardSteps(), next = steps[steps.indexOf(roomWizard.step) + 1];
-    if (next) { roomWizard.step = next; return renderRoomWizard(); }
+    if (next) { roomWizard.step = next; renderRoomWizard(); return requestAnimationFrame(focusWizardTarget); }
     return closeRoomWizard();
   }
 }
@@ -1793,7 +1801,13 @@ function updateMobileMarkerLayout(renderedWidth, renderedHeight) {
 // While typing on a phone the keyboard pushes the editor up; the selected element is centred again in what is left
 // between the top bar and the editor (after the keyboard has settled).
 let refocusTypingTimer = 0, keyboardWasOpen = false;
+// The spot being added (icon point / drawn room) stays centred in the band below the wizard on a phone.
+function focusWizardTarget() {
+  const room = roomWizard && roomsOf()[roomWizard.id]; if (!room || !mobileView()) return;
+  focusSceneBoxOnMobile(isIconRoom(room) ? [roomAnchor(room)] : room.points || []);
+}
 function focusSelectedOnMobile() {
+  if (roomWizard) return focusWizardTarget();
   const room = selectedRoomId && roomsOf()[selectedRoomId];
   if (room) focusSceneBoxOnMobile(isIconRoom(room) ? iconFocusBox(room) : room.points || []); else focusSelectedMarkerOnMobile();
 }
@@ -1802,6 +1816,7 @@ function refocusWhileTyping() {
   const open = keyboardOpen();
   // Keyboard opening / open: centre at once on every size change (no waiting), and once more when it has settled.
   if (open) { keyboardWasOpen = true; focusSelectedOnMobile(); }
+  else if (roomWizard) focusWizardTarget();
   clearTimeout(refocusTypingTimer);
   refocusTypingTimer = setTimeout(() => {
     const nowOpen = keyboardOpen();
@@ -2922,7 +2937,10 @@ function editorFreeBand() {
   const panel = ['#room-editor', '#editor', '#flow-editor'].map(sel => $(sel)).find(node => node?.classList.contains('visible'));
   const screenBottom = window.visualViewport ? window.visualViewport.offsetTop + window.visualViewport.height : innerHeight;
   const editorTop = panel ? Math.min(panel.getBoundingClientRect().top, screenBottom - panel.offsetHeight) : Math.min(vr.bottom, screenBottom);
-  const top = Math.max(($('.topbar')?.getBoundingClientRect().bottom || 0) - vr.top, 0) + 14;
+  // While the add wizard is open (under the top bar on a phone) the free band starts below it.
+  const wizard = roomWizard && $('#room-wizard.visible');
+  const topEdge = Math.max($('.topbar')?.getBoundingClientRect().bottom || 0, wizard ? wizard.getBoundingClientRect().bottom : 0);
+  const top = Math.max(topEdge - vr.top, 0) + 14;
   const bottom = Math.min(editorTop, vr.bottom) - vr.top - 14;
   return { top, bottom, height: Math.max(60, bottom - top) };
 }
