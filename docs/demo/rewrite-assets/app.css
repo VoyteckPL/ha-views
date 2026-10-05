@@ -1211,3 +1211,5 @@ body.dock-mode .editor .editor-head>.editor-quick-actions,.editor .editor-head>.
 img.room-layer.room-glow{display:block;inset:auto;max-width:none;object-fit:fill;pointer-events:none;user-select:none;-webkit-user-drag:none}
 /* A plain (baked) glow: its own small GPU texture, drawn once, only moved / scaled by gestures and the cube turn. */
 img.room-layer.room-glow.flat{will-change:transform}
+/* Cube turn: no separate layers inside the turning card / preview face (see positionSwipe). */
+.scene-card.cube-turning .scene,.scene-card.cube-turning .scene>img,.scene-card.cube-turning img.room-glow.flat,.swipe-preview img.room-glow.flat{will-change:auto!important}

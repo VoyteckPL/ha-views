@@ -5066,6 +5066,10 @@ function removeSwipePreview() { if (swipePreview) swipePreview.element.hidden = 
 function positionSwipe(offset, direction, animate = 0) {
   const distance = swipePageDistance(), transition = animate ? `transform ${animate}ms cubic-bezier(.22,.61,.36,1)` : 'none';
   const cube = viewTransitionMode() === 'cube', section = els.sceneCard?.parentElement;
+  // While the card turns in 3D the (zoomed) plan is painted into the card's own screen-sized texture instead of being
+  // a separate layer: a phone cannot work out which part of a huge zoomed layer is visible under a 3D turn and drew
+  // it only partly (lights blinking, half-lit rooms). The card texture is small, drawn once and only rotated.
+  els.sceneCard?.classList.toggle('cube-turning', cube && !!offset);
   if (cube) {
     // Two faces of one cube rotating about the cube's centre: the current view turns away, the next one turns in.
     const progress = clamp(offset / distance, -1, 1), angle = 90 * progress, half = distance / 2;
