@@ -919,7 +919,7 @@ body.add-picking .scene,body.add-picking .scene *{cursor:crosshair!important}
 body.editing .room-labels{z-index:3}
 
 /* One-element room label: a card with a shared background */
-.room-label-card{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;white-space:nowrap;line-height:1.1;text-shadow:0 1px 3px rgba(0,0,0,.6);transform:translate(-50%,-50%) translate(calc(var(--lx,0px) * var(--scene-scale,1)),calc(var(--ly,0px) * var(--scene-scale,1))) scale(calc(var(--lscale,1) * var(--scene-scale,1)));box-sizing:border-box}
+.room-label-card{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;white-space:nowrap;line-height:1.1;text-shadow:0 1px 3px rgba(0,0,0,.6);transform:translate(-50%,-50%) translate(calc(var(--lx,0px) * var(--scene-scale,1)),calc(var(--ly,0px) * var(--scene-scale,1))) scale(calc(var(--lscale,1) * var(--scene-scale,1))) translate(var(--fsx,0px),var(--fsy,0px));box-sizing:border-box}
 .room-label-card.bg{text-shadow:none;box-shadow:0 6px 18px rgba(0,0,0,.25)}
 .room-label-card.blur{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .room-label-card.layout-row{flex-direction:row}

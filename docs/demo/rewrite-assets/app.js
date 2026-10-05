@@ -900,9 +900,16 @@ function partKey(node) { return ROOM_LABEL_PARTS.find(([part]) => part === node.
 // A free group is sized around its parts (symmetric around the group's point, plus the padding).
 function fitFreeCard(room, group) {
   const card = group.querySelector('.room-label-card.free'); if (!card) return;
-  const pad = clamp(Number(room.labelCardPadding ?? ROOM_DEFAULTS.labelCardPadding) || 0, 0, 60); let halfW = 0, halfH = 0;
-  [...card.children].forEach(node => { const key = partKey(node); if (!key) return; halfW = Math.max(halfW, Math.abs(Number(room[`${key}FX`]) || 0) + node.offsetWidth / 2); halfH = Math.max(halfH, Math.abs(Number(room[`${key}FY`]) || 0) + node.offsetHeight / 2); });
-  card.style.width = `${Math.round((halfW + pad * 1.35) * 2)}px`; card.style.height = `${Math.round((halfH + pad) * 2)}px`;
+  // The group hugs the parts that are shown (a hidden part leaves no empty space): sized to their box, and the box's
+  // centre offset is moved onto the card, so the shown parts stay exactly where they are on the plan.
+  const parts = [...card.children].map(node => [node, partKey(node)]).filter(([, key]) => key); if (!parts.length) return;
+  const pad = parts.length > 1 ? clamp(Number(room.labelCardPadding ?? ROOM_DEFAULTS.labelCardPadding) || 0, 0, 60) : 0;
+  const box = parts.map(([node, key]) => { const fx = Number(room[`${key}FX`]) || 0, fy = Number(room[`${key}FY`]) || 0; return [fx - node.offsetWidth / 2, fx + node.offsetWidth / 2, fy - node.offsetHeight / 2, fy + node.offsetHeight / 2]; });
+  const minX = Math.min(...box.map(b => b[0])), maxX = Math.max(...box.map(b => b[1])), minY = Math.min(...box.map(b => b[2])), maxY = Math.max(...box.map(b => b[3]));
+  const cx = (minX + maxX) / 2, cy = (minY + maxY) / 2;
+  card.style.width = `${Math.round(maxX - minX + pad * 2.7)}px`; card.style.height = `${Math.round(maxY - minY + pad * 2)}px`;
+  card.style.setProperty('--fsx', `${cx}px`); card.style.setProperty('--fsy', `${cy}px`);
+  parts.forEach(([node, key]) => { node.style.transform = `translate(-50%,-50%) translate(${(Number(room[`${key}FX`]) || 0) - cx}px,${(Number(room[`${key}FY`]) || 0) - cy}px)`; });
 }
 // Background, frame and corners of the group (the grouped card, or the backdrop behind ungrouped parts).
 function cardLook(r, on) {
