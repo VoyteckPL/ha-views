@@ -1164,3 +1164,5 @@ body.dock-mode .editor .editor-head>.editor-quick-actions,.editor .editor-head>.
 .dash-size-row.off{opacity:.45}
 .dash-size-row label{display:flex;align-items:center;gap:3px;color:#8fb3c4;font-size:13px}
 .dash-size-row input{width:42px;height:26px;padding:0 4px;box-sizing:border-box;border:1px solid rgba(99,181,216,.3);border-radius:6px;background:#0d2635;color:#e6f4fa;font-size:12px}
+.part-room{--part-color:#4fc3f7}
+.room-editor .room-state-row>strong{grid-column:2;justify-self:end}
