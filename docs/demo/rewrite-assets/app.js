@@ -934,6 +934,23 @@ function roomRuleColor(r) {
   if (!r.labelRulesSmooth) return n < low ? r.labelRulesColorLow : n >= high ? r.labelRulesColorHigh : r.labelRulesColorMid;
   const mid = (low + high) / 2; return n <= mid ? mixHex(r.labelRulesColorLow, r.labelRulesColorMid, clamp((n - low) / Math.max(1e-9, mid - low), 0, 1)) : mixHex(r.labelRulesColorMid, r.labelRulesColorHigh, clamp((n - mid) / Math.max(1e-9, high - mid), 0, 1));
 }
+// The icon glyph's visible shape is centred in its square on every device: its ink box is measured once per icon with
+// this browser's own font rendering (phones lay the icon font out differently) and the glyph is nudged by the difference.
+const GLYPH_SHIFTS = new Map();
+function glyphShiftStyle(cls) {
+  if (GLYPH_SHIFTS.has(cls)) return GLYPH_SHIFTS.get(cls);
+  try {
+    if (!document.fonts?.check?.('100px "Material Design Icons"')) return '';
+    const probe = document.createElement('i'); probe.className = `mdi ${cls}`; probe.style.cssText = 'position:absolute;visibility:hidden;left:-999px'; document.body.append(probe);
+    const glyph = String(getComputedStyle(probe, '::before').content || '').replace(/^["']|["']$/g, ''); probe.remove(); if (!glyph || glyph === 'none') return '';
+    const ctx = (glyphShiftStyle.canvas ||= document.createElement('canvas')).getContext('2d'); ctx.font = '100px "Material Design Icons"';
+    const m = ctx.measureText(glyph); if (!m.width) return '';
+    const inkX = (-m.actualBoundingBoxLeft + m.actualBoundingBoxRight) / 2, baseline = (100 - (m.fontBoundingBoxAscent + m.fontBoundingBoxDescent)) / 2 + m.fontBoundingBoxAscent;
+    const inkY = baseline + (m.actualBoundingBoxDescent - m.actualBoundingBoxAscent) / 2, dx = (50 - inkX) / 100, dy = (50 - inkY) / 100;
+    const style = Math.abs(dx) < .004 && Math.abs(dy) < .004 ? '' : `;--gx:${dx.toFixed(3)}em;--gy:${dy.toFixed(3)}em`;
+    GLYPH_SHIFTS.set(cls, style); return style;
+  } catch { return ''; }
+}
 function roomLabelMarkup(room, preview = '', interactive = false) {
   const r = withoutOnOff({ ...ROOM_DEFAULTS, ...room });
   // One visible part: no group background, frame or margin (it would be a second frame around the part's own).
@@ -948,7 +965,7 @@ function roomLabelMarkup(room, preview = '', interactive = false) {
   const outlineOpacity = clamp(Number(r.labelIconOutlineState ? (on ? r.labelIconOutlineOnOpacity : r.labelIconOutlineOffOpacity) : r.labelIconOutlineOpacity) ?? 1, 0, 1);
   const iconStyle = `text-shadow:none;filter:drop-shadow(0 1px 2px rgba(0,0,0,.55));color:${escapeHtml(iconColor)};-webkit-text-fill-color:${r.labelIconFill !== false ? rgba(iconColor, iconOpacity) : 'transparent'};-webkit-text-stroke:${r.labelIconOutline ? `${clamp(Number(outlineWidth) || 1.5, .5, 8)}px ${rgba(outlineColor || '#FFFFFF', outlineOpacity)}` : '0 transparent'}`;
   const spec = r.labelIcon ? roomLabelIconSpec(r, on) : null;
-  const iconHtml = !spec ? '' : spec.domain ? `<img class="room-label-brand" src="api/integration_icon?domain=${encodeURIComponent(spec.domain)}" data-icon-fallback="${escapeHtml(`https://brands.home-assistant.io/_/${encodeURIComponent(spec.domain)}/dark_icon.png`)}" alt="" style="opacity:${iconOpacity}">` : `<i class="mdi ${escapeHtml(spec.cls)}" style="${iconStyle}"></i>`;
+  const iconHtml = !spec ? '' : spec.domain ? `<img class="room-label-brand" src="api/integration_icon?domain=${encodeURIComponent(spec.domain)}" data-icon-fallback="${escapeHtml(`https://brands.home-assistant.io/_/${encodeURIComponent(spec.domain)}/dark_icon.png`)}" alt="" style="opacity:${iconOpacity}">` : `<i class="mdi ${escapeHtml(spec.cls)}" style="${iconStyle}${glyphShiftStyle(spec.cls)}"></i>`;
   const content = { icon: iconHtml, name: r.labelName && r.name ? `<b data-no-i18n style="${roomTextStyle(r, 'labelName', on)}">${escapeHtml(r.name)}</b>` : '', state: state ? `<small data-no-i18n style="${roomTextStyle(r, 'labelState', on)}${ruleColor && r.labelRulesState ? `;color:${escapeHtml(ruleColor)}` : ''}">${escapeHtml(state)}</small>` : '' };
   if (r.labelLinked) {
     // A "free" group keeps the parts where they were placed when it was grouped again (card-local positions).
