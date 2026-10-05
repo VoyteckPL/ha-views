@@ -1210,8 +1210,10 @@ body.dock-mode .editor .editor-head>.editor-quick-actions,.editor .editor-head>.
 /* A small ready image drawn into the plan's own texture (no GPU layer of its own: a separately composited, screen-blended
    layer is re-composed wrongly for a few frames when the view card turns in 3D, e.g. the cube transition). */
 img.room-layer.room-glow{display:block;inset:auto;max-width:none;object-fit:fill;pointer-events:none;user-select:none;-webkit-user-drag:none}
-/* Blurred label backgrounds are layers of their own, which a 3D turn dropped (markers vanished): plain for the turn. */
-.scene-card.cube-turning *{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+/* Touch devices: no blur behind labels / markers on the plan (their semi-transparent background stays). A blurred
+   background is a GPU layer of its own; in a 3D cube turn such layers vanished, and switching the blur off only for
+   the turn re-drew the plan's tiles under every label in the turn's first frame (blank tiles). Constant = no switch. */
+@media (pointer:coarse){.scene-card .scene *,.swipe-preview .scene *{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
 /* The card does not clip a portrait plan (it may overflow when zoomed), so the plan rounds its own corners. */
 .scene-card.portrait-zoom-expanded .scene{border-radius:11px}
 /* A plain glow keeps a GPU layer of its own for good: switching a light fades its opacity, and a layer created for the

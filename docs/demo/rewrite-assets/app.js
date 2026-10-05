@@ -5093,9 +5093,8 @@ function positionSwipe(offset, direction, animate = 0) {
   if (offset && !swipeMotionLock) swipeMotionLock = swipeMotion();
   const cube = swipeMotion() === 'cube', section = els.sceneCard?.parentElement;
   if (!offset) swipeMotionLock = null;
-  // During a turn only blurred label backgrounds are switched off (their own layers vanished in 3D). The plan keeps
-  // its layer: dropping it as the turn started re-drew the whole card in that first frame (an empty card). The card
-  // always clips the plan at the screen (syncCardClip), so the turning card holds no more than a screen.
+  // Nothing is switched when a turn starts: the plan keeps its layer (dropping it re-drew the whole card in the first
+  // frame), the card always clips the plan at the screen (syncCardClip) and labels have no blur on touch devices.
   // Back to the normal layers only once the card has stood still for a moment: switching them in the same frame as the
   // card snapped back (a turn started at the panorama's edge but not finished) re-drew the plan mid-motion (a blink).
   clearTimeout(positionSwipe.calm);
