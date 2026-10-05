@@ -1217,3 +1217,6 @@ img.room-layer.room-glow{display:block;inset:auto;max-width:none;object-fit:fill
 .scene-card.cube-turning *{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 /* The card does not clip a portrait plan (it may overflow when zoomed), so the plan rounds its own corners. */
 .scene-card.portrait-zoom-expanded .scene{border-radius:11px}
+/* A plain glow keeps a GPU layer of its own for good: switching a light fades its opacity, and a layer created for the
+   fade and dropped after it rebuilt the plan's layers each time (blank tiles for a frame on a phone). Small texture. */
+img.room-layer.room-glow.flat{will-change:opacity}
