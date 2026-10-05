@@ -747,7 +747,7 @@ function roomGlowApply(room, built, width, height, slot, onReady, backdrop = nul
   const box = [Math.min(...xs) - mx, Math.min(...ys) - my, Math.max(...xs) - Math.min(...xs) + 2 * mx, Math.max(...ys) - Math.min(...ys) + 2 * my].map(v => +v.toFixed(3));
   const tone = roomGlowFlat() ? backdropTone(backdrop || sceneBackdrop(), box) : null;
   const key = `${built.signature}|${built.color}|${box}|${tone || 'screen'}|${built.body}`, url = roomGlowBitmap(slot, key, built.body, width, height, box, onReady, tone);
-  if (url) Object.assign(built, { signature: `img|${key}`, html: `<img class="room-layer room-glow${tone ? ' flat' : ''}" data-room-id="${escapeHtml(room.id)}" src="${url}" alt="" draggable="false" style="left:${box[0]}%;top:${box[1]}%;width:${box[2]}%;height:${box[3]}%;opacity:${built.opacity.toFixed(3)};mix-blend-mode:${tone ? 'normal' : 'screen'}">` });
+  if (url) Object.assign(built, { signature: `img|${key}`, html: `<img class="room-layer room-glow${tone ? ' flat' : ''}" decoding="sync" data-room-id="${escapeHtml(room.id)}" src="${url}" alt="" draggable="false" style="left:${box[0]}%;top:${box[1]}%;width:${box[2]}%;height:${box[3]}%;opacity:${built.opacity.toFixed(3)};mix-blend-mode:${tone ? 'normal' : 'screen'}">` });
   return built;
 }
 function roomLayerMarkup(room, prefix, width, height, preview = '') {
@@ -5041,7 +5041,7 @@ function buildSwipePreview(targetId) {
   };
   if (imageEntry) {
     layout(null);
-    imageEntry.ready.then(image => { if (!wrap.isConnected) return; const clone = image.cloneNode(); clone.style.filter = viewIsNight(view) ? brightnessFilter(brightnessOf(view, 'nightBrightness')) : dayImageFilter(view); clone.className = 'swipe-preview-image'; clone.alt = ''; clone.draggable = false; const tint = Number(viewIsNight(view) ? 0 : sunDimTint(view)); if (tint) { const shade = document.createElement('div'); shade.className = 'scene-dim-tint'; shade.style.opacity = tint; scene.prepend(shade); } scene.prepend(clone); layout(image); addMarkers(); });
+    imageEntry.ready.then(image => { if (!wrap.isConnected) return; const clone = image.cloneNode(); clone.style.filter = viewIsNight(view) ? brightnessFilter(brightnessOf(view, 'nightBrightness')) : dayImageFilter(view); clone.className = 'swipe-preview-image'; clone.decoding = 'sync'; clone.alt = ''; clone.draggable = false; const tint = Number(viewIsNight(view) ? 0 : sunDimTint(view)); if (tint) { const shade = document.createElement('div'); shade.className = 'scene-dim-tint'; shade.style.opacity = tint; scene.prepend(shade); } scene.prepend(clone); layout(image); addMarkers(); });
   } else { layout(null); addMarkers(); }
   return preview;
 }
