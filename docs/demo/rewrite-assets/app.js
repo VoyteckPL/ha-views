@@ -4938,7 +4938,12 @@ let swipePreview = null, swipePrebuildTimer = null, swipeBusy = false, pendingSw
 function swipeNeighbour(dx) { const index = model.viewOrder.indexOf(model.activeViewId); return model.viewOrder[index + (dx < 0 ? 1 : -1)]; }
 // Transition between views on phones: 'off' (tabs only), 'slide' (pager) or 'cube' (3D cube).
 function viewTransitionMode() { const mode = model.settings?.viewTransition; return mode === 'off' || mode === 'cube' ? mode : 'slide'; }
-function swipePageDistance() { if (viewTransitionMode() === 'cube') return els.sceneCard?.offsetWidth || innerWidth; return (els.sceneCard?.parentElement?.clientWidth || innerWidth) + 16; }
+// The motion of one swipe. A zoomed-in view slides instead of turning as a cube: a phone cannot draw a zoomed plan
+// (several screens large) inside a 3D turn - parts of it went missing (lights, markers, the lower half of the plan).
+// Locked for the whole swipe, so the motion does not change when the next view (zoom 100%) takes over.
+let swipeMotionLock = null;
+function swipeMotion() { if (swipeMotionLock) return swipeMotionLock; const mode = viewTransitionMode(); return mode === 'cube' && sceneCameraActive() && viewZoom > 1.05 ? 'slide' : mode; }
+function swipePageDistance() { if (swipeMotion() === 'cube') return els.sceneCard?.offsetWidth || innerWidth; return (els.sceneCard?.parentElement?.clientWidth || innerWidth) + 16; }
 const withTimeout = (promise, ms) => Promise.race([Promise.resolve(promise).catch(() => {}), new Promise(resolve => setTimeout(resolve, ms))]);
 // Cancels a swipe in progress (lost touch, app sent to background) and puts both cards back.
 // Safety net: cards may never stay between two views without a gesture or an animation running.
@@ -5065,7 +5070,9 @@ function setSwipeClip(on) {
 function removeSwipePreview() { if (swipePreview) swipePreview.element.hidden = true; swipePreview = null; setSwipeClip(false); }
 function positionSwipe(offset, direction, animate = 0) {
   const distance = swipePageDistance(), transition = animate ? `transform ${animate}ms cubic-bezier(.22,.61,.36,1)` : 'none';
-  const cube = viewTransitionMode() === 'cube', section = els.sceneCard?.parentElement;
+  if (offset && !swipeMotionLock) swipeMotionLock = swipeMotion();
+  const cube = swipeMotion() === 'cube', section = els.sceneCard?.parentElement;
+  if (!offset) swipeMotionLock = null;
   // While the card turns in 3D the (zoomed) plan is painted into the card's own screen-sized texture instead of being
   // a separate layer: a phone cannot work out which part of a huge zoomed layer is visible under a 3D turn and drew
   // it only partly (lights blinking, half-lit rooms). The card texture is small, drawn once and only rotated.
