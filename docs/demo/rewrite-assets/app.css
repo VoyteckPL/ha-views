@@ -1206,5 +1206,6 @@ body.dock-mode .editor .editor-head>.editor-quick-actions,.editor .editor-head>.
 .room-label-part.icon,.room-card-part.icon{justify-content:center;align-items:center}
 .room-label-part.icon>.mdi::before,.room-card-part.icon>.mdi::before{text-align:left;transform:translate(var(--gx,0),var(--gy,0))}
 .room-label-part.icon>.mdi-svg,.room-card-part.icon>.mdi-svg{display:block;width:1em;height:1em;margin:0;overflow:visible;filter:drop-shadow(0 1px 2px rgba(0,0,0,.55))}
-/* Its own GPU texture: drawn once, then only moved / scaled while the plan is panned or zoomed (no re-raster, no blink). */
-img.room-layer.room-glow{display:block;inset:auto;max-width:none;object-fit:fill;pointer-events:none;user-select:none;-webkit-user-drag:none;will-change:transform;transform:translateZ(0);backface-visibility:hidden}
+/* A small ready image drawn into the plan's own texture (no GPU layer of its own: a separately composited, screen-blended
+   layer is re-composed wrongly for a few frames when the view card turns in 3D, e.g. the cube transition). */
+img.room-layer.room-glow{display:block;inset:auto;max-width:none;object-fit:fill;pointer-events:none;user-select:none;-webkit-user-drag:none}
