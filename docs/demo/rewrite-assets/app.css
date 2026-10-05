@@ -1166,3 +1166,21 @@ body.dock-mode .editor .editor-head>.editor-quick-actions,.editor .editor-head>.
 .dash-size-row input{width:42px;height:26px;padding:0 4px;box-sizing:border-box;border:1px solid rgba(99,181,216,.3);border-radius:6px;background:#0d2635;color:#e6f4fa;font-size:12px}
 .part-room{--part-color:#4fc3f7}
 .room-editor .room-state-row>strong{grid-column:2;justify-self:end}
+/* Guide colours by what the line comes from: wskaźnik / marker (blue), Flow (teal), etykieta (pink),
+   pomieszczenie (orange), background edges and centre (green). */
+.align-guide.marker{background:#20b9e7}
+.align-guide.flow{background:#2dd4bf}
+.align-guide.label{background:#f472d0}
+/* Magnet menu: rarely used tools are folded under "Więcej". */
+.snap-more{margin-top:4px;border-top:1px solid rgba(99,181,216,.16);padding-top:4px}
+.snap-more>summary{display:flex;align-items:center;gap:8px;padding:6px;color:#8fb3c4;font-size:12px;cursor:pointer;list-style:none;border-radius:8px}
+.snap-more>summary::-webkit-details-marker{display:none}
+.snap-more>summary:hover{background:rgba(32,185,231,.08)}
+.snap-more>summary .mdi{font-size:18px}
+.snap-more[open]>summary{color:#cfe3ec}
+/* Add window: the Etykieta tile shows a small group — icon, name and state. */
+.add-thumb-label{display:inline-flex;flex-direction:column;align-items:center;gap:2px;padding:6px 10px;border-radius:10px;background:rgba(8,24,34,.72);box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+.add-thumb-label-icon{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:rgba(8,24,34,.6);box-shadow:inset 0 0 0 1px rgba(255,255,255,.55);color:#ffc46b;font-size:14px}
+.add-thumb-label b{font-size:10px;line-height:1.1;color:#fff;max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.add-thumb-label small{font-size:9px;line-height:1.1;color:#dce8ef}
+.add-thumb:has(>.add-thumb-label){display:grid!important;place-items:center}

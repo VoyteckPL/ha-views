@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link id="mdi-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" media="print" onload="this.media='all'">
   <style>.app-booting .markers,.app-booting .scene-empty,.app-booting .selection,.app-booting .flow-selection,.app-booting #edit-toggle,.app-booting #view-manage,.app-booting #settings-toggle{visibility:hidden!important}</style>
-  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260928-325">
+  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260928-326">
   <meta name="description" content="HA Views live demo: visual Home Assistant dashboards on your own floor plan. Runs entirely in your browser.">
   <style>
     #demo-bar{position:fixed;left:10px;bottom:10px;z-index:60;display:flex;align-items:center;gap:8px;max-width:calc(100vw - 20px);padding:6px 8px 6px 12px;border:1px solid rgba(99,181,216,.4);border-radius:999px;background:rgba(6,22,32,.92);color:#cfe6f1;font:12px/1.3 system-ui,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.45);backdrop-filter:blur(6px)}
@@ -16,7 +16,7 @@
     body.editing #demo-bar{opacity:.35}body.editing #demo-bar:hover{opacity:1}
     @media (max-width:640px){#demo-bar .demo-note{display:none}}
   </style>
-  <script>window.HA_VIEWS_DEMO_APP = 'rewrite-assets/app.js?v=20260928-325';</script>
+  <script>window.HA_VIEWS_DEMO_APP = 'rewrite-assets/app.js?v=20260928-326';</script>
   <script src="demo-layout.js"></script>
   <script src="demo.js"></script>
 </head>
@@ -114,16 +114,17 @@
       <div id="snap-menu" class="compact-menu snap-menu">
         <div class="snap-menu-title">Przyciąganie i siatka</div>
         <button id="snap-toggle" class="menu-action" title="Siatka włączona" aria-label="Siatka włączona"><i class="mdi mdi-grid"></i><span>Siatka</span><b id="grid-status">ON</b></button><div class="grid-size-row"><i class="mdi mdi-grid-large" title="Wielkość siatki" aria-label="Wielkość siatki"></i><div class="grid-presets" role="group" aria-label="Wielkość siatki"><button type="button" class="grid-preset active" data-grid-step="0.25">S</button><button type="button" class="grid-preset" data-grid-step="1">M</button><button type="button" class="grid-preset" data-grid-step="4">L</button></div></div>
-        <button id="bounds-toggle" class="menu-action" title="Elementy nie wychodzą poza tło" aria-label="Elementy nie wychodzą poza tło"><i class="mdi mdi-border-inside"></i><span>Granice tła</span><b id="bounds-status">ON</b></button>
-        <button id="dash-toggle" class="menu-action" title="Siatka dashboardu" aria-label="Siatka dashboardu"><i class="mdi mdi-view-dashboard-outline"></i><span>Siatka dashboardu</span><b id="dash-status">OFF</b></button>
-        <div id="dash-size-row" class="dash-size-row"><label title="Kolumny"><i class="mdi mdi-table-column"></i><input id="dash-cols" type="number" min="1" max="24" step="1" inputmode="numeric" aria-label="Kolumny"></label><label title="Wiersze"><i class="mdi mdi-table-row"></i><input id="dash-rows" type="number" min="1" max="24" step="1" inputmode="numeric" aria-label="Wiersze"></label><label title="Odstęp"><i class="mdi mdi-arrow-split-vertical"></i><input id="dash-gap" type="number" min="0" max="80" step="1" inputmode="numeric" aria-label="Odstęp"></label></div>
+        
+        
+        
         <div class="menu-divider"></div>
         <div class="snap-group"><span>Linie pomocnicze</span><div class="snap-icons">
           <button type="button" class="snap-icon" data-snap-key="guides" title="Linie pomocnicze"><i class="mdi mdi-ruler-square-compass"></i></button>
-          <button type="button" class="snap-icon" data-snap-key="visibleOnly" title="Tylko elementy widoczne na ekranie"><i class="mdi mdi-eye-outline"></i></button>
+          
         </div></div>
         <div class="snap-group"><span>Przyciągaj do</span><div class="snap-icons">
-          <button type="button" class="snap-icon" data-snap-key="markers" title="Markery"><i class="mdi mdi-card-text-outline"></i></button>
+          <button type="button" class="snap-icon" data-snap-key="labels" title="Etykiety"><i class="mdi mdi-label-outline"></i></button>
+          <button type="button" class="snap-icon" data-snap-key="markers" title="Wskaźniki i markery"><i class="mdi mdi-gauge"></i></button>
           <button type="button" class="snap-icon" data-snap-key="flows" title="Flow"><i class="mdi mdi-chevron-triple-right"></i></button>
           <button type="button" class="snap-icon" data-snap-key="rooms" title="Pomieszczenia"><i class="mdi mdi-floor-plan"></i></button>
           <button type="button" class="snap-icon" data-snap-key="background" title="Tło (środek i krawędzie)"><i class="mdi mdi-image-outline"></i></button>
@@ -132,7 +133,8 @@
           <button type="button" class="snap-icon" data-snap-key="centers" title="Środki"><i class="mdi mdi-plus-circle-outline"></i></button>
           <button type="button" class="snap-icon" data-snap-key="edges" title="Krawędzie"><i class="mdi mdi-border-outside"></i></button>
         </div></div>
-        <div class="menu-divider"></div>
+        <details class="snap-more"><summary><i class="mdi mdi-dots-horizontal"></i><span>Więcej</span></summary>
+        <button id="bounds-toggle" class="menu-action" title="Elementy nie wychodzą poza tło" aria-label="Elementy nie wychodzą poza tło"><i class="mdi mdi-border-inside"></i><span>Granice tła</span><b id="bounds-status">ON</b></button>
         <div class="snap-group"><span>Wyrównaj zaznaczony do tła</span><div class="snap-icons align-icons">
           <button type="button" class="snap-icon" data-align="left" title="Do lewej krawędzi tła"><i class="mdi mdi-align-horizontal-left"></i></button>
           <button type="button" class="snap-icon" data-align="hcenter" title="Wyśrodkuj w poziomie"><i class="mdi mdi-align-horizontal-center"></i></button>
@@ -141,7 +143,6 @@
           <button type="button" class="snap-icon" data-align="vcenter" title="Wyśrodkuj w pionie"><i class="mdi mdi-align-vertical-center"></i></button>
           <button type="button" class="snap-icon" data-align="bottom" title="Do dolnej krawędzi tła"><i class="mdi mdi-align-vertical-bottom"></i></button>
         </div></div>
-        <div class="menu-divider"></div>
         <div class="snap-group"><span>Obróć zaznaczony</span><div class="snap-icons align-icons rotate-icons">
           <button type="button" class="snap-icon" data-rotate="-90" title="Obróć o 90° w lewo"><i class="mdi mdi-rotate-left"></i></button>
           <button type="button" class="snap-icon rotate-step" data-rotate="-15" title="Obróć o 15° w lewo"><i class="mdi mdi-rotate-left"></i><small>15</small></button>
@@ -149,6 +150,7 @@
           <button type="button" class="snap-icon rotate-step" data-rotate="15" title="Obróć o 15° w prawo"><i class="mdi mdi-rotate-right"></i><small>15</small></button>
           <button type="button" class="snap-icon" data-rotate="90" title="Obróć o 90° w prawo"><i class="mdi mdi-rotate-right"></i></button>
         </div><div class="rotate-row"><input id="rotate-range" type="range" min="-180" max="180" step="1" value="0" title="Obrót płynny" aria-label="Obrót płynny"><output id="rotate-value">0°</output></div></div>
+        </details>
       </div>
       <button id="add-button" class="icon-action add-top" title="Dodaj do widoku" aria-label="Dodaj do widoku"><i class="mdi mdi-plus"></i></button>
       <button id="snap-menu-button" class="icon-action" title="Przyciąganie i siatka" aria-label="Przyciąganie i siatka"><i class="mdi mdi-magnet"></i></button>
@@ -372,6 +374,6 @@
   </div>
 
   <div id="toast" class="toast"></div>
-  <div id="demo-bar" data-no-i18n><b>HA Views demo</b><span class="demo-note">0.4.1-beta.325 preview · example data · your changes stay in this browser</span><button type="button" onclick="haViewsDemoReset()" title="Restore the example dashboard">Reset</button><a href="https://github.com/VoyteckPL/ha-views" target="_blank" rel="noopener">Get the add-on</a></div>
+  <div id="demo-bar" data-no-i18n><b>HA Views demo</b><span class="demo-note">0.4.1-beta.326 preview · example data · your changes stay in this browser</span><button type="button" onclick="haViewsDemoReset()" title="Restore the example dashboard">Reset</button><a href="https://github.com/VoyteckPL/ha-views" target="_blank" rel="noopener">Get the add-on</a></div>
 </body>
 </html>
