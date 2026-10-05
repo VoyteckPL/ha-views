@@ -923,7 +923,7 @@ body.editing .room-labels{z-index:3}
 .room-label-card.bg{text-shadow:none;box-shadow:0 6px 18px rgba(0,0,0,.25)}
 .room-label-card.blur{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .room-label-card.layout-row{flex-direction:row}
-.room-label-card.layout-iconLeft,.room-label-card.layout-iconRight{display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto;column-gap:inherit;row-gap:2px;align-items:center}
+.room-label-card.layout-iconLeft,.room-label-card.layout-iconRight{display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto;column-gap:0;row-gap:0;align-items:center}
 .room-label-card.layout-iconLeft{grid-template-areas:"icon name" "icon state"}.room-label-card.layout-iconRight{grid-template-areas:"name icon" "state icon"}
 .room-label-card.layout-iconLeft .room-card-part.icon,.room-label-card.layout-iconRight .room-card-part.icon{grid-area:icon}
 .room-label-card.layout-iconLeft .room-card-part.name,.room-label-card.layout-iconRight .room-card-part.name{grid-area:name}
