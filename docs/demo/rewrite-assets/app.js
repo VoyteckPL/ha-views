@@ -778,6 +778,8 @@ function roomLabelState(room) {
     return Number.isFinite(brightness) && brightness > 0 ? `${roomOnOffWord(room, true)} · ${Math.round(brightness / 2.55)}%` : roomOnOffWord(room, true);
   }
   const st = stateCache[ids[0]]; if (!st) return '';
+  // Other ON / OFF entities (cover, lock, binary sensor…): their own ON / OFF texts replace the HA state (open → ON, closed → OFF).
+  if (roomSwitchable(room) && roomNumber(room) === null) { const on = ROOM_ON_STATES.has(String(st.state ?? '').toLowerCase()), own = String((on ? room.labelStateOnText : room.labelStateOffText) || '').trim(); if (own) return own; }
   const ownUnit = String(room.labelStateUnit ?? '').trim(), unit = ownUnit === '-' ? '' : ownUnit || st.attributes?.unit_of_measurement || '', n = roomNumber(room);
   if (n === null) return String(st.state ?? '');
   const decimals = ['0','1','2','3'].includes(String(room.labelStateDecimals)) ? Number(room.labelStateDecimals) : null;
