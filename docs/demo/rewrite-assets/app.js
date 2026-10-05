@@ -671,6 +671,30 @@ function roomEffectBody(r, id, blur, points, color) {
   }
   return `<defs>${blur}${defs}</defs>${shapes}`;
 }
+// A lit room's soft glow is drawn once into a bitmap and shown as an image. A live SVG blur is re-rasterised whenever
+// the plan gets its own GPU layer (a finger pan / pinch) and on a phone it could vanish for a frame (a blink).
+// The glow is blurred anyway, so the bitmap scales without visible loss; a sharp-edged room (no feather) stays live.
+const ROOM_GLOW_BITMAPS = new Map(), ROOM_GLOW_PENDING = new Map();
+function roomGlowBitmap(roomId, key, body, width, height) {
+  const ready = ROOM_GLOW_BITMAPS.get(key); if (ready) { ROOM_GLOW_BITMAPS.delete(key); ROOM_GLOW_BITMAPS.set(key, ready); return ready; }
+  if (ROOM_GLOW_PENDING.get(roomId)?.key === key) return null;
+  clearTimeout(ROOM_GLOW_PENDING.get(roomId)?.timer);
+  // Debounced per room, so dragging a vertex or a slider does not render a bitmap for every step.
+  const job = { key, timer: setTimeout(async () => {
+    try {
+      const scale = Math.min(clamp(window.devicePixelRatio || 1, 1, 2), 2048 / Math.max(1, width, height)), w = Math.max(1, Math.round(width * scale)), h = Math.max(1, Math.round(height * scale));
+      const img = new Image(); img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 100 100" preserveAspectRatio="none">${body}</svg>`);
+      await img.decode();
+      const canvas = document.createElement('canvas'); canvas.width = w; canvas.height = h; canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      const blob = await new Promise(done => canvas.toBlob(done, 'image/png')); if (!blob) return;
+      const url = URL.createObjectURL(blob), probe = new Image(); probe.src = url; await probe.decode().catch(() => {});
+      ROOM_GLOW_BITMAPS.set(key, url);
+      while (ROOM_GLOW_BITMAPS.size > 80) { const [oldKey, oldUrl] = ROOM_GLOW_BITMAPS.entries().next().value; ROOM_GLOW_BITMAPS.delete(oldKey); URL.revokeObjectURL(oldUrl); }
+    } catch {} finally { if (ROOM_GLOW_PENDING.get(roomId) === job) ROOM_GLOW_PENDING.delete(roomId); }
+    if (ROOM_GLOW_BITMAPS.has(key)) renderRooms();
+  }, 220) };
+  ROOM_GLOW_PENDING.set(roomId, job); return null;
+}
 function roomLayerMarkup(room, prefix, width, height, preview = '') {
   const r = { ...ROOM_DEFAULTS, ...room }, light = roomLight(r), on = preview ? preview === 'on' : light.on, level = light.on ? light.level : 1;
   const id = `${prefix}-${String(r.id).replace(/[^a-z0-9_-]/gi, '')}`, fx = Math.max(0, Number(r.feather) || 0) * 100 / Math.max(1, width), fy = Math.max(0, Number(r.feather) || 0) * 100 / Math.max(1, height);
@@ -682,7 +706,7 @@ function roomLayerMarkup(room, prefix, width, height, preview = '') {
   const body = image
     ? `<defs>${blur}<mask id="${id}-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><polygon points="${points}" fill="#fff" filter="url(#${id}-blur)"/></mask></defs><image href="${escapeHtml(roomBackgroundUrl(r.litImage))}" x="0" y="0" width="100" height="100" preserveAspectRatio="none" mask="url(#${id}-mask)"/>`
     : roomEffectBody(r, id, blur, points, color);
-  return { html: `<svg class="room-layer" data-room-id="${escapeHtml(r.id)}" viewBox="0 0 100 100" preserveAspectRatio="none" style="opacity:${opacity.toFixed(3)};mix-blend-mode:screen">${body}</svg>`,
+  return { html: `<svg class="room-layer" data-room-id="${escapeHtml(r.id)}" viewBox="0 0 100 100" preserveAspectRatio="none" style="opacity:${opacity.toFixed(3)};mix-blend-mode:screen">${body}</svg>`, body, feather: Math.max(0, Number(r.feather) || 0),
     signature: [r.mode, r.litImage, r.blend, r.feather, points, width, height, ...ROOM_LIGHT_KEYS.map(key => r[key])].join('|'), opacity, color };
 }
 // ---- Room label: icon, name and state drawn as part of the room (not a separate marker) --------------------
@@ -1192,6 +1216,10 @@ function renderRooms() {
   const width = els.scene.offsetWidth || 1, height = els.scene.offsetHeight || 1, kept = new Set();
   rooms.forEach(room => {
     const preview = editMode && room.id === selectedRoomId ? roomPreviewOn : '', built = roomLayerMarkup(room, 'room', width, height, preview);
+    if (built.feather >= 2) {
+      const key = `${built.signature}|${built.color}|${built.body}`, url = roomGlowBitmap(room.id, key, built.body, width, height);
+      if (url) Object.assign(built, { signature: `img|${key}`, html: `<img class="room-layer room-glow" data-room-id="${escapeHtml(room.id)}" src="${url}" alt="" draggable="false" style="opacity:${built.opacity.toFixed(3)};mix-blend-mode:screen">` });
+    }
     let node = layer.querySelector(`.room-layer[data-room-id="${CSS.escape(room.id)}"]`);
     // Unchanged geometry keeps its node, so switching the light on/off fades (CSS transition on opacity).
     if (node && node.dataset.signature === built.signature) { node.style.opacity = built.opacity.toFixed(3); const fill = node.querySelector('.room-fill'); if (fill) fill.setAttribute('fill', built.color); node.querySelectorAll('.room-stop').forEach(stop => stop.setAttribute('stop-color', built.color)); }
