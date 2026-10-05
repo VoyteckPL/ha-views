@@ -38,7 +38,7 @@ main{width:min(1600px,calc(100% - 32px));margin:20px auto 40px}.view{display:non
   .scene-card.portrait-zoom-expanded,.scene-viewport.portrait-zoom-expanded{overflow:visible}
   /* The positioning grid belongs to the fitted canvas only.  Once the
      camera expands it, hide the grid instead of clipping the background. */
-  .portrait-zoom-expanded .scene:after{opacity:0!important}
+  .portrait-zoom-expanded.view-zoomed .scene:after{opacity:0!important}
   .scene-card.portrait-zoom-expanded{position:relative;z-index:3}
   .scene{will-change:auto}
   .scene.gesture-layer{will-change:transform}
@@ -1215,3 +1215,5 @@ img.room-layer.room-glow{display:block;inset:auto;max-width:none;object-fit:fill
 .scene-card.cube-turning,.scene-card.cube-turning>.scene-viewport{overflow:clip!important;overflow-clip-margin:var(--turn-clip,0px)}
 /* Blurred label backgrounds are layers of their own, which a 3D turn dropped (markers vanished): plain for the turn. */
 .scene-card.cube-turning *{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+/* The card does not clip a portrait plan (it may overflow when zoomed), so the plan rounds its own corners. */
+.scene-card.portrait-zoom-expanded .scene{border-radius:11px}

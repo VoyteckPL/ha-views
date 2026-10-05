@@ -2367,8 +2367,11 @@ function updateSceneGeometry() {
     syncSelection(); positionEditor(); syncFlowSelection(); positionFlowEditor(); renderRooms(); if ($('#snap-menu')?.classList.contains('open')) syncSnapMenu();
   });
 }
+// A portrait plan may overflow its card when zoomed (it can use the whole screen). The card is set up for that whenever
+// the plan is portrait, not only above 100%: switching it while a pinch crossed 100% rebuilt the plan's GPU layers
+// mid-gesture and the phone showed the plan without its background for a few frames. At 100% nothing overflows anyway.
 function portraitZoomExpansion() {
-  return !mobileWidePanorama() && els.image.naturalHeight > els.image.naturalWidth && viewZoom > 1.01;
+  return !mobileWidePanorama() && els.image.naturalHeight > els.image.naturalWidth;
 }
 function minViewZoom() {
   if (!mobileWidePanorama()) return 1;
@@ -2405,6 +2408,7 @@ function applyViewTransform() {
   const expandedPortrait = portraitZoomExpansion();
   els.viewport.classList.toggle('portrait-zoom-expanded', expandedPortrait);
   els.sceneCard?.classList.toggle('portrait-zoom-expanded', expandedPortrait);
+  els.viewport.classList.toggle('view-zoomed', viewZoom > 1.01); // hides the edit grid (a pseudo-element, cheap)
   if (!sceneCameraActive()) { els.scene.style.transform = ''; updatePanoramaIndicator(); return; }
   clampViewPan();
   els.scene.style.transformOrigin = '0 0';
