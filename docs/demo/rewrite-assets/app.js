@@ -1078,6 +1078,7 @@ function startRoomLabelDrag(event) {
   const handle = event.target.closest?.('.part-handle'); if (handle && editMode) return startPartResize(event, handle);
   const node = event.target.closest('.room-label-part.editable, .room-label-card.editable'); if (!node || !editMode || event.button > 0) return;
   const room = roomsOf()[node.dataset.roomId], part = node.dataset.labelPart === 'card' ? ['card','labelCard','Grupa'] : ROOM_LABEL_PARTS.find(([p]) => p === node.dataset.labelPart); if (!room || !part) return;
+  if (touchSelectFirst(event, selectedRoomId === room.id, () => { openRoomEditor(room.id); requestAnimationFrame(() => requestAnimationFrame(() => focusSceneBoxOnMobile(isIconRoom(room) ? iconFocusBox(room) : room.points || []))); })) return;
   event.preventDefault(); event.stopPropagation();
   // The editor opens on a tap only (release without moving); grabbing and dragging right away just moves the label.
   const newlySelected = selectedRoomId !== room.id;
@@ -1459,9 +1460,23 @@ function removeRoomCorner(index) {
 // dragging, so the browser's own dblclick never reaches it — the double click is detected here.)
 let lastCornerTap = null, selectedCorner = null, handleTapAt = 0;
 function pickedCorner() { const room = selectedRoomId && roomsOf()[selectedRoomId]; return room && selectedCorner?.roomId === room.id && selectedCorner.index < (room.points || []).length ? selectedCorner.index : -1; }
-function startRoomMove(event) {
+function startRoomMove(event, held = false) {
   if (!editMode || roomDraft || event.button > 0 || !selectedRoomId || (event.target !== els.markers && event.target !== els.scene && event.target !== els.image)) return false;
   const room = roomsOf()[selectedRoomId], start = scenePercentAt(event); if (!room || room.geometryLocked || !pointInPolygon(start, room.points)) return false;
+  // Touch: the selected room moves only after the finger rests ~0.35 s on it (short buzz); a quick drag pans the plan.
+  if (!held && event.pointerType && event.pointerType !== 'mouse') {
+    const id = event.pointerId, sx = event.clientX, sy = event.clientY; let last = event;
+    const cancel = () => { clearTimeout(timer); window.removeEventListener('pointermove', track, true); window.removeEventListener('pointerup', stop, true); window.removeEventListener('pointercancel', stop, true); };
+    const track = e => { if (e.pointerId !== id) return; last = e; if (Math.hypot(e.clientX - sx, e.clientY - sy) > 8) cancel(); };
+    const stop = e => { if (e.pointerId === id) cancel(); };
+    const timer = setTimeout(() => {
+      cancel(); if (viewPointers.size > 1 || selectedRoomId !== room.id) return;
+      resetViewportPointers(); try { navigator.vibrate?.(15); } catch {}
+      startRoomMove({ pointerId: id, clientX: last.clientX, clientY: last.clientY, button: 0, target: els.scene, pointerType: 'touch' }, true);
+    }, 350);
+    window.addEventListener('pointermove', track, true); window.addEventListener('pointerup', stop, true); window.addEventListener('pointercancel', stop, true);
+    return false;
+  }
   const original = clone(room.points); let moved = false, guides = null;
   try { els.scene.setPointerCapture(event.pointerId); } catch {}
   // The camera follows a room dragged to the edge of the screen, like markers and labels.
@@ -3041,6 +3056,7 @@ function startFlowDrag(event) {
   if (!editMode || event.button !== 0) return;
   closeCompactMenus();
   const flow = activeSceneView()?.flows?.[event.currentTarget.dataset.flowId]; if (!flow || flow.geometryLocked) return;
+  if (touchSelectFirst(event, selectedFlowId === flow.id)) return; // a tap selects it (click)
   event.preventDefault(); event.stopPropagation();
   const node = event.currentTarget, start = { x:event.clientX, y:event.clientY, px:Number(flow.xPercent), py:Number(flow.yPercent) };
   let moved = false, guides = null; node.setPointerCapture(event.pointerId);
@@ -3505,8 +3521,21 @@ function centerAfterDrag(xPercent, yPercent) {
     animateViewPan(els.viewport.clientWidth / 2 - Number(xPercent) / 100 * els.scene.offsetWidth * viewZoom, Math.max(74, visible / 2) - Number(yPercent) / 100 * els.scene.offsetHeight * viewZoom);
   }));
 }
+// Touch editing ("select first, then move"): on a phone a finger on an element that is not selected does not move
+// it — dragging pans the plan as usual and a tap selects the element. Only the selected element can be dragged.
+function touchSelectFirst(event, selected, select = null) {
+  if (!event.pointerType || event.pointerType === 'mouse' || selected) return false;
+  const sx = event.clientX, sy = event.clientY, t0 = performance.now(), id = event.pointerId;
+  const end = e => {
+    if (e.pointerId !== id) return; window.removeEventListener('pointerup', end, true); window.removeEventListener('pointercancel', end, true);
+    if (select && e.type === 'pointerup' && Math.hypot(e.clientX - sx, e.clientY - sy) < 10 && performance.now() - t0 < 700) select();
+  };
+  window.addEventListener('pointerup', end, true); window.addEventListener('pointercancel', end, true);
+  return true;
+}
 function startDrag(event) {
   if (!editMode || event.button !== 0) return;
+  if (touchSelectFirst(event, selectedId === event.currentTarget.dataset.markerId)) return; // a tap selects it (click)
   event.preventDefault(); const node = event.currentTarget, key = node.dataset.markerId, marker = model.entities[key];
   if (marker?.geometryLocked) return;
   const start = { x: event.clientX, y: event.clientY, px: marker.xPercent, py: marker.yPercent }; let moved = false, guides = null;
