@@ -2410,7 +2410,8 @@ function applyViewTransform() {
   els.scene.style.transformOrigin = '0 0';
   els.scene.style.transform = `translate(${viewPanX}px,${viewPanY}px) scale(${viewZoom})`;
   els.scene.style.setProperty('--view-zoom', viewZoom); // room handles keep their on-screen size when zoomed
-  if (!viewPointers.size && gestureLayerZoom != null && Math.abs(viewZoom - gestureLayerZoom) > .001) setGestureLayer(false); // zoom buttons / wheel / camera glide
+  // Zoom buttons / wheel / camera glide: (re)create the plan's layer at the new scale once the zoom settles.
+  if (!viewPointers.size && (gestureLayerZoom == null ? viewZoom > minViewZoom() + .001 : Math.abs(viewZoom - gestureLayerZoom) > .001)) setGestureLayer(false);
   if (els.zoomValue) els.zoomValue.textContent = `${Math.round(viewZoom * 100)}%`;
   if (els.zoomOut) els.zoomOut.disabled = viewZoom <= minViewZoom() + .001;
   if (els.zoomIn) els.zoomIn.disabled = viewZoom >= 4;
@@ -4846,11 +4847,20 @@ function resetViewportPointers() {
 // it would be stale: the zoom changed (the layer is drawn at the old scale, i.e. blurred), the window was resized or
 // a text field took the on-screen keyboard (a huge layer is re-drawn late then, showing blank tiles).
 let gestureLayerTimer = 0, gestureLayerZoom = null;
+const TEXT_FIELD = 'input:not([type=range]):not([type=checkbox]):not([type=color]),textarea,[contenteditable]';
+function textFieldFocused() { return !!document.activeElement?.matches?.(TEXT_FIELD); }
 function dropGestureLayer() { clearTimeout(gestureLayerTimer); if (!viewPointers.size) { els.scene?.classList.remove('gesture-layer'); gestureLayerZoom = null; } }
 function setGestureLayer(on) {
   clearTimeout(gestureLayerTimer);
   if (on) { if (!els.scene.classList.contains('gesture-layer')) gestureLayerZoom = viewZoom; els.scene.classList.add('gesture-layer'); }
-  else gestureLayerTimer = setTimeout(() => { if (!viewPointers.size && (gestureLayerZoom == null || Math.abs(viewZoom - gestureLayerZoom) > .001)) dropGestureLayer(); }, 350);
+  else gestureLayerTimer = setTimeout(() => { if (!viewPointers.size && (gestureLayerZoom == null || Math.abs(viewZoom - gestureLayerZoom) > .001)) refreshGestureLayer(); }, 350);
+}
+// After a zoom the layer is re-created at the new scale (sharp) right away, while nothing moves: creating it only at the
+// next touch made that touch re-draw a huge zoomed layer just as a cube turn started (the lights blinked).
+function refreshGestureLayer() {
+  if (viewPointers.size || !sceneCameraActive() || viewZoom <= minViewZoom() + .001 || textFieldFocused()) return dropGestureLayer();
+  els.scene.classList.remove('gesture-layer'); void els.scene.offsetWidth;
+  requestAnimationFrame(() => requestAnimationFrame(() => { if (!viewPointers.size) { els.scene.classList.add('gesture-layer'); gestureLayerZoom = viewZoom; } }));
 }
 function viewportPointerDown(event) {
   // Desktop uses a dedicated mouse drag below. Pointer gestures are touch-only there.
@@ -5450,7 +5460,7 @@ function bindEvents() {
   document.querySelectorAll('.flow-selection i').forEach(handle => handle.addEventListener('pointerdown', startFlowResize));
   els.image.addEventListener('load', () => { updateSceneGeometry(); applyBackgroundTransform(); });
   window.addEventListener('resize', dropGestureLayer);
-  document.addEventListener('focusin', event => { if (event.target?.matches?.('input:not([type=range]):not([type=checkbox]):not([type=color]),textarea,[contenteditable]')) dropGestureLayer(); });
+  document.addEventListener('focusin', event => { if (event.target?.matches?.(TEXT_FIELD)) dropGestureLayer(); });
   window.addEventListener('resize', () => { syncDock(); applyBackgroundTransform(); syncMobileOrientation(); });
   $$('[data-dock-side]').forEach(button => button.addEventListener('click', event => { event.stopPropagation(); toggleDockSide(); }));
   $$('.head-preview').forEach(button => button.addEventListener('click', onHeadPreview));
