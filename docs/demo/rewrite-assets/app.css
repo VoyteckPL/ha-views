@@ -1081,3 +1081,5 @@ body.editing .room-labels{z-index:3}
 .editor .editor-tabs{display:flex!important;justify-content:flex-start;gap:4px;padding:4px 12px 6px}
 .editor .editor-tabs button{flex:0 0 30px;width:30px;min-width:30px;height:30px!important;padding:0;border-radius:8px}
 .editor .editor-tabs button i{font-size:16px}
+.editor .editor-head>.editor-quick-actions{justify-content:flex-end}
+.editor .editor-head .head-preview{margin-right:auto}
