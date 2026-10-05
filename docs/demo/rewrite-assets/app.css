@@ -1117,3 +1117,17 @@ body.editing .room-labels{z-index:3}
 .editor .control.range-control>output{grid-column:2;grid-row:1;justify-self:end;text-align:right;min-width:0;white-space:nowrap}
 .editor .control.range-control>input[type=range]{grid-column:3;grid-row:1;width:100%;min-width:0}
 .editor .control.range-control>.slider-reset{grid-column:4;grid-row:1;justify-self:end}
+/* Every popup row ends at the right edge: colour pickers, check boxes, choice buttons and text fields sit on the right;
+   icon choice buttons are the same 30 px squares as all the other icon buttons. */
+.editor .control:not(.range-control):not(.room-entities-control):not(.checkbox){grid-template-columns:105px minmax(0,1fr)!important}
+.editor .control:not(.range-control)>span:last-child:empty{display:none}
+.editor .control.checkbox{grid-template-columns:minmax(0,1fr) auto!important}
+.editor .control.checkbox>input{justify-self:end;margin-right:0}
+.editor .control>.color-picker{grid-column:2;display:flex;justify-content:flex-end;justify-self:stretch}
+.editor .control>input[type=text],.editor .control>input[type=number],.editor .control>select{grid-column:2;width:100%;max-width:none;box-sizing:border-box}
+.editor .seg-choice{grid-column:2;justify-content:flex-end!important;flex-wrap:wrap!important;gap:4px!important}
+.editor .seg-btn:not(.text){flex:0 0 30px!important;width:30px!important;height:30px!important;padding:0!important;border-radius:8px}
+.editor .seg-btn .mdi{font-size:16px!important}
+.editor .seg-btn.text{flex:0 0 auto!important;height:30px!important;padding:0 9px!important;border-radius:8px}
+.editor .room-card-presets{justify-content:flex-end!important}
+.editor .control:has(.seg-choice)>label,.editor .room-card-row>label{line-height:30px}

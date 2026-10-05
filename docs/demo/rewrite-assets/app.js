@@ -1517,7 +1517,7 @@ function roomEditorMarkup(room) {
     const contentSub = part !== 'state' ? '' : onOff
       ? sub('Treść', control('Tekst ON','labelStateOnText','text',r.labelStateOnText || '',{ placeholder: translateValue('Wł.') }) + control('Tekst OFF','labelStateOffText','text',r.labelStateOffText || '',{ placeholder: translateValue('Wył.') }))
       : number ? sub('Treść', control('Jednostka','labelStateUnit','text',r.labelStateUnit || '',{ placeholder: stateCache[r.entityIds[0]]?.attributes?.unit_of_measurement || '' })
-        + control('Zaokrąglenie','labelStateDecimals','select',String(r.labelStateDecimals ?? 'auto'),{ items:[['auto','Automatycznie'],['0','0'],['1','0,1'],['2','0,01'],['3','0,001']] })) : '';
+        + control('Zaokrąglenie','labelStateDecimals','select',String(r.labelStateDecimals ?? 'auto'),{ items:[['auto','Automatycznie'],['0','0'],['1','0,1'],['2','0,01'],['3','0,001']], dropdown:true })) : '';
     return section(title, contentSub + sub('Kolor', control('Zależne ON/OFF',`${key}ColorState`,'checkbox',!!r[`${key}ColorState`],refresh)
         + (r[`${key}ColorState`]
           ? control('Kolor ON',`${key}ColorOn`,'color',r[`${key}ColorOn`]) + control('Kolor OFF',`${key}ColorOff`,'color',r[`${key}ColorOff`])
@@ -3420,7 +3420,8 @@ const CHOICE_ICONS = {
     chevron:'mdi-chevron-right', arrow:'mdi-arrow-right-thin', dart:'mdi-navigation-variant', triangle:'mdi-triangle-outline', segment:'mdi-minus-thick',
     center:'mdi-brightness-7', corner:'mdi-arrow-top-left-bold-box-outline', wall:'mdi-wall-sconce-flat-outline', ambient:'mdi-weather-sunset', entity:'mdi-home-assistant', integration:'mdi-puzzle-outline', mdi:'mdi-pencil-outline' },
   lightEffect: { none:'mdi-square' }, 'style.backgroundGradient': { none:'mdi-square' }, iconMode: { auto:'mdi-home-assistant', integration:'mdi-puzzle-outline', manual:'mdi-pencil-outline' },
-  directionMode: { manual:'mdi-arrow-right-bold-outline', auto:'mdi-plus-minus-variant' }, decimals: { auto:'', 0:'', 1:'', 2:'', 3:'' }, 'style.tickFontFamily': {}, linkView: {}
+  directionMode: { manual:'mdi-arrow-right-bold-outline', auto:'mdi-plus-minus-variant' }, labelNameWeight: { '':'mdi-format-font', normal:'mdi-format-letter-case', medium:'mdi-format-text', bold:'mdi-format-bold' }, labelStateWeight: { '':'mdi-format-font', normal:'mdi-format-letter-case', medium:'mdi-format-text', bold:'mdi-format-bold' }, 'style.labelWeight': { '':'mdi-format-font', normal:'mdi-format-letter-case', medium:'mdi-format-text', bold:'mdi-format-bold' }, 'style.valueWeight': { '':'mdi-format-font', normal:'mdi-format-letter-case', medium:'mdi-format-text', bold:'mdi-format-bold' },
+  outlineStyle: { solid:'mdi-minus-thick', dashed:'mdi-dots-horizontal', dotted:'mdi-circle-small' }, labelStateDecimals: { auto:'', 0:'', 1:'', 2:'', 3:'' }, decimals: { auto:'', 0:'', 1:'', 2:'', 3:'' }, 'style.tickFontFamily': {}, linkView: {}
 };
 function choiceIcon(path, value) {
   const own = CHOICE_ICONS[path]; if (own && String(value) in own) return own[String(value)];
