@@ -1044,6 +1044,16 @@ function roomWizardMatches() {
     : all.filter(entity => area && searchText(entity.area) === area || useful(entity));
   return list.sort((a, b) => Number(searchText(b.area) === area) - Number(searchText(a.area) === area) || roomEntityRank(a.entity_id) - roomEntityRank(b.entity_id) || String(a.name || a.entity_id).localeCompare(String(b.name || b.entity_id))).slice(0, 30);
 }
+// The entity list takes only the room left above the on-screen keyboard (its buttons always stay visible); with the
+// keyboard open the step's description is hidden so the popup is lower.
+function fitWizardList() {
+  const box = $('#room-wizard'), list = $('#room-wizard-list'), foot = $('.room-wizard-foot'); if (!roomWizard || !box || !list) return;
+  box.classList.toggle('kb-open', keyboardOpen());
+  if (roomWizard.step !== 'entities') return;
+  const screenBottom = window.visualViewport ? window.visualViewport.offsetTop + window.visualViewport.height : innerHeight;
+  const space = screenBottom - list.getBoundingClientRect().top - (foot?.offsetHeight || 44) - 26;
+  list.style.maxHeight = `${Math.round(clamp(space, 84, 200))}px`;
+}
 function renderRoomWizardButton() {
   const button = $('#room-wizard-next'), w = roomWizard; if (!button || !w) return;
   const steps = wizardSteps(), last = steps.indexOf(w.step) === steps.length - 1;
@@ -1076,6 +1086,7 @@ function renderRoomWizard(part = 'all') {
     : rows.length ? rows.map(entity => { const on = w.picked.has(entity.entity_id), value = `${entity.state ?? ''}${entity.unit ? ` ${entity.unit}` : ''}`;
       return `<button type="button" class="room-wizard-row${on ? ' on' : ''}" data-wizard-toggle="${escapeHtml(entity.entity_id)}"><i class="mdi ${on ? 'mdi-checkbox-marked' : 'mdi-checkbox-blank-outline'}"></i><i class="mdi ${addEntityIcon(entity)} room-wizard-icon"></i><span><b data-no-i18n>${escapeHtml(entity.name || entity.entity_id)}</b><small data-no-i18n>${escapeHtml(entity.entity_id)}${entity.area ? ` · ${escapeHtml(entity.area)}` : ''}</small></span><em data-no-i18n>${escapeHtml(value)}</em></button>`; }).join('')
     : `<div class="room-wizard-empty">${escapeHtml(translateValue(w.query.trim().length >= 2 ? 'Brak pasujących encji.' : 'Wpisz nazwę, obszar albo entity_id.'))}</div>`;
+  fitWizardList();
 }
 function roomWizardNext() {
   if (!roomWizard) return;
@@ -4813,7 +4824,7 @@ function bindEvents() {
   els.image.addEventListener('load', () => { updateSceneGeometry(); applyBackgroundTransform(); });
   window.addEventListener('resize', () => { syncDock(); applyBackgroundTransform(); syncMobileOrientation(); });
   $$('[data-dock-side]').forEach(button => button.addEventListener('click', event => { event.stopPropagation(); toggleDockSide(); }));
-  window.visualViewport?.addEventListener('resize', () => { if (mobileView()) applyBackgroundTransform(); refocusWhileTyping(); });
+  window.visualViewport?.addEventListener('resize', () => { if (mobileView()) applyBackgroundTransform(); fitWizardList(); refocusWhileTyping(); });
   document.addEventListener('focusin', event => { if (event.target?.matches?.('input,textarea')) refocusWhileTyping(); });
   // Enter in an editor field closes the on-screen keyboard instead of jumping to the next field.
   document.addEventListener('focusin', event => { const el = event.target; if (el?.matches?.('.editor input:not([type=range]):not([type=checkbox]):not([type=color])')) el.enterKeyHint = 'done'; });

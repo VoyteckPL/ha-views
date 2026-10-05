@@ -1041,3 +1041,5 @@ body.editing .room-labels{z-index:3}
 .wizard-pin{position:absolute;z-index:6;transform:translate(-50%,-100%) scale(var(--scene-scale,1));transform-origin:50% 100%;pointer-events:none;color:#20b9e7;font-size:44px;line-height:1;filter:drop-shadow(0 3px 6px rgba(0,0,0,.45));animation:wizardPin 1.2s ease-in-out infinite}
 .wizard-pin .mdi{display:block}
 @keyframes wizardPin{0%,100%{margin-top:0}50%{margin-top:-6px}}
+.room-wizard.kb-open .room-wizard-entity-step>small,.room-wizard.kb-open .room-wizard-name-step>small{display:none}
+.room-wizard.kb-open .room-wizard-head{margin-bottom:6px}
