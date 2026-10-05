@@ -707,8 +707,8 @@ function roomGlowBitmap(roomId, key, body, width, height, box, onReady = renderR
 // Swaps a lit room's live SVG for its cached glow bitmap once one is ready (see roomGlowBitmap).
 // Glow drawing on touch devices: plain transparency with the "screen" look baked in (see roomGlowBitmap). A blended
 // (mix-blend-mode) glow makes a phone compose the plan in expensive tiles: at a high zoom parts of the light were
-// missing while panning, and it blinked when the view card turned in 3D (cube). A plain glow is its own small GPU
-// layer instead, drawn once. Mouse devices keep the exact blend. Settings → "Poświata pomieszczeń" overrides it.
+// missing while panning, and it blinked when the view card turned in 3D (cube). A plain glow is a cheap image drawn
+// together with the plan. Mouse devices keep the exact blend. Settings → "Poświata pomieszczeń" overrides it.
 function roomGlowFlat() { const mode = model.settings?.glowBlend; return mode === 'normal' || (mode !== 'screen' && !!window.matchMedia?.('(pointer: coarse)').matches); }
 // The average colour (0..1 RGB) of the plan under a room's box: the background image with its brightness filter and
 // the sun dimming tint, measured from a 12x12 sample. Falls back to a mid grey (e.g. an image from another origin).
@@ -2410,8 +2410,8 @@ function applyViewTransform() {
   els.scene.style.transformOrigin = '0 0';
   els.scene.style.transform = `translate(${viewPanX}px,${viewPanY}px) scale(${viewZoom})`;
   els.scene.style.setProperty('--view-zoom', viewZoom); // room handles keep their on-screen size when zoomed
-  // Zoom buttons / wheel / camera glide: (re)create the plan's layer at the new scale once the zoom settles.
-  if (!viewPointers.size && (gestureLayerZoom == null ? viewZoom > minViewZoom() + .001 : Math.abs(viewZoom - gestureLayerZoom) > .001)) setGestureLayer(false);
+  // Zoom buttons / wheel / camera glide: the layer (drawn at the old scale) is dropped once the zoom settles.
+  if (!viewPointers.size && gestureLayerZoom != null && Math.abs(viewZoom - gestureLayerZoom) > .001) setGestureLayer(false);
   if (els.zoomValue) els.zoomValue.textContent = `${Math.round(viewZoom * 100)}%`;
   if (els.zoomOut) els.zoomOut.disabled = viewZoom <= minViewZoom() + .001;
   if (els.zoomIn) els.zoomIn.disabled = viewZoom >= 4;
@@ -4853,14 +4853,7 @@ function dropGestureLayer() { clearTimeout(gestureLayerTimer); if (!viewPointers
 function setGestureLayer(on) {
   clearTimeout(gestureLayerTimer);
   if (on) { if (!els.scene.classList.contains('gesture-layer')) gestureLayerZoom = viewZoom; els.scene.classList.add('gesture-layer'); }
-  else gestureLayerTimer = setTimeout(() => { if (!viewPointers.size && (gestureLayerZoom == null || Math.abs(viewZoom - gestureLayerZoom) > .001)) refreshGestureLayer(); }, 350);
-}
-// After a zoom the layer is re-created at the new scale (sharp) right away, while nothing moves: creating it only at the
-// next touch made that touch re-draw a huge zoomed layer just as a cube turn started (the lights blinked).
-function refreshGestureLayer() {
-  if (viewPointers.size || !sceneCameraActive() || viewZoom <= minViewZoom() + .001 || textFieldFocused()) return dropGestureLayer();
-  els.scene.classList.remove('gesture-layer'); void els.scene.offsetWidth;
-  requestAnimationFrame(() => requestAnimationFrame(() => { if (!viewPointers.size) { els.scene.classList.add('gesture-layer'); gestureLayerZoom = viewZoom; } }));
+  else gestureLayerTimer = setTimeout(() => { if (!viewPointers.size && (gestureLayerZoom == null || Math.abs(viewZoom - gestureLayerZoom) > .001)) dropGestureLayer(); }, 350);
 }
 function viewportPointerDown(event) {
   // Desktop uses a dedicated mouse drag below. Pointer gestures are touch-only there.

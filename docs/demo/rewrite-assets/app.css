@@ -82,7 +82,8 @@ main{width:min(1600px,calc(100% - 32px));margin:20px auto 40px}.view{display:non
 .background-transform-panel>button{height:31px;margin-top:2px;font-size:10px}
 .background-icon.active{color:#8fdfff;border-color:rgba(32,185,231,.65);background:#12384a}
 .scene>img{transform-origin:50% 50%}
-.scene.gesture-layer>img{will-change:transform}
+/* The background image is not a layer of its own: with the plan as ONE layer, the image, the lights and the markers
+   are always drawn together (separately composed layers showed the image while lights / markers were still missing). */
 @media(max-width:768px){
   .background-transform-panel{position:fixed;left:8px;right:8px;top:62px;width:auto}
 }
@@ -1209,7 +1210,5 @@ body.dock-mode .editor .editor-head>.editor-quick-actions,.editor .editor-head>.
 /* A small ready image drawn into the plan's own texture (no GPU layer of its own: a separately composited, screen-blended
    layer is re-composed wrongly for a few frames when the view card turns in 3D, e.g. the cube transition). */
 img.room-layer.room-glow{display:block;inset:auto;max-width:none;object-fit:fill;pointer-events:none;user-select:none;-webkit-user-drag:none}
-/* A plain (baked) glow: its own small GPU texture, drawn once, only moved / scaled by gestures and the cube turn. */
-img.room-layer.room-glow.flat{will-change:transform}
 /* Cube turn: no separate layers inside the turning card / preview face (see positionSwipe). */
-.scene-card.cube-turning .scene,.scene-card.cube-turning .scene>img,.scene-card.cube-turning img.room-glow.flat,.swipe-preview img.room-glow.flat{will-change:auto!important}
+.scene-card.cube-turning .scene,.scene-card.cube-turning .scene>img{will-change:auto!important}
