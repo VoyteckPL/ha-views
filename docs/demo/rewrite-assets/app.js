@@ -2360,6 +2360,7 @@ function applyViewTransform() {
   els.scene.style.transformOrigin = '0 0';
   els.scene.style.transform = `translate(${viewPanX}px,${viewPanY}px) scale(${viewZoom})`;
   els.scene.style.setProperty('--view-zoom', viewZoom); // room handles keep their on-screen size when zoomed
+  if (!viewPointers.size && gestureLayerZoom != null && Math.abs(viewZoom - gestureLayerZoom) > .001) setGestureLayer(false); // zoom buttons / wheel / camera glide
   if (els.zoomValue) els.zoomValue.textContent = `${Math.round(viewZoom * 100)}%`;
   if (els.zoomOut) els.zoomOut.disabled = viewZoom <= minViewZoom() + .001;
   if (els.zoomIn) els.zoomIn.disabled = viewZoom >= 4;
@@ -4790,12 +4791,16 @@ function resetViewportPointers() {
   }
   viewPointers.clear(); panGesture = null; pinchGesture = null; setGestureLayer(false);
 }
-// The plan is a separate GPU layer (will-change) only while a finger pans / pinches it. Kept permanently, a huge,
-// zoomed layer is re-drawn late after every window resize (on-screen keyboard), showing blank or blurred frames.
-let gestureLayerTimer = 0;
+// The plan becomes a separate GPU layer (will-change) when a finger touches it. Every switch on / off re-draws the
+// whole plan and can blink for a frame, so after a plain pan (same zoom) the layer is kept. It is dropped only when
+// it would be stale: the zoom changed (the layer is drawn at the old scale, i.e. blurred), the window was resized or
+// a text field took the on-screen keyboard (a huge layer is re-drawn late then, showing blank tiles).
+let gestureLayerTimer = 0, gestureLayerZoom = null;
+function dropGestureLayer() { clearTimeout(gestureLayerTimer); if (!viewPointers.size) { els.scene?.classList.remove('gesture-layer'); gestureLayerZoom = null; } }
 function setGestureLayer(on) {
   clearTimeout(gestureLayerTimer);
-  if (on) els.scene.classList.add('gesture-layer'); else gestureLayerTimer = setTimeout(() => { if (!viewPointers.size) els.scene.classList.remove('gesture-layer'); }, 350);
+  if (on) { if (!els.scene.classList.contains('gesture-layer')) gestureLayerZoom = viewZoom; els.scene.classList.add('gesture-layer'); }
+  else gestureLayerTimer = setTimeout(() => { if (!viewPointers.size && (gestureLayerZoom == null || Math.abs(viewZoom - gestureLayerZoom) > .001)) dropGestureLayer(); }, 350);
 }
 function viewportPointerDown(event) {
   // Desktop uses a dedicated mouse drag below. Pointer gestures are touch-only there.
@@ -5390,6 +5395,8 @@ function bindEvents() {
   document.querySelectorAll('.selection i').forEach(handle => handle.addEventListener('pointerdown', startResize));
   document.querySelectorAll('.flow-selection i').forEach(handle => handle.addEventListener('pointerdown', startFlowResize));
   els.image.addEventListener('load', () => { updateSceneGeometry(); applyBackgroundTransform(); });
+  window.addEventListener('resize', dropGestureLayer);
+  document.addEventListener('focusin', event => { if (event.target?.matches?.('input:not([type=range]):not([type=checkbox]):not([type=color]),textarea,[contenteditable]')) dropGestureLayer(); });
   window.addEventListener('resize', () => { syncDock(); applyBackgroundTransform(); syncMobileOrientation(); });
   $$('[data-dock-side]').forEach(button => button.addEventListener('click', event => { event.stopPropagation(); toggleDockSide(); }));
   $$('.head-preview').forEach(button => button.addEventListener('click', onHeadPreview));
