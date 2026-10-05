@@ -4852,7 +4852,11 @@ function textFieldFocused() { return !!document.activeElement?.matches?.(TEXT_FI
 function dropGestureLayer() { clearTimeout(gestureLayerTimer); if (!viewPointers.size) { els.scene?.classList.remove('gesture-layer'); gestureLayerZoom = null; } }
 function setGestureLayer(on) {
   clearTimeout(gestureLayerTimer);
-  if (on) { if (!els.scene.classList.contains('gesture-layer')) gestureLayerZoom = viewZoom; els.scene.classList.add('gesture-layer'); }
+  if (on) {
+    // A new touch on a card standing still ends a pending cube-turn state now (still frame) rather than mid-pan.
+    if (els.sceneCard && !els.sceneCard.style.transform && els.sceneCard.classList.contains('cube-turning')) { clearTimeout(positionSwipe.calm); els.sceneCard.classList.remove('cube-turning'); }
+    if (!els.scene.classList.contains('gesture-layer')) gestureLayerZoom = viewZoom; els.scene.classList.add('gesture-layer');
+  }
   else gestureLayerTimer = setTimeout(() => { if (!viewPointers.size && (gestureLayerZoom == null || Math.abs(viewZoom - gestureLayerZoom) > .001)) dropGestureLayer(); }, 350);
 }
 function viewportPointerDown(event) {
@@ -5073,7 +5077,11 @@ function positionSwipe(offset, direction, animate = 0) {
     const r = els.sceneCard.getBoundingClientRect(), w = document.documentElement.clientWidth || innerWidth, h = innerHeight;
     els.sceneCard.style.setProperty('--turn-clip', `${Math.ceil(Math.max(0, r.left, w - r.right, r.top, h - r.bottom))}px`);
   }
-  els.sceneCard?.classList.toggle('cube-turning', cube && !!offset);
+  // Back to the normal layers only once the card has stood still for a moment: switching them in the same frame as the
+  // card snapped back (a turn started at the panorama's edge but not finished) re-drew the plan mid-motion (a blink).
+  clearTimeout(positionSwipe.calm);
+  if (cube && offset) els.sceneCard?.classList.add('cube-turning');
+  else if (els.sceneCard?.classList.contains('cube-turning')) positionSwipe.calm = setTimeout(() => { if (!els.sceneCard.style.transform) els.sceneCard.classList.remove('cube-turning'); }, animate + 300);
   if (cube) {
     // Two faces of one cube rotating about the cube's centre: the current view turns away, the next one turns in.
     const progress = clamp(offset / distance, -1, 1), angle = 90 * progress, half = distance / 2;
