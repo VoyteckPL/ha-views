@@ -912,6 +912,10 @@ function startPartResize(event, handle) {
   const rect0 = node.getBoundingClientRect(), localToScreen = rect0.width / Math.max(1, node.offsetWidth);
   const keep = [node.style.minWidth, node.style.minHeight]; node.style.minWidth = ''; node.style.minHeight = '';
   const natural = horizontal ? node.offsetWidth : node.offsetHeight; [node.style.minWidth, node.style.minHeight] = keep;
+  // Below the content's own size the content shrinks with the frame (icon / text size scales, the other side too).
+  // A margin set in px (icon; text with its own margin) stays; a default text margin grows with the text.
+  const cs = getComputedStyle(node), fixedPad = node.dataset.labelPart === 'icon' || (room[`${key}Padding`] !== undefined && room[`${key}Padding`] !== null && room[`${key}Padding`] !== '') ? (horizontal ? parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight) : parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom)) || 0 : 0;
+  const startSize = Number(room[`${key}Size`]) || ROOM_DEFAULTS[`${key}Size`], acrossKey = `${key}${horizontal ? 'H' : 'W'}`, acrossStart = Number(room[acrossKey]) || 0;
   const fixed = horizontal ? (sign > 0 ? rect0.left : rect0.right) : (sign > 0 ? rect0.top : rect0.bottom);
   const centre0 = horizontal ? (rect0.left + rect0.right) / 2 : (rect0.top + rect0.bottom) / 2, start = Number(room[`${key}${horizontal ? 'X' : 'Y'}`]) || 0;
   const lines = others.flatMap(r => horizontal ? [r.left, (r.left + r.right) / 2, r.right] : [r.top, (r.top + r.bottom) / 2, r.bottom]);
@@ -935,8 +939,9 @@ function startPartResize(event, handle) {
       if (horizontal) { if (sign > 0 && r.left >= rect0.right - .5) edge = Math.min(edge, r.left); if (sign < 0 && r.right <= rect0.left + .5) edge = Math.max(edge, r.right); }
       else { if (sign > 0 && r.top >= rect0.bottom - .5) edge = Math.min(edge, r.top); if (sign < 0 && r.bottom <= rect0.top + .5) edge = Math.max(edge, r.bottom); }
     });
-    const local = Math.max(natural, Math.abs(edge - fixed) / localToScreen); edge = fixed + sign * local * localToScreen;
-    room[`${key}${horizontal ? 'W' : 'H'}`] = Math.round(local * 10) / 10;
+    const content = Math.max(1, natural - fixedPad), local = Math.max(fixedPad + content * 6 / startSize, Math.abs(edge - fixed) / localToScreen), scale = Math.min(1, (local - fixedPad) / content); edge = fixed + sign * local * localToScreen;
+    room[`${key}Size`] = Math.max(6, Math.round(startSize * scale * 10) / 10); room[acrossKey] = acrossStart ? Math.round(acrossStart * scale * 10) / 10 : 0;
+    room[`${key}${horizontal ? 'W' : 'H'}`] = scale < 1 ? 0 : Math.round(local * 10) / 10;
     room[`${key}${horizontal ? 'X' : 'Y'}`] = Math.round((start + ((fixed + edge) / 2 - centre0) / planToScreen) * 100) / 100;
     renderRoomLabels();
     const live = $(`.room-label-part[data-room-id="${id}"][data-label-part="${node.dataset.labelPart}"]`); live?.classList.toggle('square', !!best?.square || (live && Math.abs(live.offsetWidth - live.offsetHeight) < .5));
