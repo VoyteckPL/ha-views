@@ -841,8 +841,13 @@ function cardLook(r, on) {
     // The frame is drawn inside the card (inset shadow), so a thicker ON / OFF frame never changes the card's size.
     `box-shadow:${[r.labelCardBorder ? `inset 0 0 0 ${clamp(Number(cardPick('labelCardBorderState', 'labelCardBorder', 'Width')) || 1, .5, 12)}px ${rgba(cardPick('labelCardBorderState', 'labelCardBorder', 'Color') || '#FFFFFF', clamp(Number(cardPick('labelCardBorderState', 'labelCardBorder', 'Opacity') ?? .3), 0, 1))}` : '', r.labelCardBg ? '0 6px 18px rgba(0,0,0,.25)' : ''].filter(Boolean).join(',') || 'none'}`].filter(Boolean).join(';');
 }
+// Only entities that switch on and off (lights, switches, binary sensors…) have ON / OFF look options;
+// for the others (a temperature sensor…) the label always uses the plain colours.
+function roomSwitchable(r) { return (r.entityIds || []).some(id => /^(light|switch|input_boolean|fan|binary_sensor|cover|lock|climate|media_player|vacuum|siren|humidifier|valve|water_heater|alarm_control_panel|automation|script|group)\./.test(id)); }
+const LABEL_STATE_FLAGS = ['labelIconColorState','labelIconVariant','labelIconOutlineState','labelIconBgState','labelIconBorderState','labelCardBgState','labelCardBorderState','labelNameColorState','labelStateColorState','labelNameBgState','labelStateBgState','labelNameBorderState','labelStateBorderState'];
+function withoutOnOff(r) { if (!roomSwitchable(r)) LABEL_STATE_FLAGS.forEach(key => { r[key] = false; }); return r; }
 function roomLabelMarkup(room, preview = '', interactive = false) {
-  const r = { ...ROOM_DEFAULTS, ...room }; if (r.draft || !(r.labelIcon || r.labelName || r.labelState) || (!isIconRoom(r) && (r.points || []).length < 3)) return '';
+  const r = withoutOnOff({ ...ROOM_DEFAULTS, ...room }); if (r.draft || !(r.labelIcon || r.labelName || r.labelState) || (!isIconRoom(r) && (r.points || []).length < 3)) return '';
   const realOn = roomLight(r).on, on = preview ? preview === 'on' : realOn, [x, y] = roomAnchor(r), tap = (isIconRoom(r) ? ' tappable' : '') + (interactive && r.id === selectedRoomId ? ' selected' : '');
   // The ON / OFF preview simulates the state text too.
   const state = !r.labelState ? '' : preview === 'off' ? translateValue('Wył.') : preview === 'on' && !realOn ? translateValue('Wł.') : roomLabelState(r);
@@ -1394,7 +1399,9 @@ function renderRoomEntityResults() {
   box.innerHTML = matches.length ? matches.map(entity => roomEntityRow(entity.id, 'add')).join('') : `<div class="room-entity-heading">${escapeHtml(translateValue('Brak pasujących encji.'))}</div>`;
 }
 function roomEditorMarkup(room) {
-  const r = { ...ROOM_DEFAULTS, ...room }, light = roomLight(r), refresh = { refresh:true };
+  const r = withoutOnOff({ ...ROOM_DEFAULTS, ...room }), light = roomLight({ ...ROOM_DEFAULTS, ...room }), refresh = { refresh:true }, onOff = roomSwitchable(r);
+  // No ON / OFF choices for entities that do not switch on and off.
+  const control = (label, path, ...rest) => !onOff && path !== 'stateEnabled' && /zależn[aeyi] ON\/OFF/i.test(label) ? '' : plainControl(label, path, ...rest);
   const note = text => `<p class="flow-section-note">${text}</p>`, canToggle = r.entityIds.some(id => isToggleableMarker({ entityId:id }));
   const addedList = r.entityIds.map(id => roomEntityRow(id, 'remove')).join('');
   const icon = isIconRoom(r);
@@ -1496,7 +1503,7 @@ function roomEditorMarkup(room) {
     + note(translateValue(r.labelLinked ? 'Ikona, nazwa i stan są jedną grupą ze wspólnym tłem. Układ, styl i wymiary ustawiasz niżej.' : 'Ikona, nazwa i stan są osobno — każdą część przesuwasz na planie oddzielnie (linie pomocnicze pokazują krawędzie i środki pozostałych). Kropki na bokach zmieniają rozmiar ramki. Tło grupy obejmuje wszystkie części.')) + card);
   const label = group + ROOM_LABEL_PARTS.map(partSection).join('');
   // The ON / OFF preview only makes sense for entities that switch on and off (not e.g. a temperature sensor).
-  const switchable = r.entityIds.some(id => /^(light|switch|input_boolean|fan|binary_sensor|cover|lock|climate|media_player|vacuum|siren|humidifier|valve|water_heater|alarm_control_panel|automation|script|group)\./.test(id));
+  const switchable = roomSwitchable(r);
   return (switchable ? previewRow('previewOn', roomPreviewOn) : '') + entities + (icon ? '' : look) + label;
 }
 function openRoomEditor(id, preserveSection = roomEditorOpenSectionIndex, forceSection = null) {
@@ -2422,7 +2429,7 @@ function valueRulesSection(marker) {
 function resolvedIcon(marker) {
   const ruleIcon = valueRuleResult(marker)?.icon; if (ruleIcon) return ruleIcon;
   if (marker.iconMode !== 'manual') return automaticIcon(marker);
-  if (marker.iconVariantEnabled) {
+  if (marker.iconVariantEnabled && markerHasOnOff(marker)) {
     const kind = stateKind(marker);
     if (kind === 'on' && marker.iconOn) return marker.iconOn;
     if (kind === 'off' && marker.iconOff) return marker.iconOff;
@@ -3355,6 +3362,7 @@ document.addEventListener('click', event => {
   control.querySelectorAll('.seg-btn').forEach(other => { const on = other === button; other.classList.toggle('active', on); other.setAttribute('aria-pressed', String(on)); });
   input.dispatchEvent(new Event('change', { bubbles:true }));
 });
+function plainControl(...args) { return control(...args); }
 function control(label, path, type, value, options = {}) {
   const rounded = Boolean(options.integer);
   const displayValue = rounded ? Math.round(Number(value) || 0) : value;
@@ -3423,7 +3431,7 @@ function iconEditorMarkup(marker) {
   const mdiList = `<datalist id="mdi-icon-list">${ICON_CHOICES.slice(1).map(([name,label]) => `<option value="${name}">${iconChoiceLabel(label)}</option>`).join('')}</datalist>`;
   const manual = marker.iconMode === 'manual';
   const integrationLogo = marker.iconMode === 'integration';
-  const manualIcons = manual ? control('Ikona zależna ON/OFF','iconVariantEnabled','checkbox',!!marker.iconVariantEnabled,refresh) + (marker.iconVariantEnabled ? mdiControl('Ikona ON','iconOn',marker.iconOn) + mdiControl('Ikona OFF','iconOff',marker.iconOff) : mdiControl('Ikona podstawowa','iconName',marker.iconName)) : '';
+  const manualIcons = manual ? control('Ikona zależna ON/OFF','iconVariantEnabled','checkbox',!!marker.iconVariantEnabled,refresh) + (marker.iconVariantEnabled && markerHasOnOff(marker) ? mdiControl('Ikona ON','iconOn',marker.iconOn) + mdiControl('Ikona OFF','iconOff',marker.iconOff) : mdiControl('Ikona podstawowa','iconName',marker.iconName)) : '';
   const fill = s.iconFillEnabled !== false ? control('Kolor zależny ON/OFF','style.iconStateEnabled','checkbox',s.iconStateEnabled,refresh) + (s.iconStateEnabled ? control('Kolor ON','style.iconOnColor','color',s.iconOnColor) + control('Kolor OFF','style.iconOffColor','color',s.iconOffColor) : control('Kolor','style.iconColor','color',s.iconColor)) + control('Przezroczystość zależna ON/OFF','style.iconOpacityStateEnabled','checkbox',!!s.iconOpacityStateEnabled,refresh) + (s.iconOpacityStateEnabled ? control('Przezroczystość ON','style.iconOnOpacity','range',s.iconOnOpacity,{min:0,max:1,step:.01}) + control('Przezroczystość OFF','style.iconOffOpacity','range',s.iconOffOpacity,{min:0,max:1,step:.01}) : control('Przezroczystość','style.iconOpacity','range',s.iconOpacity,{min:0,max:1,step:.01})) : '';
   const outline = s.iconOutlineEnabled ? control('Obrys zależny ON/OFF','style.iconOutlineStateEnabled','checkbox',s.iconOutlineStateEnabled,refresh) + (s.iconOutlineStateEnabled ? control('Kolor obrysu ON','style.iconOutlineOnColor','color',s.iconOutlineOnColor) + control('Kolor obrysu OFF','style.iconOutlineOffColor','color',s.iconOutlineOffColor) + control('Przezroczystość obrysu ON','style.iconOutlineOnOpacity','range',s.iconOutlineOnOpacity,{min:0,max:1,step:.01}) + control('Przezroczystość obrysu OFF','style.iconOutlineOffOpacity','range',s.iconOutlineOffOpacity,{min:0,max:1,step:.01}) + control('Grubość obrysu ON','style.iconOutlineOnWidth','range',s.iconOutlineOnWidth,{min:1,max:8,step:.5,suffix:'px'}) + control('Grubość obrysu OFF','style.iconOutlineOffWidth','range',s.iconOutlineOffWidth,{min:1,max:8,step:.5,suffix:'px'}) : control('Kolor obrysu','style.iconOutlineColor','color',s.iconOutlineColor) + control('Przezroczystość obrysu','style.iconOutlineOpacity','range',s.iconOutlineOpacity,{min:0,max:1,step:.01}) + control('Grubość obrysu','style.iconOutlineWidth','range',s.iconOutlineWidth,{min:1,max:8,step:.5,suffix:'px'})) : '';
   const iconBody = control('Pokaż','style.showIcon','checkbox',s.showIcon,refresh) + (s.showIcon ? control('Źródło','iconMode','select',marker.iconMode,{items:[['auto','Z encji Home Assistant'],['integration','Logo integracji'],['manual','Własna ikona MDI']],...refresh}) + manualIcons + mdiList + (!integrationLogo ? control('Wypełnienie','style.iconFillEnabled','checkbox',s.iconFillEnabled,refresh) + fill + control('Obrys','style.iconOutlineEnabled','checkbox',s.iconOutlineEnabled,refresh) + outline : '') + control('Rozmiar','style.iconSize','range',s.iconSize,{min:8,max:100,step:1,suffix:'px'}) + control('Lewo / prawo','style.iconX','range',s.iconX,{min:-100,max:100,step:1,suffix:'px'}) + control('Góra / dół','style.iconY','range',s.iconY,{min:-100,max:100,step:1,suffix:'px'}) : '');
@@ -3438,7 +3446,7 @@ function iconEditorMarkup(marker) {
 
 
 function compactBadgeEditor(root, marker) {
-  const s = marker.style;
+  const onOff = markerHasOnOff(marker), s = onOff ? marker.style : { ...marker.style, backgroundStateEnabled:false, borderStateEnabled:false, iconStateEnabled:false, iconOpacityStateEnabled:false, iconOutlineStateEnabled:false };
   const hide = paths => paths.forEach(path => {
     const input = root.querySelector(`[data-path="${path}"]`);
     if (input) input.closest('.control').style.display = 'none';
@@ -3468,7 +3476,7 @@ function compactBadgeEditor(root, marker) {
   else {
     const manual = marker.iconMode === 'manual', integration = marker.iconMode === 'integration';
     if (!manual) hide(['iconName','iconOn','iconOff','iconVariantEnabled']);
-    else if (marker.iconVariantEnabled) hide(['iconName']);
+    else if (marker.iconVariantEnabled && onOff) hide(['iconName']);
     else hide(['iconOn','iconOff']);
     if (integration) hide(['style.iconFillEnabled','style.iconStateEnabled','style.iconColor','style.iconOnColor','style.iconOffColor','style.iconUnavailableColor','style.iconOpacity','style.iconOnOpacity','style.iconOffOpacity','style.iconOutlineEnabled','style.iconOutlineStateEnabled','style.iconOutlineColor','style.iconOutlineOnColor','style.iconOutlineOffColor','style.iconOutlineOpacity','style.iconOutlineOnOpacity','style.iconOutlineOffOpacity','style.iconOutlineWidth','style.iconOutlineOnWidth','style.iconOutlineOffWidth']);
     else {
@@ -3499,7 +3507,7 @@ function editorMarkup(marker) {
   const border = section('Ramka', control('Kształt','style.shape','select',s.shape,{items:[['square','Prostokąt'],['rounded','Zaokrąglony'],['circle','Koło / owal']]}) + control('Pokaż','style.showBorder','checkbox',s.showBorder) + control('Kolor','style.borderColor','color',s.borderColor) + control('Przezrocz.','style.borderOpacity','range',s.borderOpacity,{min:0,max:1,step:.01}) + control('Grubość','style.borderWidth','range',s.borderWidth,{min:0,max:12,step:1,suffix:'px'}) + control('Zaokrąglenie','style.radius','range',s.radius,{min:0,max:100,step:1,suffix:'px'}) + control('Zależne ON/OFF','style.borderStateEnabled','checkbox',s.borderStateEnabled) + control('Kolor ON','style.borderOnColor','color',s.borderOnColor) + control('Kolor OFF','style.borderOffColor','color',s.borderOffColor) + control('Przezrocz. ON','style.borderOnOpacity','range',s.borderOnOpacity,{min:0,max:1,step:.01}) + control('Przezrocz. OFF','style.borderOffOpacity','range',s.borderOffOpacity,{min:0,max:1,step:.01}) + control('Grubość ON','style.borderOnWidth','range',s.borderOnWidth,{min:0,max:12,step:1,suffix:'px'}) + control('Grubość OFF','style.borderOffWidth','range',s.borderOffWidth,{min:0,max:12,step:1,suffix:'px'}));
   const mdiList = `<datalist id="mdi-icon-list">${ICON_CHOICES.slice(1).map(([name,label]) => `<option value="${name}">${iconChoiceLabel(label)}</option>`).join('')}</datalist>`;
   const manualIcons = marker.type === 'badge'
-    ? (marker.iconMode === 'manual' ? control('Ikona zależna ON/OFF','iconVariantEnabled','checkbox',!!marker.iconVariantEnabled,{refresh:true}) + `<div data-manual-icons>${marker.iconVariantEnabled ? mdiControl('Ikona ON','iconOn',marker.iconOn) + mdiControl('Ikona OFF','iconOff',marker.iconOff) : mdiControl('Ikona podstawowa','iconName',marker.iconName)}</div>` : '')
+    ? (marker.iconMode === 'manual' ? control('Ikona zależna ON/OFF','iconVariantEnabled','checkbox',!!marker.iconVariantEnabled,{refresh:true}) + `<div data-manual-icons>${marker.iconVariantEnabled && markerHasOnOff(marker) ? mdiControl('Ikona ON','iconOn',marker.iconOn) + mdiControl('Ikona OFF','iconOff',marker.iconOff) : mdiControl('Ikona podstawowa','iconName',marker.iconName)}</div>` : '')
     : `<div data-manual-icons ${marker.iconMode === 'manual' ? '' : 'hidden'}>${mdiControl('Podstawowa','iconName',marker.iconName)}${mdiControl('Dla ON','iconOn',marker.iconOn)}${mdiControl('Dla OFF','iconOff',marker.iconOff)}</div>`;
   const icon = section('Ikona', control('Pokaż','style.showIcon','checkbox',s.showIcon) + control('Źródło','iconMode','select',marker.iconMode,{items:[['auto','Z encji Home Assistant'],['integration','Logo integracji'],['manual','Własna ikona MDI']]}) + manualIcons + mdiList + control('Wypełnienie','style.iconFillEnabled','checkbox',s.iconFillEnabled) + control('Kolor zależny ON/OFF','style.iconStateEnabled','checkbox',s.iconStateEnabled) + control('Kolor','style.iconColor','color',s.iconColor) + control('Kolor ON','style.iconOnColor','color',s.iconOnColor) + control('Kolor OFF','style.iconOffColor','color',s.iconOffColor) + control('Brak danych','style.iconUnavailableColor','color',s.iconUnavailableColor) + control('Przezrocz.','style.iconOpacity','range',s.iconOpacity,{min:0,max:1,step:.01}) + control('Przezrocz. ON','style.iconOnOpacity','range',s.iconOnOpacity,{min:0,max:1,step:.01}) + control('Przezrocz. OFF','style.iconOffOpacity','range',s.iconOffOpacity,{min:0,max:1,step:.01}) + control('Obrys','style.iconOutlineEnabled','checkbox',s.iconOutlineEnabled) + control('Obrys zależny ON/OFF','style.iconOutlineStateEnabled','checkbox',s.iconOutlineStateEnabled) + control('Kolor obrysu','style.iconOutlineColor','color',s.iconOutlineColor) + control('Kolor obrysu ON','style.iconOutlineOnColor','color',s.iconOutlineOnColor) + control('Kolor obrysu OFF','style.iconOutlineOffColor','color',s.iconOutlineOffColor) + control('Grubość obrysu','style.iconOutlineWidth','range',s.iconOutlineWidth,{min:1,max:8,step:.5,suffix:'px'}) + control('Grubość ON','style.iconOutlineOnWidth','range',s.iconOutlineOnWidth,{min:1,max:8,step:.5,suffix:'px'}) + control('Grubość OFF','style.iconOutlineOffWidth','range',s.iconOutlineOffWidth,{min:1,max:8,step:.5,suffix:'px'}) + control('Rozmiar','style.iconSize','range',s.iconSize,{min:8,max:100,step:1,suffix:'px'}) + control('Lewo / prawo','style.iconX','range',s.iconX,{min:-100,max:100,step:1,suffix:'px'}) + control('Góra / dół','style.iconY','range',s.iconY,{min:-100,max:100,step:1,suffix:'px'}));
   let gauge = '';
@@ -3544,6 +3552,8 @@ function openEditor(preserveSection = editorOpenSectionIndex) {
   if (els.editorIntegrationIcon) els.editorIntegrationIcon.innerHTML = integrationIconMarkupFor(marker.sourceDomain || marker.entityId.split('.')[0], marker.integrationName || marker.sourceDomain, 'editor-brand-icon');
   els.editorContent.innerHTML = editorMarkup(marker); syncLinkedSizes(els.editorContent); syncHeadPreview(els.editor, stateKind(marker) === 'on');
   if (marker.type === 'badge') compactBadgeEditor(els.editorContent, marker);
+  // No ON / OFF choices (state-dependent colours, ON / OFF texts and icons) for entities that do not switch on and off.
+  if (!markerHasOnOff(marker)) $$('[data-path]', els.editorContent).forEach(input => { if (/StateEnabled$|(On|Off)(Color|Opacity|Width)$|^state(On|Off)Label$|^icon(On|Off)$|^iconVariantEnabled$/.test(input.dataset.path)) { const row = input.closest('.control'); if (row) row.style.display = 'none'; } });
   if (Number.isInteger(preserveSection) && preserveSection >= 0) {
     const section = $$('.editor-section', els.editorContent)[preserveSection];
     if (section) section.open = true;
