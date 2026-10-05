@@ -1443,7 +1443,7 @@ function roomEditorMarkup(room) {
   const entities = section(icon ? 'Ogólne' : 'Pomieszczenie', control('Nazwa','name','text',r.name)
     + (icon ? '' : `<div class="control"><label>Stan</label><strong class="flow-live-value">${translateValue(light.on ? 'Włączone' : r.entityIds.length ? 'Wyłączone' : 'Brak encji')}</strong><span></span></div>`)
     + tapActionControl(canToggle ? r.tapAction : (r.tapAction === 'toggle' ? 'more_info' : r.tapAction), canToggle)
-    + `<div class="control room-entities-control"><label>${translateValue(icon ? 'Encja' : 'Encje pomieszczenia')}</label><div class="room-entity-list">${addedList}</div>`
+    + `<div class="control room-entities-control${icon ? ' label-entity' : ''}">${icon ? '' : `<label>${translateValue('Encje pomieszczenia')}</label>`}<div class="room-entity-list">${addedList}</div>`
     // A label has one entity: the search shows only while it has none.
     + (icon && r.entityIds.length ? '</div>' : `<label class="room-entity-search"><i class="mdi mdi-magnify"></i><input id="room-entity-search" type="search" autocomplete="off" placeholder="${escapeHtml(translateValue('Szukaj nazwy lub encji…'))}"></label><div id="room-entity-results" class="room-entity-list room-entity-results"></div></div>`)
     );

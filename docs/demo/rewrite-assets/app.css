@@ -1085,3 +1085,14 @@ body.editing .room-labels{z-index:3}
 .editor .editor-head .head-preview{margin-right:auto}
 .room-outlines{position:absolute;inset:0;pointer-events:none}
 .room-outline-layer{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+/* Label (etykieta) → Ogólne: fields run to the section's right edge; the entity box sits right under "Tap" and is as tall as the name field. */
+.room-editor .editor-section-body:has(.label-entity)>.control:not(.room-entities-control){grid-template-columns:105px minmax(0,1fr)!important}
+.room-editor .editor-section-body:has(.label-entity)>.control:not(.room-entities-control)>span:last-child,.room-editor .editor-section-body:has(.label-entity)>.control:not(.room-entities-control)>output{display:none}
+.room-editor .editor-section-body:has(.label-entity)>.control>input[type=text]{width:100%;max-width:none;box-sizing:border-box;height:32px}
+.room-editor .editor-section-body:has(.label-entity)>.control .seg-choice{justify-content:flex-end!important}
+.room-editor .editor-section-body:has(.label-entity)>.control:has(.seg-choice){margin-bottom:4px}
+.label-entity{margin-top:0!important}
+.label-entity .room-entity{height:32px;box-sizing:border-box;padding:0 3px 0 9px;gap:6px}
+.label-entity .room-entity strong{font-size:11px;line-height:13px}.label-entity .room-entity code{font-size:8.5px;line-height:11px}
+.label-entity .room-entity-action{flex-basis:24px;width:24px;height:24px;font-size:14px}
+.label-entity .room-entity-search{height:32px;box-sizing:border-box}
