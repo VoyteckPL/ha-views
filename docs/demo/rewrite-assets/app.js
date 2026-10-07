@@ -24,15 +24,15 @@ const TRANSLATIONS = {
     'Przyciąganie do siatki włączone':'Snap to grid enabled','Przyciąganie do siatki wyłączone':'Snap to grid disabled','Dodano nowy widok':'New view added','Zmieniono nazwę widoku':'View renamed','Zmieniono kolejność widoków':'View order updated','Ustawiono widok startowy':'Startup view set','Kolejność widoków':'View order','Przesuń widok w lewo':'Move view left','Przesuń widok w prawo':'Move view right','Ustaw jako widok startowy':'Set as startup view','Widok startowy':'Startup view','Blokada geometrii':'Geometry lock','Efekt światła':'Light effect','Jednolity':'Solid','Centralny':'Center','Róg':'Corner','Od ściany':'From wall','Ambient':'Ambient','Pozycja pozioma':'Horizontal position','Pozycja pionowa':'Vertical position','Rozproszenie':'Spread','Wypełnienie':'Fill','Kierunek':'Direction','Pozycja na ścianie':'Position on wall','Lewa':'Left','Prawa':'Right','Góra':'Top','Dół':'Bottom','Utworzono kopię widoku':'View duplicated','Usunięto widok':'View deleted','Przywrócono domyślne dopasowanie tła':'Default background fit restored','Przywrócono styl domyślny':'Default style restored','Wklejono kompletny styl 1:1':'Full style pasted 1:1',
     'Dodano do widoku':'Added to view','Usunięto z widoku':'Removed from view','Usunięto tło':'Background deleted','Skopiowano styl':'Style copied','Nie udało się wczytać układu:':'Could not load layout:',
     'Jednostka':'Unit','Zaokrąglenie':'Rounding','Skala elementów':'Element scale','Oba wymiary':'Both dimensions','Dotknięcie w widoku':'Tap in View','Więcej informacji':'More info','Przełącz ON/OFF':'Toggle ON/OFF','Tekst ON':'ON text','Tekst OFF':'OFF text','Pokaż':'Show','Kolor':'Colour','Przezrocz.':'Opacity','Przezroczystość':'Opacity','Przezroczystość ON':'ON opacity','Przezroczystość OFF':'OFF opacity','Przezroczystość obrysu':'Outline opacity','Przezroczystość obrysu ON':'ON outline opacity','Przezroczystość obrysu OFF':'OFF outline opacity','Kolor zależny ON/OFF':'Colour depends on ON/OFF','Przezroczystość zależna ON/OFF':'Opacity depends on ON/OFF','Ikona zależna ON/OFF':'Icon depends on ON/OFF','Tło zależne ON/OFF':'Background depends on ON/OFF','Ramka zależna ON/OFF':'Border depends on ON/OFF','Obrys zależny ON/OFF':'Outline depends on ON/OFF','Ikona podstawowa':'Base icon','Ikona ON':'ON icon','Ikona OFF':'OFF icon','Szerokość':'Width','Wysokość':'Height','Grubość':'Thickness','Źródło':'Source','Z encji Home Assistant':'From Home Assistant entity','Logo integracji':'Integration logo','Własna ikona MDI':'Custom MDI icon','Brak danych':'No data','Zakres i wartość':'Range and value','Minimum':'Minimum','Maksimum':'Maximum','Tor':'Track','Wartość':'Value','Geometria wskaźnika':'Gauge geometry','Skala':'Scale','Pozycja':'Position','Kąt start':'Start angle','Kąt koniec':'End angle','Podziałka':'Ticks','Pokaż ticki':'Show ticks','Co ile':'Interval','Offset':'Offset','Długość':'Length','Liczby skali':'Scale labels','Czcionka':'Font','Odsunięcie':'Offset','Włącz':'Enable','Start':'Start','Koniec':'End','Procent':'Percent','Własny kolor RGB…':'Custom RGB colour…','Brak dodatkowych atrybutów.':'No additional attributes.','Nie dodano jeszcze żadnych encji.':'No entities have been added yet.','Kliknij, aby wczytać encje.':'Click to load entities.','Dodaj do widoku':'Add to view','Encja jest wyłączona':'Entity is disabled','Dodano świeży Badge z ustawieniami domyślnymi':'Added a new Badge with default settings','Usunięto marker i wszystkie jego ustawienia':'Removed marker and all its settings','Połączono':'Connected','Błąd danych':'Data error','Na żywo':'Live','Ponowne łączenie…':'Reconnecting…','Bez tła':'No background','Błąd zapisu':'Save error','Błąd':'Error',
-    "Encja i kierunek":"Entity and direction","Aktualna wartość":"Current value","Sterowanie":"Control","Stały kierunek":"Fixed direction","Kierunek wg znaku + / −":"Direction by sign + / −","Kierunek dla +":"Direction for +","Kierunek dla −":"Direction for −","Osobny styl dla −":"Separate style for −","Prawo":"Right","Lewo":"Left","Próg aktywności":"Activity threshold","Ukryj poniżej progu":"Hide below threshold","Flow jest nieaktywny, gdy |wartość| ≤ próg — np. próg 0 wyłącza strzałki fotowoltaiki przy 0 W w nocy. Nieaktywny Flow jest przygaszony i bez animacji albo, z opcją ukrywania, całkiem niewidoczny. W trybie edycji ukryty Flow ma tylko przerywaną ramkę, żeby dało się go kliknąć.":"Flow is inactive when |value| ≤ threshold — e.g. a threshold of 0 turns off the solar arrows at 0 W at night. An inactive Flow is dimmed without animation or, with hiding enabled, fully invisible. In edit mode a hidden Flow shows only a dashed frame so it can still be clicked.","Kształt":"Shape","Rodzaj":"Type","Chevron":"Chevron","Strzałka":"Arrow","Grot":"Arrowhead","Trójkąt":"Triangle","Segment":"Segment","Liczba":"Count","Grubość trzonu":"Shaft thickness","Rozmiar i pozycja":"Size and position","Odstęp":"Spacing","Korekta obrotu":"Rotation offset","Długość i szerokość to rozmiar ramki liczony względem kierunku strzałki. Liczba i odstęp rozkładają elementy wewnątrz ramki i nie zmieniają jej rozmiaru.":"Length and width are the frame size, measured along the arrow direction. Count and spacing arrange the items inside the frame and do not change its size.","Kolory i wygląd":"Colours and appearance","Kolor dla +":"Colour for +","Kolor dla −":"Colour for −","Obrys":"Outline","Kolor obrysu":"Outline colour","Poświata":"Glow","Osobny kolor poświaty":"Separate glow colour","Kolor poświaty":"Glow colour","Krycie":"Opacity","Animacja":"Animation","Typ":"Type","Brak":"None","Pulsowanie":"Pulse","Przepływ":"Flow","Tempo":"Speed","Tempo od wartości":"Speed follows value","Pełne tempo przy":"Full speed at","Wartość +":"Value +","Wartość −":"Value −","Styl dla +":"Style for +","Styl dla −":"Style for −","Styl wspólny dla + i −":"Shared style for + and −","Podgląd i edycja dla wartości dodatniej.":"Preview and editing for a positive value.","Podgląd i edycja dla wartości ujemnej.":"Preview and editing for a negative value.","Każda strona ma własny styl.":"Each side has its own style.","Kształt, rozmiar i animacja są wspólne — kolor jest osobny.":"Shape, size and animation are shared — only the colour is separate.","Kopiuj styl Flow":"Copy Flow style","Wklej styl Flow":"Paste Flow style","Usuń Flow":"Delete Flow","Dodaj Flow testowy":"Add Flow","Skopiowano styl Flow — wklej go w innym Flow":"Flow style copied — paste it into another Flow","Wklejono styl Flow":"Flow style pasted","Przywrócono domyślny Flow":"Flow defaults restored","Dodano Flow — przeciągnij go w trybie edycji":"Flow added — drag it in edit mode","Usunięto Flow":"Flow removed","Przywrócić domyślny Flow?":"Restore Flow defaults?","Obecne ustawienia wyglądu i działania Flow zostaną zastąpione domyślnymi. Pozycja i nazwa zostaną zachowane.":"The current Flow appearance and behaviour settings will be replaced with defaults. Position and name are kept.","Usunąć Flow?":"Delete Flow?","Kolor ON":"ON colour","Kolor OFF":"OFF colour","Kolor obrysu ON":"ON outline colour","Kolor obrysu OFF":"OFF outline colour","Grubość obrysu":"Outline thickness","Grubość obrysu ON":"ON outline thickness","Grubość obrysu OFF":"OFF outline thickness","Grubość ON":"ON thickness","Grubość OFF":"OFF thickness","Zależne ON/OFF":"Depends on ON/OFF","Przezrocz. ON":"ON opacity","Przezrocz. OFF":"OFF opacity","Lewo / prawo":"Left / right","Góra / dół":"Up / down","Prostokąt":"Rectangle","Zaokrąglony":"Rounded","Koło / owal":"Circle / oval","Gradient":"Gradient","Auto":"Auto","Monospace":"Monospace","Przywróć domyślną wartość":"Restore default value","Wybierz kolor":"Choose colour","Własny kolor":"Custom colour","Własny kolor RGB":"Custom RGB colour","Podaj kolor w formacie #RRGGBB.":"Enter a colour in #RRGGBB format.","Ustaw":"Set","Typ markera i jego ustawienia wyglądu zostaną zastąpione domyślnymi.":"The marker type and its appearance settings will be replaced with defaults.","Zmień":"Change","Nie można przełączyć encji w tym stanie.":"This entity cannot be toggled in its current state.","Stan encji nie został jeszcze potwierdzony.":"The entity state has not been confirmed yet.","Błąd encji":"Entity error","Błąd przełączania":"Toggle error","Nie udało się pobrać historii":"Could not load history","Pobierz tło":"Download background","Wybierz tło widoku":"Choose view background","Wgraj nowy obraz":"Upload a new image","Wybierz istniejące tło":"Choose an existing background","Wybierz istniejące tło…":"Choose an existing background…","Załaduj wybrane tło":"Load selected background","Wybierz kolor tła":"Choose background colour","Format kolorowego tła":"Colour background format","Usunąć tło?":"Delete background?","Zresetować dopasowanie tła?":"Reset background fit?","Skala, pozycja i tryb dopasowania tego tła wrócą do wartości domyślnych.":"Scale, position and fit mode of this background will return to defaults.","Resetuj":"Reset","Brak aktywnych integracji.":"No active integrations.","Brak encji.":"No entities.","Brak historii w wybranym okresie.":"No history in the selected period.","Brak pasujących encji.":"No matching entities.","Nie dodano jeszcze żadnych elementów.":"Nothing has been added yet.","Widok ogólny":"Overview",
+    "Encja i kierunek":"Entity and direction","Dodatkowe encje":"Extra entities","Inne encje związane z urządzeniem (np. ciśnienie, temperatura wody). Każda dostaje swoją sekcję i można ją ustawić jak rozgrupowaną część.":"Other entities of the device (e.g. pressure, water temperature). Each gets its own section and can be placed like an ungrouped part.","Dodaj encję":"Add entity","szukaj encji…":"search entities…","Wartość":"Value","Tekst przed wartością":"Text before the value","np. Ciśnienie:":"e.g. Pressure:","Urządzenie nie przyjęło zmiany":"The device did not accept the change","Zmienić tryb?":"Change mode?","Zmień":"Change","Presety":"Presets","Pokaż presety":"Show presets","Pokaż":"Show","Pytaj":"Ask","Wyżej":"Up","Niżej":"Down","Wszystkie przyciski":"All buttons","Jeden przycisk (następny tryb)":"One button (next mode)","Zaznacz, przy których zmianach zapytać przed wysłaniem.":"Tick which changes should ask before they are sent.","Komfort":"Comfort","Poza domem":"Away","Dom":"Home","Sen":"Sleep","Aktywność":"Activity","Ręczny":"Manual","Urlop":"Holiday","Ochrona przed mrozem":"Frost protection","Normalny":"Normal","Eko":"Eco","Elektryczny":"Electric","Gazowy":"Gas","Pompa ciepła":"Heat pump","Duże zużycie":"High demand","Wydajny":"Performance","Rozgrupuj":"Ungroup","Grupuj":"Group","Animacje":"Animations","Synchronizuj animacje":"Synchronise animations","Czas cyklu":"Cycle time","Kolor ikony":"Icon colour","Wypełnienie środka":"Centre fill","Efekt":"Effect","Stałe":"Steady","Oddychanie":"Breathing","Intensywność":"Intensity","Kolor":"Colour","Przezrocz.":"Opacity","Grubość":"Width","Przyciski":"Buttons","Zależne od stanu pracy":"By work state","Ikona zależna od stanu pracy":"Icon by work state","Ikony trybów":"Mode icons","Kolor aktywnego wg trybu":"Active colour by mode","Kolor aktywnego":"Active colour","Ramki przycisków":"Button frames","Stany pracy":"Work states","Zaznacz stany, których używa to urządzenie — tylko one pojawią się w ustawieniach stanu pracy.":"Tick the states this device uses — only they appear in the work state settings.","Potwierdzenie":"Confirmation","Pytaj przy włączeniu i wyłączeniu":"Ask before turning on and off","Wyłączyć?":"Turn off?","Włączyć?":"Turn on?","urządzenie zostanie wyłączone.":"the device will be turned off.","urządzenie zostanie włączone.":"the device will be turned on.","Wyłącz":"Turn off","Włącz":"Turn on","Mruganie":"Blink","Przygasanie":"Fade","Drganie":"Shake","Aktualna wartość":"Current value","Sterowanie":"Control","Stały kierunek":"Fixed direction","Kierunek wg znaku + / −":"Direction by sign + / −","Kierunek dla +":"Direction for +","Kierunek dla −":"Direction for −","Osobny styl dla −":"Separate style for −","Prawo":"Right","Lewo":"Left","Próg aktywności":"Activity threshold","Ukryj poniżej progu":"Hide below threshold","Flow jest nieaktywny, gdy |wartość| ≤ próg — np. próg 0 wyłącza strzałki fotowoltaiki przy 0 W w nocy. Nieaktywny Flow jest przygaszony i bez animacji albo, z opcją ukrywania, całkiem niewidoczny. W trybie edycji ukryty Flow ma tylko przerywaną ramkę, żeby dało się go kliknąć.":"Flow is inactive when |value| ≤ threshold — e.g. a threshold of 0 turns off the solar arrows at 0 W at night. An inactive Flow is dimmed without animation or, with hiding enabled, fully invisible. In edit mode a hidden Flow shows only a dashed frame so it can still be clicked.","Kształt":"Shape","Rodzaj":"Type","Chevron":"Chevron","Strzałka":"Arrow","Grot":"Arrowhead","Trójkąt":"Triangle","Segment":"Segment","Liczba":"Count","Grubość trzonu":"Shaft thickness","Rozmiar i pozycja":"Size and position","Odstęp":"Spacing","Korekta obrotu":"Rotation offset","Długość i szerokość to rozmiar ramki liczony względem kierunku strzałki. Liczba i odstęp rozkładają elementy wewnątrz ramki i nie zmieniają jej rozmiaru.":"Length and width are the frame size, measured along the arrow direction. Count and spacing arrange the items inside the frame and do not change its size.","Kolory i wygląd":"Colours and appearance","Kolor dla +":"Colour for +","Kolor dla −":"Colour for −","Obrys":"Outline","Kolor obrysu":"Outline colour","Poświata":"Glow","Osobny kolor poświaty":"Separate glow colour","Kolor poświaty":"Glow colour","Krycie":"Opacity","Animacja":"Animation","Typ":"Type","Brak":"None","Pulsowanie":"Pulse","Przepływ":"Flow","Tempo":"Speed","Tempo od wartości":"Speed follows value","Pełne tempo przy":"Full speed at","Wartość +":"Value +","Wartość −":"Value −","Styl dla +":"Style for +","Styl dla −":"Style for −","Styl wspólny dla + i −":"Shared style for + and −","Podgląd i edycja dla wartości dodatniej.":"Preview and editing for a positive value.","Podgląd i edycja dla wartości ujemnej.":"Preview and editing for a negative value.","Każda strona ma własny styl.":"Each side has its own style.","Kształt, rozmiar i animacja są wspólne — kolor jest osobny.":"Shape, size and animation are shared — only the colour is separate.","Kopiuj styl Flow":"Copy Flow style","Wklej styl Flow":"Paste Flow style","Usuń Flow":"Delete Flow","Dodaj Flow testowy":"Add Flow","Skopiowano styl Flow — wklej go w innym Flow":"Flow style copied — paste it into another Flow","Wklejono styl Flow":"Flow style pasted","Przywrócono domyślny Flow":"Flow defaults restored","Dodano Flow — przeciągnij go w trybie edycji":"Flow added — drag it in edit mode","Usunięto Flow":"Flow removed","Przywrócić domyślny Flow?":"Restore Flow defaults?","Obecne ustawienia wyglądu i działania Flow zostaną zastąpione domyślnymi. Pozycja i nazwa zostaną zachowane.":"The current Flow appearance and behaviour settings will be replaced with defaults. Position and name are kept.","Usunąć Flow?":"Delete Flow?","Kolor ON":"ON colour","Kolor OFF":"OFF colour","Kolor obrysu ON":"ON outline colour","Kolor obrysu OFF":"OFF outline colour","Grubość obrysu":"Outline thickness","Grubość obrysu ON":"ON outline thickness","Grubość obrysu OFF":"OFF outline thickness","Grubość ON":"ON thickness","Grubość OFF":"OFF thickness","Zależne ON/OFF":"Depends on ON/OFF","Przezrocz. ON":"ON opacity","Przezrocz. OFF":"OFF opacity","Lewo / prawo":"Left / right","Góra / dół":"Up / down","Prostokąt":"Rectangle","Zaokrąglony":"Rounded","Koło / owal":"Circle / oval","Gradient":"Gradient","Auto":"Auto","Monospace":"Monospace","Przywróć domyślną wartość":"Restore default value","Wybierz kolor":"Choose colour","Własny kolor":"Custom colour","Własny kolor RGB":"Custom RGB colour","Podaj kolor w formacie #RRGGBB.":"Enter a colour in #RRGGBB format.","Ustaw":"Set","Typ markera i jego ustawienia wyglądu zostaną zastąpione domyślnymi.":"The marker type and its appearance settings will be replaced with defaults.","Zmień":"Change","Nie można przełączyć encji w tym stanie.":"This entity cannot be toggled in its current state.","Stan encji nie został jeszcze potwierdzony.":"The entity state has not been confirmed yet.","Błąd encji":"Entity error","Błąd przełączania":"Toggle error","Nie udało się pobrać historii":"Could not load history","Pobierz tło":"Download background","Wybierz tło widoku":"Choose view background","Wgraj nowy obraz":"Upload a new image","Wybierz istniejące tło":"Choose an existing background","Wybierz istniejące tło…":"Choose an existing background…","Załaduj wybrane tło":"Load selected background","Wybierz kolor tła":"Choose background colour","Format kolorowego tła":"Colour background format","Usunąć tło?":"Delete background?","Zresetować dopasowanie tła?":"Reset background fit?","Skala, pozycja i tryb dopasowania tego tła wrócą do wartości domyślnych.":"Scale, position and fit mode of this background will return to defaults.","Resetuj":"Reset","Brak aktywnych integracji.":"No active integrations.","Brak encji.":"No entities.","Brak historii w wybranym okresie.":"No history in the selected period.","Brak pasujących encji.":"No matching entities.","Nie dodano jeszcze żadnych elementów.":"Nothing has been added yet.","Widok ogólny":"Overview",
     "Brak entity_id":"Missing entity_id","Brak entry_id":"Missing entry_id","Brak listy encji":"Missing entity list","Brak pliku":"No file","Dane muszą być obiektem JSON":"Data must be a JSON object","Dozwolone: PNG, JPG, JPEG, WEBP":"Allowed: PNG, JPG, JPEG, WEBP","Layout jest za duży":"Layout is too large","Layout musi być obiektem JSON":"Layout must be a JSON object","Nie znaleziono tła":"Background not found","Nieprawidlowa encja":"Invalid entity","Nieprawidłowy JSON":"Invalid JSON","Plik stylów jest za duży":"Style file is too large","Stan jest za duży":"State is too large","Stan musi być obiektem JSON":"State must be a JSON object",
     "Cofnij":"Undo","Przywrócono widok":"View restored","Usunięto widok":"View deleted","Widok jest pusty.":"The view is empty.","Usuń widok":"Delete view","Usunąć widok?":"Delete view?",
     "Długość ramki":"Frame length","Długość elementu":"Item length","Długość ramki i szerokość to rozmiar ramki liczony względem kierunku strzałki. Długość elementu to rozmiar jednej strzałki. Liczba i odstęp nie zmieniają ani ramki, ani kształtu strzałek — elementy są wyśrodkowane w ramce, a to, co się nie mieści, jest przycinane.":"Frame length and width are the frame size, measured along the arrow direction. Item length is the size of a single arrow. Count and spacing change neither the frame nor the arrow shape — items are centred in the frame and anything that does not fit is clipped.",
-    "Duplikuj Flow":"Duplicate Flow","Utworzono kopię Flow — przeciągnij ją w wybrane miejsce":"Flow copy created — drag it where you want","Utworzono kopię markera — przeciągnij ją w wybrane miejsce":"Marker copy created — drag it where you want","Duplikuj marker":"Duplicate marker","Grupa":"Group","Wymiary":"Dimensions","Położenie":"Position","Przezrocz. obrysu":"Outline opacity","Zależne ON/OFF":"Depends on ON/OFF","Grubość ON":"Width ON","Grubość OFF":"Width OFF","Źródło":"Source","Z encji":"From entity","Logo integracji":"Integration logo","Własna ikona MDI":"Custom MDI icon","Kształt":"Shape","Kwadrat":"Square","Koło":"Circle","Dowolny":"Custom","Ramka":"Border","Podgląd stanu":"State preview","Grupuj ikonę, nazwę i stan":"Group icon, name and state","Ikona, nazwa i stan są jedną grupą ze wspólnym tłem. Układ, styl i wymiary ustawiasz niżej.":"Icon, name and state are one group with a shared background. Set the layout, style and dimensions below.","Na planie w trybie edycji możesz przeciągać grupę albo jej części palcem lub myszą.":"In edit mode you can drag the group or its parts on the plan with a finger or the mouse.","Jedno pod drugim":"Stacked","Obok siebie":"Side by side","Ikona z lewej":"Icon on the left","Ikona z prawej":"Icon on the right","Styl":"Style","Bez tła":"No background","Ciemne":"Dark","Jasne":"Light","Szkło":"Glass","Kolor pokoju":"Room colour","Wyrównanie":"Alignment","Do lewej":"Left","Do środka":"Centre","Do prawej":"Right","Rozmycie pod spodem":"Blur behind","Kolor ramki":"Border colour","Przezrocz. ramki":"Border opacity","Grubość ramki":"Border width","Margines":"Padding","Odstęp":"Gap","Rozmiar całości":"Overall size","Przesunięcie w grupie: poziomo":"Offset in group: horizontal","Przesunięcie w grupie: pionowo":"Offset in group: vertical","Ikona, nazwa i stan jako jeden element":"Icon, name and state as one element","Przeciągnięcie dowolnej części przesuwa całą etykietę.":"Dragging any part moves the whole label.","Ikona, nazwa i stan są osobno — każdą część przesuwasz na planie oddzielnie (linie pomocnicze pokazują krawędzie i środki pozostałych). Kropki na bokach zmieniają rozmiar ramki. Tło grupy obejmuje wszystkie części.":"Icon, name and state are separate — move each part on the plan (guides show the edges and centres of the others). The dots on the sides resize the frame. The group background covers all parts.","Efekt światła":"Light effect","Pozycja na ścianie":"Position on the wall","Kolor tła":"Background colour","Przezrocz. ON":"Opacity ON","Przezrocz. OFF":"Opacity OFF","Na planie w trybie edycji możesz przeciągać ikonę, nazwę i stan palcem albo myszą.":"In edit mode you can drag the icon, name and state on the plan with a finger or the mouse.","Pokaż ikonę":"Show icon","Pokaż nazwę":"Show name","Pokaż stan":"Show state","Kolor ikony ON":"Icon colour ON","Kolor ikony OFF":"Icon colour OFF","Kolor tekstu":"Text colour","Tło etykiety":"Label background","Przezrocz. tła":"Background opacity","Układ":"Layout","Pionowo":"Vertical","Poziomo":"Horizontal","Wł.":"On","Wył.":"Off","automatyczna":"automatic","Ikona, nazwa i stan rysowane na środku pomieszczenia. Dotknięcie etykiety działa jak dotknięcie pomieszczenia.":"Icon, name and state drawn in the middle of the room. Tapping the label works like tapping the room.","Dodaj do widoku":"Add to view","Wybierz wygląd dla tej encji":"Choose a look for this entity","Wybierz, co chcesz dodać":"Choose what you want to add","Dodano pomieszczenie":"Room added","Nazwa ikony":"Icon name","Encje ikony":"Icon entities","Zaznacz encje, od których zależy stan ikony — światło, włącznik, czujnik… Możesz wybrać kilka.":"Tick the entities the icon state depends on — a light, a switch, a sensor… You can pick several.","Wyszukaj i wybierz encje, od których zależy stan ikony (światło, włącznik, czujnik…).":"Search and pick the entities the icon state depends on (a light, a switch, a sensor…).","Ogólne":"General","Encje":"Entities","Dodano ikonę":"Icon added","Układ grupy":"Group layout","Zakres":"Range","Łuk":"Arc","Kąt":"Angle","Gradient: start":"Gradient: start","Gradient: koniec":"Gradient: end","Podziałka":"Ticks","Liczby skali":"Scale numbers","Procent":"Percent","Pokaż":"Show","Podkowa":"Horseshoe","Wybierz encję, od której zależy stan pomieszczenia — światło, włącznik, czujnik…":"Pick the entity the room state depends on — a light, a switch, a sensor…","Encja pomieszczenia":"Room entity","Gauge albo podkowa — moc, poziom, procent":"Gauge or horseshoe — power, level, percent","Wskaźnik":"Gauge","Wskaźniki i markery":"Gauges and markers","Etykiety":"Labels","Więcej":"More","Światło":"Light","Usunąć etykietę?":"Remove label?","Usunięto etykietę":"Label removed","Duplikuj etykietę":"Duplicate label","Kopiuj styl etykiety":"Copy label style","Wklej styl etykiety":"Paste label style","Usuń etykietę":"Remove label","Siatka dashboardu":"Dashboard grid","Kolumny":"Columns","Wiersze":"Rows","Siatka dashboardu włączona — upuść grupę etykiety na kratki":"Dashboard grid on — drop a label group onto the cells","Siatka dashboardu wyłączona":"Dashboard grid off","Szerokość (kratki)":"Width (cells)","Wysokość (kratki)":"Height (cells)","Odepnij od siatki":"Unpin from grid","Przypnij do siatki":"Pin to grid","Siatka":"Grid","Format":"Format","Tło i ramka":"Fill & border","Widoczna jest jedna część — tło i ramka grupy nie są rysowane. Wrócą, gdy pokażesz drugą część.":"Only one part is shown — the group background and border are not drawn. They come back when you show a second part.","Dodano etykietę":"Label added","Utwórz etykietę":"Create label","Nazwa etykiety":"Label name","Encja etykiety":"Label entity","Wybierz encję, od której zależy stan etykiety — światło, włącznik, czujnik…":"Pick the entity the label state depends on — a light, a switch, a sensor…","Etykieta":"Label","Ta etykieta nie ma jeszcze encji — wybierz ją w trybie edycji":"This label has no entity yet — pick it in edit mode","Wygląd i akcja dotknięcia etykiety wrócą do domyślnych. Położenie, nazwa i encja zostaną.":"The look and tap action of the label go back to the defaults. Its position, name and entity stay.","Przywrócono domyślny wygląd etykiety":"Label look reset to default","Utworzono kopię etykiety":"Label copy created","Ikona, nazwa i stan w dowolnym miejscu":"Icon, name and state anywhere","Tło ikony":"Icon background","Ramka ikony":"Icon border","Domyślna":"Default","Ciągła":"Solid","Kreskowana":"Dashed","Kropkowana":"Dotted","Linia":"Line","Automatycznie":"Automatic","Koloruj stan":"Colour the state","Cień":"Shadow","Grubość czcionki":"Font weight","Normalna":"Normal","Średnia":"Medium","Pogrubiona":"Bold","Treść":"Content","Przezroczystość":"Opacity","Kolor ON":"Colour ON","Kolor OFF":"Colour OFF","Panel edycji":"Edit panel","Poświata pomieszczeń":"Room glow","Płynna (telefon)":"Smooth (phone)","Dokładna":"Exact","Po prawej":"On the right","Po lewej":"On the left","Rozmycie":"Blur","Tło grupy":"Group background","Domyślny układ grupy":"Default group layout","Ramki":"Frames","Jednakowe ramki":"Equal frames","Przywrócono domyślny wygląd ikony":"Icon look reset to default","Wygląd i akcja dotknięcia ikony wrócą do domyślnych. Położenie, nazwa i encje zostaną.":"The look and tap action of the icon go back to the defaults. Its position, name and entities stay.","Ta część jest ukryta — włączysz ją w sekcji Grupa.":"This part is hidden — turn it on in the Group section.","Co najmniej jedna część musi być widoczna":"At least one part must stay visible","Tekst":"Text","Co ma być widać?":"What should be shown?","Utwórz ikonę":"Create icon","Wybierz, co pokazać. Resztę zmienisz potem w panelu.":"Choose what to show. You can change the rest later in the panel.","Ta ikona nie ma jeszcze encji — wybierz je w trybie edycji":"This icon has no entities yet — pick them in edit mode","Utworzono kopię ikony":"Icon copy created","Encje pomieszczenia":"Room entities","Zaznacz encje, od których zależy stan pomieszczenia — światło, włącznik, czujnik… Możesz wybrać kilka.":"Tick the entities the room state depends on — a light, a switch, a sensor… You can pick several.","Wyszukaj i wybierz encje, od których zależy stan pomieszczenia (światło, włącznik, czujnik…).":"Search and pick the entities the room state depends on (a light, a switch, a sensor…).","Obszar ze stanem encji":"Area showing entity state","Nazwa pomieszczenia":"Room name","Co zapala to pomieszczenie?":"What lights up this room?","Dalej":"Next","Pomiń":"Skip","Wpisz nazwę, obszar albo entity_id.":"Type a name, area or entity_id.","Dodano pomieszczenie — encje możesz dodać w panelu":"Room added — you can add entities in the panel","Puste = nazwa automatyczna":"Empty = automatic name","Zaznacz encje (np. światła). Możesz wybrać kilka.":"Tick the entities (e.g. lights). You can pick several.","Szukaj encji":"Search entities","Wybierz encję dla tego elementu":"Choose an entity for this element","Zmień typ":"Change type","Wyszukaj i wybierz encje (np. światła), które zapalają to pomieszczenie.":"Search and pick the entities (e.g. lights) that light up this room.","Wybierz typ albo encję — kolejność dowolna":"Pick a type or an entity — in any order","Co dodać?":"What to add?","Encja":"Entity","— tylko encje liczbowe":"— numeric entities only","— opcjonalnie dla Pomieszczenia, Flow i Tekstu":"— optional for Room, Flow and Text","Szukaj: nazwa, obszar, entity_id…":"Search: name, area, entity_id…","Szukaj encji":"Search entities","Wszystkie":"All","Ostatnie":"Recent","Bez obszaru":"No area","Obszary":"Areas","Typy":"Types","Światła":"Lights","Przełączniki":"Switches","Czujniki":"Sensors","Czujniki binarne":"Binary sensors","Rolety":"Covers","Klimat":"Climate","Media":"Media","Inne":"Other","Wczytywanie encji…":"Loading entities…","Ten element nie potrzebuje encji.":"This element needs no entity.","Brak ostatnio dodanych encji.":"No recently added entities.","Brak pasujących encji.":"No matching entities.","na widoku":"on view","Pokazano":"Showing","zawęż wyszukiwanie":"narrow the search","Wybierz, co dodać":"Choose what to add","Wybierz typ":"Choose a type","Wybierz encję":"Choose an entity","Dodaj":"Add","Polecane":"Suggested","Zmień":"Change","Dla wartości liczbowych":"For numeric values","Bez encji":"No entity","Ikona":"Icon","Tekst / przycisk":"Text / button","Pomieszczenie":"Room","Światło, gniazdko, przełącznik":"Light, socket, switch","Temperatura, wilgotność, stan":"Temperature, humidity, state","Moc, poziom, procent":"Power, level, percent","Moc, bateria, zużycie":"Power, battery, usage","Obszar świeci od encji":"Area lit by an entity","Przepływ energii, wody":"Energy or water flow","Podpis, link do widoku, akcja":"Label, view link, action","Podpis":"Label","Przycisk":"Button","Wskaż miejsce na planie":"Pick the spot on the plan","Anuluj":"Cancel","Zamknij":"Close","Dotknij plan w miejscu, gdzie ma stanąć element":"Tap the plan where the element should go","Anulowano dodawanie":"Adding cancelled","Dodano":"Added","Dodano Flow":"Flow added","Poziom":"Level","Bateria":"Battery","Salon":"Living room",
+    "Duplikuj Flow":"Duplicate Flow","Utworzono kopię Flow — przeciągnij ją w wybrane miejsce":"Flow copy created — drag it where you want","Utworzono kopię markera — przeciągnij ją w wybrane miejsce":"Marker copy created — drag it where you want","Duplikuj marker":"Duplicate marker","Grupa":"Group","Wymiary":"Dimensions","Położenie":"Position","Przezrocz. obrysu":"Outline opacity","Zależne ON/OFF":"Depends on ON/OFF","Grubość ON":"Width ON","Grubość OFF":"Width OFF","Źródło":"Source","Z encji":"From entity","Logo integracji":"Integration logo","Własna ikona MDI":"Custom MDI icon","Kształt":"Shape","Kwadrat":"Square","Koło":"Circle","Dowolny":"Custom","Ramka":"Border","Podgląd stanu":"State preview","Grupuj ikonę, nazwę i stan":"Group icon, name and state","Ikona, nazwa i stan są jedną grupą ze wspólnym tłem. Układ, styl i wymiary ustawiasz niżej.":"Icon, name and state are one group with a shared background. Set the layout, style and dimensions below.","Na planie w trybie edycji możesz przeciągać grupę albo jej części palcem lub myszą.":"In edit mode you can drag the group or its parts on the plan with a finger or the mouse.","Jedno pod drugim":"Stacked","Obok siebie":"Side by side","Ikona z lewej":"Icon on the left","Ikona z prawej":"Icon on the right","Styl":"Style","Bez tła":"No background","Ciemne":"Dark","Jasne":"Light","Szkło":"Glass","Kolor pokoju":"Room colour","Wyrównanie":"Alignment","Do lewej":"Left","Do środka":"Centre","Do prawej":"Right","Rozmycie pod spodem":"Blur behind","Kolor ramki":"Border colour","Przezrocz. ramki":"Border opacity","Grubość ramki":"Border width","Margines":"Padding","Odstęp":"Gap","Rozmiar całości":"Overall size","Przesunięcie w grupie: poziomo":"Offset in group: horizontal","Przesunięcie w grupie: pionowo":"Offset in group: vertical","Ikona, nazwa i stan jako jeden element":"Icon, name and state as one element","Przeciągnięcie dowolnej części przesuwa całą etykietę.":"Dragging any part moves the whole label.","Ikona, nazwa i stan są osobno — każdą część przesuwasz na planie oddzielnie (linie pomocnicze pokazują krawędzie i środki pozostałych). Kropki na bokach zmieniają rozmiar ramki. Tło grupy obejmuje wszystkie części.":"Icon, name and state are separate — move each part on the plan (guides show the edges and centres of the others). The dots on the sides resize the frame. The group background covers all parts.","Efekt światła":"Light effect","Pozycja na ścianie":"Position on the wall","Kolor tła":"Background colour","Przezrocz. ON":"Opacity ON","Przezrocz. OFF":"Opacity OFF","Na planie w trybie edycji możesz przeciągać ikonę, nazwę i stan palcem albo myszą.":"In edit mode you can drag the icon, name and state on the plan with a finger or the mouse.","Pokaż ikonę":"Show icon","Pokaż nazwę":"Show name","Pokaż stan":"Show state","Kolor ikony ON":"Icon colour ON","Kolor ikony OFF":"Icon colour OFF","Kolor tekstu":"Text colour","Tło etykiety":"Label background","Przezrocz. tła":"Background opacity","Układ":"Layout","Pionowo":"Vertical","Poziomo":"Horizontal","Wł.":"On","Wył.":"Off","automatyczna":"automatic","Ikona, nazwa i stan rysowane na środku pomieszczenia. Dotknięcie etykiety działa jak dotknięcie pomieszczenia.":"Icon, name and state drawn in the middle of the room. Tapping the label works like tapping the room.","Dodaj do widoku":"Add to view","Wybierz wygląd dla tej encji":"Choose a look for this entity","Wybierz, co chcesz dodać":"Choose what you want to add","Dodano pomieszczenie":"Room added","Nazwa ikony":"Icon name","Encje ikony":"Icon entities","Zaznacz encje, od których zależy stan ikony — światło, włącznik, czujnik… Możesz wybrać kilka.":"Tick the entities the icon state depends on — a light, a switch, a sensor… You can pick several.","Wyszukaj i wybierz encje, od których zależy stan ikony (światło, włącznik, czujnik…).":"Search and pick the entities the icon state depends on (a light, a switch, a sensor…).","Ogólne":"General","Encje":"Entities","Dodano ikonę":"Icon added","Układ grupy":"Group layout","Zakres":"Range","Łuk":"Arc","Kąt":"Angle","Gradient: start":"Gradient: start","Gradient: koniec":"Gradient: end","Podziałka":"Ticks","Liczby skali":"Scale numbers","Procent":"Percent","Pokaż":"Show","Podkowa":"Horseshoe","Wybierz encję, od której zależy stan pomieszczenia — światło, włącznik, czujnik…":"Pick the entity the room state depends on — a light, a switch, a sensor…","Encja pomieszczenia":"Room entity","Gauge albo podkowa — moc, poziom, procent":"Gauge or horseshoe — power, level, percent","Wskaźnik":"Gauge","Wskaźniki i markery":"Gauges and markers","Wskaźniki":"Gauges","Etykiety":"Labels","Dodaj etykietę":"Add label","Więcej":"More","Światło":"Light","Usunąć etykietę?":"Remove label?","Usunięto etykietę":"Label removed","Duplikuj etykietę":"Duplicate label","Kopiuj styl etykiety":"Copy label style","Wklej styl etykiety":"Paste label style","Usuń etykietę":"Remove label","Siatka dashboardu":"Dashboard grid","Kolumny":"Columns","Wiersze":"Rows","Siatka dashboardu włączona — upuść grupę etykiety na kratki":"Dashboard grid on — drop a label group onto the cells","Siatka dashboardu wyłączona":"Dashboard grid off","Szerokość (kratki)":"Width (cells)","Wysokość (kratki)":"Height (cells)","Odepnij od siatki":"Unpin from grid","Przypnij do siatki":"Pin to grid","Siatka":"Grid","Format":"Format","Tło i ramka":"Fill & border","Widoczna jest jedna część — tło i ramka grupy nie są rysowane. Wrócą, gdy pokażesz drugą część.":"Only one part is shown — the group background and border are not drawn. They come back when you show a second part.","Dodano etykietę":"Label added","Utwórz etykietę":"Create label","Nazwa etykiety":"Label name","Encja etykiety":"Label entity","Wybierz encję, od której zależy stan etykiety — światło, włącznik, czujnik…":"Pick the entity the label state depends on — a light, a switch, a sensor…","Etykieta":"Label","Ta etykieta nie ma jeszcze encji — wybierz ją w trybie edycji":"This label has no entity yet — pick it in edit mode","Wygląd i akcja dotknięcia etykiety wrócą do domyślnych. Położenie, nazwa i encja zostaną.":"The look and tap action of the label go back to the defaults. Its position, name and entity stay.","Przywrócono domyślny wygląd etykiety":"Label look reset to default","Utworzono kopię etykiety":"Label copy created","Ikona, nazwa i stan w dowolnym miejscu":"Icon, name and state anywhere","Tło ikony":"Icon background","Ramka ikony":"Icon border","Domyślna":"Default","Ciągła":"Solid","Kreskowana":"Dashed","Kropkowana":"Dotted","Linia":"Line","Automatycznie":"Automatic","Koloruj stan":"Colour the state","Cień":"Shadow","Grubość czcionki":"Font weight","Normalna":"Normal","Średnia":"Medium","Pogrubiona":"Bold","Treść":"Content","Przezroczystość":"Opacity","Kolor ON":"Colour ON","Kolor OFF":"Colour OFF","Panel edycji":"Edit panel","Poświata pomieszczeń":"Room glow","Płynna (telefon)":"Smooth (phone)","Dokładna":"Exact","Po prawej":"On the right","Po lewej":"On the left","Rozmycie":"Blur","Tło grupy":"Group background","Domyślny układ grupy":"Default group layout","Ramki":"Frames","Jednakowe ramki":"Equal frames","Przywrócono domyślny wygląd ikony":"Icon look reset to default","Wygląd i akcja dotknięcia ikony wrócą do domyślnych. Położenie, nazwa i encje zostaną.":"The look and tap action of the icon go back to the defaults. Its position, name and entities stay.","Ta część jest ukryta — włączysz ją w sekcji Grupa.":"This part is hidden — turn it on in the Group section.","Co najmniej jedna część musi być widoczna":"At least one part must stay visible","Tekst":"Text","Co ma być widać?":"What should be shown?","Utwórz ikonę":"Create icon","Wybierz, co pokazać. Resztę zmienisz potem w panelu.":"Choose what to show. You can change the rest later in the panel.","Ta ikona nie ma jeszcze encji — wybierz je w trybie edycji":"This icon has no entities yet — pick them in edit mode","Utworzono kopię ikony":"Icon copy created","Encje pomieszczenia":"Room entities","Zaznacz encje, od których zależy stan pomieszczenia — światło, włącznik, czujnik… Możesz wybrać kilka.":"Tick the entities the room state depends on — a light, a switch, a sensor… You can pick several.","Wyszukaj i wybierz encje, od których zależy stan pomieszczenia (światło, włącznik, czujnik…).":"Search and pick the entities the room state depends on (a light, a switch, a sensor…).","Obszar ze stanem encji":"Area showing entity state","Nazwa pomieszczenia":"Room name","Co zapala to pomieszczenie?":"What lights up this room?","Dalej":"Next","Pomiń":"Skip","Wpisz nazwę, obszar albo entity_id.":"Type a name, area or entity_id.","Dodano pomieszczenie — encje możesz dodać w panelu":"Room added — you can add entities in the panel","Puste = nazwa automatyczna":"Empty = automatic name","Zaznacz encje (np. światła). Możesz wybrać kilka.":"Tick the entities (e.g. lights). You can pick several.","Szukaj encji":"Search entities","Wybierz encję dla tego elementu":"Choose an entity for this element","Zmień typ":"Change type","Wyszukaj i wybierz encje (np. światła), które zapalają to pomieszczenie.":"Search and pick the entities (e.g. lights) that light up this room.","Wybierz typ albo encję — kolejność dowolna":"Pick a type or an entity — in any order","Co dodać?":"What to add?","Encja":"Entity","— tylko encje liczbowe":"— numeric entities only","— opcjonalnie dla Pomieszczenia, Flow i Tekstu":"— optional for Room, Flow and Text","Szukaj: nazwa, obszar, entity_id…":"Search: name, area, entity_id…","Szukaj encji":"Search entities","Wszystkie":"All","Ostatnie":"Recent","Bez obszaru":"No area","Obszary":"Areas","Typy":"Types","Światła":"Lights","Przełączniki":"Switches","Czujniki":"Sensors","Czujniki binarne":"Binary sensors","Rolety":"Covers","Klimat":"Climate","Media":"Media","Inne":"Other","Wczytywanie encji…":"Loading entities…","Ten element nie potrzebuje encji.":"This element needs no entity.","Brak ostatnio dodanych encji.":"No recently added entities.","Brak pasujących encji.":"No matching entities.","na widoku":"on view","Pokazano":"Showing","zawęż wyszukiwanie":"narrow the search","Wybierz, co dodać":"Choose what to add","Wybierz typ":"Choose a type","Wybierz encję":"Choose an entity","Dodaj":"Add","Polecane":"Suggested","Zmień":"Change","Dla wartości liczbowych":"For numeric values","Bez encji":"No entity","Ikona":"Icon","Tekst / przycisk":"Text / button","Pomieszczenie":"Room","Światło, gniazdko, przełącznik":"Light, socket, switch","Temperatura, wilgotność, stan":"Temperature, humidity, state","Moc, poziom, procent":"Power, level, percent","Moc, bateria, zużycie":"Power, battery, usage","Obszar świeci od encji":"Area lit by an entity","Przepływ energii, wody":"Energy or water flow","Podpis, link do widoku, akcja":"Label, view link, action","Podpis":"Label","Przycisk":"Button","Wskaż miejsce na planie":"Pick the spot on the plan","Anuluj":"Cancel","Zamknij":"Close","Dotknij plan w miejscu, gdzie ma stanąć element":"Tap the plan where the element should go","Anulowano dodawanie":"Adding cancelled","Dodano":"Added","Dodano Flow":"Flow added","Poziom":"Level","Bateria":"Battery","Salon":"Living room",
     "Ostrość":"Sharpness",
-    "Układ został zmieniony na innym urządzeniu — wczytano najnowszą wersję. Ostatnia zmiana z tego urządzenia nie została zapisana.":"The layout was changed on another device — the latest version was loaded. The last change from this device was not saved.","Układ zmieniono na innym urządzeniu":"Layout changed on another device","Wczytaj":"Load","Wczytano zmiany z innego urządzenia":"Loaded changes from another device","Ściemniaj tło wg słońca":"Dim the background with the sun","Jasność w nocy":"Night brightness","Zaczyna ściemniać, gdy słońce na":"Starts dimming with the sun at","Pełna noc, gdy słońce na":"Full night with the sun at","Chłodny odcień nocą":"Cool tint at night","Ściemnienie":"Dimming","słońce":"sun","Edycja":"Editing","Przenieś panel na drugą stronę":"Move the panel to the other side","Kliknij marker, Flow albo pomieszczenie, żeby je edytować.":"Click a marker, Flow or room to edit it.","Nowe elementy dodasz z menu edycji (ołówek), a przyciąganie i wyrównanie z menu magnesu.":"Add new elements from the edit menu (pencil); snapping and alignment are in the magnet menu.","Usuń narożnik":"Remove corner","Ostatnia zmiana":"Last changed","7 dni":"7 days","Tekst / przycisk":"Text / button","Tekst":"Text","Tekst i akcja":"Text and action","Podpis":"Caption","Przejdź do widoku":"Go to view","Otwórz stronę Home Assistant":"Open a Home Assistant page","Otwórz link":"Open a link","Adres w HA":"HA path","Link":"Link","W nowej karcie":"In a new tab","Dodano tekst — przeciągnij go w wybrane miejsce":"Text added — drag it into place","Link do tego widoku":"Link to this view","Kopiuj link do widoku":"Copy link to this view","Skopiowano do schowka. Otwiera HA Views od razu na tym widoku — w przeglądarce, w zakładce albo w akcji „navigate” innego dashboardu.":"Copied to the clipboard. It opens HA Views directly on this view — in a browser, a bookmark or a “navigate” action of another dashboard.","Skopiuj link. Otwiera HA Views od razu na tym widoku — w przeglądarce, w zakładce albo w akcji „navigate” innego dashboardu.":"Copy the link. It opens HA Views directly on this view — in a browser, a bookmark or a “navigate” action of another dashboard.","OK":"OK","HA Views Beta":"HA Views Beta","stabilna wersja HA Views":"the stable HA Views","Beta":"Beta","Używane przez":"Used by","Usunąć tło używane przez drugą wersję?":"Delete a background used by the other version?","Zmienić nazwę tła używanego przez drugą wersję?":"Rename a background used by the other version?","Jasność":"Brightness","Przywróć 100%":"Reset to 100%","Widok":"View","Opcje":"Options","Obraz":"Image","Wgraj tło":"Upload background","Zmień nazwę pliku tła":"Rename background file","Auto — przełącza encja":"Auto — switched by the entity","Kolor zamiast obrazu":"Colour instead of an image","Wybór koloru zastąpi obraz":"Choosing a colour replaces the image","Tło w kolorze":"Colour background","Szerokość":"Width","Wysokość":"Height","Ustaw rozmiar na ekranie":"Set the size on screen","Przeciągnij kółka, aby ustawić rozmiar":"Drag the circles to set the size","Tło tego widoku":"This view's background","Ustaw jako tło tego widoku":"Use as this view's background","Tło nocne tego widoku":"This view's night background","Ustaw jako tło nocne tego widoku":"Use as this view's night background","Zmień nazwę":"Rename","Pobierz":"Download","Ustawiono tło widoku":"View background set","Zmień nazwę pliku tła?":"Rename background file?","Zmienić nazwę tła wersji stabilnej?":"Rename a stable-version background?","Zmień mimo to":"Rename anyway","Zmieniono nazwę tła":"Background renamed","Zmień":"Change","Używane w stabilnej wersji — usunięcie wymaga potwierdzenia":"Used by the stable version — deleting needs confirmation","Usunąć tło wersji stabilnej?":"Delete a stable-version background?","Usuń mimo to":"Delete anyway","Tego nie da się cofnąć.":"This cannot be undone.","Tryb tła":"Background mode","Automatycznie wg encji":"Automatic by entity","Zawsze dzień":"Always day","Zawsze noc":"Always night","Zawsze noc — encja nie jest używana":"Always night — the entity is not used","Zawsze dzień — encja nie jest używana":"Always day — the entity is not used","Pliki tła":"Background files","Usuń nieużywane":"Remove unused","plików":"files","plik":"file","pliki":"files","nieużywane":"unused","Nieużywane":"Unused","Stabilna":"Stable","noc":"night","dzień":"day","Używane w stabilnej wersji — usuń je tam":"Used by the stable version — remove it there","Usuń plik":"Delete file","Brak wgranych teł.":"No uploaded backgrounds.","Wczytywanie…":"Loading…","Usunąć plik tła?":"Delete background file?","Usunąć nieużywane tła?":"Remove unused backgrounds?","Usunięto plik tła":"Background file deleted","Tło nocne":"Night background","Bez tła nocnego":"No night background","Wgraj tło nocne":"Upload night background","Przełącza encja":"Switched by entity","Encja przełączająca tło nocne":"Entity that switches the night background","Dzień":"Day","Noc":"Night","Podgląd: dzień":"Preview: day","Podgląd: noc":"Preview: night","Podgląd tła":"Background preview","Teraz: noc":"Now: night","Teraz: dzień":"Now: day","podgląd":"preview","Najpierw ustaw tło dzienne":"Set the day background first","Ustawiono tło nocne":"Night background set","Wgrywanie…":"Uploading…","Intensywność ON":"ON intensity","Intensywność OFF":"OFF intensity","Obrót":"Rotation","Obróć zaznaczony":"Rotate selected","Obróć o 90° w lewo":"Rotate 90° left","Obróć o 15° w lewo":"Rotate 15° left","Obróć o 15° w prawo":"Rotate 15° right","Obróć o 90° w prawo":"Rotate 90° right","Bez obrotu":"No rotation","Obrót płynny":"Smooth rotation","Przyciąganie i siatka":"Snapping and grid","Linie pomocnicze":"Guides","Tylko elementy widoczne na ekranie":"Only elements visible on screen","Przyciągaj do":"Snap to","Tło (środek i krawędzie)":"Background (centre and edges)","Punkty":"Points","Środki":"Centres","Krawędzie":"Edges","Wyrównaj zaznaczony do tła":"Align selected to background","Do lewej krawędzi tła":"To the left edge","Wyśrodkuj w poziomie":"Centre horizontally","Do prawej krawędzi tła":"To the right edge","Do górnej krawędzi tła":"To the top edge","Wyśrodkuj w pionie":"Centre vertically","Do dolnej krawędzi tła":"To the bottom edge","Dodaj Flow":"Add Flow","Dodano Flow — wybierz encję albo zostaw bez encji":"Flow added — choose an entity or leave it without one","Usuń encję":"Remove entity","Podgląd: włączony":"Preview: on","Podgląd: wyłączony":"Preview: off","Tempo to stała prędkość strzałek (1× = 150 px/s) — nie zależy od rozmiaru, odstępu ani liczby, więc Flow z tym samym tempem jadą identycznie.":"Tempo is a constant arrow speed (1\u00d7 = 75 px/s) \u2014 it does not depend on size, spacing or count, so Flows with the same tempo move identically.","Ramka i pozycja":"Frame and position","Szerokość ramki":"Frame width","Strzałki":"Arrows","Długość strzałki":"Arrow length","Ramka to obszar Flow na planie, liczony wzdłuż kierunku strzałek. Szerokość ramki jest też wysokością strzałek. Uchwyty zaznaczenia zmieniają to samo.":"The frame is the Flow area on the plan, measured along the arrow direction. The frame width is also the arrow height. The selection handles change the same values.","W animacji „Przepływ” strzałki wypełniają całą ramkę, więc liczba nie ma znaczenia.":"With the “Flow” animation the arrows fill the whole frame, so the count does not matter.","Strzałki są wyśrodkowane w ramce; to, co się nie mieści, jest przycinane. Liczba i odstęp nie zmieniają ramki. Ujemny odstęp wsuwa strzałki jedna w drugą (gęściej).":"Arrows are centred in the frame; what does not fit is clipped. Count and spacing do not change the frame. A negative spacing nests the arrows into each other (denser).","Tempo pulsowania nie zależy od rozmiaru Flow.":"The pulse tempo does not depend on the Flow size.","Ustaw tę animację w pozostałych Flow tej encji":"Apply this animation to the other Flows of this entity","Ustawiono tę samą animację w innych Flow tej encji":"Same animation applied to other Flows of this entity","Granice tła":"Background bounds","Elementy nie wychodzą poza tło":"Elements stay inside the background","Elementy nie wyjdą poza tło":"Elements will stay inside the background","Elementy mogą wychodzić poza tło":"Elements may go outside the background","Edytuj ikonę":"Edit icon","Usuń ikonę":"Remove icon","Dodaj ikonę":"Add icon","Ikona pomieszczenia to zwykły marker typu Ikona z pełnym edytorem (kolory ON/OFF, obrys, tło, ramka, rozmiar, kolory wg wartości). Świeci, gdy pomieszczenie jest zapalone, a dotknięcie wykonuje akcję pomieszczenia.":"The room icon is a regular Icon marker with the full editor (ON/OFF colours, outline, background, border, size, colours by value). It is lit while the room is on, and tapping it runs the room action.","Dodano ikonę pomieszczenia — przeciągnij ją w wybrane miejsce":"Room icon added — drag it where you want it","Usunięto ikonę pomieszczenia":"Room icon removed","Markery":"Markers","Pomieszczenia":"Rooms","Markery, Flow i pomieszczenia tego widoku":"Markers, Flows and rooms of this view","Rozjaśnij — jak światło lampy: plan jaśnieje w kolorze poświaty, ciemne miejsca najmocniej.":"Lighten — like lamp light: the plan brightens in the glow colour, dark areas the most.","Miękkie światło — delikatne ocieplenie, plan zachowuje swoje kolory i kontrast.":"Soft light — a gentle tint, the plan keeps its colours and contrast.","Nakładka — mocniejszy efekt: jasne miejsca jaśnieją, ciemne ciemnieją, kolor jest wyraźny.":"Overlay — a stronger effect: light areas get lighter, dark areas darker, the colour is clear.","Zwykłe — płaski, półprzezroczysty kolor położony na plan.":"Normal — a flat, semi-transparent colour laid over the plan.","Geometria zablokowana — kliknij, aby odblokować":"Geometry locked — click to unlock","Zablokuj geometrię":"Lock geometry","Zablokowano geometrię":"Geometry locked","Odblokowano geometrię":"Geometry unlocked","Podgląd":"Preview","Rzeczywisty stan":"Actual state","Włączony":"On","Wyłączony":"Off","Usuń z pomieszczenia":"Remove from room","Dodaj do pomieszczenia":"Add to room","Z tego widoku":"From this view","Wpisz co najmniej 2 znaki.":"Type at least 2 characters.","Wyszukiwanie encji…":"Searching entities…","Brak — wyszukaj encję poniżej.":"None — search for an entity below.","Szukaj nazwy lub encji…":"Search name or entity…","Geometria jest zablokowana (kłódka u góry).":"The geometry is locked (padlock at the top).","Duplikuj pomieszczenie":"Duplicate room","Kopiuj styl pomieszczenia":"Copy room style","Wklej styl pomieszczenia":"Paste room style","Skopiowano styl pomieszczenia — wklej go w innym pomieszczeniu":"Room style copied — paste it into another room","Wklejono styl pomieszczenia":"Room style pasted","Przywrócić domyślny wygląd?":"Restore the default look?","Wygląd i akcja dotknięcia pomieszczenia wrócą do domyślnych. Kształt, nazwa i encje zostaną.":"The room look and tap action return to defaults. Shape, name and entities stay.","Przywrócono domyślny wygląd pomieszczenia":"Room look restored to default","kopia":"copy","Utworzono kopię pomieszczenia — przeciągnij ją w wybrane miejsce":"Room copied — drag it where you want it","Naprawiono błędny domyślny panel HA — ustaw go ponownie w menu widoku":"Fixed an invalid HA default panel — set it again in the view menu","Domyślny panel Home Assistant":"Home Assistant default panel","Bez zmian (ustawienia HA)":"Unchanged (HA settings)","HA Views — moje konto":"HA Views — my account","HA Views — tylko to urządzenie":"HA Views — this device only","HA Views jest teraz domyślnym panelem na Twoim koncie":"HA Views is now the default panel for your account","HA Views jest domyślnym panelem na tym urządzeniu":"HA Views is the default panel on this device","Przywrócono domyślny panel z ustawień Home Assistant":"Restored the default panel from Home Assistant settings","Otwieraj HA Views po starcie Home Assistant (to urządzenie)":"Open HA Views when Home Assistant starts (this device)","Ta opcja działa tylko w HA Views otwartym z panelu Home Assistant":"This option only works when HA Views is opened from the Home Assistant sidebar","HA Views będzie otwierać się po starcie Home Assistant na tym urządzeniu":"HA Views will open when Home Assistant starts on this device","Po starcie Home Assistant znów otworzy się domyślny dashboard":"Home Assistant will open its default dashboard again","Brak akcji":"No action","Przełącz światło":"Toggle the light","Nic":"Nothing","To pomieszczenie nie ma jeszcze encji — wybierz je w trybie edycji":"This room has no entities yet — choose them in edit mode","Błąd przełączania: ":"Toggle error: ","Pomieszczenie":"Room","Dodaj pomieszczenie":"Add room","Klikaj kolejne narożniki pomieszczenia":"Click the corners of the room one by one","Kliknij pierwszy punkt albo „Gotowe”, aby zamknąć kształt":"Click the first point or “Done” to close the shape","Cofnij punkt":"Undo point","Gotowe":"Done","Usuń pomieszczenie":"Delete room","Dodano pomieszczenie — wybierz encje, które je zapalają":"Room added — choose the entities that light it up","Pomieszczenie musi mieć co najmniej 3 narożniki":"A room needs at least 3 corners","Ten widok nie ma jeszcze encji — dodaj np. światło przez Integracje albo wpisz encję poniżej.":"This view has no entities yet — add e.g. a light via Integrations or type an entity below.","Brak encji":"No entities","Zapalają je encje":"Lit by entities","Inne encje":"Other entities","Pomieszczenie świeci, gdy włączona jest dowolna z wybranych encji (światło, gniazdko, ruch, otwarte drzwi…).":"The room lights up when any of the selected entities is on (light, plug, motion, open door…).","Wygląd":"Appearance","Efekt":"Effect","Poświata kolorem":"Colour glow","Zapalony obraz":"Lit image","Obraz zapalony":"Lit image","— wybierz —":"— choose —","Wgraj jako tło drugą wersję planu (np. render z włączonymi światłami) i wybierz ją tutaj — pomieszczenie odsłoni ją tylko w swoim kształcie. Obraz powinien mieć ten sam kadr co plan.":"Upload a second version of the plan as a background (e.g. a render with the lights on) and choose it here — the room reveals it only inside its shape. The image should have the same framing as the plan.","Kolor ze światła":"Colour from the light","Mieszanie":"Blending","Rozjaśnij":"Lighten","Miękkie światło":"Soft light","Nakładka":"Overlay","Zwykłe":"Normal","Jasność ze światła":"Brightness from the light","Intensywność":"Intensity","Miękkość krawędzi":"Edge softness","Podgląd włączonego":"Preview as on","Przeciągnij narożnik, aby go przesunąć. Mały punkt na krawędzi dodaje nowy narożnik. Dwuklik na narożniku go usuwa. Przeciągnij wnętrze, aby przesunąć całe pomieszczenie. Narożniki przyciągają się do ścian innych pomieszczeń (Alt wyłącza).":"Drag a corner to move it. The small dot on an edge adds a corner. Double-click a corner to remove it. Drag the inside to move the whole room. Corners snap to the walls of other rooms (Alt disables).","Usunąć pomieszczenie?":"Delete room?","Usunięto pomieszczenie":"Room deleted","Kolory wg wartości":"Colours by value","Dolny próg":"Lower threshold","Górny próg":"Upper threshold","Kolor poniżej":"Colour below","Kolor pomiędzy":"Colour between","Kolor od górnego":"Colour from upper","Płynne przejście":"Smooth blend","Koloruj ikonę":"Colour the icon","Koloruj wartość":"Colour the value","Koloruj łuk":"Colour the arc","Koloruj tło":"Colour the background","Koloruj ramkę":"Colour the border","Ikona poniżej":"Icon below","Ikona pomiędzy":"Icon between","Ikona od górnego":"Icon from upper","Puste pole ikony = zwykła ikona markera.":"Empty icon field = the marker’s normal icon.","Stan encji nie jest liczbą — kolory wg wartości nie działają dla tej encji.":"The entity state is not a number — colours by value do not apply to this entity.","Teraz: poniżej dolnego progu.":"Now: below the lower threshold.","Teraz: pomiędzy progami.":"Now: between the thresholds.","Teraz: od górnego progu.":"Now: at or above the upper threshold.","Połączono z nowszymi zmianami z innego urządzenia":"Merged with newer changes from another device","Układ został zmieniony na innym urządzeniu":"The layout was changed on another device",
+    "Układ został zmieniony na innym urządzeniu — wczytano najnowszą wersję. Ostatnia zmiana z tego urządzenia nie została zapisana.":"The layout was changed on another device — the latest version was loaded. The last change from this device was not saved.","Układ zmieniono na innym urządzeniu":"Layout changed on another device","Wczytaj":"Load","Wczytano zmiany z innego urządzenia":"Loaded changes from another device","Ściemniaj tło wg słońca":"Dim the background with the sun","Jasność w nocy":"Night brightness","Zaczyna ściemniać, gdy słońce na":"Starts dimming with the sun at","Pełna noc, gdy słońce na":"Full night with the sun at","Chłodny odcień nocą":"Cool tint at night","Ściemnienie":"Dimming","słońce":"sun","Edycja":"Editing","Przenieś panel na drugą stronę":"Move the panel to the other side","Kliknij element, aby go edytować.":"Click an element to edit it.","Nowe elementy dodasz z menu plus lub z menu integracji.":"Add new elements from the plus menu or the integrations menu.","Usuń narożnik":"Remove corner","Ostatnia zmiana":"Last changed","7 dni":"7 days","Tekst / przycisk":"Text / button","Tekst":"Text","Tekst i akcja":"Text and action","Podpis":"Caption","Termostat":"Thermostat","Tarcza":"Dial","Temperatura ustawiona":"Target temperature","Przycisk −":"− button","Przycisk +":"+ button","Nazwa termostatu":"Thermostat name","Dodano termostat":"Thermostat added","Grubość łuku":"Arc width","Kolory trybów":"Mode colours","Poświata podczas pracy":"Glow while working","Kolor wg trybu":"Colour by mode","Szablony":"Templates","Szablon":"Template","Pusty":"Empty","Wczytaj szablon":"Load template","Usuń szablon":"Delete template","Zapisz aktualny układ jako szablon":"Save the current layout as a template","Zapisano szablon":"Template saved","Usunięto szablon":"Template deleted","Wczytano szablon":"Template loaded","Maks. 5 szablonów — usuń któryś koszem":"Max. 5 templates — delete one with the bin","Kolory stanu pracy":"Activity colours","Kropka temperatury aktualnej":"Current temperature dot","Uchwyt temperatury ustawionej":"Target temperature handle","Teksty":"Texts","Teksty trybów":"Mode texts","Tryb (stan)":"Mode (state)","Przywrócono domyślny wygląd termostatu":"Thermostat look restored to default","Utwórz termostat":"Create thermostat","Utwórz tekst":"Create text","Ogrzewanie / klimatyzacja — temperatura, tryby, sterowanie":"Heating / AC — temperature, modes, control","Grzanie":"Heat","Chłodzenie":"Cool","Grzanie / chłodzenie":"Heat / cool","Osuszanie":"Dry","Wentylator":"Fan","Wyłączony":"Off","Grzeje":"Heating","Nagrzewa":"Preheating","Chłodzi":"Cooling","Osusza":"Drying","Wentyluje":"Fan","Odmraża":"Defrosting","Bezczynny":"Idle","Ustawiona":"Target","Niedostępny":"Unavailable","Wył.":"Off","Błąd termostatu":"Thermostat error","Encja nie ma tego atrybutu":"The entity does not have this attribute","Atrybuty":"Attributes","Stan pracy (grzeje / bezczynny)":"Activity (heating / idle)","Temperatura aktualna":"Current temperature","Przyciski − / +":"− / + buttons","Tryby":"Modes","Zakres min / max":"Min / max range","Wilgotność":"Humidity","Preset":"Preset","Inne atrybuty":"Other attributes","Kolory":"Colours","Tor tarczy":"Dial track","Skala zawartości":"Content scale","Zaokrąglenie":"Corner radius","Akcja po dotknięciu":"Action on tap","Dodano tekst":"Text added","Napis z akcją — widok, strona HA, link":"Text with an action — view, HA page, link","Co ma się stać po dotknięciu tekstu w trybie przeglądania. Zmienisz to potem w panelu.":"What a tap on the text does in view mode. You can change it later in the panel.","Przejdź do widoku":"Go to view","Otwórz stronę Home Assistant":"Open a Home Assistant page","Otwórz link":"Open a link","Adres w HA":"HA path","Link":"Link","W nowej karcie":"In a new tab","Dodano tekst — przeciągnij go w wybrane miejsce":"Text added — drag it into place","Link do tego widoku":"Link to this view","Kopiuj link do widoku":"Copy link to this view","Skopiowano do schowka. Otwiera HA Views od razu na tym widoku — w przeglądarce, w zakładce albo w akcji „navigate” innego dashboardu.":"Copied to the clipboard. It opens HA Views directly on this view — in a browser, a bookmark or a “navigate” action of another dashboard.","Skopiuj link. Otwiera HA Views od razu na tym widoku — w przeglądarce, w zakładce albo w akcji „navigate” innego dashboardu.":"Copy the link. It opens HA Views directly on this view — in a browser, a bookmark or a “navigate” action of another dashboard.","OK":"OK","HA Views Beta":"HA Views Beta","stabilna wersja HA Views":"the stable HA Views","Beta":"Beta","Używane przez":"Used by","Usunąć tło używane przez drugą wersję?":"Delete a background used by the other version?","Zmienić nazwę tła używanego przez drugą wersję?":"Rename a background used by the other version?","Jasność":"Brightness","Przywróć 100%":"Reset to 100%","Widok":"View","Opcje":"Options","Obraz":"Image","Wgraj tło":"Upload background","Zmień nazwę pliku tła":"Rename background file","Auto — przełącza encja":"Auto — switched by the entity","Kolor zamiast obrazu":"Colour instead of an image","Wybór koloru zastąpi obraz":"Choosing a colour replaces the image","Tło w kolorze":"Colour background","Szerokość":"Width","Wysokość":"Height","Ustaw rozmiar na ekranie":"Set the size on screen","Przeciągnij kółka, aby ustawić rozmiar":"Drag the circles to set the size","Tło tego widoku":"This view's background","Ustaw jako tło tego widoku":"Use as this view's background","Tło nocne tego widoku":"This view's night background","Ustaw jako tło nocne tego widoku":"Use as this view's night background","Zmień nazwę":"Rename","Pobierz":"Download","Ustawiono tło widoku":"View background set","Zmień nazwę pliku tła?":"Rename background file?","Zmienić nazwę tła wersji stabilnej?":"Rename a stable-version background?","Zmień mimo to":"Rename anyway","Zmieniono nazwę tła":"Background renamed","Zmień":"Change","Używane w stabilnej wersji — usunięcie wymaga potwierdzenia":"Used by the stable version — deleting needs confirmation","Usunąć tło wersji stabilnej?":"Delete a stable-version background?","Usuń mimo to":"Delete anyway","Tego nie da się cofnąć.":"This cannot be undone.","Tryb tła":"Background mode","Automatycznie wg encji":"Automatic by entity","Zawsze dzień":"Always day","Zawsze noc":"Always night","Zawsze noc — encja nie jest używana":"Always night — the entity is not used","Zawsze dzień — encja nie jest używana":"Always day — the entity is not used","Pliki tła":"Background files","Usuń nieużywane":"Remove unused","plików":"files","plik":"file","pliki":"files","nieużywane":"unused","Nieużywane":"Unused","Stabilna":"Stable","noc":"night","dzień":"day","Używane w stabilnej wersji — usuń je tam":"Used by the stable version — remove it there","Usuń plik":"Delete file","Brak wgranych teł.":"No uploaded backgrounds.","Wczytywanie…":"Loading…","Usunąć plik tła?":"Delete background file?","Usunąć nieużywane tła?":"Remove unused backgrounds?","Usunięto plik tła":"Background file deleted","Tło nocne":"Night background","Bez tła nocnego":"No night background","Wgraj tło nocne":"Upload night background","Przełącza encja":"Switched by entity","Encja przełączająca tło nocne":"Entity that switches the night background","Dzień":"Day","Noc":"Night","Podgląd: dzień":"Preview: day","Podgląd: noc":"Preview: night","Podgląd tła":"Background preview","Teraz: noc":"Now: night","Teraz: dzień":"Now: day","podgląd":"preview","Najpierw ustaw tło dzienne":"Set the day background first","Ustawiono tło nocne":"Night background set","Wgrywanie…":"Uploading…","Intensywność ON":"ON intensity","Intensywność OFF":"OFF intensity","Obrót":"Rotation","Obróć zaznaczony":"Rotate selected","Obróć o 90° w lewo":"Rotate 90° left","Obróć o 15° w lewo":"Rotate 15° left","Obróć o 15° w prawo":"Rotate 15° right","Obróć o 90° w prawo":"Rotate 90° right","Bez obrotu":"No rotation","Obrót płynny":"Smooth rotation","Przyciąganie i siatka":"Snapping and grid","Linie pomocnicze":"Guides","Tylko elementy widoczne na ekranie":"Only elements visible on screen","Przyciągaj do":"Snap to","Tło (środek i krawędzie)":"Background (centre and edges)","Punkty":"Points","Wyrównuj po":"Align by","Środki":"Centres","Krawędzie":"Edges","Animacja":"Animation","Rodzaj":"Type","Obrót":"Spin","Pulsowanie":"Pulse","Miganie":"Blink","Kołysanie":"Swing","Czas cyklu":"Cycle time","Kierunek":"Direction","W prawo":"Clockwise","W lewo":"Counter-clockwise","Tylko gdy ON":"Only when ON","Prędkość z encji (%)":"Speed from entity (%)","Odstępy — pośrodku między dwiema etykietami i równe odstępy":"Spacing — exactly between two labels and equal gaps","Wyrównaj zaznaczony do tła":"Align selected to background","Do lewej krawędzi tła":"To the left edge","Wyśrodkuj w poziomie":"Centre horizontally","Do prawej krawędzi tła":"To the right edge","Do górnej krawędzi tła":"To the top edge","Wyśrodkuj w pionie":"Centre vertically","Do dolnej krawędzi tła":"To the bottom edge","Dodaj Flow":"Add Flow","Dodano Flow — wybierz encję albo zostaw bez encji":"Flow added — choose an entity or leave it without one","Usuń encję":"Remove entity","Podgląd: włączony":"Preview: on","Podgląd: wyłączony":"Preview: off","Tempo to stała prędkość strzałek (1× = 150 px/s) — nie zależy od rozmiaru, odstępu ani liczby, więc Flow z tym samym tempem jadą identycznie.":"Tempo is a constant arrow speed (1\u00d7 = 75 px/s) \u2014 it does not depend on size, spacing or count, so Flows with the same tempo move identically.","Ramka i pozycja":"Frame and position","Szerokość ramki":"Frame width","Strzałki":"Arrows","Długość strzałki":"Arrow length","Ramka to obszar Flow na planie, liczony wzdłuż kierunku strzałek. Szerokość ramki jest też wysokością strzałek. Uchwyty zaznaczenia zmieniają to samo.":"The frame is the Flow area on the plan, measured along the arrow direction. The frame width is also the arrow height. The selection handles change the same values.","W animacji „Przepływ” strzałki wypełniają całą ramkę, więc liczba nie ma znaczenia.":"With the “Flow” animation the arrows fill the whole frame, so the count does not matter.","Strzałki są wyśrodkowane w ramce; to, co się nie mieści, jest przycinane. Liczba i odstęp nie zmieniają ramki. Ujemny odstęp wsuwa strzałki jedna w drugą (gęściej).":"Arrows are centred in the frame; what does not fit is clipped. Count and spacing do not change the frame. A negative spacing nests the arrows into each other (denser).","Tempo pulsowania nie zależy od rozmiaru Flow.":"The pulse tempo does not depend on the Flow size.","Ustaw tę animację w pozostałych Flow tej encji":"Apply this animation to the other Flows of this entity","Ustawiono tę samą animację w innych Flow tej encji":"Same animation applied to other Flows of this entity","Granice tła":"Background bounds","Elementy nie wychodzą poza tło":"Elements stay inside the background","Elementy nie wyjdą poza tło":"Elements will stay inside the background","Elementy mogą wychodzić poza tło":"Elements may go outside the background","Edytuj ikonę":"Edit icon","Usuń ikonę":"Remove icon","Dodaj ikonę":"Add icon","Ikona pomieszczenia to zwykły marker typu Ikona z pełnym edytorem (kolory ON/OFF, obrys, tło, ramka, rozmiar, kolory wg wartości). Świeci, gdy pomieszczenie jest zapalone, a dotknięcie wykonuje akcję pomieszczenia.":"The room icon is a regular Icon marker with the full editor (ON/OFF colours, outline, background, border, size, colours by value). It is lit while the room is on, and tapping it runs the room action.","Dodano ikonę pomieszczenia — przeciągnij ją w wybrane miejsce":"Room icon added — drag it where you want it","Usunięto ikonę pomieszczenia":"Room icon removed","Markery":"Markers","Pomieszczenia":"Rooms","Markery, Flow i pomieszczenia tego widoku":"Markers, Flows and rooms of this view","Rozjaśnij — jak światło lampy: plan jaśnieje w kolorze poświaty, ciemne miejsca najmocniej.":"Lighten — like lamp light: the plan brightens in the glow colour, dark areas the most.","Miękkie światło — delikatne ocieplenie, plan zachowuje swoje kolory i kontrast.":"Soft light — a gentle tint, the plan keeps its colours and contrast.","Nakładka — mocniejszy efekt: jasne miejsca jaśnieją, ciemne ciemnieją, kolor jest wyraźny.":"Overlay — a stronger effect: light areas get lighter, dark areas darker, the colour is clear.","Zwykłe — płaski, półprzezroczysty kolor położony na plan.":"Normal — a flat, semi-transparent colour laid over the plan.","Geometria zablokowana — kliknij, aby odblokować":"Geometry locked — click to unlock","Zablokuj geometrię":"Lock geometry","Zablokowano geometrię":"Geometry locked","Odblokowano geometrię":"Geometry unlocked","Podgląd":"Preview","Rzeczywisty stan":"Actual state","Włączony":"On","Wyłączony":"Off","Usuń z pomieszczenia":"Remove from room","Dodaj do pomieszczenia":"Add to room","Z tego widoku":"From this view","Wpisz co najmniej 2 znaki.":"Type at least 2 characters.","Wyszukiwanie encji…":"Searching entities…","Brak — wyszukaj encję poniżej.":"None — search for an entity below.","Szukaj nazwy lub encji…":"Search name or entity…","Geometria jest zablokowana (kłódka u góry).":"The geometry is locked (padlock at the top).","Duplikuj pomieszczenie":"Duplicate room","Kopiuj styl pomieszczenia":"Copy room style","Wklej styl pomieszczenia":"Paste room style","Skopiowano styl pomieszczenia — wklej go w innym pomieszczeniu":"Room style copied — paste it into another room","Wklejono styl pomieszczenia":"Room style pasted","Przywrócić domyślny wygląd?":"Restore the default look?","Wygląd i akcja dotknięcia pomieszczenia wrócą do domyślnych. Kształt, nazwa i encje zostaną.":"The room look and tap action return to defaults. Shape, name and entities stay.","Przywrócono domyślny wygląd pomieszczenia":"Room look restored to default","kopia":"copy","Utworzono kopię pomieszczenia — przeciągnij ją w wybrane miejsce":"Room copied — drag it where you want it","Naprawiono błędny domyślny panel HA — ustaw go ponownie w menu widoku":"Fixed an invalid HA default panel — set it again in the view menu","Domyślny panel Home Assistant":"Home Assistant default panel","Bez zmian (ustawienia HA)":"Unchanged (HA settings)","HA Views — moje konto":"HA Views — my account","HA Views — tylko to urządzenie":"HA Views — this device only","HA Views jest teraz domyślnym panelem na Twoim koncie":"HA Views is now the default panel for your account","HA Views jest domyślnym panelem na tym urządzeniu":"HA Views is the default panel on this device","Przywrócono domyślny panel z ustawień Home Assistant":"Restored the default panel from Home Assistant settings","Otwieraj HA Views po starcie Home Assistant (to urządzenie)":"Open HA Views when Home Assistant starts (this device)","Ta opcja działa tylko w HA Views otwartym z panelu Home Assistant":"This option only works when HA Views is opened from the Home Assistant sidebar","HA Views będzie otwierać się po starcie Home Assistant na tym urządzeniu":"HA Views will open when Home Assistant starts on this device","Po starcie Home Assistant znów otworzy się domyślny dashboard":"Home Assistant will open its default dashboard again","Brak akcji":"No action","Przełącz światło":"Toggle the light","Nic":"Nothing","To pomieszczenie nie ma jeszcze encji — wybierz je w trybie edycji":"This room has no entities yet — choose them in edit mode","Błąd przełączania: ":"Toggle error: ","Pomieszczenie":"Room","Dodaj pomieszczenie":"Add room","Klikaj kolejne narożniki pomieszczenia":"Click the corners of the room one by one","Kliknij pierwszy punkt albo „Gotowe”, aby zamknąć kształt":"Click the first point or “Done” to close the shape","Cofnij punkt":"Undo point","Gotowe":"Done","Usuń pomieszczenie":"Delete room","Dodano pomieszczenie — wybierz encje, które je zapalają":"Room added — choose the entities that light it up","Pomieszczenie musi mieć co najmniej 3 narożniki":"A room needs at least 3 corners","Ten widok nie ma jeszcze encji — dodaj np. światło przez Integracje albo wpisz encję poniżej.":"This view has no entities yet — add e.g. a light via Integrations or type an entity below.","Brak encji":"No entities","Zapalają je encje":"Lit by entities","Inne encje":"Other entities","Pomieszczenie świeci, gdy włączona jest dowolna z wybranych encji (światło, gniazdko, ruch, otwarte drzwi…).":"The room lights up when any of the selected entities is on (light, plug, motion, open door…).","Wygląd":"Appearance","Efekt":"Effect","Poświata kolorem":"Colour glow","Zapalony obraz":"Lit image","Obraz zapalony":"Lit image","— wybierz —":"— choose —","Wgraj jako tło drugą wersję planu (np. render z włączonymi światłami) i wybierz ją tutaj — pomieszczenie odsłoni ją tylko w swoim kształcie. Obraz powinien mieć ten sam kadr co plan.":"Upload a second version of the plan as a background (e.g. a render with the lights on) and choose it here — the room reveals it only inside its shape. The image should have the same framing as the plan.","Kolor ze światła":"Colour from the light","Mieszanie":"Blending","Rozjaśnij":"Lighten","Miękkie światło":"Soft light","Nakładka":"Overlay","Zwykłe":"Normal","Jasność ze światła":"Brightness from the light","Intensywność":"Intensity","Miękkość krawędzi":"Edge softness","Podgląd włączonego":"Preview as on","Przeciągnij narożnik, aby go przesunąć. Mały punkt na krawędzi dodaje nowy narożnik. Dwuklik na narożniku go usuwa. Przeciągnij wnętrze, aby przesunąć całe pomieszczenie. Narożniki przyciągają się do ścian innych pomieszczeń (Alt wyłącza).":"Drag a corner to move it. The small dot on an edge adds a corner. Double-click a corner to remove it. Drag the inside to move the whole room. Corners snap to the walls of other rooms (Alt disables).","Usunąć pomieszczenie?":"Delete room?","Usunięto pomieszczenie":"Room deleted","Kolory wg wartości":"Colours by value","Dolny próg":"Lower threshold","Górny próg":"Upper threshold","Kolor poniżej":"Colour below","Kolor pomiędzy":"Colour between","Kolor od górnego":"Colour from upper","Płynne przejście":"Smooth blend","Koloruj ikonę":"Colour the icon","Koloruj wartość":"Colour the value","Koloruj łuk":"Colour the arc","Koloruj tło":"Colour the background","Koloruj ramkę":"Colour the border","Ikona poniżej":"Icon below","Ikona pomiędzy":"Icon between","Ikona od górnego":"Icon from upper","Puste pole ikony = zwykła ikona markera.":"Empty icon field = the marker’s normal icon.","Stan encji nie jest liczbą — kolory wg wartości nie działają dla tej encji.":"The entity state is not a number — colours by value do not apply to this entity.","Teraz: poniżej dolnego progu.":"Now: below the lower threshold.","Teraz: pomiędzy progami.":"Now: between the thresholds.","Teraz: od górnego progu.":"Now: at or above the upper threshold.","Połączono z nowszymi zmianami z innego urządzenia":"Merged with newer changes from another device","Układ został zmieniony na innym urządzeniu":"The layout was changed on another device",
     "Zarządzaj widokiem":"Manage view","Tło widoku":"View background","Ustaw tło":"Set background","Wstecz":"Back","Podgląd wybranego tła":"Selected background preview",
-    "Przełączanie palcem":"Swipe between views","Wyłączone (tylko zakładki)":"Off (tabs only)","Przesunięcie":"Slide","Kostka":"Cube","Zapisano sposób przełączania widoków":"View switching saved",
+    "Zoom poza edycją":"Zoom outside editing","Panel startowy HA":"HA start panel","Bez zmian":"Unchanged","HA Views (konto)":"HA Views (account)","HA Views (urządzenie)":"HA Views (device)","Przełączanie palcem":"Swipe between views","Wyłączone (tylko zakładki)":"Off (tabs only)","Przesunięcie":"Slide","Kostka":"Cube","Zapisano sposób przełączania widoków":"View switching saved",
     "Diagnostyka przesuwania":"Swipe diagnostics"
   }
 };
@@ -159,7 +159,13 @@ const gaugeDefaults = () => ({
 const iconDefaults = () => ({ ...badgeDefaults(), width: 124, height: 124, showLabel: false, showValue: false, showBackground: true, backgroundOpacity: .76, showBorder: true, radius: 16, showIcon: true, iconSize: 32, iconX: 0, iconY: 0 });
 const horseshoeDefaults = () => ({ ...gaugeDefaults(), width: 330, height: 291, showLabel: true, showValue: true, showPercent: true, showTicks: false, startAngle: 135, endAngle: 405, gaugeScale: 1, gaugeY: 0, valueScale: .65, valueY: -19, percentScale: .8, percentY: -8 });
 const isGaugeType = type => type === 'gauge' || type === 'horseshoe';
-const markerStyleDefaults = type => type === 'icon' ? iconDefaults() : type === 'horseshoe' ? horseshoeDefaults() : type === 'gauge' ? gaugeDefaults() : badgeDefaults();
+// Termostat (climate): a dial from the entity's min to max temperature with the target, the current temperature, what it
+// is doing now, − / + and its modes. Which of them show is chosen in its panel (only those the entity really has).
+const thermostatDefaults = () => ({ ...badgeDefaults(), width: 216, height: 250, baseContentScale: 1, contentScale: 1, showLabel: true, showValue: true, showIcon: false,
+  backgroundColor: '#071A26', backgroundOpacity: .88, borderColor: '#8FDFFF', borderOpacity: .18, radius: 24,
+  thermoShowAction: true, thermoShowCurrent: true, thermoShowControls: true, thermoShowModes: true, thermoShowRange: true, thermoShowHumidity: true, thermoShowPreset: true, thermoShowFan: false,
+  thermoHeatColor: '#FF7A2F', thermoCoolColor: '#38BDF8', thermoAutoColor: '#34D399', thermoDryColor: '#FBBF24', thermoFanColor: '#A78BFA', thermoOffColor: '#64748B', thermoTrackColor: '#1E3546' });
+const markerStyleDefaults = type => type === 'thermostat' ? thermostatDefaults() : type === 'icon' ? iconDefaults() : type === 'horseshoe' ? horseshoeDefaults() : type === 'gauge' ? gaugeDefaults() : badgeDefaults();
 const markerTypeLabel = type => ({ badge:'Badge', gauge:'Gauge', icon:'Ikona', horseshoe:'Podkowa' }[type] || 'Badge');
 const gaugeVisualTransform = (marker, style) => {
   const horseshoe = marker.type === 'horseshoe';
@@ -407,6 +413,7 @@ function showMainView(name) {
 function renderViewSelector() {
   if (!els.sceneTabs) return;
   const sheetName = $('#vm-name'); if (sheetName) sheetName.textContent = activeSceneView()?.name || '';
+  syncZoomToggle();
   const transition = $('#view-transition'); if (transition) transition.value = viewTransitionMode();
   els.sceneCard?.parentElement?.classList.toggle('swipe-mode-cube', viewTransitionMode() === 'cube' && mobileView());
   els.sceneTabs.innerHTML = model.viewOrder.map(id => `<button class="tab scene-view-tab ${id === model.activeViewId ? 'active' : ''}" data-scene-view="${escapeHtml(id)}">${model.settings?.defaultViewId === id ? '<i class="mdi mdi-home-variant-outline scene-tab-home" title="Widok startowy" aria-label="Widok startowy"></i>' : ''}<span data-no-i18n>${escapeHtml(model.views[id].name)}</span></button>`).join('');
@@ -539,6 +546,7 @@ function applySnapUi() {
   const step = clamp(model.settings?.snapStep || .25, .25, 4);
   els.scene?.style.setProperty('--grid-minor', `${step}%`);
   els.scene?.style.setProperty('--grid-major', `${step * 5}%`);
+  els.scene?.style.setProperty('--grid-vis', `${gridVisual()}%`); syncGridGeometry();
   const activePreset = [.25, 1, 4].reduce((best, value) => Math.abs(value - step) < Math.abs(best - step) ? value : best, .25);
   els.gridPresets.forEach(button => button.classList.toggle('active', Number(button.dataset.gridStep) === activePreset));
 }
@@ -554,6 +562,22 @@ function bringIntoScene(item) {
   const nx = Number.isFinite(x) ? clamp(x, 0, 100) : 50, ny = Number.isFinite(y) ? clamp(y, 0, 100) : 50;
   if (nx === x && ny === y) return false;
   item.xPercent = nx; item.yPercent = ny; return true;
+}
+// The visible edit grid: L = 10 % of the plan (as before), M = 5 %, S = 2,5 %. Lines start at the plan's edges, so the
+// grid is always symmetric (a line through the centre) and scales with the plan. Resize dots snap to these lines.
+function gridVisual() { const step = Number(model.settings?.snapStep) || .25; return step >= 4 ? 10 : step >= 1 ? 5 : 2.5; }
+// Square grid: the cell is a share of the plan's width (L 10 %, M 5 %, S 2,5 %) on both axes, and the lines are counted
+// from the plan's centre, so a line always runs through the middle of the plan both ways.
+function syncGridGeometry() {
+  // Guide and edit lines are one device pixel thin, whatever the screen density.
+  document.documentElement.style.setProperty('--dpr', String(window.devicePixelRatio || 1));
+  const scene = els.scene; if (!scene) return; const w = scene.offsetWidth, h = scene.offsetHeight, g = w * gridVisual() / 100; if (!g) return;
+  scene.style.setProperty('--grid-px', `${g}px`); scene.style.setProperty('--grid-ox', `${(w / 2) % g}px`); scene.style.setProperty('--grid-oy', `${(h / 2) % g}px`);
+}
+function gridLineNear(v, horizontal) {
+  if (model.settings?.snapEnabled === false) return null;
+  const sc = els.scene.getBoundingClientRect(), origin = horizontal ? sc.left + sc.width / 2 : sc.top + sc.height / 2, step = sc.width * gridVisual() / 100; if (!step) return null;
+  const line = origin + Math.round((v - origin) / step) * step; return Math.abs(line - v) <= (mobileView() ? 18 : 13) ? line : null;
 }
 function snapPercent(value) {
   if (model.settings?.snapEnabled === false) return clamp(value, 0, 100);
@@ -572,13 +596,14 @@ function tapActionControl(value, canToggle) {
   const items = TAP_ACTIONS.filter(([key]) => key !== 'toggle' || canToggle), current = items.some(([key]) => key === value) ? value : 'more_info';
   return control('Dotknięcie w widoku','tapAction','select',current,{ items });
 }
-const ROOM_DEFAULTS = Object.freeze({ name:'Pomieszczenie', points:[], entityIds:[], tapAction:'toggle', mode:'glow', color:'#FFD27A', useLightColor:true, useBrightness:true, opacity:.45, feather:14, blend:'screen', litImage:'', stateEnabled:false, offColor:'#20B9E7', offOpacity:.2,
+const ROOM_DEFAULTS = Object.freeze(withExtraPartDefaults({ name:'Pomieszczenie', points:[], entityIds:[], tapAction:'toggle', mode:'glow', color:'#FFD27A', useLightColor:true, useBrightness:true, opacity:.45, feather:14, blend:'screen', litImage:'', stateEnabled:false, offColor:'#20B9E7', offOpacity:.2,
   lightEffect:'none', lightX:50, lightY:50, lightDirection:'left', lightWallPos:50, lightSpread:.6, lightFill:.15, labelLinked:false,
   labelCardX:0, labelCardY:0, labelCardLayout:'column', labelCardAlign:'center', labelCardBg:true, labelCardBgColor:'#081822', labelCardBgOpacity:.62, labelCardBlur:false, labelCardRadius:14, labelCardPadding:10, labelCardGap:4,
   labelCardBorder:false, labelCardBorderColor:'#FFFFFF', labelCardBorderOpacity:.3, labelCardBorderWidth:1,
   labelCardBgState:false, labelCardBgOnColor:'#3A2A08', labelCardBgOffColor:'#081822', labelCardBgOnOpacity:.62, labelCardBgOffOpacity:.62,
   labelCardBorderState:false, labelCardBorderOnColor:'#FFC46B', labelCardBorderOffColor:'#FFFFFF', labelCardBorderOnOpacity:.7, labelCardBorderOffOpacity:.3, labelCardBorderOnWidth:1.5, labelCardBorderOffWidth:1, labelCardScale:1, labelIconDX:0, labelIconDY:0, labelNameDX:0, labelNameDY:0, labelStateDX:0, labelStateDY:0,
   labelIcon:false, labelIconName:'', labelIconOn:'#FFC46B', labelIconOff:'#9FB6C3', labelIconSize:120, labelIconX:0, labelIconY:-80, labelIconBg:false, labelIconBgOpacity:.55, labelIconBgColor:'#081822',
+  labelIconAnim:false, labelIconAnimType:'spin', labelIconAnimSpeed:1.5, labelIconAnimDir:'cw', labelIconAnimOnlyOn:true, labelIconAnimEntitySpeed:false,
   labelIconVariant:false, labelIconNameOn:'', labelIconNameOff:'', labelIconOpacityOn:1, labelIconOpacityOff:1, labelIconFill:true, labelIconOutline:false, labelIconOutlineColor:'#FFFFFF', labelIconOutlineWidth:1.5,
   labelIconSource:'entity', labelIconColorState:true, labelIconColor:'#FFC46B', labelIconOpacity:1,
   labelIconOutlineState:false, labelIconOutlineOnColor:'#FFFFFF', labelIconOutlineOffColor:'#9FB6C3', labelIconOutlineOnWidth:1.5, labelIconOutlineOffWidth:1.5, labelIconOutlineOpacity:1, labelIconOutlineOnOpacity:1, labelIconOutlineOffOpacity:1,
@@ -600,7 +625,7 @@ const ROOM_DEFAULTS = Object.freeze({ name:'Pomieszczenie', points:[], entityIds
   labelIconW:0, labelIconH:0, labelNameW:0, labelNameH:0, labelStateW:0, labelStateH:0,
   labelIconFX:0, labelIconFY:0, labelNameFX:0, labelNameFY:0, labelStateFX:0, labelStateFY:0,
   labelName:false, labelNameColor:'#FFFFFF', labelNameSize:60, labelNameX:0, labelNameY:28, labelNameBg:false, labelNameBgOpacity:.55, labelNameBgColor:'#081822',
-  labelState:false, labelStateColor:'#DCE8EF', labelStateSize:50, labelStateX:0, labelStateY:84, labelStateBg:false, labelStateBgOpacity:.55, labelStateBgColor:'#081822' });
+  labelState:false, labelStateColor:'#DCE8EF', labelStateSize:50, labelStateX:0, labelStateY:84, labelStateBg:false, labelStateBgOpacity:.55, labelStateBgColor:'#081822', labelDial:false, labelDialColor:'#FFFFFF', labelDialSize:26, labelDialX:0, labelDialY:0, labelDialBg:false, labelDialBgOpacity:.55, labelDialBgColor:'#081822', labelDialBorder:false, labelDialBorderColor:'#FFFFFF', labelDialBorderOpacity:.6, labelDialBorderWidth:1.5, labelDialDX:0, labelDialDY:0, labelDialOpacity:1, labelDialOpacityOn:1, labelDialOpacityOff:1, labelDialColorOn:'#FFFFFF', labelDialColorOff:'#FFFFFF', labelTarget:false, labelTargetColor:'#FFFFFF', labelTargetSize:36, labelTargetX:0, labelTargetY:0, labelTargetBg:false, labelTargetBgOpacity:.55, labelTargetBgColor:'#081822', labelTargetBorder:false, labelTargetBorderColor:'#FFFFFF', labelTargetBorderOpacity:.6, labelTargetBorderWidth:1.5, labelTargetDX:0, labelTargetDY:0, labelTargetOpacity:1, labelTargetOpacityOn:1, labelTargetOpacityOff:1, labelTargetColorOn:'#FFFFFF', labelTargetColorOff:'#FFFFFF', labelCurrent:false, labelCurrentColor:'#A9C6D4', labelCurrentSize:14, labelCurrentX:0, labelCurrentY:0, labelCurrentBg:false, labelCurrentBgOpacity:.55, labelCurrentBgColor:'#081822', labelCurrentBorder:false, labelCurrentBorderColor:'#FFFFFF', labelCurrentBorderOpacity:.6, labelCurrentBorderWidth:1.5, labelCurrentDX:0, labelCurrentDY:0, labelCurrentOpacity:1, labelCurrentOpacityOn:1, labelCurrentOpacityOff:1, labelCurrentColorOn:'#FFFFFF', labelCurrentColorOff:'#FFFFFF', labelAction:false, labelActionColor:'#FFFFFF', labelActionSize:12, labelActionX:0, labelActionY:0, labelActionBg:false, labelActionBgOpacity:.55, labelActionBgColor:'#081822', labelActionBorder:false, labelActionBorderColor:'#FFFFFF', labelActionBorderOpacity:.6, labelActionBorderWidth:1.5, labelActionDX:0, labelActionDY:0, labelActionOpacity:1, labelActionOpacityOn:1, labelActionOpacityOff:1, labelActionColorOn:'#FFFFFF', labelActionColorOff:'#FFFFFF', labelMinus:false, labelMinusColor:'#FFFFFF', labelMinusSize:18, labelMinusX:0, labelMinusY:0, labelMinusBg:false, labelMinusBgOpacity:.55, labelMinusBgColor:'#081822', labelMinusBorder:false, labelMinusBorderColor:'#FFFFFF', labelMinusBorderOpacity:.6, labelMinusBorderWidth:1.5, labelMinusDX:0, labelMinusDY:0, labelMinusOpacity:1, labelMinusOpacityOn:1, labelMinusOpacityOff:1, labelMinusColorOn:'#FFFFFF', labelMinusColorOff:'#FFFFFF', labelPlus:false, labelPlusColor:'#FFFFFF', labelPlusSize:18, labelPlusX:0, labelPlusY:0, labelPlusBg:false, labelPlusBgOpacity:.55, labelPlusBgColor:'#081822', labelPlusBorder:false, labelPlusBorderColor:'#FFFFFF', labelPlusBorderOpacity:.6, labelPlusBorderWidth:1.5, labelPlusDX:0, labelPlusDY:0, labelPlusOpacity:1, labelPlusOpacityOn:1, labelPlusOpacityOff:1, labelPlusColorOn:'#FFFFFF', labelPlusColorOff:'#FFFFFF', labelModes:false, labelModesColor:'#8FA9B7', labelModesSize:15, labelModesX:0, labelModesY:0, labelModesBg:false, labelModesBgOpacity:.55, labelModesBgColor:'#081822', labelModesBorder:false, labelModesBorderColor:'#FFFFFF', labelModesBorderOpacity:.6, labelModesBorderWidth:1.5, labelModesDX:0, labelModesDY:0, labelModesOpacity:1, labelModesOpacityOn:1, labelModesOpacityOff:1, labelModesColorOn:'#FFFFFF', labelModesColorOff:'#FFFFFF', thermoHeatColor:'#FF7A2F', thermoCoolColor:'#38BDF8', thermoAutoColor:'#34D399', thermoDryColor:'#FBBF24', thermoFanColor:'#A78BFA', thermoOffColor:'#64748B', thermoTrackColor:'#1E3546', thermoDialWidth:9, thermoDialRange:true, thermoGlow:true, labelActionAccent:true, labelTargetAccent:false, labelCurrentAccent:false, labelTargetUnit:'°C', labelTargetDecimals:'auto', labelCurrentUnit:'°C', labelCurrentDecimals:'auto', thermoDotSize:100, thermoKnobSize:100 }));
 // A freshly drawn room starts with its icon, name and state visible and the usual extras switched on
 // (icon outline, backgrounds, icon border), so every option is visible and can be tuned or turned off.
 const NEW_ROOM_LABEL = Object.freeze({ labelIcon:true, labelName:true, labelState:true, labelLinked:true, labelCardBg:true, labelCardBorder:true,
@@ -609,7 +634,7 @@ const NEW_ROOM_LABEL = Object.freeze({ labelIcon:true, labelName:true, labelStat
 function fitRoomLabel(id) {
   const room = roomsOf()[id], card = document.querySelector(`.room-label-card[data-room-id="${CSS.escape(id)}"]`), scene = els.scene?.getBoundingClientRect();
   if (!room?.labelLinked || !card || !scene?.width || !room.points?.length) return;
-  const box = card.getBoundingClientRect(), scale = clamp(Number(room.labelCardScale) || 1, .3, 4); if (!box.width || !box.height) return;
+  const box = card.getBoundingClientRect(), scale = clamp(Number(room.labelCardScale) || 1, .3, 4.5); if (!box.width || !box.height) return;
   const xs = room.points.map(p => p[0]), ys = room.points.map(p => p[1]);
   const roomW = (Math.max(...xs) - Math.min(...xs)) / 100 * scene.width, roomH = (Math.max(...ys) - Math.min(...ys)) / 100 * scene.height;
   const fit = Math.min(roomW * .7 / (box.width / scale), roomH * .6 / (box.height / scale));
@@ -617,8 +642,25 @@ function fitRoomLabel(id) {
   room.labelCardScale = next; renderRooms();
 }
 // Room label parts: each is shown, styled and placed on its own (offsets in plan pixels from the room centre).
-const ROOM_LABEL_PARTS = [['icon','labelIcon','Ikona'],['name','labelName','Nazwa'],['state','labelState','Stan']];
-const ROOM_LABEL_KEYS = ROOM_LABEL_PARTS.flatMap(([, k]) => [k, `${k}Size`, `${k}X`, `${k}Y`, `${k}Bg`, `${k}BgOpacity`, `${k}BgColor`]).concat(['labelCardX','labelCardY','labelCardLayout','labelCardAlign','labelCardBg','labelCardBgColor','labelCardBgOpacity','labelCardBlur','labelCardRadius','labelCardPadding','labelCardGap','labelCardBorder','labelCardBorderColor','labelCardBorderOpacity','labelCardBorderWidth','labelCardBgState','labelCardBgOnColor','labelCardBgOffColor','labelCardBgOnOpacity','labelCardBgOffOpacity','labelCardBorderState','labelCardBorderOnColor','labelCardBorderOffColor','labelCardBorderOnOpacity','labelCardBorderOffOpacity','labelCardBorderOnWidth','labelCardBorderOffWidth','labelCardScale','labelIconDX','labelIconDY','labelNameDX','labelNameDY','labelStateDX','labelStateDY']).concat(['labelLinked','labelIconName','labelIconOn','labelIconOff','labelNameColor','labelStateColor','labelIconVariant','labelIconNameOn','labelIconNameOff','labelIconOpacityOn','labelIconOpacityOff','labelIconFill','labelIconOutline','labelIconOutlineColor','labelIconOutlineWidth','labelIconSource','labelIconBorder','labelIconBorderColor','labelIconBorderOpacity','labelIconBorderWidth','labelIconShape','labelIconRadius','labelIconPadding','labelIconBlur','labelIconColorState','labelIconColor','labelIconOpacity','labelIconOutlineState','labelIconOutlineOnColor','labelIconOutlineOffColor','labelIconOutlineOnWidth','labelIconOutlineOffWidth','labelIconOutlineOpacity','labelIconOutlineOnOpacity','labelIconOutlineOffOpacity','labelIconBgState','labelIconBgOnColor','labelIconBgOffColor','labelIconBgOnOpacity','labelIconBgOffOpacity','labelIconBorderState','labelIconBorderOnColor','labelIconBorderOffColor','labelIconBorderOnOpacity','labelIconBorderOffOpacity','labelIconBorderOnWidth','labelIconBorderOffWidth','labelNameBorder','labelNameBorderColor','labelNameBorderOpacity','labelNameBorderWidth','labelStateBorder','labelStateBorderColor','labelStateBorderOpacity','labelStateBorderWidth','labelEqualFrames','labelCardFree','labelIconW','labelIconH','labelNameW','labelNameH','labelStateW','labelStateH','labelIconFX','labelIconFY','labelNameFX','labelNameFY','labelStateFX','labelStateFY','labelCardShadow','labelStateOnText','labelStateOffText','labelStateUnit','labelStateDecimals','labelRules','labelRulesLow','labelRulesHigh','labelRulesColorLow','labelRulesColorMid','labelRulesColorHigh','labelRulesSmooth','labelRulesIcon','labelRulesState'], ['labelName','labelState'].flatMap(k => ['ColorState', 'ColorOn', 'ColorOff', 'Opacity', 'OpacityOn', 'OpacityOff', 'Weight', 'BgState', 'BgOnColor', 'BgOffColor', 'BgOnOpacity', 'BgOffOpacity', 'Blur', 'BorderState', 'BorderOnColor', 'BorderOffColor', 'BorderOnOpacity', 'BorderOffOpacity', 'BorderOnWidth', 'BorderOffWidth', 'Radius', 'Padding'].map(f => k + f)));
+// A thermostat (a label on a climate entity) has more parts; for other labels they stay off and empty.
+const THERMO_PARTS = [['dial','labelDial','Tarcza'],['target','labelTarget','Temperatura ustawiona'],['current','labelCurrent','Temperatura aktualna'],['action','labelAction','Stan pracy'],['minus','labelMinus','Przycisk −'],['plus','labelPlus','Przycisk +'],['modes','labelModes','Tryby']];
+// Extra entities of a thermostat (another sensor of the heater…): up to four more parts, each placed and styled like the
+// others; they show that entity's state (with its unit) and an optional text before it.
+const EXTRA_PARTS = [1, 2, 3, 4].map(i => [`x${i}`, `labelX${i}`, `Encja ${i}`]);
+const ROOM_LABEL_PARTS = [['icon','labelIcon','Ikona'],['name','labelName','Nazwa'],['state','labelState','Stan'], ...THERMO_PARTS, ...EXTRA_PARTS];
+const isExtraPart = part => /^x\d$/.test(part);
+function extraEntityText(r, key) {
+  const id = r[`${key}Entity`], st = stateCache[id]; if (!st) return '–';
+  const text = roomLabelState({ ...ROOM_DEFAULTS, kind: 'icon', entityIds: [id], labelStateUnit: r[`${key}Unit`] ?? '', labelStateDecimals: r[`${key}Decimals`] ?? 'auto' });
+  // Numbers with a decimal comma (like the thermostat's own values); plain HA states in words.
+  const raw = String(st.state ?? '').toLowerCase(), words = { on: 'Włączone', off: 'Wyłączone', unavailable: 'Niedostępny', unknown: '–', open: 'Otwarte', closed: 'Zamknięte' };
+  const shown = words[raw] && Number.isNaN(Number(st.state)) ? translateValue(words[raw]) : translateValue(String(text).replace(/(\d)\.(\d)/g, '$1,$2'));
+  const prefix = String(r[`${key}Prefix`] || '').trim(); return `${prefix ? `${prefix} ` : ''}${shown}`;
+}
+function extraEntityName(id) { return String(stateCache[id]?.attributes?.friendly_name || allEntitiesCache?.find(e => e.id === id)?.name || id || ''); }
+// Placed freely, a thermostat's dial is the bottom layer: the parts lying on it (name, icon, state...) stay grabbable.
+const layeredParts = list => [...list].sort((a, b) => (b[0] === 'dial') - (a[0] === 'dial'));
+const ROOM_LABEL_KEYS = ROOM_LABEL_PARTS.flatMap(([, k]) => [k, `${k}Size`, `${k}X`, `${k}Y`, `${k}Bg`, `${k}BgOpacity`, `${k}BgColor`]).concat(['labelCardX','labelCardY','labelCardW','labelCardH','labelCardLayout','labelCardAlign','labelCardBg','labelCardBgColor','labelCardBgOpacity','labelCardBlur','labelCardRadius','labelCardPadding','labelCardGap','labelCardBorder','labelCardBorderColor','labelCardBorderOpacity','labelCardBorderWidth','labelCardBgState','labelCardBgOnColor','labelCardBgOffColor','labelCardBgOnOpacity','labelCardBgOffOpacity','labelCardBorderState','labelCardBorderOnColor','labelCardBorderOffColor','labelCardBorderOnOpacity','labelCardBorderOffOpacity','labelCardBorderOnWidth','labelCardBorderOffWidth','labelCardScale','labelIconDX','labelIconDY','labelNameDX','labelNameDY','labelStateDX','labelStateDY']).concat(['labelLinked','labelIconName','labelIconOn','labelIconOff','labelNameColor','labelStateColor','labelIconVariant','labelIconNameOn','labelIconNameOff','labelIconOpacityOn','labelIconOpacityOff','labelIconFill','labelIconOutline','labelIconOutlineColor','labelIconOutlineWidth','labelIconSource','labelIconBorder','labelIconBorderColor','labelIconBorderOpacity','labelIconBorderWidth','labelIconShape','labelIconRadius','labelIconPadding','labelIconBlur','labelIconColorState','labelIconColor','labelIconOpacity','labelIconOutlineState','labelIconOutlineOnColor','labelIconOutlineOffColor','labelIconOutlineOnWidth','labelIconOutlineOffWidth','labelIconOutlineOpacity','labelIconOutlineOnOpacity','labelIconOutlineOffOpacity','labelIconBgState','labelIconBgOnColor','labelIconBgOffColor','labelIconBgOnOpacity','labelIconBgOffOpacity','labelIconBorderState','labelIconBorderOnColor','labelIconBorderOffColor','labelIconBorderOnOpacity','labelIconBorderOffOpacity','labelIconBorderOnWidth','labelIconBorderOffWidth','labelNameBorder','labelNameBorderColor','labelNameBorderOpacity','labelNameBorderWidth','labelStateBorder','labelStateBorderColor','labelStateBorderOpacity','labelStateBorderWidth','labelEqualFrames','labelCardFree','labelIconW','labelIconH','labelNameW','labelNameH','labelStateW','labelStateH','labelIconFX','labelIconFY','labelNameFX','labelNameFY','labelStateFX','labelStateFY','labelCardShadow','labelStateOnText','labelStateOffText','labelStateUnit','labelStateDecimals','labelRules','labelRulesLow','labelRulesHigh','labelRulesColorLow','labelRulesColorMid','labelRulesColorHigh','labelRulesSmooth','labelRulesIcon','labelRulesState'], ['labelName','labelState'].flatMap(k => ['ColorState', 'ColorOn', 'ColorOff', 'Opacity', 'OpacityOn', 'OpacityOff', 'Weight', 'BgState', 'BgOnColor', 'BgOffColor', 'BgOnOpacity', 'BgOffOpacity', 'Blur', 'BorderState', 'BorderOnColor', 'BorderOffColor', 'BorderOnOpacity', 'BorderOffOpacity', 'BorderOnWidth', 'BorderOffWidth', 'Radius', 'Padding'].map(f => k + f)));
 // Outline of a room's shape (drawn on top of its light, not faded with it); can follow ON / OFF.
 const ROOM_OUTLINE_KEYS = ['outline','outlineColor','outlineOpacity','outlineWidth','outlineStyle','outlineState','outlineOnColor','outlineOffColor','outlineOnOpacity','outlineOffOpacity','outlineOnWidth','outlineOffWidth'];
 function pct100(value) { return Math.round(clamp(Number(value ?? 1), 0, 1) * 100); }
@@ -631,7 +673,9 @@ function roomOutlineMarkup(room, preview = '') {
 }
 const ROOM_LIGHT_KEYS = ['lightEffect','lightX','lightY','lightDirection','lightWallPos','lightSpread','lightFill'];
 const ROOM_ON_STATES = new Set(['on','open','opening','home','playing','heat','heating','cool','cooling','detected','unlocked','active','true']);
-let skipRoomFocus = false, movingRoomId = null, selectedRoomId = null, roomDraft = null, roomPreviewOn = '', roomEditorOpenSectionIndex = -1, roomStyleClipboard = null, allEntitiesCache = null, allEntitiesLoading = null;
+// The part picked by its section name in the editor (marked on the plan and zoomed to on a phone).
+let panelPart = null;
+let skipRoomFocus = false, movingRoomId = null, selectedLabelPart = 'icon', selectedRoomId = null, roomDraft = null, roomPreviewOn = '', roomEditorOpenSectionIndex = -1, roomStyleClipboard = null, allEntitiesCache = null, allEntitiesLoading = null;
 const ROOM_STYLE_KEYS = ['tapAction','color','opacity','feather','stateEnabled','offColor','offOpacity', ...ROOM_LIGHT_KEYS, ...ROOM_LABEL_KEYS, ...ROOM_OUTLINE_KEYS];
 function roomsOf(view = activeSceneView()) { return view?.rooms || {}; }
 function roomOf(id) { const room = roomsOf()[id]; return room ? { ...ROOM_DEFAULTS, ...room } : null; }
@@ -769,6 +813,10 @@ const ROOM_TOGGLE_DOMAINS = ['light', 'switch', 'fan', 'input_boolean'];
 // Area centroid of the outline (falls back to the vertex average for a degenerate shape).
 // An "icon" element is a room without a drawn shape: only its label group, anchored at its own point.
 function isIconRoom(room) { return room?.kind === 'icon'; }
+// "Tekst": a label (same look, group, dots, snapping) without an entity — its name is the text, the state part is an
+// optional caption, and a tap runs its own action (go to a view, open a Home Assistant page or a link).
+function isTextRoom(room) { return isIconRoom(room) && !!room?.textEl; }
+function isThermoRoom(room) { return isIconRoom(room) && !!room?.thermo; }
 // "Rozmiar" in the Group section is shown relative to the default: for an icon 1.0× is the size of a new icon.
 const ICON_LABEL_SCALE = .6;
 function labelScaleBase(room) { return isIconRoom(room) ? ICON_LABEL_SCALE : 1; }
@@ -779,8 +827,16 @@ function iconFocusBox(room) {
   const toX = v => (v - scene.left) / scene.width * 100, toY = v => (v - scene.top) / scene.height * 100;
   const l = toX(Math.min(...nodes.map(r => r.left))), r = toX(Math.max(...nodes.map(r => r.right))), t = toY(Math.min(...nodes.map(r => r.top))), b = toY(Math.max(...nodes.map(r => r.bottom)));
   // A little room around it, so a small icon is not zoomed in as far as it would go.
-  const padX = Math.max((r - l) * .6, 4), padY = Math.max((b - t) * .6, 4);
+  const padX = Math.max((r - l) * .25, 3), padY = Math.max((b - t) * .25, 3);
   return [[l - padX, t - padY], [r + padX, t - padY], [r + padX, b + padY], [l - padX, b + padY]];
+}
+// The plan box (scene %) of one part of a label / thermostat, grouped or not, with a little margin.
+function partFocusBox(room, part) {
+  const id = CSS.escape(room.id), node = $(`#room-labels .room-label-part[data-room-id="${id}"][data-label-part="${part}"], #room-labels .room-label-card[data-room-id="${id}"] .room-card-part[data-label-part="${part}"]`);
+  const scene = els.scene.getBoundingClientRect(), r = node?.getBoundingClientRect(); if (!r?.width || !scene.width) return null;
+  const l = (r.left - scene.left) / scene.width * 100, rr = (r.right - scene.left) / scene.width * 100, t = (r.top - scene.top) / scene.height * 100, b = (r.bottom - scene.top) / scene.height * 100;
+  const padX = Math.max((rr - l) * .3, 2), padY = Math.max((b - t) * .3, 2);
+  return [[l - padX, t - padY], [rr + padX, t - padY], [rr + padX, b + padY], [l - padX, b + padY]];
 }
 function roomAnchor(room) { const pin = isIconRoom(room) && dashSpan(room); return pin ? [pin.x + pin.w / 2, pin.y + pin.h / 2] : isIconRoom(room) ? [Number(room.x) || 50, Number(room.y) || 50] : roomLabelAnchor(room.points || []); }
 // ---- Dashboard grid ("Siatka dashboardu"): a per-view grid of cols × rows cells (gap in plan px), shown in edit
@@ -846,7 +902,15 @@ function roomLabelAnchor(points) {
 // The state text: own words for ON / OFF, and for a number its unit and decimals (empty / auto = from the entity).
 function roomOnOffWord(room, on) { const own = String((on ? room.labelStateOnText : room.labelStateOffText) || '').trim(); return own || translateValue(on ? 'Wł.' : 'Wył.'); }
 function roomNumber(room) { const st = stateCache[(room.entityIds || [])[0]]; const n = Number(String(st?.state ?? '').replace(',', '.')); return st && String(st.state).trim() !== '' && Number.isFinite(n) ? n : null; }
+function withExtraPartDefaults(d) {
+  // Each extra part starts with the "Stan" part's look (size, colours, frames…), hidden until an entity is added.
+  [1, 2, 3, 4].forEach(i => Object.keys(d).filter(k => k.startsWith('labelState') && k !== 'labelState' && !/^labelState(X|Y|FX|FY|DX|DY|OnText|OffText|Unit|Decimals)$/.test(k)).forEach(k => { d[`labelX${i}${k.slice(10)}`] = d[k]; }));
+  [1, 2, 3, 4].forEach(i => Object.assign(d, { [`labelX${i}`]: false, [`labelX${i}Size`]: 18, [`labelX${i}X`]: 0, [`labelX${i}Y`]: 0 }));
+  return d;
+}
 function roomLabelState(room) {
+  if (isTextRoom(room)) return String(room.textCaption || '');
+  if (isThermoRoom(room)) { const info = climateInfo({ entityId: (room.entityIds || [])[0] || '' }); return info.unavailable ? translateValue('Niedostępny') : thermoModeText(room, info.mode); }
   const ids = room.entityIds || []; if (!ids.length) return '';
   const toggles = ids.filter(id => ROOM_TOGGLE_DOMAINS.includes(id.split('.')[0]));
   if (toggles.length) {
@@ -874,13 +938,13 @@ function roomEntityPlatform(id) {
 function roomLabelIconSpec(room, on) {
   const id = (room.entityIds || [])[0] || '', source = roomLabelIconSource(room);
   if (source === 'integration' && id) return { domain: roomEntityPlatform(id) };
-  if (source === 'mdi') { const own = String((room.labelIconVariant ? (on ? room.labelIconNameOn : room.labelIconNameOff) : room.labelIconName) || '').trim(); if (own) return { cls: own.replace(/^mdi:/, 'mdi-') }; }
+  if (source === 'mdi') { const own = String((room.labelIconVariant ? sv(room, 'labelIconNameOn', 'labelIconNameOff', on) : room.labelIconName) || '').trim(); if (own) return { cls: own.replace(/^mdi:/, 'mdi-') }; }
   return { cls: String((id && automaticIcon({ entityId: id })) || 'mdi:home-outline').replace(/^mdi:/, 'mdi-') };
 }
 // Background and frame of the icon share one shape: square, circle or a free corner radius.
 function roomIconFrameStyle(r, on = false) {
   if (!r.labelIconBg && !r.labelIconBorder) return '';
-  const pick = (stateKey, base, field) => r[stateKey] ? r[`${base}${on ? 'On' : 'Off'}${field}`] : r[`${base}${field}`];
+  const pick = (stateKey, base, field) => r[stateKey] ? sv(r, `${base}On${field}`, `${base}Off${field}`, on) : r[`${base}${field}`];
   const shape = ['square','circle','custom'].includes(r.labelIconShape) ? r.labelIconShape : 'circle';
   const radius = shape === 'circle' ? '50%' : shape === 'square' ? '0' : `${clamp(Number(r.labelIconRadius) || 0, 0, 200)}px`;
   return `;padding:${clamp(Number(r.labelIconPadding ?? 6), 0, 120)}px;border-radius:${radius}`
@@ -898,7 +962,7 @@ function migrateRoomLabel(room) {
   if (!room || !['labelLayout','labelScale','labelX','labelY','labelColor','labelBg','labelBgOpacity'].some(key => key in room)) return changed;
   const k = clamp(Number(room.labelScale) || 1, .4, 4), dx = Number(room.labelX) || 0, dy = Number(room.labelY) || 0, row = room.labelLayout === 'row';
   const at = row ? { icon:[-46, 0], name:[30, -10], state:[30, 12] } : { icon:[0, -30], name:[0, 6], state:[0, 30] };
-  ROOM_LABEL_PARTS.forEach(([part, key]) => { room[`${key}X`] = Math.round(at[part][0] * k + dx); room[`${key}Y`] = Math.round(at[part][1] * k + dy); room[`${key}Size`] = Math.round(ROOM_DEFAULTS[`${key}Size`] * k); });
+  ROOM_LABEL_PARTS.slice(0, 3).forEach(([part, key]) => { room[`${key}X`] = Math.round(at[part][0] * k + dx); room[`${key}Y`] = Math.round(at[part][1] * k + dy); room[`${key}Size`] = Math.round(ROOM_DEFAULTS[`${key}Size`] * k); });
   if (room.labelColor) { room.labelNameColor = room.labelColor; room.labelStateColor = room.labelColor; }
   if (room.labelBg !== false && (room.labelName || room.labelState)) { room.labelNameBg = true; room.labelStateBg = true; room.labelNameBgOpacity = room.labelStateBgOpacity = clamp(Number(room.labelBgOpacity ?? .55), 0, 1); }
   ['labelLayout','labelScale','labelX','labelY','labelColor','labelBg','labelBgOpacity'].forEach(key => delete room[key]);
@@ -913,7 +977,7 @@ const ROOM_CARD_STYLES = [
   ['room','Kolor pokoju', room => ({ labelCardBg:true, labelCardBgColor: room.color || '#FFD27A', labelCardBgOpacity:.3, labelCardBlur:false, labelCardBorder:true, labelCardBorderColor: room.color || '#FFD27A', labelCardBorderOpacity:.65, labelCardBorderWidth:1.5, labelNameColor:'#FFFFFF', labelStateColor:'#FFFFFF' })]];
 // Background and frame of the name / state part (the frame is drawn inside, like the icon's); each can follow ON / OFF.
 function roomTextPartStyle(r, key, on = false) {
-  const pick = (field, base) => r[`${key}${base}State`] ? r[`${key}${base}${on ? 'On' : 'Off'}${field}`] : r[`${key}${base}${field}`];
+  const pick = (field, base) => r[`${key}${base}State`] ? sv(r, `${key}${base}On${field}`, `${key}${base}Off${field}`, on) : r[`${key}${base}${field}`];
   const bg = r[`${key}Bg`] ? `;background:${rgba(pick('Color', 'Bg') || '#081822', clamp(Number(pick('Opacity', 'Bg') ?? .55), 0, 1))}` + (r[`${key}Blur`] ? ';-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)' : '') : '';
   const border = r[`${key}Border`] ? `;box-shadow:inset 0 0 0 ${clamp(Number(pick('Width', 'Border')) || 1.5, .5, 12)}px ${rgba(pick('Color', 'Border') || '#FFFFFF', clamp(Number(pick('Opacity', 'Border') ?? .6), 0, 1))}` : '';
   // Corners and inner margin (px); unset = the default, which grows with the text size.
@@ -924,8 +988,8 @@ function roomTextPartStyle(r, key, on = false) {
 const TEXT_WEIGHTS = { normal:400, medium:600, bold:700 };
 // Colour (fixed or ON / OFF), opacity and weight of the name / state text.
 function roomTextStyle(r, key, on = false) {
-  const state = !!r[`${key}ColorState`], color = state ? r[`${key}Color${on ? 'On' : 'Off'}`] : r[`${key}Color`];
-  const opacity = clamp(Number(state ? r[`${key}Opacity${on ? 'On' : 'Off'}`] : r[`${key}Opacity`]) ?? 1, 0, 1);
+  const state = !!r[`${key}ColorState`], color = state ? sv(r, `${key}ColorOn`, `${key}ColorOff`, on) : r[`${key}Color`];
+  const opacity = clamp(Number(state ? sv(r, `${key}OpacityOn`, `${key}OpacityOff`, on) : r[`${key}Opacity`]) ?? 1, 0, 1);
   return `color:${rgba(color || '#FFFFFF', Number.isFinite(opacity) ? opacity : 1)};font-weight:${TEXT_WEIGHTS[r[`${key}Weight`]] || (key === 'labelName' ? 700 : 400)}`;
 }
 // Ungrouped, the name and state get their own background and frame (like the icon) when they had none;
@@ -949,25 +1013,46 @@ function keepLabelPlaceOnRegroup(room) {
     const cx = (Math.min(...rects.map(r => r.left)) + Math.max(...rects.map(r => r.right))) / 2, cy = (Math.min(...rects.map(r => r.top)) + Math.max(...rects.map(r => r.bottom))) / 2;
     room.labelCardX = toOffsetX(cx); room.labelCardY = toOffsetY(cy);
     // Grouping again keeps the arrangement: each part's place inside the group (group-local px).
-    const local = (scene.width / w) * k * clamp(Number(room.labelCardScale) || 1, .3, 4);
+    const local = (scene.width / w) * k * clamp(Number(room.labelCardScale) || 1, .3, 4.5);
     nodes.forEach(node => { const key = partKey(node), r = node.getBoundingClientRect(); room[`${key}FX`] = Math.round(((r.left + r.right) / 2 - cx) / local * 10) / 10; room[`${key}FY`] = Math.round(((r.top + r.bottom) / 2 - cy) / local * 10) / 10; });
     room.labelCardFree = true;
   }
 }
+// A group left with one visible part is ungrouped (so that part has resize handles), remembering it was a group;
+// showing a second part again rebuilds that group with its arrangement, around where the visible part stands now.
+function autoUngroupLabel(room) {
+  keepLabelPlaceOnRegroup(room); togglePartFrames(room, false);
+  room.labelAutoUngrouped = { free: !!room.labelCardFree }; room.labelLinked = false;
+}
+function regroupAutoLabel(room) {
+  const auto = room.labelAutoUngrouped || {}, shown = ROOM_LABEL_PARTS.find(([, k]) => room[k])?.[1], scale = clamp(Number(room.labelCardScale) || 1, .3, 4.5);
+  if (shown) {
+    const px = Number(room[`${shown}X`]) || 0, py = Number(room[`${shown}Y`]) || 0;
+    room.labelCardX = Math.round(px - (auto.free ? (Number(room[`${shown}FX`]) || 0) * scale : 0)); room.labelCardY = Math.round(py - (auto.free ? (Number(room[`${shown}FY`]) || 0) * scale : 0));
+  }
+  room.labelCardFree = !!auto.free; room.labelLinked = true; delete room.labelAutoUngrouped;
+}
 // "Equal frames" (ungrouped parts): icon, name and state get the same box — the size of the largest of them.
 function equalizeLabelFrames(room, group) {
   const parts = [...group.querySelectorAll('.room-label-part, .room-label-card.free > .room-card-part')];
-  const base = node => { const key = partKey(node); node.style.minWidth = Number(room[`${key}W`]) ? `${room[`${key}W`]}px` : ''; node.style.minHeight = Number(room[`${key}H`]) ? `${room[`${key}H`]}px` : ''; };
+  const base = node => { const key = partKey(node), free = key !== 'labelDial'; node.style.minWidth = free && Number(room[`${key}W`]) ? `${room[`${key}W`]}px` : ''; node.style.minHeight = free && Number(room[`${key}H`]) ? `${room[`${key}H`]}px` : ''; };
   parts.forEach(base);
   fitFreeCard(room, group); fitLabelBackdrop(room, group);
-  group.querySelectorAll('.room-label-part').forEach(node => node.classList.toggle('square', !!node.querySelector('.part-handle') && Math.abs(node.offsetWidth - node.offsetHeight) < .5));
+  // A selected part or label whose width equals its height is marked (green outline): a round icon stays a circle.
+  // The edit outline is drawn magnified 4x and scaled down (sub-pixel exact), so it needs the element's corner radius.
+  group.querySelectorAll('.room-label-part.editable, .room-label-card.editable').forEach(node => {
+    const rad = String(getComputedStyle(node).borderTopLeftRadius || '0').split(' ')[0];
+    if (rad.endsWith('%') || !(parseFloat(rad) > 0)) { node.style.setProperty('--orad', rad.endsWith('%') ? rad : '0px'); node.style.removeProperty('--prx'); }
+    else { node.style.removeProperty('--orad'); node.style.setProperty('--prx', `${parseFloat(rad)}px`); }
+  });
+  group.querySelectorAll('.room-label-part, .room-label-card').forEach(node => node.classList.toggle('square', !!node.querySelector(':scope > .card-handle') && Math.abs(node.offsetWidth - node.offsetHeight) < .5));
 }
 // The backdrop of ungrouped parts covers all of them (plus the group's margin), however far apart they are.
 function fitLabelBackdrop(room, group) {
   const backdrop = group.querySelector('.room-label-backdrop'); if (!backdrop) return;
   const rects = [...group.querySelectorAll('.room-label-part')].map(node => node.getBoundingClientRect()).filter(r => r.width);
   const scene = els.scene.getBoundingClientRect(), w = els.scene.offsetWidth || 1, k = sceneScale || 1; if (!rects.length || !scene.width) return;
-  const [ax, ay] = roomAnchor(room), toPlan = (scene.width / w) * k, local = toPlan * clamp(Number(room.labelCardScale) || 1, .3, 4), pad = clamp(Number(room.labelCardPadding ?? ROOM_DEFAULTS.labelCardPadding) || 0, 0, 60);
+  const [ax, ay] = roomAnchor(room), toPlan = (scene.width / w) * k, local = toPlan * clamp(Number(room.labelCardScale) || 1, .3, 4.5), pad = clamp(Number(room.labelCardPadding ?? ROOM_DEFAULTS.labelCardPadding) || 0, 0, 60);
   const left = Math.min(...rects.map(r => r.left)), right = Math.max(...rects.map(r => r.right)), top = Math.min(...rects.map(r => r.top)), bottom = Math.max(...rects.map(r => r.bottom));
   backdrop.style.setProperty('--lx', `${((left + right) / 2 - scene.left - ax / 100 * scene.width) / toPlan}px`);
   backdrop.style.setProperty('--ly', `${((top + bottom) / 2 - scene.top - ay / 100 * scene.height) / toPlan}px`);
@@ -975,6 +1060,7 @@ function fitLabelBackdrop(room, group) {
 }
 // Frame size set with the side dots (box-local px; never smaller than the content).
 function partBoxSize(r, key) {
+  if (key === 'labelDial') return ''; // the dial's box is its drawing (no extra width / height = no margin)
   const w = Number(r[`${key}W`]) || 0, h = Number(r[`${key}H`]) || 0;
   return (w ? `;min-width:${w}px` : '') + (h ? `;min-height:${h}px` : '') + (w || h ? ';box-sizing:border-box' : '');
 }
@@ -995,7 +1081,7 @@ function fitFreeCard(room, group) {
 }
 // Background, frame and corners of the group (the grouped card, or the backdrop behind ungrouped parts).
 function cardLook(r, on) {
-  const cardPick = (stateKey, base, field) => r[stateKey] ? r[`${base}${on ? 'On' : 'Off'}${field}`] : r[`${base}${field}`];
+  const cardPick = (stateKey, base, field) => r[stateKey] ? sv(r, `${base}On${field}`, `${base}Off${field}`, on) : r[`${base}${field}`];
   return [`border-radius:${clamp(Number(r.labelCardRadius) || 0, 0, 80)}px`,
     r.labelCardBg ? `background:${rgba(cardPick('labelCardBgState', 'labelCardBg', 'Color') || '#081822', clamp(Number(cardPick('labelCardBgState', 'labelCardBg', 'Opacity') ?? .62), 0, 1))}` : '',
     // The frame is drawn inside the card (inset shadow), so a thicker ON / OFF frame never changes the card's size.
@@ -1004,6 +1090,14 @@ function cardLook(r, on) {
 // Only entities that switch on and off (lights, switches, binary sensors…) have ON / OFF look options;
 // for the others (a temperature sensor…) the label always uses the plain colours.
 function roomSwitchable(r) { return (r.entityIds || []).some(id => /^(light|switch|input_boolean|fan|binary_sensor|cover|lock|climate|media_player|vacuum|siren|humidifier|valve|water_heater|alarm_control_panel|automation|script|group)\./.test(id)); }
+// A thermostat's look follows its work state instead of ON / OFF: every "…On…" setting has a version per state
+// ("…_heating…", "…_idle…"); a state without its own value takes the ON value while working, else the OFF one.
+const actPath = (onPath, act) => onPath.replace(/On(?=[A-Z]|$)/, `_${act}`);
+const actWorking = act => !['idle','off'].includes(act);
+function sv(r, onKey, offKey, on) {
+  if (r?.__act) { const v = r[actPath(onKey, r.__act)]; return v !== undefined && v !== '' && v !== null ? v : actWorking(r.__act) ? r[onKey] : r[offKey]; }
+  return on ? r[onKey] : r[offKey];
+}
 const LABEL_STATE_FLAGS = ['labelIconColorState','labelIconVariant','labelIconOutlineState','labelIconBgState','labelIconBorderState','labelCardBgState','labelCardBorderState','labelNameColorState','labelStateColorState','labelNameBgState','labelStateBgState','labelNameBorderState','labelStateBorderState'];
 function withoutOnOff(r) { if (!roomSwitchable(r)) LABEL_STATE_FLAGS.forEach(key => { r[key] = false; }); return r; }
 function roomRuleColor(r) {
@@ -1027,9 +1121,31 @@ function mdiSvgPath(cls) {
   }).catch(() => MDI_SVG_PATHS.set(name, null)));
   return undefined;
 }
+// Icon animation (label / room icon): spin (a fan), pulse, blink or swing; optionally only while ON, and for a fan
+// at the speed of its percentage. Returns the class and CSS variables for the icon element, or null.
+const ICON_ANIMATIONS = ['spin','pulse','blink','swing'];
+// A thermostat's animations (icon, dial fill and glow, work state text) can share one rhythm: the same cycle, counted
+// from the same clock, every effect at its strongest in the middle of the cycle - they pulse / blink together.
+function thermoSyncPeriod(r) { return isThermoRoom(r) ? 1.5 : 0; } // always together, one fixed cycle
+function syncAnimStyle(r) { const d = thermoSyncPeriod(r); return d ? `animation-duration:${d}s;animation-delay:-${((performance.now() / 1000) % d).toFixed(3)}s` : ''; }
+function roomIconAnimation(r, on) {
+  if (!r.labelIconAnim) return null;
+  // A thermostat: an animation (or none) per work state; by default only while working.
+  const perAct = r.__act ? (r[`labelIconAnim_${r.__act}`] ?? (actWorking(r.__act) ? r.labelIconAnimType : 'none')) : null;
+  if (perAct === 'none' || (!r.__act && r.labelIconAnimOnlyOn !== false && roomSwitchable(r) && !on)) return null;
+  const type = ICON_ANIMATIONS.includes(perAct || r.labelIconAnimType) ? (perAct || r.labelIconAnimType) : 'spin';
+  let seconds = thermoSyncPeriod(r) || clamp(Number(r.labelIconAnimSpeed) || 1.5, .2, 10);
+  if (r.labelIconAnimEntitySpeed) {
+    const percent = Number((r.entityIds || []).map(id => stateCache[id]?.attributes?.percentage).find(v => Number.isFinite(Number(v)) && Number(v) > 0));
+    if (percent > 0) seconds = clamp(seconds * 100 / percent, .2, 20);
+  }
+  // Labels are re-drawn on every state update: a negative delay from the clock keeps the turn's phase continuous.
+  const phase = (performance.now() / 1000) % seconds;
+  return { cls: `icon-anim-${type}`, style: `--icon-anim-dur:${seconds.toFixed(2)}s;--icon-anim-dir:${r.labelIconAnimDir === 'ccw' ? 'reverse' : 'normal'};animation-delay:-${phase.toFixed(3)}s` };
+}
 function mdiSvgMarkup(d, svg) {
   const o = JSON.parse(svg || '{}');
-  return `<svg class="mdi-svg" viewBox="0 0 24 24" aria-hidden="true" style="color:${escapeHtml(o.color || 'currentColor')}"><path d="${String(d).replace(/[^MmLlHhVvCcSsQqTtAaZz0-9.,\s-]/g, '')}" fill="${escapeHtml(o.fill || 'currentColor')}"${o.stroke ? ` stroke="${escapeHtml(o.stroke)}" stroke-width="${Number(o.width) || 1.5}" vector-effect="non-scaling-stroke" stroke-linejoin="round"` : ''}/></svg>`;
+  return `<svg class="mdi-svg${o.anim ? ' ' + escapeHtml(o.anim) : ''}" viewBox="0 0 24 24" aria-hidden="true" style="color:${escapeHtml(o.color || 'currentColor')}${o.animStyle ? ';' + escapeHtml(o.animStyle) : ''}"><path d="${String(d).replace(/[^MmLlHhVvCcSsQqTtAaZz0-9.,\s-]/g, '')}" fill="${escapeHtml(o.fill || 'currentColor')}"${o.stroke ? ` stroke="${escapeHtml(o.stroke)}" stroke-width="${Number(o.width) || 1.5}" vector-effect="non-scaling-stroke" stroke-linejoin="round"` : ''}/></svg>`;
 }
 const GLYPH_SHIFTS = new Map();
 function glyphShiftStyle(cls) {
@@ -1046,50 +1162,153 @@ function glyphShiftStyle(cls) {
     GLYPH_SHIFTS.set(cls, style); return style;
   } catch { return ''; }
 }
+// Parts of a thermostat label: the dial, the set and current temperatures, what it is doing, − / + and the modes.
+// Colours follow the mode (grzanie / chłodzenie / auto…); each part keeps the label's own size, colour and frame options.
+// Own texts: for each activity (hvac_action) and each mode (the main state); empty = the built-in text.
+// Work state text can be animated per state (e.g. blinking while heating water).
+const THERMO_FILL_FX = [['none','Brak'],['solid','Stałe'],['pulse','Pulsowanie'],['breathe','Oddychanie']];
+const THERMO_ACT_ANIMS = [['none','Brak'],['blink','Mruganie'],['pulse','Pulsowanie'],['fade','Przygasanie'],['shake','Drganie']];
+// Work states used by this thermostat (chosen in "Ogólne"); not chosen yet = guessed from its modes.
+function thermoActsUsed(r) {
+  const all = Object.keys(THERMO_ACTIONS);
+  const modes = climateInfo({ entityId: (r?.entityIds || [])[0] || '' }).modes, has = m => modes.includes(m);
+  const guess = new Set(['idle','off']);
+  if (!modes.length || has('heat') || has('heat_cool') || has('auto')) { guess.add('heating'); guess.add('preheating'); }
+  if (has('cool') || has('heat_cool')) guess.add('cooling');
+  if (has('dry')) guess.add('drying');
+  if (has('fan_only')) guess.add('fan');
+  // A state ticked / unticked by hand keeps that choice; the rest follow the guess.
+  return all.filter(a => typeof r?.[`thermoActUse_${a}`] === 'boolean' ? r[`thermoActUse_${a}`] : guess.has(a));
+}
+const THERMO_PRESETS = { none:'Brak', eco:'Eko', comfort:'Komfort', boost:'Boost', away:'Poza domem', home:'Dom', sleep:'Sen', activity:'Aktywność', manual:'Ręczny', auto:'Auto', program:'Program', holiday:'Urlop', frost_protection:'Ochrona przed mrozem', green:'Eko', normal:'Normalny' };
+function thermoPresetText(r, p) { return String(r?.[`thermoPresetText_${p}`] || '').trim() || translateValue(THERMO_PRESETS[p] || String(p).replace(/_/g, ' ')); }
+// Modes in the order chosen in the panel (the device's own order for the rest); hidden ones left out when asked.
+function thermoModesOrdered(r, modes, shownOnly = true) {
+  const order = Array.isArray(r?.thermoModesOrder) ? r.thermoModesOrder : [], idx = m => { const i = order.indexOf(m); return i < 0 ? 1000 + modes.indexOf(m) : i; };
+  return [...modes].sort((a, b) => idx(a) - idx(b)).filter(m => !shownOnly || r?.[`thermoModeShow_${m}`] !== false);
+}
+// Does this change ask first? Per mode / preset as chosen; by default only turning on / off (when that was switched on).
+function thermoNeedsConfirm(r, info, mode, preset) {
+  if (!r) return false;
+  if (preset) return !!r[`thermoConfirmP_${preset}`];
+  // Once modes are ticked one by one, only they ask (switching to that mode); before that the old on / off switch counts.
+  return thermoConfirmPerMode(r) ? !!r[`thermoConfirm_${mode}`] : !!r.thermoConfirm && (mode === 'off' || info.mode === 'off');
+}
+function thermoConfirmPerMode(r) { return Object.keys(r || {}).some(k => /^thermoConfirm_/.test(k) && typeof r[k] === 'boolean'); }
+function thermoActionText(r, action) { return String(r?.[`thermoActText_${action}`] || '').trim() || translateValue(THERMO_ACTIONS[action]?.[0] || action); }
+function thermoModeText(r, mode) { return String(r?.[`thermoModeText_${mode}`] || '').trim() || translateValue(mode === 'off' ? 'Wyłączony' : THERMO_MODES[mode]?.[0] || mode); }
+// Set / current temperature with its own rounding ("auto": the entity's step, 0,1 for the current one) and unit.
+function thermoFormat(v, decimals, autoStep) { const d = decimals === 'auto' || decimals === undefined || decimals === null || decimals === '' ? (String(autoStep).includes('.') ? 1 : 0) : clamp(Number(decimals) || 0, 0, 3); return Number(v).toFixed(d).replace('.', ','); }
+function thermoContent(r, on, previewMode = null, previewAct = '') {
+  const marker = { entityId: (r.entityIds || [])[0] || '' }, info = climateInfo(marker, previewMode); if (previewAct) info.action = previewAct;
+  const accent = thermoAccent(r, info), esc = escapeHtml, tr = translateValue;
+  const text = (key, inner, cls = '') => `<span class="thermo-part ${cls}" data-no-i18n style="${r[`${key}Accent`] ? `color:var(--accent);font-weight:${TEXT_WEIGHTS[r[`${key}Weight`]] || 600}` : roomTextStyle(r, key, on)}">${inner}</span>`;
+  // Like Home Assistant's own card: a thermostat that is off still shows (and lets you change) its set temperature.
+  const value = info.target ?? info.high ?? null, active = !info.unavailable && value !== null;
+  const working = info.mode !== 'off' && ['heating','cooling','preheating','drying','fan','defrosting'].includes(info.action);
+  const parts = {};
+  if (r.labelDial) {
+    const cx = 100, cy = 92, rad = 74, start = 135, sweep = 270, angle = v => start + sweep * clamp((v - info.min) / (info.max - info.min), 0, 1), w = clamp(Number(r.thermoDialWidth) || 9, 2, 30);
+    const arc = active ? gaugeArcPath(cx, cy, rad, start, Math.max(start + .5, angle(value))) : '', knob = active ? gaugePoint(cx, cy, rad, angle(value)) : null, cur = info.current !== null ? gaugePoint(cx, cy, rad, angle(info.current)) : null;
+    const p0 = gaugePoint(cx, cy, rad, start), p1 = gaugePoint(cx, cy, rad, start + sweep);
+    const range = r.thermoDialRange ? `<text class="thermo-range" x="${p0.x.toFixed(1)}" y="${(p0.y + 17).toFixed(1)}">${esc(thermoNumber(info.min, info.step))}</text><text class="thermo-range" x="${p1.x.toFixed(1)}" y="${(p1.y + 17).toFixed(1)}">${esc(thermoNumber(info.max, info.step))}</text>` : '';
+    // The space inside the dial can light up per work state: steady, pulsing or breathing, in the state's colour.
+    const act = thermoActivity(info), fx = THERMO_FILL_FX.some(([v]) => v === r[`thermoFill_${act}`]) ? r[`thermoFill_${act}`] : 'none';
+    const fillColor = esc(r[`thermoFillColor_${act}`] || thermoActColor(r, act)), fillOp = clamp(Number(r.thermoFillOpacity ?? .45), 0, 1), gid = `tf-${String(r.id || 'x').replace(/[^\w-]/g, '')}`;
+    const fill = fx === 'none' ? '' : `<defs><radialGradient id="${gid}"><stop offset="0%" stop-color="${fillColor}" stop-opacity="${fillOp}"/><stop offset="70%" stop-color="${fillColor}" stop-opacity="${(fillOp * .55).toFixed(3)}"/><stop offset="100%" stop-color="${fillColor}" stop-opacity="${(fillOp * .15).toFixed(3)}"/></radialGradient></defs><circle class="thermo-fill fx-${fx}" cx="${cx}" cy="${cy}" r="${Math.max(4, rad - w / 2 - 2)}" fill="url(#${gid})" style="${syncAnimStyle(r)}"/>`;
+    // The dial's box hugs the drawing (arc with its thickness, the dots, the min / max numbers): practically no margin.
+    const pad = w / 2 + .5; // the dots may stick out a little (the drawing is not clipped)
+    const vbX = cx - rad - pad, vbY = cy - rad - pad, vbW = (rad + pad) * 2, vbB = Math.max(cy + rad * Math.SQRT1_2 + pad, r.thermoDialRange ? p0.y + 17 + 3 : 0), vbH = vbB - vbY;
+    parts.dial = `<svg class="thermo-dial-svg${working && r.thermoGlow ? ' working' : ''}" viewBox="${vbX.toFixed(1)} ${vbY.toFixed(1)} ${vbW.toFixed(1)} ${vbH.toFixed(1)}" style="width:${(vbW * .03).toFixed(3)}em;height:${(vbH * .03).toFixed(3)}em" aria-hidden="true">${fill}<path class="thermo-track" d="${gaugeArcPath(cx, cy, rad, start, start + sweep)}" style="stroke:${esc(r.thermoTrackColor)};stroke-width:${w}"/>${arc ? `<path class="thermo-arc${r.thermoGlow ? ' glow' : ''}" d="${arc}" style="stroke:var(--accent);stroke-width:${w};${syncAnimStyle(r)}"/>` : ''}${cur ? `<circle class="thermo-cur" cx="${cur.x.toFixed(1)}" cy="${cur.y.toFixed(1)}" r="${((w * .45 + .5) * clamp(Number(r.thermoDotSize ?? 100), 0, 400) / 100).toFixed(1)}"/>` : ''}${knob ? `<circle class="thermo-knob" cx="${knob.x.toFixed(1)}" cy="${knob.y.toFixed(1)}" r="${((w * .8 + .5) * clamp(Number(r.thermoKnobSize ?? 100), 0, 400) / 100).toFixed(1)}" style="stroke:var(--accent)"/>` : ''}${range}</svg>`;
+  }
+  if (r.labelTarget) parts.target = text('labelTarget', info.unavailable ? esc(tr('Niedostępny')) : value === null ? (info.mode === 'off' ? esc(String(r.thermoModeText_off || '').trim() || tr('Wył.')) : '–') : info.target === null && info.low !== null ? `${esc(thermoNumber(info.low, info.step))}–${esc(thermoNumber(info.high, info.step))}°` : `${esc(thermoFormat(value, r.labelTargetDecimals, info.step))}${String(r.labelTargetUnit ?? '°C') ? `<span class="thermo-deg">${esc(String(r.labelTargetUnit ?? '°C'))}</span>` : ''}`, 'thermo-target-text');
+  if (r.labelCurrent && info.current !== null) parts.current = text('labelCurrent', `${esc(thermoFormat(info.current, r.labelCurrentDecimals, .1))}${esc(String(r.labelCurrentUnit ?? '°C'))}`);
+  const act = info.mode === 'off' ? THERMO_ACTIONS.off : THERMO_ACTIONS[info.action];
+  if (r.labelAction && act) { const a = info.mode === 'off' ? 'off' : info.action, anim = THERMO_ACT_ANIMS.some(([v]) => v === r[`thermoActAnim_${a}`]) ? r[`thermoActAnim_${a}`] : 'none';
+    parts.action = text('labelAction', anim === 'none' ? esc(thermoActionText(r, a)) : `<span class="thermo-anim ${anim}" style="${syncAnimStyle(r)}">${esc(thermoActionText(r, a))}</span>`); }
+  const canSet = info.target !== null && !info.unavailable;
+  if (r.labelMinus) parts.minus = `<button type="button" class="thermo-step" data-thermo="down"${canSet ? '' : ' disabled'} aria-label="−" style="${roomTextStyle(r, 'labelMinus', on)}"><i class="mdi mdi-minus"></i></button>`;
+  if (r.labelPlus) parts.plus = `<button type="button" class="thermo-step" data-thermo="up"${canSet ? '' : ' disabled'} aria-label="+" style="${roomTextStyle(r, 'labelPlus', on)}"><i class="mdi mdi-plus"></i></button>`;
+  // Mode buttons: own icon per mode, the active one in the mode's colour (or a chosen one), with or without frames; only the
+  // modes chosen in the panel, in its order. "Jeden przycisk": the current mode only, a tap goes to the next one.
+  // A change not yet confirmed by the device pulses; presets (eco, comfort, boost…) can follow as a second row.
+  const tp = thermoPending.get(marker.entityId) || {};
+  if (r.labelModes && (info.modes.length || (r.thermoPresets && info.presets.length))) {
+    const shown = thermoModesOrdered(r, info.modes), cycle = r.thermoModeLayout === 'cycle';
+    const modeBtn = (m, target = m) => { const d = THERMO_MODES[m] || [m, 'mdi-thermostat'], own = String(r[`thermoModeIcon_${m}`] || '').trim().replace(/^mdi:/, 'mdi-'), icon = own ? (own.startsWith('mdi-') ? own : `mdi-${own}`) : d[1];
+      const c = m === info.mode ? (r[`thermoModeActive_${m}`] || (r.thermoModeAccent === false && r.thermoModeActiveColor ? r.thermoModeActiveColor : accent)) : thermoActColor(r, ({ heat:'heating', cool:'cooling', dry:'drying', fan_only:'fan', off:'off' })[m] || 'idle');
+      const ownColor = r[`thermoModeColor_${m}`] ? `;color:${esc(r[`thermoModeColor_${m}`])}` : ''; // this mode's icon colour (else the part's colour)
+      const pend = tp.hvac_mode === m && info.realMode !== m ? ' pending' : '', label = cycle && target !== m ? `${thermoModeText(r, m)} → ${thermoModeText(r, target)}` : thermoModeText(r, m);
+      return `<button type="button" class="thermo-mode-btn${m === info.mode ? ' on' : ''}${pend}${cycle ? ' cycle' : ''}" data-thermo-mode="${esc(target)}" title="${esc(label)}" aria-label="${esc(label)}" style="--mode:${esc(c)};${roomTextStyle(r, 'labelModes', on)}${ownColor}"><i class="mdi ${esc(icon)}"></i></button>`; };
+    let row = '';
+    if (info.modes.length) {
+      if (cycle) { const list = shown.length ? shown : info.modes, cur = info.mode, next = list[(list.indexOf(cur) + 1) % list.length] || list[0]; row = modeBtn(cur, next === cur ? (list.find(m => m !== cur) || cur) : next); }
+      else row = shown.map(m => modeBtn(m)).join('');
+    }
+    const presets = r.thermoPresets && !info.water ? info.presets.filter(p => r[`thermoPresetShow_${p}`] !== false) : [];
+    const presetRow = presets.length ? `<span class="thermo-preset-row">${presets.map(p => `<button type="button" class="thermo-preset-btn${p === info.preset ? ' on' : ''}${tp.preset_mode === p && info.realPreset !== p ? ' pending' : ''}" data-thermo-preset="${esc(p)}" style="--mode:${esc(accent)};${roomTextStyle(r, 'labelModes', on)}">${esc(thermoPresetText(r, p))}</button>`).join('')}</span>` : '';
+    parts.modes = `<span class="thermo-modes-wrap">${row ? `<span class="thermo-mode-row${r.thermoModeFrame === false ? ' no-frame' : ''}" style="gap:${clamp(Number(r.thermoModeGap ?? 40), 0, 300) / 100}em;--mode-radius:${clamp(Number(r.thermoModeRadius ?? 30), 0, 50)}%">${row}</span>` : ''}${presetRow}</span>`;
+  }
+  return { accent, parts };
+}
 function roomLabelMarkup(room, preview = '', interactive = false) {
   const r = withoutOnOff({ ...ROOM_DEFAULTS, ...room });
   // One visible part: no group background, frame or margin (it would be a second frame around the part's own).
-  if (ROOM_LABEL_PARTS.filter(([, k]) => r[k]).length <= 1) Object.assign(r, { labelCardBg:false, labelCardBorder:false, labelCardPadding:0 }); if (r.draft || !(r.labelIcon || r.labelName || r.labelState) || (!isIconRoom(r) && (r.points || []).length < 3)) return '';
+  if (ROOM_LABEL_PARTS.filter(([, k]) => r[k]).length <= 1) Object.assign(r, { labelCardBg:false, labelCardBorder:false, labelCardPadding:0 }); if (r.draft || !ROOM_LABEL_PARTS.some(([, k]) => r[k]) || (!isIconRoom(r) && (r.points || []).length < 3)) return '';
+  // A thermostat's preview shows one of its work states ("act:heating"); its look follows the work state.
+  const previewAct = isThermoRoom(r) && String(preview).startsWith('act:') ? String(preview).slice(4) : '';
+  if (isThermoRoom(r)) r.__act = previewAct || thermoActivity(climateInfo({ entityId: (r.entityIds || [])[0] || '' }));
+  if (previewAct) preview = previewAct === 'off' ? 'off' : 'on'; // idle is still a mode that is on (just not working)
   const realOn = roomLight(r).on, on = preview ? preview === 'on' : realOn, [x, y] = roomAnchor(r), tap = (isIconRoom(r) ? ' tappable' : '') + (interactive && r.id === selectedRoomId ? ' selected' : '');
   // The ON / OFF preview simulates the state text too.
-  const state = !r.labelState ? '' : preview === 'off' ? roomOnOffWord(r, false) : preview === 'on' && !realOn ? roomOnOffWord(r, true) : roomLabelState(r);
+  // A thermostat's ON / OFF preview shows its mode texts: "off", or the mode it would be in when on.
+  const thermoPreview = isThermoRoom(r) && preview ? (() => { if (preview === 'off') return 'off'; const i = climateInfo({ entityId: (r.entityIds || [])[0] || '' }); return i.mode && i.mode !== 'off' ? i.mode : i.modes.find(m => m !== 'off') || 'heat'; })() : null;
+  const state = !r.labelState ? '' : thermoPreview ? thermoModeText(r, thermoPreview) : preview === 'off' ? roomOnOffWord(r, false) : preview === 'on' && !realOn ? roomOnOffWord(r, true) : roomLabelState(r);
   // Colours by value (a number entity): below / between / above two thresholds, for the icon and / or the state text.
   const ruleColor = roomRuleColor(r);
-  const iconColor = ruleColor && r.labelRulesIcon ? ruleColor : r.labelIconColorState === false ? r.labelIconColor : on ? r.labelIconOn : r.labelIconOff, iconOpacity = clamp(Number(r.labelIconColorState === false ? r.labelIconOpacity : on ? r.labelIconOpacityOn : r.labelIconOpacityOff) ?? 1, 0, 1);
-  const outlineColor = r.labelIconOutlineState ? (on ? r.labelIconOutlineOnColor : r.labelIconOutlineOffColor) : r.labelIconOutlineColor, outlineWidth = r.labelIconOutlineState ? (on ? r.labelIconOutlineOnWidth : r.labelIconOutlineOffWidth) : r.labelIconOutlineWidth;
-  const outlineOpacity = clamp(Number(r.labelIconOutlineState ? (on ? r.labelIconOutlineOnOpacity : r.labelIconOutlineOffOpacity) : r.labelIconOutlineOpacity) ?? 1, 0, 1);
+  const iconColor = ruleColor && r.labelRulesIcon ? ruleColor : r.labelIconColorState === false ? r.labelIconColor : sv(r, 'labelIconOn', 'labelIconOff', on), iconOpacity = clamp(Number(r.labelIconColorState === false ? r.labelIconOpacity : sv(r, 'labelIconOpacityOn', 'labelIconOpacityOff', on)) ?? 1, 0, 1);
+  const outlineColor = r.labelIconOutlineState ? sv(r, 'labelIconOutlineOnColor', 'labelIconOutlineOffColor', on) : r.labelIconOutlineColor, outlineWidth = r.labelIconOutlineState ? sv(r, 'labelIconOutlineOnWidth', 'labelIconOutlineOffWidth', on) : r.labelIconOutlineWidth;
+  const outlineOpacity = clamp(Number(r.labelIconOutlineState ? sv(r, 'labelIconOutlineOnOpacity', 'labelIconOutlineOffOpacity', on) : r.labelIconOutlineOpacity) ?? 1, 0, 1);
   const iconStyle = `text-shadow:none;filter:drop-shadow(0 1px 2px rgba(0,0,0,.55));color:${escapeHtml(iconColor)};-webkit-text-fill-color:${r.labelIconFill !== false ? rgba(iconColor, iconOpacity) : 'transparent'};-webkit-text-stroke:${r.labelIconOutline ? `${clamp(Number(outlineWidth) || 1.5, .5, 8)}px ${rgba(outlineColor || '#FFFFFF', outlineOpacity)}` : '0 transparent'}`;
   const spec = r.labelIcon ? roomLabelIconSpec(r, on) : null;
-  const iconHtml = !spec ? '' : spec.domain ? `<img class="room-label-brand" src="api/integration_icon?domain=${encodeURIComponent(spec.domain)}" data-icon-fallback="${escapeHtml(`https://brands.home-assistant.io/_/${encodeURIComponent(spec.domain)}/dark_icon.png`)}" alt="" style="opacity:${iconOpacity}">` : (() => {
-    const svg = JSON.stringify({ color: iconColor, fill: r.labelIconFill !== false ? rgba(iconColor, iconOpacity) : 'none', stroke: r.labelIconOutline ? rgba(outlineColor || '#FFFFFF', outlineOpacity) : '', width: clamp(Number(outlineWidth) || 1.5, .5, 8) });
+  const anim = roomIconAnimation(r, on), animAttr = anim ? { cls: ` ${anim.cls}`, style: `;${anim.style}` } : { cls: '', style: '' };
+  const iconHtml = !spec ? '' : spec.domain ? `<img class="room-label-brand${animAttr.cls}" src="api/integration_icon?domain=${encodeURIComponent(spec.domain)}" data-icon-fallback="${escapeHtml(`https://brands.home-assistant.io/_/${encodeURIComponent(spec.domain)}/dark_icon.png`)}" alt="" style="opacity:${iconOpacity}${animAttr.style}">` : (() => {
+    const svg = JSON.stringify({ color: iconColor, fill: r.labelIconFill !== false ? rgba(iconColor, iconOpacity) : 'none', stroke: r.labelIconOutline ? rgba(outlineColor || '#FFFFFF', outlineOpacity) : '', width: clamp(Number(outlineWidth) || 1.5, .5, 8), anim: anim?.cls || '', animStyle: anim?.style || '' });
     const d = mdiSvgPath(spec.cls);
-    return d ? mdiSvgMarkup(d, svg) : `<i class="mdi ${escapeHtml(spec.cls)}" data-svg-icon="${escapeHtml(String(spec.cls).replace(/^mdi-/, ''))}" data-svg-style="${encodeURIComponent(svg)}" style="${iconStyle}${glyphShiftStyle(spec.cls)}"></i>`;
+    return d ? mdiSvgMarkup(d, svg) : `<i class="mdi ${escapeHtml(spec.cls)}${animAttr.cls}" data-svg-icon="${escapeHtml(String(spec.cls).replace(/^mdi-/, ''))}" data-svg-style="${encodeURIComponent(svg)}" style="${iconStyle}${glyphShiftStyle(spec.cls)}${animAttr.style}"></i>`;
   })();
   const content = { icon: iconHtml, name: r.labelName && r.name ? `<b data-no-i18n style="${roomTextStyle(r, 'labelName', on)}">${escapeHtml(r.name)}</b>` : '', state: state ? `<small data-no-i18n style="${roomTextStyle(r, 'labelState', on)}${ruleColor && r.labelRulesState ? `;color:${escapeHtml(ruleColor)}` : ''}">${escapeHtml(state)}</small>` : '' };
+  const thermo = isThermoRoom(r) ? thermoContent(r, on, thermoPreview, previewAct) : null; if (thermo) Object.assign(content, thermo.parts);
+  EXTRA_PARTS.forEach(([part, key]) => { if (r[key] && r[`${key}Entity`]) content[part] = `<small data-no-i18n style="${roomTextStyle(r, key, on)}">${escapeHtml(extraEntityText(r, key))}</small>`; });
+  const accentVar = thermo ? `;--accent:${escapeHtml(thermo.accent)}` : '';
   if (r.labelLinked) {
     // A "free" group keeps the parts where they were placed when it was grouped again (card-local positions).
     const free = !!r.labelCardFree;
-    const inner = ROOM_LABEL_PARTS.filter(([part]) => content[part]).map(([part, key]) => {
+    const inner = (free ? layeredParts : list => list)(ROOM_LABEL_PARTS.filter(([part]) => content[part])).map(([part, key]) => {
       const bg = part === 'icon' ? roomIconFrameStyle(r, on) : roomTextPartStyle(r, key, on);
       const place = free ? `position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) translate(${Number(r[`${key}FX`]) || 0}px,${Number(r[`${key}FY`]) || 0}px)` : `transform:translate(${Number(r[`${key}DX`]) || 0}px,${Number(r[`${key}DY`]) || 0}px)`;
-      return `<div class="room-card-part ${part}${(r[`${key}Bg`] || r[`${key}Border`]) && part !== 'icon' ? ' bg' : ''}" data-label-part="${part}" style="font-size:${clamp(Number(r[`${key}Size`]) || ROOM_DEFAULTS[`${key}Size`], 6, 420)}px;${place}${partBoxSize(r, key)}${bg}">${content[part]}</div>`;
+      return `<div class="room-card-part ${part}${interactive && panelPart?.roomId === r.id && panelPart.part === part ? ' panel-part' : ''}${(r[`${key}Bg`] || r[`${key}Border`]) && part !== 'icon' ? ' bg' : ''}" data-label-part="${part}" style="font-size:${clamp(Number(r[`${key}Size`]) || ROOM_DEFAULTS[`${key}Size`], 6, 420)}px;${place}${partBoxSize(r, key)}${bg}">${content[part]}</div>`;
     }).join('');
     if (!inner) return '';
     const layout = ROOM_CARD_LAYOUTS.some(([v]) => v === r.labelCardLayout) ? r.labelCardLayout : 'column', align = ['left','center','right'].includes(r.labelCardAlign) ? r.labelCardAlign : 'center';
-    const pin = isIconRoom(r) && dashSpan(r), lscale = clamp(Number(r.labelCardScale) || 1, .3, 4), toLocal = (els.scene?.offsetWidth || 1) / 100 / (lscale * (sceneScale || 1)), toLocalY = (els.scene?.offsetHeight || 1) / 100 / (lscale * (sceneScale || 1));
-    const style = [`left:${x.toFixed(3)}%`, `top:${y.toFixed(3)}%`, `--lx:${Number(r.labelCardX) || 0}px`, `--ly:${Number(r.labelCardY) || 0}px`, `--lscale:${lscale}`,
-      pin ? `min-width:${(pin.w * toLocal).toFixed(2)}px;min-height:${(pin.h * toLocalY).toFixed(2)}px` : '',
-      free ? 'padding:0' : `padding:${clamp(Number(r.labelCardPadding) || 0, 0, 60)}px ${Math.round(clamp(Number(r.labelCardPadding) || 0, 0, 60) * 1.35)}px`, 'gap:0', cardLook(r, on)].join(';');
-    return `<div class="room-label-card layout-${layout} align-${align}${free ? ' free' : ''}${r.labelCardBg ? ' bg' : ''}${r.labelCardBlur ? ' blur' : ''}${interactive ? ' editable' : ''}${tap}" data-room-id="${escapeHtml(r.id)}" data-label-part="card" style="${style}">${inner}</div>`;
+    const pin = isIconRoom(r) && dashSpan(r), lscale = clamp(Number(r.labelCardScale) || 1, .3, 4.5), toLocal = (els.scene?.offsetWidth || 1) / 100 / (lscale * (sceneScale || 1)), toLocalY = (els.scene?.offsetHeight || 1) / 100 / (lscale * (sceneScale || 1));
+    const style = [`left:${x.toFixed(3)}%`, `top:${y.toFixed(3)}%`, `--ax:${x.toFixed(3)}%`, `--ay:${y.toFixed(3)}%`, `--lx:${Number(r.labelCardX) || 0}px`, `--ly:${Number(r.labelCardY) || 0}px`, `--lscale:${lscale}`,
+      pin ? `min-width:${(pin.w * toLocal).toFixed(2)}px;min-height:${(pin.h * toLocalY).toFixed(2)}px` : `${Number(r.labelCardW) > 0 ? `min-width:${Number(r.labelCardW)}px;` : ''}${Number(r.labelCardH) > 0 ? `min-height:${Number(r.labelCardH)}px;` : ''}box-sizing:border-box`,
+      free ? 'padding:0' : `padding:${clamp(Number(r.labelCardPadding) || 0, 0, 60)}px ${Math.round(clamp(Number(r.labelCardPadding) || 0, 0, 60) * 1.35)}px`, 'gap:0', cardLook(r, on)].join(';') + accentVar;
+    // Selected: a dot on each corner changes the label's width and height (Shift: scales the whole label).
+    const corners = interactive && r.id === selectedRoomId ? ['nw','ne','sw','se'].map(c => `<i class="card-handle ${c}" data-corner="${c}"></i>`).join('') : '';
+    return `<div class="room-label-card layout-${layout} align-${align}${free ? ' free' : ''}${r.labelCardBg ? ' bg' : ''}${r.labelCardBlur ? ' blur' : ''}${interactive ? ' editable' : ''}${tap}" data-room-id="${escapeHtml(r.id)}" data-label-part="card" style="${style}">${inner}${corners}</div>`;
   }
   // Ungrouped, the group's background (when on) stays behind the parts and is sized around them (fitLabelBackdrop).
-  const backdrop = r.labelCardBg || r.labelCardBorder ? `<div class="room-label-backdrop${r.labelCardBlur ? ' blur' : ''}" data-room-id="${escapeHtml(r.id)}" style="left:${x.toFixed(3)}%;top:${y.toFixed(3)}%;--lscale:${clamp(Number(r.labelCardScale) || 1, .3, 4)};${cardLook(r, on)}"></div>` : '';
-  return backdrop + ROOM_LABEL_PARTS.filter(([part]) => content[part]).map(([part, key]) => {
+  const backdrop = r.labelCardBg || r.labelCardBorder ? `<div class="room-label-backdrop${r.labelCardBlur ? ' blur' : ''}" data-room-id="${escapeHtml(r.id)}" style="left:${x.toFixed(3)}%;top:${y.toFixed(3)}%;--ax:${x.toFixed(3)}%;--ay:${y.toFixed(3)}%;--lscale:${clamp(Number(r.labelCardScale) || 1, .3, 4.5)};${cardLook(r, on)}"></div>` : '';
+  // Only the part last touched shows its corner dots (the others keep a plain outline), so the dots never pile up.
+  const shownParts = ROOM_LABEL_PARTS.filter(([part]) => content[part]).map(([part]) => part), activePart = shownParts.includes(selectedLabelPart) ? selectedLabelPart : shownParts[0];
+  return backdrop + layeredParts(ROOM_LABEL_PARTS.filter(([part]) => content[part])).map(([part, key]) => {
     const bg = part === 'icon' ? roomIconFrameStyle(r, on) : roomTextPartStyle(r, key, on);
-    const style = `left:${x.toFixed(3)}%;top:${y.toFixed(3)}%;--lx:${Number(r[`${key}X`]) || 0}px;--ly:${Number(r[`${key}Y`]) || 0}px;--lscale:${clamp(Number(r.labelCardScale) || 1, .3, 4)};--lsize:${clamp(Number(r[`${key}Size`]) || ROOM_DEFAULTS[`${key}Size`], 6, 420)}px${partBoxSize(r, key)}${bg}`;
-    // Selected and ungrouped: a dot in the middle of each side resizes the part's frame.
-    const handles = interactive && r.id === selectedRoomId ? ['n','e','s','w'].map(side => `<i class="part-handle ${side}" data-handle="${side}"></i>`).join('') : '';
-    return `<div class="room-label-part ${part}${(r[`${key}Bg`] || r[`${key}Border`]) && part !== 'icon' ? ' bg' : ''}${interactive ? ' editable' : ''}${r.labelLinked ? ' linked' : ''}${tap}" data-room-id="${escapeHtml(r.id)}" data-label-part="${part}" style="${style}">${content[part]}${handles}</div>`;
+    const style = `left:${x.toFixed(3)}%;top:${y.toFixed(3)}%;--ax:${x.toFixed(3)}%;--ay:${y.toFixed(3)}%;--lx:${Number(r[`${key}X`]) || 0}px;--ly:${Number(r[`${key}Y`]) || 0}px;--lscale:${clamp(Number(r.labelCardScale) || 1, .3, 4.5)};--lsize:${clamp(Number(r[`${key}Size`]) || ROOM_DEFAULTS[`${key}Size`], 6, 420)}px${partBoxSize(r, key)}${bg}${accentVar}`;
+    // Selected and ungrouped: a dot on each corner changes the part's width and height (Shift: proportionally).
+    const handles = interactive && r.id === selectedRoomId ? ['nw','ne','sw','se'].map(c => `<i class="card-handle ${c}" data-corner="${c}"></i>`).join('') : '';
+    return `<div class="room-label-part ${part}${(r[`${key}Bg`] || r[`${key}Border`]) && part !== 'icon' ? ' bg' : ''}${interactive ? ' editable' : ''}${r.labelLinked ? ' linked' : ''}${tap}${part === activePart ? ' active-part' : ''}" data-room-id="${escapeHtml(r.id)}" data-label-part="${part}" style="${style}">${content[part]}${handles}</div>`;
   }).join('');
 }
 function renderRoomLabels(view = activeSceneView()) {
@@ -1114,61 +1333,123 @@ function renderRoomLabels(view = activeSceneView()) {
     equalizeLabelFrames(room, group);
   });
   [...layer.children].forEach(node => { if (!kept.has(node.dataset.labelGroup)) node.remove(); });
-  renderDashGrid();
+  renderDashGrid(); fitCardHandles();
+}
+// Corner dots stay exactly on the element's corners and are always whole: the plan clips what sticks out of it, so
+// the dots are drawn in a layer above the plan card (not clipped) - a dot on the plan's edge shows past it.
+function fitCardHandles() {
+  const card = els.sceneCard; if (!card || !els.scene) return;
+  let layer = $('#handle-overlay'); const handles = $$('#room-labels .card-handle');
+  if (!handles.length) { layer?.replaceChildren(); return; }
+  if (!layer) { layer = document.createElement('div'); layer.id = 'handle-overlay'; layer.setAttribute('aria-hidden', 'true'); card.append(layer); }
+  // Placed against the layer's own box (whatever box it is laid out in on a computer or a phone).
+  const base = layer.getBoundingClientRect(), kx = base.width / Math.max(1, layer.offsetWidth) || 1, ky = base.height / Math.max(1, layer.offsetHeight) || 1, keep = new Set();
+  handles.forEach(h => {
+    const owner = h.parentElement, key = `${owner?.dataset.roomId}|${owner?.dataset.labelPart}|${h.dataset.corner}`, r = h.getBoundingClientRect(); keep.add(key);
+    let proxy = [...layer.children].find(n => n.dataset.key === key);
+    if (!proxy) {
+      proxy = document.createElement('i'); proxy.className = 'card-handle-proxy'; proxy.dataset.key = key; layer.append(proxy);
+      proxy.addEventListener('pointerdown', event => { if (secondFingerToZoom(event)) return; const real = proxy.__real; if (real?.isConnected && editMode) startFreeResize(event, real); });
+    }
+    proxy.__real = h; proxy.dataset.corner = h.dataset.corner;
+    proxy.classList.toggle('square', !!owner?.classList.contains('square')); proxy.hidden = !r.width || getComputedStyle(h).display === 'none';
+    proxy.style.left = `${((r.left + r.width / 2 - base.left) / kx).toFixed(1)}px`; proxy.style.top = `${((r.top + r.height / 2 - base.top) / ky).toFixed(1)}px`;
+  });
+  [...layer.children].forEach(n => { if (!keep.has(n.dataset.key)) n.remove(); });
+  // Panels opening / docking, the window or the plan changing size move the plan without a re-render: while dots are
+  // shown they follow it every frame.
+  if (!fitCardHandles.frame) fitCardHandles.frame = requestAnimationFrame(() => { fitCardHandles.frame = 0; fitCardHandles(); });
 }
 // In edit mode a label part is dragged with the finger or mouse; it follows the grid (when on) and the camera follows it.
-// Resizing an ungrouped part with a side dot: the opposite side stays put; the moving side snaps to the edges and
-// centres of the other parts, and the frame snaps to their width / height (a guide line shows what it caught).
-function startPartResize(event, handle) {
-  const node = handle.closest('.room-label-part'), room = roomsOf()[node?.dataset.roomId], key = node && partKey(node); if (!room || !key) return;
+// A corner dot of a label or of an ungrouped part: width and height change freely (the opposite corner stays put; Shift
+// scales proportionally). A part's content shrinks with its frame below its own size; a label's frame never gets smaller
+// than its content. Each moving side snaps to the lines of other elements on screen and to the width / height of another
+// label or part; with nothing else in reach the frame snaps to width = height (1:1).
+function startFreeResize(event, handle) {
+  // The dial keeps its shape: its dots always scale it (a free width / height would only add empty margin).
+  if (event.shiftKey || handle.closest('.room-label-part')?.dataset.labelPart === 'dial') return startCardResize(event, handle);
+  const gridHold = { x: null, y: null };
+  const node = handle.closest('.room-label-card, .room-label-part'), room = roomsOf()[node?.dataset.roomId]; if (!room) return;
+  const isCard = node.classList.contains('room-label-card'), key = isCard ? 'labelCard' : partKey(node); if (!key) return;
   event.preventDefault(); event.stopPropagation(); try { els.scene.setPointerCapture(event.pointerId); } catch {}
-  const side = handle.dataset.handle, horizontal = side === 'e' || side === 'w', sign = side === 'e' || side === 's' ? 1 : -1;
-  const id = CSS.escape(room.id), others = $$(`.room-label-part[data-room-id="${id}"]`).filter(other => other !== node).map(other => other.getBoundingClientRect());
+  const c = handle.dataset.corner, sx = c.includes('w') ? -1 : 1, sy = c.includes('n') ? -1 : 1, id = CSS.escape(room.id);
   const scene = els.scene.getBoundingClientRect(), planToScreen = scene.width / (els.scene.offsetWidth || 1) * (sceneScale || 1);
-  const rect0 = node.getBoundingClientRect(), localToScreen = rect0.width / Math.max(1, node.offsetWidth);
+  const rect0 = node.getBoundingClientRect(), k = rect0.width / Math.max(1, node.offsetWidth);
   const keep = [node.style.minWidth, node.style.minHeight]; node.style.minWidth = ''; node.style.minHeight = '';
-  const natural = horizontal ? node.offsetWidth : node.offsetHeight; [node.style.minWidth, node.style.minHeight] = keep;
-  // Below the content's own size the content shrinks with the frame (icon / text size scales, the other side too).
-  // A margin set in px (icon; text with its own margin) stays; a default text margin grows with the text.
-  const cs = getComputedStyle(node), fixedPad = node.dataset.labelPart === 'icon' || (room[`${key}Padding`] !== undefined && room[`${key}Padding`] !== null && room[`${key}Padding`] !== '') ? (horizontal ? parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight) : parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom)) || 0 : 0;
-  const startSize = Number(room[`${key}Size`]) || ROOM_DEFAULTS[`${key}Size`], acrossKey = `${key}${horizontal ? 'H' : 'W'}`, acrossStart = Number(room[acrossKey]) || 0;
-  const fixed = horizontal ? (sign > 0 ? rect0.left : rect0.right) : (sign > 0 ? rect0.top : rect0.bottom);
-  const centre0 = horizontal ? (rect0.left + rect0.right) / 2 : (rect0.top + rect0.bottom) / 2, start = Number(room[`${key}${horizontal ? 'X' : 'Y'}`]) || 0;
-  const lines = others.flatMap(r => horizontal ? [r.left, (r.left + r.right) / 2, r.right] : [r.top, (r.top + r.bottom) / 2, r.bottom]);
-  const sizes = others.map(r => horizontal ? r.width : r.height);
-  // Width equal to height (and back): a round icon stays a circle, not an egg — this catch wins and holds a bit longer.
-  const across = horizontal ? rect0.height : rect0.width;
+  const natW = node.offsetWidth, natH = node.offsetHeight; [node.style.minWidth, node.style.minHeight] = keep;
+  const cs = getComputedStyle(node), hasPad = room[`${key}Padding`] !== undefined && room[`${key}Padding`] !== null && room[`${key}Padding`] !== '';
+  const fixedPad = !isCard && (node.dataset.labelPart === 'icon' || hasPad), padX = fixedPad ? (parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight)) || 0 : 0, padY = fixedPad ? (parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom)) || 0 : 0;
+  const startSize = isCard ? 1 : Number(room[`${key}Size`]) || ROOM_DEFAULTS[`${key}Size`];
+  const fx = sx > 0 ? rect0.left : rect0.right, fy = sy > 0 ? rect0.top : rect0.bottom, cx0 = (rect0.left + rect0.right) / 2, cy0 = (rect0.top + rect0.bottom) / 2;
+  const posX = `${key}X`, posY = `${key}Y`, startX = Number(room[posX]) || 0, startY = Number(room[posY]) || 0;
+  const sel = isCard ? `.room-label-card[data-room-id="${id}"]` : `.room-label-part[data-room-id="${id}"][data-label-part="${node.dataset.labelPart}"]`;
+  const groupMode = !isCard && !room.labelLinked, gctx = groupMode ? groupSnap(room, [node]) : null;
+  const st = groupMode ? { ...snapTargets(), edges: true, centers: true, labels: true } : snapTargets(), view = visibleSceneRect(), useSnap = st.guides;
+  const g = groupMode ? { xs: [...gctx.xs], ys: [...gctx.ys] } : useSnap ? guideTargets({ roomId: room.id }) : { xs: [], ys: [] };
+  if (groupMode && useSnap) showGroupGrid(gctx);
+  const boxOf = r => ({ l: r.left - scene.left, r: r.right - scene.left, t: r.top - scene.top, b: r.bottom - scene.top, radius: r.radius });
+  const own = isCard ? [] : $$(`.room-label-part[data-room-id="${id}"]`).filter(n => n !== node).map(shapedRect).filter(r => r.width);
+  if (useSnap && !groupMode) own.forEach(r => { const pts = (a, b) => [...(st.edges ? [a, b] : []), ...(st.centers ? [(a + b) / 2] : [])]; pts(r.left, r.right).forEach(v => g.xs.push({ v: v - scene.left, kind: 'label', box: boxOf(r) })); pts(r.top, r.bottom).forEach(v => g.ys.push({ v: v - scene.top, kind: 'label', box: boxOf(r) })); });
+  const sizes = useSnap && groupMode ? own : useSnap && st.labels ? [...own, ...$$('#room-labels .room-label-card, #room-labels .room-label-part').filter(n => n.dataset.roomId !== room.id && n.offsetParent !== null).map(shapedRect).filter(r => r.width && rectOnScreen(r, view))] : [];
   let moved = false;
   const move = e => {
     if (e.pointerId !== event.pointerId) return; moved = true;
-    let edge = (horizontal ? (sign > 0 ? rect0.right : rect0.left) : (sign > 0 ? rect0.bottom : rect0.top)) + (horizontal ? e.clientX - event.clientX : e.clientY - event.clientY);
-    let best = null;
-    if (!e.altKey) {
-      lines.forEach(v => { const d = Math.abs(edge - v); if (d <= 7 && (!best || d < best.d)) best = { d, edge: v }; });
-      sizes.forEach(size => { const v = fixed + sign * size, d = Math.abs(edge - v); if (d <= 7 && (!best || d < best.d)) best = { d, edge: v, size: true }; });
-      const square = fixed + sign * across, ds = Math.abs(edge - square); if (ds <= 10) best = { d: ds, edge: square, square: true };
-      if (best) edge = best.edge;
+    let ex = (sx > 0 ? rect0.right : rect0.left) + e.clientX - event.clientX, ey = (sy > 0 ? rect0.bottom : rect0.top) + e.clientY - event.clientY;
+    let bx = null, by = null, square = false;
+    if (useSnap && !e.altKey) {
+      const reach = mobileView() ? 10 : 7;
+      // One snap per moving side: a line of another element, or the width / height of another label or part.
+      const pick = (edge, fixed, sign, lines, horizontal) => { let best = null;
+        lines.forEach(t => { const v = (horizontal ? scene.left : scene.top) + t.v, d = Math.abs(edge - v); if (sign * (v - fixed) > 4 && d <= reach && (!best || d < best.d)) best = { d, edge: v, t }; });
+        sizes.forEach(r => { const size = horizontal ? r.width : r.height, v = fixed + sign * size, d = Math.abs(edge - v); if (d <= reach && (!best || d < best.d)) best = { d, edge: v, r, size: true }; });
+        // The grid holds a little longer than it catches (a firmer grip): a caught line is kept while the pointer stays near.
+        const held = gridHold[horizontal ? 'x' : 'y'], gl = groupMode ? null : held !== null && Math.abs(edge - held) <= (mobileView() ? 26 : 20) ? held : gridLineNear(edge, horizontal);
+        gridHold[horizontal ? 'x' : 'y'] = null;
+        if (gl !== null && sign * (gl - fixed) > 4) { const d = Math.abs(edge - gl); if (!best || d < best.d || best.d > 3) { best = { d, edge: gl, grid: true }; gridHold[horizontal ? 'x' : 'y'] = gl; } }
+        return best; };
+      bx = pick(ex, fx, sx, g.xs, true); by = pick(ey, fy, sy, g.ys, false);
+      if (bx) ex = bx.edge; if (by) ey = by.edge;
+      // 1:1 - only the side that caught nothing follows the other one.
+      const W = Math.abs(ex - fx), H = Math.abs(ey - fy);
+      // A group's grid line gives way to 1:1 (only a real line - a part, an axis - holds against it).
+      const hard = b => b && !b.t?.grid;
+      if (Math.abs(W - H) <= reach && !(hard(bx) && hard(by)) && !(bx && by && !groupMode)) { square = true; if (hard(bx) || (!hard(by) && bx && !by) || (!hard(by) && !by && W >= H) || (!hard(by) && bx && by && W >= H)) ey = fy + sy * W; else ex = fx + sx * H; }
     }
-    // Parts never overlap: the moving side stops at a part lying next to it.
-    others.forEach(r => {
-      if (horizontal ? r.bottom <= rect0.top + .5 || r.top >= rect0.bottom - .5 : r.right <= rect0.left + .5 || r.left >= rect0.right - .5) return;
-      if (horizontal) { if (sign > 0 && r.left >= rect0.right - .5) edge = Math.min(edge, r.left); if (sign < 0 && r.right <= rect0.left + .5) edge = Math.max(edge, r.right); }
-      else { if (sign > 0 && r.top >= rect0.bottom - .5) edge = Math.min(edge, r.top); if (sign < 0 && r.bottom <= rect0.top + .5) edge = Math.max(edge, r.bottom); }
-    });
-    const content = Math.max(1, natural - fixedPad), local = Math.max(fixedPad + content * 6 / startSize, Math.abs(edge - fixed) / localToScreen), scale = Math.min(1, (local - fixedPad) / content); edge = fixed + sign * local * localToScreen;
-    room[`${key}Size`] = Math.max(6, Math.round(startSize * scale * 10) / 10); room[acrossKey] = acrossStart ? Math.round(acrossStart * scale * 10) / 10 : 0;
-    room[`${key}${horizontal ? 'W' : 'H'}`] = scale < 1 ? 0 : Math.round(local * 10) / 10;
-    room[`${key}${horizontal ? 'X' : 'Y'}`] = Math.round((start + ((fixed + edge) / 2 - centre0) / planToScreen) * 100) / 100;
+    // The moving corner never leaves the plan.
+    ex = clamp(ex, scene.left, scene.right); ey = clamp(ey, scene.top, scene.bottom);
+    let lw = Math.abs(ex - fx) / k, lh = Math.abs(ey - fy) / k;
+    if (isCard) {
+      lw = Math.max(natW, lw); lh = Math.max(natH, lh);
+      room.labelCardW = lw <= natW + .5 ? 0 : Math.round(lw * 10) / 10; room.labelCardH = lh <= natH + .5 ? 0 : Math.round(lh * 10) / 10;
+    } else {
+      // Below its own size the content shrinks (to the tighter side); a frame larger than the content is kept.
+      const cw = Math.max(1, natW - padX), ch = Math.max(1, natH - padY), minScale = 6 / startSize;
+      lw = Math.max(padX + cw * minScale, lw); lh = Math.max(padY + ch * minScale, lh);
+      const scale = Math.min(1, (lw - padX) / cw, (lh - padY) / ch);
+      room[`${key}Size`] = Math.max(6, Math.round(startSize * scale * 10) / 10);
+      room[`${key}W`] = lw > padX + cw * scale + .5 ? Math.round(lw * 10) / 10 : 0; room[`${key}H`] = lh > padY + ch * scale + .5 ? Math.round(lh * 10) / 10 : 0;
+    }
+    ex = fx + sx * lw * k; ey = fy + sy * lh * k;
+    room[posX] = Math.round((startX + ((fx + ex) / 2 - cx0) / planToScreen) * 100) / 100; room[posY] = Math.round((startY + ((fy + ey) / 2 - cy0) / planToScreen) * 100) / 100;
     renderRoomLabels();
-    const live = $(`.room-label-part[data-room-id="${id}"][data-label-part="${node.dataset.labelPart}"]`); live?.classList.toggle('square', !!best?.square || (live && Math.abs(live.offsetWidth - live.offsetHeight) < .5));
-    if (best?.square) return showAlignGuides([], []);
-    const at = horizontal ? (edge - scene.left) / scene.width * 100 : (edge - scene.top) / scene.height * 100;
-    if (best) showAlignGuides(horizontal ? [{ at }] : [], horizontal ? [] : [{ at }]); else showAlignGuides([], []);
+    const r = $(sel)?.getBoundingClientRect() || rect0, Ws = scene.width || 1, Hs = scene.height || 1, px = v => (v - scene.left) / Ws * 100, py = v => (v - scene.top) / Hs * 100;
+    const vertical = [], horizontal = [], marks = [], hits = [];
+    const add = (b, isX) => {
+      if (!b || b.grid) return; const t = b.r || (b.t?.box ? { left: b.t.box.l + scene.left, right: b.t.box.r + scene.left, top: b.t.box.t + scene.top, bottom: b.t.box.b + scene.top } : null);
+      if (t) hits.push({ l: t.left - scene.left, r: t.right - scene.left, t: t.top - scene.top, b: t.bottom - scene.top, radius: t.radius ?? b.t?.box?.radius, kind: b.t?.kind || 'label' });
+      if (b.size && t) { if (isX) marks.push({ axis: 'x', from: px(r.left), to: px(r.right), at: py(r.bottom + 6) }, { axis: 'x', from: px(t.left), to: px(t.right), at: py(t.bottom + 6) }); else marks.push({ axis: 'y', from: py(r.top), to: py(r.bottom), at: px(r.right + 6) }, { axis: 'y', from: py(t.top), to: py(t.bottom), at: px(t.right + 6) }); return; }
+      const kind = b.t?.kind || 'label';
+      if (isX) vertical.push({ at: px(b.edge), kind, ...(t ? { from: py(Math.min(r.top, t.top)), to: py(Math.max(r.bottom, t.bottom)) } : {}) });
+      else horizontal.push({ at: py(b.edge), kind, ...(t ? { from: px(Math.min(r.left, t.left)), to: px(Math.max(r.right, t.right)) } : {}) });
+    };
+    add(bx, true); add(by, false);
+    showAlignGuides(vertical, horizontal, marks, hits);
+    $(sel)?.classList.toggle('square', square || Math.abs(r.width - r.height) < .5);
   };
   const up = e => {
     if (e.pointerId !== event.pointerId) return;
-    window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up); showAlignGuides([], []);
-    const swallow = c => { c.stopPropagation(); c.preventDefault(); }; window.addEventListener('click', swallow, { capture:true, once:true }); setTimeout(() => window.removeEventListener('click', swallow, true), 250);
+    window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up); showAlignGuides([], []); hideGroupGrid();
+    const swallow = ev => { ev.stopPropagation(); ev.preventDefault(); }; window.addEventListener('click', swallow, { capture:true, once:true }); setTimeout(() => window.removeEventListener('click', swallow, true), 250);
     if (moved) { room.updatedAt = new Date().toISOString(); scheduleSave(true); if (selectedRoomId === room.id) openRoomEditor(room.id, openSectionIndex($('#room-editor-content'), roomEditorOpenSectionIndex)); }
   };
   window.addEventListener('pointermove', move); window.addEventListener('pointerup', up); window.addEventListener('pointercancel', up);
@@ -1176,11 +1457,12 @@ function startPartResize(event, handle) {
 // Icon, name and state never overlap: a dragged part that runs into another one stops touching it
 // (it is pushed out the shortest way, so it slides along the other part's side).
 function keepApart(room, key, part) {
+  if (part === 'dial') return; // a thermostat's dial may carry other parts (its centre is free space)
   const id = CSS.escape(room.id), scene = els.scene.getBoundingClientRect(), toPlan = scene.width / (els.scene.offsetWidth || 1) * (sceneScale || 1);
   for (let pass = 0; pass < 3; pass++) {
     const node = $(`.room-label-part[data-room-id="${id}"][data-label-part="${part}"]`); if (!node) return;
     const a = node.getBoundingClientRect(); let push = null;
-    $$(`.room-label-part[data-room-id="${id}"]`).filter(other => other !== node).forEach(other => {
+    $$(`.room-label-part[data-room-id="${id}"]`).filter(other => other !== node && other.dataset.labelPart !== 'dial').forEach(other => {
       const b = other.getBoundingClientRect(); if (!b.width || a.right <= b.left + .5 || a.left >= b.right - .5 || a.bottom <= b.top + .5 || a.top >= b.bottom - .5) return;
       const moves = [[b.left - a.right, 0], [b.right - a.left, 0], [0, b.top - a.bottom], [0, b.bottom - a.top]].sort((p, q) => Math.abs(p[0] + p[1]) - Math.abs(q[0] + q[1]));
       if (!push || Math.abs(moves[0][0] + moves[0][1]) > Math.abs(push[0] + push[1])) push = moves[0];
@@ -1190,11 +1472,166 @@ function keepApart(room, key, part) {
     renderRoomLabels();
   }
 }
+// A corner dot of a grouped label or of an ungrouped part (icon / name / state): the element scales proportionally with
+// the pointer and the opposite corner keeps its place on screen. The moving corner snaps to the lines of other elements on
+// screen and the element to the width / height of another label or part (as set in the snap menu; Alt disables).
+function startCardResize(event, handle) {
+  const node = handle.closest('.room-label-card, .room-label-part'), room = roomsOf()[node?.dataset.roomId]; if (!room) return;
+  const isCard = node.classList.contains('room-label-card'), key = isCard ? '' : partKey(node); if (!isCard && !key) return;
+  event.preventDefault(); event.stopPropagation(); try { els.scene.setPointerCapture(event.pointerId); } catch {}
+  const c = handle.dataset.corner, r0 = node.getBoundingClientRect(), sx = c.includes('w') ? -1 : 1, sy = c.includes('n') ? -1 : 1;
+  const fixed = { x: sx > 0 ? r0.left : r0.right, y: sy > 0 ? r0.top : r0.bottom }, diag = Math.hypot(r0.width, r0.height) || 1, ux = sx * r0.width / diag, uy = sy * r0.height / diag;
+  const sceneRect = els.scene.getBoundingClientRect(), planToScreen = sceneRect.width / (els.scene.offsetWidth || 1) * (sceneScale || 1);
+  const along0 = Math.max(1, (event.clientX - fixed.x) * ux + (event.clientY - fixed.y) * uy);
+  const id = CSS.escape(room.id), sel = isCard ? `.room-label-card[data-room-id="${id}"]` : `.room-label-part[data-room-id="${id}"][data-label-part="${node.dataset.labelPart}"]`;
+  const posX = isCard ? 'labelCardX' : `${key}X`, posY = isCard ? 'labelCardY' : `${key}Y`;
+  // What one scale step changes: the group's scale, or the part's text / icon size, its frame and its own margin.
+  const num = k => { const v = room[k]; return v === undefined || v === null || v === '' ? null : Number(v); };
+  const start = isCard ? { scale: clamp(Number(room.labelCardScale) || 1, .3, 4.5) } : { size: Number(room[`${key}Size`]) || ROOM_DEFAULTS[`${key}Size`], w: Number(room[`${key}W`]) || 0, h: Number(room[`${key}H`]) || 0, pad: num(`${key}Padding`) };
+  const apply = f => {
+    if (isCard) { room.labelCardScale = Math.round(clamp(start.scale * f, .3, 4.5) * 1000) / 1000; return; }
+    room[`${key}Size`] = Math.round(clamp(start.size * f, 6, 420) * 10) / 10;
+    room[`${key}W`] = start.w ? Math.round(start.w * f * 10) / 10 : 0; room[`${key}H`] = start.h ? Math.round(start.h * f * 10) / 10 : 0;
+    if (start.pad !== null && Number.isFinite(start.pad)) room[`${key}Padding`] = Math.round(start.pad * f * 10) / 10;
+  };
+  const st = snapTargets(), useSnap = st.guides, view = visibleSceneRect();
+  const targets = useSnap ? guideTargets({ roomId: room.id }) : { xs: [], ys: [] };
+  const boxOf = r => ({ l: r.left - sceneRect.left, r: r.right - sceneRect.left, t: r.top - sceneRect.top, b: r.bottom - sceneRect.top });
+  // A part also lines up with the other parts of its own label.
+  const own = isCard ? [] : $$(`.room-label-part[data-room-id="${id}"]`).filter(n => n !== node).map(shapedRect).filter(r => r.width);
+  if (useSnap) own.forEach(r => { const pts = (a, b) => [...(st.edges ? [a, b] : []), ...(st.centers ? [(a + b) / 2] : [])]; pts(r.left, r.right).forEach(v => targets.xs.push({ v: v - sceneRect.left, kind: 'label', box: boxOf(r) })); pts(r.top, r.bottom).forEach(v => targets.ys.push({ v: v - sceneRect.top, kind: 'label', box: boxOf(r) })); });
+  const sizes = useSnap && st.labels ? [...own, ...$$('#room-labels .room-label-card, #room-labels .room-label-part').filter(n => n.dataset.roomId !== room.id && n.offsetParent !== null).map(shapedRect).filter(r => r.width && rectOnScreen(r, view))] : [];
+  let moved = false;
+  const render = () => { renderRoomLabels(); return $(sel)?.getBoundingClientRect(); };
+  const move = e => {
+    if (e.pointerId !== event.pointerId) return; moved = true;
+    const along = (e.clientX - fixed.x) * ux + (e.clientY - fixed.y) * uy;
+    let f = Math.max(.05, along) / along0, snap = null;
+    if (useSnap && !e.altKey) {
+      const reach = mobileView() ? 10 : 7, W = r0.width * f, H = r0.height * f, cx = fixed.x + sx * W, cy = fixed.y + sy * H;
+      const take = (d, info) => { if (d <= reach && (!snap || d < snap.d)) snap = { d, ...info }; };
+      targets.xs.forEach(g => { const v = sceneRect.left + g.v; if (sx * (v - fixed.x) > 4) take(Math.abs(cx - v), { want: 'w', size: sx * (v - fixed.x), at: g.v, axis: 'x', g }); });
+      targets.ys.forEach(g => { const v = sceneRect.top + g.v; if (sy * (v - fixed.y) > 4) take(Math.abs(cy - v), { want: 'h', size: sy * (v - fixed.y), at: g.v, axis: 'y', g }); });
+      sizes.forEach(r => { take(Math.abs(W - r.width), { want: 'w', size: r.width, r, match: true }); take(Math.abs(H - r.height), { want: 'h', size: r.height, r, match: true }); });
+      if (snap) f = snap.size / (snap.want === 'w' ? r0.width : r0.height);
+    }
+    { const room_ = els.scene.getBoundingClientRect(), maxX = (sx > 0 ? room_.right - fixed.x : fixed.x - room_.left) / Math.max(1, r0.width), maxY = (sy > 0 ? room_.bottom - fixed.y : fixed.y - room_.top) / Math.max(1, r0.height); f = Math.min(f, maxX, maxY); }
+    apply(f); let r = render(); if (!r) return;
+    // Text and margins do not scale exactly linearly: one correction lands a snapped size on the pixel.
+    if (snap) { const got = snap.want === 'w' ? r.width : r.height; if (got > 1 && Math.abs(got - snap.size) > .3) { f *= snap.size / got; apply(f); r = render() || r; } }
+    // Keep the opposite corner where it was: move the element by what the scaling shifted it.
+    const dx = fixed.x - (sx > 0 ? r.left : r.right), dy = fixed.y - (sy > 0 ? r.top : r.bottom);
+    if (Math.abs(dx) > .1 || Math.abs(dy) > .1) { room[posX] = Math.round(((Number(room[posX]) || 0) + dx / planToScreen) * 100) / 100; room[posY] = Math.round(((Number(room[posY]) || 0) + dy / planToScreen) * 100) / 100; r = render() || r; }
+    if (!snap) return showAlignGuides([], []);
+    const Ws = sceneRect.width || 1, Hs = sceneRect.height || 1, px = v => (v - sceneRect.left) / Ws * 100, py = v => (v - sceneRect.top) / Hs * 100;
+    const box = snap.r ? boxOf(snap.r) : snap.g.box, hit = box ? [{ ...box, kind: snap.g?.kind || 'label' }] : [];
+    if (snap.match) {
+      const marks = snap.want === 'w'
+        ? [{ axis: 'x', from: px(r.left), to: px(r.right), at: py(r.bottom + 6) }, { axis: 'x', from: px(snap.r.left), to: px(snap.r.right), at: py(snap.r.bottom + 6) }]
+        : [{ axis: 'y', from: py(r.top), to: py(r.bottom), at: px(r.right + 6) }, { axis: 'y', from: py(snap.r.top), to: py(snap.r.bottom), at: px(snap.r.right + 6) }];
+      return showAlignGuides([], [], marks, hit);
+    }
+    const mine = boxOf(r), kind = snap.g.kind || 'label';
+    if (snap.axis === 'x') showAlignGuides([{ at: snap.at / Ws * 100, kind, from: Math.min(mine.t, box?.t ?? mine.t) / Hs * 100, to: Math.max(mine.b, box?.b ?? mine.b) / Hs * 100 }], [], [], hit);
+    else showAlignGuides([], [{ at: snap.at / Hs * 100, kind, from: Math.min(mine.l, box?.l ?? mine.l) / Ws * 100, to: Math.max(mine.r, box?.r ?? mine.r) / Ws * 100 }], [], hit);
+  };
+  const up = e => {
+    if (e.pointerId !== event.pointerId) return;
+    window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up); showAlignGuides([], []);
+    const swallow = ev => { ev.stopPropagation(); ev.preventDefault(); }; window.addEventListener('click', swallow, { capture:true, once:true }); setTimeout(() => window.removeEventListener('click', swallow, true), 250);
+    if (moved) { room.updatedAt = new Date().toISOString(); scheduleSave(true); if (selectedRoomId === room.id) openRoomEditor(room.id, openSectionIndex($('#room-editor-content'), roomEditorOpenSectionIndex)); }
+  };
+  window.addEventListener('pointermove', move); window.addEventListener('pointerup', up); window.addEventListener('pointercancel', up);
+}
+let pendingPartFocus = null;
+// In the label / thermostat panel, the section of the part being edited is opened, marked and scrolled into view.
+function markPartSection(part) { const content = $('#room-editor-content'); if (!content) return null; $$('.part-section.current', content).forEach(d => d.classList.remove('current')); const target = part && content.querySelector(`details.part-section.part-${CSS.escape(part)}`); target?.classList.add('current'); return target; }
+function focusPartSection(part) {
+  const target = markPartSection(part); if (!target) return;
+  if (!target.open) target.open = true;
+  requestAnimationFrame(() => target.scrollIntoView({ block: 'nearest', behavior: 'smooth' }));
+}
+// Editing the parts of an ungrouped label / thermostat is its own little world: a part snaps only to the other parts
+// of the same group, to the group's centre axes and outer edges, and to the group's own fine grid (shown while moving or
+// resizing) - not to the plan's grid or other elements, whatever "Przyciągaj do" says (only switching the guides off stops it).
+const GROUP_GRID = 10; // group grid step, in the label's own px (grows and shrinks with the label)
+function groupSnap(room, exclude = []) {
+  const scene = els.scene.getBoundingClientRect(), id = CSS.escape(room.id);
+  const parts = $$(`.room-label-part[data-room-id="${id}"]`).filter(n => n.offsetParent !== null), others = parts.filter(n => !exclude.includes(n));
+  const ref = parts[0], k = ref ? ref.getBoundingClientRect().width / Math.max(1, ref.offsetWidth) : 1;
+  let step = GROUP_GRID * k; while (step < 8) step *= 2; // zoomed out, the grid gets coarser (never denser than ~8 screen px)
+  const [axp, ayp] = roomAnchor(room), anchor = { x: scene.left + axp / 100 * scene.width, y: scene.top + ayp / 100 * scene.height };
+  const rects = parts.map(n => n.getBoundingClientRect()), orects = others.map(n => n.getBoundingClientRect());
+  const union = rs => rs.length ? { l: Math.min(...rs.map(r => r.left)), r: Math.max(...rs.map(r => r.right)), t: Math.min(...rs.map(r => r.top)), b: Math.max(...rs.map(r => r.bottom)) } : { l: anchor.x, r: anchor.x, t: anchor.y, b: anchor.y };
+  const u = union(rects), frame = union(orects), rel = b => ({ l: b.l - scene.left, r: b.r - scene.left, t: b.t - scene.top, b: b.b - scene.top });
+  const xs = [], ys = [];
+  orects.forEach(r => { const box = rel({ l: r.left, r: r.right, t: r.top, b: r.bottom }); [r.left, (r.left + r.right) / 2, r.right].forEach((v, i) => xs.push({ v: v - scene.left, kind: 'label', own: true, center: i === 1, box })); [r.top, (r.top + r.bottom) / 2, r.bottom].forEach((v, i) => ys.push({ v: v - scene.top, kind: 'label', own: true, center: i === 1, box })); });
+  xs.push({ v: anchor.x - scene.left, kind: 'group', own: true, center: true }); ys.push({ v: anchor.y - scene.top, kind: 'group', own: true, center: true });
+  if (orects.length) { const fb = rel(frame); [frame.l, frame.r].forEach(v => xs.push({ v: v - scene.left, kind: 'group', own: true, box: fb })); [frame.t, frame.b].forEach(v => ys.push({ v: v - scene.top, kind: 'group', own: true, box: fb })); }
+  const pad = step * 6, area = { l: u.l - pad, r: u.r + pad, t: u.t - pad, b: u.b + pad };
+  // Snap lines over the whole visible screen (a part may be moved far from the others); the drawing stays near the parts.
+  const v = visibleSceneRect(), lines = { l: Math.min(area.l, v.left), r: Math.max(area.r, v.right), t: Math.min(area.t, v.top), b: Math.max(area.b, v.bottom) };
+  for (let n = Math.ceil((lines.l - anchor.x) / step); anchor.x + n * step <= lines.r; n++) if (n) xs.push({ v: anchor.x + n * step - scene.left, kind: 'group', own: true, grid: true });
+  for (let n = Math.ceil((lines.t - anchor.y) / step); anchor.y + n * step <= lines.b; n++) if (n) ys.push({ v: anchor.y + n * step - scene.top, kind: 'group', own: true, grid: true });
+  return { scene, xs, ys, step, anchor, area, others };
+}
+// The group's grid drawn under the parts while one is moved / resized: fine lines every step, the centre axes stronger.
+function showGroupGrid(ctx) {
+  if (!ctx || !snapTargets().guides) return hideGroupGrid();
+  let el = $('#group-grid'); if (!el) { el = document.createElement('div'); el.id = 'group-grid'; el.setAttribute('aria-hidden', 'true'); els.scene.append(el); }
+  const z = ctx.scene.width / Math.max(1, els.scene.offsetWidth), a = ctx.area, L = (a.l - ctx.scene.left) / z, T = (a.t - ctx.scene.top) / z, W = (a.r - a.l) / z, H = (a.b - a.t) / z, st = ctx.step / z;
+  const ax = (ctx.anchor.x - a.l) / z, ay = (ctx.anchor.y - a.t) / z;
+  Object.assign(el.style, { left: `${L}px`, top: `${T}px`, width: `${W}px`, height: `${H}px` });
+  els.scene.classList.add('group-editing');
+  el.style.setProperty('--gax', `${ax}px`); el.style.setProperty('--gay', `${ay}px`); el.style.setProperty('--gst', `${st}px`);
+  el.style.setProperty('--gox', `${((ax % st) + st) % st}px`); el.style.setProperty('--goy', `${((ay % st) + st) % st}px`);
+}
+function hideGroupGrid() { $('#group-grid')?.remove(); els.scene?.classList.remove('group-editing'); }
+// Two fingers are a zoom, never a move: fingers on the screen are counted; a finger landing while one label is being
+// moved cancels that move (the label goes back where it was) and both fingers zoom / pan the plan instead.
+const touchesDown = new Map(); let activeLabelDrag = null;
+function trackTouchDown(event) {
+  if (event.pointerType !== 'touch') return; touchesDown.set(event.pointerId, { x: event.clientX, y: event.clientY });
+  const drag = activeLabelDrag; if (!drag || drag.id === event.pointerId) return;
+  drag.cancel(); const p = touchesDown.get(drag.id) || { x: drag.x, y: drag.y };
+  viewportPointerDown({ pointerId: drag.id, pointerType: 'touch', isPrimary: true, clientX: p.x, clientY: p.y, button: 0, target: els.scene, preventDefault() {}, stopPropagation() {} });
+}
+function trackTouchMove(event) { if (touchesDown.has(event.pointerId)) touchesDown.set(event.pointerId, { x: event.clientX, y: event.clientY }); }
+function trackTouchUp(event) { touchesDown.delete(event.pointerId); }
+// A second finger on a label / dot / marker goes to the plan's zoom (true when it was handed over).
+function secondFingerToZoom(event) {
+  if (event.pointerType !== 'touch' || touchesDown.size < 2 || !editMode) return false;
+  event.preventDefault(); event.stopPropagation(); viewportPointerDown(event); return true;
+}
 function startRoomLabelDrag(event) {
-  const handle = event.target.closest?.('.part-handle'); if (handle && editMode) return startPartResize(event, handle);
+  if (secondFingerToZoom(event)) return;
+  const corner = event.target.closest?.('.card-handle'); if (corner && editMode) return startFreeResize(event, corner);
   const node = event.target.closest('.room-label-part.editable, .room-label-card.editable'); if (!node || !editMode || event.button > 0) return;
   const room = roomsOf()[node.dataset.roomId], part = node.dataset.labelPart === 'card' ? ['card','labelCard','Grupa'] : ROOM_LABEL_PARTS.find(([p]) => p === node.dataset.labelPart); if (!room || !part) return;
-  if (touchSelectFirst(event, selectedRoomId === room.id, () => { openRoomEditor(room.id); requestAnimationFrame(() => requestAnimationFrame(() => focusSceneBoxOnMobile(isIconRoom(room) ? iconFocusBox(room) : room.points || []))); })) return;
+  // Ungrouped, on a phone: only the active part moves at once. A finger landing on another part does not grab it - a
+  // tap makes it the active one (then it can be moved), a drag moves the plan - so passing fingers move nothing by mistake.
+  if (event.pointerType === 'touch' && selectedRoomId === room.id && !room.labelLinked && node.dataset.labelPart !== 'card' && !node.classList.contains('active-part')) {
+    event.preventDefault(); event.stopPropagation(); viewportPointerDown(event);
+    const sx = event.clientX, sy = event.clientY, t0 = performance.now(), id = event.pointerId, partName = node.dataset.labelPart;
+    const end = e => {
+      if (e.pointerId !== id) return; window.removeEventListener('pointerup', end, true); window.removeEventListener('pointercancel', end, true);
+      if (e.type !== 'pointerup' || Math.hypot(e.clientX - sx, e.clientY - sy) >= 10 || performance.now() - t0 > 700 || touchesDown.size > 1) return;
+      const swallow = c => { c.stopPropagation(); c.preventDefault(); }; window.addEventListener('click', swallow, { capture:true, once:true }); setTimeout(() => window.removeEventListener('click', swallow, true), 400);
+      selectedLabelPart = partName; panelPart = null; $$(`.room-label-part[data-room-id="${CSS.escape(room.id)}"]`).forEach(n => n.classList.toggle('active-part', n.dataset.labelPart === partName));
+      renderRoomLabels(); if ($('#room-editor')?.classList.contains('visible')) focusPartSection(partName);
+      requestAnimationFrame(() => requestAnimationFrame(() => { const box = partFocusBox(room, partName); if (box) focusSceneBoxOnMobile(box); }));
+    };
+    window.addEventListener('pointerup', end, true); window.addEventListener('pointercancel', end, true);
+    return;
+  }
+  if (node.dataset.labelPart !== 'card') {
+    selectedLabelPart = node.dataset.labelPart; panelPart = null; $$(`.room-label-part[data-room-id="${CSS.escape(room.id)}"]`).forEach(n => n.classList.toggle('active-part', n === node));
+    // The panel follows the touched part: its section opens and is marked (now, or when the panel opens).
+    if (!room.labelLinked) { if (selectedRoomId === room.id && $('#room-editor')?.classList.contains('visible')) focusPartSection(selectedLabelPart); else pendingPartFocus = { roomId: room.id, part: selectedLabelPart }; }
+  }
+  // Ungrouped: a tapped part is brought into view on its own (like picking its section in the panel), else the whole label.
+  const focusBox = () => (!room.labelLinked && node.dataset.labelPart !== 'card' && partFocusBox(room, node.dataset.labelPart)) || (isIconRoom(room) ? iconFocusBox(room) : room.points || []);
+  if (touchSelectFirst(event, selectedRoomId === room.id, () => { openRoomEditor(room.id); requestAnimationFrame(() => requestAnimationFrame(() => focusSceneBoxOnMobile(focusBox()))); })) return;
   event.preventDefault(); event.stopPropagation();
   // The editor opens on a tap only (release without moving); grabbing and dragging right away just moves the label.
   const newlySelected = selectedRoomId !== room.id;
@@ -1202,27 +1639,51 @@ function startRoomLabelDrag(event) {
   // "One element": every visible part moves by the same amount as the one held.
   const moving = key === 'labelCard' ? [key] : room.labelLinked ? ROOM_LABEL_PARTS.filter(([, kk]) => room[kk]).map(([, kk]) => kk) : [key];
   const startOffsets = Object.fromEntries(moving.map(kk => [kk, [Number(room[`${kk}X`] ?? ROOM_DEFAULTS[`${kk}X`]) || 0, Number(room[`${kk}Y`] ?? ROOM_DEFAULTS[`${kk}Y`]) || 0]]));
+  // Everything a move may change (also parts pushed apart), to put back if a second finger turns it into a zoom.
+  const before = Object.fromEntries([...ROOM_LABEL_PARTS.map(([, kk]) => kk), 'labelCard'].flatMap(kk => [`${kk}X`, `${kk}Y`]).map(kk => [kk, room[kk]]));
   const partPct = kk => [ax + (Number(room[`${kk}X`] ?? ROOM_DEFAULTS[`${kk}X`]) || 0) * k / w * 100, ay + (Number(room[`${kk}Y`] ?? ROOM_DEFAULTS[`${kk}Y`]) || 0) * k / h * 100];
   const [sx, sy] = scenePercentAt(event), [px, py] = partPct(key), grab = [sx - px, sy - py];
   // Guides only of this room: its outline edges and centre, the label anchor, and its label parts that stay in place.
   let guides = null;
+  const groupMode = key !== 'labelCard' && !room.labelLinked;
   const roomGuides = () => {
+    if (groupMode) {
+      const ctx = groupSnap(room, [node]), own = node.getBoundingClientRect(), [qx, qy] = partPct(key); showGroupGrid(ctx);
+      const boxes = ctx.others.map(o => { const r = o.getBoundingClientRect(); return { l: r.left - ctx.scene.left, r: r.right - ctx.scene.left, t: r.top - ctx.scene.top, b: r.bottom - ctx.scene.top, radius: shapedRect(o).radius, own: true }; });
+      return { group: true, scene: ctx.scene, xs: ctx.xs, ys: ctx.ys, boxes, roomBox: null, offsets: [0, -1, 1], halfW: own.width / 2, halfH: own.height / 2, precise: true,
+        shiftX: (own.left + own.width / 2 - ctx.scene.left) - qx / 100 * ctx.scene.width, shiftY: (own.top + own.height / 2 - ctx.scene.top) - qy / 100 * ctx.scene.height };
+    }
     const scene = els.scene.getBoundingClientRect(), xs = isIconRoom(room) ? [ax] : room.points.map(p => p[0]), ys = isIconRoom(room) ? [ay] : room.points.map(p => p[1]), toX = v => v / 100 * scene.width, toY = v => v / 100 * scene.height;
     // Its own room's outline / anchor (room colour; an etykieta has only its point), its own parts that stay put
     // (label colour), and every other element: wskaźniki, Flow, other labels, rooms and the background.
-    const gx = (isIconRoom(room) ? [] : [Math.min(...xs), Math.max(...xs), (Math.min(...xs) + Math.max(...xs)) / 2, ax]).map(v => ({ v: toX(v), room:true, kind:'room' }));
-    const gy = (isIconRoom(room) ? [] : [Math.min(...ys), Math.max(...ys), (Math.min(...ys) + Math.max(...ys)) / 2, ay]).map(v => ({ v: toY(v), room:true, kind:'room' }));
-    $$(`.room-label-part[data-room-id="${CSS.escape(room.id)}"]`).filter(other => !moving.includes(ROOM_LABEL_PARTS.find(([p]) => p === other.dataset.labelPart)?.[1])).forEach(other => { const r = other.getBoundingClientRect(); [r.left, r.left + r.width / 2, r.right].forEach(v => gx.push({ v: v - scene.left, kind:'label' })); [r.top, r.top + r.height / 2, r.bottom].forEach(v => gy.push({ v: v - scene.top, kind:'label' })); });
+    // Its own room's lines only with "Pomieszczenia" switched on in the snap menu, and only across that room.
+    const ownRoom = !isIconRoom(room) && snapTargets().rooms, rb = ownRoom ? { l: toX(Math.min(...xs)), r: toX(Math.max(...xs)), t: toY(Math.min(...ys)), b: toY(Math.max(...ys)) } : null;
+    const st = snapTargets(), pick = (lo, hi, anchor) => [...(st.edges ? [lo, hi] : []), ...(st.centers ? [(lo + hi) / 2, anchor] : [])];
+    const gx = (ownRoom ? pick(Math.min(...xs), Math.max(...xs), ax) : []).map((v, i, all) => ({ v: toX(v), room:true, kind:'room', box: rb, span: rb && [rb.t, rb.b], own: true, center: !st.edges || i >= 2 }));
+    const gy = (ownRoom ? pick(Math.min(...ys), Math.max(...ys), ay) : []).map((v, i, all) => ({ v: toY(v), room:true, kind:'room', box: rb, span: rb && [rb.l, rb.r], own: true, center: !st.edges || i >= 2 }));
+    $$(`.room-label-part[data-room-id="${CSS.escape(room.id)}"]`).filter(other => !moving.includes(ROOM_LABEL_PARTS.find(([p]) => p === other.dataset.labelPart)?.[1])).forEach(other => { const r = other.getBoundingClientRect(); [r.left, r.left + r.width / 2, r.right].forEach((v, i) => { if (i === 1 ? st.centers : st.edges) gx.push({ v: v - scene.left, kind:'label', own: true, center: i === 1 }); }); [r.top, r.top + r.height / 2, r.bottom].forEach((v, i) => { if (i === 1 ? st.centers : st.edges) gy.push({ v: v - scene.top, kind:'label', own: true, center: i === 1 }); }); });
     if (snapTargets().guides) { const all = guideTargets({ roomId: room.id }); gx.push(...all.xs); gy.push(...all.ys); }
-    const own = node.getBoundingClientRect();
-    // Centre and both edges of the dragged part line up with the edges and centres of the others.
-    return { scene, xs: gx, ys: gy, offsets: [0, -1, 1], halfW: own.width / 2, halfH: own.height / 2, precise: true };
+    // Label boxes for label-to-label snapping (alignLabel): other labels (a group as a whole or ungrouped parts) and this
+    // label's own parts that stay in place.
+    const boxOf = other => { const r = other.getBoundingClientRect(); return { l: r.left - scene.left, r: r.right - scene.left, t: r.top - scene.top, b: r.bottom - scene.top }; };
+    const ownPart = other => other.dataset.roomId === room.id;
+    const boxes = [
+      ...(snapTargets().guides && snapTargets().labels ? $$('#room-labels .room-label-card, #room-labels .room-label-part').filter(other => other.dataset.roomId !== room.id && other.offsetParent !== null) : []),
+      ...$$(`.room-label-part[data-room-id="${CSS.escape(room.id)}"]`).filter(other => !moving.includes(ROOM_LABEL_PARTS.find(([p]) => p === other.dataset.labelPart)?.[1]))
+    ].filter(other => ownPart(other) || rectOnScreen(other.getBoundingClientRect())).map(other => ({ ...boxOf(other), radius: shapedRect(other).radius, own: ownPart(other) })).filter(b => b.r - b.l > 1);
+    const own = node.getBoundingClientRect(), [qx, qy] = partPct(key);
+    // Centre and both edges of the dragged part line up with the edges and centres of the others. The visible box need
+    // not be centred on the label's point (a free group is shifted to cover its parts): its offset is kept (shiftX/Y).
+    return { scene, xs: gx, ys: gy, boxes, roomBox: rb, offsets: [0, -1, 1], halfW: own.width / 2, halfH: own.height / 2, precise: true,
+      shiftX: (own.left + own.width / 2 - scene.left) - qx / 100 * scene.width, shiftY: (own.top + own.height / 2 - scene.top) - qy / 100 * scene.height };
   };
-  let moved = false; const camera = dragCamera(e => { clearTimeout(guides?.motion?.timer); guides = null; place(e); });
+  let moved = false, alive = true; const camera = dragCamera(e => { clearTimeout(guides?.motion?.timer); guides = null; place(e); });
   try { els.scene.setPointerCapture(event.pointerId); } catch {}
   const place = e => {
     const [x, y] = scenePercentAt(e); if (!cameraPanning) { guides ||= roomGuides(); guides.onSettle = () => place(e); }
-    const snapped = alignToGuides(guides, snapPercent(x - grab[0]), snapPercent(y - grab[1]), e);
+    const gp = v => groupMode ? v : snapPercent(v); // the plan's grid does not apply inside a group
+    if (groupMode && guides) requestAnimationFrame(() => { if (alive) showGroupGrid(groupSnap(room)); }); // the drawn grid follows the part
+    const snapped = guides?.boxes ? alignLabel(guides, gp(x - grab[0]), gp(y - grab[1]), e) : alignToGuides(guides, gp(x - grab[0]), gp(y - grab[1]), e);
     const dx = Math.round((snapped.xPercent - ax) / 100 * w / k * 100) / 100 - startOffsets[key][0], dy = Math.round((snapped.yPercent - ay) / 100 * h / k * 100) / 100 - startOffsets[key][1];
     moving.forEach(kk => { room[`${kk}X`] = startOffsets[kk][0] + dx; room[`${kk}Y`] = startOffsets[kk][1] + dy; });
     renderRoomLabels();
@@ -1237,7 +1698,7 @@ function startRoomLabelDrag(event) {
   };
   const move = e => { if (e.pointerId !== event.pointerId) return; if (!moved && Math.hypot(e.clientX - event.clientX, e.clientY - event.clientY) < 4) return; moved = true; place(e); camera.track(e); };
   const up = e => {
-    if (e.pointerId !== event.pointerId) return; camera.stop(); clearTimeout(guides?.motion?.timer); if (guides) guides.onSettle = null; showAlignGuides([], []);
+    if (e.pointerId !== event.pointerId) return; alive = false; camera.stop(); clearTimeout(guides?.motion?.timer); if (guides) guides.onSettle = null; showAlignGuides([], []); hideGroupGrid();
     window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up);
     // The scene holds the finger, so the following click would land on the scene and select the room under the
     // label (e.g. the room an icon stands in); the label was already selected on press, so the click is dropped.
@@ -1245,7 +1706,7 @@ function startRoomLabelDrag(event) {
     // A tap (no move) always brings the room / icon into view, also when it was already selected.
     if (!moved) {
       if (newlySelected) { skipRoomFocus = true; try { openRoomEditor(room.id); } finally { skipRoomFocus = false; } }
-      requestAnimationFrame(() => requestAnimationFrame(() => focusSceneBoxOnMobile(isIconRoom(room) ? iconFocusBox(room) : room.points || []))); return;
+      requestAnimationFrame(() => requestAnimationFrame(() => focusSceneBoxOnMobile(focusBox()))); return;
     }
     let [fx, fy] = partPct(key);
     // An icon has no shape: a moved group becomes its new position, so later centring, guides and copies use it.
@@ -1261,6 +1722,14 @@ function startRoomLabelDrag(event) {
     centerAfterDrag(fx, fy);
   };
   window.addEventListener('pointermove', move); window.addEventListener('pointerup', up); window.addEventListener('pointercancel', up);
+  activeLabelDrag = { id: event.pointerId, x: event.clientX, y: event.clientY, cancel() {
+    activeLabelDrag = null; alive = false; camera.stop(); clearTimeout(guides?.motion?.timer); if (guides) guides.onSettle = null; showAlignGuides([], []); hideGroupGrid();
+    window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up);
+    try { els.scene.releasePointerCapture(event.pointerId); } catch {}
+    Object.entries(before).forEach(([kk, v]) => { if (v === undefined) delete room[kk]; else room[kk] = v; }); renderRoomLabels();
+  } };
+  const clearActive = e => { if (e.pointerId !== event.pointerId) return; if (activeLabelDrag?.id === event.pointerId) activeLabelDrag = null; window.removeEventListener('pointerup', clearActive, true); window.removeEventListener('pointercancel', clearActive, true); };
+  window.addEventListener('pointerup', clearActive, true); window.addEventListener('pointercancel', clearActive, true);
 }
 function renderRooms() {
   syncRoomIconStates();
@@ -1403,16 +1872,19 @@ function finishRoomDrawing() {
 let roomWizard = null;
 // Parts an icon can show; the icon wizard asks for them in its last step.
 const WIZARD_PARTS = [['labelIcon','Ikona','mdi-lightbulb-outline'],['labelName','Nazwa','mdi-format-text'],['labelState','Stan','mdi-toggle-switch-outline']];
-function wizardSteps() { return isIconRoom(roomsOf()[roomWizard?.id]) ? ['name','entities','parts'] : ['name','entities']; }
+// A thermostat asks for its own parts (− and + are one tile).
+const THERMO_WIZARD_PARTS = [['labelName','Nazwa','mdi-format-text'],['labelDial','Tarcza','mdi-gauge'],['labelTarget','Temperatura ustawiona','mdi-thermometer-lines'],['labelCurrent','Temperatura aktualna','mdi-thermometer'],['labelAction','Stan pracy','mdi-fire'],['labelMinus','Przyciski − / +','mdi-plus-minus-variant',['labelPlus']],['labelModes','Tryby','mdi-power-settings'],['labelState','Tryb (stan)','mdi-thermostat'],['labelIcon','Ikona','mdi-radiator']];
+function wizardPartsFor(room) { return isThermoRoom(room) ? THERMO_WIZARD_PARTS : WIZARD_PARTS; }
+function wizardSteps() { const room = roomsOf()[roomWizard?.id]; if (isTextRoom(room)) return ['name','action','parts']; const steps = isIconRoom(room) ? ['name','entities','parts'] : ['name','entities']; return roomWizard?.skipEntities ? steps.filter(step => step !== 'entities') : steps; }
 function showWizardPin(room) {
   $('#wizard-pin')?.remove(); if (!room || !isIconRoom(room)) return;
   const pin = document.createElement('div'); pin.id = 'wizard-pin'; pin.className = 'wizard-pin';
   const [x, y] = roomAnchor(room); pin.style.left = `${x}%`; pin.style.top = `${y}%`; pin.innerHTML = '<i class="mdi mdi-map-marker"></i>';
   els.scene.append(pin);
 }
-function openRoomWizard(id) {
+function openRoomWizard(id, { skipEntities = false } = {}) {
   const room = roomsOf()[id], box = $('#room-wizard'); if (!room || !box) return openRoomEditor(id, -1, 0);
-  roomWizard = { id, step:'name', generated: room.name, query:'', picked: new Set(room.entityIds || []), parts: new Set(WIZARD_PARTS.map(([key]) => key)) };
+  roomWizard = { id, step:'name', generated: room.name, query:'', picked: new Set(room.entityIds || []), parts: new Set(isThermoRoom(room) ? THERMO_WIZARD_PARTS.map(([key]) => key).filter(key => room[key]) : WIZARD_PARTS.map(([key]) => key).filter(key => !(isTextRoom(room) && key === 'labelState'))), skipEntities };
   // On a phone it sits under the top bar so the on-screen keyboard cannot cover it.
   box.style.top = mobileView() ? `${Math.round(($('.topbar')?.getBoundingClientRect().bottom || 0) + 8)}px` : '';
   box.classList.add('visible'); box.setAttribute('aria-hidden', 'false'); renderRoomWizard();
@@ -1427,14 +1899,14 @@ function closeRoomWizard() {
   if (!room) return;
   const before = (room.entityIds || []).join('|'); room.entityIds = [...picked];
   // An icon left without a typed name takes the name of its first entity.
-  if (isIconRoom(room) && room.name === roomWizard_generated && room.entityIds.length) room.name = (entityCatalog?.entities || []).find(entity => entity.entity_id === room.entityIds[0])?.name || roomEntityName(room.entityIds[0]);
+  if (isIconRoom(room) && !isThermoRoom(room) && room.name === roomWizard_generated && room.entityIds.length) room.name = (entityCatalog?.entities || []).find(entity => entity.entity_id === room.entityIds[0])?.name || roomEntityName(room.entityIds[0]);
   // An icon is generated only now, with the parts chosen in the last step.
-  if (isIconRoom(room)) { WIZARD_PARTS.forEach(([key]) => { room[key] = parts.has(key); }); delete room.draft; }
+  if (isIconRoom(room)) { wizardPartsFor(room).forEach(([key, , , also = []]) => { [key, ...also].forEach(k => { room[k] = parts.has(key); }); }); delete room.draft; }
   if (room.entityIds.join('|') !== before) { room.updatedAt = new Date().toISOString(); refreshStates(); }
   renderRooms(); fitRoomLabel(id); scheduleSave(true);
   // With entities picked there is nothing left to do in the Room section, so the panel opens collapsed.
   openRoomEditor(id, -1, room.entityIds.length ? -1 : 0);
-  notify(isIconRoom(room) ? 'Dodano etykietę' : room.entityIds.length ? 'Dodano pomieszczenie' : 'Dodano pomieszczenie — encje możesz dodać w panelu');
+  notify(isThermoRoom(room) ? 'Dodano termostat' : isTextRoom(room) ? 'Dodano tekst' : isIconRoom(room) ? 'Dodano etykietę' : room.entityIds.length ? 'Dodano pomieszczenie' : 'Dodano pomieszczenie — encje możesz dodać w panelu');
 }
 function roomWizardName() {
   const input = $('#room-wizard-name'), room = roomsOf()[roomWizard?.id]; if (!room || !input) return;
@@ -1443,9 +1915,10 @@ function roomWizardName() {
 function roomWizardMatches() {
   const all = (entityCatalog?.entities || []).filter(entity => entity.entity_id), room = roomsOf()[roomWizard.id], query = searchText(roomWizard.query);
   const area = searchText(room?.name), useful = entity => /^(light|switch|input_boolean|fan|binary_sensor|cover|climate|media_player|lock|vacuum)\./.test(entity.entity_id);
-  const list = query.length >= 2
-    ? all.filter(entity => [entity.entity_id, entity.name, entity.area].some(value => searchText(value).includes(query)))
-    : all.filter(entity => area && searchText(entity.area) === area || useful(entity));
+  const suggested = () => all.filter(entity => area && searchText(entity.area) === area || useful(entity));
+  let list = query.length >= 2 ? all.filter(entity => looseMatch([entity.entity_id, entity.name, entity.area].join(' '), query)) : suggested();
+  // A name carried over from the first step that matches nothing still shows the usual suggestions.
+  if (!list.length && query.length >= 2 && roomWizard.queryFromName) list = suggested();
   return list.sort((a, b) => Number(searchText(b.area) === area) - Number(searchText(a.area) === area) || roomEntityRank(a.entity_id) - roomEntityRank(b.entity_id) || String(a.name || a.entity_id).localeCompare(String(b.name || b.entity_id))).slice(0, 30);
 }
 // The entity list takes only the room left above the on-screen keyboard (its buttons always stay visible); with the
@@ -1463,7 +1936,7 @@ function renderRoomWizardButton() {
   const steps = wizardSteps(), last = steps.indexOf(w.step) === steps.length - 1;
   button.disabled = w.step === 'parts' && !w.parts.size;
   button.innerHTML = !last ? `<span>${escapeHtml(translateValue('Dalej'))}</span><i class="mdi mdi-arrow-right"></i>`
-    : `<i class="mdi mdi-check"></i><span>${escapeHtml(translateValue(isIconRoom(roomsOf()[w.id]) ? 'Utwórz etykietę' : 'Gotowe'))}${w.step === 'entities' && w.picked.size ? ` (${w.picked.size})` : ''}</span>`;
+    : `<i class="mdi mdi-check"></i><span>${escapeHtml(translateValue(isThermoRoom(roomsOf()[w.id]) ? 'Utwórz termostat' : isTextRoom(roomsOf()[w.id]) ? 'Utwórz tekst' : isIconRoom(roomsOf()[w.id]) ? 'Utwórz etykietę' : 'Gotowe'))}${w.step === 'entities' && w.picked.size ? ` (${w.picked.size})` : ''}</span>`;
 }
 function renderRoomWizard(part = 'all') {
   const box = $('#room-wizard'); if (!roomWizard || !box) return;
@@ -1471,8 +1944,9 @@ function renderRoomWizard(part = 'all') {
   if (part === 'all') {
     box.dataset.step = w.step;
     $('#room-wizard-step', box).textContent = `${steps.indexOf(w.step) + 1} / ${steps.length}`;
-    const icon = isIconRoom(room);
-    $('#room-wizard-title', box).textContent = translateValue(w.step === 'name' ? (icon ? 'Nazwa etykiety' : 'Nazwa pomieszczenia') : w.step === 'parts' ? 'Co ma być widać?' : (icon ? 'Encja etykiety' : 'Encja pomieszczenia'));
+    const icon = isIconRoom(room), text = isTextRoom(room);
+    $('#room-wizard-title', box).textContent = translateValue(w.step === 'name' ? (isThermoRoom(room) ? 'Nazwa termostatu' : text ? 'Tekst' : icon ? 'Nazwa etykiety' : 'Nazwa pomieszczenia') : w.step === 'parts' ? 'Co ma być widać?' : w.step === 'action' ? 'Akcja po dotknięciu' : (icon ? 'Encja etykiety' : 'Encja pomieszczenia'));
+    if (w.step === 'action') renderWizardAction(room);
     $('.room-wizard-entity-step > small', box).textContent = translateValue(icon ? 'Wybierz encję, od której zależy stan etykiety — światło, włącznik, czujnik…' : 'Wybierz encję, od której zależy stan pomieszczenia — światło, włącznik, czujnik…');
     const name = $('#room-wizard-name', box); name.placeholder = w.generated;
     if (w.step === 'name') { name.value = room?.name === w.generated ? '' : room?.name || ''; setTimeout(() => name.focus(), 60); }
@@ -1480,7 +1954,7 @@ function renderRoomWizard(part = 'all') {
     // Name → entities: the search field takes the focus right away (in the same tap / Enter), so the on-screen
     // keyboard stays open between the two steps instead of closing and opening again.
     if (w.step === 'entities' && document.activeElement?.id === 'room-wizard-name') $('#room-wizard-search', box).focus();
-    $('#room-wizard-parts', box).innerHTML = WIZARD_PARTS.map(([key, label, mdi]) => `<button type="button" class="room-wizard-part${w.parts.has(key) ? ' on' : ''}" data-wizard-part="${key}" aria-pressed="${w.parts.has(key)}"><i class="mdi ${mdi}"></i><span>${escapeHtml(translateValue(label))}</span><i class="mdi ${w.parts.has(key) ? 'mdi-check-circle' : 'mdi-circle-outline'} room-wizard-part-check"></i></button>`).join('');
+    $('#room-wizard-parts', box).innerHTML = wizardPartsFor(room).map(([key, label, mdi]) => [key, text && key === 'labelState' ? 'Podpis' : label, mdi]).map(([key, label, mdi]) => `<button type="button" class="room-wizard-part${w.parts.has(key) ? ' on' : ''}" data-wizard-part="${key}" aria-pressed="${w.parts.has(key)}"><i class="mdi ${mdi}"></i><span>${escapeHtml(translateValue(label))}</span><i class="mdi ${w.parts.has(key) ? 'mdi-check-circle' : 'mdi-circle-outline'} room-wizard-part-check"></i></button>`).join('');
     renderRoomWizardButton();
   }
   if (w.step !== 'entities') return;
@@ -1492,16 +1966,33 @@ function renderRoomWizard(part = 'all') {
     : `<div class="room-wizard-empty">${escapeHtml(translateValue(w.query.trim().length >= 2 ? 'Brak pasujących encji.' : 'Wpisz nazwę, obszar albo entity_id.'))}</div>`;
   fitWizardList();
 }
+// Step "Akcja" of a text: what a tap does in view and where it goes (the same choices as in its panel).
+function renderWizardAction(room) {
+  const box = $('#room-wizard-action'); if (!box || !room) return;
+  const action = LINK_ACTIONS.some(([v]) => v === room.linkAction) ? room.linkAction : 'none', esc = v => escapeHtml(String(v ?? ''));
+  const field = action === 'view' ? `<label class="room-wizard-field"><span>${esc(translateValue('Widok'))}</span><select data-wizard-link="linkView"><option value="">—</option>${model.viewOrder.filter(id => model.views[id]).map(id => `<option value="${esc(id)}"${room.linkView === id ? ' selected' : ''}>${esc(model.views[id].name || id)}</option>`).join('')}</select></label>`
+    : action === 'ha' ? `<label class="room-wizard-field"><span>${esc(translateValue('Adres w HA'))}</span><input type="text" data-wizard-link="linkPath" value="${esc(room.linkPath)}" placeholder="/lovelace/0" autocomplete="off" spellcheck="false"></label>`
+    : action === 'url' ? `<label class="room-wizard-field"><span>${esc(translateValue('Link'))}</span><input type="text" data-wizard-link="linkUrl" value="${esc(room.linkUrl)}" placeholder="https://" autocomplete="off" spellcheck="false"></label><label class="room-wizard-check"><input type="checkbox" data-wizard-link="linkNewTab"${room.linkNewTab !== false ? ' checked' : ''}><span>${esc(translateValue('W nowej karcie'))}</span></label>` : '';
+  box.innerHTML = `<div class="room-wizard-actions">${LINK_ACTIONS.map(([v, t]) => `<button type="button" class="room-wizard-action${v === action ? ' on' : ''}" data-wizard-action="${v}"><i class="mdi ${({ none:'mdi-cancel', view:'mdi-view-carousel-outline', ha:'mdi-home-assistant', url:'mdi-link-variant' })[v]}"></i><span>${esc(translateValue(t))}</span></button>`).join('')}</div>${field}`;
+}
 function roomWizardNext() {
   if (!roomWizard) return;
   const steps = wizardSteps(), next = steps[steps.indexOf(roomWizard.step) + 1];
-  if (roomWizard.step === 'name') roomWizardName();
+  if (roomWizard.step === 'name') {
+    roomWizardName();
+    // The typed name goes on into the entity search (editable there), so the list right away offers entities that
+    // belong to it; a search the user typed himself is kept.
+    const typed = $('#room-wizard-name')?.value.trim();
+    if (next === 'entities' && typed && (!roomWizard.query || roomWizard.queryFromName)) { roomWizard.query = typed; roomWizard.queryFromName = true; }
+  }
   if (roomWizard.step === 'parts' && !roomWizard.parts.size) return;
   if (next) { roomWizard.step = next; renderRoomWizard(); return requestAnimationFrame(focusWizardTarget); }
   closeRoomWizard();
 }
 function onRoomWizardClick(event) {
   if (!roomWizard) return;
+  const actionButton = event.target.closest('[data-wizard-action]');
+  if (actionButton) { const room = roomsOf()[roomWizard.id]; if (room) { room.linkAction = actionButton.dataset.wizardAction; renderWizardAction(room); } return; }
   const toggle = event.target.closest('[data-wizard-toggle]');
   if (toggle) {
     const id = toggle.dataset.wizardToggle, single = true; // a label / room has one entity: picking it moves on
@@ -1517,7 +2008,7 @@ function onRoomWizardClick(event) {
     if (roomWizard.step === 'name') { const input = $('#room-wizard-name'); if (input) input.value = ''; return roomWizardNext(); }
     // Skipping entities keeps none; skipping the parts keeps all three.
     if (roomWizard.step === 'entities') roomWizard.picked = new Set(roomsOf()[roomWizard.id]?.entityIds || []);
-    if (roomWizard.step === 'parts') roomWizard.parts = new Set(WIZARD_PARTS.map(([key]) => key));
+    if (roomWizard.step === 'parts') { const wr = roomsOf()[roomWizard.id]; roomWizard.parts = new Set(isThermoRoom(wr) ? THERMO_WIZARD_PARTS.map(([key]) => key).filter(key => wr[key]) : WIZARD_PARTS.map(([key]) => key).filter(key => !(isTextRoom(wr) && key === 'labelState'))); }
     const steps = wizardSteps(), next = steps[steps.indexOf(roomWizard.step) + 1];
     if (next) { roomWizard.step = next; renderRoomWizard(); return requestAnimationFrame(focusWizardTarget); }
     return closeRoomWizard();
@@ -1653,6 +2144,24 @@ function roomEntityRow(id, action) {
   const button = action === 'remove' ? `<button type="button" class="room-entity-action" data-room-remove="${escapeHtml(id)}" title="${escapeHtml(translateValue('Usuń encję'))}"><i class="mdi mdi-close"></i></button>` : `<button type="button" class="room-entity-action add" data-room-add="${escapeHtml(id)}" title="${escapeHtml(translateValue('Dodaj do pomieszczenia'))}"><i class="mdi mdi-plus"></i></button>`;
   return `<div class="room-entity${action === 'remove' ? ' added' : ''}"${action === 'add' ? ` data-room-add="${escapeHtml(id)}"` : ''}><div><strong data-no-i18n>${escapeHtml(roomEntityName(id))}</strong><code data-no-i18n>${escapeHtml(id)}${state ? ' · ' + escapeHtml(state) : ''}</code></div>${button}</div>`;
 }
+function renderExtraEntityResults() {
+  const box = $('#extra-entity-results'), input = $('#extra-entity-search'), room = roomsOf()[selectedRoomId]; if (!box || !input || !room) return;
+  const query = searchText(input.value), added = new Set([...(room.entityIds || []), ...EXTRA_PARTS.filter(([, k]) => room[k]).map(([, k]) => room[`${k}Entity`])]);
+  if (query.length < 2) { box.innerHTML = ''; return; }
+  if (!allEntitiesCache) { box.innerHTML = `<div class="room-entity-heading">${escapeHtml(translateValue('Wyszukiwanie encji…'))}</div>`; loadAllEntities().then(() => { if ($('#extra-entity-search') === input) renderExtraEntityResults(); }); return; }
+  const matches = allEntitiesCache.filter(entity => !added.has(entity.id) && (searchText(entity.id).includes(query) || searchText(entity.name).includes(query) || searchText(entity.integration).includes(query)))
+    .sort((a, b) => Number(b.enabled) - Number(a.enabled) || a.name.localeCompare(b.name)).slice(0, 40);
+  box.innerHTML = matches.length ? matches.map(entity => roomEntityRow(entity.id, 'add').replace(/data-room-add=/g, 'data-extra-add=')).join('') : `<div class="room-entity-heading">${escapeHtml(translateValue('Brak pasujących encji.'))}</div>`;
+}
+// A new extra entity: the first free slot, placed under the lowest part (in the group's layout and when ungrouped).
+function addExtraEntity(room, id) {
+  const slot = EXTRA_PARTS.find(([, k]) => !(room[k] && room[`${k}Entity`])); if (!slot || !id) return; const k = slot[1];
+  const shown = ROOM_LABEL_PARTS.filter(([, kk]) => room[kk] && kk !== k), low = suffix => Math.max(0, ...shown.map(([, kk]) => Number(room[`${kk}${suffix}`] ?? ROOM_DEFAULTS[`${kk}${suffix}`]) || 0));
+  Object.assign(room, { [k]: true, [`${k}Entity`]: id, [`${k}Y`]: Math.round(low('Y') + 40), [`${k}X`]: Number(room.labelNameX ?? 0) || 0, [`${k}FY`]: Math.round(low('FY') + 40), [`${k}FX`]: 0 });
+  room.updatedAt = new Date().toISOString(); renderRooms(); openRoomEditor(room.id, openSectionIndex($('#room-editor-content'), roomEditorOpenSectionIndex)); scheduleSave(true);
+  // Its state right away (from now on it is refreshed with the others).
+  api('selected_states', jsonOptions({ entity_ids: [id] })).then(data => { Object.entries(data.states || {}).forEach(([eid, st]) => { if (st) stateCache[eid] = { ...stateCache[eid], ...st }; }); renderRooms(); if (selectedRoomId === room.id) openRoomEditor(room.id, openSectionIndex($('#room-editor-content'), roomEditorOpenSectionIndex)); }).catch(() => {});
+}
 function renderRoomEntityResults() {
   const box = $('#room-entity-results'), input = $('#room-entity-search'), room = roomsOf()[selectedRoomId]; if (!box || !input || !room) return;
   const query = searchText(input.value), added = new Set(room.entityIds || []);
@@ -1665,16 +2174,33 @@ function renderRoomEntityResults() {
 function roomEditorMarkup(room) {
   const r = withoutOnOff({ ...ROOM_DEFAULTS, ...room }), light = roomLight({ ...ROOM_DEFAULTS, ...room }), refresh = { refresh:true }, onOff = roomSwitchable(r);
   // No ON / OFF choices for entities that do not switch on and off.
-  const control = (label, path, ...rest) => !onOff && path !== 'stateEnabled' && /zależn[aeyi] ON\/OFF/i.test(label) ? '' : plainControl(label, path, ...rest);
+  const baseControl = (label, path, ...rest) => !onOff && path !== 'stateEnabled' && /zależn[aeyi] ON\/OFF/i.test(label) ? '' : plainControl(label, path, ...rest);
+  // A thermostat follows its work states: each "… ON" / "… OFF" pair becomes one setting per used state.
+  const thermoR = isThermoRoom(r), acts = thermoR ? thermoActsUsed(r) : [], actName = a => translateValue(THERMO_ACTIONS[a]?.[0] || a);
+  const actValue = (onPath, a) => { const v = r[actPath(onPath, a)]; return v !== undefined && v !== '' && v !== null ? v : actWorking(a) ? r[onPath] : r[onPath.replace(/On(?=[A-Z]|$)/, 'Off')]; };
+  const control = (label, path, type, value, opts, ...rest) => {
+    if (!thermoR) return baseControl(label, path, type, value, opts, ...rest);
+    if (path === 'labelIconAnimOnlyOn') return acts.map(a => plainControl(`${translateValue('Animacja')} · ${actName(a)}`, `labelIconAnim_${a}`, 'select', r[`labelIconAnim_${a}`] ?? (actWorking(a) ? (ICON_ANIMATIONS.includes(r.labelIconAnimType) ? r.labelIconAnimType : 'spin') : 'none'), { items:[['none','Brak'],['spin','Obrót'],['pulse','Pulsowanie'],['blink','Miganie'],['swing','Kołysanie']], dropdown:true })).join('');
+    if (/ OFF$/.test(label) && /Off(?=[A-Z]|$)/.test(path)) return '';
+    if (/ ON$/.test(label) && /On(?=[A-Z]|$)/.test(path)) return acts.map(a => { const raw = actValue(path, a), v = type === 'range' ? (opts?.suffix === '%' ? pct(raw) : (Number(raw) || value)) : (raw ?? value);
+      return plainControl(`${translateValue(label.replace(/ ON$/, ''))} · ${actName(a)}`, actPath(path, a), type, v, opts, ...rest); }).join('');
+    if (path === 'labelIconAnimType') return '';
+    return baseControl(label.replace(/(z)ależn([aeyi]) ON\/OFF/i, '$1ależn$2 od stanu pracy'), path, type, value, opts, ...rest);
+  };
   const note = text => `<p class="flow-section-note">${text}</p>`, canToggle = r.entityIds.some(id => isToggleableMarker({ entityId:id }));
   const addedList = r.entityIds.map(id => roomEntityRow(id, 'remove')).join('');
   const icon = isIconRoom(r);
-  const entities = section('Ogólne', control('Nazwa','name','text',r.name)
+  const entities = isTextRoom(r) ? section('Ogólne', control('Tekst','name','text',r.name) + control('Podpis','textCaption','text',r.textCaption || '') + linkControls(r)) : section('Ogólne', control('Nazwa','name','text',r.name)
     + (icon ? '' : `<div class="control room-state-row"><label>Stan</label><strong class="flow-live-value">${translateValue(light.on ? 'Włączone' : r.entityIds.length ? 'Wyłączone' : 'Brak encji')}</strong><span></span></div>`)
     + tapActionControl(canToggle ? r.tapAction : (r.tapAction === 'toggle' ? 'more_info' : r.tapAction), canToggle)
+    + (isThermoRoom(r) ? gaugeSubsection(escapeHtml(translateValue('Dodatkowe encje')), `<p class="flow-section-note">${escapeHtml(translateValue('Inne encje związane z urządzeniem (np. ciśnienie, temperatura wody). Każda dostaje swoją sekcję i można ją ustawić jak rozgrupowaną część.'))}</p>`
+        + `<div class="control room-entities-control"><div class="room-entity-list">${EXTRA_PARTS.filter(([, k]) => r[k] && r[`${k}Entity`]).map(([, k]) => roomEntityRow(r[`${k}Entity`], 'remove').replace(/data-room-remove="[^"]*"/, `data-extra-remove="${k}"`)).join('')}</div>`
+        + (EXTRA_PARTS.some(([, k]) => !(r[k] && r[`${k}Entity`])) ? `<label class="room-entity-search"><i class="mdi mdi-magnify"></i><input id="extra-entity-search" type="search" autocomplete="off" placeholder="${escapeHtml(translateValue('Szukaj nazwy lub encji…'))}"></label><div id="extra-entity-results" class="room-entity-results"></div>` : '') + `</div>`) : '')
+    + (isThermoRoom(r) ? gaugeSubsection(escapeHtml(translateValue('Stany pracy')), `<p class="flow-section-note">${escapeHtml(translateValue('Zaznacz stany, których używa to urządzenie — tylko one pojawią się w ustawieniach stanu pracy.'))}</p>` + (() => { const used = thermoActsUsed(r); return Object.keys(THERMO_ACTIONS).map(a => plainControl(THERMO_ACTIONS[a][0], `thermoActUse_${a}`, 'checkbox', used.includes(a), { refresh:true })).join(''); })()) : '')
     + `<div class="control room-entities-control label-entity"><div class="room-entity-list">${addedList}</div>`
     // A label has one entity: the search shows only while it has none.
     + (r.entityIds.length ? '</div>' : `<label class="room-entity-search"><i class="mdi mdi-magnify"></i><input id="room-entity-search" type="search" autocomplete="off" placeholder="${escapeHtml(translateValue('Szukaj nazwy lub encji…'))}"></label><div id="room-entity-results" class="room-entity-list room-entity-results"></div></div>`)
+    + (isThermoRoom(r) ? thermoTemplatesRow() : '')
     );
   // Room look: colour, light and (switched on from the section bar) the outline of the shape.
   const lookSection = () => partBar('room', 'Wygląd', sub('Kolor', control('Kolor zależny ON/OFF','stateEnabled','checkbox',!!r.stateEnabled,refresh)
@@ -1706,7 +2232,7 @@ function roomEditorMarkup(room) {
   const source = roomLabelIconSource(r), sub = (title, body) => gaugeSubsection(escapeHtml(translateValue(title)), body);
   const iconOptions = () => sub('Źródło', control('Źródło','labelIconSource','select',source,{ items:[['entity','Z encji'],['integration','Logo integracji'],['mdi','Własna ikona MDI']], refresh:true })
       + (source === 'mdi' ? control('Ikona zależna ON/OFF','labelIconVariant','checkbox',!!r.labelIconVariant,refresh)
-        + (r.labelIconVariant ? iconInput('labelIconNameOn','Ikona ON',r.labelIconNameOn) + iconInput('labelIconNameOff','Ikona OFF',r.labelIconNameOff) : iconInput('labelIconName','Ikona',r.labelIconName)) + iconList : ''))
+        + (r.labelIconVariant ? (thermoR ? acts.map(a => iconInput(actPath('labelIconNameOn', a), `${translateValue('Ikona')} · ${actName(a)}`, actValue('labelIconNameOn', a))).join('') : iconInput('labelIconNameOn','Ikona ON',r.labelIconNameOn) + iconInput('labelIconNameOff','Ikona OFF',r.labelIconNameOff)) : iconInput('labelIconName','Ikona',r.labelIconName)) + iconList : ''))
     + sub('Kolor', control('Wypełnienie','labelIconFill','checkbox',r.labelIconFill !== false,refresh)
       + (r.labelIconFill !== false ? control('Zależne ON/OFF','labelIconColorState','checkbox',r.labelIconColorState !== false,refresh)
         + (r.labelIconColorState !== false
@@ -1733,24 +2259,75 @@ function roomEditorMarkup(room) {
   const frameSubs = (key, shape) => (r[`${key}Bg`] ? sub('Tło', control('Zależne ON/OFF',`${key}BgState`,'checkbox',!!r[`${key}BgState`],refresh) + stateColours(key, 'Bg', 'tła', '#081822', .55) + control('Rozmycie',`${key}Blur`,'checkbox',!!r[`${key}Blur`]) + (r[`${key}Border`] ? '' : shape)) : '')
     + (r[`${key}Border`] ? sub('Ramka', control('Zależne ON/OFF',`${key}BorderState`,'checkbox',!!r[`${key}BorderState`],refresh) + stateColours(key, 'Border', 'ramki', '#FFFFFF', .6, true) + shape) : '');
   // Section with its own colour and on / off buttons on its bar (outline, background, frame).
-  const partBar = (part, title, body, toggles) => `<details class="editor-section part-section part-${part}"><summary><span>${escapeHtml(translateValue(title))}</span><span class="section-tools">${toggles.map(([k, t, mdi]) => `<button type="button" class="section-toggle${r[k] ? ' active' : ''}" data-part-toggle="${k}" aria-pressed="${!!r[k]}" title="${escapeHtml(translateValue(t))}" aria-label="${escapeHtml(translateValue(t))}"><i class="mdi ${mdi}"></i></button>`).join('')}</span></summary><div class="editor-section-body">${body}</div></details>`;
+  const partBar = (part, title, body, toggles) => `<details class="editor-section part-section part-${part}"><summary><span>${escapeHtml(translateValue(title))}</span><span class="section-tools">${toggles.map(([k, t, mdi]) => k === '|' ? '<span class="section-sep" aria-hidden="true"></span>' : `<button type="button" class="section-toggle${r[k] ? ' active' : ''}" data-part-toggle="${k}" aria-pressed="${!!r[k]}" title="${escapeHtml(translateValue(t))}" aria-label="${escapeHtml(translateValue(t))}"><i class="mdi ${mdi}"></i></button>`).join('')}</span></summary><div class="editor-section-body">${body}</div></details>`;
   const frameToggles = key => [[`${key}Bg`,'Tło','mdi-format-color-fill'],[`${key}Border`,'Ramka','mdi-border-all-variant']];
   const partSection = ([part, key, title]) => {
+    if (isTextRoom(r) && part === 'state') title = 'Podpis';
+    if (isExtraPart(part)) { if (!r[`${key}Entity`]) return ''; title = String(r[`${key}Prefix`] || '').trim() || extraEntityName(r[`${key}Entity`]); }
     if (!r[key]) return '';
     const size = range('Rozmiar',`${key}Size`,clamp(Number(r[`${key}Size`]) || ROOM_DEFAULTS[`${key}Size`], 6, 420),6,420,1,'px');
-    if (part === 'icon') return partBar(part, title, sub('Rozmiar', size) + iconOptions() + frameSubs(key,
+    const animType = ICON_ANIMATIONS.includes(r.labelIconAnimType) ? r.labelIconAnimType : 'spin', fanLike = (r.entityIds || []).some(id => /^fan\./.test(id) || Number.isFinite(Number(stateCache[id]?.attributes?.percentage)));
+    const animSub = !r.labelIconAnim ? '' : sub('Animacja', control('Rodzaj','labelIconAnimType','select',animType,{ items:[['spin','Obrót'],['pulse','Pulsowanie'],['blink','Miganie'],['swing','Kołysanie']], refresh:true })
+      + range('Czas cyklu','labelIconAnimSpeed',clamp(Number(r.labelIconAnimSpeed) || 1.5, .2, 10),.2,10,.1,' s')
+      + (animType === 'spin' ? control('Kierunek','labelIconAnimDir','select',r.labelIconAnimDir === 'ccw' ? 'ccw' : 'cw',{ items:[['cw','W prawo'],['ccw','W lewo']] }) : '')
+      + (onOff ? control('Tylko gdy ON','labelIconAnimOnlyOn','checkbox',r.labelIconAnimOnlyOn !== false,refresh) : '')
+      + (fanLike ? control('Prędkość z encji (%)','labelIconAnimEntitySpeed','checkbox',!!r.labelIconAnimEntitySpeed,refresh) : ''));
+    if (part === 'dial') return partBar(part, title, sub('Rozmiar', size + range('Grubość łuku','thermoDialWidth',clamp(Number(r.thermoDialWidth) || 9, 2, 30),2,30,1,'px')
+        + range('Kropka temperatury aktualnej','thermoDotSize',clamp(Number(r.thermoDotSize ?? 100), 0, 400),0,400,5,'%') + range('Uchwyt temperatury ustawionej','thermoKnobSize',clamp(Number(r.thermoKnobSize ?? 100), 0, 400),0,400,5,'%'))
+      + sub('Wypełnienie środka', thermoActsUsed(r).map(a => control(`${translateValue('Efekt')} · ${translateValue(THERMO_ACTIONS[a]?.[0] || a)}`, `thermoFill_${a}`, 'select', r[`thermoFill_${a}`] || 'none', { items: THERMO_FILL_FX, dropdown:true, refresh:true })
+          + (r[`thermoFill_${a}`] && r[`thermoFill_${a}`] !== 'none' ? control(`${translateValue('Kolor')} · ${translateValue(THERMO_ACTIONS[a]?.[0] || a)}`, `thermoFillColor_${a}`, 'color', r[`thermoFillColor_${a}`] || thermoActColor(r, a)) : '')).join('')
+        + range('Intensywność','thermoFillOpacity',Math.round(clamp(Number(r.thermoFillOpacity ?? .45), 0, 1) * 100),0,100,1,'%'))
+      + sub('Kolory stanu pracy', thermoActsUsed(r).filter(k => THERMO_ACT_COLORS[k]).map(k => control(THERMO_ACTIONS[k]?.[0] || k, `thermoActColor_${k}`, 'color', thermoActColor(r, k))).join('') + control('Tor tarczy','thermoTrackColor','color',r.thermoTrackColor))
+      + frameSubs(key, range('Zaokrąglenie',`${key}Radius`,Number.isFinite(Number(r[`${key}Radius`])) && r[`${key}Radius`] !== '' && r[`${key}Radius`] != null ? clamp(Number(r[`${key}Radius`]), 0, 200) : 20,0,200,1,'px')),
+      [['thermoDialRange','Zakres min / max','mdi-arrow-expand-horizontal'],['thermoGlow','Poświata podczas pracy','mdi-blur'], ...frameToggles(key)]);
+    if (part === 'icon') return partBar(part, title, sub('Rozmiar', size) + animSub + iconOptions() + frameSubs(key,
       control('Kształt','labelIconShape','select',['square','circle','custom'].includes(r.labelIconShape) ? r.labelIconShape : 'circle',{ items:[['square','Kwadrat'],['circle','Koło'],['custom','Dowolny']], refresh:true })
       + (r.labelIconShape === 'custom' ? range('Zaokrąglenie','labelIconRadius',clamp(Number(r.labelIconRadius) || 0, 0, 200),0,120,1,'px') : '')
       + range('Margines','labelIconPadding',clamp(Number(r.labelIconPadding ?? 6), 0, 120),0,80,1,'px')),
-      [...(source !== 'integration' ? [['labelIconOutline','Obrys','mdi-vector-circle-variant']] : []), ...frameToggles(key)]);
+      [['labelIconAnim','Animacja','mdi-rotate-right'], ...(source !== 'integration' ? [['labelIconOutline','Obrys','mdi-vector-circle-variant']] : []), ...frameToggles(key)]);
     const fontPx = clamp(Number(r[`${key}Size`]) || ROOM_DEFAULTS[`${key}Size`], 6, 420), has = v => v !== undefined && v !== null && v !== '' && Number.isFinite(Number(v));
     const number = part === 'state' && !onOff && roomNumber(r) !== null;
-    const contentSub = part !== 'state' ? '' : onOff
+    const decimalsItems = [['auto','Automatycznie'],['0','0'],['1','0,1'],['2','0,01']];
+    const thermoTexts = !isThermoRoom(r) ? '' : part === 'target' || part === 'current'
+      ? sub('Format', control('Zaokrąglenie',`${key}Decimals`,'select',String(r[`${key}Decimals`] ?? 'auto'),{ items: decimalsItems, dropdown:true }) + control('Jednostka',`${key}Unit`,'text',String(r[`${key}Unit`] ?? '°C'),{ placeholder:'°C' }))
+      : part === 'action'
+      ? sub('Teksty', thermoActsUsed(r).map(a => control(THERMO_ACTIONS[a][0], `thermoActText_${a}`, 'text', r[`thermoActText_${a}`] || '', { placeholder: translateValue(THERMO_ACTIONS[a][0]) })).join(''))
+        + sub('Animacja', thermoActsUsed(r).map(a => control(THERMO_ACTIONS[a][0], `thermoActAnim_${a}`, 'select', r[`thermoActAnim_${a}`] || 'none', { items: THERMO_ACT_ANIMS, dropdown:true })).join(''))
+      : isExtraPart(part) ? sub('Wartość', control('Tekst przed wartością', `${key}Prefix`, 'text', r[`${key}Prefix`] || '', { placeholder: translateValue('np. Ciśnienie:') })
+          + control('Jednostka', `${key}Unit`, 'text', r[`${key}Unit`] || '', { placeholder: stateCache[r[`${key}Entity`]]?.attributes?.unit_of_measurement || '' })
+          + control('Zaokrąglenie', `${key}Decimals`, 'select', String(r[`${key}Decimals`] ?? 'auto'), { items: [['auto','Automatycznie'],['0','0'],['1','0,1'],['2','0,01']], dropdown: true }))
+      : part === 'modes' ? (() => {
+        const info = climateInfo({ entityId: (r.entityIds || [])[0] || '' }), all = thermoModesOrdered(r, info.modes, false), name = m => translateValue(THERMO_MODES[m]?.[0] || m);
+        const orderRows = all.map((m, i) => `<div class="control mode-order-row"><label>${escapeHtml(name(m))}</label><span class="mode-order-tools"><input type="checkbox" data-path="thermoModeShow_${escapeHtml(m)}" data-value-type="checkbox"${r[`thermoModeShow_${m}`] !== false ? ' checked' : ''} title="${escapeHtml(translateValue('Pokaż'))}"><button type="button" class="room-card-preset" data-mode-move="${escapeHtml(m)}|-1"${i ? '' : ' disabled'} title="${escapeHtml(translateValue('Wyżej'))}"><i class="mdi mdi-chevron-up"></i></button><button type="button" class="room-card-preset" data-mode-move="${escapeHtml(m)}|1"${i < all.length - 1 ? '' : ' disabled'} title="${escapeHtml(translateValue('Niżej'))}"><i class="mdi mdi-chevron-down"></i></button></span></div>`).join('');
+        const modesSection = info.modes.length ? sub('Tryby', control('Układ','thermoModeLayout','select',r.thermoModeLayout === 'cycle' ? 'cycle' : 'row',{ items:[['row','Wszystkie przyciski'],['cycle','Jeden przycisk (następny tryb)']], dropdown:true, refresh:true }) + orderRows) : '';
+        const presetsSection = info.presets.length && !info.water ? sub('Presety', control('Pokaż presety','thermoPresets','checkbox',!!r.thermoPresets,refresh)
+          + (r.thermoPresets ? info.presets.map(p => control(`${translateValue('Pokaż')} · ${thermoPresetText({}, p)}`, `thermoPresetShow_${p}`, 'checkbox', r[`thermoPresetShow_${p}`] !== false) + control(`${translateValue('Nazwa')} · ${thermoPresetText({}, p)}`, `thermoPresetText_${p}`, 'text', r[`thermoPresetText_${p}`] || '', { placeholder: thermoPresetText({}, p) })).join('') : '')) : '';
+        const confirmSection = sub('Potwierdzenie', `<p class="flow-section-note">${escapeHtml(translateValue('Zaznacz, przy których zmianach zapytać przed wysłaniem.'))}</p>`
+          + all.map(m => control(`${translateValue('Pytaj')} · ${name(m)}`, `thermoConfirm_${m}`, 'checkbox', thermoConfirmPerMode(r) ? !!r[`thermoConfirm_${m}`] : !!r.thermoConfirm && m === 'off')).join('')
+          + (r.thermoPresets && !info.water ? info.presets.map(p => control(`${translateValue('Pytaj')} · ${thermoPresetText(r, p)}`, `thermoConfirmP_${p}`, 'checkbox', !!r[`thermoConfirmP_${p}`])).join('') : ''));
+        return modesSection + presetsSection + confirmSection;
+      })()
+      : part === 'state' ? sub('Teksty trybów', [...new Set([...climateInfo({ entityId: (r.entityIds || [])[0] || '' }).modes, ...Object.keys(THERMO_MODES)])].map(m => control(THERMO_MODES[m]?.[0] || m, `thermoModeText_${m}`, 'text', r[`thermoModeText_${m}`] || '', { placeholder: thermoModeText({}, m) })).join('')) : '';
+    const contentSub = isThermoRoom(r) ? thermoTexts : part !== 'state' ? '' : onOff
       ? sub('Format', control('Tekst ON','labelStateOnText','text',r.labelStateOnText || '',{ placeholder: translateValue('Wł.') }) + control('Tekst OFF','labelStateOffText','text',r.labelStateOffText || '',{ placeholder: translateValue('Wył.') }))
       : number ? sub('Format', control('Jednostka','labelStateUnit','text',r.labelStateUnit || '',{ placeholder: stateCache[r.entityIds[0]]?.attributes?.unit_of_measurement || '' })
         + control('Zaokrąglenie','labelStateDecimals','select',String(r.labelStateDecimals ?? 'auto'),{ items:[['auto','Automatycznie'],['0','0'],['1','0,1'],['2','0,01'],['3','0,001']], dropdown:true })) : '';
-    const sizeSub = sub('Rozmiar', size + control('Grubość czcionki',`${key}Weight`,'select',TEXT_WEIGHTS[r[`${key}Weight`]] ? r[`${key}Weight`] : (key === 'labelName' ? 'bold' : 'normal'),{ items:[['normal','Normalna'],['medium','Średnia'],['bold','Pogrubiona']] }));
-    return partBar(part, title, sizeSub + contentSub + sub('Kolor', control('Zależne ON/OFF',`${key}ColorState`,'checkbox',!!r[`${key}ColorState`],refresh)
+    const iconParts = isThermoRoom(r) && ['modes','minus','plus'].includes(part);
+    const modeList = part === 'modes' ? thermoModesOrdered(r, climateInfo({ entityId: (r.entityIds || [])[0] || '' }).modes, false) : [];
+    const modeName = m => translateValue(THERMO_MODES[m]?.[0] || m);
+    const modesSub = part !== 'modes' ? '' : sub('Ikony trybów', modeList.map(m => iconInput(`thermoModeIcon_${m}`, `${translateValue('Ikona')} · ${modeName(m)}`, r[`thermoModeIcon_${m}`] || (THERMO_MODES[m]?.[1] || '').replace(/^mdi-/, 'mdi:'))
+        + control(`${translateValue('Kolor ikony')} · ${modeName(m)}`, `thermoModeColor_${m}`, 'color', r[`thermoModeColor_${m}`] || r.labelModesColor || '#8FA9B7')
+        + control(`${translateValue('Kolor aktywnego')} · ${modeName(m)}`, `thermoModeActive_${m}`, 'color', r[`thermoModeActive_${m}`] || (r.thermoModeAccent === false && r.thermoModeActiveColor ? r.thermoModeActiveColor : thermoActColor(r, ({ heat:'heating', cool:'cooling', dry:'drying', fan_only:'fan', off:'off' })[m] || 'idle')))).join('') + iconList)
+      + sub('Przyciski', control('Kolor aktywnego wg trybu','thermoModeAccent','checkbox',r.thermoModeAccent !== false,refresh)
+        + (r.thermoModeAccent === false ? control('Kolor aktywnego','thermoModeActiveColor','color',r.thermoModeActiveColor || '#FF7A2F') : '')
+        + control('Ramki przycisków','thermoModeFrame','checkbox',r.thermoModeFrame !== false)
+        + range('Odstęp','thermoModeGap',clamp(Number(r.thermoModeGap ?? 40), 0, 300),0,300,5,'%') + range('Zaokrąglenie','thermoModeRadius',clamp(Number(r.thermoModeRadius ?? 30), 0, 50),0,50,1,'%'));
+    const sizeSub = iconParts ? sub('Rozmiar', size) : sub('Rozmiar', size + control('Grubość czcionki',`${key}Weight`,'select',TEXT_WEIGHTS[r[`${key}Weight`]] ? r[`${key}Weight`] : (key === 'labelName' ? 'bold' : 'normal'),{ items:[['normal','Normalna'],['medium','Średnia'],['bold','Pogrubiona']] }));
+    const accentable = ['labelTarget','labelCurrent','labelAction'].includes(key);
+    if (accentable && r[`${key}Accent`]) return partBar(part, title, sizeSub + contentSub + modesSub + sub('Kolor', control('Kolor wg trybu',`${key}Accent`,'checkbox',true,refresh))
+      + frameSubs(key, range('Zaokrąglenie',`${key}Radius`,has(r[`${key}Radius`]) ? clamp(Number(r[`${key}Radius`]), 0, 200) : Math.round(fontPx * .7),0,200,1,'px')
+        + range('Margines',`${key}Padding`,has(r[`${key}Padding`]) ? clamp(Number(r[`${key}Padding`]), 0, 120) : Math.round(fontPx * .28),0,120,1,'px')), frameToggles(key));
+    return partBar(part, title, sizeSub + contentSub + modesSub + sub('Kolor', (accentable ? control('Kolor wg trybu',`${key}Accent`,'checkbox',false,refresh) : '') + control('Zależne ON/OFF',`${key}ColorState`,'checkbox',!!r[`${key}ColorState`],refresh)
         + (r[`${key}ColorState`]
           ? control('Kolor ON',`${key}ColorOn`,'color',r[`${key}ColorOn`]) + control('Kolor OFF',`${key}ColorOff`,'color',r[`${key}ColorOff`])
             + range('Przezrocz. ON',`${key}OpacityOn`,pct(r[`${key}OpacityOn`]),0,100,1,'%') + range('Przezrocz. OFF',`${key}OpacityOff`,pct(r[`${key}OpacityOff`]),0,100,1,'%')
@@ -1779,9 +2356,8 @@ function roomEditorMarkup(room) {
         : control('Kolor ramki','labelCardBorderColor','color',r.labelCardBorderColor || '#FFFFFF') + control('Przezrocz. ramki','labelCardBorderOpacity','range',pct(r.labelCardBorderOpacity ?? .3),{ min:0, max:100, step:1, suffix:'%', integer:true }) + control('Grubość ramki','labelCardBorderWidth','range',clamp(Number(r.labelCardBorderWidth) || 1, .5, 12),{ min:.5, max:12, step:.5, suffix:'px' }))
       + radius);
   const group = partBar('group', 'Grupa', `<div class="group-tight">`
-    + (solo ? '' : row('Grupa', toggleButton('labelLinked','Grupuj ikonę, nazwę i stan','mdi-group',' group-toggle')))
-    + control('Rozmiar','labelSizeUi','range',Math.round(clamp(Number(r.labelCardScale) || 1, .2, 4) / labelScaleBase(r) * 100) / 100,{ min:.3, max:3, step:.05, suffix:'×' })
-    + row('Pokaż', [['labelIcon','Ikona','mdi-lightbulb-outline'],['labelName','Nazwa','mdi-format-text'],['labelState','Stan','mdi-toggle-switch-outline']].map(([key, title, mdi]) => toggleButton(key, title, mdi)).join(''))
+    + (isThermoRoom(r) ? row('Pokaż', THERMO_WIZARD_PARTS.map(([key, title, mdi]) => toggleButton(key, title, mdi)).join('')) : '')
+    + control('Rozmiar','labelSizeUi','range',Math.round(clamp(Number(r.labelCardScale) || 1, .2, 4.5) / labelScaleBase(r) * 100) / 100,{ min:.3, max:4.5, step:.05, suffix:'×' })
     + (solo ? note(translateValue('Widoczna jest jedna część — tło i ramka grupy nie są rysowane. Wrócą, gdy pokażesz drugą część.'))
       : (r.labelLinked ? row('Układ', ROOM_CARD_LAYOUTS.map(([value, title, icon]) => `<button type="button" class="room-card-preset${(r.labelCardLayout || 'column') === value ? ' active' : ''}" data-card-layout="${value}" title="${escapeHtml(translateValue(title))}" aria-label="${escapeHtml(translateValue(title))}"><i class="mdi ${icon}"></i></button>`).join('')) : '')
         + (icon && r.labelLinked && dashGrid().on ? (dashSpan(r)
@@ -1791,20 +2367,25 @@ function roomEditorMarkup(room) {
         + row('Styl', ROOM_CARD_STYLES.map(([value, title]) => `<button type="button" class="room-card-preset" data-card-style="${value}" title="${escapeHtml(translateValue(title))}" aria-label="${escapeHtml(translateValue(title))}"><span class="room-card-swatch ${value}"></span></button>`).join(''))
         + control('Margines','labelCardPadding','range',clamp(Number(r.labelCardPadding ?? ROOM_DEFAULTS.labelCardPadding) || 0, 0, 60),{ min:0, max:40, step:1, suffix:'px', integer:true })
         + bgSub + borderSub)
-    + `</div>`, solo ? [] : [['labelCardBg','Tło','mdi-format-color-fill'],['labelCardBorder','Ramka','mdi-border-all-variant']]);
+    + `</div>`, [
+      // On the group's bar: grouping and which parts are shown, then (apart, so they do not blend) background and frame.
+      ...(isThermoRoom(r) ? [] : [['labelIcon','Ikona','mdi-lightbulb-outline'],['labelName','Nazwa','mdi-format-text'],['labelState', isTextRoom(r) ? 'Podpis' : 'Stan', isTextRoom(r) ? 'mdi-text-short' : 'mdi-toggle-switch-outline']]),
+      ...(solo ? [] : [['|'],['labelCardBg','Tło','mdi-format-color-fill'],['labelCardBorder','Ramka','mdi-border-all-variant']])]);
   const label = group + ROOM_LABEL_PARTS.map(partSection).join('');
   // The ON / OFF preview only makes sense for entities that switch on and off (not e.g. a temperature sensor).
   const switchable = roomSwitchable(r);
-  return (switchable ? previewRow('previewOn', roomPreviewOn) : '') + entities + (icon ? '' : lookSection()) + label;
+  return (switchable || isThermoRoom(r) ? previewRow('previewOn', roomPreviewOn, isThermoRoom(r) ? { acts: thermoActsUsed(r).join(','), current: thermoActivity(climateInfo({ entityId: r.entityIds[0] || '' })) } : null) : '') + entities + (icon ? '' : lookSection()) + label;
 }
 function openRoomEditor(id, preserveSection = roomEditorOpenSectionIndex, forceSection = null) {
   const room = roomsOf()[id], panel = $('#room-editor'); if (!room || !panel) return closeRoomEditor();
   const newlySelected = selectedRoomId !== id;
   if (newlySelected) { preserveSection = roomEditorOpenSectionIndex = -1; roomPreviewOn = ''; }
+  // A group left with a single visible part (made before parts ungrouped themselves) is ungrouped in place.
+  if (room.labelLinked && ROOM_LABEL_PARTS.filter(([, k]) => room[k]).length === 1) { autoUngroupLabel(room); room.updatedAt = new Date().toISOString(); scheduleSave(true); }
   if (forceSection !== null) preserveSection = roomEditorOpenSectionIndex = forceSection;
   closeEditor(); closeFlowEditor(); selectedRoomId = id;
-  $('#room-editor-title').textContent = room.name || translateValue(isIconRoom(room) ? 'Etykieta' : 'Pomieszczenie');
-  const kind = $('#room-editor .editor-meta code'); if (kind) kind.textContent = translateValue(isIconRoom(room) ? 'Etykieta' : 'Pomieszczenie');
+  $('#room-editor-title').textContent = room.name || translateValue(isTextRoom(room) ? 'Tekst' : isIconRoom(room) ? 'Etykieta' : 'Pomieszczenie');
+  const kind = $('#room-editor .editor-meta code'); if (kind) kind.textContent = translateValue(isThermoRoom(room) ? 'Termostat' : isTextRoom(room) ? 'Tekst' : isIconRoom(room) ? 'Etykieta' : 'Pomieszczenie');
   const lbl = isIconRoom(room); [['#room-duplicate', lbl ? 'Duplikuj etykietę' : 'Duplikuj pomieszczenie'], ['#room-copy-style', lbl ? 'Kopiuj styl etykiety' : 'Kopiuj styl pomieszczenia'], ['#room-paste-style', lbl ? 'Wklej styl etykiety' : 'Wklej styl pomieszczenia'], ['#room-remove', lbl ? 'Usuń etykietę' : 'Usuń pomieszczenie']].forEach(([sel, title]) => { const b = $(sel); if (b) { b.title = translateValue(title); b.setAttribute('aria-label', translateValue(title)); } });
   const kindIcon = $('#room-editor .room-editor-icon .mdi'); if (kindIcon) kindIcon.className = `mdi ${isIconRoom(room) ? 'mdi-lightbulb-group' : 'mdi-floor-plan'}`;
   const entityInfo = $('#room-editor-entities'); if (entityInfo) entityInfo.textContent = (room.entityIds || []).join(', ') || '—';
@@ -1812,6 +2393,9 @@ function openRoomEditor(id, preserveSection = roomEditorOpenSectionIndex, forceS
   const content = $('#room-editor-content'), scroll = content.scrollTop;
   const openSubs = new Set($$('.gauge-subsection[open] > summary', content).map(node => node.textContent.trim()));
   content.innerHTML = roomEditorMarkup(room); syncHeadPreview(panel, roomLight({ ...ROOM_DEFAULTS, ...room }).on);
+  // Grouping sits on the panel's head, next to "default style" (only for a label with more than one part shown).
+  const groupButton = $('#room-group-toggle');
+  if (groupButton) { const shown = ROOM_LABEL_PARTS.filter(([, k]) => ({ ...ROOM_DEFAULTS, ...room })[k]).length; groupButton.hidden = shown <= 1; groupButton.classList.toggle('active', !!room.labelLinked); groupButton.setAttribute('aria-pressed', String(!!room.labelLinked)); groupButton.title = translateValue(room.labelLinked ? 'Rozgrupuj' : 'Grupuj'); groupButton.setAttribute('aria-label', groupButton.title); }
   if (!newlySelected) $$('.gauge-subsection > summary', content).forEach(node => { if (openSubs.has(node.textContent.trim())) node.parentElement.open = true; });
   const sections = $$('.editor-section', content);
   if (Number.isInteger(preserveSection) && preserveSection >= 0 && sections[preserveSection]) sections[preserveSection].open = true;
@@ -1819,13 +2403,31 @@ function openRoomEditor(id, preserveSection = roomEditorOpenSectionIndex, forceS
     if (details.open) { roomEditorOpenSectionIndex = index; sections.forEach(other => { if (other !== details) other.removeAttribute('open'); }); }
     else if (roomEditorOpenSectionIndex === index) roomEditorOpenSectionIndex = -1;
   }));
+  // A part's section name picked in the panel: that part is marked on the plan and (phone) zoomed to; closing it
+  // goes back to the whole element.
+  if (newlySelected) panelPart = null;
+  sections.filter(d => d.classList.contains('part-section')).forEach(details => details.querySelector(':scope > summary')?.addEventListener('click', event => {
+    if (event.target.closest('.section-tools')) return;
+    const part = [...details.classList].find(c => c.startsWith('part-') && ROOM_LABEL_PARTS.some(([p]) => `part-${p}` === c))?.slice(5); if (!part) return;
+    const opening = !details.open;
+    if (opening) {
+      panelPart = { roomId: room.id, part }; selectedLabelPart = part; renderRoomLabels(); markPartSection(part);
+      requestAnimationFrame(() => { const box = partFocusBox(room, part); if (box) focusSceneBoxOnMobile(box); });
+    } else {
+      panelPart = null; renderRoomLabels();
+      requestAnimationFrame(() => focusSceneBoxOnMobile(isIconRoom(room) ? iconFocusBox(room) : room.points || []));
+    }
+  }));
   $$('input,select', content).forEach(input => {
     if (input.type === 'range' || input.type === 'color') { input.addEventListener('input', onRoomEditorInput); input.addEventListener('change', onRoomEditorInput); }
-    else if (input.id !== 'room-entity-search') input.addEventListener('change', onRoomEditorInput);
+    else if (input.id !== 'room-entity-search' && input.id !== 'extra-entity-search') input.addEventListener('change', onRoomEditorInput);
   });
   $('#room-entity-search')?.addEventListener('input', renderRoomEntityResults); renderRoomEntityResults();
+  $('#extra-entity-search')?.addEventListener('input', renderExtraEntityResults);
   content.scrollTop = scroll;
   panel.classList.add('visible'); panel.setAttribute('aria-hidden', 'false'); renderRooms();
+  if (pendingPartFocus?.roomId === room.id) { const part = pendingPartFocus.part; pendingPartFocus = null; requestAnimationFrame(() => focusPartSection(part)); }
+  else if (!room.labelLinked) markPartSection(selectedLabelPart);
   if (newlySelected && !skipRoomFocus) requestAnimationFrame(() => requestAnimationFrame(() => { focusSceneBoxOnMobile(isIconRoom(room) ? iconFocusBox(room) : room.points || []); renderRoomEditLayer(); }));
   requestAnimationFrame(() => { const outline = $('#room-edit-layer .room-outline.selected'); if (outline && !mobileView() && !panel.dataset.dragged) placeEditorNear(panel, outline); });
 }
@@ -1833,7 +2435,7 @@ function closeRoomEditor() {
   selectedCorner = null;
   const panel = $('#room-editor'); if (!panel) return;
   if (mobileView() && editMode && panel.classList.contains('visible')) requestAnimationFrame(applyViewTransform);
-  const had = selectedRoomId; selectedRoomId = null; roomPreviewOn = ''; delete panel.dataset.dragged;
+  const had = selectedRoomId; selectedRoomId = null; panelPart = null; roomPreviewOn = ''; delete panel.dataset.dragged;
   panel.classList.remove('visible'); panel.setAttribute('aria-hidden', 'true'); if (had) renderRooms();
 }
 function onRoomEditorInput(event) {
@@ -1852,23 +2454,78 @@ function onRoomEditorInput(event) {
     renderRooms(); if (event.type === 'change') scheduleSave(true); return;
   }
   if (path === 'labelSizeUi') {
-    room.labelCardScale = Math.round(clamp(value * labelScaleBase(room), .2, 4) * 1000) / 1000; room.updatedAt = new Date().toISOString();
+    // The group's frame keeps its size on the plan: only the icon, name and state inside get smaller / bigger
+    // (the frame grows only when the content no longer fits). Its size is taken once, when the slider is grabbed.
+    const card = room.labelLinked && !(isIconRoom(room) && dashSpan(room)) ? document.querySelector(`.room-label-card[data-room-id="${CSS.escape(room.id)}"]`) : null, oldScale = clamp(Number(room.labelCardScale) || 1, .3, 4.5);
+    if (card && !input._frame) { input._frame = { w: card.offsetWidth * oldScale, h: card.offsetHeight * oldScale }; input.addEventListener('change', () => { delete input._frame; }, { once:true }); }
+    room.labelCardScale = Math.round(clamp(value * labelScaleBase(room), .2, 4.5) * 1000) / 1000; room.updatedAt = new Date().toISOString();
+    if (input._frame) { const k = clamp(room.labelCardScale, .3, 4.5); room.labelCardW = Math.round(input._frame.w / k * 10) / 10; room.labelCardH = Math.round(input._frame.h / k * 10) / 10; }
     const output = input.closest('.control')?.querySelector('output'); if (output) output.textContent = input.value + (output.dataset.suffix || '');
     renderRooms(); if (event.type === 'change') scheduleSave(true); return;
   }
   if (path === 'opacity') value = clamp(value / 100, .05, 1);
+  if (path === 'thermoFillOpacity') value = clamp(value / 100, 0, 1);
   if (path === 'offOpacity') value = clamp(value / 100, 0, 1);
-  if (/^label\w*Opacity(On|Off)?$|^outline\w*Opacity$/.test(path)) value = clamp(value / 100, 0, 1);
+  if (/^label\w*Opacity(On|Off|_[a-z]+)?$|^outline\w*Opacity$/.test(path)) value = clamp(value / 100, 0, 1);
   if (/^labelIconName(On|Off)?$/.test(path)) value = String(value).trim();
   if (path === 'labelIconName') value = String(value).trim();
-  if (path === 'name') { value = String(value).trim() || translateValue(isIconRoom(room) ? 'Etykieta' : 'Pomieszczenie'); $('#room-editor-title').textContent = value; const icon = model.entities[roomIconId(room.id)]; if (icon) { icon.displayName = value; renderMarkers(); } }
+  if (path === 'name') { value = String(value).trim() || translateValue(isTextRoom(room) ? 'Tekst' : isIconRoom(room) ? 'Etykieta' : 'Pomieszczenie'); $('#room-editor-title').textContent = value; const icon = model.entities[roomIconId(room.id)]; if (icon) { icon.displayName = value; renderMarkers(); } }
+  if (path === 'textCaption' && String(value).trim() && !room.labelState) { room.labelState = true; if (room.labelAutoUngrouped) regroupAutoLabel(room); input.dataset.editorRefresh = 'true'; }
   room[path] = value; room.updatedAt = new Date().toISOString();
   const output = input.closest('.control')?.querySelector('output'); if (output) output.textContent = input.value + (output.dataset.suffix || '');
   renderRooms();
   if (input.dataset.editorRefresh === 'true') { openRoomEditor(room.id); scheduleSave(true); return; }
   scheduleSave(event.type === 'change');
 }
+// Thermostat templates (up to 5, shared by all views): the whole look and arrangement of a thermostat, saved from one and
+// loaded into another with one tap. The trash button switches the slots to "delete" for one tap.
+const THERMO_TEMPLATE_MAX = 5;
+let thermoTemplateDelete = false;
+const isThermoLookKey = key => /^(label|thermo[A-Z_])/.test(key) && !['labelCardX','labelCardY','labelAutoUngrouped'].includes(key);
+function thermoTemplates() { return Array.isArray(model.settings?.thermoTemplates) ? model.settings.thermoTemplates.slice(0, THERMO_TEMPLATE_MAX) : []; }
+function thermoTemplatesRow() {
+  const list = thermoTemplates(), esc = v => escapeHtml(translateValue(v));
+  const slots = Array.from({ length: THERMO_TEMPLATE_MAX }, (_, i) => { const has = !!list[i]; return `<button type="button" class="room-card-preset thermo-tpl${has ? ' filled' : ''}${thermoTemplateDelete && has ? ' deleting' : ''}" data-thermo-template="${i}"${has ? '' : ' disabled'} title="${esc(has ? (thermoTemplateDelete ? 'Usuń szablon' : 'Wczytaj szablon') : 'Pusty')} ${i + 1}" aria-label="${esc('Szablon')} ${i + 1}"><i class="mdi mdi-numeric-${i + 1}-box${has ? '' : '-outline'}"></i></button>`; }).join('');
+  return `<div class="control room-card-row thermo-templates"><label>${esc('Szablony')}</label><div class="room-card-presets"><button type="button" class="room-card-preset" data-thermo-template-save title="${esc('Zapisz aktualny układ jako szablon')}" aria-label="${esc('Zapisz aktualny układ jako szablon')}"><i class="mdi mdi-content-save-outline"></i></button>${slots}<button type="button" class="room-card-preset${thermoTemplateDelete ? ' active' : ''}" data-thermo-template-trash${list.length ? '' : ' disabled'} title="${esc('Usuń szablon')}" aria-label="${esc('Usuń szablon')}"><i class="mdi mdi-delete-outline"></i></button></div></div>`;
+}
+function onThermoTemplateClick(event) {
+  const save = event.target.closest('[data-thermo-template-save]'), trash = event.target.closest('[data-thermo-template-trash]'), slot = event.target.closest('[data-thermo-template]');
+  if (!save && !trash && !slot) return false;
+  event.preventDefault(); const room = roomsOf()[selectedRoomId]; if (!room || !isThermoRoom(room)) return true;
+  model.settings ||= {}; const list = thermoTemplates();
+  if (trash) { thermoTemplateDelete = !thermoTemplateDelete; }
+  else if (save) {
+    if (list.length >= THERMO_TEMPLATE_MAX) { notify('Maks. 5 szablonów — usuń któryś koszem', true); return true; }
+    list.push(Object.fromEntries(Object.entries(clone(room)).filter(([key]) => isThermoLookKey(key)))); model.settings.thermoTemplates = list; thermoTemplateDelete = false;
+    scheduleSave(true); notify(`${translateValue('Zapisano szablon')} ${list.length}`);
+  } else {
+    const i = Number(slot.dataset.thermoTemplate), tpl = list[i]; if (!tpl) return true;
+    if (thermoTemplateDelete) { list.splice(i, 1); model.settings.thermoTemplates = list; thermoTemplateDelete = false; scheduleSave(true); notify(`${translateValue('Usunięto szablon')} ${i + 1}`); }
+    else {
+      Object.keys(room).filter(isThermoLookKey).forEach(key => delete room[key]);
+      Object.assign(room, Object.fromEntries(Object.keys(ROOM_DEFAULTS).filter(isThermoLookKey).map(key => [key, clone(ROOM_DEFAULTS[key])])), clone(tpl));
+      delete room.labelAutoUngrouped; room.updatedAt = new Date().toISOString(); renderRooms(); scheduleSave(true); notify(`${translateValue('Wczytano szablon')} ${i + 1}`);
+    }
+  }
+  openRoomEditor(room.id, openSectionIndex($('#room-editor-content'), roomEditorOpenSectionIndex)); return true;
+}
 function onRoomEditorClick(event) {
+  if (onThermoTemplateClick(event)) return;
+  const extraAdd = event.target.closest('[data-extra-add]');
+  if (extraAdd) { event.preventDefault(); const room = roomsOf()[selectedRoomId]; if (room) addExtraEntity(room, extraAdd.dataset.extraAdd); return; }
+  const extraRemove = event.target.closest('[data-extra-remove]');
+  if (extraRemove) {
+    event.preventDefault(); const room = roomsOf()[selectedRoomId]; if (!room) return; const k = extraRemove.dataset.extraRemove;
+    room[k] = false; delete room[`${k}Entity`]; room.updatedAt = new Date().toISOString(); renderRooms(); openRoomEditor(room.id, openSectionIndex($('#room-editor-content'), roomEditorOpenSectionIndex)); scheduleSave(true); return;
+  }
+  // Thermostat modes: move one up / down in the order shown.
+  const modeMove = event.target.closest('[data-mode-move]');
+  if (modeMove) {
+    event.preventDefault(); const room = roomsOf()[selectedRoomId]; if (!room) return;
+    const [m, dir] = modeMove.dataset.modeMove.split('|'), list = thermoModesOrdered(room, climateInfo({ entityId: (room.entityIds || [])[0] || '' }).modes, false), i = list.indexOf(m), j = i + Number(dir);
+    if (i < 0 || j < 0 || j >= list.length) return; [list[i], list[j]] = [list[j], list[i]];
+    room.thermoModesOrder = list; room.updatedAt = new Date().toISOString(); renderRooms(); openRoomEditor(room.id, openSectionIndex($('#room-editor-content'), roomEditorOpenSectionIndex)); scheduleSave(true); return;
+  }
   const dashPin = event.target.closest('[data-dash-pin]'), dashUnpin = event.target.closest('[data-dash-unpin]');
   if (dashPin || dashUnpin) {
     event.preventDefault(); const room = roomsOf()[selectedRoomId]; if (!room) return;
@@ -1879,9 +2536,20 @@ function onRoomEditorClick(event) {
   if (partToggle) {
     event.preventDefault(); const room = roomsOf()[selectedRoomId]; if (!room) return; const key = partToggle.dataset.partToggle;
     // At least one of icon / name / state stays visible.
-    if (['labelIcon','labelName','labelState'].includes(key) && room[key] && ['labelIcon','labelName','labelState'].filter(k => room[k]).length <= 1) return notify('Co najmniej jedna część musi być widoczna');
-    if (key === 'labelLinked') { keepLabelPlaceOnRegroup(room); togglePartFrames(room, !room.labelLinked); }
-    room[key] = !room[key]; room.updatedAt = new Date().toISOString(); renderRooms(); openRoomEditor(room.id, openSectionIndex($('#room-editor-content'), roomEditorOpenSectionIndex)); scheduleSave(true); return;
+    const partKeys = ROOM_LABEL_PARTS.map(([, k]) => k);
+    if (key === 'labelMinus' && isThermoRoom(room) && partToggle.closest('.group-tight')) room.labelPlus = !room.labelMinus;
+    if (partKeys.includes(key) && room[key] && partKeys.filter(k => room[k]).length <= 1) return notify('Co najmniej jedna część musi być widoczna');
+    if (key === 'labelLinked') { keepLabelPlaceOnRegroup(room); togglePartFrames(room, !room.labelLinked); delete room.labelAutoUngrouped; }
+    // Hiding all but one part ungroups it, so the remaining part gets its own resize handles (a one-part group has none).
+    const parts = partKeys;
+    if (parts.includes(key) && room[key] && room.labelLinked && parts.filter(k => room[k]).length === 2) autoUngroupLabel(room);
+    // Showing a part again: an automatically ungrouped label becomes the group it was; otherwise the shown part is
+    // moved off the parts it would cover.
+    const showing = parts.includes(key) && !room[key];
+    if (showing && !room.labelLinked && room.labelAutoUngrouped) regroupAutoLabel(room);
+    room[key] = !room[key]; room.updatedAt = new Date().toISOString(); renderRooms();
+    if (showing && !room.labelLinked) { const part = ROOM_LABEL_PARTS.find(([, k]) => k === key)?.[0]; if (part) keepApart(room, key, part); }
+    openRoomEditor(room.id, openSectionIndex($('#room-editor-content'), roomEditorOpenSectionIndex)); scheduleSave(true); return;
   }
   const layoutButton = event.target.closest('[data-card-layout]'), styleButton = event.target.closest('[data-card-style]'), alignButton = event.target.closest('[data-card-align]');
   if (layoutButton || styleButton || alignButton) {
@@ -1935,6 +2603,7 @@ async function removeRoom() {
 const roomTogglesInFlight = new Set();
 let lastLabelTap = 0;
 async function onRoomTap(room, action = null) {
+  if (isTextRoom(room)) return runLinkAction(room);
   const r = { ...ROOM_DEFAULTS, ...room, ...(action ? { tapAction: action } : {}) }, ids = r.entityIds || [];
   if (!ids.length) { if (!isViewer()) notify(isIconRoom(room) ? 'Ta etykieta nie ma jeszcze encji — wybierz ją w trybie edycji' : 'To pomieszczenie nie ma jeszcze encji — wybierz je w trybie edycji'); return; }
   const toggleable = ids.filter(id => isToggleableMarker({ entityId: id }));
@@ -1953,17 +2622,32 @@ async function onRoomTap(room, action = null) {
   await delay(700); toggleable.forEach(id => { if (pendingToggleStates.get(id) === expected) pendingToggleStates.delete(id); }); refreshStates();
 }
 function toggleRoomLock() { const room = roomsOf()[selectedRoomId]; if (!room) return; room.geometryLocked = !room.geometryLocked; room.updatedAt = new Date().toISOString(); openRoomEditor(room.id, openSectionIndex($('#room-editor-content'), roomEditorOpenSectionIndex)); scheduleSave(true); notify(room.geometryLocked ? 'Zablokowano geometrię' : 'Odblokowano geometrię'); }
-function copyRoomStyle() { const room = roomsOf()[selectedRoomId]; if (!room) return; roomStyleClipboard = Object.fromEntries(ROOM_STYLE_KEYS.filter(key => key in room).map(key => [key, clone(room[key])])); const paste = $('#room-paste-style'); if (paste) paste.disabled = false; notify('Skopiowano styl pomieszczenia — wklej go w innym pomieszczeniu'); }
-function pasteRoomStyle() { const room = roomsOf()[selectedRoomId]; if (!room || !roomStyleClipboard) return; ROOM_STYLE_KEYS.forEach(key => delete room[key]); Object.assign(room, clone(roomStyleClipboard), { updatedAt:new Date().toISOString() }); renderRooms(); openRoomEditor(room.id); scheduleSave(true); notify('Wklejono styl pomieszczenia'); }
+// Every look setting of a room / label / thermostat: the style list plus every label part and thermostat option.
+const roomLookKey = key => ROOM_STYLE_KEYS.includes(key) || (/^(label|thermo[A-Z_])/.test(key) && !/^labelX\d(Entity)?$/.test(key) && !['labelCardX','labelCardY','labelAutoUngrouped'].includes(key));
+function copyRoomStyle() { const room = roomsOf()[selectedRoomId]; if (!room) return; roomStyleClipboard = Object.fromEntries(Object.keys(room).filter(roomLookKey).map(key => [key, clone(room[key])])); roomStyleClipboard.__thermo = isThermoRoom(room); const paste = $('#room-paste-style'); if (paste) paste.disabled = false; notify('Skopiowano styl pomieszczenia — wklej go w innym pomieszczeniu'); }
+// Pasting a style keeps where the target stands: the label / part offsets from its point are its own (a room's label
+// offsets would move a plain label away); only looks (and the group's inner arrangement) are taken over.
+const isLabelPositionKey = key => key.startsWith('label') && /[XY]$/.test(key) && !/F[XY]$/.test(key);
+function pasteRoomStyle() {
+  const room = roomsOf()[selectedRoomId]; if (!room || !roomStyleClipboard) return;
+  // Thermostat → thermostat is 1:1 (the parts' places too); otherwise the target keeps its own label / part offsets.
+  const exact = roomStyleClipboard.__thermo && isThermoRoom(room), keep = key => exact ? false : isLabelPositionKey(key);
+  Object.keys(room).filter(key => roomLookKey(key) && !keep(key)).forEach(key => delete room[key]);
+  if (exact) Object.assign(room, Object.fromEntries(Object.keys(ROOM_DEFAULTS).filter(roomLookKey).map(key => [key, clone(ROOM_DEFAULTS[key])])));
+  Object.assign(room, Object.fromEntries(Object.entries(clone(roomStyleClipboard)).filter(([key]) => key !== '__thermo' && !keep(key))), { updatedAt:new Date().toISOString() });
+  delete room.labelAutoUngrouped; renderRooms(); openRoomEditor(room.id); scheduleSave(true); notify('Wklejono styl pomieszczenia');
+}
 // "Default look" is the look of a freshly added room / icon (label visible, grouped, icon with outline and frame),
 // not the bare defaults of the data model, in which every label part is hidden.
 async function resetRoomStyle() {
   const room = roomsOf()[selectedRoomId]; if (!room) return; const icon = isIconRoom(room);
   if (!await appConfirm({ title:'Przywrócić domyślny wygląd?', message: icon ? 'Wygląd i akcja dotknięcia etykiety wrócą do domyślnych. Położenie, nazwa i encja zostaną.' : 'Wygląd i akcja dotknięcia pomieszczenia wrócą do domyślnych. Kształt, nazwa i encje zostaną.', confirmText:'Przywróć', danger:true })) return;
   ROOM_STYLE_KEYS.forEach(key => delete room[key]);
-  Object.assign(room, Object.fromEntries(ROOM_STYLE_KEYS.filter(key => key in ROOM_DEFAULTS).map(key => [key, clone(ROOM_DEFAULTS[key])])), NEW_ROOM_LABEL, icon ? { labelCardScale:ICON_LABEL_SCALE } : {});
+  Object.assign(room, Object.fromEntries(ROOM_STYLE_KEYS.filter(key => key in ROOM_DEFAULTS).map(key => [key, clone(ROOM_DEFAULTS[key])])), NEW_ROOM_LABEL, icon ? { labelCardScale:ICON_LABEL_SCALE } : {}, isThermoRoom(room) ? thermoLook() : {});
+  // A thermostat gets its whole look back: every part's colours, frames, sizes and places, the mode colours and the dial.
+  if (isThermoRoom(room)) { const extras = Object.fromEntries(Object.keys(room).filter(k => /^labelX\d(Entity)?$/.test(k)).map(k => [k, room[k]])); Object.keys(room).filter(k => /^(label|thermo[A-Z_])/.test(k)).forEach(k => delete room[k]); Object.assign(room, extras); Object.assign(room, Object.fromEntries(Object.keys(ROOM_DEFAULTS).filter(k => /^(label|thermo[A-Z_])/.test(k)).map(k => [k, clone(ROOM_DEFAULTS[k])])), thermoLook()); }
   room.updatedAt = new Date().toISOString(); renderRooms(); if (!icon) fitRoomLabel(room.id); openRoomEditor(room.id); scheduleSave(true);
-  notify(icon ? 'Przywrócono domyślny wygląd etykiety' : 'Przywrócono domyślny wygląd pomieszczenia');
+  notify(isThermoRoom(room) ? 'Przywrócono domyślny wygląd termostatu' : icon ? 'Przywrócono domyślny wygląd etykiety' : 'Przywrócono domyślny wygląd pomieszczenia');
 }
 function duplicateRoom() {
   const view = activeSceneView(), room = view?.rooms?.[selectedRoomId]; if (!room) return;
@@ -2061,7 +2745,7 @@ function addRoomIcon(room) {
 }
 function editRoomIcon(room) { const id = roomIconId(room.id); if (!model.entities[id]) return; closeRoomEditor(); selectedId = id; renderMarkers(); openEditor(-1); }
 function removeRoomIcon(view, roomId) { const id = roomIconId(roomId); if (!view?.entities?.[id]) return false; delete view.entities[id]; delete stateCache[id]; if (selectedId === id) closeEditor(); return true; }
-function roomUsesEntity(entityId) { return Object.values(roomsOf()).some(room => (room.entityIds || []).includes(entityId)); }
+function roomUsesEntity(entityId) { return Object.values(roomsOf()).some(room => (room.entityIds || []).includes(entityId) || EXTRA_PARTS.some(([, k]) => room[k] && room[`${k}Entity`] === entityId)); }
 // ---- HA default panel -------------------------------------------------------------------
 // Home Assistant opens: the user's default panel (Profile → "Panel", stored in frontend user data "core"),
 // then the system default, then the per-device localStorage "defaultPanel", then Overview. Its picker lists
@@ -2115,7 +2799,7 @@ async function setHaStart(mode) {
     else if (JSON.parse(context.storage.getItem('defaultPanel') || 'null') === context.panel) context.storage.removeItem('defaultPanel');
   } catch (error) { notify(`Nie udało się zapisać: ${error.message}`, true); return setTimeout(syncHaStartSelect, 300); }
   const other = mode === 'device' && ([hass?.userData?.default_panel, hass?.systemData?.default_panel].find(value => value && value !== context.panel));
-  if (other) notify(`Zapisano, ale ustawiony jest też domyślny panel „${other}”, który ma pierwszeństwo — wybierz „HA Views — moje konto” albo zmień Panel w profilu HA.`, true);
+  if (other) notify(`Zapisano, ale ustawiony jest też domyślny panel „${other}”, który ma pierwszeństwo — wybierz „HA Views (konto)” albo zmień Panel w profilu HA.`, true);
   else notify(mode === 'user' ? 'HA Views jest teraz domyślnym panelem na Twoim koncie' : mode === 'device' ? 'HA Views jest domyślnym panelem na tym urządzeniu' : 'Przywrócono domyślny panel z ustawień Home Assistant');
   setTimeout(syncHaStartSelect, 300);
 }
@@ -2124,7 +2808,7 @@ async function setHaStart(mode) {
 // shows what it is aligned with. Holding Alt (desktop) drags freely.
 // Rooms add their own guides (centre and edges of the room's bounding box) in a different colour, for the
 // room the dragged element sits in (and the room of a room icon), e.g. to put an icon right in the middle.
-const SNAP_DEFAULTS = Object.freeze({ guides:true, visibleOnly:false, markers:true, labels:true, flows:true, rooms:true, background:true, centers:true, edges:true });
+const SNAP_DEFAULTS = Object.freeze({ guides:true, visibleOnly:false, markers:true, labels:true, flows:true, rooms:true, centers:true, edges:true, spacing:true });
 function snapTargets() { return { ...SNAP_DEFAULTS, ...(model.settings?.snapTargets || {}) }; }
 function syncSnapMenu() {
   const t = snapTargets(); $$('[data-snap-key]').forEach(button => { const on = !!t[button.dataset.snapKey]; button.classList.toggle('active', on); button.setAttribute('aria-pressed', String(on)); });
@@ -2181,28 +2865,51 @@ function alignSelectedToBackground(where) {
 }
 // Snap targets shared by markers, Flows and rooms: every other marker / Flow, every room (its bounding box and
 // its corners, so irregular walls line up too) and the background. Nothing depends on where the drag starts.
+// Snapping uses only what is on screen (partly visible objects count): the window below the top bar, within the area
+// the plan's card shows - a zoomed portrait plan may use the screen beyond the card (its clip margin).
+function visibleSceneRect() {
+  if (deskZoomExpanded()) return deskZoomRegion();
+  const card = (els.sceneCard || els.viewport || els.scene).getBoundingClientRect(), margin = parseFloat(els.sceneCard?.style.getPropertyValue('--card-clip')) || 0;
+  const expanded = !!els.sceneCard?.classList.contains('portrait-zoom-expanded'), m = expanded ? margin : 0, bar = $('.topbar')?.getBoundingClientRect().bottom || 0;
+  return { left: Math.max(card.left - m, 0), top: Math.max(card.top - m, bar, 0), right: Math.min(card.right + m, innerWidth), bottom: Math.min(card.bottom + m, innerHeight) };
+}
+// An element's box with its corner radius (screen px), so a highlighted snap target has exactly the element's shape.
+function shapedRect(node) { const r = node.getBoundingClientRect(), k = r.width / Math.max(1, node.offsetWidth), cs = getComputedStyle(node); const radius = node.classList.contains('marker') && node.style.borderRadius ? parseFloat(node.style.borderRadius) : parseFloat(cs.borderTopLeftRadius); return { left: r.left, right: r.right, top: r.top, bottom: r.bottom, width: r.width, height: r.height, radius: /%$/.test(cs.borderTopLeftRadius) || /%$/.test(node.style.borderRadius || '') ? Math.min(r.width, r.height) / 2 : (radius || 0) * k }; }
+// On screen or near it: elements just outside a zoomed view (half the view's size around it) still give guides.
+function rectOnScreen(r, view = visibleSceneRect()) { const mx = (view.right - view.left) / 2, my = (view.bottom - view.top) / 2; return r.right > view.left - mx && r.left < view.right + mx && r.bottom > view.top - my && r.top < view.bottom + my; }
 function guideTargets({ node = null, roomId = '' } = {}) {
   const scene = els.scene.getBoundingClientRect();
   const t = snapTargets(), points = (a, b) => [...(t.edges ? [a, b] : []), ...(t.centers ? [(a + b) / 2] : [])];
   // "Only visible": on a zoomed phone view the element snaps only to what is on screen, not to markers far outside it.
   // Every guide knows what it comes from, so its line has that kind's colour (wskaźnik / Flow / etykieta / pomieszczenie / tło).
-  const onScreen = () => true;
+  const view = visibleSceneRect(), onScreen = r => rectOnScreen(r, view);
   const elements = [];
   if (t.markers) $$('.marker', els.markers).forEach(other => elements.push([other, 'marker']));
   if (t.flows) $$('.flow-marker', els.markers).forEach(other => elements.push([other, 'flow']));
   // Labels: a group as a whole, or each ungrouped part (not the label of the room / label being moved).
   if (t.labels) $$('#room-labels .room-label-card, #room-labels .room-label-part').filter(other => other.dataset.roomId !== roomId).forEach(other => elements.push([other, 'label']));
-  const targets = elements.filter(([other]) => other !== node && !other.contains(node) && other.offsetParent !== null && !(roomId && model.entities[other.dataset?.markerId]?.roomId === roomId)).map(([other, kind]) => [other.getBoundingClientRect(), kind]).filter(([r]) => r.width);
-  const xs = targets.flatMap(([r, kind]) => points(r.left, r.right).map(v => ({ v: v - scene.left, kind })));
-  const ys = targets.flatMap(([r, kind]) => points(r.top, r.bottom).map(v => ({ v: v - scene.top, kind })));
-  if (t.background) { xs.push(...points(0, scene.width).map(v => ({ v, bg:true, kind:'bg' }))); ys.push(...points(0, scene.height).map(v => ({ v, bg:true, kind:'bg' }))); }
+  const targets = elements.filter(([other]) => other !== node && !other.contains(node) && other.offsetParent !== null && !(roomId && model.entities[other.dataset?.markerId]?.roomId === roomId)).map(([other, kind]) => [shapedRect(other), kind]).filter(([r]) => onScreen(r)).filter(([r]) => r.width);
+  // Every guide carries the box it comes from (the snapped-to object is highlighted).
+  const boxOf = r => ({ l: r.left - scene.left, r: r.right - scene.left, t: r.top - scene.top, b: r.bottom - scene.top, radius: r.radius });
+  const xs = targets.flatMap(([r, kind]) => points(r.left, r.right).map(v => ({ v: v - scene.left, kind, box: boxOf(r), center: v === (r.left + r.right) / 2 })));
+  const ys = targets.flatMap(([r, kind]) => points(r.top, r.bottom).map(v => ({ v: v - scene.top, kind, box: boxOf(r), center: v === (r.top + r.bottom) / 2 })));
   if (t.rooms) Object.values(roomsOf()).filter(room => room.id !== roomId && (room.points || []).length >= 3).forEach(room => {
     const px = room.points.map(p => p[0] / 100 * scene.width), py = room.points.map(p => p[1] / 100 * scene.height);
     const [minX, maxX, minY, maxY] = [Math.min(...px), Math.max(...px), Math.min(...py), Math.max(...py)];
     if (!onScreen({ left: scene.left + minX, right: scene.left + maxX, top: scene.top + minY, bottom: scene.top + maxY })) return;
-    xs.push(...points(minX, maxX).map(v => ({ v, room:true, kind:'room' }))); ys.push(...points(minY, maxY).map(v => ({ v, room:true, kind:'room' })));
-    if (t.edges) { px.forEach(v => { if (v > minX + .5 && v < maxX - .5) xs.push({ v, room:true, kind:'room' }); }); py.forEach(v => { if (v > minY + .5 && v < maxY - .5) ys.push({ v, room:true, kind:'room' }); }); }
+    // A room's lines reach only across that room (span), not over the whole background.
+    const box = { l: minX, r: maxX, t: minY, b: maxY }, gx = v => ({ v, room:true, kind:'room', box, span: [minY, maxY], center: v === (minX + maxX) / 2 }), gy = v => ({ v, room:true, kind:'room', box, span: [minX, maxX], center: v === (minY + maxY) / 2 });
+    xs.push(...points(minX, maxX).map(gx)); ys.push(...points(minY, maxY).map(gy));
+    if (t.edges) { px.forEach(v => { if (v > minX + .5 && v < maxX - .5) xs.push(gx(v)); }); py.forEach(v => { if (v > minY + .5 && v < maxY - .5) ys.push(gy(v)); }); }
   });
+  // The visible edit grid: moved elements line up their edges / centres with its lines too.
+  if (model.settings?.snapEnabled !== false && editMode) {
+    const step = scene.width * gridVisual() / 100, cx = scene.width / 2, cy = scene.height / 2;
+    if (step > 0) {
+      for (let v = cx - Math.floor(cx / step) * step; v <= scene.width + .5; v += step) if (scene.left + v >= view.left - 1 && scene.left + v <= view.right + 1) xs.push({ v, kind: 'grid' });
+      for (let v = cy - Math.floor(cy / step) * step; v <= scene.height + .5; v += step) if (scene.top + v >= view.top - 1 && scene.top + v <= view.bottom + 1) ys.push({ v, kind: 'grid' });
+    }
+  }
   return { scene, xs, ys, offsets: [...(t.centers ? [0] : []), ...(t.edges ? [-1, 1] : [])] };
 }
 function alignmentContext(node) {
@@ -2221,34 +2928,113 @@ function alignToGuides(context, xPercent, yPercent, event) {
   }
   // Precise mode (label parts): lines are offered at any speed and let go sooner, so sliding a part past another
   // catches its left edge, centre and right edge one after another in a single movement.
-  const precise = !!context.precise, slow = precise || motion.speed < (mobileView() ? .5 : .4), threshold = precise ? 7 : 6, release = precise ? 8 : 11, match = (axis, centre, half, values) => {
+  const precise = !!context.precise, slow = precise || motion.speed < (mobileView() ? .5 : .4), threshold = precise ? (mobileView() ? 10 : 7) : 6, release = precise ? (mobileView() ? 12 : 8) : 11, match = (axis, centre, half, values) => {
     const stuck = motion.stick[axis];
     if (stuck && Math.abs(centre + stuck.offset - stuck.line) <= release) return { ...stuck, centre: stuck.line - stuck.offset };
     motion.stick[axis] = null; if (!slow) return null;
     let best = null;
-    (context.offsets || [0, -1, 1]).map(k => k * half).forEach(offset => values.forEach(({ v, room, bg, kind }) => { const distance = Math.abs(centre + offset - v); if (distance <= threshold && (!best || distance < best.distance - .01 || (Math.abs(distance - best.distance) <= .01 && (room || bg) && !best.room && !best.bg))) best = { distance, centre: v - offset, line: v, offset, room, bg, kind }; }));
+    (context.offsets || [0, -1, 1]).map(k => k * half).forEach(offset => values.forEach(({ v, room, bg, kind, box, span, center }) => { const distance = Math.abs(centre + offset - v); if (distance <= (center && !offset ? threshold * 1.7 : threshold) && (!best || distance < best.distance - .01 || (Math.abs(distance - best.distance) <= .01 && (room || bg) && !best.room && !best.bg))) best = { distance, centre: v - offset, line: v, offset, room, bg, kind, box, span }; }));
     motion.stick[axis] = best; return best;
   };
   // A fast drag that stops right on a line: ~0.12 s without movement counts as slow, so the line is offered then.
   clearTimeout(motion.timer);
   if (!slow && context.onSettle) motion.timer = setTimeout(() => { motion.speed = 0; context.onSettle?.(); }, 120);
-  const { width, height } = context.scene, bx = match('x', xPercent / 100 * width, context.halfW, context.xs), by = match('y', yPercent / 100 * height, context.halfH, context.ys);
-  if (bx) xPercent = clamp(bx.centre / width * 100, 0, 100);
-  if (by) yPercent = clamp(by.centre / height * 100, 0, 100);
-  showAlignGuides(bx ? [{ at: bx.line / width * 100, room: bx.room, bg: bx.bg, kind: bx.kind }] : [], by ? [{ at: by.line / height * 100, room: by.room, bg: by.bg, kind: by.kind }] : []);
+  const { width, height } = context.scene, sx = context.shiftX || 0, sy = context.shiftY || 0;
+  const bx = match('x', xPercent / 100 * width + sx, context.halfW, context.xs), by = match('y', yPercent / 100 * height + sy, context.halfH, context.ys);
+  if (bx) xPercent = clamp((bx.centre - sx) / width * 100, 0, 100);
+  if (by) yPercent = clamp((by.centre - sy) / height * 100, 0, 100);
+  const seg = (g, size) => g.span ? { from: g.span[0] / size * 100, to: g.span[1] / size * 100 } : {};
+  showAlignGuides(bx ? [{ at: bx.line / width * 100, room: bx.room, bg: bx.bg, kind: bx.kind, ...seg(bx, height) }] : [], by ? [{ at: by.line / height * 100, room: by.room, bg: by.bg, kind: by.kind, ...seg(by, width) }] : [], [], [bx, by].filter(g => g?.box).map(g => ({ ...g.box, kind: g.kind })));
   return { xPercent, yPercent };
 }
-function showAlignGuides(vertical, horizontal) {
+// ---- Label-to-label snapping (dragging an etykieta / pomieszczenie label) ----------------------------------------
+// Candidates per axis, best (lowest score) wins: the same edge of another label (top to top, centre to centre) first,
+// then edge to edge (touching), and equal spacing (the gap two labels in a row already have, or exactly between two
+// of them). Labels in the same row / column count more than far ones. Other guides
+// (markers, rooms, background) still take part with a lower priority. Lines are drawn between the labels involved,
+// gaps get small markers.
+function alignLabel(context, xPercent, yPercent, event) {
+  if (cameraPanning || !context || event?.altKey || !snapTargets().guides || !context.scene.width) { showAlignGuides([], []); return { xPercent, yPercent }; }
+  const W = context.scene.width, H = context.scene.height, hw = context.halfW, hh = context.halfH;
+  const cx = xPercent / 100 * W + (context.shiftX || 0), cy = yPercent / 100 * H + (context.shiftY || 0);
+  const threshold = mobileView() ? 10 : 7, release = mobileView() ? 13 : 9, motion = context.motion ||= { stick: {} };
+  // A room's label lying wholly inside its room (with "Pomieszczenia" on) snaps to that room, its own parts and other
+  // labels (with "Etykiety" on) - not to other rooms, markers, Flow or the background. Out of the room: to everything.
+  const rb = context.roomBox, inside = !!rb && snapTargets().rooms && cx - hw >= rb.l - 1 && cx + hw <= rb.r + 1 && cy - hh >= rb.t - 1 && cy + hh <= rb.b + 1;
+  const boxes = context.boxes.map(b => ({ ...b, cx: (b.l + b.r) / 2, cy: (b.t + b.b) / 2 }));
+  // Other labels come in as boxes (segment lines, highlight); their copies among the general guides are skipped.
+  const guideValues = values => values.filter(item => item.own || item.kind !== 'label' || !item.box).filter(item => !inside || item.own || item.kind === 'label');
+  // axis 'x': position along x, rows are found on y; axis 'y' the other way round.
+  const solve = (axis, c, half, oc, ohalf) => {
+    const [lo, hi, mid, plo, phi] = axis === 'x' ? ['l','r','cx','t','b'] : ['t','b','cy','l','r'];
+    const near = b => { const gapAcross = Math.max(b[plo] - (oc + ohalf), (oc - ohalf) - b[phi], 0); return gapAcross <= Math.max(3 * ohalf * 2, 160); };
+    const inRow = b => b[phi] > oc - ohalf * 1.5 && b[plo] < oc + ohalf * 1.5;
+    const list = [];
+    const add = (target, score, guide, marks = [], hits = [], reach = threshold) => { const d = Math.abs(c - target); if (d <= reach) list.push({ target, score: d + score, guide, marks, hits }); };
+    // Inside a group (ungrouped parts) everything of the group counts, whatever the plan's snap menu says.
+    const edges = context.group || snapTargets().edges, centers = context.group || snapTargets().centers, spacing = !context.group && snapTargets().spacing, centreReach = threshold * 1.7;
+    boxes.forEach(b => {
+      const far = context.group || near(b) ? 0 : 3, span = [b[plo], b[phi]];
+      if (centers) add(b[mid], far + .2, { at: b[mid], span }, [], [b], centreReach);
+      if (!edges) return;
+      add(b[lo] + half, far, { at: b[lo], span }, [], [b]); add(b[hi] - half, far, { at: b[hi], span }, [], [b]);
+      add(b[hi] + half, far + 1.5, { at: b[hi], span }, [], [b]); add(b[lo] - half, far + 1.5, { at: b[lo], span }, [], [b]);
+    });
+    // "Odstępy" (own switch in the snap menu, own colour): repeat the gap of two neighbours in a row, or sit exactly
+    // between two of them (equal gaps on both sides).
+    const row = spacing ? boxes.filter(inRow).sort((p, q) => p[lo] - q[lo]) : [];
+    for (let i = 0; i + 1 < row.length; i++) {
+      const a = row[i], b = row[i + 1], g = b[lo] - a[hi]; if (g <= 0) continue;
+      add(b[hi] + g + half, .5, null, [[a[hi], b[lo], 'spacing'], [b[hi], b[hi] + g, 'spacing']], [{ ...a, kind: 'spacing' }, { ...b, kind: 'spacing' }]);
+      add(a[lo] - g - half, .5, null, [[a[hi], b[lo], 'spacing'], [a[lo] - g, a[lo], 'spacing']], [{ ...a, kind: 'spacing' }, { ...b, kind: 'spacing' }]);
+      if (g > half * 2 + 2) { const free = (g - half * 2) / 2; add(a[hi] + free + half, .3, null, [[a[hi], a[hi] + free, 'spacing'], [b[lo] - free, b[lo], 'spacing']], [{ ...a, kind: 'spacing' }, { ...b, kind: 'spacing' }]); }
+    }
+    // Other guides (markers, Flow, rooms, background): lower priority, full-length lines as before.
+    const offsets = [...(centers ? [0] : []), ...(edges ? [-half, half] : [])];
+    guideValues(axis === 'x' ? context.xs : context.ys).forEach(({ v, kind, room, bg, box, span, center, grid }) => offsets.forEach(o => add(v - o, grid ? 3.5 : 2, { at: v, kind: kind || (room ? 'room' : bg ? 'bg' : 'label'), full: !span, span, grid: !!grid }, [], box ? [{ ...box, kind: kind || (room ? 'room' : 'label') }] : [], center && !o ? centreReach : threshold)));
+    const stuck = motion.stick[axis];
+    // A caught line holds until the label is moved clearly away from it, or another candidate is clearly closer to the
+    // finger (e.g. sliding from "8 px next to it" on to touching).
+    const held = stuck && Math.abs(c - stuck.target);
+    // A group's grid line never holds against a part of the group within reach (parts first, the grid fills the gaps).
+    if (stuck && held <= release && !(stuck.guide?.grid && list.some(item => !item.guide?.grid)) && !list.some(item => Math.abs(c - item.target) < held - 1.5)) return stuck;
+    const best = list.sort((p, q) => p.score - q.score)[0] || null; motion.stick[axis] = best; return best;
+  };
+  const bx = solve('x', cx, hw, cy, hh), fx = bx ? bx.target : cx, by = solve('y', cy, hh, fx, hw), fy = by ? by.target : cy;
+  if (bx) xPercent = clamp((bx.target - (context.shiftX || 0)) / W * 100, 0, 100);
+  if (by) yPercent = clamp((by.target - (context.shiftY || 0)) / H * 100, 0, 100);
+  // Lines span from the dragged label to the label it lines up with; gap markers sit across the middle of the label.
+  const vertical = [], horizontal = [], marks = [];
+  if (bx?.guide) vertical.push(bx.guide.full ? { at: bx.guide.at / W * 100, kind: bx.guide.kind } : { at: bx.guide.at / W * 100, kind: bx.guide.kind || 'label', from: Math.min(bx.guide.span[0], fy - hh) / H * 100, to: Math.max(bx.guide.span[1], fy + hh) / H * 100 });
+  if (by?.guide) horizontal.push(by.guide.full ? { at: by.guide.at / H * 100, kind: by.guide.kind } : { at: by.guide.at / H * 100, kind: by.guide.kind || 'label', from: Math.min(by.guide.span[0], fx - hw) / W * 100, to: Math.max(by.guide.span[1], fx + hw) / W * 100 });
+  (bx?.marks || []).forEach(([a, b, kind]) => marks.push({ axis: 'x', from: a / W * 100, to: b / W * 100, at: fy / H * 100, kind }));
+  (by?.marks || []).forEach(([a, b, kind]) => marks.push({ axis: 'y', from: a / H * 100, to: b / H * 100, at: fx / W * 100, kind }));
+  const hits = [...(bx?.hits || []), ...(by?.hits || [])].filter((b, i, all) => all.findIndex(o => o.l === b.l && o.t === b.t && o.r === b.r) === i);
+  showAlignGuides(vertical, horizontal, marks, hits);
+  return { xPercent, yPercent };
+}
+// A guide may be a full line or a segment (from / to, %), gap markers are short segments with end ticks.
+function showAlignGuides(vertical, horizontal, marks = [], hits = []) {
+  // While a guide line shows in one direction, the group grid's drawn centre axis in that direction steps back
+  // (never two lines side by side; the guide is the one that counts).
+  const gg = $('#group-grid'); if (gg) { gg.style.setProperty('--gaxa', vertical.length ? '0' : '.5'); gg.style.setProperty('--gaya', horizontal.length ? '0' : '.5'); }
+  // No double measuring lines (equal size / equal gap): the highlighted elements already show what was caught.
+  marks = [];
   let layer = $('#align-guides');
-  if (!vertical.length && !horizontal.length) { if (layer) layer.innerHTML = ''; return; }
+  if (!vertical.length && !horizontal.length && !marks.length && !hits.length) { if (layer) layer.innerHTML = ''; return; }
   if (!layer) { layer = document.createElement('div'); layer.id = 'align-guides'; layer.setAttribute('aria-hidden', 'true'); els.scene.append(layer); }
-  const kind = g => g.kind ? ` ${g.kind}` : g.room ? ' room' : g.bg ? ' bg' : '';
-  layer.innerHTML = vertical.map(g => `<span class="align-guide vertical${kind(g)}" style="left:${g.at}%"></span>`).join('') + horizontal.map(g => `<span class="align-guide horizontal${kind(g)}" style="top:${g.at}%"></span>`).join('');
+  // Kind classes carry a prefix: a plain "marker" class would also get the markers' own styles (a thick line).
+  const kind = g => g.kind ? ` k-${g.kind}` : g.room ? ' k-room' : g.bg ? ' k-bg' : '';
+  const spanV = g => g.from != null ? `;top:${g.from}%;bottom:auto;height:${g.to - g.from}%` : '', spanH = g => g.from != null ? `;left:${g.from}%;right:auto;width:${g.to - g.from}%` : '';
+  layer.innerHTML = vertical.map(g => `<span class="align-guide vertical${kind(g)}" style="left:${g.at}%${spanV(g)}"></span>`).join('') + horizontal.map(g => `<span class="align-guide horizontal${kind(g)}" style="top:${g.at}%${spanH(g)}"></span>`).join('')
+    // The object snapped to gets a soft frame (in its kind's colour); boxes are px from the scene's top left.
+    + hits.map(b => { const sc = els.scene.getBoundingClientRect(), W = sc.width || 1, H = sc.height || 1; return `<span class="snap-target k-${b.kind || 'label'}" style="left:${b.l / W * 100}%;top:${b.t / H * 100}%;width:${(b.r - b.l) / W * 100}%;height:${(b.b - b.t) / H * 100}%${Number.isFinite(b.radius) ? `;border-radius:calc(${b.radius.toFixed(2)}px / var(--view-zoom,1))` : ''}"></span>`; }).join('')
+    + marks.map(m => m.axis === 'x' ? `<span class="gap-mark x${m.kind ? ' k-' + m.kind : ''}" style="left:${m.from}%;width:${m.to - m.from}%;top:${m.at}%"></span>` : `<span class="gap-mark y${m.kind ? ' k-' + m.kind : ''}" style="top:${m.from}%;height:${m.to - m.from}%;left:${m.at}%"></span>`).join('');
 }
 // ---- Keep elements inside the background ("Granice tła", on by default) -------------------
 // Markers and Flows are kept with their whole box inside the scene while dragging or resizing
 // (rooms already cannot leave it: their corners are limited to 0–100 %).
-function keepInBounds() { return model.settings?.keepInBounds !== false; }
+function keepInBounds() { return true; } // "Granice tła" is always on (its switch was removed)
 function boundsShift(node) {
   const s = els.scene.getBoundingClientRect(), r = node.getBoundingClientRect(); if (!s.width || !s.height || !r.width) return null;
   const dx = r.width >= s.width ? s.left - r.left : r.left < s.left ? s.left - r.left : r.right > s.right ? s.right - r.right : 0;
@@ -2264,6 +3050,10 @@ function applyBoundsUi() {
   if (button) button.classList.toggle('active', on); if (status) status.textContent = on ? 'ON' : 'OFF';
 }
 function mobileView() { return matchMedia('(max-width: 900px) and (pointer: coarse), (max-width: 768px)').matches; }
+// Zoom can be switched off outside editing (Options → "Zoom poza edycją"): pinch, wheel and double tap keep the view at 100%.
+function viewZoomLocked() { return !editMode && !!activeSceneView()?.viewZoomLock; }
+// The "Zoom poza edycją" switch shows the current view's own setting.
+function syncZoomToggle() { const button = $('#view-zoom-toggle'); if (!button) return; const on = !activeSceneView()?.viewZoomLock; button.classList.toggle('active', on); button.setAttribute('aria-pressed', String(on)); button.innerHTML = `<i class="mdi ${on ? 'mdi-magnify-plus-outline' : 'mdi-magnify-remove-outline'}"></i>`; }
 function sceneCameraActive() { return mobileView() || editMode || viewZoom > 1.001; }
 function mobileWidePanorama() {
   return mobileView() && layoutViewportHeight() > innerWidth && els.image.naturalWidth > els.image.naturalHeight;
@@ -2311,8 +3101,31 @@ function focusSelectedOnMobile() {
   const room = selectedRoomId && roomsOf()[selectedRoomId];
   if (room) focusSceneBoxOnMobile(isIconRoom(room) ? iconFocusBox(room) : room.points || []); else focusSelectedMarkerOnMobile();
 }
+// Typing in an editor field on a phone: the camera stays where it is and the panel shrinks to the one line being
+// edited, right above the on-screen keyboard; afterwards the panel comes back as it was (same place, same scroll).
+let editorTyping = null, editorTypingEnd = 0;
+function placeTypingPanel() {
+  if (!editorTyping) return; const vv = window.visualViewport;
+  const bottom = vv ? Math.max(0, innerHeight - (vv.offsetTop + vv.height)) : 0; editorTyping.panel.style.setProperty('--kb-bottom', `${bottom}px`);
+}
+function startEditorTyping(input) {
+  const panel = input.closest('aside.editor.visible'), content = panel?.querySelector('.editor-content'); if (!panel || !content) return;
+  if (editorTyping) endEditorTyping(true);
+  const cover = editSheetCover();
+  editorTyping = { panel, content, input, scroll: content.scrollTop, cover };
+  input.closest('.control, .room-entity-search, label')?.classList.add('typing-row'); input.classList.add('typing-input');
+  panel.classList.add('typing'); document.body.classList.add('editor-typing'); placeTypingPanel();
+}
+function endEditorTyping(now = false) {
+  const t = editorTyping; if (!t) return; editorTyping = null; editorTypingEnd = performance.now(); keyboardWasOpen = false;
+  t.panel.classList.remove('typing'); t.panel.style.removeProperty('--kb-bottom'); document.body.classList.remove('editor-typing');
+  $$('.typing-row', t.panel).forEach(n => n.classList.remove('typing-row')); $$('.typing-input', t.panel).forEach(n => n.classList.remove('typing-input'));
+  const restore = () => { t.content.scrollTop = t.scroll; }; restore(); if (!now) requestAnimationFrame(() => requestAnimationFrame(restore));
+}
 function refocusWhileTyping() {
   if (!mobileView() || !editMode) return;
+  // While (and just after) a field in the editor is typed into, the camera does not move.
+  if (editorTyping || performance.now() - editorTypingEnd < 900) { placeTypingPanel(); keyboardWasOpen = false; clearTimeout(refocusTypingTimer); return; }
   const open = keyboardOpen();
   // Keyboard opening / open: centre at once on every size change (no waiting), and once more when it has settled.
   if (open) { keyboardWasOpen = true; focusSelectedOnMobile(); }
@@ -2365,7 +3178,7 @@ function updateSceneGeometry() {
   const physicalScale = renderedWidth / (Number(model.settings?.designWidth) || DESIGN_WIDTH);
   sceneScale = Math.max(.01, physicalScale);
   updateMobileMarkerLayout(renderedWidth, els.scene.clientHeight);
-  els.scene.style.setProperty('--scene-scale', sceneScale);
+  els.scene.style.setProperty('--scene-scale', sceneScale); syncGridGeometry();
   applyViewTransform();
   requestAnimationFrame(() => {
     $$('.marker', els.markers).forEach(node => {
@@ -2387,15 +3200,34 @@ function syncCardClip() {
   const margin = `${Math.ceil(Math.max(0, r.left, w - r.right, r.top, h - r.bottom))}px`;
   if (card.style.getPropertyValue('--card-clip') !== margin) card.style.setProperty('--card-clip', margin);
 }
+// On a computer a zoomed plan (any format, image or colour) uses the whole free screen - from the top bar down, between
+// the window edge and the edit panel - not only its card, so there is more room to work.
+function deskZoomExpanded() { return !mobileView() && viewZoom > 1.001; }
+function deskZoomRegion() {
+  const bar = $('.topbar')?.getBoundingClientRect().bottom || 0, dock = $('#edit-dock');
+  let left = 0, right = document.documentElement.clientWidth || innerWidth;
+  if (els.body.classList.contains('dock-mode') && els.body.classList.contains('editing') && dock) { const d = dock.getBoundingClientRect(); if (d.width) { if (d.left > right / 2) right = Math.min(right, d.left); else left = Math.max(left, d.right); } }
+  return { left, top: bar, right, bottom: innerHeight };
+}
+function syncDeskZoom() {
+  const on = deskZoomExpanded(), card = els.sceneCard;
+  els.viewport.classList.toggle('desk-zoom-expanded', on); card?.classList.toggle('desk-zoom-expanded', on);
+  if (!on || !card) { card?.style.removeProperty('--desk-clip'); return; }
+  const c = card.getBoundingClientRect(), r = deskZoomRegion();
+  card.style.setProperty('--desk-clip', `inset(${r.top - c.top}px ${c.right - r.right}px ${c.bottom - r.bottom}px ${r.left - c.left}px)`);
+}
 function portraitZoomExpansion() {
   return !mobileWidePanorama() && els.image.naturalHeight > els.image.naturalWidth;
 }
+// While editing on a phone the plan may be zoomed out below its fitted size (e.g. to see a big thermostat whole).
+function zoomFloor() { return minViewZoom() * (editMode && mobileView() ? .4 : 1); }
 function minViewZoom() {
   if (!mobileWidePanorama()) return 1;
   return clamp(els.viewport.clientWidth / Math.max(1, els.scene.offsetWidth), .08, 1);
 }
 function editSheetCover() {
   if (!mobileView() || !editMode) return 0;
+  if (editorTyping) return editorTyping.cover; // the panel shrunk for typing must not move the camera
   const sheets = [els.editor, els.flowEditor, $('#room-editor')].filter(panel => panel?.classList.contains('visible'));
   if (!sheets.length) return 0;
   // offsetHeight ignores the slide-in transform, so the value is final even while the sheet animates.
@@ -2405,12 +3237,35 @@ function editSheetCover() {
 function clampViewPan() {
   if (!sceneCameraActive()) { viewPanX = 0; viewPanY = 0; return; }
   const panorama = mobileWidePanorama();
+  if (viewZoom < minViewZoom() - .001) {
+    // Zoomed out below the fitted size (editing on a phone): the smaller plan may be moved within the viewport.
+    const freeX = els.viewport.clientWidth - els.scene.offsetWidth * viewZoom, freeY = els.viewport.clientHeight - els.scene.offsetHeight * viewZoom;
+    viewPanX = clamp(viewPanX, Math.min(0, freeX), Math.max(0, freeX)); viewPanY = clamp(viewPanY, Math.min(0, freeY) - editSheetCover(), Math.max(0, freeY));
+    return;
+  }
   if (viewZoom <= minViewZoom() && !panorama) { viewPanX = 0; viewPanY = 0; return; }
+  if (deskZoomExpanded()) {
+    // The plan may move anywhere inside the free screen; larger than it, it always covers that area.
+    // While editing, it may also go past its edges by half the free screen, so an element at the plan's edge can be
+    // brought to the middle of the screen.
+    const R = deskZoomRegion(), vp = els.viewport.getBoundingClientRect(), fit = (size, lo, hi) => { const e = editMode ? (hi - lo) / 2 : 0; return size >= hi - lo ? [hi - size - e, lo + e] : [lo - e, hi - size + e]; };
+    viewPanX = clamp(viewPanX, ...fit(els.scene.offsetWidth * viewZoom, R.left - vp.left, R.right - vp.left));
+    viewPanY = clamp(viewPanY, ...fit(els.scene.offsetHeight * viewZoom, R.top - vp.top, R.bottom - vp.top));
+    return;
+  }
   const maxX = Math.max(0, els.scene.offsetWidth * viewZoom - els.viewport.clientWidth);
   const maxY = Math.max(0, els.scene.offsetHeight * viewZoom - els.viewport.clientHeight);
   // While editing on a phone, the camera may go past the lower scene edge only by the part of the viewport
   // the bottom editor covers: the empty area then stays hidden under the editor, never shown as a bare frame.
   const editBottomAllowance = editSheetCover();
+  if (editBottomAllowance) {
+    // An element being edited near a plan edge can still be centred in the free band above the editor (the camera
+    // may go past the plan's edges by as much as that needs).
+    const band = editorFreeBand(), mid = band.top + band.height / 2, halfW = els.viewport.clientWidth / 2;
+    viewPanX = clamp(viewPanX, -maxX - halfW, halfW);
+    viewPanY = clamp(viewPanY, -(maxY + Math.max(editBottomAllowance, els.viewport.clientHeight - mid)), Math.max(0, mid - band.top));
+    return;
+  }
   viewPanX = clamp(viewPanX, -maxX, 0); viewPanY = clamp(viewPanY, -(maxY + editBottomAllowance), 0);
 }
 function updatePanoramaIndicator() {
@@ -2426,8 +3281,9 @@ function applyViewTransform() {
   els.viewport.classList.toggle('portrait-zoom-expanded', expandedPortrait);
   els.sceneCard?.classList.toggle('portrait-zoom-expanded', expandedPortrait);
   els.viewport.classList.toggle('view-zoomed', viewZoom > 1.01); // hides the edit grid (a pseudo-element, cheap)
-  syncCardClip();
+  syncCardClip(); syncDeskZoom();
   if (!sceneCameraActive()) { els.scene.style.transform = ''; updatePanoramaIndicator(); return; }
+  if (viewZoom < zoomFloor()) viewZoom = minViewZoom(); // e.g. edit mode left while zoomed out
   clampViewPan();
   els.scene.style.transformOrigin = '0 0';
   els.scene.style.transform = `translate(${viewPanX}px,${viewPanY}px) scale(${viewZoom})`;
@@ -2435,7 +3291,7 @@ function applyViewTransform() {
   // Zoom buttons / wheel / camera glide: the layer (drawn at the old scale) is dropped once the zoom settles.
   if (!viewPointers.size && gestureLayerZoom != null && Math.abs(viewZoom - gestureLayerZoom) > .001) setGestureLayer(false);
   if (els.zoomValue) els.zoomValue.textContent = `${Math.round(viewZoom * 100)}%`;
-  if (els.zoomOut) els.zoomOut.disabled = viewZoom <= minViewZoom() + .001;
+  if (els.zoomOut) els.zoomOut.disabled = viewZoom <= zoomFloor() + .001;
   if (els.zoomIn) els.zoomIn.disabled = viewZoom >= 4;
   updatePanoramaIndicator();
   requestAnimationFrame(syncSelection);
@@ -2443,7 +3299,7 @@ function applyViewTransform() {
 function setViewZoom(next, clientX = null, clientY = null) {
   // In desktop viewing mode, wheel-down must land exactly on the fitted 100% view.
   if (!mobileView() && !editMode && next <= 1) next = 1;
-  const old = viewZoom, zoom = clamp(next, minViewZoom(), 4); if (zoom === old) return;
+  const old = viewZoom, zoom = clamp(next, zoomFloor(), 4); if (zoom === old) return;
   const r = els.viewport.getBoundingClientRect(), x = clientX == null ? r.width / 2 : clientX - r.left, y = clientY == null ? r.height / 2 : clientY - r.top;
   viewPanX = x - (x - viewPanX) * zoom / old; viewPanY = y - (y - viewPanY) * zoom / old; viewZoom = zoom; applyViewTransform();
 }
@@ -2474,7 +3330,9 @@ function applyBackgroundTransform() {
     else {
       // Colour background: largest whole canvas of the chosen size that fits the workspace (like an image).
       const ratio = clamp(activeSceneView()?.solidCanvasRatio || 16 / 9, .25, 4), parentWidth = Math.max(1, card.parentElement?.clientWidth || innerWidth);
-      const availableHeight = Math.max(160, layoutViewportHeight() - card.getBoundingClientRect().top - 8);
+      // The card's place on the page, not on screen: a scrolled page must not make the fitted card taller (and scroll more).
+      if (!mobileView() && window.scrollY) window.scrollTo(0, 0);
+      const availableHeight = Math.max(160, layoutViewportHeight() - (card.getBoundingClientRect().top + (window.scrollY || 0)) - 10);
       card.style.width = `${(Math.min(parentWidth, availableHeight * ratio) / parentWidth) * 100}%`; card.style.marginLeft = 'auto'; card.style.marginRight = 'auto';
     }
     els.image.style.objectFit = 'fill'; els.image.style.transform = '';
@@ -2490,9 +3348,10 @@ function applyBackgroundTransform() {
   } else {
     // Every other combination: largest whole image that still fits in the visible workspace.
     const parentWidth = Math.max(1, card.parentElement?.clientWidth || innerWidth);
-    const top = card.getBoundingClientRect().top;
+    if (!mobileView() && window.scrollY) window.scrollTo(0, 0);
+    const top = card.getBoundingClientRect().top + (window.scrollY || 0);
     const viewportHeight = layoutViewportHeight();
-    const availableHeight = Math.max(160, viewportHeight - top - 8);
+    const availableHeight = Math.max(160, viewportHeight - top - (mobileView() ? 8 : 10));
     const fittedWidth = Math.min(parentWidth, availableHeight * ratio);
     card.style.width = `${(fittedWidth / parentWidth) * 100}%`;
     card.style.marginLeft = 'auto'; card.style.marginRight = 'auto';
@@ -2817,6 +3676,7 @@ function gaugeScaleMarkup(marker, s, cx, cy, radius, startAngle, sweep) {
   return markup.join('');
 }
 function markerHtml(marker) {
+  if (marker.type === 'thermostat') return thermostatMarkup(marker);
   const s = marker.style, formatted = formatState(marker), fullValue = `${formatted.value}${formatted.unit ? ` ${formatted.unit}` : ''}`, icon = iconMarkup(marker), outline = '<span class="marker-outline"></span>';
   if (isGaugeType(marker.type)) {
     const n = Number(stateCache[marker.entityId]?.state), span = Number(s.max) - Number(s.min) || 1;
@@ -2861,6 +3721,85 @@ function markerIconFrameControls(s) {
       + (s.iconShape === 'custom' ? control('Zaokrąglenie','style.iconRadius','range',s.iconRadius ?? 10,{min:0,max:120,step:1,suffix:'px',integer:true}) : '')
       + control('Margines','style.iconPadding','range',s.iconPadding ?? 6,{min:0,max:80,step:1,suffix:'px',integer:true}) : '');
 }
+const THERMO_MODES = { eco:['Eko','mdi-leaf','Eco'], electric:['Elektryczny','mdi-flash','Electric'], gas:['Gazowy','mdi-fire-circle','Gas'], heat_pump:['Pompa ciepła','mdi-heat-pump-outline','Heat pump'], high_demand:['Duże zużycie','mdi-water-boiler-alert','High demand'], performance:['Wydajny','mdi-rocket-launch-outline','Performance'], heat:['Grzanie','mdi-fire','Heat'], cool:['Chłodzenie','mdi-snowflake','Cool'], heat_cool:['Grzanie / chłodzenie','mdi-sun-snowflake-variant','Heat'], auto:['Auto','mdi-thermostat-auto','Auto'], dry:['Osuszanie','mdi-water-percent','Dry'], fan_only:['Wentylator','mdi-fan','Fan'], off:['Wyłączony','mdi-power','Off'] };
+const THERMO_ACTIONS = { heating:['Grzeje','mdi-fire'], preheating:['Nagrzewa','mdi-fire'], cooling:['Chłodzi','mdi-snowflake'], drying:['Osusza','mdi-water-percent'], fan:['Wentyluje','mdi-fan'], defrosting:['Odmraża','mdi-snowflake-melt'], idle:['Bezczynny','mdi-pause-circle-outline'], off:['Wyłączony','mdi-power'] };
+// Known attributes are drawn by the dial; the rest of a climate entity's attributes can be added as small rows.
+const THERMO_KNOWN_ATTRS = new Set(['hvac_modes','min_temp','max_temp','target_temp_step','current_temperature','temperature','target_temp_low','target_temp_high','hvac_action','current_humidity','humidity','min_humidity','max_humidity','preset_mode','preset_modes','fan_mode','fan_modes','swing_mode','swing_modes','icon','friendly_name','supported_features','entity_picture','device_class','attribution','assumed_state','restored','editable','unit_of_measurement']);
+const thermoPending = new Map();
+function climateInfo(marker, previewMode = null) {
+  const st = stateCache[marker.entityId] || {}, a = st.attributes || {}, num = v => { const n = Number(v); return v === null || v === undefined || v === '' || !Number.isFinite(n) ? null : n; };
+  const pending = thermoPending.get(marker.entityId) || {};
+  const min = num(a.min_temp) ?? 7, max = Math.max(min + 1, num(a.max_temp) ?? 35), step = num(a.target_temp_step) || .5;
+  // A water heater has "operation modes" (eco, electric, performance, off…) in place of a thermostat's HVAC modes.
+  const water = String(marker.entityId || '').startsWith('water_heater.'), realMode = water ? String(a.operation_mode ?? st.state ?? '') : String(st.state || '');
+  return { a, water, realMode, realPreset: String(a.preset_mode ?? ''), mode: previewMode ?? pending.hvac_mode ?? realMode, modes: water ? (Array.isArray(a.operation_list) ? a.operation_list : []) : Array.isArray(a.hvac_modes) ? a.hvac_modes : [], action: String(a.hvac_action || ''), current: num(a.current_temperature),
+    target: pending.temperature ?? num(a.temperature), low: num(a.target_temp_low), high: num(a.target_temp_high), min, max, step,
+    humidity: num(a.current_humidity), preset: String(pending.preset_mode ?? a.preset_mode ?? ''), presets: Array.isArray(a.preset_modes) ? a.preset_modes : [], fan: String(a.fan_mode || ''), unavailable: !st.state || st.state === 'unavailable' };
+}
+// Colours follow the activity (hvac_action): heating, cooling, idle… — each one has its own colour in the dial's section.
+// An entity without hvac_action takes it from its mode (heat → heating, cool → cooling, off → off, others → idle).
+const THERMO_ACT_COLORS = { heating:'#FF7A2F', preheating:'#FFA24A', cooling:'#38BDF8', drying:'#FBBF24', fan:'#A78BFA', defrosting:'#7DD3FC', idle:'#7C93A5', off:'#4B5D6B' };
+function thermoActivity(info) {
+  if (info.unavailable || info.mode === 'off') return 'off';
+  if (THERMO_ACT_COLORS[info.action]) return info.action;
+  return ({ heat:'heating', cool:'cooling', dry:'drying', fan_only:'fan' })[info.mode] || 'idle';
+}
+function thermoActColor(s, activity) { return s?.[`thermoActColor_${activity}`] || THERMO_ACT_COLORS[activity] || THERMO_ACT_COLORS.idle; }
+function thermoAccent(s, info) { return thermoActColor(s, thermoActivity(info)); }
+function thermoNumber(v, step = .5) { if (v === null || v === undefined) return '–'; const d = String(step).includes('.') ? 1 : 0; return Number(v).toFixed(d).replace('.', ','); }
+function thermostatMarkup(marker) {
+  const s = marker.style, info = climateInfo(marker), accent = thermoAccent(s, info), esc = escapeHtml, tr = translateValue;
+  const cx = 100, cy = 92, r = 74, start = 135, sweep = 270, angle = v => start + sweep * clamp((v - info.min) / (info.max - info.min), 0, 1);
+  const track = gaugeArcPath(cx, cy, r, start, start + sweep);
+  const value = info.target ?? info.high ?? null, active = !info.unavailable && value !== null;
+  const arc = active ? gaugeArcPath(cx, cy, r, start, Math.max(start + .5, angle(value))) : '';
+  const knob = active ? gaugePoint(cx, cy, r, angle(value)) : null, cur = info.current !== null ? gaugePoint(cx, cy, r, angle(info.current)) : null;
+  const working = info.mode !== 'off' && ['heating','cooling','preheating','drying','fan','defrosting'].includes(info.action);
+  const range = s.thermoShowRange ? `<text class="thermo-range" x="${gaugePoint(cx, cy, r, start).x.toFixed(1)}" y="${(gaugePoint(cx, cy, r, start).y + 16).toFixed(1)}">${esc(thermoNumber(info.min, info.step))}</text><text class="thermo-range" x="${gaugePoint(cx, cy, r, start + sweep).x.toFixed(1)}" y="${(gaugePoint(cx, cy, r, start + sweep).y + 16).toFixed(1)}">${esc(thermoNumber(info.max, info.step))}</text>` : '';
+  const svg = `<svg class="thermo-dial" viewBox="0 0 200 172" preserveAspectRatio="xMidYMid meet"><path class="thermo-track" d="${track}" style="stroke:${esc(s.thermoTrackColor)}"/>${arc ? `<path class="thermo-arc${working ? ' working' : ''}" d="${arc}" style="stroke:${esc(accent)}"/>` : ''}${cur && s.thermoShowCurrent ? `<circle class="thermo-cur" cx="${cur.x.toFixed(1)}" cy="${cur.y.toFixed(1)}" r="4.2"/>` : ''}${knob ? `<circle class="thermo-knob" cx="${knob.x.toFixed(1)}" cy="${knob.y.toFixed(1)}" r="7.5" style="stroke:${esc(accent)}"/>` : ''}${range}</svg>`;
+  const actInfo = info.mode === 'off' ? THERMO_ACTIONS.off : THERMO_ACTIONS[info.action] || null;
+  const action = s.thermoShowAction && actInfo ? `<span class="thermo-action${working ? ' working' : ''}" style="--accent:${esc(accent)}"><i class="mdi ${actInfo[1]}"></i>${esc(tr(actInfo[0]))}</span>` : '';
+  const big = info.unavailable ? tr('Niedostępny') : value === null ? (info.mode === 'off' ? tr('Wył.') : '–') : info.target === null && info.low !== null ? `${thermoNumber(info.low, info.step)}–${thermoNumber(info.high, info.step)}` : thermoNumber(value, info.step);
+  const centre = `<div class="thermo-centre"><small>${esc(tr(value === null && info.mode === 'off' ? 'Termostat' : 'Ustawiona'))}</small><b class="thermo-target${value === null || info.unavailable ? ' off' : ''}">${esc(big)}${!info.unavailable && value !== null ? '<sup>°</sup>' : ''}</b>${s.thermoShowCurrent && info.current !== null ? `<span class="thermo-now"><i class="mdi mdi-thermometer"></i>${esc(thermoNumber(info.current, .1))}°</span>` : ''}</div>`;
+  const chips = [
+    s.thermoShowHumidity && info.humidity !== null ? `<span class="thermo-chip"><i class="mdi mdi-water-percent"></i>${esc(String(Math.round(info.humidity)))}%</span>` : '',
+    s.thermoShowPreset && info.preset && info.preset !== 'none' ? `<span class="thermo-chip"><i class="mdi mdi-tune-variant"></i>${esc(info.preset)}</span>` : '',
+    s.thermoShowFan && info.fan ? `<span class="thermo-chip"><i class="mdi mdi-fan"></i>${esc(info.fan)}</span>` : '',
+    ...Object.keys(marker.thermoExtra || {}).filter(k => marker.thermoExtra[k] && info.a[k] !== undefined).map(k => `<span class="thermo-chip" title="${esc(k)}"><b>${esc(k.replace(/_/g, ' '))}</b>${esc(readableAttribute(info.a[k]))}</span>`)].join('');
+  const canSet = info.target !== null && !info.unavailable;
+  const controls = s.thermoShowControls ? `<div class="thermo-controls"><button type="button" class="thermo-btn" data-thermo="down"${canSet ? '' : ' disabled'} aria-label="−"><i class="mdi mdi-minus"></i></button><div class="thermo-chips">${chips}</div><button type="button" class="thermo-btn" data-thermo="up"${canSet ? '' : ' disabled'} aria-label="+"><i class="mdi mdi-plus"></i></button></div>` : chips ? `<div class="thermo-controls"><div class="thermo-chips">${chips}</div></div>` : '';
+  const modes = s.thermoShowModes && info.modes.length ? `<div class="thermo-modes">${info.modes.map(m => { const d = THERMO_MODES[m] || [m, 'mdi-thermostat']; return `<button type="button" class="thermo-mode${m === info.mode ? ' on' : ''}" data-thermo-mode="${esc(m)}" title="${esc(tr(d[0]))}" aria-label="${esc(tr(d[0]))}" style="--accent:${esc(m === 'off' ? s.thermoOffColor : m === 'cool' ? s.thermoCoolColor : m === 'heat' ? s.thermoHeatColor : m === 'dry' ? s.thermoDryColor : m === 'fan_only' ? s.thermoFanColor : s.thermoAutoColor)}"><i class="mdi ${d[1]}"></i></button>`; }).join('')}</div>` : '';
+  const head = s.showLabel || action ? `<div class="thermo-head">${s.showLabel ? `<span class="thermo-name">${esc(marker.displayName || '')}</span>` : ''}${action}</div>` : '';
+  return `<span class="marker-outline"></span><div class="thermo${working ? ' working' : ''}" style="--accent:${esc(accent)}">${head}<div class="thermo-body">${svg}${centre}</div>${controls}${modes}</div>`;
+}
+// − / + and the modes, in viewing mode: the dial follows at once, Home Assistant gets the value when the taps stop.
+const thermoTimers = new Map();
+function thermoSend(marker, action, value) {
+  const id = marker.entityId; return api('control', jsonOptions({ entity_id: id, action, value })).catch(error => { thermoPending.delete(id); renderMarkerState(id, stateCache[id] || {}); notify(`${translateValue('Błąd termostatu')}: ${error.message}`, true); });
+}
+// A change still not reported back by the device after a while did not go through: it is undone on screen, with a word.
+function thermoClearLater(id) { clearTimeout(thermoTimers.get(`${id}:clear`)); thermoTimers.set(`${id}:clear`, setTimeout(() => { if (thermoPending.has(id)) { thermoPending.delete(id); notify(translateValue('Urządzenie nie przyjęło zmiany'), true); } renderMarkerState(id, stateCache[id] || {}); if (roomUsesEntity(id)) renderRooms(); }, 15000)); }
+function thermoTap(marker, button) {
+  const id = marker.entityId, info = climateInfo(marker), pending = thermoPending.get(id) || {}, room = marker.room || null;
+  const preset = button.dataset.thermoPreset, mode = button.dataset.thermoMode;
+  if (preset || mode) {
+    if (preset ? preset === info.preset : mode === info.mode) return;
+    // Optional: asking first (per mode / preset; by default turning on / off).
+    const ask = room ? thermoNeedsConfirm(room, info, mode, preset) : marker.confirm && (mode === 'off' || info.mode === 'off');
+    if (ask) {
+      const off = mode === 'off', on = !preset && info.mode === 'off', name = String(marker.name || '').trim(), what = preset ? thermoPresetText(room, preset) : thermoModeText(room, mode);
+      appConfirm({ title: off ? 'Wyłączyć?' : on ? 'Włączyć?' : 'Zmienić tryb?', message: `${name ? `${name}: ` : ''}${off ? translateValue('urządzenie zostanie wyłączone.') : on ? translateValue('urządzenie zostanie włączone.') : what}`, confirmText: off ? 'Wyłącz' : on ? 'Włącz' : 'Zmień', danger: off })
+        .then(ok => { if (ok) thermoTap({ ...marker, confirm: false, room: room ? { ...room, thermoConfirm: false, ...Object.fromEntries(Object.keys(room).filter(k => /^thermoConfirm/.test(k)).map(k => [k, false])) } : null }, button); });
+      return;
+    }
+    thermoPending.set(id, preset ? { ...pending, preset_mode: preset } : { ...pending, hvac_mode: mode }); renderMarkerState(id, stateCache[id] || {}); if (roomUsesEntity(id)) renderRooms();
+    thermoSend(marker, preset ? 'set_preset_mode' : info.water ? 'set_operation_mode' : 'set_hvac_mode', preset || mode); thermoClearLater(id); return;
+  }
+  if (info.target === null) return;
+  const dir = button.dataset.thermo === 'up' ? 1 : -1, next = clamp(Math.round((info.target + dir * info.step) / info.step) * info.step, info.min, info.max);
+  thermoPending.set(id, { ...pending, temperature: Math.round(next * 100) / 100 }); renderMarkerState(id, stateCache[id] || {}); if (roomUsesEntity(id)) renderRooms();
+  clearTimeout(thermoTimers.get(id)); thermoTimers.set(id, setTimeout(() => { const value = thermoPending.get(id)?.temperature; if (value === undefined) return; thermoSend(marker, 'set_temperature', value); thermoClearLater(id); }, 700));
+}
 function applyMarkerStyle(node, marker) {
   const s = marker.style, baseContentScale = Number(s.baseContentScale) || 1, contentScale = clamp(baseContentScale * (Number(s.contentScale) || 1), .4, Math.max(5.5, baseContentScale * 5));
   const displayY = marker.yPercent, kind = stateKind(marker), stateSuffix = kind === 'on' ? 'On' : kind === 'off' ? 'Off' : '', rule = valueRuleResult(marker);
@@ -2877,6 +3816,7 @@ function applyMarkerStyle(node, marker) {
     border: '0 solid transparent',
     borderRadius: s.shape === 'circle' ? '50%' : s.shape === 'square' ? '0px' : `${s.radius}px`
   });
+  if (marker.type === 'thermostat') node.style.setProperty('--thermo-k', String(contentScale));
   const outlineNode = $('.marker-outline', node);
   const outlineRadius = s.shape === 'circle' ? '50%' : s.shape === 'square' ? '0px' : `${Math.max(0, Number(s.radius) || 0) + Math.max(0, Number(borderWidth) || 0)}px`;
   if (outlineNode) Object.assign(outlineNode.style, { inset: `-${borderWidth}px`, border: s.showBorder && borderWidth > 0 ? `${borderWidth}px solid ${rgba(borderColor, borderOpacity)}` : '0 solid transparent', borderRadius: outlineRadius });
@@ -3406,6 +4346,10 @@ function flushDeferredRenders() {
 function renderMarkerState(entityId, nextState) {
   if (!nextState) return;
   stateCache[entityId] = { ...stateCache[entityId], ...nextState };
+  // A thermostat's own change is shown until Home Assistant reports the same values.
+  const tp = thermoPending.get(entityId), st = stateCache[entityId];
+  const realMode = String(entityId).startsWith('water_heater.') ? String(st?.attributes?.operation_mode ?? st?.state ?? '') : st?.state;
+  if (tp && (tp.temperature === undefined || Number(st?.attributes?.temperature) === tp.temperature) && (tp.hvac_mode === undefined || realMode === tp.hvac_mode) && (tp.preset_mode === undefined || st?.attributes?.preset_mode === tp.preset_mode)) thermoPending.delete(entityId);
   if (touchGestureActive()) { deferredMarkerIds.add(entityId); if (moreInfoEntityId === entityId) refreshMoreInfoState(); return; }
   markersForEntity(entityId).forEach(marker => { const node = markerNode(marker.id); if (node) { node.innerHTML = markerHtml(marker); applyMarkerStyle(node, marker); } });
   if (moreInfoEntityId === entityId) refreshMoreInfoState();
@@ -3456,6 +4400,7 @@ function onMarkerClick(event) {
   const marker = model.entities[event.currentTarget.dataset.markerId];
   if (!marker) return;
   if (!editMode && isTextId(marker.entityId)) return runLinkAction(marker);
+  if (!editMode && marker.type === 'thermostat') { const button = event.target.closest?.('[data-thermo], [data-thermo-mode], [data-thermo-preset]'); if (button) { if (!button.disabled) thermoTap(marker, button); return; } }
   if (!editMode && marker.roomId) { const room = roomsOf()[marker.roomId]; if (marker.tapAction === 'none' || !room) return; return onRoomTap(room, marker.tapAction); }
   if (!editMode) { if (marker.tapAction === 'none') return; return (marker.tapAction === 'toggle' && isToggleableMarker(marker) ? toggleMarker(marker) : openMoreInfo(marker.entityId)); }
   selectMarker(marker.id);
@@ -3482,20 +4427,31 @@ function editorFreeBand() {
   const bottom = Math.min(editorTop, vr.bottom) - vr.top - 14;
   return { top, bottom, height: Math.max(60, bottom - top) };
 }
+// On a computer, zoomed in while editing: the selected element glides to the middle of the free screen (same zoom).
+function focusSceneBoxOnDesktop(points) {
+  if (mobileView() || !editMode || !points.length || !deskZoomExpanded()) return;
+  const W = els.scene.offsetWidth || 1, H = els.scene.offsetHeight || 1, xs = points.map(p => Number(p[0]) / 100 * W), ys = points.map(p => Number(p[1]) / 100 * H);
+  const cx = (Math.min(...xs) + Math.max(...xs)) / 2, cy = (Math.min(...ys) + Math.max(...ys)) / 2, R = deskZoomRegion(), vp = els.viewport.getBoundingClientRect();
+  glideCamera(viewZoom, (R.left + R.right) / 2 - vp.left - cx * viewZoom, (R.top + R.bottom) / 2 - vp.top - cy * viewZoom);
+}
 function focusSceneBoxOnMobile(points) {
-  if (!mobileView() || !editMode || !points.length) return;
+  if (!mobileView()) return focusSceneBoxOnDesktop(points);
+  if (!editMode || !points.length) return;
   const sceneWidth = els.scene.offsetWidth || 1, sceneHeight = els.scene.offsetHeight || 1;
   const xs = points.map(p => Number(p[0]) / 100 * sceneWidth), ys = points.map(p => Number(p[1]) / 100 * sceneHeight);
   const boxW = Math.max(1, Math.max(...xs) - Math.min(...xs)), boxH = Math.max(1, Math.max(...ys) - Math.min(...ys));
   const viewW = els.viewport.clientWidth || 1, viewH = els.viewport.clientHeight || 1;
   const { top: freeTop, height: freeH } = editorFreeBand();
-  const nextZoom = clamp(Math.min(viewW * .86 / boxW, freeH / boxH), minViewZoom(), 2.35);
+  // Just above the smallest zoom at least: at the smallest one the camera does not move, so a big element (e.g. a
+  // thermostat) low on the plan would stay under the editor instead of being centred.
+  const nextZoom = clamp(Math.min(viewW * .86 / boxW, freeH / boxH), Math.min(minViewZoom() + .001, Math.max(zoomFloor(), Math.min(viewW * .86 / boxW, freeH / boxH))), 2.35);
   const centreX = (Math.min(...xs) + Math.max(...xs)) / 2, centreY = (Math.min(...ys) + Math.max(...ys)) / 2;
   const targetY = freeTop + freeH / 2;
   glideCamera(nextZoom, viewW / 2 - centreX * nextZoom, targetY - centreY * nextZoom);
 }
 function focusScenePointOnMobile(xPercent, yPercent) {
-  if (!mobileView() || !editMode) return;
+  if (!mobileView()) return focusSceneBoxOnDesktop([[xPercent, yPercent]]);
+  if (!editMode) return;
   const marker = { xPercent, yPercent };
   // Deliberately closer than beta.52: selected markers remain clear of the
   // bottom editor even on the lowest part of a portrait background.
@@ -3532,6 +4488,7 @@ function selectMarker(key) {
 }
 function hideSelection() { els.selection.classList.remove('visible','geometry-locked'); }
 function syncSelection() {
+  fitCardHandles();
   const node = markerNode(selectedId); if (!node) return hideSelection();
   const sr = els.scene.getBoundingClientRect(), r = node.getBoundingClientRect(), zoom = sceneCameraActive() ? viewZoom : 1;
   Object.assign(els.selection.style, { left: `${(r.left - sr.left) / zoom}px`, top: `${(r.top - sr.top) / zoom}px`, width: `${r.width / zoom}px`, height: `${r.height / zoom}px` });
@@ -3678,6 +4635,7 @@ function touchSelectFirst(event, selected, select = null) {
 }
 function startDrag(event) {
   if (!editMode || event.button !== 0) return;
+  if (secondFingerToZoom(event)) return;
   if (touchSelectFirst(event, selectedId === event.currentTarget.dataset.markerId)) return; // a tap selects it (click)
   event.preventDefault(); const node = event.currentTarget, key = node.dataset.markerId, marker = model.entities[key];
   if (marker?.geometryLocked) return;
@@ -3709,6 +4667,7 @@ const CHOICE_ICONS = {
     center:'mdi-brightness-7', corner:'mdi-arrow-top-left-bold-box-outline', wall:'mdi-wall-sconce-flat-outline', ambient:'mdi-weather-sunset', entity:'mdi-home-assistant', integration:'mdi-puzzle-outline', mdi:'mdi-pencil-outline' },
   lightEffect: { none:'mdi-square' }, 'style.backgroundGradient': { none:'mdi-square' }, iconMode: { auto:'mdi-home-assistant', integration:'mdi-puzzle-outline', manual:'mdi-pencil-outline' },
   directionMode: { manual:'mdi-arrow-right-bold-outline', auto:'mdi-plus-minus-variant' }, labelNameWeight: { '':'mdi-format-font', normal:'mdi-format-letter-case', medium:'mdi-format-text', bold:'mdi-format-bold' }, labelStateWeight: { '':'mdi-format-font', normal:'mdi-format-letter-case', medium:'mdi-format-text', bold:'mdi-format-bold' }, 'style.labelWeight': { '':'mdi-format-font', normal:'mdi-format-letter-case', medium:'mdi-format-text', bold:'mdi-format-bold' }, 'style.valueWeight': { '':'mdi-format-font', normal:'mdi-format-letter-case', medium:'mdi-format-text', bold:'mdi-format-bold' },
+  labelIconAnimType: { spin:'mdi-fan', pulse:'mdi-heart-pulse', blink:'mdi-flash-outline', swing:'mdi-arrow-left-right' }, labelIconAnimDir: { cw:'mdi-rotate-right', ccw:'mdi-rotate-left' },
   outlineStyle: { solid:'mdi-minus-thick', dashed:'mdi-dots-horizontal', dotted:'mdi-circle-small' }, labelStateDecimals: { auto:'', 0:'', 1:'', 2:'', 3:'' }, decimals: { auto:'', 0:'', 1:'', 2:'', 3:'' }, 'style.tickFontFamily': {}, linkView: {}
 };
 function choiceIcon(path, value) {
@@ -3935,6 +4894,7 @@ function gaugePanelMarkup(marker) {
   return (onOff ? previewRow('__preview', editorPreview.entityId === marker.entityId ? editorPreview.state : '') : '') + general + gauge + icon + name + value + group + valueRulesSection(marker);
 }
 function editorMarkup(marker) {
+  if (marker.type === 'thermostat') return thermostatEditorMarkup(marker);
   if (marker.type === 'icon') return iconEditorMarkup(marker);
   if (isGaugeType(marker.type) && !isTextId(marker.entityId)) return gaugePanelMarkup(marker);
   const s = marker.style;
@@ -3965,6 +4925,23 @@ function editorMarkup(marker) {
   }
   if (textEl) return entity + size + value.replace('>Stan<', `>${translateValue('Tekst')}<`) + label.replace('>Nazwa<', `>${translateValue('Podpis')}<`) + icon + background + border;
   return withStatePreview(entity + size + value + label + icon + gauge + valueRulesSection(marker) + background + border, marker, ['Encja','Stan','Ikona','Tło','Ramka']);
+}
+function thermostatEditorMarkup(marker) {
+  const s = marker.style, info = climateInfo(marker), a = info.a, has = k => a[k] !== undefined && a[k] !== null;
+  const show = (label, path, value, available = true, note = '') => available ? control(label, path, 'checkbox', !!value) : `<div class="control thermo-missing"><label>${escapeHtml(translateValue(label))}</label><small>${escapeHtml(translateValue(note || 'Encja nie ma tego atrybutu'))}</small></div>`;
+  const entity = section('Encja', control('Nazwa','displayName','text',marker.displayName) + `<div class="control thermo-attrs"><label>${escapeHtml(translateValue('Atrybuty'))}</label><code data-no-i18n>${escapeHtml(marker.entityId)} · ${escapeHtml(String(stateCache[marker.entityId]?.state ?? '—'))}</code></div>` + tapActionControl(marker.tapAction || 'more_info', false));
+  const parts = section('Pokaż', show('Nazwa','style.showLabel',s.showLabel) + show('Stan pracy (grzeje / bezczynny)','style.thermoShowAction',s.thermoShowAction, has('hvac_action'))
+    + show('Temperatura aktualna','style.thermoShowCurrent',s.thermoShowCurrent, has('current_temperature')) + show('Przyciski − / +','style.thermoShowControls',s.thermoShowControls, has('temperature') || has('target_temp_high'))
+    + show('Tryby','style.thermoShowModes',s.thermoShowModes, info.modes.length > 0) + show('Zakres min / max','style.thermoShowRange',s.thermoShowRange)
+    + show('Wilgotność','style.thermoShowHumidity',s.thermoShowHumidity, has('current_humidity')) + show('Preset','style.thermoShowPreset',s.thermoShowPreset, has('preset_mode')) + show('Wentylator','style.thermoShowFan',s.thermoShowFan, has('fan_mode')));
+  const extraKeys = Object.keys(a).filter(k => !THERMO_KNOWN_ATTRS.has(k)).sort();
+  const extra = extraKeys.length ? section('Inne atrybuty', extraKeys.map(k => `<div class="control thermo-extra"><label data-no-i18n>${escapeHtml(k.replace(/_/g, ' '))}</label><input type="checkbox" data-path="thermoExtra.${escapeHtml(k)}"${marker.thermoExtra?.[k] ? ' checked' : ''}><small data-no-i18n>${escapeHtml(readableAttribute(a[k]))}</small></div>`).join('')) : '';
+  const colours = section('Kolory', control('Grzanie','style.thermoHeatColor','color',s.thermoHeatColor) + control('Chłodzenie','style.thermoCoolColor','color',s.thermoCoolColor) + control('Auto','style.thermoAutoColor','color',s.thermoAutoColor)
+    + control('Osuszanie','style.thermoDryColor','color',s.thermoDryColor) + control('Wentylator','style.thermoFanColor','color',s.thermoFanColor) + control('Wyłączony','style.thermoOffColor','color',s.thermoOffColor) + control('Tor tarczy','style.thermoTrackColor','color',s.thermoTrackColor));
+  const size = section('Rozmiar', linkedSizeControl('Oba wymiary','style.width','style.height',[120,1200,120,1200],!!marker.geometryLocked) + control('Szerokość','style.width','range',s.width,{min:120,max:1200,step:1,suffix:'px'}) + control('Wysokość','style.height','range',s.height,{min:120,max:1200,step:1,suffix:'px'}) + control('Skala zawartości','style.contentScale','range',s.contentScale,{min:.4,max:3,step:.01}));
+  const background = section('Tło', control('Pokaż','style.showBackground','checkbox',s.showBackground) + control('Kolor','style.backgroundColor','color',s.backgroundColor) + control('Przezrocz.','style.backgroundOpacity','range',s.backgroundOpacity,{min:0,max:1,step:.01}));
+  const border = section('Ramka', control('Pokaż','style.showBorder','checkbox',s.showBorder) + control('Kolor','style.borderColor','color',s.borderColor) + control('Przezrocz.','style.borderOpacity','range',s.borderOpacity,{min:0,max:1,step:.01}) + control('Grubość','style.borderWidth','range',s.borderWidth,{min:0,max:12,step:.5,suffix:'px'}) + control('Zaokrąglenie','style.radius','range',s.radius,{min:0,max:120,step:1,suffix:'px'}));
+  return entity + parts + extra + colours + size + background + border;
 }
 function bindEditorInputs(root) {
   $$('input,select', root).forEach(input => {
@@ -4038,11 +5015,25 @@ function previewControl(marker) { return stateButtons('__preview', editorPreview
 // A small ON / OFF pair right under the editor header buttons simulates the state while styling (not saved).
 // The ON / OFF preview is one toggle in the header row (only for things that switch on and off); the content
 // only carries where it applies — syncHeadPreview puts it on the button.
-function previewRow(path, value) { return `<i class="head-preview-src" hidden data-path="${path}" data-value="${value}"></i>`; }
+function previewRow(path, value, thermo = null) { return `<i class="head-preview-src" hidden data-path="${path}" data-value="${value}"${thermo ? ` data-acts="${escapeHtml(thermo.acts)}" data-current="${escapeHtml(thermo.current)}"` : ''}></i>`; }
 function syncHeadPreview(panel, actualOn) {
   const button = panel?.querySelector('.head-preview'), src = panel?.querySelector('.head-preview-src'); if (!button) return;
   button.hidden = !src; if (!src) return;
-  const preview = src.dataset.value, shown = preview || (actualOn ? 'on' : 'off');
+  const preview = src.dataset.value;
+  // A thermostat: the button steps through its work states (the real one first), each previewed in turn.
+  if (src.dataset.acts) {
+    const acts = src.dataset.acts.split(',').filter(Boolean), shown = preview.startsWith('act:') ? preview.slice(4) : src.dataset.current, i = acts.indexOf(shown);
+    const next = acts[(i + 1) % Math.max(1, acts.length)] || shown;
+    button.dataset.previewPath = src.dataset.path; button.dataset.previewValue = next === src.dataset.current && preview ? '' : `act:${next}`;
+    button.classList.toggle('active', !!preview); button.querySelector('i').className = `mdi ${THERMO_ACTIONS[shown]?.[1] || 'mdi-thermostat'}`;
+    const label = `${translateValue('Podgląd')}: ${translateValue(THERMO_ACTIONS[shown]?.[0] || shown)}`; button.title = label; button.setAttribute('aria-label', label);
+    // The previewed work state is named next to the icon.
+    let text = button.querySelector('.head-preview-text'); if (!text) { text = document.createElement('span'); text.className = 'head-preview-text'; button.append(text); }
+    text.textContent = translateValue(THERMO_ACTIONS[shown]?.[0] || shown); button.classList.add('with-text');
+    return;
+  }
+  button.querySelector('.head-preview-text')?.remove(); button.classList.remove('with-text');
+  const shown = preview || (actualOn ? 'on' : 'off');
   button.dataset.previewPath = src.dataset.path; button.dataset.previewValue = shown === 'on' ? 'off' : 'on';
   button.classList.toggle('active', !!preview); button.querySelector('i').className = `mdi ${shown === 'on' ? 'mdi-lightbulb-on' : 'mdi-lightbulb-off-outline'}`;
   const label = translateValue(shown === 'on' ? 'Podgląd: włączony' : 'Podgląd: wyłączony'); button.title = label; button.setAttribute('aria-label', label);
@@ -4113,7 +5104,7 @@ function onEditorInput(event) {
   const output = input.parentElement.querySelector('output'); if (output) { const d = String(input.step || '').split('.')[1]?.length || 0; output.textContent = `${typeof value === 'number' && input.type === 'range' ? Number(value.toFixed(d)) : value}${output.dataset.suffix || ''}`; }
   const node = markerNode(marker.id);
   if (input.dataset.path === 'displayName' || input.dataset.path === 'textValue') { els.editorTitle.textContent = isTextId(marker.entityId) ? (marker.textValue || marker.displayName || translateValue('Tekst / przycisk')) : value; if (node) node.innerHTML = markerHtml(marker); }
-  const needsMarkup = input.dataset.path === 'unitOverride' || input.dataset.path === 'decimals' || input.dataset.path === 'stateOnLabel' || input.dataset.path === 'stateOffLabel' || input.dataset.path.startsWith('icon') || input.dataset.path.startsWith('valueRules.') || input.dataset.path.startsWith('style.show') || isGaugeType(marker.type) && input.dataset.path.startsWith('style.');
+  const needsMarkup = input.dataset.path === 'unitOverride' || input.dataset.path === 'decimals' || input.dataset.path === 'stateOnLabel' || input.dataset.path === 'stateOffLabel' || input.dataset.path.startsWith('icon') || input.dataset.path.startsWith('valueRules.') || input.dataset.path.startsWith('style.show') || isGaugeType(marker.type) && input.dataset.path.startsWith('style.') || marker.type === 'thermostat';
   // A range input keeps pointer capture only while its DOM node remains intact.
   // Rebuild Gauge/Horseshoe SVG after the finger is released, never while dragging.
   if (needsMarkup && (input.type !== 'range' || event.type === 'change')) { if (node) node.innerHTML = markerHtml(marker); }
@@ -4137,10 +5128,11 @@ function renderAdded() {
   const actions = (kind, id) => `<div class="entity-actions"><button data-added-show="${kind}" data-id="${escapeHtml(id)}">Pokaż</button><button class="danger" data-added-remove="${kind}" data-id="${escapeHtml(id)}">Usuń z widoku</button></div>`;
   const markerRows = markers.map(m => isTextId(m.entityId) ? `<div class="entity-row added-row"><div class="added-identity"><span class="added-kind-icon"><i class="mdi mdi-format-text"></i></span><div><strong data-no-i18n>${escapeHtml(m.textValue || m.displayName || translateValue('Tekst'))}</strong><small>${escapeHtml(translateValue('Tekst / przycisk'))}${m.linkAction && m.linkAction !== 'none' ? ' · ' + escapeHtml(translateValue(LINK_ACTIONS.find(([v]) => v === m.linkAction)?.[1] || '')) : ''}</small></div></div>${actions('marker', m.entityId)}</div>` : `<div class="entity-row added-row"><div class="added-identity">${integrationIconMarkupFor(m.sourceDomain || m.entityId.split('.')[0], m.integrationName || m.sourceDomain, 'added-icon')}<div><strong data-no-i18n>${escapeHtml(m.displayName)}</strong><small>${escapeHtml(m.entityId)} · ${escapeHtml(m.integrationName || 'Home Assistant')} · ${markerTypeLabel(m.type)}</small></div></div>${actions('marker', m.entityId)}</div>`);
   const flowRows = flows.map(flow => `<div class="entity-row added-row flow-row"><div class="added-identity"><span class="added-kind-icon"><i class="mdi mdi-chevron-triple-right"></i></span><div><strong data-no-i18n>${escapeHtml(flow.displayName || flow.entityId)}</strong><small>${escapeHtml(flow.entityId || '—')}${flow.integrationName ? ' · ' + escapeHtml(flow.integrationName) : ''}</small></div></div>${actions('flow', flow.id)}</div>`);
-  const roomRows = rooms.map(room => `<div class="entity-row added-row room-row"><div class="added-identity"><span class="added-kind-icon"><i class="mdi ${isIconRoom(room) ? 'mdi-label-outline' : 'mdi-floor-plan'}"></i></span><div><strong data-no-i18n>${escapeHtml(room.name || translateValue(isIconRoom(room) ? 'Etykieta' : 'Pomieszczenie'))}</strong><small data-no-i18n>${escapeHtml((room.entityIds || []).join(', ') || '—')}</small></div></div>${actions('room', room.id)}</div>`);
+  const roomRow = room => `<div class="entity-row added-row room-row"><div class="added-identity"><span class="added-kind-icon"><i class="mdi ${isIconRoom(room) ? 'mdi-label-outline' : 'mdi-floor-plan'}"></i></span><div><strong data-no-i18n>${escapeHtml(room.name || translateValue(isIconRoom(room) ? 'Etykieta' : 'Pomieszczenie'))}</strong><small data-no-i18n>${escapeHtml((room.entityIds || []).join(', ') || '—')}</small></div></div>${actions('room', room.id)}</div>`;
+  const labelRows = rooms.filter(isIconRoom).map(roomRow), roomRows = rooms.filter(room => !isIconRoom(room)).map(roomRow);
   const group = (title, rows) => rows.length ? `<div class="added-group"><div class="added-group-title"><span data-no-i18n>${title === 'Flow' ? 'Flow' : translateValue(title)}</span><b>${rows.length}</b></div>${rows.join('')}</div>` : '';
-  const total = markerRows.length + flowRows.length + roomRows.length; els.addedCount.textContent = total;
-  els.addedList.innerHTML = total ? group('Markery', markerRows) + group('Flow', flowRows) + group('Pomieszczenia', roomRows) : '<div class="empty-row">Nie dodano jeszcze żadnych elementów.</div>';
+  const total = markerRows.length + flowRows.length + labelRows.length + roomRows.length; els.addedCount.textContent = total;
+  els.addedList.innerHTML = total ? group('Etykiety', labelRows) + group('Pomieszczenia', roomRows) + group('Markery', markerRows) + group('Flow', flowRows) : '<div class="empty-row">Nie dodano jeszcze żadnych elementów.</div>';
 }
 async function loadIntegrations(force = false) {
   if (integrations.length && !force) return renderIntegrations();
@@ -4149,6 +5141,13 @@ async function loadIntegrations(force = false) {
   catch (error) { els.integrationList.innerHTML = `<div class="empty-row">Błąd: ${escapeHtml(error.message)}</div>`; }
 }
 function searchText(value) { return String(value || '').toLocaleLowerCase('pl').trim(); }
+// Search by words, in any order, without Polish diacritics and tolerant of endings ("wyspa" finds "Lampa nad wyspą",
+// "kuchnia" finds "kuchni"): every typed word must appear in the entity's id / name / area.
+function plainText(value) { return searchText(value).replace(/ł/g, 'l').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[_.]/g, ' '); }
+function looseMatch(haystack, query) {
+  const hay = plainText(haystack);
+  return plainText(query).split(/\s+/).filter(Boolean).every(word => hay.includes(word) || (word.length >= 5 && hay.includes(word.slice(0, -1))) || (word.length >= 6 && hay.includes(word.slice(0, -2))));
+}
 function searchResultMarkup(entity, integration) {
   const added = markersForEntity(entity.entity_id).length > 0;
   return `<div class="entity-row search-result ${entity.enabled ? '' : 'disabled-entity'}"><div><strong data-no-i18n>${escapeHtml(entity.name || entity.entity_id)}</strong><small>${escapeHtml(entity.entity_id)} · ${escapeHtml(integration.title || integration.domain || 'Home Assistant')}${entity.state != null ? ` · ${escapeHtml(entity.state)}${entity.unit ? ` ${escapeHtml(entity.unit)}` : ''}` : ''}</small></div><div class="entity-actions">${enabledIcon(entity.enabled)}<button class="add-entity" data-add="${escapeHtml(entity.entity_id)}" data-entry="${escapeHtml(integration.entry_id)}" ${added || !entity.enabled ? 'disabled' : ''} title="${added ? 'Dodano do widoku' : 'Dodaj wskaźnik'}">${added ? '✓' : '+'}</button></div></div>`;
@@ -4213,7 +5212,7 @@ function integrationBody(group) {
   if (group.entries.some(item => !integrationEntities.has(item.entry_id))) return '<div class="empty-row">Kliknij, aby wczytać encje.</div>';
   const seen = new Set(), entities = group.entries.flatMap(item => (integrationEntities.get(item.entry_id) || []).map(entity => ({ ...entity, _entryId: item.entry_id }))).filter(entity => !seen.has(entity.entity_id) && seen.add(entity.entity_id)).sort((a,b) => String(a.name).localeCompare(String(b.name), 'pl', { sensitivity: 'base' }));
   if (!entities.length) return '<div class="empty-row">Brak encji.</div>';
-  return entities.map(e => { const added = markersForEntity(e.entity_id).length > 0; return `<div class="entity-row ${e.enabled ? '' : 'disabled-entity'}"><div><strong data-no-i18n>${escapeHtml(e.name)}</strong><small>${escapeHtml(e.entity_id)}${e.state != null ? ` · ${escapeHtml(e.state)}${e.unit ? ` ${escapeHtml(e.unit)}` : ''}` : ''}</small></div><div class="entity-actions">${enabledIcon(e.enabled)}<button class="add-entity" data-add="${escapeHtml(e.entity_id)}" data-entry="${escapeHtml(e._entryId)}" ${added || !e.enabled ? 'disabled' : ''} title="${added ? 'Dodano do widoku' : e.enabled ? 'Dodaj wskaźnik' : 'Encja jest wyłączona'}">${added ? '✓' : '+'}</button></div></div>`; }).join('');
+  return entities.map(e => { const added = markersForEntity(e.entity_id).length > 0 || Object.values(activeSceneView()?.rooms || {}).some(room => isIconRoom(room) && (room.entityIds || []).includes(e.entity_id)); return `<div class="entity-row ${e.enabled ? '' : 'disabled-entity'}"><div><strong data-no-i18n>${escapeHtml(e.name)}</strong><small>${escapeHtml(e.entity_id)}${e.state != null ? ` · ${escapeHtml(e.state)}${e.unit ? ` ${escapeHtml(e.unit)}` : ''}` : ''}</small></div><div class="entity-actions">${enabledIcon(e.enabled)}<button class="add-entity" data-add="${escapeHtml(e.entity_id)}" data-entry="${escapeHtml(e._entryId)}" ${added || !e.enabled ? 'disabled' : ''} title="${added ? 'Dodano do widoku' : e.enabled ? 'Dodaj do widoku' : 'Encja jest wyłączona'}">${added ? '✓' : '+'}</button></div></div>`; }).join('');
 }
 async function toggleIntegration(groupKey) {
   if (openIntegrations.has(groupKey)) { openIntegrations.delete(groupKey); return renderIntegrations(); }
@@ -4236,11 +5235,13 @@ const ADD_TYPES = [
   // Gauge and horseshoe are one tile; which one is chosen in its panel (Badge is no longer added).
   { key:'gauge', label:'Wskaźnik', hint:'Gauge albo podkowa — moc, poziom, procent', entity:'required', numeric:true },
   { key:'flow', label:'Flow', hint:'Przepływ energii, wody', entity:'optional', numeric:true },
-  { key:'text', label:'Tekst / przycisk', hint:'Podpis, link do widoku, akcja', entity:'none' },
+  { key:'thermostat', label:'Termostat', hint:'Ogrzewanie / klimatyzacja — temperatura, tryby, sterowanie', entity:'required', domains:['climate'] },
+  { key:'text', label:'Tekst', hint:'Napis z akcją — widok, strona HA, link', entity:'none' },
 ];
 const ADD_SAMPLES = {
   badge: { entity_id:'sensor.hav_sample_temperature', name:'Salon', state:'21.8', unit:'°C', device_class:'temperature' },
   gauge: { entity_id:'sensor.hav_sample_level', name:'Poziom', state:'64', unit:'%' },
+  thermostat: { entity_id:'climate.hav_sample_heating', name:'Ogrzewanie', state:'heat', attributes:{ hvac_modes:['heat','off'], min_temp:10, max_temp:30, target_temp_step:.5, current_temperature:21.5, temperature:22, hvac_action:'heating' } },
   horseshoe: { entity_id:'sensor.hav_sample_battery', name:'Bateria', state:'72', unit:'%', device_class:'battery' },
 };
 const ADD_TYPE_GROUPS = [['light','Światła',['light']],['switch','Przełączniki',['switch','input_boolean','fan']],['sensor','Czujniki',['sensor']],['binary_sensor','Czujniki binarne',['binary_sensor']],['cover','Rolety',['cover']],['climate','Klimat',['climate','water_heater']],['media','Media',['media_player']]];
@@ -4271,6 +5272,7 @@ function addEntityNumeric(entity) { const raw = entity?.state; if (raw === null 
 function addTypeAllowed(type, entity) {
   if (!entity) return true;
   if (type.entity === 'none') return true;
+  if (type.domains) return type.domains.includes(String(entity.domain || entity.entity_id?.split('.')[0]));
   return !type.numeric || addEntityNumeric(entity);
 }
 function addRecommendedType(entity) {
@@ -4302,7 +5304,7 @@ function viewCenterPercent() {
 }
 function addThumbMarker(type, entity) {
   const sample = ADD_SAMPLES[type], source = entity || sample;
-  if (!entity || !stateCache[source.entity_id]) stateCache[source.entity_id] = { entity_id: source.entity_id, state: String(source.state ?? ''), attributes: { friendly_name: source.name, unit_of_measurement: source.unit || undefined, device_class: source.device_class || undefined, icon: source.icon || undefined } };
+  if (!entity || !stateCache[source.entity_id]) stateCache[source.entity_id] = { entity_id: source.entity_id, state: String(source.state ?? ''), attributes: { ...(source.attributes || {}), friendly_name: source.name, unit_of_measurement: source.unit || undefined, device_class: source.device_class || undefined, icon: source.icon || undefined } };
   return { id:`__add_thumb_${type}`, entityId: source.entity_id, displayName: entity ? (source.name || source.entity_id) : translateValue(source.name), type, style: markerStyleDefaults(type), unitOverride: source.unit || '', decimals:'auto', stateOnLabel:'', stateOffLabel:'', iconMode:'auto', iconName:'', iconOn:'', iconOff:'', iconVariantEnabled:false, tapAction:'more_info', xPercent:50, yPercent:50 };
 }
 function addThumbStatic(type, entity) {
@@ -4310,7 +5312,8 @@ function addThumbStatic(type, entity) {
   if (type === 'icon') return `<div class="add-thumb-label"><span class="add-thumb-label-icon"><i class="mdi ${entity ? addEntityIcon(entity) : 'mdi-lightbulb-on'}"></i></span><b data-no-i18n>${escapeHtml(entity?.name || translateValue('Salon'))}</b><small data-no-i18n>${escapeHtml(entity ? `${entity.state ?? ''}${entity.unit ? ` ${entity.unit}` : ''}` : translateValue('Wł.'))}</small></div>`;
   if (type === 'room') return `<svg class="add-thumb-room" viewBox="0 0 100 60" preserveAspectRatio="none"><path d="M12 10H62V30H88V52H12Z" fill="#FFD27A" opacity=".6"/><path d="M12 10H62V30H88V52H12Z" fill="none" stroke="#e39a3a" stroke-width=".8" stroke-dasharray="2 1.5"/></svg>${entity ? `<span class="add-thumb-caption" data-no-i18n>${escapeHtml(entity.area || entity.name)}</span>` : ''}`;
   if (type === 'flow') return `<div class="add-thumb-flow"><i class="mdi mdi-chevron-right"></i><i class="mdi mdi-chevron-right"></i><i class="mdi mdi-chevron-right"></i><i class="mdi mdi-chevron-right"></i></div>${entity ? `<span class="add-thumb-caption" data-no-i18n>${escapeHtml(`${entity.state ?? ''} ${entity.unit || ''}`.trim())}</span>` : ''}`;
-  return `<span class="add-thumb-text">${escapeHtml(translateValue('Podpis'))}</span><span class="add-thumb-button"><i class="mdi mdi-arrow-right"></i>${escapeHtml(translateValue('Przycisk'))}</span>`;
+  // Tekst: a label with the tap icon and its text.
+  return `<div class="add-thumb-label"><span class="add-thumb-label-icon"><i class="mdi mdi-gesture-tap-button"></i></span><b>${escapeHtml(translateValue('Tekst'))}</b></div>`;
 }
 function renderAddThumbs() {
   $$('.add-thumb[data-thumb]', els.addDialog).forEach(thumb => {
@@ -4328,6 +5331,7 @@ function addFilteredEntities() {
   const words = searchText(state.query).split(/\s+/).filter(Boolean);
   let list = all.filter(entity => !entity.hidden || words.length);
   if (type?.numeric && !state.entity) list = list.filter(addEntityNumeric);
+  if (type?.domains) list = list.filter(entity => type.domains.includes(String(entity.domain || entity.entity_id?.split('.')[0])));
   if (type?.entity === 'none') list = [];
   if (words.length) list = list.filter(entity => { const hay = searchText(`${entity.name} ${entity.entity_id} ${entity.area || ''} ${catalogIntegration(entity).title}`); return words.every(word => hay.includes(word)); });
   else if (state.filter === 'recent') { const recent = addRecent(); list = recent.map(id => list.find(entity => entity.entity_id === id)).filter(Boolean); }
@@ -4385,11 +5389,12 @@ function renderAddDialog(part = 'all') {
   const go = addGoLabel(), button = $('#add-go', els.addDialog);
   button.hidden = state.step === 'type'; button.disabled = !go.ok; button.innerHTML = `<i class="mdi mdi-plus"></i><span>${escapeHtml(translateValue(go.text))}</span>`;
 }
-async function openAddDialog() {
+// presetEntity: opened from an entity's "+" in Integrations - the entity is already chosen, only the kind is asked.
+async function openAddDialog(presetEntity = null) {
   if (!editMode || !els.addDialog) return;
   closeCompactMenus(); closeEditor(); closeFlowEditor(); closeRoomEditor(); cancelRoomDrawing(); cancelAddPicking();
   let pick = false; try { pick = localStorage.getItem(ADD_PICK_KEY) === '1'; } catch {}
-  addState = { step:'type', type:'', entity:null, query:'', filter: addRecent().length ? 'recent' : 'all', group:'areas', pick };
+  addState = { step:'type', type:'', entity:presetEntity, preset:!!presetEntity, query:'', filter: addRecent().length ? 'recent' : 'all', group:'areas', pick };
   const search = $('#add-search', els.addDialog); search.value = ''; $('#add-pick', els.addDialog).checked = pick;
   els.addDialog.classList.add('visible'); els.addDialog.setAttribute('aria-hidden', 'false'); renderAddDialog();
   await loadEntityCatalog();
@@ -4399,8 +5404,8 @@ async function openAddDialog() {
 // panel afterwards), text and Flow are placed without an entity; markers move on to the entity step.
 function chooseAddType(key) {
   const type = ADD_TYPES.find(t => t.key === key); if (!type || !addState) return;
-  addState.type = key; addState.entity = null;
-  if (type.entity !== 'required') return confirmAddDialog();
+  addState.type = key; if (!addState.preset || type.entity === 'none') addState.entity = null;
+  if (type.entity !== 'required' || addState.entity) return confirmAddDialog();
   addState.step = 'entity'; addState.query = ''; const search = $('#add-search', els.addDialog); search.value = '';
   renderAddDialog(); $('.add-body', els.addDialog)?.scrollTo({ top: 0 });
   if (!mobileView()) setTimeout(() => search.focus(), 60);
@@ -4419,17 +5424,47 @@ function addRoomFromDialog(entity) {
   if (entity) { roomDraft.entityIds = [entity.entity_id]; roomDraft.name = entity.area || ''; rememberAdded(entity.entity_id); }
 }
 // "Etykieta" (label) from the Add dialog: a room without a shape, with the same group / icon / name / state options.
-function addIconElement([x, y]) {
+// With an entity (the "+" of an entity in Integrations) the label starts with it and the wizard skips the entity step.
+function addIconElement([x, y], entity = null) {
   const view = activeSceneView(); if (!view || !editMode) return; view.rooms ||= {};
   const id = 'room_' + uid(), now = new Date().toISOString(), count = Object.values(view.rooms).filter(isIconRoom).length + 1;
-  view.rooms[id] = { ...clone(ROOM_DEFAULTS), ...NEW_ROOM_LABEL, labelCardScale:ICON_LABEL_SCALE, kind:'icon', draft:true, id, name: `${translateValue('Etykieta')} ${count}`, entityIds: [], points: [], x: Math.round(x * 100) / 100, y: Math.round(y * 100) / 100, createdAt: now, updatedAt: now };
+  view.rooms[id] = { ...clone(ROOM_DEFAULTS), ...NEW_ROOM_LABEL, labelCardScale:ICON_LABEL_SCALE, kind:'icon', draft:true, id, name: entity?.name || `${translateValue('Etykieta')} ${count}`, entityIds: entity ? [entity.entity_id] : [], points: [], x: Math.round(x * 100) / 100, y: Math.round(y * 100) / 100, createdAt: now, updatedAt: now };
+  if (entity) { rememberAdded(entity.entity_id); refreshStates(); }
+  closeEditor(); closeFlowEditor(); closeRoomEditor(); openRoomWizard(id, { skipEntities: !!entity });
+}
+// Termostat: a label on a climate entity, laid out freely (each part can be moved inside the group or ungrouped).
+const THERMO_LAYOUT = { labelIcon:[0,-177], labelName:[0,-131], labelAction:[0,-96], labelDial:[0,0], labelTarget:[0,-18], labelCurrent:[0,25], labelMinus:[-70,90], labelPlus:[70,90], labelModes:[0,146], labelState:[0,184] };
+// The default look of a thermostat (a new one, and "Ustaw domyślny" on an existing one).
+function thermoLook() {
+  const place = Object.fromEntries(Object.entries(THERMO_LAYOUT).flatMap(([k, [fx, fy]]) => [[`${k}FX`, fx], [`${k}FY`, fy]]));
+  return { ...NEW_ROOM_LABEL, labelCardScale:.8, labelCardFree:true, labelLinked:true,
+    labelIcon:true, labelState:false, labelName:true, labelDial:true, labelTarget:true, labelCurrent:true, labelAction:true, labelMinus:true, labelPlus:true, labelModes:true,
+    labelStateBg:false, labelStateBorder:false, labelIconSize:32, labelNameSize:19, labelDialSize:33, labelTargetSize:46, labelTargetWeight:'bold', labelCurrentSize:18, labelActionSize:15, labelModesSize:19,
+    labelMinusSize:24, labelMinusBg:true, labelMinusBgColor:'#FFFFFF', labelMinusBgOpacity:.08, labelMinusBorder:true, labelMinusBorderOpacity:.25, labelMinusRadius:40, labelMinusPadding:5,
+    labelPlusSize:24, labelPlusBg:true, labelPlusBgColor:'#FFFFFF', labelPlusBgOpacity:.08, labelPlusBorder:true, labelPlusBorderOpacity:.25, labelPlusRadius:40, labelPlusPadding:5,
+    labelActionBg:true, labelActionBgOpacity:.4, labelActionRadius:20, labelActionPadding:3, labelCardRadius:26, labelCardPadding:14, tapAction:'more_info', ...place };
+}
+function addThermostatLabel([x, y], entity) {
+  const view = activeSceneView(); if (!view || !editMode || !entity) return; view.rooms ||= {};
+  const id = 'room_' + uid(), now = new Date().toISOString();
+  view.rooms[id] = { ...clone(ROOM_DEFAULTS), ...thermoLook(), kind:'icon', thermo:true, draft:true, id, name: entity.name || entity.entity_id, entityIds:[entity.entity_id], points:[],
+    x: Math.round(x * 100) / 100, y: Math.round(y * 100) / 100, createdAt: now, updatedAt: now };
+  rememberAdded(entity.entity_id); refreshStates();
+  closeEditor(); closeFlowEditor(); closeRoomEditor(); openRoomWizard(id, { skipEntities: true });
+}
+function addTextLabel([x, y]) {
+  const view = activeSceneView(); if (!view || !editMode) return; view.rooms ||= {};
+  const id = 'room_' + uid(), now = new Date().toISOString(), count = Object.values(view.rooms).filter(isTextRoom).length + 1;
+  view.rooms[id] = { ...clone(ROOM_DEFAULTS), ...NEW_ROOM_LABEL, labelCardScale:ICON_LABEL_SCALE, kind:'icon', textEl:true, draft:true, id, name: `${translateValue('Tekst')} ${count}`, entityIds: [], points: [],
+    labelIconSource:'mdi', labelIconName:'mdi:gesture-tap-button', labelState:false, textCaption:'', linkAction:'none', tapAction:'none', x: Math.round(x * 100) / 100, y: Math.round(y * 100) / 100, createdAt: now, updatedAt: now };
   closeEditor(); closeFlowEditor(); closeRoomEditor(); openRoomWizard(id);
 }
 function createAddedElement(type, entity, [x, y]) {
   const view = activeSceneView(); if (!view || !editMode) return;
-  if (type === 'icon') return addIconElement([x, y]);
+  if (type === 'icon') return addIconElement([x, y], entity);
   const now = new Date().toISOString(); if (entity) rememberAdded(entity.entity_id);
-  if (type === 'text') { addTextElement([x, y]); return; }
+  if (type === 'text') { addTextLabel([x, y]); return; }
+  if (type === 'thermostat') { addThermostatLabel([x, y], entity); return; }
   if (type === 'flow') {
     const id = 'flow_' + uid(), integration = catalogIntegration(entity); view.flows ||= {};
     view.flows[id] = { id, entityId: entity?.entity_id || '', integrationId: integration.entry_id, integrationName: entity ? integration.title : '', sourceDomain: entity ? (integration.domain || entity.domain) : '', displayName: entity?.name || 'Flow', xPercent:x, yPercent:y, ...clone(FLOW_DEFAULTS), itemSizeV2:true, geometryLocked:false, createdAt:now, updatedAt:now };
@@ -4501,10 +5536,14 @@ async function removeFlow(id) {
   const view = activeSceneView(); if (!view?.flows?.[id]) return;
   delete view.flows[id]; renderMarkers(); renderAdded(); renderIntegrations(); await queueSave(); notify('Usunięto Flow');
 }
+// "+" next to an entity in Integrations opens "Add to view" on the plan (edit mode) with that entity already chosen:
+// only the kind is picked; a label's wizard then skips its entity step.
 async function addEntity(entityId, entryId) {
-  const integration = integrations.find(x => x.entry_id === entryId), entity = (integrationEntities.get(entryId) || []).find(x => x.entity_id === entityId); if (!integration || !entity) return;
-  let offset = Object.keys(model.entities).length % 7; const marker = freshMarker(entity, integration); marker.xPercent = 50 + offset * 2; marker.yPercent = 50 + offset * 2;
-  model.entities[marker.id] = marker; renderMarkers(); renderIntegrations(); await queueSave(); await refreshStates(); notify('Dodano świeży Badge z ustawieniami domyślnymi');
+  const entity = (integrationEntities.get(entryId) || []).find(x => x.entity_id === entityId); if (!entity) return;
+  showMainView('overview'); if (!editMode) els.editToggle.click();
+  await loadEntityCatalog();
+  const known = entityCatalog?.entities?.find(item => item.entity_id === entity.entity_id);
+  openAddDialog(known || { entity_id: entity.entity_id, name: entity.name || entity.entity_id, domain: entity.domain || entity.entity_id.split('.')[0], state: entity.state, unit: entity.unit || '' });
 }
 async function removeMarker(key) {
   const marker = model.entities[key]; if (!marker) return; delete model.entities[key];
@@ -4514,7 +5553,7 @@ async function removeMarker(key) {
 // Entities of every view: states of neighbouring views are kept fresh for the swipe preview.
 function allViewEntityIds() {
   const ids = new Set(Object.values(model.entities || {}).map(marker => marker.entityId).filter(Boolean));
-  Object.values(model.views || {}).forEach(view => { Object.values(view.entities || {}).forEach(marker => { if (marker.entityId) ids.add(marker.entityId); }); Object.values(view.flows || {}).forEach(flow => { if (flow.entityId) ids.add(flow.entityId); }); Object.values(view.rooms || {}).forEach(room => (room.entityIds || []).forEach(id => ids.add(id))); if (view.nightBackground || view.sunDim) ids.add(nightEntityOf(view)); });
+  Object.values(model.views || {}).forEach(view => { Object.values(view.entities || {}).forEach(marker => { if (marker.entityId) ids.add(marker.entityId); }); Object.values(view.flows || {}).forEach(flow => { if (flow.entityId) ids.add(flow.entityId); }); Object.values(view.rooms || {}).forEach(room => { (room.entityIds || []).forEach(id => ids.add(id)); EXTRA_PARTS.forEach(([, k]) => { if (room[k] && room[`${k}Entity`]) ids.add(room[`${k}Entity`]); }); }); if (view.nightBackground || view.sunDim) ids.add(nightEntityOf(view)); });
   return [...ids];
 }
 async function refreshStates() {
@@ -4892,18 +5931,19 @@ function viewportPointerDown(event) {
   viewPointers.set(event.pointerId, { x:event.clientX, y:event.clientY }); lastPointerActivity = performance.now();
   // The plan's own GPU layer only when the touch can move it (pan / pinch). At 100% a single finger cannot pan, and a
   // layer created at the touch was dropped again by the cube turn's first frame (the card showed one tile of the plan).
-  if (viewPointers.size > 1 || viewZoom > minViewZoom() + .001 || mobileWidePanorama()) setGestureLayer(true);
+  if ((viewPointers.size > 1 && !viewZoomLocked()) || Math.abs(viewZoom - minViewZoom()) > .001 || mobileWidePanorama()) setGestureLayer(true);
   if (!swipeBusy && !viewSwipe && !hanging) resetStuckSwipe(false);
   viewSwipe = mobileView() && !editMode && viewTransitionMode() !== 'off' && event.pointerType !== 'mouse' && viewPointers.size === 1 && model.viewOrder.length > 1 ? { id:event.pointerId, x:event.clientX, y:event.clientY, t:Date.now(), panX:viewPanX, target:event.target, start:performance.now(), lastMove:performance.now() } : null;
   if (hanging && viewSwipe && swipePreview) { const carry = hanging.lastDx || 0; Object.assign(viewSwipe, { x:event.clientX - carry, tracking:true, direction:hanging.direction, lastDx:carry, maxDx:Math.abs(carry) }); swipeLog(`przejęcie zawieszonego gestu (${Math.round(carry)} px)`); }
   else if (hanging && !viewSwipe) settleBack(hanging.direction || 1, 180);
-  if (viewPointers.size === 2) {
+  if (viewPointers.size === 2 && viewZoomLocked()) { panGesture = null; event.preventDefault(); }
+  else if (viewPointers.size === 2) {
     const [a,b] = [...viewPointers.values()], r = els.viewport.getBoundingClientRect();
     pinchGesture = { distance:Math.hypot(a.x-b.x,a.y-b.y), zoom:viewZoom, panX:viewPanX, panY:viewPanY, x:(a.x+b.x)/2-r.left, y:(a.y+b.y)/2-r.top };
     panGesture = null; event.preventDefault();
   } else {
     const marker = event.target.closest('.marker');
-    const canPan = viewZoom > minViewZoom() + .001 || mobileWidePanorama();
+    const canPan = Math.abs(viewZoom - minViewZoom()) > .001 || mobileWidePanorama();
     // In viewing mode a drag beginning on a marker is still a panorama; only a short tap opens More Info.
     if (canPan && (!editMode || !marker)) {
       panGesture = { id:event.pointerId, x:event.clientX, y:event.clientY, panX:viewPanX, panY:viewPanY, marker, moved:false };
@@ -4921,7 +5961,7 @@ function viewportPointerMove(event) {
   if (viewSwipe?.id === event.pointerId && !panGesture && !pinchGesture) trackViewSwipe(event);
   viewPointers.set(event.pointerId, { x:event.clientX, y:event.clientY });
   if (viewPointers.size === 2 && pinchGesture) {
-    const [a,b] = [...viewPointers.values()], distance = Math.hypot(a.x-b.x,a.y-b.y), next = clamp(pinchGesture.zoom * distance / Math.max(1,pinchGesture.distance),minViewZoom(),4), ratio = next / pinchGesture.zoom;
+    const [a,b] = [...viewPointers.values()], distance = Math.hypot(a.x-b.x,a.y-b.y), next = clamp(pinchGesture.zoom * distance / Math.max(1,pinchGesture.distance),zoomFloor(),4), ratio = next / pinchGesture.zoom;
     viewZoom = next; viewPanX = pinchGesture.x - (pinchGesture.x-pinchGesture.panX)*ratio; viewPanY = pinchGesture.y - (pinchGesture.y-pinchGesture.panY)*ratio; applyViewTransform(); event.preventDefault();
   } else if (panGesture?.id === event.pointerId) {
     const dx = event.clientX - panGesture.x, dy = event.clientY - panGesture.y;
@@ -5248,7 +6288,7 @@ function bindEvents() {
   els.flowEditorContent?.addEventListener('click', onFlowEditorClick);
   els.flowEditorContent?.addEventListener('pointerdown', event => { if (event.target.closest('input[type="checkbox"],select')) event.stopPropagation(); });
   $('.flow-editor .editor-head')?.addEventListener('pointerdown', startEditorDrag);
-  els.editToggle.addEventListener('click', () => { if (isViewer()) return; closeMoreInfo(); editMode = !editMode; els.body.classList.toggle('editing', editMode); els.editToggle.classList.toggle('active', editMode); els.editToggle.setAttribute('aria-pressed', String(editMode)); syncDock(); els.editToggle.title = translateValue('Edytuj widok'); els.editToggle.setAttribute('aria-label', els.editToggle.title); if (editMode) { closeCompactMenus(); renderMarkers(); } else { editorPreview = { entityId:'', state:'' }; roomPreviewOn = ''; resetViewZoom(); closeEditor(); closeFlowEditor(); cancelRoomDrawing(); closeRoomEditor(); renderRoomEditLayer(); closeCompactMenus(); els.bgTransformPanel?.classList.remove('open'); els.bgTransformToggle?.classList.remove('active'); renderMarkers(); } requestAnimationFrame(() => { applyBackgroundTransform(); updateSceneGeometry(); }); });
+  els.editToggle.addEventListener('click', () => { if (isViewer()) return; closeMoreInfo(); editMode = !editMode; els.body.classList.toggle('editing', editMode); els.editToggle.classList.toggle('active', editMode); els.editToggle.setAttribute('aria-pressed', String(editMode)); syncDock(); els.editToggle.title = translateValue('Edytuj widok'); els.editToggle.setAttribute('aria-label', els.editToggle.title); if (editMode) { closeCompactMenus(); renderMarkers(); } else { editorPreview = { entityId:'', state:'' }; roomPreviewOn = ''; resetViewZoom(); if (!mobileView()) window.scrollTo(0, 0); closeEditor(); closeFlowEditor(); cancelRoomDrawing(); closeRoomEditor(); renderRoomEditLayer(); closeCompactMenus(); els.bgTransformPanel?.classList.remove('open'); els.bgTransformToggle?.classList.remove('active'); renderMarkers(); } requestAnimationFrame(() => { applyBackgroundTransform(); updateSceneGeometry(); }); });
   $('#snap-menu-button')?.addEventListener('click', event => { event.stopPropagation(); const menu = $('#snap-menu'), open = !menu.classList.contains('open'); closeCompactMenus(); menu.classList.toggle('open', open); $('#snap-menu-button').classList.toggle('active', open); syncSnapMenu(); });
   $('#snap-menu')?.addEventListener('click', event => {
     event.stopPropagation();
@@ -5268,10 +6308,12 @@ function bindEvents() {
   $('#add-pick')?.addEventListener('change', event => { if (!addState) return; addState.pick = event.target.checked; try { localStorage.setItem(ADD_PICK_KEY, addState.pick ? '1' : '0'); } catch {} });
   els.scene?.addEventListener('pointerdown', onAddPickPointer, true);
   $('#room-wizard')?.addEventListener('click', onRoomWizardClick);
+  // Fields of a text's action step write straight into the text.
+  ['input','change'].forEach(type => $('#room-wizard')?.addEventListener(type, event => { const field = event.target.closest?.('[data-wizard-link]'), room = roomWizard && roomsOf()[roomWizard.id]; if (!field || !room) return; room[field.dataset.wizardLink] = field.type === 'checkbox' ? field.checked : field.value.trim(); room.updatedAt = new Date().toISOString(); }));
   // Buttons in the wizard never take the focus from its text field (that would close the keyboard).
   ['pointerdown','mousedown'].forEach(type => $('#room-wizard')?.addEventListener(type, event => { if (event.target.closest('button') && document.activeElement?.closest?.('#room-wizard') && document.activeElement.matches('input')) event.preventDefault(); }));
   $('#room-wizard-name')?.addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); roomWizardNext(); } });
-  $('#room-wizard-search')?.addEventListener('input', event => { if (!roomWizard) return; roomWizard.query = event.target.value; renderRoomWizard('list'); });
+  $('#room-wizard-search')?.addEventListener('input', event => { if (!roomWizard) return; roomWizard.query = event.target.value; roomWizard.queryFromName = false; renderRoomWizard('list'); });
   $('#room-wizard-search')?.addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); roomWizardNext(); } });
   window.addEventListener('keydown', event => { if (event.key !== 'Escape') return; if (roomWizard) { if (roomWizard.step === 'name') roomWizardName(); closeRoomWizard(); } else if (addState) closeAddDialog(); else if (addPicking) { cancelAddPicking(); notify('Anulowano dodawanie'); } });
   $('#view-link')?.addEventListener('click', copyViewLink);
@@ -5330,12 +6372,19 @@ function bindEvents() {
   // Icons are tapped by press + release on the label itself. On phones the scene may capture the finger for
   // panning / swiping, and the browser then sends the click to the scene instead of the label.
   let labelTap = null;
-  document.addEventListener('pointerdown', event => { const node = event.target.closest?.('.tappable'); labelTap = node && !editMode ? { id: node.dataset.roomId, pid: event.pointerId, x: event.clientX, y: event.clientY, t: performance.now() } : null; }, true);
+  document.addEventListener('pointerdown', event => { const node = event.target.closest?.('.tappable'); labelTap = node && !editMode ? { id: node.dataset.roomId, pid: event.pointerId, x: event.clientX, y: event.clientY, t: performance.now(), thermo: event.target.closest?.('[data-thermo], [data-thermo-mode], [data-thermo-preset]') || null } : null; }, true);
   window.addEventListener('pointercancel', event => { if (labelTap?.pid === event.pointerId) labelTap = null; }, true);
   window.addEventListener('pointerup', event => {
     const tap = labelTap; if (!tap || tap.pid !== event.pointerId) return; labelTap = null;
     if (editMode || Math.hypot(event.clientX - tap.x, event.clientY - tap.y) > 12 || performance.now() - tap.t > 1200) return;
     const room = roomsOf()[tap.id]; if (!room) return;
+    // On a phone the release lands on the plan's gesture layer (it captures the touch), so the button is the one pressed.
+    const thermoButton = isThermoRoom(room) && (event.target.closest?.('[data-thermo], [data-thermo-mode], [data-thermo-preset]') || (tap.thermo?.isConnected ? tap.thermo : null));
+    if (thermoButton) {
+      // The click that follows the release must not close the confirmation that may open now.
+      const swallow = e => { e.stopPropagation(); e.preventDefault(); }; window.addEventListener('click', swallow, { capture:true, once:true }); setTimeout(() => window.removeEventListener('click', swallow, true), 600);
+      if (!thermoButton.disabled) thermoTap({ entityId: room.entityIds?.[0] || '', confirm: !!room.thermoConfirm, name: room.name, room }, thermoButton); return;
+    }
     // The click that follows this release is not needed any more (it could land on the sheet just opened).
     lastLabelTap = performance.now(); const swallow = e => { e.stopPropagation(); e.preventDefault(); };
     window.addEventListener('click', swallow, { capture:true, once:true }); setTimeout(() => window.removeEventListener('click', swallow, true), 600);
@@ -5376,7 +6425,7 @@ function bindEvents() {
   $('#room-draw-cancel')?.addEventListener('click', cancelRoomDrawing);
   $('#room-editor-close')?.addEventListener('click', closeRoomEditor);
   $('#room-remove')?.addEventListener('click', removeRoom); $('#room-geometry-lock')?.addEventListener('click', toggleRoomLock); $('#room-copy-style')?.addEventListener('click', copyRoomStyle); $('#room-paste-style')?.addEventListener('click', pasteRoomStyle); $('#room-default-style')?.addEventListener('click', resetRoomStyle); $('#room-duplicate')?.addEventListener('click', duplicateRoom);
-  $('#room-editor-content')?.addEventListener('click', onRoomEditorClick);
+  $('#room-editor-content')?.addEventListener('click', onRoomEditorClick); $('#room-group-toggle')?.addEventListener('click', onRoomEditorClick);
   $('.room-editor .editor-head')?.addEventListener('pointerdown', event => { const panel = $('#room-editor'); if (panel && !mobileView() && !event.target.closest('button,input,select')) panel.dataset.dragged = '1'; startEditorDrag(event); });
   $('#editor-close').addEventListener('click', closeEditor); document.addEventListener('keydown', e => { if (e.key !== 'Escape') return; if (els.confirmBox.classList.contains('visible')) closeAppConfirm(false); else if (els.moreInfo.classList.contains('visible')) closeMoreInfo(); else if (roomDraft) cancelRoomDrawing(); else { closeEditor(); closeFlowEditor(); closeRoomEditor(); } });
   els.confirmCancel.addEventListener('click', () => closeAppConfirm(false)); els.confirmOk.addEventListener('click', () => closeAppConfirm(true));
@@ -5498,10 +6547,17 @@ function bindEvents() {
   window.addEventListener('resize', () => { syncDock(); applyBackgroundTransform(); syncMobileOrientation(); });
   $$('[data-dock-side]').forEach(button => button.addEventListener('click', event => { event.stopPropagation(); toggleDockSide(); }));
   $$('.head-preview').forEach(button => button.addEventListener('click', onHeadPreview));
+  const zoomToggle = $('#view-zoom-toggle');
+  if (zoomToggle) { syncZoomToggle(); zoomToggle.addEventListener('click', () => { const view = activeSceneView(); if (!view) return; view.viewZoomLock = !view.viewZoomLock; view.updatedAt = new Date().toISOString(); syncZoomToggle(); scheduleSave(true); }); }
   const glowSelect = $('#glow-blend-select'); if (glowSelect) { glowSelect.value = ['normal', 'screen'].includes(model.settings?.glowBlend) ? model.settings.glowBlend : 'auto'; glowSelect.addEventListener('change', () => { model.settings ||= {}; model.settings.glowBlend = glowSelect.value; scheduleSave(true); renderRooms(); }); }
   const dockSelect = $('#dock-side-select'); if (dockSelect) { dockSelect.value = dockSide(); dockSelect.addEventListener('change', () => { if (dockSelect.value !== dockSide()) toggleDockSide(); }); }
   window.visualViewport?.addEventListener('resize', () => { if (mobileView()) applyBackgroundTransform(); fitWizardList(); refocusWhileTyping(); });
-  document.addEventListener('focusin', event => { if (event.target?.matches?.('input,textarea')) refocusWhileTyping(); });
+  document.addEventListener('focusin', event => {
+    const t = event.target;
+    if (mobileView() && editMode && t?.matches?.('input:not([type=range]):not([type=checkbox]):not([type=radio]):not([type=color]):not([type=button]),textarea') && t.closest('aside.editor.visible')) startEditorTyping(t);
+    if (t?.matches?.('input,textarea')) refocusWhileTyping();
+  });
+  document.addEventListener('focusout', event => { if (!editorTyping || event.target !== editorTyping.input) return; setTimeout(() => { if (editorTyping && document.activeElement !== editorTyping.input) endEditorTyping(); }, 0); });
   // Enter in an editor field closes the on-screen keyboard instead of jumping to the next field.
   document.addEventListener('focusin', event => { const el = event.target; if (el?.matches?.('.editor input:not([type=range]):not([type=checkbox]):not([type=color])')) el.enterKeyHint = 'done'; });
   document.addEventListener('keydown', event => { const el = event.target; if (event.key === 'Enter' && !event.isComposing && el?.matches?.('.editor input:not([type=range]):not([type=checkbox]):not([type=color])')) { event.preventDefault(); el.blur(); } });
@@ -5509,16 +6565,19 @@ function bindEvents() {
   els.zoomOut?.addEventListener('click', () => setViewZoom(viewZoom-.5)); els.zoomIn?.addEventListener('click', () => setViewZoom(viewZoom+.5)); els.zoomReset?.addEventListener('click', resetViewZoom);
   // A double tap on a room corner removes the corner; the browser also turns those two taps into a dblclick,
   // which must not toggle the zoom (on a phone the view used to jump back to 100 %).
-  els.viewport?.addEventListener('dblclick', event => { if (roomDraft || performance.now() - handleTapAt < 800 || event.target.closest?.('.room-handle, #room-edit-layer')) return; if (sceneCameraActive()) setViewZoom(viewZoom > 1 ? 1 : 2, event.clientX, event.clientY); });
+  els.viewport?.addEventListener('dblclick', event => { if (roomDraft || performance.now() - handleTapAt < 800 || event.target.closest?.('.room-handle, #room-edit-layer') || viewZoomLocked()) return; if (sceneCameraActive()) setViewZoom(viewZoom > 1 ? 1 : 2, event.clientX, event.clientY); });
   els.viewport?.addEventListener('wheel', event => {
     if (mobileView()) return;
-    event.preventDefault();
+    event.preventDefault(); if (viewZoomLocked()) return;
     setViewZoom(viewZoom * Math.exp(-event.deltaY * .0015), event.clientX, event.clientY);
   }, { passive: false });
   // Touch gestures and desktop mouse dragging are deliberately separate.
   els.editorContent?.addEventListener('focusin', resetViewportPointers);
   els.scene?.addEventListener('mousedown', startDesktopPan);
+  window.addEventListener('pointerdown', trackTouchDown, true); window.addEventListener('pointermove', trackTouchMove, true); window.addEventListener('pointerup', trackTouchUp, true); window.addEventListener('pointercancel', trackTouchUp, true);
   els.scene?.addEventListener('pointerdown', viewportPointerDown);
+  // Zoomed out below the plan's size (editing on a phone) the fingers may also land on the empty space around it.
+  els.viewport?.addEventListener('pointerdown', event => { if (!els.scene?.contains(event.target)) viewportPointerDown(event); });
   els.sceneCard?.parentElement?.addEventListener('pointerdown', event => { if (event.target.closest?.('.swipe-preview')) viewportPointerDown(event); }); els.scene?.addEventListener('pointermove', viewportPointerMove);
   els.scene?.addEventListener('pointerup', viewportPointerUp); els.scene?.addEventListener('pointercancel', viewportPointerUp); els.scene?.addEventListener('lostpointercapture', viewportPointerUp);
   window.addEventListener('pointermove', viewportPointerMove); window.addEventListener('pointerup', viewportPointerUp); window.addEventListener('pointercancel', viewportPointerUp);
@@ -5556,10 +6615,11 @@ function startResize(event) {
   const move = e => {
     if ((e.buttons & 1) !== 1) return finish();
     const sx = handle.includes('w') ? -1 : 1, sy = handle.includes('n') ? -1 : 1; changed = true;
-    const snapSize = (value, maximum) => { const limited = clamp(value, 1, maximum); if (model.settings?.snapEnabled === false) return limited; const gridPx = Math.max(1, (Number(model.settings?.designWidth) || DESIGN_WIDTH) * (Number(model.settings?.snapStep) || 1) / 100); return Math.round(limited / gridPx) * gridPx; };
     const minWidth = isGaugeType(marker.type) ? 44 : marker.type === 'icon' ? 24 : 36, minHeight = isGaugeType(marker.type) ? 28 : marker.type === 'icon' ? 24 : 24;
-    marker.style.width = clamp(snapSize(start.w + (e.clientX-start.x)*sx/scale, 2400),minWidth,2400);
-    marker.style.height = clamp(snapSize(start.h + (e.clientY-start.y)*sy/scale, 1800),minHeight,1800);
+    // The moving edges snap to the visible grid lines (screen px per style px from the size when grabbed).
+    const kx = initialRect.width / Math.max(1, start.w), ky = initialRect.height / Math.max(1, start.h), toGrid = (size, k, fixedAt, sign, horizontal) => { const edge = fixedAt + sign * size * k, line = gridLineNear(edge, horizontal); return line === null ? size : Math.abs(line - fixedAt) / k; };
+    marker.style.width = clamp(Math.round(toGrid(clamp(start.w + (e.clientX-start.x)*sx/scale, 1, 2400), kx, fixed.x, sx, true)),minWidth,2400);
+    marker.style.height = clamp(Math.round(toGrid(clamp(start.h + (e.clientY-start.y)*sy/scale, 1, 1800), ky, fixed.y, sy, false)),minHeight,1800);
     // The scene may be re-rendered during the gesture (live states); always measure the node that is on screen.
     const live = node.isConnected ? node : markerNode(marker.id);
     if (!live) return;
@@ -5637,7 +6697,7 @@ async function boot() {
   const roomLabelsMigrated = Object.values(model.views || {}).flatMap(view => Object.values(view.rooms || {})).map(migrateRoomLabel).some(Boolean);
   const multiMigrated = ensureMultiViewModel() || roomLabelsMigrated; const gridPresetMigrated = migrateGridPresetSteps(); applySnapUi(); applyBoundsUi(); renderViewSelector();
   Object.values(model.views).flatMap(view => Object.values(view.entities || {})).forEach(m => {
-    m.type = ['badge','gauge','icon','horseshoe'].includes(m.type) ? m.type : 'badge'; m.style = normalizedStyle(m.type, m.style);
+    m.type = ['badge','gauge','icon','horseshoe','thermostat'].includes(m.type) ? m.type : 'badge'; m.style = normalizedStyle(m.type, m.style);
     m.stateOnLabel ??= ''; m.stateOffLabel ??= ''; m.iconMode ||= 'auto'; m.iconName ??= ''; m.iconOn ??= ''; m.iconOff ??= ''; m.iconVariantEnabled ??= Boolean(m.iconOn || m.iconOff);
   });
   const iconHorizontalMigrated = migrateIconHorizontalBaseline();

@@ -5,7 +5,9 @@ const ic = { width:78, height:78, iconSize:30, backgroundOpacity:.8, borderOpaci
 const icon = (id, name, x, y, iconName, on, off, style = {}) => ({ id, entityId:id, type:'icon', displayName:name, xPercent:x, yPercent:y, iconMode:'manual', iconName, iconOn:on, iconOff:off, iconVariantEnabled:true, tapAction:'toggle', style:{ ...ic, ...style } });
 const text = (key, value, x, y, extra = {}, style = {}) => ({ id:key, entityId:`hav_text.${key}`, type:'badge', displayName:'', textValue:value, integrationName:'Text / button', sourceDomain:'hav_text', xPercent:x, yPercent:y, iconMode:'manual', iconName:'mdi:gesture-tap-button', iconOn:'mdi:gesture-tap-button', iconOff:'mdi:gesture-tap-button', tapAction:'none', linkAction:'none', unitOverride:'', decimals:'auto', style:{ width:190, height:64, showLabel:false, showIcon:false, backgroundOpacity:.85, borderOpacity:.4, ...style }, ...extra });
 const flow = (id, entityId, name, x, y, extra = {}) => ({ id, entityId, displayName:name, xPercent:x, yPercent:y, itemSizeV2:true, rotation:0, shape:'chevron', flowCount:3, flowLength:130, chevronWidth:26, chevronHeight:26, chevronThickness:6, gap:6, color:'#20B9E7', glow:8, animation:'flow', animationSpeed:1.2, deadband:40, ...extra });
-const layout = { version:2, revision:1, settings:{ language:'en', snapEnabled:false, viewTransition:'slide' }, activeViewId:'home', viewOrder:['home','energy'], views:{
+// A thermostat exactly as the "Termostat" wizard makes it, placed on the plan; with presets and the boiler pressure as an extra part.
+const thermostat = (id, name, entity, x, y, extra = {}) => ({ ...require('./thermostat.json'), id, name, entityIds:[entity], x, y, ...extra });
+const layout = { version:2, revision:1, settings:{ language:'en', snapEnabled:false, viewTransition:'slide' }, activeViewId:'home', viewOrder:['home','energy','heating'], views:{
   home:{ id:'home', name:'Home', background:'plan-day.png', nightBackground:'plan-night.png', nightEntity:'input_boolean.night_mode', nightBrightness:118, backgroundColor:'', onboardingDone:true, backgroundTransforms:{ 'plan-day.png':{ mode:'contain', scale:1, x:0, y:0, mobilePanStart:.42 } },
     rooms:{ living: room('living','Living room',[[80,60],[900,60],[900,560],[80,560]],'light.living_room',{ color:'#FFB85C' }),
             kitchen: room('kitchen','Kitchen',[[900,60],[1520,60],[1520,420],[900,420]],'light.kitchen',{ color:'#FFE0A3', opacity:.3 }),
@@ -43,7 +45,17 @@ const layout = { version:2, revision:1, settings:{ language:'en', snapEnabled:fa
       'switch.washing_machine': icon('switch.washing_machine','Washing machine',55,80,'mdi:washing-machine','mdi:washing-machine','mdi:washing-machine-off',{ iconOnColor:'#20B9E7' }),
       'hav_text.title': text('title','Energy flow',50,7,{},{ showBackground:false, showBorder:false, width:320, height:60, valueScale:1.3 }),
       'hav_text.to_home': text('to_home','← Home',9,7,{ linkAction:'view', linkView:'home' }),
+      'hav_text.to_heating': text('to_heating','Heating →',89,93,{ linkAction:'view', linkView:'heating' },{ width:210 }),
       'hav_text.repo': text('repo','Get HA Views',89,7,{ linkAction:'url', linkUrl:'https://github.com/VoyteckPL/ha-views', linkNewTab:true },{ width:210 }),
+    } },
+  heating:{ id:'heating', name:'Heating', background:'', backgroundColor:'#0C1D28', solidCanvasRatio:16/9, solidCanvasSize:{ w:1920, h:1080 }, onboardingDone:true, backgroundTransforms:{},
+    rooms:{ heating: thermostat('heating','Living room','climate.living_room',50,52,{ labelCardScale:1.15, thermoPresets:true, thermoFill_heating:'breathe', labelX1:true, labelX1Entity:'sensor.boiler_pressure', labelX1Prefix:'Boiler', labelX1Decimals:'1', labelModesFY:178, labelX1FX:0, labelX1FY:262, labelX1X:0, labelX1Y:262 }) },
+    flows:{},
+    entities:{
+      'hav_text.heating_title': text('heating_title','Heating',50,7,{},{ showBackground:false, showBorder:false, width:320, height:60, valueScale:1.3 }),
+      'hav_text.heating_home': text('heating_home','← Home',9,7,{ linkAction:'view', linkView:'home' }),
+      'sensor.outdoor_temperature': badge('sensor.outdoor_temperature','Outdoor',85,52,'°C'),
+      'switch.heat_pump': icon('switch.heat_pump','Heat pump',15,52,'mdi:heat-pump','mdi:heat-pump','mdi:heat-pump-outline',{ iconOnColor:'#FF9F43', width:110, height:110, iconSize:46 }),
     } } } };
 require('fs').writeFileSync(__dirname + '/demo-layout.js', '/* Example layout of the HA Views web demo. */\nwindow.HA_VIEWS_DEMO_LAYOUT = ' + JSON.stringify(layout) + ';\n');
 console.log('ok');

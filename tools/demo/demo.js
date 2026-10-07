@@ -29,6 +29,9 @@
   add('solar', ['solaredge', 'SolarEdge'], [
     ['sensor.solar_power', 'Solar power', 3100, W], ['sensor.battery_power', 'Battery power', 850, W], ['sensor.grid_power', 'Grid power', -420, W],
     ['sensor.battery_level', 'Battery level', 76, { unit_of_measurement: '%', device_class: 'battery' }]]);
+  add('tado', ['tado', 'tado°'], [
+    ['climate.living_room', 'Living room heating', 'heat', { hvac_modes: ['heat', 'auto', 'off'], preset_modes: ['eco', 'comfort', 'boost'], preset_mode: 'comfort', hvac_action: 'heating', current_temperature: 20.6, temperature: 21.5, min_temp: 5, max_temp: 30, target_temp_step: 0.5 }],
+    ['sensor.boiler_pressure', 'Boiler pressure', 1.6, { unit_of_measurement: 'bar', device_class: 'pressure' }]]);
   add('helpers', ['input_boolean', 'Helpers'], [['input_boolean.night_mode', 'Night mode', 'off'], ['input_boolean.guest_mode', 'Guest mode', 'off']]);
   add('sun', ['sun', 'Sun'], [['sun.sun', 'Sun', 'above_horizon']]);
 
@@ -46,7 +49,10 @@
     setState('sensor.house_power', house);
     const battery = Math.round(Math.max(-2500, Math.min(2500, (solar - house) * .6)));
     setState('sensor.battery_power', battery); setState('sensor.grid_power', Math.round(house - solar + battery));
-    walk('sensor.battery_level', .3, 15, 100, 0);
+    walk('sensor.battery_level', .3, 15, 100, 0); walk('sensor.boiler_pressure', .02, 1.3, 1.9, 2);
+    const th = E['climate.living_room'], a = th.attributes, on = th.state !== 'off', cur = Number(a.current_temperature), target = Number(a.temperature);
+    const next = Math.round((cur + (on && cur < target ? .08 : -.04) + (Math.random() - .5) * .04) * 10) / 10;
+    setState('climate.living_room', th.state, { current_temperature: next, hvac_action: !on ? 'off' : next < target - .1 ? 'heating' : 'idle' });
   }, 3000);
 
   // ---- Layout storage ---------------------------------------------------------------------------
@@ -96,6 +102,11 @@
       case 'control': {
         const { entity_id: id, action } = body();
         if (E[id] && (action === 'turn_on' || action === 'turn_off')) setTimeout(() => setState(id, action === 'turn_on' ? 'on' : 'off'), 250);
+        // Thermostat: set temperature, mode and preset like Home Assistant would (after a short delay).
+        const value = body().value, th = E[id];
+        if (th && action === 'set_temperature') setTimeout(() => setState(id, th.state, { temperature: Number(value) }), 300);
+        if (th && action === 'set_hvac_mode') setTimeout(() => setState(id, String(value), { hvac_action: value === 'off' ? 'off' : Number(th.attributes.current_temperature) < Number(th.attributes.temperature) ? 'heating' : 'idle' }), 400);
+        if (th && action === 'set_preset_mode') setTimeout(() => setState(id, th.state, { preset_mode: String(value) }), 300);
         return json({ ok: true, entity_id: id, action });
       }
       case 'integrations': return json({ ok: true, integrations: INTEGRATIONS });

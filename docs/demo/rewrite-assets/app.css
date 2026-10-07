@@ -662,7 +662,7 @@ main{width:min(1600px,calc(100% - 32px));margin:20px auto 40px}.view{display:non
 .flow-editor .editor-head>.editor-quick-actions{grid-template-columns:repeat(7,28px)}
 .room-editor-icon{display:grid;place-items:center;width:30px;height:30px;border-radius:8px;background:rgba(32,185,231,.14);color:#80e9ff;font-size:18px}
 /* Sparse, faint grid: alignment guides do the precise work now */
-.scene:after{background-image:linear-gradient(to right,rgba(143,223,255,.12) 1px,transparent 1px),linear-gradient(to bottom,rgba(143,223,255,.12) 1px,transparent 1px)!important;background-size:10% 10%!important}
+.scene:after{background-image:linear-gradient(to right,rgba(143,223,255,.12) 1px,transparent 1px),linear-gradient(to bottom,rgba(143,223,255,.12) 1px,transparent 1px)!important;background-size:var(--grid-vis,10%) var(--grid-vis,10%)!important}
 
 /* "Added to view" grouped by kind */
 .added-group{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
@@ -684,7 +684,7 @@ main{width:min(1600px,calc(100% - 32px));margin:20px auto 40px}.view{display:non
 .flow-train>.flow-chevron+.flow-chevron{margin-left:var(--flow-gap,9px)}
 
 /* Room guides (centre / edges of the room the element is in) use their own colour */
-.align-guide.room{background:#ffb547;box-shadow:0 0 calc(2.5px / var(--view-zoom,1)) rgba(255,181,71,.6)}
+.align-guide.k-room{background:#ffb547;box-shadow:0 0 calc(2.5px / var(--view-zoom,1)) rgba(255,181,71,.6)}
 /* Bigger touch target for room corners on phones */
 @media(pointer:coarse){.room-handle::before{content:'';position:absolute;inset:-12px;border-radius:50%}}
 
@@ -719,7 +719,7 @@ body:not(.editing) #snap-menu-button,body:not(.editing) #add-button{display:none
 .snap-icon.active{color:#80e9ff;border-color:#20b9e7;background:rgba(32,185,231,.18)}
 .snap-icon:disabled{opacity:.35}
 .align-icons .snap-icon{color:#dce8ef}
-.align-guide.bg{background:#35d07f;box-shadow:0 0 calc(2.5px / var(--view-zoom,1)) rgba(53,208,127,.6)}
+.align-guide.k-bg{background:#35d07f;box-shadow:0 0 calc(2.5px / var(--view-zoom,1)) rgba(53,208,127,.6)}
 
 /* Sharpness above 100 % draws the point past the item box: do not clip it */
 svg.flow-chevron{overflow:visible}
@@ -1050,18 +1050,11 @@ body.editing .room-labels{z-index:3}
 /* Guide lines: hairline thin, no glow. */
 .align-guide{--g:calc(.5px / var(--view-zoom,1));box-shadow:none!important}
 /* Side dots of a selected, ungrouped part (keep their on-screen size at any zoom / scale). */
-.part-handle{position:absolute;z-index:3;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid #20b9e7;box-sizing:border-box;box-shadow:0 1px 3px rgba(0,0,0,.45);pointer-events:auto;touch-action:none;transform:translate(-50%,-50%) scale(calc(1 / (var(--lscale,1) * var(--scene-scale,1) * var(--view-zoom,1))))}
-.part-handle::before{content:"";position:absolute;inset:-6px;border-radius:50%}
-.part-handle.e,.part-handle.w{z-index:4}
-.part-handle.n{left:50%;top:0;cursor:ns-resize}.part-handle.s{left:50%;top:100%;cursor:ns-resize}
-.part-handle.e{left:100%;top:50%;cursor:ew-resize}.part-handle.w{left:0;top:50%;cursor:ew-resize}
 .room-label-card.free{display:block}
 
 .room-label-backdrop{position:absolute;box-sizing:border-box;pointer-events:none;transform:translate(-50%,-50%) translate(calc(var(--lx,0px) * var(--scene-scale,1)),calc(var(--ly,0px) * var(--scene-scale,1))) scale(calc(var(--lscale,1) * var(--scene-scale,1)))}
 .room-label-backdrop.blur{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-.room-label-part.editable.selected.square::after{border-color:#4ade80;border-style:solid}
-.room-label-part.square .part-handle{border-color:#4ade80}
-.room-label-part.icon>.mdi,.room-card-part.icon>.mdi{display:block;width:1em;height:1em;text-align:center}
+.room-label-part.square .room-label-part.icon>.mdi,.room-card-part.icon>.mdi{display:block;width:1em;height:1em;text-align:center}
 /* Editor popup header: close (X) in the top-right corner level with the name; below it one compact row of
    equal icon buttons (incl. the optional ON / OFF preview toggle). All icon buttons in the popup share one size. */
 .editor .editor-head{position:relative;flex-wrap:wrap}
@@ -1169,9 +1162,9 @@ body.dock-mode .editor .editor-head>.editor-quick-actions,.editor .editor-head>.
 .room-editor .room-state-row>strong{grid-column:2;justify-self:end}
 /* Guide colours by what the line comes from: wskaźnik / marker (blue), Flow (teal), etykieta (pink),
    pomieszczenie (orange), background edges and centre (green). */
-.align-guide.marker{background:#20b9e7}
-.align-guide.flow{background:#2dd4bf}
-.align-guide.label{background:#f472d0}
+.align-guide.k-marker{background:#20b9e7}
+.align-guide.k-flow{background:#2dd4bf}
+.align-guide.k-label{background:#f472d0}
 /* Magnet menu: rarely used tools are folded under "Więcej". */
 .snap-more{margin-top:4px;border-top:1px solid rgba(99,181,216,.16);padding-top:4px}
 .snap-more>summary{display:flex;align-items:center;gap:8px;padding:6px;color:#8fb3c4;font-size:12px;cursor:pointer;list-style:none;border-radius:8px}
@@ -1219,3 +1212,324 @@ img.room-layer.room-glow{display:block;inset:auto;max-width:none;object-fit:fill
 /* A plain glow keeps a GPU layer of its own for good: switching a light fades its opacity, and a layer created for the
    fade and dropped after it rebuilt the plan's layers each time (blank tiles for a frame on a phone). Small texture. */
 img.room-layer.room-glow.flat{will-change:opacity}
+/* Gap markers of label snapping: a short segment with end ticks between two labels (equal spacing / fixed gap). */
+.gap-mark{position:absolute;--t:calc(1px / var(--view-zoom,1));--k:calc(6px / var(--view-zoom,1));pointer-events:none}
+.gap-mark.x{height:var(--t);background:#f472d0;transform:translateY(-50%)}
+.gap-mark.y{width:var(--t);background:#f472d0;transform:translateX(-50%)}
+.gap-mark::before,.gap-mark::after{content:"";position:absolute;background:#f472d0}
+.gap-mark.x::before,.gap-mark.x::after{top:calc(var(--k) / -2);width:var(--t);height:var(--k)}.gap-mark.x::before{left:0}.gap-mark.x::after{right:0}
+.gap-mark.y::before,.gap-mark.y::after{left:calc(var(--k) / -2);height:var(--t);width:var(--k)}.gap-mark.y::before{top:0}.gap-mark.y::after{bottom:0}
+/* The object a dragged element snaps to: a soft frame in its kind's colour. */
+.snap-target{position:absolute;box-sizing:border-box;pointer-events:none;border:calc(1.5px / var(--view-zoom,1)) solid rgba(244,114,208,.85);border-radius:calc(6px / var(--view-zoom,1));background:rgba(244,114,208,.10);box-shadow:0 0 calc(10px / var(--view-zoom,1)) rgba(244,114,208,.45)}
+.snap-target.k-room{border-color:rgba(255,181,71,.85);background:rgba(255,181,71,.08);box-shadow:0 0 calc(10px / var(--view-zoom,1)) rgba(255,181,71,.4)}
+.snap-target.k-marker{border-color:rgba(32,185,231,.85);background:rgba(32,185,231,.08);box-shadow:0 0 calc(10px / var(--view-zoom,1)) rgba(32,185,231,.4)}
+.snap-target.k-flow{border-color:rgba(45,212,191,.85);background:rgba(45,212,191,.08);box-shadow:0 0 calc(10px / var(--view-zoom,1)) rgba(45,212,191,.4)}
+/* "Odstępy" (spacing) snapping has its own colour: lime gap markers and frames. */
+.gap-mark.k-spacing,.gap-mark.k-spacing::before,.gap-mark.k-spacing::after{background:#a3e635}
+.snap-target.k-spacing{border-color:rgba(163,230,53,.85);background:rgba(163,230,53,.08);box-shadow:0 0 calc(10px / var(--view-zoom,1)) rgba(163,230,53,.4)}
+.snap-icon[data-snap-key="spacing"].active{color:#a3e635;border-color:rgba(163,230,53,.55)}
+/* Grid row of the snap menu: the grid icon is the switch (coloured when on), S / M / L next to it in one row. */
+.snap-menu .grid-row{display:flex;align-items:center;gap:8px;padding:3px 8px 4px}
+.snap-menu .grid-row .grid-presets{margin:0}
+.snap-menu .grid-toggle{flex:0 0 auto}
+.snap-menu .grid-toggle:not(.active){color:#6f8794}
+.snap-menu .grid-row:has(.grid-toggle:not(.active)) .grid-preset{opacity:.45}
+/* Icon animations (label / room icon). */
+@keyframes hv-icon-spin{to{transform:rotate(360deg)}}
+@keyframes hv-icon-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+@keyframes hv-icon-blink{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes hv-icon-swing{0%,100%{transform:rotate(-14deg)}50%{transform:rotate(14deg)}}
+.icon-anim-spin{animation:hv-icon-spin var(--icon-anim-dur,1.5s) linear infinite var(--icon-anim-dir,normal);transform-origin:50% 50%}
+.icon-anim-pulse{animation:hv-icon-pulse var(--icon-anim-dur,1.5s) ease-in-out infinite;transform-origin:50% 50%}
+.icon-anim-blink{animation:hv-icon-blink var(--icon-anim-dur,1.5s) ease-in-out infinite}
+.icon-anim-swing{animation:hv-icon-swing var(--icon-anim-dur,1.5s) ease-in-out infinite;transform-origin:50% 50%}
+@media (prefers-reduced-motion:reduce){.icon-anim-spin,.icon-anim-pulse,.icon-anim-blink,.icon-anim-swing{animation:none}}
+/* Snap menu in the style of the label popup: each row has its name on the left and its icons on the right. */
+.snap-menu .snap-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:3px 8px;margin:0}
+.snap-menu .snap-row>span{flex:0 0 auto;color:#8fdcf2;font-size:10px;font-weight:750;white-space:nowrap}
+.snap-menu .snap-row .snap-icons{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:4px}
+.snap-menu .snap-row .snap-icon{width:28px;height:28px;font-size:15px}
+.snap-menu .grid-row{justify-content:flex-end}
+.snap-menu .snap-row .snap-icons{flex-wrap:nowrap}
+.snap-menu{width:max-content;max-width:calc(100vw - 16px)}
+/* The empty edit dock: its hint sits right under the "Edycja" title. */
+.edit-dock-empty{margin:0!important;align-content:start;padding-top:18px}
+/* View menu in the style of the popups: small icons, rows with the name on the left, no big tiles. */
+.vm{width:300px;padding:8px;gap:8px}
+.vm.open{gap:8px}
+.vm-head{grid-template-columns:28px minmax(0,1fr) 28px;gap:4px}
+.vm-round{width:28px;height:28px;border-radius:8px;font-size:16px}
+.vm-title strong{font-size:13px}
+.vm-page{gap:6px}
+.vm-icons{display:flex;flex-wrap:wrap;gap:4px}
+.vm-icon{width:32px;height:30px;border-radius:8px;font-size:17px}
+.vm-tiles{grid-template-columns:1fr;gap:2px}
+.vm-tile,.vm-tile.vm-link{grid-template-columns:20px minmax(0,1fr) 14px;gap:8px;height:32px;padding:0 8px;border-color:transparent;border-radius:8px;background:transparent;font-size:12px;font-weight:600}
+.vm-tile:hover{background:rgba(32,185,231,.1);border-color:transparent}
+.vm-tile>i:first-child{font-size:17px}.vm-tile .vm-chev{font-size:14px}
+.vm-zone{gap:6px;padding:8px;border-radius:10px}
+.vm-zone-title{font-size:11px}.vm-zone-title i{font-size:15px}
+.vm select,.vm input[type=text],.vm input[type=number]{height:30px;padding:0 7px;border-radius:8px;font-size:11px}
+.vm-range{grid-template-columns:18px minmax(0,1fr) 38px 28px;gap:6px}.vm-range-reset{width:28px!important;height:28px!important}
+.vm-formats button{height:26px;font-size:10px}.vm-size-row{grid-template-columns:minmax(0,1fr) 10px minmax(0,1fr) 32px}.vm-size-row .vm-icon{height:30px;width:32px;font-size:16px}
+.vm-colour .color-current{width:40px;height:28px}
+.vm-page[data-vm-page="options"] .vm-field{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:2px 2px}
+.vm-page[data-vm-page="options"] .vm-field>span{flex:1 1 auto;min-width:0;white-space:nowrap;color:#8fdcf2;font-size:11px;font-weight:650}
+.vm-page[data-vm-page="options"] .vm-field>span i{font-size:15px}
+.vm-page[data-vm-page="options"] .vm-field select{flex:0 0 124px;width:124px}
+.vm-page[data-vm-page="options"] .vm-field[hidden]{display:none}
+.vm-toggle-row .vm-icon{flex:0 0 32px;color:#8aa2af}.vm-toggle-row .vm-icon.active{color:#80e9ff}
+.vm-danger{height:32px;margin-top:2px;border-radius:8px;font-size:11px}
+@media (max-width:768px),(max-width:900px) and (pointer:coarse){
+  .vm{width:auto;padding:10px 12px calc(12px + env(safe-area-inset-bottom))}
+  .vm-icon{width:38px;height:36px;font-size:19px}.vm-tile,.vm-tile.vm-link{height:38px;font-size:13px}
+  .vm select,.vm input[type=text],.vm input[type=number]{height:36px;font-size:13px}
+  .vm-formats button{height:32px;font-size:11px}.vm-size-row .vm-icon{height:36px}
+  .vm-page[data-vm-page="options"] .vm-field select{flex-basis:160px;width:160px}
+}
+/* Options rows never widen the menu: a long name is cut with an ellipsis, the control keeps its place on the right. */
+.vm{overflow-x:hidden}
+.vm-page[data-vm-page="options"] .vm-field>span{overflow:hidden;text-overflow:ellipsis}
+.vm-page[data-vm-page="options"] .vm-field>span i{flex:0 0 auto}
+.vm-page[data-vm-page="options"] .vm-field>select,.vm-page[data-vm-page="options"] .vm-field>button{flex-shrink:0}
+/* A zoomed plan on a computer fills the free screen (top bar and edit panel stay above it). */
+.scene-card.desk-zoom-expanded,.scene-viewport.desk-zoom-expanded{overflow:visible}
+.scene-card.desk-zoom-expanded{position:relative;z-index:3;clip-path:var(--desk-clip,none)}
+/* The plan card is fitted to the window: no bottom margin that would make the page a little taller than the screen
+   (a scroll bar on the right and the top bar half scrolled away). */
+@media (min-width:769px){main{margin-bottom:0}}
+/* Corner dots of a selected grouped label: on the corners of its dashed outline, always the same size on screen. */
+.card-handle{position:absolute;z-index:5;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid #20b9e7;box-sizing:border-box;box-shadow:0 1px 3px rgba(0,0,0,.45);pointer-events:auto;touch-action:none;transform:translate(-50%,-50%) scale(calc(1 / (var(--lscale,1) * var(--scene-scale,1) * var(--view-zoom,1))))}
+.card-handle::before{content:"";position:absolute;inset:-6px;border-radius:50%}
+.card-handle.nw{left:-8px;top:-8px;cursor:nwse-resize}.card-handle.se{left:calc(100% + 8px);top:calc(100% + 8px);cursor:nwse-resize}
+.card-handle.ne{left:calc(100% + 8px);top:-8px;cursor:nesw-resize}.card-handle.sw{left:-8px;top:calc(100% + 8px);cursor:nesw-resize}
+@media (pointer:coarse){.card-handle{width:16px;height:16px}.card-handle::before{inset:-10px}}
+/* Computer: the page never scrolls - the plan card is fitted to the window. A scroll bar that came and went with one
+   pixel of rounding changed the width, the card was fitted again and the plan jumped up and down (flicker). */
+@media (min-width:901px),(min-width:769px) and (pointer:fine){html:has(#view-overview.active),html:has(#view-overview.active) body{overflow:hidden}}
+/* Width = height: the selected element's outline and dots turn green. */
+.room-label-part.editable.selected.square::after,.room-label-card.editable.selected.square::after{border-color:#4ade80;border-style:solid}
+.room-label-part.square>.card-handle,.room-label-card.square>.card-handle{border-color:#4ade80}
+/* Group bar: grouping + shown parts, a gap, then background and frame. */
+.part-section .section-sep{flex:0 0 1px;align-self:stretch;margin:2px 5px;background:rgba(143,223,255,.28)}
+/* Edit outlines keep the same thickness on screen at any label size / zoom (they are drawn inside the scaled label). */
+.room-label-part.editable::after,.room-label-card.editable::after{border-width:calc(1.5px / (var(--lscale,1) * var(--scene-scale,1) * var(--view-zoom,1)));border-color:rgba(143,223,255,.8)}
+.room-label-card.editable::after{border-color:rgba(255,181,71,.9)}
+.room-label-card.editable.selected::after,.room-label-part.editable.selected::after{border-width:calc(2px / (var(--lscale,1) * var(--scene-scale,1) * var(--view-zoom,1)))}
+/* Width = height: a solid, thicker green outline and a small "1:1" tag above the element. */
+.room-label-part.editable.selected.square::after,.room-label-card.editable.selected.square::after{border-style:solid;border-color:#4ade80;border-width:calc(3px / (var(--lscale,1) * var(--scene-scale,1) * var(--view-zoom,1)));box-shadow:0 0 calc(8px / (var(--lscale,1) * var(--scene-scale,1) * var(--view-zoom,1))) rgba(74,222,128,.55)}
+.room-label-part.editable.selected.square::before,.room-label-card.editable.selected.square::before{content:"1:1";position:absolute;left:50%;top:-8px;z-index:6;padding:1px 5px;border-radius:6px;background:#4ade80;color:#052e16;font:800 10px/1.2 system-ui,sans-serif;text-shadow:none;letter-spacing:.02em;pointer-events:none;transform:translate(-50%,-150%) scale(calc(1 / (var(--lscale,1) * var(--scene-scale,1) * var(--view-zoom,1))));transform-origin:50% 100%}
+/* Edit outlines never get thinner than one plan pixel (a zoomed plan's layer is drawn before it is magnified, so a
+   hairline could fade away) and have a dark halo, so they stay visible over any background at any zoom. */
+.room-label-part.editable::after,.room-label-card.editable::after{border-width:max(1px, calc(1.5px / (var(--lscale,1) * var(--scene-scale,1) * var(--view-zoom,1))));box-shadow:0 0 0 max(.5px, calc(1px / (var(--lscale,1) * var(--scene-scale,1) * var(--view-zoom,1)))) rgba(3,16,26,.55)}
+.room-label-card.editable.selected::after,.room-label-part.editable.selected::after{border-width:max(1.25px, calc(2px / (var(--lscale,1) * var(--scene-scale,1) * var(--view-zoom,1))))}
+.room-label-part.editable.selected.square::after,.room-label-card.editable.selected.square::after{border-width:max(1.75px, calc(3px / (var(--lscale,1) * var(--scene-scale,1) * var(--view-zoom,1))))}
+/* Ungrouped parts: only the active one (last touched) has the dots and the strong outline; the others a light one. */
+.room-label-part:not(.active-part)>.card-handle{display:none}
+.room-label-part.editable.selected:not(.active-part)::after{border-style:dashed;border-color:rgba(143,223,255,.8);border-width:max(1px, calc(1.5px / (var(--lscale,1) * var(--scene-scale,1) * var(--view-zoom,1))));box-shadow:0 0 0 max(.5px, calc(1px / (var(--lscale,1) * var(--scene-scale,1) * var(--view-zoom,1)))) rgba(3,16,26,.55)}
+.room-label-part.selected:not(.active-part)::before{display:none}
+/* Text wizard: the "Akcja" step (action tiles + the target field). */
+.room-wizard:not([data-step="action"]) .room-wizard-action-step,.room-wizard[data-step="action"] .room-wizard-name-step,.room-wizard[data-step="action"] .room-wizard-entity-step,.room-wizard[data-step="action"] .room-wizard-parts-step{display:none}
+.room-wizard-action-step{display:grid;gap:8px}.room-wizard-action-step>small{margin:0 2px;color:#8fa9b7;font-size:11px}
+.room-wizard-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.room-wizard-action{display:flex;align-items:center;gap:8px;min-height:40px;padding:6px 10px;border:1px solid rgba(99,181,216,.3);border-radius:10px;background:#0d2e3e;color:#cfe6f0;font-size:12px;text-align:left}
+.room-wizard-action i{font-size:18px;color:#5cdbff}.room-wizard-action.on{border-color:#20b9e7;background:rgba(32,185,231,.2);color:#e9fbff}
+.room-wizard-field{display:grid;gap:4px;margin-top:8px}.room-wizard-field>span{color:#9fbfcf;font-size:11px}
+.room-wizard-field input,.room-wizard-field select{height:36px;padding:0 9px;border:1px solid rgba(99,181,216,.3);border-radius:9px;background:#0d2e3e;color:#dff6ff;font-size:13px}
+.room-wizard-check{display:flex;align-items:center;gap:8px;margin-top:8px;color:#dce8ef;font-size:12px}.room-wizard-check input{width:16px;height:16px;accent-color:#20b9e7}
+/* ---- Termostat ---------------------------------------------------------------------------- */
+.marker.thermostat{--thermo-k:1}
+.thermo{position:absolute;inset:0;display:flex;flex-direction:column;gap:calc(5px * var(--thermo-k));padding:calc(12px * var(--thermo-k)) calc(12px * var(--thermo-k)) calc(11px * var(--thermo-k));font-size:calc(12px * var(--thermo-k));color:#e6f6fd;box-sizing:border-box;text-shadow:none}
+.thermo-head{display:flex;align-items:center;justify-content:space-between;gap:.5em;min-height:1.9em}
+.thermo-name{min-width:0;overflow:hidden;color:#d5ebf5;font-size:1.05em;font-weight:750;text-overflow:ellipsis;white-space:nowrap}
+.thermo-action{display:inline-flex;flex:0 0 auto;align-items:center;gap:.3em;padding:.22em .6em;border-radius:999px;background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent);font-size:.85em;font-weight:750}
+.thermo-action i{font-size:1.15em}
+.thermo-action.working i{animation:thermo-pulse 1.8s ease-in-out infinite}
+@keyframes thermo-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.88)}}
+.thermo-body{position:relative;display:grid;flex:1;min-height:0;place-items:center}
+.thermo-dial{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.thermo-track,.thermo-arc{fill:none;stroke-width:9;stroke-linecap:round}
+.thermo-arc{filter:drop-shadow(0 0 4px color-mix(in srgb,var(--accent) 70%,transparent))}
+.thermo-arc.working{animation:thermo-glow 2.4s ease-in-out infinite}
+@keyframes thermo-glow{0%,100%{opacity:1}50%{opacity:.72}}
+.thermo-knob{fill:#fff;stroke-width:4}
+.thermo-cur{fill:#e6f6fd;stroke:#071a26;stroke-width:1.5}
+.thermo-range{fill:#7f9cad;font:600 10px system-ui,sans-serif;text-anchor:middle}
+.thermo-centre{position:relative;display:grid;justify-items:center;margin-top:-.4em;line-height:1}
+.thermo-centre small{margin-bottom:.3em;color:#8fb0c0;font-size:.82em;letter-spacing:.04em;text-transform:uppercase}
+.thermo-target{color:#fff;font-size:3.2em;font-weight:800;letter-spacing:-.02em}
+.thermo-target sup{margin-left:.03em;font-size:.45em;vertical-align:top;line-height:1.6}
+.thermo-target.off{color:#8fa3b0;font-size:1.9em}
+.thermo-now{display:inline-flex;align-items:center;gap:.15em;margin-top:.4em;color:#a9c6d4;font-size:.95em;font-weight:600}
+.thermo-now i{color:var(--accent)}
+.thermo-controls{display:flex;align-items:center;gap:.5em}
+.thermo-btn{display:grid;flex:0 0 auto;width:2.6em;height:2.6em;place-items:center;padding:0;border:1px solid rgba(143,223,255,.25);border-radius:50%;background:rgba(255,255,255,.06);color:#fff;font-size:1em;cursor:pointer}
+.thermo-btn i{font-size:1.35em}
+.thermo-btn:not(:disabled):active{background:color-mix(in srgb,var(--accent) 35%,transparent)}
+.thermo-btn:disabled{opacity:.3}
+.thermo-chips{display:flex;flex:1;flex-wrap:wrap;justify-content:center;gap:.3em;min-width:0}
+.thermo-chip{display:inline-flex;align-items:center;gap:.25em;max-width:100%;padding:.16em .5em;overflow:hidden;border-radius:999px;background:rgba(255,255,255,.07);color:#cfe6f0;font-size:.82em;white-space:nowrap;text-overflow:ellipsis}
+.thermo-chip b{color:#8fb0c0;font-weight:600}
+.thermo-chip i{color:#8fdfff}
+.thermo-modes{display:flex;justify-content:center;gap:.45em}
+.thermo-mode{display:grid;width:2.35em;height:2.35em;place-items:center;padding:0;border:1px solid rgba(143,223,255,.18);border-radius:.8em;background:rgba(255,255,255,.04);color:#8fa9b7;font-size:1em;cursor:pointer}
+.thermo-mode i{font-size:1.25em}
+.thermo-mode.on{border-color:var(--accent);background:var(--accent);color:#04121b}
+.editing .thermo button{pointer-events:none}
+.control.thermo-missing small,.control.thermo-extra small{grid-column:1/-1;color:#6f8d9c;font-size:10px}
+.control.thermo-attrs code{color:#8fb0c0;font-size:10px}
+/* ---- Thermostat label parts ---------------------------------------------------------------- */
+.thermo-dial-svg{display:block;width:6em;height:5.16em;overflow:visible}
+.thermo-dial-svg .thermo-arc.glow{filter:drop-shadow(0 0 .12em var(--accent))}
+.thermo-dial-svg.working .thermo-arc{animation:thermo-glow 2.4s ease-in-out infinite}
+.thermo-part{display:inline-flex;align-items:center;gap:.25em;line-height:1;white-space:nowrap}
+.thermo-part sup{margin-left:.03em;font-size:.45em;vertical-align:top;line-height:1.5}
+.thermo-target-text{letter-spacing:-.02em}
+.thermo-part .mdi{font-size:1.1em}
+.thermo-working{animation:thermo-pulse 1.8s ease-in-out infinite}
+.thermo-step{display:grid;width:1.3em;height:1.3em;place-items:center;padding:0;border:0;background:none;font:inherit;line-height:1;cursor:pointer}
+.thermo-step .mdi{font-size:1.15em}
+.thermo-step:disabled{opacity:.3;cursor:default}
+.thermo-mode-row{display:inline-flex;gap:.4em}
+.thermo-mode-btn{display:grid;width:2em;height:2em;place-items:center;padding:0;border:1px solid rgba(143,223,255,.2);border-radius:.6em;background:rgba(255,255,255,.04);font:inherit;cursor:pointer}
+.thermo-mode-btn .mdi{font-size:1.2em}
+.thermo-mode-btn.on{border-color:var(--mode);background:var(--mode);color:#04121b!important}
+.editing .room-label-part button,.editing .room-card-part button{pointer-events:none}
+.thermo-target-text{gap:0}
+/* The degree sign of the set temperature sits at the top of the number (works grouped and ungrouped). */
+.thermo-target-text{align-items:flex-start}.thermo-target-text .thermo-deg{margin-left:.03em;font-size:.48em;line-height:1.15}
+/* Thermostat part sections get their own colours (bar, title and switched-on buttons), like a label's parts. */
+.part-dial{--part-color:#21bceb}.part-target{--part-color:#ff8a5c}.part-current{--part-color:#5eead4}.part-action{--part-color:#fbbf24}.part-minus,.part-plus{--part-color:#93c5fd}.part-modes{--part-color:#f472b6}
+.align-guide.k-grid{background:rgba(143,223,255,.75)}
+/* The section of the part being edited (ungrouped label / thermostat) is marked in the panel. */
+.part-section.current{background:color-mix(in srgb,var(--part-color) 12%,transparent)!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--part-color) 55%,transparent)}
+.part-section.current>summary>span:first-child::after{content:"";display:inline-block;width:6px;height:6px;margin-left:7px;border-radius:50%;background:var(--part-color);vertical-align:middle}
+/* Thermostat templates: save, five slots (filled ones bright), bin. */
+.thermo-templates .room-card-presets{flex-wrap:nowrap;gap:3px}
+.thermo-tpl:disabled{opacity:.3}
+.thermo-tpl.filled{color:#80e9ff}
+.thermo-tpl.deleting{color:#ff8a95;border-color:rgba(255,99,116,.5)}
+.thermo-templates .room-card-preset{width:26px;min-width:26px;height:26px;padding:0}.thermo-templates .room-card-preset .mdi{font-size:15px}
+.thermo-templates>label{flex:0 0 auto}
+.room-editor .thermo-templates{grid-template-columns:70px minmax(0,1fr) 0}
+.room-editor .thermo-templates .room-card-presets{flex-wrap:nowrap!important;gap:3px!important}
+/* Edit outlines lie exactly on the element (no offset) with its own corners, and the corner dots sit on its corners,
+   so what is seen while snapping is the element's real box - the same box the guide lines and highlights use. */
+.room-label-part.editable::after,.room-label-card.editable::after,.room-label-card.editable.selected::after,.room-label-part.editable.selected::after{inset:0!important;border-radius:inherit!important}
+.card-handle.nw{left:0;top:0}.card-handle.ne{left:100%;top:0}.card-handle.sw{left:0;top:100%}.card-handle.se{left:100%;top:100%}
+.room-label-part.editable.selected.square::before,.room-label-card.editable.selected.square::before{top:0}
+/* Edit grid: square cells counted from the plan's centre; the centre lines (both ways) are strong, the quarter lines a
+   little thinner, then the regular grid. */
+.scene:after{background-image:
+  linear-gradient(to right,transparent calc(50% - 1px),rgba(143,223,255,.62) calc(50% - 1px),rgba(143,223,255,.62) calc(50% + 1px),transparent calc(50% + 1px)),
+  linear-gradient(to bottom,transparent calc(50% - 1px),rgba(143,223,255,.62) calc(50% - 1px),rgba(143,223,255,.62) calc(50% + 1px),transparent calc(50% + 1px)),
+  linear-gradient(to right,transparent calc(25% - .75px),rgba(143,223,255,.36) calc(25% - .75px),rgba(143,223,255,.36) calc(25% + .75px),transparent calc(25% + .75px),transparent calc(75% - .75px),rgba(143,223,255,.36) calc(75% - .75px),rgba(143,223,255,.36) calc(75% + .75px),transparent calc(75% + .75px)),
+  linear-gradient(to bottom,transparent calc(25% - .75px),rgba(143,223,255,.36) calc(25% - .75px),rgba(143,223,255,.36) calc(25% + .75px),transparent calc(25% + .75px),transparent calc(75% - .75px),rgba(143,223,255,.36) calc(75% - .75px),rgba(143,223,255,.36) calc(75% + .75px),transparent calc(75% + .75px)),
+  linear-gradient(to right,rgba(143,223,255,.12) 1px,transparent 1px),linear-gradient(to bottom,rgba(143,223,255,.12) 1px,transparent 1px)!important;
+  background-size:100% 100%,100% 100%,100% 100%,100% 100%,var(--grid-px,10%) var(--grid-px,10%),var(--grid-px,10%) var(--grid-px,10%)!important;
+  background-position:0 0,0 0,0 0,0 0,var(--grid-ox,0) var(--grid-oy,0),var(--grid-ox,0) var(--grid-oy,0)!important;
+  background-repeat:no-repeat,no-repeat,no-repeat,no-repeat,repeat,repeat!important}
+/* Guide lines, snap highlights and edit outlines: one device pixel thin (at most half a CSS pixel) and centred exactly
+   on the element's edge - the outline is drawn half inside, half outside, so it lies on the same line as the guides. */
+:root{--hair:min(.5px, calc(1px / var(--dpr,1)))}
+.align-guide{--g:calc(var(--hair) / var(--view-zoom,1))!important}
+.snap-target{--sg:calc(var(--hair) / var(--view-zoom,1));--sc:rgba(244,114,208,.9);border-width:0!important;box-shadow:0 0 0 calc(var(--sg) / 2) var(--sc),inset 0 0 0 calc(var(--sg) / 2) var(--sc)!important}
+.snap-target.k-room{--sc:rgba(255,181,71,.9)}.snap-target.k-marker{--sc:rgba(32,185,231,.9)}.snap-target.k-flow{--sc:rgba(45,212,191,.9)}.snap-target.k-spacing{--sc:rgba(163,230,53,.9)}.snap-target.k-grid{--sc:rgba(143,223,255,.8)}
+.room-label-part.editable::after,.room-label-card.editable::after{--ow:max(.5px, calc(.75px / calc(var(--lscale,1) * var(--scene-scale,1) * var(--view-zoom,1))))}
+.room-label-card.editable.selected::after,.room-label-part.editable.selected::after{--ow:max(.75px, calc(1px / calc(var(--lscale,1) * var(--scene-scale,1) * var(--view-zoom,1))))}
+.room-label-part.editable.selected:not(.active-part)::after{--ow:max(.5px, calc(.75px / calc(var(--lscale,1) * var(--scene-scale,1) * var(--view-zoom,1))))}
+.room-label-part.editable.selected.square::after,.room-label-card.editable.selected.square::after{--ow:max(1px, calc(1.5px / calc(var(--lscale,1) * var(--scene-scale,1) * var(--view-zoom,1))))}
+/* Browsers paint a box at whole pixels of its own (scaled) space, so a thin outline moved out by half its width would
+   land on a whole pixel instead. The outline is therefore drawn 4x bigger and scaled down by 4 (a transform is never
+   rounded): its middle lies exactly on the element's edge, where the guide lines are. */
+.room-label-part.editable::after,.room-label-card.editable::after,.room-label-card.editable.selected::after,.room-label-part.editable.selected::after,.room-label-part.editable.selected:not(.active-part)::after,.room-label-part.editable.selected.square::after,.room-label-card.editable.selected.square::after{inset:auto!important;left:0!important;top:0!important;box-sizing:border-box!important;width:calc(400% + 4 * var(--ow))!important;height:calc(400% + 4 * var(--ow))!important;border-width:calc(4 * var(--ow))!important;border-radius:var(--orad, calc(4 * var(--prx, 0px) + 2 * var(--ow)))!important;transform-origin:0 0!important;transform:translate(calc(var(--ow) / -2),calc(var(--ow) / -2)) scale(.25)!important;box-shadow:none!important}
+/* Labels sit on whole pixels of the plan (their place is rounded), so what is painted is exactly where the guides are. */
+@supports (left:round(1.5px,1px)){.room-label-part[style*="--ax"],.room-label-card[style*="--ax"],.room-label-backdrop[style*="--ax"]{left:round(var(--ax),1px)!important;top:round(var(--ay),1px)!important}}
+/* Thermostat work state: optional animation of its text (chosen per state). */
+.thermo-anim{display:inline-block;transform-origin:50% 50%}
+.thermo-anim.blink{animation:thermo-blink 1.1s steps(1,end) infinite}
+.thermo-anim.pulse{animation:thermo-pulse 1.4s ease-in-out infinite}
+.thermo-anim.fade{animation:thermo-fade 2s ease-in-out infinite}
+.thermo-anim.shake{animation:thermo-shake 1.6s ease-in-out infinite}
+@keyframes thermo-blink{0%{opacity:1}50%{opacity:0}}
+@keyframes thermo-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
+@keyframes thermo-fade{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes thermo-shake{0%,60%,100%{transform:translateX(0)}66%{transform:translateX(-6%)}72%{transform:translateX(6%)}78%{transform:translateX(-4%)}84%{transform:translateX(4%)}90%{transform:translateX(-2%)}}
+/* A grouped part picked by its section name in the editor: marked with the selection colour. */
+.room-card-part.panel-part{outline:max(1px, calc(1.5px / (var(--lscale,1) * var(--scene-scale,1) * var(--view-zoom,1)))) dashed #20b9e7;outline-offset:0;border-radius:6px}
+/* Thermostat mode buttons: corner rounding from the panel, optionally without frames (icons only). */
+.thermo-mode-btn{border-radius:var(--mode-radius,30%)}
+.thermo-mode-row.no-frame .thermo-mode-btn{border-color:transparent;background:transparent}
+.thermo-mode-row.no-frame .thermo-mode-btn.on{background:transparent;color:var(--mode)!important}
+/* Thermostat preview button: the previewed work state's name next to its icon. */
+.editor-icon-button.head-preview.with-text{flex:0 0 auto!important;width:auto!important;min-width:0!important;max-width:none!important;padding:0 10px 0 8px!important;gap:6px;display:inline-flex!important;align-items:center;justify-content:center}
+.head-preview-text{font-size:12px;font-weight:700;white-space:nowrap}
+/* Thermostat dial: the space inside it lit per work state (steady, pulsing or breathing). */
+.thermo-fill{transform-box:fill-box;transform-origin:center;pointer-events:none}
+.thermo-fill.fx-pulse{animation:thermo-fill-pulse 1.3s ease-in-out infinite}
+.thermo-fill.fx-breathe{animation:thermo-fill-breathe 3.2s ease-in-out infinite}
+@keyframes thermo-fill-pulse{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes thermo-fill-breathe{0%,100%{opacity:.35;transform:scale(.82)}50%{opacity:1;transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.thermo-fill.fx-pulse,.thermo-fill.fx-breathe{animation:none}}
+/* Typing in an editor field on a phone: only that one line is shown, right above the on-screen keyboard. */
+aside.editor.typing{top:auto!important;bottom:var(--kb-bottom,0px)!important;height:auto!important;min-height:0!important;max-height:none!important;transform:none!important;transition:none!important;padding-top:8px!important;padding-bottom:8px!important}
+aside.editor.typing>:not(.editor-content){display:none!important}
+aside.editor.typing .editor-content{overflow:visible!important;max-height:none!important;height:auto!important;padding:0 12px!important}
+aside.editor.typing .editor-content *:not(.typing-row):not(.typing-row *):not(:has(.typing-row)){display:none!important}
+aside.editor.typing .editor-content :has(.typing-row){display:block!important;margin:0!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important}
+aside.editor.typing .typing-row{display:grid!important;margin:0!important}
+/* Corner dots: the real ones (inside the clipped plan) only mark the place; the visible, grabbable ones are drawn in a
+   layer above the plan card (fitCardHandles), so a dot on the plan's edge is whole, sticking out past it. */
+.card-handle{opacity:0}
+#handle-overlay{position:absolute;inset:0;z-index:30;pointer-events:none;overflow:visible}
+.card-handle-proxy{position:absolute;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:#fff;border:2px solid #20b9e7;box-sizing:border-box;box-shadow:0 1px 3px rgba(0,0,0,.45);pointer-events:auto;touch-action:none;cursor:nwse-resize}
+.card-handle-proxy[data-corner="ne"],.card-handle-proxy[data-corner="sw"]{cursor:nesw-resize}
+.card-handle-proxy::before{content:"";position:absolute;inset:-6px;border-radius:50%}
+.card-handle-proxy.square{border-color:#4ade80}
+@media (pointer:coarse){.card-handle-proxy{width:16px;height:16px;margin:-8px 0 0 -8px}.card-handle-proxy::before{inset:-10px}}
+/* One rhythm: every effect is at its strongest in the middle of its cycle (bigger / brighter / shown), so effects
+   sharing a cycle (a synchronised thermostat) pulse and blink together. */
+@keyframes hv-icon-blink{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes thermo-blink{0%{opacity:0}50%{opacity:1}}
+@keyframes thermo-fade{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes thermo-fill-pulse{0%,100%{opacity:.2}50%{opacity:1}}
+@keyframes thermo-glow{0%,100%{opacity:.72}50%{opacity:1}}
+/* The group's own grid (ungrouped parts being moved / resized): fine violet lines from the group's centre, the two
+   centre axes stronger; it fades out towards its edges. */
+#group-grid{position:absolute;z-index:4;pointer-events:none;--gl:calc(1px / var(--view-zoom,1));
+  background-image:
+    linear-gradient(to right,transparent calc(var(--gax) - var(--gl) / 2),rgba(192,132,252,var(--gaxa,.5)) calc(var(--gax) - var(--gl) / 2),rgba(192,132,252,var(--gaxa,.5)) calc(var(--gax) + var(--gl) / 2),transparent calc(var(--gax) + var(--gl) / 2)),
+    linear-gradient(to bottom,transparent calc(var(--gay) - var(--gl) / 2),rgba(192,132,252,var(--gaya,.5)) calc(var(--gay) - var(--gl) / 2),rgba(192,132,252,var(--gaya,.5)) calc(var(--gay) + var(--gl) / 2),transparent calc(var(--gay) + var(--gl) / 2)),
+    linear-gradient(to right,rgba(192,132,252,.28) var(--gl),transparent var(--gl)),
+    linear-gradient(to bottom,rgba(192,132,252,.28) var(--gl),transparent var(--gl));
+  background-size:100% 100%,100% 100%,var(--gst) var(--gst),var(--gst) var(--gst);
+  background-position:0 0,0 0,var(--gox) 0,0 var(--goy);
+  -webkit-mask-image:radial-gradient(closest-side,#000 60%,transparent);mask-image:radial-gradient(closest-side,#000 60%,transparent)}
+.align-guide.k-group{background:#c084fc}
+.snap-target.k-group{--sc:rgba(192,132,252,.9)}
+/* Group / ungroup on the panel's head: violet like the group's own grid, so it stands out from the other buttons. */
+.editor .editor-head #room-group-toggle{color:#d8b4fe;border-color:rgba(192,132,252,.55);background:rgba(192,132,252,.12)}
+.editor .editor-head #room-group-toggle.active{color:#1e0a33;border-color:#c084fc;background:#c084fc;box-shadow:none}
+/* While a group's part is being placed, the plan's grid steps back: only the group's own grid counts. */
+.scene.group-editing:after{opacity:0!important}
+/* Zoomed in while editing on a computer: the plan card's own background and frame (at the plan's 100 % place) are not
+   drawn - past the plan's edges only the page shows, not a leftover frame. */
+body.editing .scene-card.desk-zoom-expanded,body.editing .scene-viewport.desk-zoom-expanded{background:transparent!important;border-color:transparent!important;box-shadow:none!important}
+body.editing .scene-card.desk-zoom-expanded::before,body.editing .scene-card.desk-zoom-expanded::after{opacity:0!important}
+/* Thermostat modes: an optional second row of presets (text pills), and a change waiting for the device pulses. */
+.thermo-modes-wrap{display:inline-flex;flex-direction:column;align-items:center;gap:.35em}
+.thermo-preset-row{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:.3em}
+.thermo-preset-btn{padding:.18em .6em;border:1px solid rgba(143,223,255,.25);border-radius:999px;background:rgba(255,255,255,.04);font:inherit;font-size:.62em;font-weight:700;line-height:1.3;cursor:pointer;white-space:nowrap}
+.thermo-preset-btn.on{border-color:var(--mode);background:var(--mode);color:#04121b!important}
+.thermo-mode-btn.pending,.thermo-preset-btn.pending{animation:thermo-pending 1s ease-in-out infinite}
+@keyframes thermo-pending{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--mode) 70%,transparent)}50%{box-shadow:0 0 0 .22em color-mix(in srgb,var(--mode) 35%,transparent)}}
+.mode-order-row{display:flex!important;align-items:center;justify-content:space-between;gap:8px}
+.mode-order-tools{display:inline-flex;align-items:center;gap:4px}
+.mode-order-tools .room-card-preset{width:26px;min-width:26px;height:26px;padding:0}
+.mode-order-tools .room-card-preset:disabled{opacity:.3}
+/* Extra entities of a thermostat: their own section colours, and their rows in "Dodatkowe encje". */
+.part-x1{--part-color:#a3e635}.part-x2{--part-color:#38bdf8}.part-x3{--part-color:#f9a8d4}.part-x4{--part-color:#fcd34d}
+.extra-entity-row{display:flex!important;align-items:center;justify-content:space-between;gap:8px}
+.extra-entity-row label{display:flex;flex-direction:column;min-width:0}
+.extra-entity-row label small{color:#7f9cad;font-size:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.extra-entity-row .room-card-preset{width:26px;min-width:26px;height:26px;padding:0}
