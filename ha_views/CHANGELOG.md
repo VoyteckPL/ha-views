@@ -1,3 +1,63 @@
+## 0.6.1 — Thermostat modes as parts, smarter grouping and snapping
+
+### English
+
+**Before you update**
+
+- Make a Home Assistant backup, as with every add-on update. Your 0.6.0 layout is kept.
+- Thermostats switch to separate mode parts the first time you select them in edit mode; every mode button stays exactly where it was.
+
+**Thermostat**
+
+- **Each mode is its own part** (heat, auto, off…), like the icon: its own section with size, icon, colour and opacity for active and inactive, background, frame and corners, copy style, and its own place when ungrouped. The "Modes" section keeps the list of modes (show / hide), presets and confirmations.
+- **"State" and "Modes" follow the mode, not the work state**: colours, background and frame can be set per mode ("By mode"). Editing a mode's look previews that mode.
+- The active mode button takes its mode's colour: heat stays orange while the boiler is idle, auto is green.
+
+**Group and parts**
+
+- Ungrouping is for arranging: the label or thermostat is grouped again by itself when you close its panel, pick another element, switch view or leave edit mode.
+- Group / ungroup without moving anything changes nothing (positions are no longer rounded to whole pixels on every switch).
+- While ungrouped, the group's frame and background keep the group's size and place. The Size slider never moves the frame. Group size goes up to 6×. The group's Margin slider was removed (existing values are kept).
+- Copy / paste the look of one part onto another (any label or thermostat), from the open part section.
+- **Duplicate** is back, in the first section of every panel.
+
+**Snapping**
+
+- The group has its own magnet next to "Group": on / off, parts, centre and frame, equal spacing, plan elements, and its own S / M / L grid.
+- Of the lines within reach, the nearest object wins; a centre line comes before an edge.
+- Snapping keeps working near the screen edge while the plan moves; on phones the edge zone is narrower.
+- Small lime arrows show equal gaps between elements.
+- A room's label parts snap to the room's own centre and edges.
+
+### Polski
+
+**Przed aktualizacją**
+
+- Zrób kopię zapasową Home Assistant, jak przy każdej aktualizacji dodatku. Twój układ z 0.6.0 zostaje.
+- Termostaty przechodzą na osobne części trybów przy pierwszym wybraniu w trybie edycji; każdy przycisk trybu zostaje dokładnie w swoim miejscu.
+
+**Termostat**
+
+- **Każdy tryb to osobna część** (grzanie, auto, wyłączony…), jak ikona: własna sekcja z rozmiarem, ikoną, kolorem i przezroczystością dla aktywnego i nieaktywnego, tłem, ramką i zaokrągleniem, kopiowaniem stylu i własnym miejscem po rozgrupowaniu. Sekcja „Tryby” zostaje dla listy trybów (pokaż / ukryj), presetów i potwierdzeń.
+- **„Stan” i „Tryby” zależą od trybu, nie od stanu pracy**: kolory, tło i ramkę ustawisz dla każdego trybu („Zależne od trybu”). Zmiana wyglądu trybu włącza jego podgląd.
+- Aktywny przycisk trybu ma kolor swojego trybu: grzanie zostaje pomarańczowe także przy bezczynnym piecu, auto jest zielone.
+
+**Grupa i części**
+
+- Rozgrupowanie służy do układania: etykieta lub termostat grupuje się sam, gdy zamkniesz panel, wybierzesz inny element, przełączysz widok albo wyjdziesz z edycji.
+- Rozgrupowanie i zgrupowanie bez ruszania niczego niczego nie zmienia (położenia nie są już zaokrąglane do pełnego piksela przy każdym przełączeniu).
+- W rozgrupowanym ramka i tło grupy mają rozmiar i miejsce z grupy. Suwak Rozmiar nigdy nie rusza ramki. Rozmiar grupy do 6×. Usunięty suwak Margines grupy (dotychczasowe wartości zostają).
+- Kopiowanie wyglądu jednej części na inną (także w innej etykiecie lub termostacie), z otwartej sekcji części.
+- **Duplikuj** wróciło, w pierwszej sekcji każdego panelu.
+
+**Przyciąganie**
+
+- Grupa ma własny magnes obok „Grupa”: wł. / wył., części, środek i ramka, równe odstępy, elementy planu i własna siatka S / M / L.
+- Z linii w zasięgu wygrywa najbliższy obiekt; środek ma pierwszeństwo przed krawędzią.
+- Przyciąganie działa także przy krawędzi ekranu, gdy plan jedzie; na telefonie pas krawędzi jest węższy.
+- Małe limonkowe strzałki pokazują równe odstępy między elementami.
+- Części etykiety pomieszczenia przyciągają się do środka i krawędzi swojego pokoju.
+
 ## 0.6.0 — Thermostat, Labels, Text and a smarter editor
 
 ### English

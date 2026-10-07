@@ -6,6 +6,13 @@ Create polished, interactive visual dashboards for Home Assistant on any image o
 
 ![HA Views at night: glowing rooms, live values, an animated Flow and a night floor plan](docs/screenshots/night-view.png)
 
+## What's new in 0.6.1
+
+- **Thermostat modes as parts**: every mode button (heat, auto, off…) is styled and placed on its own, like the icon; "State" and "Modes" follow the mode, not the work state.
+- **Simpler grouping**: ungroup to arrange, and the element groups itself again when you leave it, with nothing shifting; the frame keeps its size while ungrouped.
+- **Smarter snapping**: the group's own magnet and grid, nearest objects first, equal-gap arrows, and room labels snapping to their room.
+- **Copy part style** and **Duplicate** in every panel.
+
 ## What's new in 0.6.0
 
 - **Thermostat**: a full thermostat for `climate` and `water_heater` built from movable parts: dial with glow, target and current temperature, working state, −/+ and mode buttons, presets, optional confirmation, and extra entities such as boiler pressure.
@@ -52,6 +59,13 @@ See [Documentation](ha_views/DOCS.md) and [Changelog](ha_views/CHANGELOG.md).
 # Polski
 
 Twórz dopracowane, interaktywne wizualne pulpity Home Assistanta na dowolnym obrazie lub jednolitym kolorze tła. Jeden zapisany układ działa responsywnie na komputerze, laptopie i telefonie.
+
+## Co nowego w 0.6.1
+
+- **Tryby termostatu jako części**: każdy przycisk trybu (grzanie, auto, wyłączony…) ma własny wygląd i miejsce, jak ikona; „Stan” i „Tryby” zależą od trybu, nie od stanu pracy.
+- **Prostsze grupowanie**: rozgrupuj, żeby ułożyć części, a element sam się zgrupuje, gdy go opuścisz, bez przesunięć; ramka trzyma rozmiar w rozgrupowanym.
+- **Lepsze przyciąganie**: własny magnes i siatka grupy, najbliższe obiekty najpierw, strzałki równych odstępów, etykiety pomieszczeń przyciągają się do swojego pokoju.
+- **Kopiowanie stylu części** i **Duplikuj** w każdym panelu.
 
 ## Co nowego w 0.6.0
 
