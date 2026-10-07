@@ -1,3 +1,119 @@
+## 0.6.0 — Thermostat, Labels, Text and a smarter editor
+
+### English
+
+**Before you update**
+
+- Make a Home Assistant backup, as with every add-on update.
+- Your 0.5.0 layout is kept. On the first save it is upgraded to the new layout format, and the previous file is kept once as `rewrite_state.v2-backup.json`, so you can go back if needed.
+- Some new effects (the "pending" pulse, the one-line typing mode) need a recent browser (about Chrome 111+ / Safari 16+). On older WebViews HA Views still works, without those effects.
+
+**New elements**
+
+- **Label** (formerly "Icon"): the icon, name and state of one entity, with ready-made layouts and styles, background, border, ON/OFF colours, icon animation, a custom MDI icon or an integration logo.
+- **Text**: any text with a caption and a tap action, for example a button that switches views.
+- **Thermostat** for `climate` and `water_heater` entities, built from separate parts: a dial with fill and glow, target and current temperature, working state, −/+ buttons and mode buttons.
+- The Add dialog has 6 tiles, and the "+" next to an entity in Integrations adds a Label. The same entity can now be placed on a view several times.
+
+**Thermostat**
+
+- The look follows the working state (heating, idle, off…): colours, icons and animations, with a preview of each state. You choose which states your device uses.
+- Modes: choose and order them, a single-button layout, presets (eco / comfort / boost), a "pending" state and a message when the device does not accept a change, optional confirmation for selected modes (for example turning the boiler on or off), and water heater operation modes.
+- 5 templates, copy style 1:1 and "Set as default".
+- Up to 4 extra entities (for example boiler pressure) shown as their own parts.
+- Icon and dial-glow animations run in sync.
+
+**Group and parts**
+
+- Ungroup a Label or Thermostat: every part can be moved on its own and has its own section in the panel. The Group button sits in the panel header.
+- Resize with the corner handles (free, or proportional with Shift), a 1:1 indicator, and group size up to 4.5×.
+- A separate snapping system inside a group, with its own grid.
+- Tapping a section name in the panel selects that part and zooms to it.
+
+**Snapping and grid**
+
+- Square S/M/L grid, centred, with a clear centre and quarters.
+- Thinner guide lines placed exactly on edges, coloured by source, with the target highlighted. They also catch elements just outside the visible area.
+- Snap everything to everything: edges, centres, equal spacing and the size of a neighbour.
+- Elements cannot be resized past the background.
+
+**Editing on phones**
+
+- The tapped element is centred above the panel. Zoom below 100% while editing, also with two fingers outside the plan.
+- Two fingers always zoom and cancel an accidental drag. A small guard stops you from grabbing a part you did not select.
+- While typing in the panel the camera stays put.
+- Thermostat buttons work with touch.
+
+**Editing on desktop**
+
+- The edit panel is docked at the side, and the zoomed plan fills the free space.
+- While editing you can pan the plan past its edge, and the clicked element is centred.
+- Resize handles stay visible even outside the plan. No more flicker or scrollbars.
+
+**Panels, views and smoothness**
+
+- One consistent panel style: coloured sections, buttons on section bars, sliders with "reset to default", a colour picker, and a View menu in the same style.
+- "Zoom outside edit mode" can be set per view.
+- Many flicker fixes (Cube transition, room glow, pinch zoom). Icons are drawn as SVG.
+- Viewer mode: non-admin users can toggle entities and set thermostats that an admin placed on a view with those controls. Nothing else can be controlled.
+
+### Polski
+
+**Przed aktualizacją**
+
+- Zrób kopię zapasową Home Assistant, jak przy każdej aktualizacji dodatku.
+- Twój układ z 0.5.0 zostaje. Przy pierwszym zapisie jest przenoszony do nowego formatu, a poprzedni plik zostaje raz zachowany jako `rewrite_state.v2-backup.json`, więc w razie potrzeby można wrócić.
+- Część nowych efektów (pulsowanie „w trakcie”, tryb jednej linii przy pisaniu) wymaga nowszej przeglądarki (mniej więcej Chrome 111+ / Safari 16+). Na starszych WebView HA Views działa, tylko bez tych efektów.
+
+**Nowe elementy**
+
+- **Etykieta** (dawniej „Ikona”): ikona, nazwa i stan jednej encji, z gotowymi układami i stylami, tłem, ramką, kolorami ON/OFF, animacją ikony, własną ikoną MDI albo logo integracji.
+- **Tekst**: dowolny napis z podpisem i akcją po dotknięciu, np. przycisk przełączający widok.
+- **Termostat** dla encji `climate` i `water_heater`, złożony z osobnych części: tarcza z wypełnieniem i poświatą, temperatura ustawiona i aktualna, stan pracy, przyciski −/+ i przyciski trybów.
+- Okno dodawania ma 6 kafelków, a „+” przy encji w Integracjach dodaje etykietę. Tę samą encję można teraz umieścić na widoku kilka razy.
+
+**Termostat**
+
+- Wygląd zależy od stanu pracy (grzeje, bezczynny, wyłączony…): kolory, ikony i animacje, z podglądem każdego stanu. Wybierasz, których stanów używa urządzenie.
+- Tryby: wybór i kolejność, układ „jeden przycisk”, presety (eco / komfort / boost), stan „w trakcie” i komunikat, gdy urządzenie nie przyjmie zmiany, opcjonalne potwierdzenie dla wybranych trybów (np. włączenie i wyłączenie pieca) oraz tryby pracy bojlera.
+- 5 szablonów, kopiowanie stylu 1:1 i „Ustaw domyślny”.
+- Do 4 dodatkowych encji (np. ciśnienie w kotle) jako osobne części.
+- Animacje ikony i poświaty tarczy są zsynchronizowane.
+
+**Grupa i części**
+
+- Rozgrupowanie etykiety lub termostatu: każdą część przesuwasz osobno i ma własną sekcję w panelu. Przycisk Grupa jest w nagłówku panelu.
+- Zmiana rozmiaru kropkami w rogach (dowolnie albo proporcjonalnie z Shiftem), wskaźnik 1:1, rozmiar grupy do 4,5×.
+- Osobne przyciąganie wewnątrz grupy, z własną siatką.
+- Kliknięcie nazwy sekcji w panelu zaznacza tę część i ją przybliża.
+
+**Przyciąganie i siatka**
+
+- Kwadratowa siatka S/M/L, wyśrodkowana, z wyraźnym środkiem i ćwiartkami.
+- Cieńsze linie pomocnicze dokładnie na krawędziach, w kolorach według źródła, z podświetleniem celu. Łapią też elementy tuż poza widocznym obszarem.
+- Przyciąganie wszystkiego do wszystkiego: krawędzie, środki, równe odstępy i rozmiar sąsiada.
+- Elementów nie da się powiększyć poza tło.
+
+**Edycja na telefonie**
+
+- Dotknięty element jest centrowany nad panelem. Zoom poniżej 100% w edycji, także dwoma palcami poza planem.
+- Dwa palce zawsze zoomują i anulują przypadkowe przesunięcie. Małe zabezpieczenie chroni przed złapaniem niezaznaczonej części.
+- Przy pisaniu w panelu kamera stoi w miejscu.
+- Przyciski termostatu działają dotykiem.
+
+**Edycja na komputerze**
+
+- Panel edycji jest zadokowany z boku, a przybliżony plan wypełnia wolne miejsce.
+- W edycji plan można przesunąć poza krawędź, a kliknięty element jest centrowany.
+- Kropki zmiany rozmiaru są widoczne także poza planem. Bez mrugania i pasków przewijania.
+
+**Panele, widoki i płynność**
+
+- Jednolity styl paneli: kolorowe sekcje, przyciski na paskach sekcji, suwaki z „przywróć domyślne”, wybór koloru i menu Widok w tym samym stylu.
+- „Zoom poza edycją” ustawiany osobno dla każdego widoku.
+- Wiele poprawek mrugania (przejście Kostka, poświata pomieszczeń, szczypanie). Ikony rysowane jako SVG.
+- Tryb podglądu: użytkownicy bez uprawnień administratora mogą przełączać encje i ustawiać termostaty, które administrator umieścił na widoku z takimi przyciskami. Niczym innym nie mogą sterować.
+
 ## 0.5.0 — Rooms, Flow, night backgrounds and a new editor
 
 ### English

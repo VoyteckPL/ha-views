@@ -107,11 +107,50 @@ async def api_selected_states(request):
 
 
 
+def _viewer_toggle_entities():
+    """Entities a non-admin user may switch: those an admin placed on a view with the tap action "Toggle ON/OFF"
+    (markers, and the lights/sockets of rooms whose tap action is toggle). Nothing else can be controlled."""
+    allowed = set()
+    data = _read_json(REWRITE_STATE_FILE, None)
+    views = data.get("views") if isinstance(data, dict) else None
+    for view in (views or {}).values():
+        if not isinstance(view, dict):
+            continue
+        rooms = view.get("rooms") if isinstance(view.get("rooms"), dict) else {}
+        for room in rooms.values():
+            if isinstance(room, dict) and room.get("tapAction", "toggle") == "toggle":
+                allowed.update(str(e) for e in (room.get("entityIds") or []))
+        for marker in (view.get("entities") or {}).values():
+            if not isinstance(marker, dict) or marker.get("tapAction") != "toggle":
+                continue
+            room_id = marker.get("roomId")
+            if room_id and isinstance(rooms.get(room_id), dict):
+                allowed.update(str(e) for e in (rooms[room_id].get("entityIds") or []))
+            elif marker.get("entityId"):
+                allowed.add(str(marker.get("entityId")))
+    return allowed
+
+def _viewer_thermostat_entities():
+    """Climate entities a non-admin user may set: those an admin placed on a view as a Termostat with its controls shown."""
+    allowed = set()
+    data = _read_json(REWRITE_STATE_FILE, None)
+    views = data.get("views") if isinstance(data, dict) else None
+    for view in (views or {}).values():
+        if not isinstance(view, dict):
+            continue
+        for room in (view.get("rooms") or {}).values():
+            if isinstance(room, dict) and room.get("thermo") and (room.get("labelMinus") or room.get("labelPlus") or room.get("labelModes")):
+                allowed.update(str(e) for e in (room.get("entityIds") or []))
+        for marker in (view.get("entities") or {}).values():
+            if isinstance(marker, dict) and marker.get("type") == "thermostat" and marker.get("entityId"):
+                style = marker.get("style") if isinstance(marker.get("style"), dict) else {}
+                if style.get("thermoShowControls", True) or style.get("thermoShowModes", True):
+                    allowed.add(str(marker.get("entityId")))
+    return allowed
+
 # Generic optional control endpoint. It never contains user-specific entity IDs.
 async def api_control(request):
-    denial = await editor_denial(request)
-    if denial:
-        return denial
+    is_admin = await request_is_admin(request)
     try:
         body = await request.json()
     except Exception:
@@ -121,6 +160,12 @@ async def api_control(request):
     action = str(body.get("action", "")).strip()
     if not re.fullmatch(r"[a-z_]+\.[a-zA-Z0-9_]+", entity_id):
         return web.json_response({"ok": False, "error": "Invalid entity ID"}, status=400)
+    climate_actions = ("set_temperature", "set_hvac_mode", "set_preset_mode", "set_operation_mode")
+    if not is_admin and not (
+        (action in ("turn_on", "turn_off") and entity_id in _viewer_toggle_entities())
+        or (action in climate_actions and entity_id in _viewer_thermostat_entities())
+    ):
+        return web.json_response({"ok": False, "error": "HA Views is view-only for this user"}, status=403)
 
     domain = entity_id.split(".", 1)[0]
     payload = {"entity_id": entity_id}
@@ -132,6 +177,24 @@ async def api_control(request):
         except (TypeError, ValueError):
             return web.json_response({"ok": False, "error": "Invalid value"}, status=400)
         service_url = f"{HA_API}/services/{domain}/set_value"
+    elif action == "set_temperature" and domain in {"climate", "water_heater"}:
+        try:
+            payload["temperature"] = float(body.get("value"))
+        except (TypeError, ValueError):
+            return web.json_response({"ok": False, "error": "Invalid value"}, status=400)
+        service_url = f"{HA_API}/services/{domain}/set_temperature"
+    elif action in ("set_hvac_mode", "set_preset_mode") and domain == "climate":
+        value = str(body.get("value", "")).strip()
+        if not re.fullmatch(r"[A-Za-z0-9_ -]{1,40}", value):
+            return web.json_response({"ok": False, "error": "Invalid value"}, status=400)
+        payload["hvac_mode" if action == "set_hvac_mode" else "preset_mode"] = value
+        service_url = f"{HA_API}/services/climate/{action}"
+    elif action == "set_operation_mode" and domain == "water_heater":
+        value = str(body.get("value", "")).strip()
+        if not re.fullmatch(r"[A-Za-z0-9_ -]{1,40}", value):
+            return web.json_response({"ok": False, "error": "Invalid value"}, status=400)
+        payload["operation_mode"] = value
+        service_url = f"{HA_API}/services/water_heater/set_operation_mode"
     else:
         return web.json_response({"ok": False, "error": "Unsupported action"}, status=400)
 
@@ -1030,6 +1093,62 @@ async def api_all_integration_entities(request):
     return web.json_response({"ok": True, "entities_by_entry": grouped})
 
 
+
+async def api_entity_catalog(request):
+    """Every entity Home Assistant has a state for (also YAML/template ones without an integration), for the Add window:
+    name, domain, area (own or the device's), integration entry, state and unit. Registries are read once."""
+
+    try:
+        states = await ha_all_states()
+    except Exception as err:
+        return web.json_response({"ok": False, "error": str(err), "entities": [], "areas": []}, status=500)
+    registry, devices, areas = [], [], []
+    for command, target in (("config/entity_registry/list", "registry"), ("config/device_registry/list", "devices"), ("config/area_registry/list", "areas")):
+        try:
+            result = await ha_ws_command({"type": command})
+        except Exception:
+            result = []
+        if target == "registry":
+            registry = result if isinstance(result, list) else []
+        elif target == "devices":
+            devices = result if isinstance(result, list) else []
+        else:
+            areas = result if isinstance(result, list) else []
+    area_names = {a.get("area_id"): a.get("name") or a.get("area_id") for a in areas if isinstance(a, dict) and a.get("area_id")}
+    device_info = {}
+    for device in devices:
+        if isinstance(device, dict) and device.get("id"):
+            entries = device.get("config_entries") or []
+            device_info[device["id"]] = (device.get("area_id"), entries[0] if isinstance(entries, list) and entries else device.get("config_entry_id"))
+    by_id = {item.get("entity_id"): item for item in registry if isinstance(item, dict) and item.get("entity_id")}
+    entities = []
+    for state in states if isinstance(states, list) else []:
+        if not isinstance(state, dict) or not state.get("entity_id"):
+            continue
+        entity_id = state["entity_id"]
+        item = by_id.get(entity_id) or {}
+        if item.get("disabled_by"):
+            continue
+        attributes = state.get("attributes") or {}
+        device_area, device_entry = device_info.get(item.get("device_id"), (None, None))
+        area_id = item.get("area_id") or device_area
+        entities.append({
+            "entity_id": entity_id,
+            "name": attributes.get("friendly_name") or item.get("name") or item.get("original_name") or entity_id,
+            "domain": entity_id.split(".", 1)[0],
+            "state": state.get("state"),
+            "unit": attributes.get("unit_of_measurement") or "",
+            "device_class": attributes.get("device_class") or "",
+            "icon": attributes.get("icon") or item.get("icon") or "",
+            "area": area_names.get(area_id, "") if area_id else "",
+            "entry_id": item.get("config_entry_id") or device_entry or "",
+            "platform": item.get("platform") or "",
+            "hidden": bool(item.get("hidden_by")),
+        })
+    entities.sort(key=lambda value: (str(value["name"]).lower(), value["entity_id"]))
+    return web.json_response({"ok": True, "entities": entities, "areas": sorted(set(area_names.values()), key=lambda value: str(value).lower())})
+
+
 # ===== END HA Views INTEGRATIONS API V1 =====
 
 
@@ -1626,8 +1745,29 @@ async def api_rewrite_state_save(request):
             {"ok": False, "error": "Stan jest za duży"},
             status=413,
         )
+    _backup_before_layout_upgrade(current, data)
     _atomic_json(REWRITE_STATE_FILE, data)
     return web.json_response({"ok": True, "revision": data.get("revision")})
+
+
+def _layout_version(data):
+    try:
+        return int(data.get("version") or 0) if isinstance(data, dict) else 0
+    except (TypeError, ValueError):
+        return 0
+
+
+def _backup_before_layout_upgrade(current, data):
+    # Layout v3 keys markers by their own id. Before the first v3 save the previous file is kept once as
+    # rewrite_state[_beta].v2-backup.json, so going back to an older version can restore it.
+    if _layout_version(current) >= 3 or _layout_version(data) < 3:
+        return
+    backup = REWRITE_STATE_FILE[:-5] + ".v2-backup.json"
+    try:
+        if not os.path.exists(backup):
+            _atomic_json(backup, current)
+    except Exception as error:
+        print(f"HA Views: could not back up the layout before the upgrade: {error}", flush=True)
 
 
 def _layout_revision(data):
@@ -1719,6 +1859,7 @@ app.router.add_get("/api/entity_events", api_entity_events)
 app.router.add_get("/api/integrations", api_integrations)
 app.router.add_get("/api/integration_entities", api_integration_entities)
 app.router.add_get("/api/integration_entities_all", api_all_integration_entities)
+app.router.add_get("/api/entity_catalog", api_entity_catalog)
 
 # HA Views ENABLE ENTITY API V2
 app.router.add_post("/api/enable_entity", api_enable_entity)

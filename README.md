@@ -6,21 +6,14 @@ Create polished, interactive visual dashboards for Home Assistant on any image o
 
 ![HA Views at night: glowing rooms, live values, an animated Flow and a night floor plan](docs/screenshots/night-view.png)
 
-## What's new in 0.5.0
+## What's new in 0.6.0
 
-- **Rooms**: draw any room shape on your plan. It glows while its lights are on, can have its own colour when off, and a tap toggles the whole room.
-- **Flow**: animated arrows for energy, water or anything else. Five shapes, sharpness, overlapping spacing, direction by sign, activity threshold, glow, and constant-speed Pulse / Flow animations.
-- **Night background**: a second image per view that crossfades in at sunset (`sun.sun`), by any entity, or always. Separate brightness for day and night.
-- **A new editor**:
-  - a Snap & grid menu with alignment guides for markers, Flows and rooms;
-  - background bounds, align to background and rotation;
-  - value-based colours;
-  - text offsets;
-  - ON/OFF previews;
-  - colour-coded selection.
-- **Views**: a new view menu, drag-to-reorder tabs, swipe between views on phones (Slide or 3D Cube), and a colour canvas with any size.
-- **Background files manager**: thumbnails, where each file is used, rename, set as day/night, remove unused. Original file names are kept.
-- **Viewer mode** for non-admin users, default Home Assistant panel option, safer multi-device sync, and a fix for large installations (`MESSAGE_TOO_BIG`).
+- **Thermostat**: a full thermostat for `climate` and `water_heater` built from movable parts: dial with glow, target and current temperature, working state, −/+ and mode buttons, presets, optional confirmation, and extra entities such as boiler pressure.
+- **Label and Text**: a Label shows the icon, name and state of an entity, with ready-made styles. Text is any caption or button, for example to switch views.
+- **Ungroup and resize**: move every part of a Label or Thermostat on its own, resize with corner handles, and snap inside a group with its own grid.
+- **Smarter snapping**: a square S/M/L grid and thin, exact guide lines for edges, centres, spacing and size.
+- **Better editing on phone and desktop**: a docked edit panel on desktop, the tapped element centred above the panel, zoom below 100%, and protection against accidental drags.
+- **Viewer mode** users can now use the toggles and thermostats an admin placed on a view.
 
 The complete list is in the [Changelog](ha_views/CHANGELOG.md).
 
@@ -60,21 +53,14 @@ See [Documentation](ha_views/DOCS.md) and [Changelog](ha_views/CHANGELOG.md).
 
 Twórz dopracowane, interaktywne wizualne pulpity Home Assistanta na dowolnym obrazie lub jednolitym kolorze tła. Jeden zapisany układ działa responsywnie na komputerze, laptopie i telefonie.
 
-## Co nowego w 0.5.0
+## Co nowego w 0.6.0
 
-- **Pomieszczenia**: dowolny kształt pokoju na planie. Świeci, gdy palą się jego światła, może mieć własny kolor po wyłączeniu, a dotknięcie przełącza cały pokój.
-- **Flow**: animowane strzałki dla energii, wody czy czegokolwiek. Pięć kształtów, ostrość, nachodzące strzałki, kierunek wg znaku, próg aktywności, poświata oraz animacje Pulsowanie / Przepływ o stałej prędkości.
-- **Tło nocne**: drugi obraz dla widoku, który płynnie wchodzi po zachodzie słońca (`sun.sun`), według dowolnej encji albo na stałe. Osobna jasność dla dnia i nocy.
-- **Nowy edytor**:
-  - menu Przyciąganie i siatka z liniami pomocniczymi dla markerów, Flow i pomieszczeń;
-  - granice tła, wyrównanie do tła i obrót;
-  - kolory wg wartości;
-  - przesuwanie tekstów;
-  - podgląd ON/OFF;
-  - kolory zaznaczenia wg rodzaju.
-- **Widoki**: nowe menu widoku, zmiana kolejności zakładek przeciąganiem, przełączanie palcem na telefonie (Przesunięcie albo Kostka 3D) i kolorowe płótno w dowolnym rozmiarze.
-- **Manager plików tła**: miniatury, miejsce użycia, zmiana nazwy, ustawienie jako dzień/noc, usuwanie nieużywanych. Wgrane pliki zachowują oryginalne nazwy.
-- **Tryb podglądu** dla użytkowników bez uprawnień administratora, opcja domyślnego panelu Home Assistant, bezpieczniejsza synchronizacja między urządzeniami i poprawka dla dużych instalacji (`MESSAGE_TOO_BIG`).
+- **Termostat**: pełny termostat dla `climate` i `water_heater`, złożony z przesuwalnych części: tarcza z poświatą, temperatura ustawiona i aktualna, stan pracy, przyciski −/+ i trybów, presety, opcjonalne potwierdzenie i dodatkowe encje, np. ciśnienie w kotle.
+- **Etykieta i Tekst**: etykieta pokazuje ikonę, nazwę i stan encji, z gotowymi stylami. Tekst to dowolny napis lub przycisk, np. do przełączania widoków.
+- **Rozgrupowanie i zmiana rozmiaru**: każdą część etykiety lub termostatu przesuwasz osobno, zmieniasz rozmiar kropkami w rogach, a wewnątrz grupy działa przyciąganie z własną siatką.
+- **Lepsze przyciąganie**: kwadratowa siatka S/M/L i cienkie, dokładne linie pomocnicze dla krawędzi, środków, odstępów i rozmiaru.
+- **Wygodniejsza edycja na telefonie i komputerze**: zadokowany panel na komputerze, dotknięty element centrowany nad panelem, zoom poniżej 100% i ochrona przed przypadkowym przesunięciem.
+- **Tryb podglądu**: użytkownicy bez uprawnień administratora mogą używać przełączników i termostatów, które administrator umieścił na widoku.
 
 Pełna lista zmian jest w [changelogu](ha_views/CHANGELOG.md).
 

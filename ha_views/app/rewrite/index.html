@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link id="mdi-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" media="print" onload="this.media='all'">
   <style>.app-booting .markers,.app-booting .scene-empty,.app-booting .selection,.app-booting .flow-selection,.app-booting #edit-toggle,.app-booting #view-manage,.app-booting #settings-toggle{visibility:hidden!important}</style>
-  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260930-500">
+  <link rel="stylesheet" href="rewrite-assets/app.css?v=20261007-600">
 </head>
 <body>
   <header class="topbar">
@@ -53,6 +53,15 @@
             </div>
             <div class="vm-range"><i class="mdi mdi-brightness-6" title="Jasność" aria-hidden="true"></i><input id="night-brightness" type="range" min="30" max="200" step="5" value="100" data-brightness="nightBrightness" aria-label="Jasność"><output>100%</output><button type="button" class="vm-range-reset" data-brightness-reset="nightBrightness" title="Przywróć 100%" aria-label="Przywróć 100%"><i class="mdi mdi-restore"></i></button></div>
             <label class="night-bg-entity vm-field"><span>Przełącza encja</span><input id="night-entity" type="text" autocomplete="off" spellcheck="false" placeholder="sun.sun" aria-label="Encja przełączająca tło nocne"></label>
+            <div class="sun-dim-block">
+              <label class="vm-check"><input id="sun-dim-toggle" type="checkbox"><span>Ściemniaj tło wg słońca</span></label>
+              <div class="sun-dim-controls">
+                <label class="vm-slider"><span>Jasność w nocy<output data-sundim-out="dimNight"></output></span><input type="range" min="10" max="100" step="5" data-sundim="dimNight" aria-label="Jasność w nocy"></label>
+                <label class="vm-slider"><span>Zaczyna ściemniać, gdy słońce na<output data-sundim-out="dimFrom"></output></span><input type="range" min="-10" max="20" step="1" data-sundim="dimFrom" aria-label="Zaczyna ściemniać, gdy słońce na"></label>
+                <label class="vm-slider"><span>Pełna noc, gdy słońce na<output data-sundim-out="dimTo"></output></span><input type="range" min="-18" max="5" step="1" data-sundim="dimTo" aria-label="Pełna noc, gdy słońce na"></label>
+                <label class="vm-check"><input type="checkbox" data-sundim-cool><span>Chłodny odcień nocą</span></label>
+              </div>
+            </div>
             <small id="night-status" class="vm-status"></small>
             <input id="night-background-file" type="file" accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp" hidden>
           </section>
@@ -82,54 +91,40 @@
         </div>
         <div class="vm-page" data-vm-page="options">
           <label class="vm-field"><span><i class="mdi mdi-gesture-swipe-horizontal"></i>Przełączanie palcem</span><select id="view-transition" aria-label="Przełączanie palcem"><option value="off">Wyłączone (tylko zakładki)</option><option value="slide">Przesunięcie</option><option value="cube">Kostka</option></select></label>
-          <label class="vm-field" id="ha-start-row" hidden><span><i class="mdi mdi-home-import-outline"></i>Domyślny panel Home Assistant</span><select id="ha-start-select" aria-label="Domyślny panel Home Assistant"><option value="off">Bez zmian (ustawienia HA)</option><option value="user">HA Views — moje konto</option><option value="device">HA Views — tylko to urządzenie</option></select></label>
+          <label class="vm-field"><span><i class="mdi mdi-lightbulb-on-outline"></i>Poświata pomieszczeń</span><select id="glow-blend-select" aria-label="Poświata pomieszczeń"><option value="auto">Automatycznie</option><option value="normal">Płynna (telefon)</option><option value="screen">Dokładna</option></select></label>
+          <div class="vm-field vm-toggle-row"><span><i class="mdi mdi-magnify-plus-outline"></i>Zoom poza edycją</span><button id="view-zoom-toggle" class="vm-icon" type="button" aria-pressed="true" title="Zoom poza edycją" aria-label="Zoom poza edycją"><i class="mdi mdi-magnify-plus-outline"></i></button></div>
+          <label class="vm-field"><span><i class="mdi mdi-dock-right"></i>Panel edycji</span><select id="dock-side-select" aria-label="Panel edycji"><option value="right">Po prawej</option><option value="left">Po lewej</option></select></label>
+          <label class="vm-field"><span><i class="mdi mdi-translate"></i>Język</span><select id="language-select" title="Language / Język" aria-label="Language / Język"><option value="en">English</option><option value="pl">Polski</option></select></label>
+          <label class="vm-field" id="ha-start-row" hidden><span><i class="mdi mdi-home-import-outline"></i>Panel startowy HA</span><select id="ha-start-select" aria-label="Domyślny panel Home Assistant"><option value="off">Bez zmian</option><option value="user">HA Views (konto)</option><option value="device">HA Views (urządzenie)</option></select></label>
+          <button id="view-link" class="vm-tile vm-link" type="button" title="Kopiuj link do widoku" aria-label="Kopiuj link do widoku"><i class="mdi mdi-link-variant"></i><span>Kopiuj link do widoku</span><i class="mdi mdi-content-copy vm-chev"></i></button>
           <button id="view-delete" class="vm-danger" type="button" title="Usuń widok" aria-label="Usuń widok"><i class="mdi mdi-delete-outline"></i><span>Usuń widok</span></button>
         </div>
       </div></div>
     </div>
     <div class="top-actions">
-      <div id="edit-menu" class="compact-menu edit-menu">
-        <button id="room-add" class="menu-action" title="Dodaj pomieszczenie" aria-label="Dodaj pomieszczenie"><i class="mdi mdi-vector-polygon"></i><span>Pomieszczenie</span></button>
-        <button id="flow-add" class="menu-action" title="Dodaj Flow" aria-label="Dodaj Flow"><i class="mdi mdi-chevron-triple-right"></i><span data-no-i18n>Flow</span></button>
-        <div class="menu-divider"></div>
-        <div class="language-row"><i class="mdi mdi-translate"></i><span>Język</span><select id="language-select" title="Language / Język" aria-label="Language / Język"><option value="en">EN</option><option value="pl">PL</option></select></div>
-      </div>
       <div id="snap-menu" class="compact-menu snap-menu">
-        <div class="snap-menu-title">Przyciąganie i siatka</div>
-        <button id="snap-toggle" class="menu-action" title="Siatka włączona" aria-label="Siatka włączona"><i class="mdi mdi-grid"></i><span>Siatka</span><b id="grid-status">ON</b></button><div class="grid-size-row"><i class="mdi mdi-grid-large" title="Wielkość siatki" aria-label="Wielkość siatki"></i><div class="grid-presets" role="group" aria-label="Wielkość siatki"><button type="button" class="grid-preset active" data-grid-step="0.25">S</button><button type="button" class="grid-preset" data-grid-step="1">M</button><button type="button" class="grid-preset" data-grid-step="4">L</button></div></div>
-        <button id="bounds-toggle" class="menu-action" title="Elementy nie wychodzą poza tło" aria-label="Elementy nie wychodzą poza tło"><i class="mdi mdi-border-inside"></i><span>Granice tła</span><b id="bounds-status">ON</b></button>
+        <div class="grid-row"><button id="snap-toggle" type="button" class="snap-icon grid-toggle" title="Siatka włączona" aria-label="Siatka włączona"><i class="mdi mdi-grid"></i><b id="grid-status" hidden>ON</b></button><div class="grid-presets" role="group" aria-label="Wielkość siatki"><button type="button" class="grid-preset active" data-grid-step="0.25">S</button><button type="button" class="grid-preset" data-grid-step="1">M</button><button type="button" class="grid-preset" data-grid-step="4">L</button></div></div>
+        
+        
+        
         <div class="menu-divider"></div>
-        <div class="snap-group"><span>Linie pomocnicze</span><div class="snap-icons">
+        <div class="snap-group snap-row"><span>Linie pomocnicze</span><div class="snap-icons">
           <button type="button" class="snap-icon" data-snap-key="guides" title="Linie pomocnicze"><i class="mdi mdi-ruler-square-compass"></i></button>
+          
         </div></div>
-        <div class="snap-group"><span>Przyciągaj do</span><div class="snap-icons">
-          <button type="button" class="snap-icon" data-snap-key="markers" title="Markery"><i class="mdi mdi-card-text-outline"></i></button>
-          <button type="button" class="snap-icon" data-snap-key="flows" title="Flow"><i class="mdi mdi-chevron-triple-right"></i></button>
+        <div class="snap-group snap-row"><span>Przyciągaj do</span><div class="snap-icons">
+          <button type="button" class="snap-icon" data-snap-key="labels" title="Etykiety"><i class="mdi mdi-label-outline"></i></button>
           <button type="button" class="snap-icon" data-snap-key="rooms" title="Pomieszczenia"><i class="mdi mdi-floor-plan"></i></button>
-          <button type="button" class="snap-icon" data-snap-key="background" title="Tło (środek i krawędzie)"><i class="mdi mdi-image-outline"></i></button>
+          <button type="button" class="snap-icon" data-snap-key="markers" title="Wskaźniki"><i class="mdi mdi-gauge"></i></button>
+          <button type="button" class="snap-icon" data-snap-key="flows" title="Flow"><i class="mdi mdi-chevron-triple-right"></i></button>
         </div></div>
-        <div class="snap-group"><span>Punkty</span><div class="snap-icons">
+        <div class="snap-group snap-row"><span>Wyrównuj po</span><div class="snap-icons">
           <button type="button" class="snap-icon" data-snap-key="centers" title="Środki"><i class="mdi mdi-plus-circle-outline"></i></button>
           <button type="button" class="snap-icon" data-snap-key="edges" title="Krawędzie"><i class="mdi mdi-border-outside"></i></button>
+          <button type="button" class="snap-icon" data-snap-key="spacing" title="Odstępy — pośrodku między dwiema etykietami i równe odstępy"><i class="mdi mdi-arrow-expand-horizontal"></i></button>
         </div></div>
-        <div class="menu-divider"></div>
-        <div class="snap-group"><span>Wyrównaj zaznaczony do tła</span><div class="snap-icons align-icons">
-          <button type="button" class="snap-icon" data-align="left" title="Do lewej krawędzi tła"><i class="mdi mdi-align-horizontal-left"></i></button>
-          <button type="button" class="snap-icon" data-align="hcenter" title="Wyśrodkuj w poziomie"><i class="mdi mdi-align-horizontal-center"></i></button>
-          <button type="button" class="snap-icon" data-align="right" title="Do prawej krawędzi tła"><i class="mdi mdi-align-horizontal-right"></i></button>
-          <button type="button" class="snap-icon" data-align="top" title="Do górnej krawędzi tła"><i class="mdi mdi-align-vertical-top"></i></button>
-          <button type="button" class="snap-icon" data-align="vcenter" title="Wyśrodkuj w pionie"><i class="mdi mdi-align-vertical-center"></i></button>
-          <button type="button" class="snap-icon" data-align="bottom" title="Do dolnej krawędzi tła"><i class="mdi mdi-align-vertical-bottom"></i></button>
-        </div></div>
-        <div class="menu-divider"></div>
-        <div class="snap-group"><span>Obróć zaznaczony</span><div class="snap-icons align-icons rotate-icons">
-          <button type="button" class="snap-icon" data-rotate="-90" title="Obróć o 90° w lewo"><i class="mdi mdi-rotate-left"></i></button>
-          <button type="button" class="snap-icon rotate-step" data-rotate="-15" title="Obróć o 15° w lewo"><i class="mdi mdi-rotate-left"></i><small>15</small></button>
-          <button type="button" class="snap-icon" data-rotate="reset" title="Bez obrotu"><i class="mdi mdi-restore"></i></button>
-          <button type="button" class="snap-icon rotate-step" data-rotate="15" title="Obróć o 15° w prawo"><i class="mdi mdi-rotate-right"></i><small>15</small></button>
-          <button type="button" class="snap-icon" data-rotate="90" title="Obróć o 90° w prawo"><i class="mdi mdi-rotate-right"></i></button>
-        </div><div class="rotate-row"><input id="rotate-range" type="range" min="-180" max="180" step="1" value="0" title="Obrót płynny" aria-label="Obrót płynny"><output id="rotate-value">0°</output></div></div>
       </div>
+      <button id="add-button" class="icon-action add-top" title="Dodaj do widoku" aria-label="Dodaj do widoku"><i class="mdi mdi-plus"></i></button>
       <button id="snap-menu-button" class="icon-action" title="Przyciąganie i siatka" aria-label="Przyciąganie i siatka"><i class="mdi mdi-magnet"></i></button>
       <button id="integrations-button" class="icon-action" title="Integracje" aria-label="Integracje"><i class="mdi mdi-puzzle-outline"></i></button>
       <button id="edit-toggle" class="icon-action" title="Edytuj widok" aria-label="Edytuj widok"><i class="mdi mdi-pencil-outline"></i></button>
@@ -143,7 +138,9 @@
           <div id="scene" class="scene">
             <img id="scene-image" alt="Tło widoku HA Views" draggable="false">
             <img id="scene-night-image" class="scene-night" alt="" draggable="false" hidden>
+            <div id="scene-dim-tint" class="scene-dim-tint" aria-hidden="true"></div>
             <div id="rooms" class="rooms" aria-hidden="true"></div>
+            <div id="room-labels" class="room-labels" aria-hidden="true"></div>
             <div id="scene-empty" class="scene-empty"><div id="background-upload-progress" class="background-upload-progress" aria-live="polite"><i class="mdi mdi-loading"></i><span>Wgrywanie tła…</span></div>
               <div class="welcome-card">
                 <h2 data-i18n="Wybierz tło widoku">Wybierz tło widoku</h2>
@@ -162,12 +159,6 @@
                     </div>
                   </section>
                 </div>
-              </div>
-              <div class="empty-entities-message">
-                <div class="welcome-icon"><i class="mdi mdi-puzzle-plus-outline"></i></div>
-                <h2 data-i18n="Dodaj pierwszą encję">Dodaj pierwszą encję</h2>
-                <p data-i18n="Otwórz menu Integracje u góry i wybierz encję, którą chcesz umieścić na tym widoku.">Otwórz menu Integracje u góry i wybierz encję, którą chcesz umieścić na tym widoku.</p>
-                <button id="empty-open-integrations" class="primary" data-i18n="Otwórz integracje"><i class="mdi mdi-puzzle-outline"></i> Otwórz integracje</button>
               </div>
             </div>
             <div id="markers" class="markers"></div>
@@ -194,6 +185,10 @@
     </section>
   </main>
 
+  <aside id="edit-dock" class="edit-dock" aria-hidden="true">
+    <div class="edit-dock-head"><b>Edycja</b></div>
+    <div class="edit-dock-empty"><i class="mdi mdi-cursor-default-click-outline"></i><p>Kliknij element, aby go edytować.</p><small>Nowe elementy dodasz z menu plus lub z menu integracji.</small></div>
+  </aside>
   <aside id="editor" class="editor" aria-hidden="true">
     <div class="editor-head">
       <div id="editor-integration-icon" class="editor-integration-icon"></div>
@@ -203,8 +198,8 @@
         <div class="editor-meta"><code id="editor-integration"></code><span id="editor-status" class="editor-status"></span></div>
       </div>
       <div class="editor-quick-actions">
+        <button type="button" class="editor-icon-button head-preview" hidden><i class="mdi mdi-lightbulb-on-outline"></i></button>
         <button id="default-style" class="editor-icon-button" title="Ustaw domyślny" aria-label="Ustaw domyślny"><i class="mdi mdi-restore"></i></button>
-        <button id="geometry-lock" class="editor-icon-button" title="Zablokuj geometrię" aria-label="Zablokuj geometrię"><i class="mdi mdi-lock-open-variant-outline"></i></button>
         <button id="copy-style" class="editor-icon-button" title="Kopiuj styl" aria-label="Kopiuj styl"><i class="mdi mdi-content-copy"></i></button>
         <button id="paste-style" class="editor-icon-button" title="Wklej styl" aria-label="Wklej styl"><i class="mdi mdi-content-paste"></i></button>
         <button id="remove-marker" class="editor-icon-button danger" title="Usuń z widoku" aria-label="Usuń z widoku"><i class="mdi mdi-delete-outline"></i></button>
@@ -231,8 +226,6 @@
       </div>
       <div class="editor-quick-actions">
         <button id="flow-default-style" class="editor-icon-button" title="Ustaw domyślny" aria-label="Ustaw domyślny"><i class="mdi mdi-restore"></i></button>
-        <button id="flow-geometry-lock" class="editor-icon-button" title="Zablokuj geometrię" aria-label="Zablokuj geometrię"><i class="mdi mdi-lock-open-variant-outline"></i></button>
-        <button id="flow-duplicate" class="editor-icon-button" title="Duplikuj Flow" aria-label="Duplikuj Flow"><i class="mdi mdi-content-duplicate"></i></button>
         <button id="flow-copy-style" class="editor-icon-button" title="Kopiuj styl Flow" aria-label="Kopiuj styl Flow"><i class="mdi mdi-content-copy"></i></button>
         <button id="flow-paste-style" class="editor-icon-button" title="Wklej styl Flow" aria-label="Wklej styl Flow"><i class="mdi mdi-content-paste"></i></button>
         <button id="flow-remove" class="editor-icon-button danger" title="Usuń Flow" aria-label="Usuń Flow"><i class="mdi mdi-delete-outline"></i></button>
@@ -251,9 +244,9 @@
         <div class="editor-meta"><code>Pomieszczenie</code></div>
       </div>
       <div class="editor-quick-actions">
+        <button type="button" class="editor-icon-button head-preview" hidden><i class="mdi mdi-lightbulb-on-outline"></i></button>
+        <button id="room-group-toggle" class="editor-icon-button" data-part-toggle="labelLinked" title="Grupuj ikonę, nazwę i stan" aria-label="Grupuj ikonę, nazwę i stan" hidden><i class="mdi mdi-group"></i></button>
         <button id="room-default-style" class="editor-icon-button" title="Ustaw domyślny" aria-label="Ustaw domyślny"><i class="mdi mdi-restore"></i></button>
-        <button id="room-geometry-lock" class="editor-icon-button" title="Zablokuj geometrię" aria-label="Zablokuj geometrię"><i class="mdi mdi-lock-open-variant-outline"></i></button>
-        <button id="room-duplicate" class="editor-icon-button" title="Duplikuj pomieszczenie" aria-label="Duplikuj pomieszczenie"><i class="mdi mdi-content-duplicate"></i></button>
         <button id="room-copy-style" class="editor-icon-button" title="Kopiuj styl pomieszczenia" aria-label="Kopiuj styl pomieszczenia"><i class="mdi mdi-content-copy"></i></button>
         <button id="room-paste-style" class="editor-icon-button" title="Wklej styl pomieszczenia" aria-label="Wklej styl pomieszczenia"><i class="mdi mdi-content-paste"></i></button>
         <button id="room-remove" class="editor-icon-button danger" title="Usuń pomieszczenie" aria-label="Usuń pomieszczenie"><i class="mdi mdi-delete-outline"></i></button>
@@ -266,10 +259,54 @@
     <span>Przeciągnij kółka, aby ustawić rozmiar</span><b id="canvas-resize-value" data-no-i18n></b>
     <button id="canvas-resize-done" type="button" class="primary"><i class="mdi mdi-check"></i><span>Gotowe</span></button>
   </div>
+  <div id="add-dialog" class="add-dialog" aria-hidden="true">
+    <div class="add-card-wrap" role="dialog" aria-modal="true" aria-labelledby="add-title">
+      <div class="add-head"><div><h2 id="add-title">Dodaj do widoku</h2><small id="add-sub"></small></div><button type="button" class="editor-icon-button" data-add-close title="Zamknij" aria-label="Zamknij"><i class="mdi mdi-close"></i></button></div>
+      <div class="add-body">
+        <div class="add-type-step">
+          <div class="add-label">Co dodać?</div>
+          <div id="add-types" class="add-types"></div>
+        </div>
+        <div class="add-entity-step">
+          <div id="add-step-type" class="add-step-type"></div>
+          <div id="add-selected"></div>
+          <div class="add-label">Encja<em id="add-entity-note"></em></div>
+          <label class="add-search"><i class="mdi mdi-magnify"></i><input id="add-search" type="search" autocomplete="off" spellcheck="false" placeholder="Szukaj: nazwa, obszar, entity_id…" aria-label="Szukaj encji"></label>
+          <div id="add-chips" class="add-chips"></div>
+          <div id="add-list" class="add-list"></div>
+        </div>
+      </div>
+      <div class="add-foot"><label class="add-pick"><input id="add-pick" type="checkbox"><span class="add-switch"></span><span class="add-pick-text">Wskaż miejsce na planie</span></label><span class="add-spacer"></span><button type="button" class="add-cancel" data-add-close>Anuluj</button><button type="button" id="add-go" class="add-go"></button></div>
+    </div>
+  </div>
+  <div id="room-wizard" class="room-wizard" aria-hidden="true" data-step="name">
+    <div class="room-wizard-card" role="dialog" aria-labelledby="room-wizard-title">
+      <div class="room-wizard-head"><b id="room-wizard-title">Nazwa pomieszczenia</b><span id="room-wizard-step" class="room-wizard-step" data-no-i18n>1 / 2</span></div>
+      <div class="room-wizard-name-step">
+        <input id="room-wizard-name" type="text" autocomplete="off" maxlength="60" aria-label="Nazwa pomieszczenia">
+        <small>Puste = nazwa automatyczna</small>
+      </div>
+      <div class="room-wizard-entity-step">
+        <small>Zaznacz encje, od których zależy stan pomieszczenia — światło, włącznik, czujnik… Możesz wybrać kilka.</small>
+        <div id="room-wizard-picked" class="room-wizard-picked"></div>
+        <label class="room-wizard-search"><i class="mdi mdi-magnify"></i><input id="room-wizard-search" type="search" autocomplete="off" spellcheck="false" placeholder="Szukaj: nazwa, obszar, entity_id…" aria-label="Szukaj encji"></label>
+        <div id="room-wizard-list" class="room-wizard-list"></div>
+      </div>
+      <div class="room-wizard-action-step">
+        <small>Co ma się stać po dotknięciu tekstu w trybie przeglądania. Zmienisz to potem w panelu.</small>
+        <div id="room-wizard-action"></div>
+      </div>
+      <div class="room-wizard-parts-step">
+        <small>Wybierz, co pokazać. Resztę zmienisz potem w panelu.</small>
+        <div id="room-wizard-parts" class="room-wizard-parts"></div>
+      </div>
+      <div class="room-wizard-foot"><button type="button" class="room-wizard-skip" data-wizard-skip>Pomiń</button><button type="button" id="room-wizard-next" class="room-wizard-next"></button></div>
+    </div>
+  </div>
   <div id="room-draw-bar" class="room-draw-bar" role="toolbar">
     <span id="room-draw-text">Klikaj kolejne narożniki pomieszczenia</span>
-    <button id="room-draw-undo" type="button"><i class="mdi mdi-undo"></i><span>Cofnij punkt</span></button>
-    <button id="room-draw-cancel" type="button"><i class="mdi mdi-close"></i><span>Anuluj</span></button>
+    <button id="room-draw-undo" type="button" title="Cofnij punkt" aria-label="Cofnij punkt"><i class="mdi mdi-undo"></i><span>Cofnij punkt</span></button>
+    <button id="room-draw-cancel" type="button" title="Anuluj" aria-label="Anuluj"><i class="mdi mdi-close"></i><span>Anuluj</span></button>
     <button id="room-draw-done" type="button" class="primary"><i class="mdi mdi-check"></i><span>Gotowe</span></button>
   </div>
 
@@ -311,6 +348,6 @@
   </div>
 
   <div id="toast" class="toast"></div>
-  <script type="module" src="rewrite-assets/app.js?v=20260930-500"></script>
+  <script type="module" src="rewrite-assets/app.js?v=20261007-600"></script>
 </body>
 </html>
