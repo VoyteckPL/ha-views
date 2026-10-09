@@ -1704,6 +1704,11 @@ async def api_rewrite_state_save(request):
         return denial
     try:
         data = await request.json()
+    except web.HTTPRequestEntityTooLarge:
+        return web.json_response(
+            {"ok": False, "error": "Układ jest za duży do zapisania"},
+            status=413,
+        )
     except Exception:
         return web.json_response(
             {"ok": False, "error": "Nieprawidłowy JSON"},
@@ -1829,7 +1834,10 @@ async def frontend_no_store(request, handler):
     return response
 
 
-app = web.Application(middlewares=[frontend_no_store])
+# aiohttp reads request bodies up to 1 MiB by default; a saved layout (many views, rooms and thermostats) can be
+# bigger than that, so the limit is raised (GitHub issue #6: "Błąd zapisu: Nieprawidłowy JSON" above 1 MiB).
+MAX_REQUEST_SIZE = 32 * 1024 * 1024
+app = web.Application(middlewares=[frontend_no_store], client_max_size=MAX_REQUEST_SIZE)
 
 app.router.add_get("/", index)
 app.router.add_get("/rewrite", rewrite_index)

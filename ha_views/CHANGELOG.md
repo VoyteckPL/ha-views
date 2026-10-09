@@ -1,3 +1,13 @@
+## 0.6.2 — Saving large layouts
+
+### English
+
+- **Layouts above 1 MiB save again**: the add-on's server accepted requests only up to 1 MiB (aiohttp's default), so a large layout stopped saving with "Save error: Invalid JSON". The limit is now 32 MiB; a layout bigger than that shows a clear "layout too large" message. Thanks to @tyrpapatryk-hash for the report and the fix (#6).
+
+### Polski
+
+- **Duże układy znów się zapisują**: serwer dodatku przyjmował zapytania tylko do 1 MiB (domyślny limit aiohttp), więc duży układ przestawał się zapisywać z błędem „Błąd zapisu: Nieprawidłowy JSON”. Limit wynosi teraz 32 MiB, a większy układ pokaże czytelny komunikat „Układ jest za duży do zapisania”. Dzięki @tyrpapatryk-hash za zgłoszenie i poprawkę (#6).
+
 ## 0.6.1 — Thermostat modes as parts, smarter grouping and snapping
 
 ### English
