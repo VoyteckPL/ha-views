@@ -6,6 +6,15 @@ Create polished, interactive visual dashboards for Home Assistant on any image o
 
 ![HA Views at night: glowing rooms, live values, an animated Flow and a night floor plan](docs/screenshots/night-view.png)
 
+## What's new in 0.7.0
+
+- **Tiles views**: a colour background split into tiles (phone 9:16 or desktop 16:9); elements snap in, stretch over tiles and never overlap.
+- **Camera**: any `camera.*` live or refreshed on the plan, live window and landscape full screen, WebRTC cameras (e.g. Mammotion) included.
+- **Rain and irrigation**: animated rain over an area while it rains, and irrigation zones with animated sprinklers (rotor, impact, spray, mist) while the valve is on.
+- **New label engine**: presets, own size with dots and sliders, themes, Liquid glass, Gradient and icon effects; **Text is now Button** with view transitions.
+- **Thermostat and gauge**: 9 dial styles, a device-aware default thermostat and a new gauge built like it.
+- **Template library**, MDI icon search and one snapping system for everything.
+
 ## What's new in 0.6.1
 
 - **Thermostat modes as parts**: every mode button (heat, auto, off…) is styled and placed on its own, like the icon; "State" and "Modes" follow the mode, not the work state.
@@ -59,6 +68,15 @@ See [Documentation](ha_views/DOCS.md) and [Changelog](ha_views/CHANGELOG.md).
 # Polski
 
 Twórz dopracowane, interaktywne wizualne pulpity Home Assistanta na dowolnym obrazie lub jednolitym kolorze tła. Jeden zapisany układ działa responsywnie na komputerze, laptopie i telefonie.
+
+## Co nowego w 0.7.0
+
+- **Widoki z kafelkami**: kolorowe tło podzielone na kafle (telefon 9:16 albo desktop 16:9); elementy wskakują w kafle, rozciągają się na kolejne i się nie nakładają.
+- **Kamera**: dowolna `camera.*` na planie na żywo albo odświeżana, okno podglądu i pełny ekran w poziomie, także kamery WebRTC (np. Mammotion).
+- **Deszcz i podlewanie**: animowany deszcz nad obszarem, gdy pada, oraz sekcje nawadniania z animowanymi zraszaczami (rotacyjny, udarowy, dyszowy, mgiełka), gdy zawór jest otwarty.
+- **Nowy silnik etykiet**: presety, własny rozmiar kropkami i suwakami, motywy, Liquid glass, Gradient i efekty ikon; **Tekst to teraz Przycisk** z przejściami między widokami.
+- **Termostat i wskaźnik**: 9 stylów tarczy, domyślny termostat dopasowany do urządzenia i nowy wskaźnik zbudowany jak termostat.
+- **Biblioteka szablonów**, wyszukiwarka ikon MDI i jeden system przyciągania dla wszystkiego.
 
 ## Co nowego w 0.6.1
 

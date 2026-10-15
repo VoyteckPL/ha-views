@@ -1,3 +1,103 @@
+## 0.7.0 — Tiles, camera, rain and irrigation, a new label engine
+
+### English
+
+**Before you update**
+
+- Make a Home Assistant backup, as with every add-on update. Your 0.6.x layout is kept: existing labels, thermostats and gauges keep their look and switch to the new engine only when you pick a preset.
+
+**New views: Image with grid or Tiles**
+
+- The new-view wizard has two steps: **Image with grid** (your floor plan or photo, elements placed freely; existing backgrounds shown as a thumbnail gallery) or **Tiles** (a colour background split into tiles, Phone 9:16 or Desktop 16:9).
+- **Tiles**: labels, buttons, thermostats and gauges snap into tiles and fill them; stretch them over more tiles with the corner dots (on phones after a short hold), a small **+** on every empty tile adds an element right there, labels never overlap, and the grid sliders sit in the view menu.
+- Label presets on tiles: **Stacked**, **Icon on the left**, icon and name in a row, and for two parts **Stacked**, **Side by side** and **Small over big**; text always fills its frame.
+- The view menu is one page with collapsible sections; the gear screen has three columns: Options (with the template Library), **Added to view** and **Home Assistant integrations**.
+
+**Labels, rooms and buttons**
+
+- One label engine everywhere (tiles and background): presets, own size with corner dots and **Width / Height** sliders (up to 500 px, arrows at round values, reset per axis), new labels are 160 × 160 px, inner margin for name and state, font weight slider, the full state always visible (never "…"), no clipped descenders.
+- A lone icon becomes the label: circle, square or free shape, **Circle size** and **Symbol size**.
+- A room can hide its icon, name and state to show only the area; its label is clickable and moves with the room.
+- **Effects**: Themes (Aurora, Neon, Sunset, Gold, Crystal, Frost, Midnight, Mint), **Liquid glass** and **Gradient** frames with presets, and **Icon effects** (Neon, Breathing, Ripples, Rays, 3D, glass ball, metal, long shadow, floating, spinning ring and more).
+- **Text is now Button**: icon and text like a label, **Go to view** with transitions (Lift, Into the button, Flip, Slide, Fade, 3D floors, reveal from the button…) and **Try the transition**.
+- MDI icon search: type words (e.g. "arrow left") and pick from a grid of matching icons. Entity search also finds helpers (input_number, input_boolean) and YAML entities.
+
+**Thermostat and gauge**
+
+- **9 dial styles** (Classic, LED segments, Chronograph, Twin ring, Thermal, Neon, Half circle, Comet, Ticks) with their own settings.
+- A new default thermostat that fits the device: parts the entity does not report start hidden, more modes give a different layout, work states are picked from a list.
+- **New gauge** built like the thermostat: icon, name, arc in every dial style, value, min/max and percent, colours by value, sensible ranges by sensor type.
+- Thermostats and gauges on the background get their own box (corner dots, sliders); on tiles they fill 2×3 tiles.
+
+**Camera (new element)**
+
+- **+ → Camera**: the picture of any `camera.*` entity right on the plan, **live** or refreshed every 2 s – 5 min, with fit, rounded corners, frame, glass look, name and frame time.
+- Tap opens a **live window** (landscape or portrait, HLS with sound muted by default or MJPEG, pinch / wheel zoom, swipe down to close) or **full screen in landscape**.
+- **WebRTC-only cameras** (e.g. Mammotion mowers, Nest) work through the add-on, including live on the plan; their tile shows the last frame.
+- A camera can also be shown as an icon (a label), and a label with a camera entity can open the camera on tap.
+
+**Rain and irrigation (areas)**
+
+- **Rain**: an area can show animated rain from above while its sensor is on: Ripples, Streaks, Ripples + streaks + wet, Drizzle; intensity (or live from a sensor in mm/h), drop size, blue palette, wind, wet tint and downpour waves; it stays visible from afar.
+- **Irrigation (new element)**: draw a zone and place animated sprinklers – **Rotor**, **Impact**, **Spray**, **Mist** – each with range, direction, sweep angle (10–360°, snapping every 45°), speed and power. They run while the zone's valve / switch is on. Drag the blue dot to move a sprinkler and the white one to set range and direction; sprinklers snap to the zone's corners and walls.
+
+**Snapping and editing**
+
+- One snapping system for everything, with guide lines in each object's colour, equal-gap arrows, a square grid up to 48 zones (36 by default) and **Size by zones**.
+- Template **Library**: save the look of any element from its panel and add new elements **From a template**.
+- Adding is simpler: every element appears in the middle of the screen, **X** or Esc cancels the wizard, drawing a room has a clear **Cancel**.
+- Phone: elements move and resize after a short hold, swipes move the view, sliders change only when you drag their knob, and the selected element is centred above the panel. Desktop: the plan can be panned with the mouse in edit mode.
+- Many fixes: stuck touch after a system gesture, exact corners on the grid, no shrinking labels, stable ungroup / regroup.
+
+### Polski
+
+**Przed aktualizacją**
+
+- Zrób kopię zapasową Home Assistant, jak przy każdej aktualizacji dodatku. Układ z 0.6.x zostaje: istniejące etykiety, termostaty i wskaźniki zachowują wygląd i przechodzą na nowy silnik dopiero po wybraniu presetu.
+
+**Nowe widoki: Obraz z siatką albo Kafelki**
+
+- Kreator nowego widoku ma dwa kroki: **Obraz z siatką** (rzut lub zdjęcie, elementy kładziesz swobodnie; istniejące tła jako galeria miniatur) albo **Kafelki** (kolorowe tło podzielone na kafle, Telefon 9:16 albo Desktop 16:9).
+- **Kafelki**: etykiety, przyciski, termostaty i wskaźniki wskakują w kafle i je wypełniają; kropkami w rogach rozciągasz je na kolejne kafle (na telefonie po krótkim przytrzymaniu), mały **+** na pustym kaflu dodaje element właśnie tam, etykiety się nie nakładają, a suwaki siatki są w menu widoku.
+- Presety etykiety na kaflu: **Jedno pod drugim**, **Ikona z lewej**, ikona i nazwa w rzędzie, a przy dwóch częściach **Jedno pod drugim**, **Obok siebie** i **Małe nad dużym**; tekst zawsze wypełnia swoją ramkę.
+- Menu widoku na jednej stronie ze zwijanymi sekcjami; ekran zębatki w trzech kolumnach: Opcje (z Biblioteką szablonów), **Dodane do widoku** i **Integracje Home Assistant**.
+
+**Etykiety, pomieszczenia i przyciski**
+
+- Jeden silnik etykiet wszędzie (kafelki i tło): presety, własny rozmiar kropkami w rogach i suwakami **Szerokość / Wysokość** (do 500 px, strzałki w okrągłych wartościach, reset osobno dla każdej osi), nowe etykiety 160 × 160 px, margines wewnętrzny nazwy i stanu, suwak grubości czcionki, pełny stan zawsze widoczny (bez „…”), bez obciętych ogonków liter.
+- Samotna ikona staje się etykietą: koło, kwadrat albo dowolny kształt, **Wielkość koła** i **Wielkość symbolu**.
+- Pomieszczenie może ukryć ikonę, nazwę i stan – zostaje sam obszar; jego etykieta jest klikalna i jedzie razem z pomieszczeniem.
+- **Efekty**: Motywy (Zorza, Neon, Zachód, Złoto, Kryształ, Szron, Północ, Mięta), ramki **Liquid glass** i **Gradient** z presetami oraz **Efekty ikony** (Neon, Oddech, Fale, Promienie, 3D, szklana kula, metal, długi cień, unoszenie, wirujący pierścień i inne).
+- **Tekst to teraz Przycisk**: ikona i tekst jak w etykiecie, **Przejdź do widoku** z przejściami (Winda, Wejście w przycisk, Przewrót, Przesunięcie, Przenikanie, Piętra 3D, odsłonięcie z przycisku…) i **Przetestuj przejście**.
+- Wyszukiwarka ikon MDI: wpisz słowa (np. „arrow left”) i wybierz z siatki pasujących ikon. Wyszukiwanie encji znajduje też pomocników (input_number, input_boolean) i encje z YAML.
+
+**Termostat i wskaźnik**
+
+- **9 stylów tarczy** (Klasyczna, Segmenty LED, Chronograf, Podwójny pierścień, Termiczna, Neon, Półkole, Kometa, Podziałka) z własnymi ustawieniami.
+- Nowy domyślny termostat dopasowany do urządzenia: części, których encja nie podaje, startują ukryte, więcej trybów daje inny układ, stany pracy wybierasz z listy.
+- **Nowy wskaźnik** zbudowany jak termostat: ikona, nazwa, łuk w każdym stylu tarczy, wartość, min/max i procent, kolory wg wartości, rozsądne zakresy wg rodzaju czujnika.
+- Termostat i wskaźnik na tle mają własne pole (kropki w rogach, suwaki); na kafelkach zajmują 2×3 kafle.
+
+**Kamera (nowy element)**
+
+- **+ → Kamera**: obraz z dowolnej encji `camera.*` prosto na planie, **na żywo** albo odświeżany co 2 s – 5 min, z dopasowaniem, zaokrągleniem, ramką, szklanym wyglądem, nazwą i godziną klatki.
+- Dotknięcie otwiera **okno podglądu na żywo** (poziome lub pionowe, HLS z domyślnie wyciszonym dźwiękiem albo MJPEG, zoom palcami / kółkiem, zamknięcie przeciągnięciem w dół) albo **pełny ekran w poziomie**.
+- **Kamery tylko z WebRTC** (np. kosiarki Mammotion, Nest) działają przez dodatek, także na żywo na planie; ich kafel pokazuje ostatnią klatkę.
+- Kamerę można też pokazać jako ikonę (etykietę), a etykieta z encją kamery może po dotknięciu otwierać podgląd.
+
+**Deszcz i podlewanie (obszary)**
+
+- **Deszcz**: obszar może pokazywać animowany deszcz z góry, gdy czujnik jest włączony: Kręgi, Smugi, Kręgi + smugi + mokro, Mżawka; natężenie (albo na żywo z czujnika w mm/h), rozmiar kropli, niebieska paleta, wiatr, mokra poświata i fale ulewy; dobrze widoczny także z daleka.
+- **Podlewanie (nowy element)**: rysujesz sekcję i rozmieszczasz animowane zraszacze – **Rotacyjny**, **Udarowy**, **Dyszowy**, **Mgiełka** – każdy z zasięgiem, kierunkiem, kątem pracy (10–360°, ząbki co 45°), prędkością i mocą. Pracują, gdy zawór / przełącznik sekcji jest włączony. Niebieska kropka przesuwa zraszacz, biała ustawia zasięg i kierunek; zraszacze przyciągają się do narożników i ścian sekcji.
+
+**Przyciąganie i edycja**
+
+- Jeden system przyciągania dla wszystkiego: linie pomocnicze w kolorze obiektu, strzałki równych odstępów, kwadratowa siatka do 48 stref (domyślnie 36) i **Rozmiar po strefach**.
+- **Biblioteka** szablonów: zapisz wygląd dowolnego elementu z jego panelu i dodawaj nowe elementy **Z szablonu**.
+- Prostsze dodawanie: każdy element pojawia się na środku ekranu, **X** albo Esc anuluje kreator, rysowanie pomieszczenia ma wyraźne **Anuluj**.
+- Telefon: elementy przesuwasz i zmieniasz po krótkim przytrzymaniu, przeciągnięcie przesuwa widok, suwaki zmieniają się tylko po złapaniu gałki, a zaznaczony element centruje się nad panelem. Komputer: plan można przesuwać myszką w trybie edycji.
+- Wiele poprawek: zablokowany dotyk po geście systemowym, dokładne rogi na siatce, etykiety już nie maleją, stabilne rozgrupowanie i zgrupowanie.
+
 ## 0.6.2 — Saving large layouts
 
 ### English
