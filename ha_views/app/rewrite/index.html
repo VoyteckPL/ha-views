@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link id="mdi-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" media="print" onload="this.media='all'">
   <style>.app-booting .markers,.app-booting .scene-empty,.app-booting .selection,.app-booting .flow-selection,.app-booting #edit-toggle,.app-booting #view-manage,.app-booting #settings-toggle{visibility:hidden!important}</style>
-  <link rel="stylesheet" href="rewrite-assets/app.css?v=20261015-700">
+  <link rel="stylesheet" href="rewrite-assets/app.css?v=20261019-800">
 </head>
 <body>
   <header class="topbar">
@@ -15,17 +15,22 @@
       <nav id="scene-tabs" class="tabs scene-tabs" aria-label="Widoki"></nav>
       <div class="view-manage-anchor"><button id="view-manage" class="icon-action" title="Zarządzaj widokami" aria-label="Zarządzaj widokami"><i class="mdi mdi-view-dashboard-edit-outline"></i></button>
       <div id="view-menu" class="vm" data-page="main" role="dialog" aria-label="Zarządzaj widokiem">
-        <div class="vm-head"><button id="vm-back" class="vm-round" type="button" title="Wstecz" aria-label="Wstecz"><i class="mdi mdi-arrow-left"></i></button><div class="vm-title"><strong id="vm-title">Widok</strong><small id="vm-name" data-no-i18n></small></div><button id="vm-close" class="vm-round" type="button" title="Zamknij" aria-label="Zamknij"><i class="mdi mdi-close"></i></button></div>
+        <div class="vm-head"><button id="vm-back" class="vm-round" type="button" title="Wstecz" aria-label="Wstecz"><i class="mdi mdi-arrow-left"></i></button><div class="vm-title"><strong id="vm-title" data-no-i18n>Widok</strong><small id="vm-name" data-no-i18n hidden></small></div><button id="vm-close" class="vm-round" type="button" title="Zamknij" aria-label="Zamknij"><i class="mdi mdi-close"></i></button></div>
         <div class="vm-page" data-vm-page="main"></div>
         <div id="vm-background" class="vm-page" data-vm-page="background">
-          <div class="vm-type"><i class="mdi mdi-image-outline" data-type-icon></i><span data-type-name></span></div>
-          <div class="vm-icons vm-view-actions">
-            <button id="view-add" class="vm-icon" type="button" title="Dodaj widok" aria-label="Dodaj widok"><i class="mdi mdi-plus"></i></button>
-            <button id="view-rename" class="vm-icon" type="button" title="Zmień nazwę widoku" aria-label="Zmień nazwę widoku"><i class="mdi mdi-pencil-outline"></i></button>
-            <button id="view-duplicate" class="vm-icon" type="button" title="Duplikuj widok" aria-label="Duplikuj widok"><i class="mdi mdi-content-duplicate"></i></button>
-            <button id="view-default" class="vm-icon" type="button" title="Ustaw jako widok startowy" aria-label="Ustaw jako widok startowy"><i class="mdi mdi-home-variant-outline"></i></button>
+          <div class="vm-icons vm-view-actions vm-toolbar" role="toolbar" aria-label="Widok">
+            <div class="vm-tb-left">
+              <button id="view-rename" class="vm-icon" type="button" title="Zmień nazwę widoku" aria-label="Zmień nazwę widoku"><i class="mdi mdi-pencil-outline"></i></button>
+              <button id="view-default" class="vm-icon" type="button" title="Ustaw jako widok startowy" aria-label="Ustaw jako widok startowy"><i class="mdi mdi-home-variant-outline"></i></button>
+              <button id="view-zoom-toggle" class="vm-icon" type="button" aria-pressed="true" title="Zoom poza edycją" aria-label="Zoom poza edycją"><i class="mdi mdi-magnify-plus-outline"></i></button>
+            </div>
+            <div class="vm-tb-right">
+              <button id="view-delete" class="vm-icon vm-icon-danger" type="button" title="Usuń widok" aria-label="Usuń widok"><i class="mdi mdi-delete-outline"></i></button>
+              <button id="view-duplicate" class="vm-icon" type="button" title="Duplikuj widok" aria-label="Duplikuj widok"><i class="mdi mdi-content-duplicate"></i></button>
+              <button id="view-add" class="vm-icon" type="button" title="Dodaj widok" aria-label="Dodaj widok"><i class="mdi mdi-plus"></i></button>
+            </div>
           </div>
-          <details open class="vm-zone vm-sec bg-image-only">
+          <details class="vm-zone vm-sec bg-image-only">
             <summary class="vm-zone-title"><i class="mdi mdi-image-outline"></i><b>Obraz</b></summary>
             <select id="background-select" aria-label="Wybierz tło"></select>
             <div id="background-preview-wrap" class="vm-preview" hidden><img id="background-preview" alt="Podgląd wybranego tła"><div class="vm-preview-actions"><button id="background-preview-cancel" type="button">Anuluj</button><button id="background-preview-apply" type="button" class="primary">Ustaw tło</button></div></div>
@@ -38,7 +43,7 @@
             <div class="vm-range"><i class="mdi mdi-brightness-6" title="Jasność" aria-hidden="true"></i><input id="background-brightness" type="range" min="30" max="200" step="5" value="100" data-brightness="backgroundBrightness" aria-label="Jasność"><output>100%</output><button type="button" class="vm-range-reset" data-brightness-reset="backgroundBrightness" title="Przywróć 100%" aria-label="Przywróć 100%"><i class="mdi mdi-restore"></i></button></div>
             <input id="background-file" type="file" accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp" hidden>
           </details>
-          <details open class="vm-zone vm-sec night-bg-block bg-image-only">
+          <details class="vm-zone vm-sec night-bg-block bg-image-only">
             <summary class="vm-zone-title"><i class="mdi mdi-weather-night"></i><b>Tło nocne</b></summary>
             <select id="night-background-select" aria-label="Tło nocne"></select>
             <div class="vm-icons night-mode" role="group" aria-label="Tryb tła">
@@ -48,20 +53,23 @@
               <button class="vm-icon" type="button" data-night-mode="night" title="Zawsze noc" aria-label="Zawsze noc"><i class="mdi mdi-weather-night"></i></button>
             </div>
             <div class="vm-range"><i class="mdi mdi-brightness-6" title="Jasność" aria-hidden="true"></i><input id="night-brightness" type="range" min="30" max="200" step="5" value="100" data-brightness="nightBrightness" aria-label="Jasność"><output>100%</output><button type="button" class="vm-range-reset" data-brightness-reset="nightBrightness" title="Przywróć 100%" aria-label="Przywróć 100%"><i class="mdi mdi-restore"></i></button></div>
-            <label class="night-bg-entity vm-field"><span>Przełącza encja</span><input id="night-entity" type="text" autocomplete="off" spellcheck="false" placeholder="sun.sun" aria-label="Encja przełączająca tło nocne"></label>
-            <div class="sun-dim-block">
-              <label class="vm-check"><input id="sun-dim-toggle" type="checkbox"><span>Ściemniaj tło wg słońca</span></label>
-              <div class="sun-dim-controls">
-                <label class="vm-slider"><span>Jasność w nocy<output data-sundim-out="dimNight"></output></span><input type="range" min="10" max="100" step="5" data-sundim="dimNight" aria-label="Jasność w nocy"></label>
-                <label class="vm-slider"><span>Zaczyna ściemniać, gdy słońce na<output data-sundim-out="dimFrom"></output></span><input type="range" min="-10" max="20" step="1" data-sundim="dimFrom" aria-label="Zaczyna ściemniać, gdy słońce na"></label>
-                <label class="vm-slider"><span>Pełna noc, gdy słońce na<output data-sundim-out="dimTo"></output></span><input type="range" min="-18" max="5" step="1" data-sundim="dimTo" aria-label="Pełna noc, gdy słońce na"></label>
-                <label class="vm-check"><input type="checkbox" data-sundim-cool><span>Chłodny odcień nocą</span></label>
+            <details class="vm-sub night-auto">
+              <summary class="vm-sub-title"><i class="mdi mdi-weather-sunset"></i><b>Automatyczne przełączanie</b></summary>
+              <label class="night-bg-entity vm-field"><span>Przełącza encja</span><input id="night-entity" type="text" autocomplete="off" spellcheck="false" placeholder="sun.sun" aria-label="Encja przełączająca tło nocne"></label>
+              <div class="sun-dim-block">
+                <label class="vm-check"><input id="sun-dim-toggle" type="checkbox"><span>Ściemniaj tło wg słońca</span></label>
+                <div class="sun-dim-controls">
+                  <label class="vm-slider"><span>Jasność w nocy<output data-sundim-out="dimNight"></output></span><input type="range" min="10" max="100" step="5" data-sundim="dimNight" aria-label="Jasność w nocy"></label>
+                  <label class="vm-slider"><span>Zaczyna ściemniać, gdy słońce na<output data-sundim-out="dimFrom"></output></span><input type="range" min="-10" max="20" step="1" data-sundim="dimFrom" aria-label="Zaczyna ściemniać, gdy słońce na"></label>
+                  <label class="vm-slider"><span>Pełna noc, gdy słońce na<output data-sundim-out="dimTo"></output></span><input type="range" min="-18" max="5" step="1" data-sundim="dimTo" aria-label="Pełna noc, gdy słońce na"></label>
+                  <label class="vm-check"><input type="checkbox" data-sundim-cool><span>Chłodny odcień nocą</span></label>
+                </div>
               </div>
-            </div>
-            <small id="night-status" class="vm-status"></small>
+              <small id="night-status" class="vm-status"></small>
+            </details>
             <input id="night-background-file" type="file" accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp" hidden>
           </details>
-          <details open class="vm-zone vm-sec vm-colour-zone bg-colour-only">
+          <details class="vm-zone vm-sec vm-colour-zone bg-colour-only">
             <summary class="vm-zone-title"><i class="mdi mdi-palette-outline"></i><b>Kolor</b></summary>
             <div class="vm-colour-row">
               <div class="color-picker vm-colour">
@@ -83,7 +91,7 @@
               <button id="canvas-resize-start" class="vm-icon" type="button" title="Ustaw rozmiar na ekranie" aria-label="Ustaw rozmiar na ekranie"><i class="mdi mdi-resize-bottom-right"></i></button>
             </div>
           </details>
-          <details open class="vm-zone vm-sec vm-tiles-zone bg-colour-only">
+          <details class="vm-zone vm-sec vm-tiles-zone bg-colour-only">
             <summary class="vm-zone-title"><i class="mdi mdi-view-grid-outline"></i><b>Kafelki</b><button id="dash-toggle" class="vm-icon dash-toggle" type="button" hidden><span id="dash-status">ON</span></button></summary>
             <div id="dash-size-row" class="dash-size-row">
               <div class="dash-steps">
@@ -94,10 +102,6 @@
             </div>
           </details>
           <span id="background-status" class="vm-status"></span>
-          <details open class="vm-zone vm-sec vm-view-extra"><summary class="vm-zone-title"><i class="mdi mdi-tune-variant"></i><b>Opcje widoku</b></summary>
-            <div class="vm-field vm-toggle-row"><span><i class="mdi mdi-magnify-plus-outline"></i>Zoom poza edycją</span><button id="view-zoom-toggle" class="vm-icon" type="button" aria-pressed="true" title="Zoom poza edycją" aria-label="Zoom poza edycją"><i class="mdi mdi-magnify-plus-outline"></i></button></div>
-            <button id="view-delete" class="vm-danger" type="button" title="Usuń widok" aria-label="Usuń widok"><i class="mdi mdi-delete-outline"></i><span>Usuń widok</span></button>
-          </details>
         </div>
       </div></div>
     </div>
@@ -192,6 +196,7 @@
           <label class="vm-field"><span><i class="mdi mdi-dock-right"></i>Panel edycji</span><select id="dock-side-select" aria-label="Panel edycji"><option value="right">Po prawej</option><option value="left">Po lewej</option></select></label>
           <label class="vm-field"><span><i class="mdi mdi-translate"></i>Język</span><select id="language-select" title="Language / Język" aria-label="Language / Język"><option value="en">English</option><option value="pl">Polski</option></select></label>
           <label class="vm-field" id="ha-start-row" hidden><span><i class="mdi mdi-home-import-outline"></i>Panel startowy HA</span><select id="ha-start-select" aria-label="Domyślny panel Home Assistant"><option value="off">Bez zmian</option><option value="user">HA Views (konto)</option><option value="device">HA Views (urządzenie)</option></select></label>
+          <button id="view-card" class="vm-tile vm-link" type="button" title="Dodaj jako kartę HA" aria-label="Dodaj jako kartę HA"><i class="mdi mdi-card-outline"></i><span>Dodaj jako kartę HA</span><i class="mdi mdi-content-copy vm-chev"></i></button>
           <button id="view-link" class="vm-tile vm-link" type="button" title="Kopiuj link do widoku" aria-label="Kopiuj link do widoku"><i class="mdi mdi-link-variant"></i><span>Kopiuj link do widoku</span><i class="mdi mdi-content-copy vm-chev"></i></button>
           </div>
           <div class="panel-head lib-panel-head"><div><h2>Biblioteka</h2><p>Zapisane szablony elementów</p></div></div>
@@ -379,6 +384,6 @@
   </div>
 
   <div id="toast" class="toast"></div>
-  <script type="module" src="rewrite-assets/app.js?v=20261015-700"></script>
+  <script type="module" src="rewrite-assets/app.js?v=20261019-800"></script>
 </body>
 </html>

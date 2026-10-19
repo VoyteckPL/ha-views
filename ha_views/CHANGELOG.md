@@ -1,3 +1,67 @@
+## 0.8.0 — Weather, motion, drip lines, light control and a tidier editor
+
+### English
+
+**Before you update**
+
+- Make a Home Assistant backup, as with every add-on update. Your 0.7.0 layout is kept; everything new is optional and nothing changes its look until you use it. Going back to 0.7.0 after saving with 0.8.0 is not supported (new settings are ignored by the old version).
+
+**New elements and areas** (in the **+** menu)
+
+- **Weather**: an area that shows the current weather of a `weather.*` entity (e.g. OpenWeatherMap): sun with rays, drifting clouds with a soft shadow, snow, hail, fog, stars on a clear night, wind. Rain and downpour use the rain area. A row of **preview buttons** shows any weather while editing; "Rain from weather" can be switched off when a real rain sensor has its own area. It sits underneath and does not catch taps, so a weather and a rain area can cover almost the whole plan.
+- **Motion**: motion sensors in an area or as a layer of a room, with a "whole room" wave, cones (Waves, Radar, Flash), fade-out and its own preview. A **Room** is now light plus optional motion; **Irrigation** and **Rain** are separate areas.
+- **Irrigation** is one category: **sprinklers in an area** or a **drip line**. Drip lines are drawn freely anywhere on the plan (no area needed) with their own valve and ON/OFF preview: hose thickness, glow, spots and drops, rounded corners, extend, add / remove points (right button, double click or long press), 45° snapping, grab and move the whole line, copy / paste style. Sprinkler heads and range dots snap to the grid; the edit dots are smaller; the preview hides them. A new area no longer adds a sprinkler by itself.
+- **Add as HA card** (view menu): writes a small Lovelace card and registers it as a dashboard resource; it shows one view without the bar.
+
+**Lights**
+
+- **Hold a label with a dimmable light** (right button on a computer) for a small popup: brightness, colour temperature, ready colours, a hue bar and white. **Save as default** makes the tap switch the light on in that colour.
+- A room can glow in the **colour of its lamp**, follows it live, and has **Click: whole area / icon only**.
+- **State sync**: no more flicker of a light you have just switched (a late answer never overwrites a newer state, contradicting updates are ignored for 2.5 s), and after the app slept in the background the live stream is made again and the states are asked for until they arrive.
+
+**Labels, icons and thermostat**
+
+- **Icon effects in two groups you can combine**: a look (3D, glass ball, metal, gradient, long shadow) and a motion / light (neon, breathing, ripples, rays, floating, spinning ring, inner light); they also work on elements without an ON state; metal and gradient take the icon's colour.
+- **Thermostat**: icon effects and shape, bigger defaults for icon and name, same "symbol size / circle size" sliders as a lone icon, modes, button visibility and confirmations moved to "General" (only the single mode buttons stay as sections), mode and −/+ icons centred exactly on every device, reset values of the thermostat's own.
+- **Lone icon**: one consistent layout and a bigger default symbol. **Copy style** also copies a label's size.
+- **Tiles**: width and height of a label, thermostat or gauge with big **− / +** buttons (easy on a phone); a label's layout follows live while stretching.
+
+**View menu and editor**
+
+- **View menu**: one even row of icons (rename, start view, zoom outside edit; delete, duplicate, add), the view's name as the title, all sections folded, the night background grouped, "Options" removed.
+- **Editor**: every subsection is folded by default and stays open while you choose inside it.
+
+### Polski
+
+**Przed aktualizacją**
+
+- Zrób kopię zapasową Home Assistanta, jak przy każdej aktualizacji dodatku. Twój układ z 0.7.0 zostaje; wszystko nowe jest opcjonalne i niczego nie zmienia, dopóki z tego nie skorzystasz. Powrót do 0.7.0 po zapisaniu układu w 0.8.0 nie jest wspierany (stara wersja ignoruje nowe ustawienia).
+
+**Nowe elementy i obszary** (w menu **+**)
+
+- **Pogoda**: obszar pokazujący aktualną pogodę z encji `weather.*` (np. OpenWeatherMap): słońce z promieniami, płynące chmury z miękkim cieniem, śnieg, grad, mgła, gwiazdy w pogodną noc, wiatr. Deszcz i ulewa korzystają z obszaru deszczu. Rząd **przycisków podglądu** pokazuje dowolną pogodę w edycji; „Deszcz z pogody” można wyłączyć, gdy prawdziwy czujnik deszczu ma własny obszar. Obszar leży na spodzie i nie przechwytuje kliknięć, więc pogoda i deszcz mogą zająć prawie cały plan.
+- **Ruch**: czujniki ruchu w obszarze albo jako warstwa pomieszczenia: fala „cały pokój”, stożki (Fale, Radar, Błysk), zanikanie i własny podgląd. **Pomieszczenie** to teraz światło plus opcjonalny ruch; **Podlewanie** i **Deszcz** to osobne obszary.
+- **Podlewanie** to jedna kategoria: **zraszacze w obszarze** albo **linia kroplująca**. Linie kroplujące rysujesz dowolnie na planie (bez obszaru), z własnym zaworem i podglądem ON/OFF: grubość węża, poświata, plamy i krople, zaokrąglone zakręty, dorysowanie, dodawanie / usuwanie punktów (prawy przycisk, dwuklik albo długie przytrzymanie), przyciąganie co 45°, łapanie i przesuwanie całej linii, kopiuj / wklej styl. Głowice i kropki zasięgu zraszaczy przyciągają się do siatki; kropki w edycji są mniejsze; podgląd je ukrywa. Nowy obszar nie dodaje już sam zraszacza.
+- **Dodaj jako kartę HA** (menu widoku): zapisuje małą kartę Lovelace i rejestruje ją w zasobach dashboardu; pokazuje jeden widok bez paska.
+
+**Światła**
+
+- **Przytrzymaj etykietę ze światłem z regulacją** (na komputerze prawy przycisk), a pojawi się dymek: jasność, temperatura barwy, gotowe kolory, pasek odcienia i biel. **Zapisz jako domyślny** sprawia, że kliknięcie włącza światło w tym kolorze.
+- Pomieszczenie może świecić **kolorem swojej lampy** (na bieżąco) i ma opcję **Klikanie: cały obszar / tylko ikona**.
+- **Synchronizacja stanu**: koniec migotania świecącej się chwilę wcześniej lampy (spóźniona odpowiedź nie nadpisuje nowszego stanu, sprzeczne aktualizacje są ignorowane przez 2,5 s), a po uśpieniu aplikacji w tle strumień na żywo jest nawiązywany od nowa i stany są pobierane do skutku.
+
+**Etykiety, ikony i termostat**
+
+- **Efekty ikony w dwóch grupach, które można łączyć**: wygląd (3D, szklana kula, metal, gradient, długi cień) oraz animacja / światło (neon, oddech, fale, promienie, unoszenie, wirujący pierścień, światło od środka); działają też na elementach bez stanu ON; metal i gradient biorą kolor ikony.
+- **Termostat**: efekty ikony i kształt, większe domyślne rozmiary ikony i nazwy, takie same suwaki „wielkość symbolu / koła” jak w samotnej ikonie, tryby, widoczność przycisków i potwierdzenia w „Ogólne” (jako sekcje zostały pojedyncze przyciski trybów), ikony trybów oraz −/+ wyśrodkowane dokładnie na każdym urządzeniu, reset do własnych wartości termostatu.
+- **Samotna ikona**: spójny układ i większy domyślny symbol. **Kopiuj styl** kopiuje też rozmiar etykiety.
+- **Kafelki**: szerokość i wysokość etykiety, termostatu lub wskaźnika dużymi przyciskami **− / +** (wygodne na telefonie); układ etykiety dopasowuje się na żywo przy rozciąganiu.
+
+**Menu widoku i edytor**
+
+- **Menu widoku**: jeden równy rząd ikon (zmiana nazwy, widok startowy, zoom poza edycją; usuń, duplikuj, dodaj), nazwa widoku jako tytuł, wszystkie sekcje zwinięte, tło nocne pogrupowane, bez „Opcji widoku”.
+- **Edytor**: każda podsekcja jest domyślnie zwinięta i zostaje otwarta, gdy wybierasz coś w jej środku.
+
 ## 0.7.0 — Tiles, camera, rain and irrigation, a new label engine
 
 ### English

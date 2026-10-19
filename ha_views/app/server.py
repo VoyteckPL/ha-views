@@ -162,7 +162,7 @@ async def api_control(request):
         return web.json_response({"ok": False, "error": "Invalid entity ID"}, status=400)
     climate_actions = ("set_temperature", "set_hvac_mode", "set_preset_mode", "set_operation_mode")
     if not is_admin and not (
-        (action in ("turn_on", "turn_off") and entity_id in _viewer_toggle_entities())
+        (action in ("turn_on", "turn_off", "light_set") and entity_id in _viewer_toggle_entities())
         or (action in climate_actions and entity_id in _viewer_thermostat_entities())
     ):
         return web.json_response({"ok": False, "error": "HA Views is view-only for this user"}, status=403)
@@ -171,6 +171,21 @@ async def api_control(request):
     payload = {"entity_id": entity_id}
     if action in ("turn_on", "turn_off") and domain in {"switch", "light", "fan", "input_boolean"}:
         service_url = f"{HA_API}/services/{domain}/{action}"
+    elif action == "light_set" and domain == "light":
+        # Brightness (1-100 %) and / or colour temperature (kelvin) of a light: the popup of a label with a dimmable light.
+        try:
+            if body.get("brightness_pct") is not None:
+                payload["brightness_pct"] = max(1, min(100, int(float(body.get("brightness_pct")))))
+            if body.get("color_temp_kelvin") is not None:
+                payload["color_temp_kelvin"] = max(1000, min(12000, int(float(body.get("color_temp_kelvin")))))
+            hs = body.get("hs_color")
+            if isinstance(hs, (list, tuple)) and len(hs) == 2:
+                payload["hs_color"] = [round(float(hs[0]) % 360, 1), round(max(0.0, min(100.0, float(hs[1]))), 1)]
+        except (TypeError, ValueError, IndexError):
+            return web.json_response({"ok": False, "error": "Invalid value"}, status=400)
+        if len(payload) == 1:
+            return web.json_response({"ok": False, "error": "Nothing to set"}, status=400)
+        service_url = f"{HA_API}/services/light/turn_on"
     elif action == "set_value" and domain in {"number", "input_number"}:
         try:
             payload["value"] = float(body.get("value"))
@@ -2058,6 +2073,110 @@ async def frontend_no_store(request, handler):
     return response
 
 
+# ===== HA VIEWS CARD V1 =====
+# "Dodaj jako kartę HA": a small Lovelace card written to /config/www (served by HA at /local/…) and registered as a
+# dashboard resource (when the dashboards are in UI mode). The card opens one view of this add-on in card mode inside its
+# own frame; it starts the add-on's ingress session itself (as Home Assistant does when the add-on panel is opened).
+CARD_WWW_DIR = "/config/www"
+
+CARD_JS_TEMPLATE = r"""// HA Views card (__NAME__) - written by the HA Views add-on. Shows one HA Views view on a dashboard:
+//   type: custom:__ELEMENT__
+//   view: <view name or id>
+// Editing stays in HA Views; taps work as in HA Views (toggle, Home Assistant's own "More info").
+(() => {
+const ELEMENT = "__ELEMENT__", NAME = "__NAME__", INGRESS = "__INGRESS__";
+if (customElements.get(ELEMENT)) return;
+// One ingress session for all cards on the page, kept valid like Home Assistant does for add-on panels.
+const SESSION_KEY = "__havIngressSession";
+async function ensureSession(hass) {
+  const g = window, state = g[SESSION_KEY] ||= { session: "", timer: 0, pending: null };
+  const set = s => { state.session = s; document.cookie = `ingress_session=${s};path=/api/hassio_ingress/;SameSite=Strict${location.protocol === "https:" ? ";Secure" : ""}`; };
+  const fresh = async () => { const r = await hass.callWS({ type: "supervisor/api", endpoint: "/ingress/session", method: "post" }); set(r.session); };
+  if (!state.session) { state.pending ||= fresh().finally(() => { state.pending = null; }); await state.pending; }
+  if (!state.timer) state.timer = setInterval(async () => {
+    try { await hass.callWS({ type: "supervisor/api", endpoint: "/ingress/validate_session", method: "post", data: { session: state.session } }); }
+    catch { try { await fresh(); } catch {} }
+  }, 60000);
+}
+class HaViewsCard extends HTMLElement {
+  setConfig(config) {
+    if (!config || !config.view) throw new Error("view: <nazwa widoku HA Views>");
+    this._config = config; this._ratio = Number(config.aspect_ratio) > 0 ? Number(config.aspect_ratio) : 16 / 9;
+    if (!this.shadowRoot) {
+      this.attachShadow({ mode: "open" }).innerHTML = `<style>
+        ha-card{overflow:hidden;position:relative}
+        .wrap{position:relative;width:100%;aspect-ratio:var(--ratio,1.7778)}
+        iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:transparent}
+        .msg{position:absolute;inset:0;display:grid;place-items:center;padding:16px;text-align:center;color:var(--secondary-text-color);font-size:14px}
+      </style><ha-card><div class="wrap"><div class="msg">${NAME}…</div></div></ha-card>`;
+      window.addEventListener("message", event => {
+        if (!this._frame || event.source !== this._frame.contentWindow || event.data?.type !== "hav-card-size") return;
+        if (!(Number(this._config?.aspect_ratio) > 0)) this._setRatio(Number(event.data.ratio));
+      });
+    }
+    this._setRatio(this._ratio);
+    if (this._hass) this._load();
+  }
+  _setRatio(r) { if (r > 0) { this._ratio = r; this.shadowRoot.querySelector(".wrap").style.setProperty("--ratio", String(r)); } }
+  set hass(hass) { const first = !this._hass; this._hass = hass; if (first && this._config) this._load(); }
+  async _load() {
+    const wrap = this.shadowRoot.querySelector(".wrap"), src = `${INGRESS}?card=1&view=${encodeURIComponent(this._config.view)}`;
+    if (this._frame?.dataset.src === src) return;
+    try { await ensureSession(this._hass); }
+    catch (e) { wrap.innerHTML = `<div class="msg">${NAME}: brak dostępu do dodatku (${e?.message || e}).</div>`; return; }
+    const frame = document.createElement("iframe"); frame.dataset.src = src; frame.src = src; frame.setAttribute("loading", "lazy"); frame.title = `${NAME}: ${this._config.view}`;
+    wrap.replaceChildren(frame); this._frame = frame;
+  }
+  getCardSize() { return Math.max(3, Math.round(12 / (this._ratio || 1.7778))); }
+  static getStubConfig() { return { view: "" }; }
+}
+customElements.define(ELEMENT, HaViewsCard);
+(window.customCards ||= []).push({ type: ELEMENT, name: `${NAME} – widok`, description: "Jeden widok HA Views jako karta dashboardu.", preview: false });
+})();
+"""
+
+
+def card_names():
+    beta = ADDON_CHANNEL == "beta"
+    return ("ha-views-beta-card" if beta else "ha-views-card", "HA Views Beta" if beta else "HA Views")
+
+
+async def api_card_install(request):
+    if not await request_is_admin(request):
+        return web.json_response({"ok": False, "error": "HA Views is view-only for this user"}, status=403)
+    try:
+        body = await request.json()
+    except Exception:
+        return web.json_response({"ok": False, "error": "Invalid JSON"}, status=400)
+    ingress = str(body.get("ingress", "")).strip()
+    if not re.fullmatch(r"/api/hassio_ingress/[A-Za-z0-9_\-]+/", ingress):
+        return web.json_response({"ok": False, "error": "Otwórz HA Views z panelu Home Assistanta, żeby dodać kartę."}, status=400)
+    element, name = card_names()
+    filename = f"{element}.js"
+    code = CARD_JS_TEMPLATE.replace("__ELEMENT__", element).replace("__NAME__", name).replace("__INGRESS__", ingress)
+    try:
+        os.makedirs(CARD_WWW_DIR, exist_ok=True)
+        with open(os.path.join(CARD_WWW_DIR, filename), "w", encoding="utf-8") as handle:
+            handle.write(code)
+    except Exception as error:
+        return web.json_response({"ok": False, "error": f"Nie udało się zapisać karty: {error}"}, status=500)
+    resource = f"/local/{filename}?v={int(time.time())}"
+    registered = False
+    # The dashboard resource (UI-mode dashboards only; in YAML mode it is added by hand).
+    try:
+        items = await ha_ws_command({"type": "lovelace/resources"})
+        if isinstance(items, list):
+            mine = [item for item in items if str(item.get("url", "")).split("?")[0] == f"/local/{filename}"]
+            if mine:
+                await ha_ws_command({"type": "lovelace/resources/update", "resource_id": mine[0].get("id"), "res_type": "module", "url": resource})
+            else:
+                await ha_ws_command({"type": "lovelace/resources/create", "res_type": "module", "url": resource})
+            registered = True
+    except Exception:
+        registered = False
+    return web.json_response({"ok": True, "element": element, "resource": resource, "registered": registered})
+
+
 # aiohttp reads request bodies up to 1 MiB by default; a saved layout (many views, rooms and thermostats) can be
 # bigger than that, so the limit is raised (GitHub issue #6: "Błąd zapisu: Nieprawidłowy JSON" above 1 MiB).
 MAX_REQUEST_SIZE = 32 * 1024 * 1024
@@ -2104,6 +2223,7 @@ app.router.add_post("/api/enable_entity", api_enable_entity)
 app.router.add_post("/api/disable_entity", api_disable_entity)
 
 app.router.add_post("/api/control", api_control)
+app.router.add_post("/api/card/install", api_card_install)
 app.router.add_get("/api/history", api_history)
 app.router.add_get("/api/entity_history", api_entity_history)
 app.router.add_get("/api/layout", api_layout_get)

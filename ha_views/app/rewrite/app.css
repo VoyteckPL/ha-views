@@ -1998,21 +1998,21 @@ body.editing .dash-quick.on{display:flex}
 
 /* Icon effects (iefx-*): layers inside the icon under its glyph, in its colour (--ic); animated only while ON (.lon) */
 .ifx-l{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0}
-[class*="iefx-"] .room-card-part.icon{position:relative}
-[class*="iefx-"] :is(.room-card-part,.room-label-part).icon:not(.ifr){border-radius:50%}
-[class*="iefx-"] :is(.room-card-part,.room-label-part).icon>:is(.mdi,.mdi-svg,.room-label-brand){position:relative;z-index:1}
-.iefx-neon.lon :is(.room-card-part,.room-label-part).icon>:is(.mdi,.mdi-svg){filter:drop-shadow(0 0 calc(.05em*var(--fxp)) var(--ic)) drop-shadow(0 0 calc(.2em*var(--fxp)) var(--ic))!important}
-.iefx-neon.lon :is(.room-card-part,.room-label-part).icon>.ifx-a{box-shadow:0 0 calc(.35em*var(--fxp)) color-mix(in srgb,var(--ic) 55%,transparent),inset 0 0 0 .03em var(--ic);animation:iefx-pulse 2.4s ease-in-out infinite}
+:is([class*="iefx-"],[class*="ianim-"]) .room-card-part.icon{position:relative}
+:is([class*="iefx-"],[class*="ianim-"]) :is(.room-card-part,.room-label-part).icon:not(.ifr){border-radius:50%}
+:is([class*="iefx-"],[class*="ianim-"]) :is(.room-card-part,.room-label-part).icon>:is(.mdi,.mdi-svg,.room-label-brand){position:relative;z-index:1}
+.ianim-neon.lon :is(.room-card-part,.room-label-part).icon>:is(.mdi,.mdi-svg){filter:drop-shadow(0 0 calc(.05em*var(--fxp)) var(--ic)) drop-shadow(0 0 calc(.2em*var(--fxp)) var(--ic))!important}
+.ianim-neon.lon :is(.room-card-part,.room-label-part).icon>.ifx-c{box-shadow:0 0 calc(.35em*var(--fxp)) color-mix(in srgb,var(--ic) 55%,transparent),inset 0 0 0 .03em var(--ic);animation:iefx-pulse 2.4s ease-in-out infinite}
 @keyframes iefx-pulse{0%,100%{opacity:1}50%{opacity:.45}}
-.iefx-breath.lon :is(.room-card-part,.room-label-part).icon>.ifx-a{background:radial-gradient(circle,color-mix(in srgb,var(--ic) calc(38%*var(--fxp)),transparent),transparent 70%);animation:iefx-halo 3s ease-in-out infinite}
+.ianim-breath.lon :is(.room-card-part,.room-label-part).icon>.ifx-c{background:radial-gradient(circle,color-mix(in srgb,var(--ic) calc(38%*var(--fxp)),transparent),transparent 70%);animation:iefx-halo 3s ease-in-out infinite}
 @keyframes iefx-halo{0%,100%{opacity:.55;scale:1}50%{opacity:1;scale:1.2}}
-.iefx-breath.lon :is(.room-card-part,.room-label-part).icon>:is(.mdi,.mdi-svg):not([class*="icon-anim-"]){animation:iefx-breath 3s ease-in-out infinite}
+.ianim-breath.lon :is(.room-card-part,.room-label-part).icon>:is(.mdi,.mdi-svg):not([class*="icon-anim-"]){animation:iefx-breath 3s ease-in-out infinite}
 @keyframes iefx-breath{50%{scale:1.08}}
-.iefx-ripple :is(.room-card-part,.room-label-part).icon>.ifx-l{border:calc(.05em*var(--fxp)) solid var(--ic);opacity:0}
-.iefx-ripple.lon :is(.room-card-part,.room-label-part).icon>.ifx-a{animation:iefx-ripple 2.4s ease-out infinite}.iefx-ripple.lon :is(.room-card-part,.room-label-part).icon>.ifx-b{animation:iefx-ripple 2.4s ease-out 1.2s infinite}
+.ianim-ripple :is(.room-card-part,.room-label-part).icon>:is(.ifx-c,.ifx-d){border:calc(.05em*var(--fxp)) solid var(--ic);opacity:0}
+.ianim-ripple.lon :is(.room-card-part,.room-label-part).icon>.ifx-c{animation:iefx-ripple 2.4s ease-out infinite}.ianim-ripple.lon :is(.room-card-part,.room-label-part).icon>.ifx-d{animation:iefx-ripple 2.4s ease-out 1.2s infinite}
 @keyframes iefx-ripple{0%{scale:1;opacity:.75}100%{scale:1.9;opacity:0}}
-.iefx-rays :is(.room-card-part,.room-label-part).icon>.ifx-a{inset:-.45em;border-radius:50%;background:repeating-conic-gradient(color-mix(in srgb,var(--ic) calc(55%*var(--fxp)),transparent) 0 8deg,transparent 8deg 30deg);-webkit-mask:radial-gradient(circle,transparent 42%,#000 47%,transparent 72%);mask:radial-gradient(circle,transparent 42%,#000 47%,transparent 72%);opacity:0;transition:opacity .5s}
-.iefx-rays.lon :is(.room-card-part,.room-label-part).icon>.ifx-a{opacity:1;animation:iefx-spin 14s linear infinite}
+.ianim-rays :is(.room-card-part,.room-label-part).icon>.ifx-c{inset:-.45em;border-radius:50%;background:repeating-conic-gradient(color-mix(in srgb,var(--ic) calc(55%*var(--fxp)),transparent) 0 8deg,transparent 8deg 30deg);-webkit-mask:radial-gradient(circle,transparent 42%,#000 47%,transparent 72%);mask:radial-gradient(circle,transparent 42%,#000 47%,transparent 72%);opacity:0;transition:opacity .5s}
+.ianim-rays.lon :is(.room-card-part,.room-label-part).icon>.ifx-c{opacity:1;animation:iefx-spin 14s linear infinite}
 @keyframes iefx-spin{to{rotate:360deg}}
 .iefx-emboss :is(.room-card-part,.room-label-part).icon>.ifx-a{background:linear-gradient(145deg,rgba(255,255,255,.16),rgba(0,0,0,.35));box-shadow:calc(-.05em*var(--fxp)) calc(-.05em*var(--fxp)) .12em rgba(255,255,255,.08),calc(.07em*var(--fxp)) calc(.09em*var(--fxp)) .18em rgba(0,0,0,.55),inset 0 .02em 0 rgba(255,255,255,.18)}
 .iefx-emboss :is(.room-card-part,.room-label-part).icon>:is(.mdi,.mdi-svg){filter:drop-shadow(calc(-.02em*var(--fxp)) calc(-.02em*var(--fxp)) 0 rgba(255,255,255,.35)) drop-shadow(calc(.04em*var(--fxp)) calc(.04em*var(--fxp)) .05em rgba(0,0,0,.6))!important}
@@ -2021,25 +2021,22 @@ body.editing .dash-quick.on{display:flex}
 .iefx-glass :is(.room-card-part,.room-label-part).icon>.ifx-b{inset:8% 20% auto;height:28%;border-radius:50%;background:linear-gradient(rgba(255,255,255,calc(.55*var(--fxp))),rgba(255,255,255,0));z-index:2}
 .iefx-glass.lon :is(.room-card-part,.room-label-part).icon>.ifx-a{background:radial-gradient(circle at 50% 110%,color-mix(in srgb,var(--ic) calc(70%*var(--fxp)),transparent),transparent 75%),linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.04) 55%,rgba(255,255,255,.12))}
 .iefx-metal :is(.room-card-part,.room-label-part).icon>.mdi{background:linear-gradient(160deg,#f4f8fb 10%,#8a9aa5 45%,#e3eaef 55%,#5f707b 90%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent!important}
-.iefx-metal.lon :is(.room-card-part,.room-label-part).icon>.mdi{background:linear-gradient(110deg,#7a5410,#ffd27a 30%,#fff6d8 42%,#e2a93d 55%,#7a5410) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text}
-.iefx-metal.lon :is(.room-card-part,.room-label-part).icon>:is(.mdi,.mdi-svg){filter:drop-shadow(0 1px 1px rgba(0,0,0,.6)) drop-shadow(0 0 calc(.12em*var(--fxp)) rgba(255,196,107,.5))!important}
+.iefx-metal.lon :is(.room-card-part,.room-label-part).icon>.mdi{background:linear-gradient(110deg,color-mix(in srgb,var(--ic,#DCE8EF) 45%,#000),var(--ic,#DCE8EF) 30%,color-mix(in srgb,var(--ic,#DCE8EF) 25%,#fff) 42%,color-mix(in srgb,var(--ic,#DCE8EF) 88%,#000) 55%,color-mix(in srgb,var(--ic,#DCE8EF) 45%,#000)) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text}
+.iefx-metal.lon :is(.room-card-part,.room-label-part).icon>:is(.mdi,.mdi-svg){filter:drop-shadow(0 1px 1px rgba(0,0,0,.6)) drop-shadow(0 0 calc(.12em*var(--fxp)) color-mix(in srgb,var(--ic,#DCE8EF) 55%,transparent))!important}
 .iefx-grad :is(.room-card-part,.room-label-part).icon>.mdi{background:linear-gradient(135deg,#5f7686,#8fa9b7);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent!important}
-.iefx-grad.lon :is(.room-card-part,.room-label-part).icon>.mdi{background:linear-gradient(135deg,#ff6374,#ffd166,#22d69b,#20b9e7,#b66dff,#ff6374) 0 0/300% 300%;-webkit-background-clip:text;background-clip:text}
+.iefx-grad.lon :is(.room-card-part,.room-label-part).icon>.mdi{background:linear-gradient(135deg,color-mix(in srgb,var(--ic,#DCE8EF) 60%,#fff),var(--ic,#DCE8EF),color-mix(in srgb,var(--ic,#DCE8EF) 60%,#000),var(--ic,#DCE8EF),color-mix(in srgb,var(--ic,#DCE8EF) 60%,#fff)) 0 0/300% 300%;-webkit-background-clip:text;background-clip:text}
 .iefx-long :is(.room-card-part,.room-label-part).icon>:is(.mdi,.mdi-svg){filter:drop-shadow(calc(.035em*var(--fxp)) calc(.035em*var(--fxp)) 0 rgba(0,0,0,0.34)) drop-shadow(calc(.035em*var(--fxp)) calc(.035em*var(--fxp)) 0 rgba(0,0,0,0.31)) drop-shadow(calc(.035em*var(--fxp)) calc(.035em*var(--fxp)) 0 rgba(0,0,0,0.28)) drop-shadow(calc(.035em*var(--fxp)) calc(.035em*var(--fxp)) 0 rgba(0,0,0,0.25)) drop-shadow(calc(.035em*var(--fxp)) calc(.035em*var(--fxp)) 0 rgba(0,0,0,0.21)) drop-shadow(calc(.035em*var(--fxp)) calc(.035em*var(--fxp)) 0 rgba(0,0,0,0.17)) drop-shadow(calc(.035em*var(--fxp)) calc(.035em*var(--fxp)) 0 rgba(0,0,0,0.13)) drop-shadow(calc(.035em*var(--fxp)) calc(.035em*var(--fxp)) 0 rgba(0,0,0,0.09))!important}
 .iefx-long.lon :is(.room-card-part,.room-label-part).icon>.ifx-a{background:color-mix(in srgb,var(--ic) calc(28%*var(--fxp)),transparent)}
-.iefx-float :is(.room-card-part,.room-label-part).icon>:is(.mdi,.mdi-svg){filter:drop-shadow(0 .08em .08em rgba(0,0,0,.45))!important}
-.iefx-float.lon :is(.room-card-part,.room-label-part).icon>:is(.mdi,.mdi-svg):not([class*="icon-anim-"]){animation:iefx-float 3s ease-in-out infinite}
+.ianim-float :is(.room-card-part,.room-label-part).icon>:is(.mdi,.mdi-svg){filter:drop-shadow(0 .08em .08em rgba(0,0,0,.45))!important}
+.ianim-float.lon :is(.room-card-part,.room-label-part).icon>:is(.mdi,.mdi-svg):not([class*="icon-anim-"]){animation:iefx-float 3s ease-in-out infinite}
 @keyframes iefx-float{50%{translate:0 calc(-.12em*var(--fxp))}}
-.iefx-ring :is(.room-card-part,.room-label-part).icon>.ifx-a{inset:-.08em;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 55%,var(--ic) 100%);-webkit-mask:radial-gradient(circle,transparent calc(70% - .06em*var(--fxp)),#000 calc(71% - .06em*var(--fxp)));mask:radial-gradient(circle,transparent calc(70% - .06em*var(--fxp)),#000 calc(71% - .06em*var(--fxp)));opacity:.35}
-.iefx-ring.lon :is(.room-card-part,.room-label-part).icon>.ifx-a{opacity:1;animation:iefx-spin 1.8s linear infinite}
-.iefx-inner.lon :is(.room-card-part,.room-label-part).icon>.ifx-a{background:radial-gradient(circle,color-mix(in srgb,var(--ic) 85%,#fff) 0%,color-mix(in srgb,var(--ic) calc(55%*var(--fxp)),transparent) 38%,transparent 72%);box-shadow:0 0 calc(.4em*var(--fxp)) color-mix(in srgb,var(--ic) 40%,transparent)}
-.iefx-inner.lon :is(.room-card-part,.room-label-part).icon>.mdi{-webkit-text-fill-color:#fff8e6!important}.iefx-inner.lon :is(.room-card-part,.room-label-part).icon>.mdi-svg path{fill:#fff8e6!important}
-.iefx-inner.lon :is(.room-card-part,.room-label-part).icon>:is(.mdi,.mdi-svg){filter:drop-shadow(0 0 .05em rgba(255,255,255,.8))!important}
-.iefx-outline :is(.room-card-part,.room-label-part).icon>.mdi{-webkit-text-fill-color:transparent!important;-webkit-text-stroke:calc(.035em*var(--fxp)) var(--ic)!important}
-.iefx-outline :is(.room-card-part,.room-label-part).icon>.mdi-svg path{fill:transparent!important;stroke:var(--ic);stroke-width:calc(1.1px*var(--fxp))}
-.iefx-outline.lon :is(.room-card-part,.room-label-part).icon>:is(.mdi,.mdi-svg){filter:drop-shadow(0 0 calc(.04em*var(--fxp)) var(--ic)) drop-shadow(0 0 calc(.15em*var(--fxp)) var(--ic))!important}
+.ianim-ring :is(.room-card-part,.room-label-part).icon>.ifx-c{inset:-.08em;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 55%,var(--ic) 100%);-webkit-mask:radial-gradient(circle,transparent calc(70% - .06em*var(--fxp)),#000 calc(71% - .06em*var(--fxp)));mask:radial-gradient(circle,transparent calc(70% - .06em*var(--fxp)),#000 calc(71% - .06em*var(--fxp)));opacity:.35}
+.ianim-ring.lon :is(.room-card-part,.room-label-part).icon>.ifx-c{opacity:1;animation:iefx-spin 1.8s linear infinite}
+.ianim-inner.lon :is(.room-card-part,.room-label-part).icon>.ifx-c{background:radial-gradient(circle,color-mix(in srgb,var(--ic) 85%,#fff) 0%,color-mix(in srgb,var(--ic) calc(55%*var(--fxp)),transparent) 38%,transparent 72%);box-shadow:0 0 calc(.4em*var(--fxp)) color-mix(in srgb,var(--ic) 40%,transparent)}
+.ianim-inner.lon :is(.room-card-part,.room-label-part).icon>.mdi{-webkit-text-fill-color:#fff8e6!important}.ianim-inner.lon :is(.room-card-part,.room-label-part).icon>.mdi-svg path{fill:#fff8e6!important}
+.ianim-inner.lon :is(.room-card-part,.room-label-part).icon>:is(.mdi,.mdi-svg){filter:drop-shadow(0 0 .05em rgba(255,255,255,.8))!important}
 .icon-fx{grid-template-columns:repeat(3,minmax(0,1fr))}
-@media (prefers-reduced-motion:reduce){[class*="iefx-"] .ifx-l,[class*="iefx-"] :is(.mdi,.mdi-svg){animation:none!important}}
+@media (prefers-reduced-motion:reduce){:is([class*="iefx-"],[class*="ianim-"]) .ifx-l,:is([class*="iefx-"],[class*="ianim-"]) :is(.mdi,.mdi-svg){animation:none!important}}
 /* Camera live window: its own window over the plan - landscape or portrait, the picture fitted, pinch / wheel zoom. */
 .cam-live{position:fixed;inset:0;z-index:400;display:grid;place-items:center;padding:max(10px,env(safe-area-inset-top)) max(10px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))}
 .cam-live-backdrop{position:absolute;inset:0;background:rgba(2,8,12,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
@@ -2156,14 +2153,107 @@ body.editing .cam-layer{z-index:4}
 .empty-bg-name{display:block;font-size:10.5px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .empty-bg-gallery:not([hidden])~.empty-background-preview-wrap img{display:none}
 .spr-handle,.spr-tip{position:absolute;pointer-events:auto;touch-action:none;cursor:grab;border-radius:50%;box-shadow:0 1px 5px rgba(0,0,0,.55)}
-.spr-handle{width:16px;height:16px;margin:-8px 0 0 -8px;background:#2f9bff;border:2px solid #dff3ff}
-.spr-tip{width:12px;height:12px;margin:-6px 0 0 -6px;background:#fff;border:2px solid #2f9bff;cursor:crosshair}
+.spr-handle{width:10px;height:10px;margin:-5px 0 0 -5px;background:#2f9bff;border:1.5px solid #dff3ff}
+.spr-tip{width:8px;height:8px;margin:-4px 0 0 -4px;background:#fff;border:1.5px solid #2f9bff;cursor:crosshair}
 .spr-handle.selected{background:#5fd0ff;box-shadow:0 0 0 3px rgba(95,208,255,.45),0 1px 5px rgba(0,0,0,.55)}
 .spr-tip.selected{border-color:#5fd0ff}
-@media(pointer:coarse){.spr-handle{width:24px;height:24px;margin:-12px 0 0 -12px}.spr-tip{width:20px;height:20px;margin:-10px 0 0 -10px}}
+@media(pointer:coarse){.spr-handle{width:18px;height:18px;margin:-9px 0 0 -9px}.spr-tip{width:14px;height:14px;margin:-7px 0 0 -7px}}
 .spr-sub>summary{display:flex;align-items:center;gap:6px}
 .spr-sub.current>summary{color:#7fd6ff}
 .spr-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);box-shadow:0 0 0 2px rgba(255,255,255,.18);flex:none}
 .spr-tools{margin-left:auto;display:inline-flex;gap:4px}
 .spr-tools button{display:grid;place-items:center;width:26px;height:26px;padding:0;border-radius:7px}
 .spr-count{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 5px;margin-left:4px;border-radius:9px;background:rgba(47,155,255,.25);color:#cfeaff;font-size:10px}
+.layer-chips{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 6px}
+.layer-chip{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:16px;border:1px solid var(--line);background:rgba(16,42,58,.9);color:#cfe3ec;cursor:pointer}
+.layer-chip.active{border-color:#35c9f3;background:rgba(53,201,243,.18);color:#fff}
+.spr-handle.mot{background:#ff9f43;border-color:#fff1e0}
+.spr-handle.mot.selected{background:#ffc078;box-shadow:0 0 0 3px rgba(255,159,67,.45),0 1px 5px rgba(0,0,0,.55)}
+.spr-tip.mot{border-color:#ff9f43}
+/* Card mode: one view inside a Home Assistant dashboard card - only the plan, nothing around it. */
+html:has(body.card-mode),body.card-mode{background:transparent!important;overflow:hidden!important;min-height:0!important}
+body.card-mode .topbar,body.card-mode #view-sheet,body.card-mode .view-tabs,body.card-mode .connection,body.card-mode #add-button,body.card-mode .scene-tools{display:none!important}
+body.card-mode main{width:100%!important;margin:0!important;padding:0!important}
+body.card-mode .scene-card{border:0!important;border-radius:0!important;padding:0!important;background:transparent!important;box-shadow:none!important}
+.drip-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.drip-draft{fill:none;stroke:#9bd7ff;stroke-width:2.5;stroke-dasharray:6 4;vector-effect:non-scaling-stroke}
+.drip-handle{position:absolute;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;border-radius:50%;background:#9bd7ff;border:2px solid #0c1d28;box-shadow:0 1px 4px rgba(0,0,0,.5);pointer-events:auto;cursor:grab;touch-action:none}
+.drip-handle.selected{width:9px;height:9px;margin:-4.5px 0 0 -4.5px;background:#fff;border-color:#2f9bff}
+.drip-handle.draft{pointer-events:none;background:#fff}
+@media(pointer:coarse){.drip-handle{width:14px;height:14px;margin:-7px 0 0 -7px}}
+body.drip-drawing .scene{cursor:crosshair}
+#drip-draw-cancel{border-color:rgba(248,113,113,.55)!important;color:#fca5a5!important}
+.drip-handle.mid{width:6px;height:6px;margin:-3px 0 0 -3px;background:rgba(255,255,255,.85);border-color:#2f9bff;cursor:copy}
+@media(pointer:coarse){.drip-handle.mid{width:12px;height:12px;margin:-6px 0 0 -6px}}
+
+.ifx-nobody :is(.room-card-part,.room-label-part).icon>:is(.ifx-a,.ifx-b){display:none}
+
+.drip-handle{-webkit-touch-callout:none;user-select:none}
+
+.drip-hit{fill:none;stroke:transparent;stroke-width:16px;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;pointer-events:stroke;cursor:move;touch-action:none}
+@media(pointer:coarse){.drip-hit{stroke-width:26px}}
+
+.weather-prev-buttons{display:flex;flex-wrap:wrap;gap:6px}
+.weather-prev-buttons .preview-state-button{min-width:34px;height:34px;padding:0 8px;display:inline-grid;place-items:center}
+
+.fx-group-title{font-size:11px;letter-spacing:.04em;text-transform:uppercase;opacity:.65;margin:10px 0 4px}
+
+/* View menu: one even row of icons (the view's own on the left, delete / duplicate / add on the right), sections folded */
+.vm-view-actions.vm-toolbar{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin-bottom:8px}
+.vm-tb-left,.vm-tb-right{display:contents}
+.vm-tb-right>:first-child{position:relative}
+.vm-tb-right>:first-child::before{content:"";position:absolute;left:-4px;top:18%;bottom:18%;width:1px;background:rgba(99,181,216,.35)}
+.vm-icon-danger{color:#ff6374}
+.vm-toolbar .vm-icon.active{color:#80e9ff}
+.vm-title small{display:none}
+.vm-sub{display:grid;gap:6px;margin-top:2px}
+.vm-sub>summary.vm-sub-title{display:flex;align-items:center;gap:7px;padding:6px 8px;border-radius:8px;background:rgba(13,46,62,.6);color:#c6d8e1;font-size:11px;cursor:pointer;list-style:none}
+.vm-sub>summary.vm-sub-title::-webkit-details-marker{display:none}
+.vm-sub>summary.vm-sub-title i{font-size:15px;color:#9db7ff}
+.vm-sub>summary.vm-sub-title::after{content:"\F0140";font-family:"Material Design Icons";margin-left:auto;color:#6f8d9c;font-size:15px;transition:transform .15s}
+.vm-sub[open]>summary.vm-sub-title::after{transform:rotate(180deg)}
+.vm-sub>.vm-field,.vm-sub>.sun-dim-block{margin-top:6px}
+
+.vm-toolbar .vm-icon{width:100%;min-width:0;box-sizing:border-box;justify-self:stretch}
+
+.vm-sec .vm-icons .vm-icon{width:100%;min-width:0;box-sizing:border-box}
+.vm-sec .vm-icons{width:auto}
+
+/* Light popup: brightness and colour temperature by a long press on a label with a dimmable light */
+.tappable{-webkit-touch-callout:none}
+.light-pop{position:fixed;z-index:60;width:min(250px,calc(100vw - 16px));display:grid;gap:8px;padding:10px 12px;border:1px solid rgba(99,181,216,.35);border-radius:14px;background:rgba(8,28,40,.96);box-shadow:0 10px 30px rgba(0,0,0,.55);color:#dff3ff;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);touch-action:none}
+.light-pop .lp-head{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px}
+.light-pop .lp-head b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.light-pop .lp-val{color:#ffd27a;font-weight:700}
+.light-pop .lp-row{display:flex;align-items:center;gap:10px}
+.light-pop .lp-row i{font-size:20px;color:#9bd7ff;flex:none}
+.light-pop .lp-row input[type=range]{flex:1;min-width:0;height:28px;margin:0}
+.light-pop .lp-ct{-webkit-appearance:none;appearance:none;height:8px!important;border-radius:6px;background:linear-gradient(90deg,#ffb35a,#fff3e0 50%,#a8cdff)}
+.light-pop .lp-ct::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:2px solid #20b9e7}
+.light-pop .lp-kv{font-size:11px;color:#9fb6c3;min-width:46px;text-align:right}
+
+.light-pop .lp-sw{display:flex;justify-content:space-between;gap:6px}
+.light-pop .lp-dot{flex:1;min-width:0;height:26px;max-width:26px;aspect-ratio:1;border-radius:50%;border:2px solid rgba(255,255,255,.35);padding:0;cursor:pointer}
+.light-pop .lp-white{background:linear-gradient(135deg,#fff,#cfd8dc)}
+.light-pop .lp-hue{-webkit-appearance:none;appearance:none;height:8px!important;border-radius:6px;background:linear-gradient(90deg,#f00,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,#f00)}
+.light-pop .lp-hue::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:2px solid #20b9e7}
+
+/* the popup's content never wider than the popup */
+.light-pop{box-sizing:border-box;width:min(280px,calc(100vw - 16px));grid-template-columns:minmax(0,1fr);overflow:hidden}
+.light-pop .lp-sw{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:5px}
+.light-pop .lp-dot{width:100%;height:auto;max-width:none;aspect-ratio:1}
+.light-pop .lp-row{min-width:0}
+.light-pop .lp-kv{min-width:48px}
+
+.light-pop .lp-save{display:flex;align-items:center;justify-content:center;gap:6px;height:32px;border:1px solid rgba(99,181,216,.35);border-radius:9px;background:rgba(32,185,231,.12);color:#bfe9f8;font-size:12px;cursor:pointer}
+.light-pop .lp-save i{font-size:16px}
+
+.dash-stepper{display:flex;align-items:center;gap:12px}
+.dash-stepper button{width:44px;height:44px;border:1px solid rgba(99,181,216,.35);border-radius:11px;background:#0d2e3e;color:#bfe9f8;font-size:22px;display:grid;place-items:center;padding:0}
+.dash-stepper button:disabled{opacity:.35}
+.dash-stepper b{min-width:28px;text-align:center;font-size:16px}
+
+/* A thermostat button's icon as a centred svg (same on every device) */
+.thermo-mode-btn .mdi-svg,.thermo-mode-solo .mdi-svg,.thermo-step .mdi-svg{display:block;width:1.2em;height:1.2em;overflow:visible;position:absolute;left:50%;top:50%;margin:0;transform:translate(-50%,-50%)}
+.thermo-step{position:relative}
+.thermo-step .mdi-svg{width:1.15em;height:1.15em}

@@ -6,6 +6,13 @@ Create polished, interactive visual dashboards for Home Assistant on any image o
 
 ![HA Views at night: glowing rooms, live values, an animated Flow and a night floor plan](docs/screenshots/night-view.png)
 
+## What's new in 0.8.0
+
+- **Weather area**: sun, clouds, snow, fog and stars from a `weather.*` entity, with preview buttons.
+- **Drip lines** drawn anywhere on the plan with their own valve, and irrigation as one category with sprinklers.
+- **Light control**: hold a light for brightness, colour temperature and colours; rooms glow in their lamp's colour.
+- **Motion areas**, **Add as HA card**, icon effects in two combinable groups, easier tile sizing on a phone, and a tidier view menu.
+
 ## What's new in 0.7.0
 
 - **Tiles views**: a colour background split into tiles (phone 9:16 or desktop 16:9); elements snap in, stretch over tiles and never overlap.
