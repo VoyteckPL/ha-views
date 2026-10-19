@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link id="mdi-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" media="print" onload="this.media='all'">
   <style>.app-booting .markers,.app-booting .scene-empty,.app-booting .selection,.app-booting .flow-selection,.app-booting #edit-toggle,.app-booting #view-manage,.app-booting #settings-toggle{visibility:hidden!important}</style>
-  <link rel="stylesheet" href="rewrite-assets/app.css?v=20260928-448">
+  <link rel="stylesheet" href="rewrite-assets/app.css?v=20261019-800">
   <meta name="description" content="HA Views live demo: visual Home Assistant dashboards on your own floor plan. Runs entirely in your browser.">
   <style>
     #demo-bar{position:fixed;left:10px;bottom:10px;z-index:60;display:flex;align-items:center;gap:8px;max-width:calc(100vw - 20px);padding:6px 8px 6px 12px;border:1px solid rgba(99,181,216,.4);border-radius:999px;background:rgba(6,22,32,.92);color:#cfe6f1;font:12px/1.3 system-ui,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.45);backdrop-filter:blur(6px)}
@@ -16,7 +16,7 @@
     body.editing #demo-bar{opacity:.35}body.editing #demo-bar:hover{opacity:1}
     @media (max-width:640px){#demo-bar .demo-note{display:none}}
   </style>
-  <script>window.HA_VIEWS_DEMO_APP = 'rewrite-assets/app.js?v=20260928-448';</script>
+  <script>window.HA_VIEWS_DEMO_APP = 'rewrite-assets/app.js?v=20261019-800';</script>
   <script src="demo-layout.js"></script>
   <script src="demo.js"></script>
 </head>
@@ -26,22 +26,23 @@
       <nav id="scene-tabs" class="tabs scene-tabs" aria-label="Widoki"></nav>
       <div class="view-manage-anchor"><button id="view-manage" class="icon-action" title="Zarządzaj widokami" aria-label="Zarządzaj widokami"><i class="mdi mdi-view-dashboard-edit-outline"></i></button>
       <div id="view-menu" class="vm" data-page="main" role="dialog" aria-label="Zarządzaj widokiem">
-        <div class="vm-head"><button id="vm-back" class="vm-round" type="button" title="Wstecz" aria-label="Wstecz"><i class="mdi mdi-arrow-left"></i></button><div class="vm-title"><strong id="vm-title">Widok</strong><small id="vm-name" data-no-i18n></small></div><button id="vm-close" class="vm-round" type="button" title="Zamknij" aria-label="Zamknij"><i class="mdi mdi-close"></i></button></div>
-        <div class="vm-page" data-vm-page="main">
-          <div class="vm-icons">
-            <button id="view-add" class="vm-icon" type="button" title="Dodaj widok" aria-label="Dodaj widok"><i class="mdi mdi-plus"></i></button>
-            <button id="view-rename" class="vm-icon" type="button" title="Zmień nazwę widoku" aria-label="Zmień nazwę widoku"><i class="mdi mdi-pencil-outline"></i></button>
-            <button id="view-duplicate" class="vm-icon" type="button" title="Duplikuj widok" aria-label="Duplikuj widok"><i class="mdi mdi-content-duplicate"></i></button>
-            <button id="view-default" class="vm-icon" type="button" title="Ustaw jako widok startowy" aria-label="Ustaw jako widok startowy"><i class="mdi mdi-home-variant-outline"></i></button>
-          </div>
-          <div class="vm-tiles">
-            <button id="background-manage" class="vm-tile" type="button" data-vm-open="background" title="Tło" aria-label="Tło"><i class="mdi mdi-image-outline"></i><span>Tło</span><i class="mdi mdi-chevron-right vm-chev"></i></button>
-            <button id="view-options" class="vm-tile" type="button" data-vm-open="options" title="Opcje" aria-label="Opcje"><i class="mdi mdi-cog-outline"></i><span>Opcje</span><i class="mdi mdi-chevron-right vm-chev"></i></button>
-          </div>
-        </div>
+        <div class="vm-head"><button id="vm-back" class="vm-round" type="button" title="Wstecz" aria-label="Wstecz"><i class="mdi mdi-arrow-left"></i></button><div class="vm-title"><strong id="vm-title" data-no-i18n>Widok</strong><small id="vm-name" data-no-i18n hidden></small></div><button id="vm-close" class="vm-round" type="button" title="Zamknij" aria-label="Zamknij"><i class="mdi mdi-close"></i></button></div>
+        <div class="vm-page" data-vm-page="main"></div>
         <div id="vm-background" class="vm-page" data-vm-page="background">
-          <section class="vm-zone">
-            <div class="vm-zone-title"><i class="mdi mdi-image-outline"></i><b>Obraz</b></div>
+          <div class="vm-icons vm-view-actions vm-toolbar" role="toolbar" aria-label="Widok">
+            <div class="vm-tb-left">
+              <button id="view-rename" class="vm-icon" type="button" title="Zmień nazwę widoku" aria-label="Zmień nazwę widoku"><i class="mdi mdi-pencil-outline"></i></button>
+              <button id="view-default" class="vm-icon" type="button" title="Ustaw jako widok startowy" aria-label="Ustaw jako widok startowy"><i class="mdi mdi-home-variant-outline"></i></button>
+              <button id="view-zoom-toggle" class="vm-icon" type="button" aria-pressed="true" title="Zoom poza edycją" aria-label="Zoom poza edycją"><i class="mdi mdi-magnify-plus-outline"></i></button>
+            </div>
+            <div class="vm-tb-right">
+              <button id="view-delete" class="vm-icon vm-icon-danger" type="button" title="Usuń widok" aria-label="Usuń widok"><i class="mdi mdi-delete-outline"></i></button>
+              <button id="view-duplicate" class="vm-icon" type="button" title="Duplikuj widok" aria-label="Duplikuj widok"><i class="mdi mdi-content-duplicate"></i></button>
+              <button id="view-add" class="vm-icon" type="button" title="Dodaj widok" aria-label="Dodaj widok"><i class="mdi mdi-plus"></i></button>
+            </div>
+          </div>
+          <details class="vm-zone vm-sec bg-image-only">
+            <summary class="vm-zone-title"><i class="mdi mdi-image-outline"></i><b>Obraz</b></summary>
             <select id="background-select" aria-label="Wybierz tło"></select>
             <div id="background-preview-wrap" class="vm-preview" hidden><img id="background-preview" alt="Podgląd wybranego tła"><div class="vm-preview-actions"><button id="background-preview-cancel" type="button">Anuluj</button><button id="background-preview-apply" type="button" class="primary">Ustaw tło</button></div></div>
             <div class="vm-icons">
@@ -52,9 +53,9 @@
             </div>
             <div class="vm-range"><i class="mdi mdi-brightness-6" title="Jasność" aria-hidden="true"></i><input id="background-brightness" type="range" min="30" max="200" step="5" value="100" data-brightness="backgroundBrightness" aria-label="Jasność"><output>100%</output><button type="button" class="vm-range-reset" data-brightness-reset="backgroundBrightness" title="Przywróć 100%" aria-label="Przywróć 100%"><i class="mdi mdi-restore"></i></button></div>
             <input id="background-file" type="file" accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp" hidden>
-          </section>
-          <section class="vm-zone night-bg-block">
-            <div class="vm-zone-title"><i class="mdi mdi-weather-night"></i><b>Tło nocne</b></div>
+          </details>
+          <details class="vm-zone vm-sec night-bg-block bg-image-only">
+            <summary class="vm-zone-title"><i class="mdi mdi-weather-night"></i><b>Tło nocne</b></summary>
             <select id="night-background-select" aria-label="Tło nocne"></select>
             <div class="vm-icons night-mode" role="group" aria-label="Tryb tła">
               <button id="night-background-upload" class="vm-icon" type="button" title="Wgraj tło nocne" aria-label="Wgraj tło nocne"><i class="mdi mdi-image-plus-outline"></i></button>
@@ -63,21 +64,24 @@
               <button class="vm-icon" type="button" data-night-mode="night" title="Zawsze noc" aria-label="Zawsze noc"><i class="mdi mdi-weather-night"></i></button>
             </div>
             <div class="vm-range"><i class="mdi mdi-brightness-6" title="Jasność" aria-hidden="true"></i><input id="night-brightness" type="range" min="30" max="200" step="5" value="100" data-brightness="nightBrightness" aria-label="Jasność"><output>100%</output><button type="button" class="vm-range-reset" data-brightness-reset="nightBrightness" title="Przywróć 100%" aria-label="Przywróć 100%"><i class="mdi mdi-restore"></i></button></div>
-            <label class="night-bg-entity vm-field"><span>Przełącza encja</span><input id="night-entity" type="text" autocomplete="off" spellcheck="false" placeholder="sun.sun" aria-label="Encja przełączająca tło nocne"></label>
-            <div class="sun-dim-block">
-              <label class="vm-check"><input id="sun-dim-toggle" type="checkbox"><span>Ściemniaj tło wg słońca</span></label>
-              <div class="sun-dim-controls">
-                <label class="vm-slider"><span>Jasność w nocy<output data-sundim-out="dimNight"></output></span><input type="range" min="10" max="100" step="5" data-sundim="dimNight" aria-label="Jasność w nocy"></label>
-                <label class="vm-slider"><span>Zaczyna ściemniać, gdy słońce na<output data-sundim-out="dimFrom"></output></span><input type="range" min="-10" max="20" step="1" data-sundim="dimFrom" aria-label="Zaczyna ściemniać, gdy słońce na"></label>
-                <label class="vm-slider"><span>Pełna noc, gdy słońce na<output data-sundim-out="dimTo"></output></span><input type="range" min="-18" max="5" step="1" data-sundim="dimTo" aria-label="Pełna noc, gdy słońce na"></label>
-                <label class="vm-check"><input type="checkbox" data-sundim-cool><span>Chłodny odcień nocą</span></label>
+            <details class="vm-sub night-auto">
+              <summary class="vm-sub-title"><i class="mdi mdi-weather-sunset"></i><b>Automatyczne przełączanie</b></summary>
+              <label class="night-bg-entity vm-field"><span>Przełącza encja</span><input id="night-entity" type="text" autocomplete="off" spellcheck="false" placeholder="sun.sun" aria-label="Encja przełączająca tło nocne"></label>
+              <div class="sun-dim-block">
+                <label class="vm-check"><input id="sun-dim-toggle" type="checkbox"><span>Ściemniaj tło wg słońca</span></label>
+                <div class="sun-dim-controls">
+                  <label class="vm-slider"><span>Jasność w nocy<output data-sundim-out="dimNight"></output></span><input type="range" min="10" max="100" step="5" data-sundim="dimNight" aria-label="Jasność w nocy"></label>
+                  <label class="vm-slider"><span>Zaczyna ściemniać, gdy słońce na<output data-sundim-out="dimFrom"></output></span><input type="range" min="-10" max="20" step="1" data-sundim="dimFrom" aria-label="Zaczyna ściemniać, gdy słońce na"></label>
+                  <label class="vm-slider"><span>Pełna noc, gdy słońce na<output data-sundim-out="dimTo"></output></span><input type="range" min="-18" max="5" step="1" data-sundim="dimTo" aria-label="Pełna noc, gdy słońce na"></label>
+                  <label class="vm-check"><input type="checkbox" data-sundim-cool><span>Chłodny odcień nocą</span></label>
+                </div>
               </div>
-            </div>
-            <small id="night-status" class="vm-status"></small>
+              <small id="night-status" class="vm-status"></small>
+            </details>
             <input id="night-background-file" type="file" accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp" hidden>
-          </section>
-          <section class="vm-zone vm-colour-zone">
-            <div class="vm-zone-title"><i class="mdi mdi-palette-outline"></i><b>Kolor</b></div>
+          </details>
+          <details class="vm-zone vm-sec vm-colour-zone bg-colour-only">
+            <summary class="vm-zone-title"><i class="mdi mdi-palette-outline"></i><b>Kolor</b></summary>
             <div class="vm-colour-row">
               <div class="color-picker vm-colour">
                 <button id="background-color-toggle" type="button" class="color-current" style="background:#0d2838" aria-label="Wybierz kolor tła"></button>
@@ -91,30 +95,34 @@
               <small class="vm-colour-note">Kolor zamiast obrazu</small>
             </div>
             <div class="vm-formats" role="group" aria-label="Format koloru">
-              <button type="button" data-canvas-size="1920x1080">16:9</button><button type="button" data-canvas-size="1600x1200">4:3</button><button type="button" data-canvas-size="1200x1200">1:1</button><button type="button" data-canvas-size="1200x1600">3:4</button><button type="button" data-canvas-size="1080x1920">9:16</button><button type="button" data-canvas-size="2560x1080">21:9</button>
+              <button type="button" class="canvas-phone" data-canvas-size="1080x1920" title="Telefon (9:16)" aria-label="Telefon (9:16)"><i class="mdi mdi-cellphone"></i>Telefon</button><button type="button" data-canvas-size="1920x1080" title="Desktop (16:9)" aria-label="Desktop (16:9)"><i class="mdi mdi-monitor"></i>Desktop</button>
             </div>
-            <div class="vm-size-row">
+            <div class="vm-size-row" hidden>
               <label><input id="canvas-width" type="number" min="100" max="10000" step="10" inputmode="numeric" aria-label="Szerokość"></label><span>×</span><label><input id="canvas-height" type="number" min="100" max="10000" step="10" inputmode="numeric" aria-label="Wysokość"></label>
               <button id="canvas-resize-start" class="vm-icon" type="button" title="Ustaw rozmiar na ekranie" aria-label="Ustaw rozmiar na ekranie"><i class="mdi mdi-resize-bottom-right"></i></button>
             </div>
-          </section>
+          </details>
+          <details class="vm-zone vm-sec vm-tiles-zone bg-colour-only">
+            <summary class="vm-zone-title"><i class="mdi mdi-view-grid-outline"></i><b>Kafelki</b><button id="dash-toggle" class="vm-icon dash-toggle" type="button" hidden><span id="dash-status">ON</span></button></summary>
+            <div id="dash-size-row" class="dash-size-row">
+              <div class="dash-steps">
+                <div class="dash-step"><span>Kolumny</span><button type="button" data-dash-step="cols:-1" aria-label="Mniej kolumn"><i class="mdi mdi-minus"></i></button><input id="dash-cols" type="number" min="1" max="12" step="1" inputmode="numeric" aria-label="Kolumny"><button type="button" data-dash-step="cols:1" aria-label="Więcej kolumn"><i class="mdi mdi-plus"></i></button></div>
+                <div class="dash-step"><span>Wiersze</span><button type="button" data-dash-step="rows:-1" aria-label="Mniej wierszy"><i class="mdi mdi-minus"></i></button><input id="dash-rows" type="number" min="1" max="24" step="1" inputmode="numeric" aria-label="Wiersze"><button type="button" data-dash-step="rows:1" aria-label="Więcej wierszy"><i class="mdi mdi-plus"></i></button></div>
+              </div>
+              <div class="vm-range"><i class="mdi mdi-arrow-expand-horizontal" title="Odstęp" aria-hidden="true"></i><input id="dash-gap" type="range" min="0" max="24" step="1" value="4" aria-label="Odstęp"><output id="dash-gap-out">4 px</output></div>
+            </div>
+          </details>
           <span id="background-status" class="vm-status"></span>
-        </div>
-        <div class="vm-page" data-vm-page="options">
-          <label class="vm-field"><span><i class="mdi mdi-gesture-swipe-horizontal"></i>Przełączanie palcem</span><select id="view-transition" aria-label="Przełączanie palcem"><option value="off">Wyłączone (tylko zakładki)</option><option value="slide">Przesunięcie</option><option value="cube">Kostka</option></select></label>
-          <label class="vm-field"><span><i class="mdi mdi-lightbulb-on-outline"></i>Poświata pomieszczeń</span><select id="glow-blend-select" aria-label="Poświata pomieszczeń"><option value="auto">Automatycznie</option><option value="normal">Płynna (telefon)</option><option value="screen">Dokładna</option></select></label>
-          <div class="vm-field vm-toggle-row"><span><i class="mdi mdi-magnify-plus-outline"></i>Zoom poza edycją</span><button id="view-zoom-toggle" class="vm-icon" type="button" aria-pressed="true" title="Zoom poza edycją" aria-label="Zoom poza edycją"><i class="mdi mdi-magnify-plus-outline"></i></button></div>
-          <label class="vm-field"><span><i class="mdi mdi-dock-right"></i>Panel edycji</span><select id="dock-side-select" aria-label="Panel edycji"><option value="right">Po prawej</option><option value="left">Po lewej</option></select></label>
-          <label class="vm-field"><span><i class="mdi mdi-translate"></i>Język</span><select id="language-select" title="Language / Język" aria-label="Language / Język"><option value="en">English</option><option value="pl">Polski</option></select></label>
-          <label class="vm-field" id="ha-start-row" hidden><span><i class="mdi mdi-home-import-outline"></i>Panel startowy HA</span><select id="ha-start-select" aria-label="Domyślny panel Home Assistant"><option value="off">Bez zmian</option><option value="user">HA Views (konto)</option><option value="device">HA Views (urządzenie)</option></select></label>
-          <button id="view-link" class="vm-tile vm-link" type="button" title="Kopiuj link do widoku" aria-label="Kopiuj link do widoku"><i class="mdi mdi-link-variant"></i><span>Kopiuj link do widoku</span><i class="mdi mdi-content-copy vm-chev"></i></button>
-          <button id="view-delete" class="vm-danger" type="button" title="Usuń widok" aria-label="Usuń widok"><i class="mdi mdi-delete-outline"></i><span>Usuń widok</span></button>
         </div>
       </div></div>
     </div>
     <div class="top-actions">
       <div id="snap-menu" class="compact-menu snap-menu">
-        <div class="grid-row"><button id="snap-toggle" type="button" class="snap-icon grid-toggle" title="Siatka włączona" aria-label="Siatka włączona"><i class="mdi mdi-grid"></i><b id="grid-status" hidden>ON</b></button><div class="grid-presets" role="group" aria-label="Wielkość siatki"><button type="button" class="grid-preset active" data-grid-step="0.25">S</button><button type="button" class="grid-preset" data-grid-step="1">M</button><button type="button" class="grid-preset" data-grid-step="4">L</button></div></div>
+        <div class="grid-major-row"><span>Siatka</span>
+          <button id="snap-toggle" type="button" class="snap-icon grid-toggle" title="Siatka włączona" aria-label="Siatka włączona"><i class="mdi mdi-grid"></i><b id="grid-status" hidden>ON</b></button>
+          <div class="major-step" data-major-axis="x" title="Strefy w poziomie (kolumny)" aria-label="Strefy w poziomie (kolumny)"><button type="button" data-major-step="-1" aria-label="Mniej">−</button><i class="mdi mdi-arrow-left-right"></i><b>5</b><button type="button" data-major-step="1" aria-label="Więcej">+</button></div>
+          <button id="major-fit" type="button" class="snap-icon major-fit" aria-pressed="false" title="Rozmiar po strefach" aria-label="Rozmiar po strefach"><i class="mdi mdi-vector-square-close"></i></button>
+        </div>
         
         
         
@@ -128,6 +136,7 @@
           <button type="button" class="snap-icon" data-snap-key="rooms" title="Pomieszczenia"><i class="mdi mdi-floor-plan"></i></button>
           <button type="button" class="snap-icon" data-snap-key="markers" title="Wskaźniki"><i class="mdi mdi-gauge"></i></button>
           <button type="button" class="snap-icon" data-snap-key="flows" title="Flow"><i class="mdi mdi-chevron-triple-right"></i></button>
+          <button type="button" class="snap-icon" data-snap-key="major" title="Grube linie siatki"><i class="mdi mdi-grid-large"></i></button>
         </div></div>
         <div class="snap-group snap-row"><span>Wyrównuj po</span><div class="snap-icons">
           <button type="button" class="snap-icon" data-snap-key="centers" title="Środki"><i class="mdi mdi-plus-circle-outline"></i></button>
@@ -137,7 +146,7 @@
       </div>
       <button id="add-button" class="icon-action add-top" title="Dodaj do widoku" aria-label="Dodaj do widoku"><i class="mdi mdi-plus"></i></button>
       <button id="snap-menu-button" class="icon-action" title="Przyciąganie i siatka" aria-label="Przyciąganie i siatka"><i class="mdi mdi-magnet"></i></button>
-      <button id="integrations-button" class="icon-action" title="Integracje" aria-label="Integracje"><i class="mdi mdi-puzzle-outline"></i></button>
+      <button id="integrations-button" class="icon-action" title="Opcje i integracje" aria-label="Opcje i integracje"><i class="mdi mdi-cog-outline"></i></button>
       <button id="edit-toggle" class="icon-action" title="Edytuj widok" aria-label="Edytuj widok"><i class="mdi mdi-pencil-outline"></i></button>
     </div>
   </header>
@@ -153,20 +162,27 @@
             <div id="rooms" class="rooms" aria-hidden="true"></div>
             <div id="room-labels" class="room-labels" aria-hidden="true"></div>
             <div id="scene-empty" class="scene-empty"><div id="background-upload-progress" class="background-upload-progress" aria-live="polite"><i class="mdi mdi-loading"></i><span>Wgrywanie tła…</span></div>
-              <div class="welcome-card">
-                <h2 data-i18n="Wybierz tło widoku">Wybierz tło widoku</h2>
+              <div class="welcome-card" data-step="choose">
+                <h2 data-i18n="Nowy widok">Nowy widok</h2>
+                <div class="wizard-choose">
+                  <button type="button" class="wizard-big" data-wizard="image"><i class="mdi mdi-image-outline"></i><b>Obraz z siatką</b><small>Twój rzut lub zdjęcie jako tło, elementy kładziesz swobodnie</small></button>
+                  <button type="button" class="wizard-big" data-wizard="tiles"><i class="mdi mdi-view-grid-outline"></i><b>Kafelki</b><small>Kolorowe tło z siatką kafli - etykiety same się w nie układają</small></button>
+                </div>
                 <div class="welcome-choice-columns">
-                  <section class="welcome-choice-panel welcome-image-choice"><h3>Obraz</h3>
+                  <section class="welcome-choice-panel welcome-image-choice"><button type="button" class="wizard-back" data-wizard="choose"><i class="mdi mdi-arrow-left"></i>Wstecz</button><h3>Obraz z siatką</h3>
                     <div class="welcome-actions">
                   <button id="empty-upload" class="primary" data-i18n="Wgraj nowy obraz"><i class="mdi mdi-image-plus-outline"></i> Wgraj nowy obraz</button>
-                  <div class="welcome-existing-background"><select id="empty-background-select" aria-label="Wybierz istniejące tło"><option value="">Wybierz istniejące tło…</option></select></div>
+                  <div class="welcome-existing-background" hidden><select id="empty-background-select" aria-label="Wybierz istniejące tło"><option value="">Wybierz istniejące tło…</option></select></div>
+                  <span class="wizard-label empty-bg-gallery-label" data-i18n="Wybierz istniejące tło" hidden>Wybierz istniejące tło</span><div id="empty-background-gallery" class="empty-bg-gallery" hidden></div>
                   <div id="empty-background-preview-wrap" class="empty-background-preview-wrap" hidden><img id="empty-background-preview" alt="Podgląd wybranego tła"><button id="empty-background-confirm" type="button" class="primary">Załaduj wybrane tło</button></div>
                     </div>
                   </section>
-                  <section class="welcome-choice-panel welcome-colour-choice"><h3>Kolor</h3>
+                  <section class="welcome-choice-panel welcome-colour-choice"><button type="button" class="wizard-back" data-wizard="choose"><i class="mdi mdi-arrow-left"></i>Wstecz</button><h3>Kafelki</h3>
                     <div class="welcome-actions">
                   <div class="welcome-color color-picker"><span data-i18n="Kolor tła">Kolor tła</span><button id="empty-color-toggle" type="button" class="color-current" style="background:#0d2838" aria-label="Wybierz kolor"></button><input id="empty-background-color" class="color-native" type="color" value="#0d2838" aria-label="Kolor tła"><div id="empty-color-menu" class="color-menu"><div class="color-palette"><button type="button" data-empty-palette-color="#FFFFFF" style="background:#FFFFFF" aria-label="#FFFFFF"></button><button type="button" data-empty-palette-color="#DCE8EF" style="background:#DCE8EF" aria-label="#DCE8EF"></button><button type="button" data-empty-palette-color="#9BC1D8" style="background:#9BC1D8" aria-label="#9BC1D8"></button><button type="button" data-empty-palette-color="#607D8B" style="background:#607D8B" aria-label="#607D8B"></button><button type="button" data-empty-palette-color="#03101A" style="background:#03101A" aria-label="#03101A"></button><button type="button" data-empty-palette-color="#102A3A" style="background:#102A3A" aria-label="#102A3A"></button><button type="button" data-empty-palette-color="#20B9E7" style="background:#20B9E7" aria-label="#20B9E7"></button><button type="button" data-empty-palette-color="#147EA5" style="background:#147EA5" aria-label="#147EA5"></button><button type="button" data-empty-palette-color="#22D69B" style="background:#22D69B" aria-label="#22D69B"></button><button type="button" data-empty-palette-color="#39B86C" style="background:#39B86C" aria-label="#39B86C"></button><button type="button" data-empty-palette-color="#FFD166" style="background:#FFD166" aria-label="#FFD166"></button><button type="button" data-empty-palette-color="#F59E0B" style="background:#F59E0B" aria-label="#F59E0B"></button><button type="button" data-empty-palette-color="#FF6374" style="background:#FF6374" aria-label="#FF6374"></button><button type="button" data-empty-palette-color="#E63946" style="background:#E63946" aria-label="#E63946"></button><button type="button" data-empty-palette-color="#B66DFF" style="background:#B66DFF" aria-label="#B66DFF"></button><button type="button" data-empty-palette-color="#7C4DFF" style="background:#7C4DFF" aria-label="#7C4DFF"></button><button type="button" data-empty-palette-color="#EC4899" style="background:#EC4899" aria-label="#EC4899"></button><button type="button" data-empty-palette-color="#8B5E3C" style="background:#8B5E3C" aria-label="#8B5E3C"></button></div><button id="empty-rgb" type="button" class="rgb-button" data-i18n="Własny kolor RGB…">Własny kolor RGB…</button></div></div>
-                  <button id="empty-color-start" data-i18n="Zacznij z kolorem"><i class="mdi mdi-palette-outline"></i> Zacznij z kolorem</button>
+                  <button id="empty-color-start" hidden data-i18n="Zacznij z kolorem"><i class="mdi mdi-palette-outline"></i> Zacznij z kolorem</button>
+                  <span class="wizard-label">Format</span>
+                  <div class="wizard-formats"><button type="button" class="primary" data-wizard-tiles="phone"><i class="mdi mdi-cellphone"></i><span>Telefon</span><small>9:16</small></button><button type="button" class="primary" data-wizard-tiles="desktop"><i class="mdi mdi-monitor"></i><span>Desktop</span><small>16:9</small></button></div>
                     </div>
                   </section>
                 </div>
@@ -183,6 +199,20 @@
 
     <section id="view-integrations" class="view">
       <div class="integrations-layout">
+        <article class="panel options-panel">
+          <div class="panel-head"><div><h2>Opcje</h2><p>Ustawienia aplikacji</p></div></div>
+          <div class="options-list">
+          <label class="vm-field"><span><i class="mdi mdi-gesture-swipe-horizontal"></i>Przełączanie palcem</span><select id="view-transition" aria-label="Przełączanie palcem"><option value="off">Wyłączone (tylko zakładki)</option><option value="slide">Przesunięcie</option><option value="cube">Kostka</option></select></label>
+          <label class="vm-field"><span><i class="mdi mdi-lightbulb-on-outline"></i>Poświata pomieszczeń</span><select id="glow-blend-select" aria-label="Poświata pomieszczeń"><option value="auto">Automatycznie</option><option value="normal">Płynna (telefon)</option><option value="screen">Dokładna</option></select></label>
+          <label class="vm-field"><span><i class="mdi mdi-dock-right"></i>Panel edycji</span><select id="dock-side-select" aria-label="Panel edycji"><option value="right">Po prawej</option><option value="left">Po lewej</option></select></label>
+          <label class="vm-field"><span><i class="mdi mdi-translate"></i>Język</span><select id="language-select" title="Language / Język" aria-label="Language / Język"><option value="en">English</option><option value="pl">Polski</option></select></label>
+          <label class="vm-field" id="ha-start-row" hidden><span><i class="mdi mdi-home-import-outline"></i>Panel startowy HA</span><select id="ha-start-select" aria-label="Domyślny panel Home Assistant"><option value="off">Bez zmian</option><option value="user">HA Views (konto)</option><option value="device">HA Views (urządzenie)</option></select></label>
+          <button id="view-card" class="vm-tile vm-link" type="button" title="Dodaj jako kartę HA" aria-label="Dodaj jako kartę HA"><i class="mdi mdi-card-outline"></i><span>Dodaj jako kartę HA</span><i class="mdi mdi-content-copy vm-chev"></i></button>
+          <button id="view-link" class="vm-tile vm-link" type="button" title="Kopiuj link do widoku" aria-label="Kopiuj link do widoku"><i class="mdi mdi-link-variant"></i><span>Kopiuj link do widoku</span><i class="mdi mdi-content-copy vm-chev"></i></button>
+          </div>
+          <div class="panel-head lib-panel-head"><div><h2>Biblioteka</h2><p>Zapisane szablony elementów</p></div></div>
+          <div id="library-panel" class="library-panel inline visible"></div>
+        </article>
         <article class="panel">
           <div class="panel-head"><div><h2>Dodane do widoku</h2><p>Markery, Flow i pomieszczenia tego widoku</p></div><span id="added-count" class="count">0</span></div>
           <div id="added-list" class="entity-list"></div>
@@ -236,7 +266,9 @@
         <div class="editor-meta"><code id="flow-editor-integration"></code></div>
       </div>
       <div class="editor-quick-actions">
+        <button type="button" id="flow-side-preview" class="editor-icon-button head-side with-text" hidden><i class="mdi mdi-plus-circle-outline"></i><span class="head-preview-text">Wartość +</span></button>
         <button id="flow-default-style" class="editor-icon-button" title="Ustaw domyślny" aria-label="Ustaw domyślny"><i class="mdi mdi-restore"></i></button>
+        <button id="flow-save-template" class="editor-icon-button tpl" title="Zapisz jako szablon" aria-label="Zapisz jako szablon"><i class="mdi mdi-bookmark-plus-outline"></i></button>
         <button id="flow-copy-style" class="editor-icon-button" title="Kopiuj styl Flow" aria-label="Kopiuj styl Flow"><i class="mdi mdi-content-copy"></i></button>
         <button id="flow-paste-style" class="editor-icon-button" title="Wklej styl Flow" aria-label="Wklej styl Flow"><i class="mdi mdi-content-paste"></i></button>
         <button id="flow-remove" class="editor-icon-button danger" title="Usuń Flow" aria-label="Usuń Flow"><i class="mdi mdi-delete-outline"></i></button>
@@ -256,10 +288,14 @@
       </div>
       <div class="editor-quick-actions">
         <button type="button" class="editor-icon-button head-preview" hidden><i class="mdi mdi-lightbulb-on-outline"></i></button>
+        <div id="room-part-toggles" class="editor-part-toggles" hidden></div>
+        <button id="room-group-snap" class="editor-icon-button" title="Przyciąganie w grupie" aria-label="Przyciąganie w grupie" hidden><i class="mdi mdi-magnet"></i></button>
         <button id="room-group-toggle" class="editor-icon-button" data-part-toggle="labelLinked" title="Grupuj ikonę, nazwę i stan" aria-label="Grupuj ikonę, nazwę i stan" hidden><i class="mdi mdi-group"></i></button>
         <button id="room-default-style" class="editor-icon-button" title="Ustaw domyślny" aria-label="Ustaw domyślny"><i class="mdi mdi-restore"></i></button>
+        <button id="room-save-template" class="editor-icon-button tpl" title="Zapisz jako szablon" aria-label="Zapisz jako szablon"><i class="mdi mdi-bookmark-plus-outline"></i></button>
         <button id="room-copy-style" class="editor-icon-button" title="Kopiuj styl pomieszczenia" aria-label="Kopiuj styl pomieszczenia"><i class="mdi mdi-content-copy"></i></button>
         <button id="room-paste-style" class="editor-icon-button" title="Wklej styl pomieszczenia" aria-label="Wklej styl pomieszczenia"><i class="mdi mdi-content-paste"></i></button>
+        <button id="room-duplicate" class="editor-icon-button dup" title="Duplikuj" aria-label="Duplikuj"><i class="mdi mdi-content-duplicate"></i></button>
         <button id="room-remove" class="editor-icon-button danger" title="Usuń pomieszczenie" aria-label="Usuń pomieszczenie"><i class="mdi mdi-delete-outline"></i></button>
         <button id="room-editor-close" class="editor-icon-button" title="Zamknij" aria-label="Zamknij"><i class="mdi mdi-close"></i></button>
       </div>
@@ -287,12 +323,12 @@
           <div id="add-list" class="add-list"></div>
         </div>
       </div>
-      <div class="add-foot"><label class="add-pick"><input id="add-pick" type="checkbox"><span class="add-switch"></span><span class="add-pick-text">Wskaż miejsce na planie</span></label><span class="add-spacer"></span><button type="button" class="add-cancel" data-add-close>Anuluj</button><button type="button" id="add-go" class="add-go"></button></div>
+      <div class="add-foot"><span class="add-spacer"></span><button type="button" class="add-cancel" data-add-close>Anuluj</button><button type="button" id="add-go" class="add-go"></button></div>
     </div>
   </div>
   <div id="room-wizard" class="room-wizard" aria-hidden="true" data-step="name">
     <div class="room-wizard-card" role="dialog" aria-labelledby="room-wizard-title">
-      <div class="room-wizard-head"><b id="room-wizard-title">Nazwa pomieszczenia</b><span id="room-wizard-step" class="room-wizard-step" data-no-i18n>1 / 2</span></div>
+      <div class="room-wizard-head"><b id="room-wizard-title">Nazwa pomieszczenia</b><span id="room-wizard-step" class="room-wizard-step" data-no-i18n>1 / 2</span><button type="button" class="room-wizard-cancel" data-wizard-cancel title="Anuluj dodawanie" aria-label="Anuluj dodawanie"><i class="mdi mdi-close"></i></button></div>
       <div class="room-wizard-name-step">
         <input id="room-wizard-name" type="text" autocomplete="off" maxlength="60" aria-label="Nazwa pomieszczenia">
         <small>Puste = nazwa automatyczna</small>
@@ -359,6 +395,6 @@
   </div>
 
   <div id="toast" class="toast"></div>
-  <div id="demo-bar" data-no-i18n><b>HA Views demo</b><span class="demo-note">0.6.0 · example data · your changes stay in this browser</span><button type="button" onclick="haViewsDemoReset()" title="Restore the example dashboard">Reset</button><a href="https://github.com/VoyteckPL/ha-views" target="_blank" rel="noopener">Get the add-on</a></div>
+  <div id="demo-bar" data-no-i18n><b>HA Views demo</b><span class="demo-note">0.8.0 · example data · your changes stay in this browser</span><button type="button" onclick="haViewsDemoReset()" title="Restore the example dashboard">Reset</button><a href="https://github.com/VoyteckPL/ha-views" target="_blank" rel="noopener">Get the add-on</a></div>
 </body>
 </html>

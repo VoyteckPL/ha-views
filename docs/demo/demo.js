@@ -5,7 +5,7 @@
 (() => {
   'use strict';
   const LAYOUT_KEY = 'ha-views-demo-layout-v1', FILES_HIDDEN_KEY = 'ha-views-demo-hidden-files-v1';
-  const BUNDLED = { 'plan-day.png': 48832, 'plan-night.png': 44345 };
+  const BUNDLED = {'plan-day.png': 330629, 'plan-night.png': 320936, 'garden-day.png': 345244, 'garden-night.png': 286042};
   const API = new URL('api/', location.href).pathname;
   const now = () => new Date().toISOString();
 
@@ -21,7 +21,7 @@
     ['light.bedroom', 'Bedroom lamp', 'off'], ['light.bathroom', 'Bathroom light', 'off'], ['light.garden', 'Garden lights', 'off']]);
   add('netatmo', ['netatmo', 'Netatmo'], [
     ['sensor.living_room_temperature', 'Living room temperature', 21.8, T], ['sensor.kitchen_temperature', 'Kitchen temperature', 22.4, T],
-    ['sensor.bedroom_temperature', 'Bedroom temperature', 19.6, T], ['sensor.outdoor_temperature', 'Outdoor temperature', 8.4, T],
+    ['sensor.bedroom_temperature', 'Bedroom temperature', 19.6, T], ['sensor.outdoor_temperature', 'Outdoor temperature', 8.4, T], ['sensor.hall_temperature', 'Hall temperature', 20.9, T],
     ['sensor.bathroom_humidity', 'Bathroom humidity', 58, { unit_of_measurement: '%', device_class: 'humidity' }], ['sensor.living_room_co2', 'Living room CO₂', 640, { unit_of_measurement: 'ppm', device_class: 'carbon_dioxide' }]]);
   add('shelly', ['shelly', 'Shelly'], [
     ['switch.coffee_machine', 'Coffee machine', 'on'], ['switch.washing_machine', 'Washing machine', 'off'], ['switch.heat_pump', 'Heat pump', 'on'],
@@ -34,6 +34,7 @@
     ['sensor.boiler_pressure', 'Boiler pressure', 1.6, { unit_of_measurement: 'bar', device_class: 'pressure' }]]);
   add('helpers', ['input_boolean', 'Helpers'], [['input_boolean.night_mode', 'Night mode', 'off'], ['input_boolean.guest_mode', 'Guest mode', 'off']]);
   add('sun', ['sun', 'Sun'], [['sun.sun', 'Sun', 'above_horizon']]);
+  add('garden', ['rainbird', 'Rain Bird'], [['switch.lawn_sprinklers', 'Lawn sprinklers', 'on'], ['switch.beds_drip', 'Beds drip line', 'on'], ['sensor.soil_moisture', 'Soil moisture', 41, { unit_of_measurement: '%', device_class: 'moisture' }]]);
 
   // Live values: small random walks, so the demo feels connected.
   const listeners = new Set();
@@ -42,7 +43,7 @@
   const walk = (id, step, min, max, digits = 1) => { const v = Number(E[id].state) + (Math.random() - .5) * 2 * step; setState(id, Math.min(max, Math.max(min, v)).toFixed(digits)); };
   setInterval(() => {
     walk('sensor.living_room_temperature', .1, 20, 23.5); walk('sensor.kitchen_temperature', .1, 20.5, 24); walk('sensor.bedroom_temperature', .08, 18, 21);
-    walk('sensor.outdoor_temperature', .15, 3, 14); walk('sensor.bathroom_humidity', 1.2, 45, 72, 0); walk('sensor.living_room_co2', 25, 420, 1100, 0);
+    walk('sensor.outdoor_temperature', .15, 3, 14); walk('sensor.hall_temperature', .08, 19.5, 22); walk('sensor.soil_moisture', .5, 33, 52, 0); walk('sensor.bathroom_humidity', 1.2, 45, 72, 0); walk('sensor.living_room_co2', 25, 420, 1100, 0);
     const solar = Math.max(0, Number(E['sensor.solar_power'].state) + (Math.random() - .5) * 400); setState('sensor.solar_power', Math.round(Math.min(5200, solar)));
     const lights = ['light.living_room','light.kitchen','light.hall','light.bedroom','light.bathroom','light.garden'].filter(id => E[id].state === 'on').length;
     const house = 380 + lights * 60 + (E['switch.coffee_machine'].state === 'on' ? 900 : 0) + (E['switch.heat_pump'].state === 'on' ? 1100 : 0) + (E['switch.washing_machine'].state === 'on' ? 1800 : 0) + Math.round((Math.random() - .5) * 120);

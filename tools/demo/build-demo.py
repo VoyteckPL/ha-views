@@ -6,7 +6,7 @@ here = os.path.dirname(os.path.abspath(__file__))
 os.makedirs(os.path.join(out, 'rewrite-assets'), exist_ok=True); os.makedirs(os.path.join(out, 'backgrounds'), exist_ok=True)
 for f in ('app.js', 'app.css'): shutil.copy(os.path.join(src, f), os.path.join(out, 'rewrite-assets', f))
 for f in ('demo.js', 'demo-layout.js', 'sw.js'): shutil.copy(os.path.join(here, f), os.path.join(out, f))
-for f in ('plan-day.png', 'plan-night.png'): shutil.copy(os.path.join(here, f), os.path.join(out, 'backgrounds', f))
+for f in ('plan-day.png', 'plan-night.png', 'garden-day.png', 'garden-night.png'): shutil.copy(os.path.join(here, f), os.path.join(out, 'backgrounds', f))
 html = open(os.path.join(src, 'index.html'), encoding='utf-8').read()
 m = re.search(r'\s*<script type="module" src="(rewrite-assets/app\.js[^"]*)"></script>', html)
 assert m, 'app.js script tag not found'
