@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TSSR Form</title>
+<style>
+:root{--bg:#f4f6fa;--card:#fff;--ink:#1c2430;--mut:#6b7686;--line:#d5dbe6;--brand:#0b3d91;--req:#fff6d6;--ok:#0a7a3d;--bad:#c0262d}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+header{position:sticky;top:0;z-index:5;background:var(--brand);color:#fff;padding:10px 16px;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+header h1{font-size:18px;margin:0;flex:1 1 auto}
+#status{font-weight:600}
+#status.ok{color:#9dffc4}#status.bad{color:#ffd0d0}
+button{font:inherit;padding:7px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink);cursor:pointer}
+button.pri{background:#ffb703;border-color:#ffb703;font-weight:700}
+button.sm{padding:3px 9px}
+button:hover{filter:brightness(.96)}
+main{max-width:1100px;margin:0 auto;padding:12px 16px 60px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:14px 0;padding:6px 16px 16px}
+section>h2{font-size:16px;margin:12px 0 4px;color:var(--brand)}
+.hint{color:var(--mut);font-size:13px;margin:0 0 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px 14px}
+label{display:flex;flex-direction:column;font-size:13px;color:var(--mut);gap:3px}
+label.wide{grid-column:1/-1}
+input,select,textarea{font:inherit;color:var(--ink);padding:7px 8px;border:1px solid var(--line);border-radius:6px;background:#fff;width:100%;min-width:0}
+textarea{min-height:90px;resize:vertical}
+.req input,.req select,.req textarea,input.req,select.req{background:var(--req)}
+table{width:100%;border-collapse:collapse}
+th{font-size:12px;text-align:left;color:var(--mut);padding:4px 6px}
+td{padding:3px 4px;vertical-align:middle}
+.modrow td:nth-child(2){width:34%}
+td.band{font-weight:600;white-space:nowrap;padding-right:8px}
+td.band small{display:block;font-weight:400;color:var(--mut)}
+.sector{border:1px solid var(--line);border-radius:8px;padding:8px 12px 12px;margin:10px 0;background:#fbfcfe}
+.sector h3{margin:4px 0 6px;font-size:15px}
+.row{display:grid;grid-template-columns:1fr 80px 36px;gap:6px;margin:4px 0}
+.row.removal{grid-template-columns:1.4fr 1fr 80px 36px}
+.yn{display:grid;grid-template-columns:1fr 130px;gap:6px 14px;align-items:center}
+.scroll{overflow-x:auto}
+details{margin-top:6px}
+summary{cursor:pointer;font-weight:600;color:var(--brand)}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px}
+.flex{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+@media(max-width:700px){.modrow{display:block}.modrow td{display:block;padding:2px 0}}
+</style>
+</head>
+<body>
+<header>
+  <h1>TSSR – site survey form</h1>
+  <span id="status"></span>
+  <button id="btnDraftSave">Save draft</button>
+  <button id="btnDraftLoad">Load draft</button>
+  <button id="btnNew">New</button>
+  <button id="btnExport" class="pri">Export Excel report</button>
+</header>
+<main id="app"></main>
+<input type="file" id="fileDraft" accept=".json" hidden>
+<input type="file" id="fileCat" accept=".xlsx" hidden>
+<script id="catalog-data" type="application/json">__CATALOG__</script>
+<script>/*__EXCELJS__*/</script>
+<script>
+// Snapshot of this very file (before the UI is rendered) – used to re-save the form with a new catalog.
+const PRISTINE='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+
+(function(){
+'use strict';
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const LS_CAT='tssr_catalog_v1',LS_DRAFT='tssr_draft_v1';
+
+/* ---------- catalog ---------- */
+let CAT,catOpen=false;
+try{CAT=JSON.parse(localStorage.getItem(LS_CAT)||'null')}catch(e){CAT=null}
+const BUILTIN=JSON.parse($('#catalog-data').textContent);
+if(!CAT)CAT=BUILTIN;
+const L=n=>(CAT.lists&&CAT.lists[n])||[];
+const hw=()=>CAT.hw, mats=()=>CAT.mat;
+const hwBy={},matBy={};
+function index(){for(const k in hwBy)delete hwBy[k];for(const k in matBy)delete matBy[k];
+  CAT.hw.forEach(h=>hwBy[h.pn]=h);CAT.mat.forEach(m=>matBy[m.code]=m)}
+index();
+
+const BANDS=[
+ {k:'low',name:'Low band',sub:'G900 / L800 / L900 / NR700',group:'Radio Low'},
+ {k:'mid',name:'Mid band',sub:'L1800 / L2100 / DSS2100',group:'Radio Mid'},
+ {k:'l26',name:'L2600',sub:'',group:'Radio 2600'},
+ {k:'nr',name:'5G',sub:'NR3600',group:'Radio 5G'}];
+const SAFETY=['Can the work be carried out safely?','Is a crane / cherry picker needed?','Is scaffolding needed?',
+ 'Suspected asbestos / hazardous materials?','AC power increase / new breakers needed?','New rectifier / DCDU needed?',
+ 'Do antennas need to be blocked during works?','Is there a night / weekend work restriction?'];
+
+/* ---------- state ---------- */
+const emptySector=()=>({rows:{},mats:[{}]});
+const fresh=()=>({site:{client:'DT ORAN'},sol:{},n:3,sectors:[emptySector(),emptySector(),emptySector()],
+  hwExtra:[{}],matSite:[{}],removal:[{}],safety:{},txt:{}});
+let S;
+try{S=JSON.parse(localStorage.getItem(LS_DRAFT)||'null')}catch(e){S=null}
+if(!S)S=fresh();
+const save=()=>{try{localStorage.setItem(LS_DRAFT,JSON.stringify(S))}catch(e){}};
+
+function get(path){return path.split('.').reduce((o,k)=>o==null?o:o[k],S)}
+function set(path,v){const p=path.split('.');let o=S;for(let i=0;i<p.length-1;i++){if(o[p[i]]==null)o[p[i]]={};o=o[p[i]]}o[p[p.length-1]]=v}
+
+/* ---------- field builders ---------- */
+function inp(path,label,{req=false,type='text',wide=false,ph=''}={}){
+  return `<label class="${req?'req':''} ${wide?'wide':''}">${esc(label)}${req?' *':''}<input data-p="${path}" type="${type}" placeholder="${esc(ph)}" value="${esc(get(path))}"></label>`}
+function area(path,label,{req=false,rows=4}={}){
+  return `<label class="wide ${req?'req':''}">${esc(label)}${req?' *':''}<textarea data-p="${path}" rows="${rows}">${esc(get(path))}</textarea></label>`}
+function opts(list,cur,blank='—'){return `<option value="">${esc(blank)}</option>`+list.map(v=>`<option${v===cur?' selected':''}>${esc(v)}</option>`).join('')}
+function sel(path,label,list,{req=false,wide=false}={}){
+  return `<label class="${req?'req':''} ${wide?'wide':''}">${esc(label)}${req?' *':''}<select data-p="${path}">${opts(list,get(path))}</select></label>`}
+
+function hwOptions(groupTest,cur,blank='— none —'){
+  const gs={};hw().filter(h=>groupTest(h.group)).forEach(h=>(gs[h.group]=gs[h.group]||[]).push(h));
+  let o=`<option value="">${esc(blank)}</option>`;
+  for(const g in gs){o+=`<optgroup label="${esc(g)}">`+gs[g].map(h=>`<option value="${esc(h.pn)}"${h.pn===cur?' selected':''}>${esc(h.pn+' – '+h.desc)}</option>`).join('')+'</optgroup>'}
+  if(cur&&!hwBy[cur])o+=`<option value="${esc(cur)}" selected>${esc(cur)} (not in catalog)</option>`;
+  return o}
+function matOptions(cur,blank='— select material —'){
+  const gs={};mats().forEach(m=>(gs[m.group]=gs[m.group]||[]).push(m));
+  let o=`<option value="">${esc(blank)}</option>`;
+  for(const g in gs){o+=`<optgroup label="${esc(g)}">`+gs[g].map(m=>`<option value="${esc(m.code)}"${m.code===cur?' selected':''}>${esc(m.code+' – '+m.desc)}</option>`).join('')+'</optgroup>'}
+  if(cur&&!matBy[cur])o+=`<option value="${esc(cur)}" selected>${esc(cur)} (not in catalog)</option>`;
+  return o}
+
+/* ---------- render ---------- */
+function lines(path,kind){ // kind: hw | mat | rem
+  const arr=get(path);
+  return arr.map((r,i)=>{
+    if(kind==='rem')return `<div class="row removal"><input data-p="${path}.${i}.item" placeholder="e.g. RRU5509t / antenna type" value="${esc(r.item)}"><input data-p="${path}.${i}.where" placeholder="sector / location" value="${esc(r.where)}"><input data-p="${path}.${i}.qty" type="number" min="0" placeholder="Qty" value="${esc(r.qty)}"><button class="sm" data-del="${path}.${i}">✕</button></div>`;
+    const o=kind==='hw'?hwOptions(()=>true,r.pn,'— select Nokia HW —'):matOptions(r.code);
+    const f=kind==='hw'?'pn':'code';
+    return `<div class="row"><select data-p="${path}.${i}.${f}">${o}</select><input data-p="${path}.${i}.qty" type="number" min="0" placeholder="Qty" value="${esc(r.qty)}"><button class="sm" data-del="${path}.${i}">✕</button></div>`}).join('')
+  +`<button class="sm" data-add="${path}">+ add line</button>`}
+
+function sectorHtml(i){
+  const sc=S.sectors[i];
+  const rows=BANDS.map(b=>{const p=`sectors.${i}.rows.${b.k}`;const r=sc.rows[b.k]||{};
+    return `<tr class="modrow"><td class="band">${b.name}<small>${b.sub}</small></td>
+      <td><select data-p="${p}.pn">${hwOptions(g=>g===b.group,r.pn)}</select></td>
+      <td style="width:70px"><input type="number" min="1" data-p="${p}.qty" placeholder="1" value="${esc(r.qty)}"></td>
+      <td><select data-p="${p}.loc">${opts(L('Radio location'),r.loc,'location')}</select></td>
+      <td><select data-p="${p}.mount">${hwOptions(g=>g==='Mounting',r.mount,'mounting kit')}</select></td>
+      <td><input data-p="${p}.note" placeholder="notes" value="${esc(r.note)}"></td></tr>`}).join('');
+  return `<div class="sector"><h3>Sector ${i+1}</h3>
+    <div class="scroll"><table><tr><th>Band</th><th>Radio module</th><th>Qty</th><th>Location</th><th>Mounting kit</th><th>Notes</th></tr>${rows}</table></div>
+    <p class="hint" style="margin:10px 0 2px">Sector materials – DC cable, fiber, jumpers, RET cable …</p>
+    ${lines(`sectors.${i}.mats`,'mat')}</div>`}
+
+function render(){
+  const a=$('#app');
+  a.innerHTML=`
+  <section><h2>1. Site</h2><div class="grid">
+    ${inp('site.code','Site code',{req:true})}${inp('site.name','Site name',{req:true})}
+    ${inp('site.addr','Address',{req:true})}${inp('site.gps','GPS (lat, lon)',{req:true})}
+    ${sel('site.type','Site type',L('Site type'),{req:true})}${inp('site.client','Client / project')}
+    ${inp('site.date','Survey date',{req:true,type:'date'})}${inp('site.by','Surveyor (name, company, phone)',{req:true})}
+    ${inp('site.contact','Site access contact (name, phone)')}
+    ${area('site.access','Access notes (keys, hours, bird nests, bee hives …)',{rows:2})}
+  </div></section>
+
+  <section><h2>2. Solution</h2><div class="grid">
+    ${area('sol.desc','Description of the planned solution',{req:true,rows:5})}
+    ${sel('sol.swap','Swap type',L('Swap type'),{req:true})}
+    ${sel('sol.indoor','Indoor cabinet / rack',L('Indoor cabinet'))}
+    ${sel('sol.outdoor','Outdoor cabinet',L('Outdoor cabinet'))}
+    ${sel('sol.means','Special means',L('Special means'),{req:true})}
+    ${sel('sol.duration','Swap duration',L('Duration'))}
+    ${area('sol.civil','Civil / steel works needed? (describe)',{rows:2})}
+  </div></section>
+
+  <section><h2>3. Radio modules per sector</h2>
+    <p class="hint">Pick the radio module for each band, where it goes and its mounting kit. One mounting kit per module is counted in the BOM.</p>
+    <div class="flex"><label style="flex-direction:row;align-items:center;gap:8px">Number of sectors
+      <select id="nSect" style="width:70px">${[1,2,3,4,5,6].map(n=>`<option${n===S.n?' selected':''}>${n}</option>`).join('')}</select></label></div>
+    ${S.sectors.slice(0,S.n).map((_,i)=>sectorHtml(i)).join('')}
+  </section>
+
+  <section><h2>4. Other Nokia HW</h2>
+    <p class="hint">Baseband, subrack, SFPs, GPS, power, anything else from the Nokia HW list.</p>${lines('hwExtra','hw')}</section>
+
+  <section><h2>5. Installation materials (site level)</h2>
+    <p class="hint">Boxes, trunk cables, clamps, grounding kits …</p>${lines('matSite','mat')}</section>
+
+  <section><h2>6. To be removed</h2><p class="hint">Antennas, RRUs, BTS … (type, location, quantity)</p>${lines('removal','rem')}</section>
+
+  <section><h2>7. Safety, power, deficiencies</h2>
+    <div class="yn">${SAFETY.map((q,i)=>`<span>${esc(q)} <b style="color:var(--bad)">*</b></span><select class="req" data-p="safety.${i}">${opts(['YES','NO'],S.safety[i])}</select>`).join('')}</div>
+    <div class="grid" style="margin-top:10px">
+    ${area('txt.power','Power – current state and what is missing',{rows:3})}
+    ${area('txt.defic','Deficiencies / hazards / other remarks',{rows:3})}</div></section>
+
+  <section><h2>8. Photos</h2>
+    <p class="hint">Photos are <b>not</b> pasted into the report – keep them in a separate folder named <span class="mono">SITECODE_01_general-view.jpg</span>, <span class="mono">SITECODE_02_access-road.jpg</span> …<br>
+    Minimum: view of / from the site, access, cabinet/room, power (AC + DC), antennas on tower/roof, every sector (antenna + RRU), cable routes, places for new equipment.</p>
+    <div class="grid">${inp('txt.photos','Link to photo folder',{wide:true})}</div></section>
+
+  <section><details id="catDet"${catOpen?' open':''}><summary>Catalog (Nokia HW and materials lists) – for the person maintaining the lists</summary>
+    <p class="hint" id="catInfo"></p>
+    <div class="flex">
+      <button id="btnCatDl">Download current catalog.xlsx</button>
+      <button id="btnCatLoad">Load catalog.xlsx</button>
+      <button id="btnCatReset">Reset to built-in</button>
+      <button id="btnCatSave" class="pri">Save form with this catalog (HTML)</button>
+    </div>
+    <p class="hint">How: edit catalog.xlsx → Load catalog.xlsx → Save form with this catalog → send the new HTML file to subcontractors.</p>
+  </details></section>`;
+  catInfo();status();
+}
+function catInfo(){const e=$('#catInfo');if(e)e.textContent=`Catalog in use: ${CAT.hw.length} Nokia HW items, ${CAT.mat.length} materials${CAT===BUILTIN?' (built into this file)':' (loaded from file, stored in this browser)'}.`}
+
+/* ---------- validation ---------- */
+const REQ=['site.code','site.name','site.addr','site.gps','site.type','site.date','site.by','sol.desc','sol.swap','sol.means'];
+function missing(){let m=REQ.filter(p=>!String(get(p)||'').trim()).length;
+  SAFETY.forEach((_,i)=>{if(!S.safety[i])m++});
+  const anyRadio=S.sectors.slice(0,S.n).some(s=>BANDS.some(b=>s.rows[b.k]&&s.rows[b.k].pn));
+  const anyHw=S.hwExtra.some(r=>r.pn);
+  if(!anyRadio&&!anyHw)m++;
+  return m}
+function status(){const m=missing(),e=$('#status');e.textContent=m?`${m} mandatory item${m>1?'s':''} missing`:'✔ complete';e.className=m?'bad':'ok'}
+
+/* ---------- events ---------- */
+const app=$('#app');
+app.addEventListener('toggle',e=>{if(e.target.id==='catDet')catOpen=e.target.open},true);
+app.addEventListener('input',e=>{const p=e.target.dataset&&e.target.dataset.p;if(p){set(p,e.target.value);save();status()}});
+app.addEventListener('change',e=>{
+  if(e.target.id==='nSect'){S.n=+e.target.value;while(S.sectors.length<S.n)S.sectors.push(emptySector());save();render()}});
+app.addEventListener('click',e=>{
+  const t=e.target;
+  if(t.dataset.add){get(t.dataset.add).push({});save();render()}
+  else if(t.dataset.del){const p=t.dataset.del.split('.');const i=+p.pop();const arr=get(p.join('.'));arr.splice(i,1);if(!arr.length)arr.push({});save();render()}
+  else if(t.id==='btnCatDl')downloadCatalog();
+  else if(t.id==='btnCatLoad')$('#fileCat').click();
+  else if(t.id==='btnCatReset'){if(confirm('Go back to the catalog built into this file?')){localStorage.removeItem(LS_CAT);CAT=BUILTIN;index();render()}}
+  else if(t.id==='btnCatSave')saveFormHtml();
+});
+
+function download(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
+
+$('#btnNew').onclick=()=>{if(confirm('Clear the whole form and start a new report?')){S=fresh();save();render()}};
+$('#btnDraftSave').onclick=()=>download(new Blob([JSON.stringify(S,null,1)],{type:'application/json'}),`TSSR_draft_${(S.site.code||'site').replace(/\W+/g,'_')}.json`);
+$('#btnDraftLoad').onclick=()=>$('#fileDraft').click();
+$('#fileDraft').onchange=async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;
+  try{const d=JSON.parse(await f.text());if(!d.site||!d.sectors)throw 0;S=d;save();render()}catch(x){alert('This is not a TSSR draft file.')}};
+
+/* ---------- catalog import / export ---------- */
+function cellText(c){const v=c&&c.value;if(v==null)return '';if(typeof v==='object'){if(v.richText)return v.richText.map(t=>t.text).join('');if(v.result!=null)return String(v.result);if(v.text)return String(v.text)}return String(v).trim()}
+$('#fileCat').onchange=async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;
+  try{
+    const wb=new ExcelJS.Workbook();await wb.xlsx.load(await f.arrayBuffer());
+    const H=wb.getWorksheet('Hardware'),M=wb.getWorksheet('Materials'),Ls=wb.getWorksheet('Lists');
+    if(!H||!M)throw new Error('Sheets "Hardware" and "Materials" are required.');
+    const hwl=[],ml=[],seen={};let dup=[];
+    H.eachRow((r,n)=>{if(n===1)return;const pn=cellText(r.getCell(1));if(!pn)return;if(seen['h'+pn]){dup.push(pn);return}seen['h'+pn]=1;hwl.push({pn,group:cellText(r.getCell(2))||'Other',desc:cellText(r.getCell(3)),notes:cellText(r.getCell(4))})});
+    M.eachRow((r,n)=>{if(n===1)return;const code=cellText(r.getCell(1));if(!code)return;if(seen['m'+code]){dup.push(code);return}seen['m'+code]=1;ml.push({code,group:cellText(r.getCell(2))||'Other',desc:cellText(r.getCell(3)),src:cellText(r.getCell(4)),unit:cellText(r.getCell(5))||'pcs'})});
+    const lists={};
+    if(Ls){Ls.getRow(1).eachCell((c,ci)=>{const name=cellText(c);if(!name)return;const v=[];Ls.eachRow((r,n)=>{if(n===1)return;const t=cellText(r.getCell(ci));if(t)v.push(t)});lists[name]=v})}
+    else Object.assign(lists,BUILTIN.lists);
+    CAT={hw:hwl,mat:ml,lists};localStorage.setItem(LS_CAT,JSON.stringify(CAT));index();render();
+    alert(`Catalog loaded: ${hwl.length} Nokia HW items, ${ml.length} materials.`+(dup.length?`\nSkipped duplicate part numbers/codes (each must be unique): ${dup.join(', ')}`:'')+`\nTo give it to others use "Save form with this catalog (HTML)".`);
+  }catch(x){alert('Could not read the catalog: '+x.message)}};
+
+async function downloadCatalog(){
+  const wb=new ExcelJS.Workbook();
+  const sh=(ws,cols,rows,w)=>{ws.addRow(cols).eachCell(c=>{c.font={bold:true,color:{argb:'FFFFFFFF'}};c.fill={type:'pattern',pattern:'solid',fgColor:{argb:'FF0B3D91'}}});rows.forEach(r=>ws.addRow(r));w.forEach((x,i)=>ws.getColumn(i+1).width=x);ws.views=[{state:'frozen',ySplit:1}]};
+  sh(wb.addWorksheet('Hardware'),['Part number','Group','Description','Notes'],CAT.hw.map(h=>[h.pn,h.group,h.desc,h.notes||'']),[16,22,70,30]);
+  sh(wb.addWorksheet('Materials'),['Code','Group','Description','Source','Unit'],CAT.mat.map(m=>[m.code,m.group,m.desc,m.src||'',m.unit||'pcs']),[18,22,70,12,8]);
+  const names=Object.keys(CAT.lists),max=Math.max(0,...names.map(n=>CAT.lists[n].length)),rows=[];
+  for(let i=0;i<max;i++)rows.push(names.map(n=>CAT.lists[n][i]||''));
+  sh(wb.addWorksheet('Lists'),names,rows,names.map(()=>28));
+  download(new Blob([await wb.xlsx.writeBuffer()],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),'catalog.xlsx')}
+
+function saveFormHtml(){
+  const a='<script id="catalog-data" type="application/json">',i=PRISTINE.indexOf(a),j=PRISTINE.indexOf('</'+'script>',i);
+  if(i<0||j<0){alert('Cannot rebuild the form file.');return}
+  const json=JSON.stringify(CAT).replace(/</g,'\\u003c');
+  const html=PRISTINE.slice(0,i+a.length)+json+PRISTINE.slice(j);
+  download(new Blob([html],{type:'text/html'}),'TSSR_form.html')}
+
+/* ---------- report ---------- */
+function bom(){
+  const H={},M={};
+  const addH=(pn,q)=>{if(!pn)return;q=+q||1;H[pn]=(H[pn]||0)+q};
+  const addM=(c,q)=>{if(!c)return;q=+q||1;M[c]=(M[c]||0)+q};
+  S.sectors.slice(0,S.n).forEach(s=>{
+    BANDS.forEach(b=>{const r=s.rows[b.k];if(r&&r.pn){addH(r.pn,r.qty);if(r.mount)addH(r.mount,r.qty)}});
+    s.mats.forEach(m=>addM(m.code,m.qty))});
+  S.hwExtra.forEach(r=>addH(r.pn,r.qty));S.matSite.forEach(r=>addM(r.code,r.qty));
+  return{H,M}}
+
+$('#btnExport').onclick=async()=>{
+  const m=missing();
+  if(m&&!confirm(`${m} mandatory item(s) are still missing. Export anyway?`))return;
+  const wb=new ExcelJS.Workbook();wb.creator='TSSR form';wb.created=new Date();
+  const HEAD={type:'pattern',pattern:'solid',fgColor:{argb:'FF0B3D91'}},SUB={type:'pattern',pattern:'solid',fgColor:{argb:'FFD9E2F3'}};
+  const table=(ws,cols,rows,widths)=>{const h=ws.addRow(cols);h.eachCell(c=>{c.font={bold:true,color:{argb:'FFFFFFFF'}};c.fill=HEAD});
+    rows.forEach(r=>ws.addRow(r));widths.forEach((w,i)=>ws.getColumn(i+1).width=w);
+    ws.eachRow(r=>r.eachCell(c=>{c.alignment={vertical:'top',wrapText:true};c.border={top:{style:'thin',color:{argb:'FFBBBBBB'}},bottom:{style:'thin',color:{argb:'FFBBBBBB'}},left:{style:'thin',color:{argb:'FFBBBBBB'}},right:{style:'thin',color:{argb:'FFBBBBBB'}}}}));
+    ws.views=[{state:'frozen',ySplit:1}]};
+  // 1 Report
+  const ws=wb.addWorksheet('Report');ws.getColumn(1).width=44;ws.getColumn(2).width=90;
+  ws.addRow(['TSSR – Technical Site Survey Report']).font={bold:true,size:16};
+  const sec=t=>{const r=ws.addRow([t]);ws.mergeCells(r.number,1,r.number,2);r.eachCell(c=>{c.font={bold:true,color:{argb:'FFFFFFFF'}};c.fill=HEAD})};
+  const kv=(k,v)=>{const r=ws.addRow([k,v==null?'':v]);r.getCell(1).font={bold:true};r.getCell(1).fill=SUB;r.eachCell(c=>c.alignment={vertical:'top',wrapText:true})};
+  ws.addRow([]);sec('1. Site');
+  [['Site code',S.site.code],['Site name',S.site.name],['Address',S.site.addr],['GPS',S.site.gps],['Site type',S.site.type],['Client / project',S.site.client],
+   ['Survey date',S.site.date],['Surveyor',S.site.by],['Site access contact',S.site.contact],['Access notes',S.site.access]].forEach(a=>kv(...a));
+  ws.addRow([]);sec('2. Solution');
+  [['Description',S.sol.desc],['Swap type',S.sol.swap],['Indoor cabinet / rack',S.sol.indoor],['Outdoor cabinet',S.sol.outdoor],
+   ['Special means',S.sol.means],['Swap duration',S.sol.duration],['Civil / steel works',S.sol.civil]].forEach(a=>kv(...a));
+  ws.addRow([]);sec('3. Safety, power, deficiencies');
+  SAFETY.forEach((q,i)=>kv(q,S.safety[i]));kv('Power',S.txt.power);kv('Deficiencies / remarks',S.txt.defic);
+  ws.addRow([]);sec('4. Photos');kv('Photo folder',S.txt.photos);
+  // 2 Sectors
+  const rows=[];
+  S.sectors.slice(0,S.n).forEach((s,i)=>BANDS.forEach(b=>{const r=s.rows[b.k];if(r&&r.pn){const h=hwBy[r.pn],mt=r.mount&&hwBy[r.mount];
+    rows.push([`S${i+1}`,b.name+(b.sub?' ('+b.sub+')':''),r.pn,h?h.desc:'',+r.qty||1,r.loc||'',r.mount||'',mt?mt.desc:'',r.note||''])}}));
+  table(wb.addWorksheet('Sectors'),['Sector','Band','Part number','Radio module','Qty','Location','Mounting PN','Mounting kit','Notes'],rows,[8,34,14,52,6,18,14,44,30]);
+  // 3 sector materials
+  const mrows=[];S.sectors.slice(0,S.n).forEach((s,i)=>s.mats.forEach(x=>{if(x.code){const m=matBy[x.code];mrows.push([`S${i+1}`,x.code,m?m.desc:'',+x.qty||1])}}));
+  S.matSite.forEach(x=>{if(x.code){const m=matBy[x.code];mrows.push(['Site',x.code,m?m.desc:'',+x.qty||1])}});
+  table(wb.addWorksheet('Materials by sector'),['Sector','Code','Description','Qty'],mrows,[10,16,70,8]);
+  // 4 BOMs
+  const B=bom();
+  table(wb.addWorksheet('BOM Nokia HW'),['Part number','Group','Description','Unit','Quantity'],
+    Object.keys(B.H).map(pn=>{const h=hwBy[pn];return[pn,h?h.group:'?',h?h.desc:'(not in catalog)','per unit',B.H[pn]]}),[16,22,70,10,10]);
+  table(wb.addWorksheet('BOM inst. materials'),['Code','Group','Description','Source','Unit','Quantity'],
+    Object.keys(B.M).map(c=>{const m=matBy[c];return[c,m?m.group:'?',m?m.desc:'(not in catalog)',m?m.src:'',m?m.unit:'pcs',B.M[c]]}),[16,22,70,12,8,10]);
+  table(wb.addWorksheet('Removal'),['Item','Location','Qty'],S.removal.filter(r=>r.item).map(r=>[r.item,r.where||'',+r.qty||1]),[50,30,8]);
+  download(new Blob([await wb.xlsx.writeBuffer()],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),`TSSR_${(S.site.code||'site').replace(/\W+/g,'_')}.xlsx`);
+};
+
+render();
+})();
+</script>
+</body>
+</html>
